@@ -1,8 +1,12 @@
-.venv/
 .env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+dist/
+social/
+.venv/
 __pycache__/
 .pytest_cache/
 data/private/
 reports/private/
-.DS_Store
-

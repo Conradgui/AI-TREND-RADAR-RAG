@@ -1,0 +1,89 @@
+name: Daily AI Topic Radar
+
+on:
+  schedule:
+    # 每天 00:00 UTC = 08:00 CST (UTC+8)
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    # Web content fetching adds ~60-120 s of HTTP requests on incremental runs;
+    # the first-ever run (fetching 50 articles) may need up to 20 min.
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run daily digest
+        env:
+          LLM_PROVIDER: deepseek
+          REPORT_LANGS: zh
+          SAVE_SOURCE_REPORTS: "0"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          PRODUCTHUNT_TOKEN: ${{ secrets.PRODUCTHUNT_TOKEN }}
+          DIGEST_REPO: ${{ github.repository }}
+        run: pnpm digest
+
+      - name: Commit digest files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add digests/
+          if git diff --cached --quiet; then
+            echo "No new digest files to commit"
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "digest: ${DATE} daily digest"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Commit manifest and feed
+        run: |
+          git add manifest.json feed.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update manifest.json"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Send Telegram notification
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PAGES_URL: https://conradgui.github.io/ai-topic-radar
+        run: pnpm notify
+
+      - name: Send Feishu notification
+        env:
+          FEISHU_WEBHOOK_URLS: ${{ secrets.FEISHU_WEBHOOK_URLS }}
+          PAGES_URL: https://conradgui.github.io/ai-topic-radar
+        run: pnpm notify:feishu
+
+      - name: Close stale issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DIGEST_REPO: ${{ github.repository }}
+        run: pnpm close-stale
