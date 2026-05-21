@@ -265,10 +265,10 @@ Settings -> Pages
 推荐配置：
 
 ```text
-Source: Deploy from a branch
-Branch: main
-Folder: / (root)
+Source: GitHub Actions
 ```
+
+Pages 只在日报、周报、月报 workflow 成功后自动部署，也可以在 `Actions -> Deploy GitHub Pages -> Run workflow` 手动部署。普通代码或 README push 不会触发发布，避免开发过程中的测试产物误上站。
 
 部署后访问：
 
@@ -290,10 +290,11 @@ https://conradgui.github.io/AI-TREND-RADAR/feed.xml
 
 如果访问 Web UI、RSS 或单日报告时看到 404：
 
-- 先等待 GitHub Pages 部署完成，刚开启 Pages 时可能需要几分钟。
-- 确认 `Settings -> Pages` 使用 `main` 分支和 `/ (root)` 目录。
+- 确认 `Settings -> Pages` 使用 `GitHub Actions` 作为 Source。
+- 确认 `Actions -> Deploy GitHub Pages` 已成功完成；如果还没有运行过，可以手动运行一次。
+- 先等待 GitHub Pages 部署完成，刚开启 Pages 或刚完成部署时可能需要 1-3 分钟。
 - 确认仓库 main 分支存在 `index.html`、`feed.xml`、`manifest.json`、`.nojekyll` 和 `digests/YYYY-MM-DD/ai-topic-radar.html`。
-- 如果 Actions 刚生成日报，等提交和 Pages 部署都完成后再刷新链接。
+- 如果 Actions 刚生成日报，等提交和 `Deploy GitHub Pages` 部署都完成后再刷新链接。
 
 ## 输出开关
 

@@ -167,8 +167,8 @@ digests/YYYY-MM-DD/ai-topic-radar.html
 适合把 HTML 报告、历史 Web UI 和 RSS 公开给别人看。
 
 1. 进入 `Settings -> Pages`。
-2. Source 选择 `Deploy from a branch`。
-3. Branch 选择 `main`，Folder 选择 `/ (root)`。
+2. Source 选择 `GitHub Actions`。
+3. 手动运行一次 `Actions -> Deploy GitHub Pages -> Run workflow`，或等待日报 / 周报 / 月报 workflow 成功后自动部署。
 4. 访问：
 
 ```text
@@ -181,7 +181,9 @@ https://conradgui.github.io/AI-TREND-RADAR
 https://conradgui.github.io/AI-TREND-RADAR/digests/YYYY-MM-DD/ai-topic-radar.html
 ```
 
-如果 Web UI 或 RSS 返回 404，先确认 GitHub Pages 已完成部署。仓库需要包含并发布 `index.html`、`feed.xml`、`manifest.json`、`.nojekyll` 和 `digests/`；刚开启 Pages 后通常需要等待几分钟。
+Pages 只在日报、周报、月报成功后自动部署，普通代码或 README push 不会触发发布，避免开发过程中的测试产物误上站。
+
+如果 Web UI 或 RSS 返回 404，先确认 `Deploy GitHub Pages` workflow 已成功完成，并等待 1-3 分钟让 GitHub Pages CDN 生效。仓库需要包含并发布 `index.html`、`feed.xml`、`manifest.json`、`.nojekyll` 和 `digests/`。
 
 ## 自动化与通知
 
