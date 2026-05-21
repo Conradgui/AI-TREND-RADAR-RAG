@@ -1,18 +1,20 @@
 {
   "zh": {
     "ai-topic-radar": [
-      "Ruvnet/ruflo: 行业场景落地成本与业务价值深度挖掘",
-      "Open-webui/open-webui: 大厂动作与商业化路径竞争格局解析",
-      "Langchain4j/langchain4j: 行业场景与向量数据库落地成本分析",
-      "StoreClaw: 用户入口与使用场景产品体验新突破",
-      "MailX by mailwarm: 邮件产品用户入口与体验优化",
-      "Emdash: 全新用户入口与使用场景产品体验"
+      "ruvnet/ruflo 适合行业场景切入，GitHub 搜索热度高。",
+      "open-webui/open-webui 推荐从大厂商业路径分析。",
+      "langchain4j/langchain4j 聚焦向量数据库行业落地。",
+      "StoreClaw 产品体验亮眼，Product Hunt 新星。",
+      "mailX by mailwarm 邮件工具创新，用户入口友好。",
+      "Emdash 实用场景突出，Product Hunt 受关注。"
     ],
     "ai-agents": [
-      "Gemini Omni: 多模态入口与产品体验创新",
-      "Runtime: 运行时产品用户场景体验升级",
-      "CowAgent: 模型能力变化与技术产品化新路线",
-      "OpenAI IPO: 大厂商业化路径与竞争格局新进展"
+      "Gemini Omni 多模态发力，用户入口场景新颖。",
+      "Runtime 产品体验优化，来源 Product Hunt。",
+      "OpenAI 准备提交 IPO 文件，Hacker News 讨论热。",
+      "zhayujie/CowAgent 入池，模型能力产品化可能。",
+      "ruvnet/ruflo 优先深挖，业务价值突出。",
+      "open-webui/open-webui 竞争格局值得深挖。"
     ]
   },
   "en": {}
