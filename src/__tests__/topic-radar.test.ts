@@ -103,7 +103,12 @@ describe("buildTopicRadar", () => {
     expect(markdown).toContain("## 入池选题");
     expect(markdown).toContain("## 按五类选题分类摘要");
     expect(markdown).toContain("## 数据源状态与修复提示");
+    expect(markdown).toContain("| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |");
     expect(markdown).toContain("New multimodal model launch");
+    expect(markdown).toContain(
+      "OpenAI launches a new multimodal model with product availability and enterprise pricing.",
+    );
+    expect(markdown).toContain("New multimodal model launch 为什么值得关注？（");
   });
 
   it("renders a self-contained html report", () => {

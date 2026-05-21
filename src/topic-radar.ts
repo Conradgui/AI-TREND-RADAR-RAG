@@ -45,6 +45,8 @@ export interface TopicScoreBreakdown {
 
 export interface TopicCandidate {
   title: string;
+  summary: string;
+  recommendedTopic: string;
   url: string;
   source: string;
   category: TopicCategory;
@@ -249,6 +251,29 @@ function buildReason(topic: RawTopic, category: TopicCategory, score: number, ev
   return `${scoreBand}：${angleFor(category)}，${mainEvidence}。`;
 }
 
+function topicAngleLabel(category: TopicCategory): string {
+  switch (category) {
+    case "政策监管、社会影响与 AI 安全":
+      return "政策变化、信任风险与安全治理";
+    case "模型与技术突破":
+      return "模型能力变化与技术路线";
+    case "AI 产品与用户入口":
+      return "用户入口、使用场景与产品体验";
+    case "企业落地与行业应用":
+      return "行业场景、落地成本与业务价值";
+    case "标杆企业动向、商业格局与投融资":
+      return "大厂动作、商业化路径与竞争格局";
+  }
+}
+
+function buildRecommendedTopic(topic: RawTopic, category: TopicCategory): string {
+  const title = topic.title.trim();
+  const angle = topicAngleLabel(category);
+  const hasCjk = /[\u3400-\u9fff]/.test(title);
+  const editedTitle = hasCjk ? `${title}值得关注的三个信号` : `${title} 为什么值得关注？`;
+  return `${editedTitle}（${angle}）`;
+}
+
 function evidenceFor(topic: RawTopic): string[] {
   const evidence = [`来源：${topic.source}`];
   if (topic.heatSignals.length > 0) evidence.push(`热度信号：${topic.heatSignals.join(" / ")}`);
@@ -269,6 +294,8 @@ function scoreTopic(topic: RawTopic, now: Date): TopicCandidate {
   const evidence = evidenceFor(topic);
   return {
     title: topic.title,
+    summary: topic.summary,
+    recommendedTopic: buildRecommendedTopic(topic, category),
     url: topic.url,
     source: topic.source,
     category,
@@ -416,11 +443,11 @@ function tableRows(candidates: TopicCandidate[]): string {
   if (candidates.length === 0) return "_暂无条目。_\n";
   const cell = (value: string): string => value.replace(/\|/g, "\\|").replace(/\n/g, "<br>");
   return [
-    "| 分数 | 动作 | 选题 | 分类 | 推荐理由 | 证据 |",
-    "| ---: | --- | --- | --- | --- | --- |",
+    "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |",
+    "| ---: | --- | --- | --- | --- | --- | --- | --- |",
     ...candidates.map((item) => {
       const evidence = item.evidence.map(cell).join("<br>");
-      return `| ${item.score} | ${item.action} | [${cell(item.title)}](${item.url}) | ${item.category} | ${cell(item.reason)} | ${evidence} |`;
+      return `| ${item.score} | ${item.action} | [${cell(item.title)}](${item.url}) | ${cell(item.summary)} | ${item.category} | ${cell(item.recommendedTopic)} | ${cell(item.reason)} | ${evidence} |`;
     }),
   ].join("\n");
 }
@@ -496,6 +523,8 @@ function renderTopicCards(candidates: TopicCandidate[]): string {
               <span>${escapeHtml(item.action)}</span>
             </div>
           </div>
+          <p class="summary">${escapeHtml(item.summary)}</p>
+          <p class="recommended"><strong>推荐选题：</strong>${escapeHtml(item.recommendedTopic)}</p>
           <p>${escapeHtml(item.reason)}</p>
           ${tags}
           <details>
@@ -638,6 +667,16 @@ export function buildTopicRadarHtml(result: TopicRadarResult): string {
       margin-top: 4px;
       font-size: 13px;
       color: var(--text);
+    }
+    .summary {
+      color: #344054;
+      font-weight: 500;
+    }
+    .recommended {
+      background: #f8fafc;
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 8px 10px;
     }
     .tags {
       display: flex;

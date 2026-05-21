@@ -40,11 +40,14 @@ jobs:
           DIGEST_REPO: ${{ github.repository }}
         run: pnpm weekly
 
-      - name: Commit weekly report
+      - name: Update web manifest
+        run: pnpm manifest
+
+      - name: Commit weekly report, manifest and feed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add digests/
+          git add digests/ manifest.json feed.xml
           if git diff --cached --quiet; then
             echo "No weekly report to commit"
           else
@@ -54,17 +57,30 @@ jobs:
             git push
           fi
 
-      - name: Update web manifest
-        run: pnpm manifest
+  notify-telegram:
+    needs: weekly
+    if: ${{ always() && needs.weekly.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
 
-      - name: Commit manifest and feed
-        run: |
-          git add manifest.json feed.xml
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update manifest.json"
-            git pull --rebase
-            git push
-          fi
+    steps:
+      - name: Checkout latest report
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Send Telegram notification
         env:
@@ -72,3 +88,154 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           PAGES_URL: https://conradgui.github.io/AI-TREND-RADAR
         run: pnpm notify
+
+  notify-feishu:
+    needs: weekly
+    if: ${{ always() && needs.weekly.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+
+    steps:
+      - name: Checkout latest report
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Send Feishu notification
+        env:
+          FEISHU_WEBHOOK_URLS: ${{ secrets.FEISHU_WEBHOOK_URLS }}
+          PAGES_URL: https://conradgui.github.io/AI-TREND-RADAR
+        run: pnpm notify:feishu
+
+  notify-email:
+    needs: weekly
+    if: ${{ always() && needs.weekly.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+
+    steps:
+      - name: Checkout latest report
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Send email briefing
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          PAGES_URL: https://conradgui.github.io/AI-TREND-RADAR
+          EMAIL_REPORT_ID: ai-weekly
+          EMAIL_REPORT_TITLE: AI Topic Radar 周报
+        run: |
+          python3 - <<'PY'
+          import html
+          import json
+          import os
+          import re
+          import smtplib
+          from email.message import EmailMessage
+          from pathlib import Path
+
+          required = ["SMTP_HOST", "SMTP_USERNAME", "SMTP_PASSWORD", "EMAIL_TO"]
+          missing = [name for name in required if not os.environ.get(name)]
+          if missing:
+              print(f"[email] {', '.join(missing)} not set — skipping.")
+              raise SystemExit(0)
+
+          manifest_path = Path("manifest.json")
+          if not manifest_path.exists():
+              print("[email] manifest.json not found — skipping.")
+              raise SystemExit(0)
+
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+          dates = manifest.get("dates") or []
+          report_id = os.environ.get("EMAIL_REPORT_ID", "ai-topic-radar")
+          latest = next((item for item in dates if report_id in item.get("reports", [])), dates[0] if dates else None)
+          if not latest:
+              print("[email] manifest is empty — skipping.")
+              raise SystemExit(0)
+
+          date = latest["date"]
+          title = os.environ.get("EMAIL_REPORT_TITLE", "AI Topic Radar")
+          pages_url = os.environ.get("PAGES_URL", "https://conradgui.github.io/AI-TREND-RADAR").rstrip("/")
+          report_url = f"{pages_url}/digests/{date}/{report_id}.html" if report_id == "ai-topic-radar" else f"{pages_url}/#{date}/{report_id}"
+          feed_url = f"{pages_url}/feed.xml"
+
+          html_path = Path("digests") / date / f"{report_id}.html"
+          md_path = Path("digests") / date / f"{report_id}.md"
+          if html_path.exists():
+              report_html = html_path.read_text(encoding="utf-8")
+          elif md_path.exists():
+              markdown = html.escape(md_path.read_text(encoding="utf-8"))
+              markdown = re.sub(r"^# (.+)$", r"<h1>\1</h1>", markdown, flags=re.MULTILINE)
+              markdown = re.sub(r"^## (.+)$", r"<h2>\1</h2>", markdown, flags=re.MULTILINE)
+              report_html = f"<article style='white-space: normal; line-height: 1.6'>{markdown.replace(chr(10), '<br>')}</article>"
+          else:
+              print(f"[email] {report_id} report not found for {date} — skipping.")
+              raise SystemExit(0)
+
+          subject = f"{title} · {date}"
+          plain = "\n".join([
+              f"{title} · {date}",
+              "",
+              f"报告入口：{report_url}",
+              f"历史看板：{pages_url}",
+              f"RSS：{feed_url}",
+          ])
+          body = f"""\
+          <html>
+            <body>
+              <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6;">
+                <p>
+                  <a href="{html.escape(report_url)}">报告入口</a>
+                  ·
+                  <a href="{html.escape(pages_url)}">历史看板</a>
+                  ·
+                  <a href="{html.escape(feed_url)}">RSS</a>
+                </p>
+                <hr>
+                {report_html}
+              </div>
+            </body>
+          </html>
+          """
+
+          msg = EmailMessage()
+          msg["Subject"] = subject
+          msg["From"] = os.environ.get("EMAIL_FROM") or os.environ["SMTP_USERNAME"]
+          msg["To"] = os.environ["EMAIL_TO"]
+          msg.set_content(plain)
+          msg.add_alternative(body, subtype="html")
+
+          host = os.environ["SMTP_HOST"]
+          port = int(os.environ.get("SMTP_PORT") or "587")
+          if port == 465:
+              with smtplib.SMTP_SSL(host, port, timeout=30) as smtp:
+                  smtp.login(os.environ["SMTP_USERNAME"], os.environ["SMTP_PASSWORD"])
+                  smtp.send_message(msg)
+          else:
+              with smtplib.SMTP(host, port, timeout=30) as smtp:
+                  smtp.starttls()
+                  smtp.login(os.environ["SMTP_USERNAME"], os.environ["SMTP_PASSWORD"])
+                  smtp.send_message(msg)
+
+          print(f"[email] Sent {report_id} briefing for {date} to {os.environ['EMAIL_TO']}.")
+          PY
