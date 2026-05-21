@@ -1,4 +1,4 @@
-# AI Topic Radar
+# AI Trend Radar
 
 面向 AI 内容运营和产品调研的热点选题监控工具。它会每天抓取公开 AI 信号，生成一份中文“值得写、值得测、值得深挖”的选题池，并通过 HTML、Web UI、RSS、Telegram、飞书和 GitHub Actions 分发。
 
