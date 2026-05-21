@@ -172,6 +172,12 @@ Settings -> Secrets and variables -> Actions -> New repository secret
 | `TELEGRAM_BOT_TOKEN` | 建议 | Telegram 通知 |
 | `TELEGRAM_CHAT_ID` | 建议 | Telegram 通知目标 |
 | `FEISHU_WEBHOOK_URLS` | 建议 | 飞书通知 |
+| `SMTP_HOST` | 建议 | 邮箱早报 SMTP 服务器 |
+| `SMTP_PORT` | 可选 | SMTP 端口，默认 `587`，SSL 通常用 `465` |
+| `SMTP_USERNAME` | 建议 | SMTP 登录邮箱或账号 |
+| `SMTP_PASSWORD` | 建议 | SMTP 密码或邮箱授权码 |
+| `EMAIL_FROM` | 可选 | 发件人地址，默认使用 `SMTP_USERNAME` |
+| `EMAIL_TO` | 建议 | 收件人邮箱，可填你的手机邮箱 |
 | `ANTHROPIC_API_KEY` | 可选 | 备用 LLM provider |
 | `ANTHROPIC_BASE_URL` | 可选 | 备用 provider base URL |
 
@@ -209,6 +215,44 @@ printf "\n"
 printf "%s" "$FEISHU_WEBHOOK_URLS" | gh secret set FEISHU_WEBHOOK_URLS
 unset FEISHU_WEBHOOK_URLS
 ```
+
+邮箱早报：
+
+```bash
+printf "SMTP host: "
+read -r SMTP_HOST
+printf "%s" "$SMTP_HOST" | gh secret set SMTP_HOST
+unset SMTP_HOST
+
+printf "SMTP port (default 587): "
+read -r SMTP_PORT
+printf "%s" "$SMTP_PORT" | gh secret set SMTP_PORT
+unset SMTP_PORT
+
+printf "SMTP username: "
+read -r SMTP_USERNAME
+printf "%s" "$SMTP_USERNAME" | gh secret set SMTP_USERNAME
+unset SMTP_USERNAME
+
+printf "SMTP password or app password: "
+read -r -s SMTP_PASSWORD
+printf "\n"
+printf "%s" "$SMTP_PASSWORD" | gh secret set SMTP_PASSWORD
+unset SMTP_PASSWORD
+
+printf "Email to: "
+read -r EMAIL_TO
+printf "%s" "$EMAIL_TO" | gh secret set EMAIL_TO
+unset EMAIL_TO
+```
+
+常见 SMTP 配置：
+
+| 邮箱 | `SMTP_HOST` | `SMTP_PORT` | 说明 |
+| --- | --- | --- | --- |
+| QQ 邮箱 | `smtp.qq.com` | `587` 或 `465` | 使用授权码，不是 QQ 登录密码 |
+| 163 邮箱 | `smtp.163.com` | `587` 或 `465` | 使用客户端授权码 |
+| Gmail | `smtp.gmail.com` | `587` 或 `465` | 使用 App Password |
 
 ## GitHub Pages
 
