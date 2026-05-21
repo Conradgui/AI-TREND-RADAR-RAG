@@ -11,9 +11,10 @@
  *   search        — keyword search across recent reports
  */
 
-const PAGES_URL = "https://conradgui.github.io/ai-topic-radar";
+const PAGES_URL = "https://conradgui.github.io/AI-TREND-RADAR";
 
 const REPORT_LABELS: Record<string, string> = {
+  "ai-topic-radar": "AI Topic Radar (ZH)",
   "ai-cli": "AI CLI Tools Digest (ZH)",
   "ai-cli-en": "AI CLI Tools Digest (EN)",
   "ai-agents": "AI Agents Ecosystem (ZH)",
@@ -85,7 +86,7 @@ async function toolGetReport(args: Record<string, unknown>): Promise<string> {
 }
 
 async function toolGetLatest(args: Record<string, unknown>): Promise<string> {
-  const type = String(args["type"] ?? "ai-cli-en").trim();
+  const type = String(args["type"] ?? "ai-topic-radar").trim();
   const { dates } = await fetchManifest();
   for (const { date, reports } of dates) {
     if (reports.includes(type)) {
@@ -176,7 +177,7 @@ const TOOLS = [
       properties: {
         type: {
           type: "string",
-          description: "Report type (default: ai-cli-en). Use list_reports to see all available types.",
+          description: "Report type (default: ai-topic-radar). Use list_reports to see all available types.",
         },
       },
     },
@@ -215,7 +216,7 @@ async function handleMcp(body: unknown): Promise<unknown> {
           result: {
             protocolVersion: "2024-11-05",
             capabilities: { tools: {} },
-            serverInfo: { name: "ai-topic-radar", version: "1.0.0" },
+            serverInfo: { name: "ai-topic-radar", version: "1.1.0" },
           },
         };
 
@@ -302,4 +303,3 @@ export default {
     }
   },
 };
-  "ai-topic-radar": "AI Topic Radar (ZH)",

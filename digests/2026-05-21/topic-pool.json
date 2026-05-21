@@ -1,0 +1,1502 @@
+{
+  "generatedAt": "2026-05-21 02:11",
+  "date": "2026-05-21",
+  "candidates": [
+    {
+      "title": "anthropics/claude-plugins-official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "source": "GitHub Trending",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：674 / 0",
+        "关键词：Python"
+      ],
+      "breakdown": {
+        "commercialImpact": 22,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 8
+      },
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "colbymchenry/codegraph",
+      "url": "https://github.com/colbymchenry/codegraph",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 66,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：2123 / 0",
+        "关键词：TypeScript"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Imbad0202/academic-research-skills",
+      "url": "https://github.com/Imbad0202/academic-research-skills",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 66,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：1667 / 0",
+        "关键词：Python"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "HKUDS/CLI-Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 66,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：890 / 0",
+        "关键词：Python"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 66,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：1636 / 0",
+        "关键词：Shell"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "truelockmc/streambert",
+      "url": "https://github.com/truelockmc/streambert",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 66,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：582 / 0",
+        "关键词：JavaScript"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "HKUDS/ViMax",
+      "url": "https://github.com/HKUDS/ViMax",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 66,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：674 / 0",
+        "关键词：Python"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "multica-ai/andrej-karpathy-skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 65,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：2679 / 0"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 9
+      },
+      "tags": []
+    },
+    {
+      "title": "tinyhumansai/openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 64,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：3394 / 0",
+        "关键词：Rust"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 8
+      },
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "rohitg00/ai-engineering-from-scratch",
+      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 64,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：765 / 0",
+        "关键词：Python"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 8
+      },
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 64,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：1743 / 0",
+        "关键词：Shell"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 8
+      },
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "rmyndharis/OpenWA",
+      "url": "https://github.com/rmyndharis/OpenWA",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 64,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：741 / 0",
+        "关键词：TypeScript"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "zakirullin/files.md",
+      "url": "https://github.com/zakirullin/files.md",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 63,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：429 / 0",
+        "关键词：Go"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 29,
+        "freshness": 12,
+        "writability": 8
+      },
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Learnings from 100K lines of Rust with AI (2025)",
+      "url": "https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html",
+      "source": "Hacker News",
+      "category": "AI 产品与用户入口",
+      "score": 60,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：126 / 133",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 21,
+        "heat": 11,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
+      "title": "Ask HN: Suggest Google Antigravity Alternative",
+      "url": "https://news.ycombinator.com/item?id=48208281",
+      "source": "Hacker News",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：4 / 5",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 29,
+        "heat": 0,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
+      "title": "Anthropic Claude Code sandbox bypass allows second data exfiltration exploit",
+      "url": "https://oddguan.com/blog/second-time-same-sandbox-anthropic-claude-code-network-allowlist-bypass-data-exfiltration/",
+      "source": "Hacker News",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：3 / 2",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 29,
+        "heat": 0,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
+      "title": "Stopgap for Claude -p before Anthropic's June 15 billing split",
+      "url": "https://gist.github.com/HammerMei/8ceef2740cf094188e1383fce014861a",
+      "source": "Hacker News",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：1 / 1",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 29,
+        "heat": 0,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
+      "title": "AIMBio-Mat: An AI-Native FAIR Platform for Closed-Loop Materials Discovery and Biomedical Translation",
+      "url": "http://arxiv.org/abs/2605.21083v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：physics.app-ph, cs.LG, physics.bio-ph, physics.med-ph"
+      ],
+      "breakdown": {
+        "commercialImpact": 13,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "physics.app-ph",
+        "cs.LG",
+        "physics.bio-ph",
+        "physics.med-ph"
+      ]
+    },
+    {
+      "title": "Musical Attention Transformer: Music Generation Using a Music-Specific Attention Model",
+      "url": "http://arxiv.org/abs/2605.21081v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.SD, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 13,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.SD",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Point Cloud Sequence Encoding for Material-conditioned Graph Network Simulators",
+      "url": "http://arxiv.org/abs/2605.20978v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 13,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "GenAI-Driven Threat Detection with Microsoft Security Copilot",
+      "url": "http://arxiv.org/abs/2605.20896v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 57,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CR, cs.AI, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 13,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CR",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "rohitg00/agentmemory",
+      "url": "https://github.com/rohitg00/agentmemory",
+      "source": "GitHub Trending",
+      "category": "模型与技术突破",
+      "score": 56,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：1080 / 0",
+        "关键词：TypeScript"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 30,
+        "freshness": 12,
+        "writability": 6
+      },
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "can1357/oh-my-pi",
+      "url": "https://github.com/can1357/oh-my-pi",
+      "source": "GitHub Trending",
+      "category": "AI 产品与用户入口",
+      "score": 54,
+      "action": "观察",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "evidence": [
+        "来源：GitHub Trending",
+        "热度信号：270 / 0",
+        "关键词：TypeScript"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 18,
+        "freshness": 12,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Automated ICD Classification of Psychiatric Diagnoses: From Classical NLP to Large Language Models",
+      "url": "http://arxiv.org/abs/2605.21154v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CL, cs.AI, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "SMoA: Spectrum Modulation Adapter for Parameter-Efficient Fine-Tuning",
+      "url": "http://arxiv.org/abs/2605.21147v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.CL"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "CoarseSoundNet: Building a reliable model for ecological soundscape analysis",
+      "url": "http://arxiv.org/abs/2605.21143v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.SD, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.SD",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Distill to Think, Foresee to Act: Cognitive-Physical Reinforcement Learning for Autonomous Driving",
+      "url": "http://arxiv.org/abs/2605.21139v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CV, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Reasoning-Trace Collapse: Evaluating the Loss of Explicit Reasoning During Fine-Tuning",
+      "url": "http://arxiv.org/abs/2605.21127v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Advantage Collapse in Group Relative Policy Optimization: Diagnosis and Mitigation",
+      "url": "http://arxiv.org/abs/2605.21125v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Linear-DPO: Linear Direct Preference Optimization for Diffusion and Flow-Matching Generative Models",
+      "url": "http://arxiv.org/abs/2605.21123v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CV, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Automated Byzantine-Resilient Clustered Decentralized Federated Learning for Battery Intelligence in Connected EVs",
+      "url": "http://arxiv.org/abs/2605.21115v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.DC, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.DC",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "A Unified Framework for Uncertainty-Aware Explainable Artificial Intelligence: A Case Study in Power Quality Disturbance Classification",
+      "url": "http://arxiv.org/abs/2605.21114v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Efficient Learning of Deep State Space Models via Importance Smoothing",
+      "url": "http://arxiv.org/abs/2605.21108v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.AI"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "title": "Improved Guarantees for Constrained Online Convex Optimization via Self-Contraction",
+      "url": "http://arxiv.org/abs/2605.21107v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, stat.ML"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "stat.ML"
+      ]
+    },
+    {
+      "title": "HORST: Composing Optimizer Geometries for Sparse Transformer Training",
+      "url": "http://arxiv.org/abs/2605.21104v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "A Typed Tensor Language for Federated Learning",
+      "url": "http://arxiv.org/abs/2605.21103v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "UOTIP: Unbalanced Optimal Transport Map for Unpaired Inverse Problems",
+      "url": "http://arxiv.org/abs/2605.21094v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Reviving Error Correction in Modern Deep Time-Series Forecasting",
+      "url": "http://arxiv.org/abs/2605.21088v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Decoupling Communication from Policy: Robust MARL under Bandwidth Constraints",
+      "url": "http://arxiv.org/abs/2605.21085v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.MA, cs.AI, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.MA",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining",
+      "url": "http://arxiv.org/abs/2605.21075v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CV, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Towards Understanding Self-Pretraining for Sequence Classification",
+      "url": "http://arxiv.org/abs/2605.21070v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Robust Personalized Recommendation under Hidden Confounding in MNAR",
+      "url": "http://arxiv.org/abs/2605.21066v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Divide et Calibra: Multiclass Local Calibration via Vector Quantization",
+      "url": "http://arxiv.org/abs/2605.21060v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.AI, stat.ML"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.AI",
+        "stat.ML"
+      ]
+    },
+    {
+      "title": "Multimodal LLMs under Pairwise Modalities",
+      "url": "http://arxiv.org/abs/2605.21059v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CV, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CV",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "A Dialogue between Causal and Traditional Representation Learning: Toward Mutual Benefits in a Unified Formulation",
+      "url": "http://arxiv.org/abs/2605.21058v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Genetic Programming with Transformer-Based Mutation for Approximate Circuit Design",
+      "url": "http://arxiv.org/abs/2605.21055v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.NE, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.NE",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Conditioning Gaussian Processes on Almost Anything",
+      "url": "http://arxiv.org/abs/2605.21041v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：stat.ML, cs.LG, stat.ME"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "stat.ML",
+        "cs.LG",
+        "stat.ME"
+      ]
+    },
+    {
+      "title": "Efficient Banzhaf-Based Data Valuation for $k$-Nearest Neighbors Classification",
+      "url": "http://arxiv.org/abs/2605.21033v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.DS"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.DS"
+      ]
+    },
+    {
+      "title": "Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy",
+      "url": "http://arxiv.org/abs/2605.21006v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.AI, cs.CL, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Concentration of General Stochastic Approximation Under Heavy-Tailed Markovian Noise",
+      "url": "http://arxiv.org/abs/2605.20999v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：math.PR, cs.LG, math.OC, stat.ML"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "math.PR",
+        "cs.LG",
+        "math.OC",
+        "stat.ML"
+      ]
+    },
+    {
+      "title": "Hybrid Machine Learning Model for Forest Height Estimation from TanDEM-X and Landsat Data",
+      "url": "http://arxiv.org/abs/2605.20997v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.CV, cs.AI, cs.LG, physics.comp-ph"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG",
+        "physics.comp-ph"
+      ]
+    },
+    {
+      "title": "Beyond the Bellman Recursion: A Pontryagin-Guided Framework for Non-Exponential Discounting",
+      "url": "http://arxiv.org/abs/2605.20996v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, math.OC"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "math.OC"
+      ]
+    },
+    {
+      "title": "Modeling Temporal scRNA-seq Data with Latent Gaussian Process and Optimal Transport",
+      "url": "http://arxiv.org/abs/2605.20989v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, q-bio.GN"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "q-bio.GN"
+      ]
+    },
+    {
+      "title": "A Sharper Picture of Generalization in Transformers",
+      "url": "http://arxiv.org/abs/2605.20988v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.AI"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.AI"
+      ]
+    },
+    {
+      "title": "Diagnosing Overhead in Dispatch Operations: Cross-architecture Observatory",
+      "url": "http://arxiv.org/abs/2605.20982v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.DC, cs.AI, cs.LG"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.DC",
+        "cs.AI",
+        "cs.LG"
+      ]
+    },
+    {
+      "title": "Choose Wisely and Privately: Proactive Client Selection for Fair and Efficient Federated Learning",
+      "url": "http://arxiv.org/abs/2605.20975v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.CR"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.CR"
+      ]
+    },
+    {
+      "title": "A Deployment Audit of Release-Side Risk in Conformal Triage under Prevalence Shift",
+      "url": "http://arxiv.org/abs/2605.20956v1",
+      "source": "ArXiv",
+      "category": "政策监管、社会影响与 AI 安全",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从政策变化、信任风险和安全治理角度切入",
+      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.CY"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.CY"
+      ]
+    },
+    {
+      "title": "DASH: Fast Differentiable Architecture Search for Hybrid Attention in Minutes on a Single GPU",
+      "url": "http://arxiv.org/abs/2605.20936v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.AI, cs.CL"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ]
+    },
+    {
+      "title": "Winfree Oscillatory Neural Network",
+      "url": "http://arxiv.org/abs/2605.20922v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.AI, cs.CV"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ]
+    },
+    {
+      "title": "Sutra: Tensor-Op RNNs as a Compilation Target for Vector Symbolic Architectures",
+      "url": "http://arxiv.org/abs/2605.20919v1",
+      "source": "ArXiv",
+      "category": "模型与技术突破",
+      "score": 52,
+      "action": "观察",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "evidence": [
+        "来源：ArXiv",
+        "发布时间：2026-05-20",
+        "关键词：cs.LG, cs.AI, cs.PL"
+      ],
+      "breakdown": {
+        "commercialImpact": 8,
+        "heat": 16,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "cs.LG",
+        "cs.AI",
+        "cs.PL"
+      ]
+    }
+  ],
+  "warnings": [
+    "Product Hunt 已跳过；配置 PRODUCTHUNT_TOKEN 后可启用产品榜单信号。",
+    "Hugging Face 获取失败；可检查 huggingface.co API 是否可访问。",
+    "官方内容源今日没有检测到新内容；首次运行后这是正常情况。"
+  ]
+}

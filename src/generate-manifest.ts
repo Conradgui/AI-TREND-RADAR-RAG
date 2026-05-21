@@ -7,7 +7,7 @@ import { getReportLangs, shouldSaveSourceReports } from "./options.ts";
 const DIGESTS_DIR = "digests";
 const MANIFEST_PATH = "manifest.json";
 const FEED_PATH = "feed.xml";
-const SITE_URL = "https://conradgui.github.io/ai-topic-radar";
+const SITE_URL = "https://conradgui.github.io/AI-TREND-RADAR";
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const SOURCE_REPORT_BASES = [
   "ai-cli",

@@ -144,7 +144,7 @@ ${reports}
 - 每个章节之间用分隔线（---）隔开
 - 关键数据（star 数、版本号等）要保留
 - 善于发现跨天的趋势和规律，不要简单罗列每天的内容
-- 结尾附注：数据来源为 AI Topic Radar 项目（https://github.com/Conradgui/ai-topic-radar）
+- 结尾附注：数据来源为 AI Topic Radar 项目（https://github.com/Conradgui/AI-TREND-RADAR）
 
 直接输出标题和正文，不要加额外说明。`;
 }
@@ -200,7 +200,7 @@ ${reports}
 - 每个章节之间用分隔线（---）隔开
 - 关键数据要保留，适当做月度对比
 - 有明确的观点和判断，不要只做信息搬运
-- 结尾附注：数据来源为 AI Topic Radar 项目（https://github.com/Conradgui/ai-topic-radar）
+- 结尾附注：数据来源为 AI Topic Radar 项目（https://github.com/Conradgui/AI-TREND-RADAR）
 
 直接输出标题和正文，不要加额外说明。`;
 }

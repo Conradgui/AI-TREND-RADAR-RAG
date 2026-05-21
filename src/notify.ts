@@ -19,7 +19,7 @@ export interface Highlights {
   en: ReportHighlights;
 }
 
-const PAGES_URL_DEFAULT = "https://conradgui.github.io/ai-topic-radar";
+const PAGES_URL_DEFAULT = "https://conradgui.github.io/AI-TREND-RADAR";
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");

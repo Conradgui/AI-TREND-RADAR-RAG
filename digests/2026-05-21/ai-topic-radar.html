@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 热点选题池 2026-05-21</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --line: #d8dee9;
+      --accent: #2563eb;
+      --accent-soft: #e8f0ff;
+      --green: #0f8a5f;
+      --shadow: 0 16px 40px rgba(17, 24, 39, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 20px 64px;
+    }
+    header {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
+    h2 { font-size: 24px; margin: 32px 0 16px; }
+    h3 { font-size: 18px; margin: 24px 0 12px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .summary {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .quick-links a, .quick-links span {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: #fff;
+      color: var(--text);
+      font-size: 14px;
+    }
+    .topic-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .topic-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.05);
+    }
+    .topic-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: start;
+    }
+    .topic-title {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .score {
+      min-width: 72px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-align: center;
+      padding: 8px 10px;
+    }
+    .score strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+    .score span {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 12px 0;
+    }
+    .tags span {
+      background: #eef2f7;
+      border-radius: 999px;
+      color: #475467;
+      font-size: 12px;
+      padding: 3px 8px;
+    }
+    details {
+      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      padding-top: 10px;
+    }
+    summary {
+      cursor: pointer;
+      color: var(--green);
+      font-weight: 600;
+    }
+    ul { padding-left: 20px; }
+    .empty {
+      color: var(--muted);
+      background: var(--panel);
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .category-stack {
+      display: grid;
+      gap: 10px;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 36px;
+    }
+    @media (max-width: 640px) {
+      main { padding: 24px 12px 48px; }
+      header { padding: 20px; }
+      h1 { font-size: 26px; }
+      .topic-head { grid-template-columns: 1fr; }
+      .score { width: 84px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>AI 热点选题池 2026-05-21</h1>
+      <p class="summary">面向 AI 内容运营和产品调研的每日选题监控报告。默认入口为本 HTML 文件，可直接双击查看，也可通过 GitHub Pages 分享。</p>
+      <div class="quick-links">
+        <span>生成时间：2026-05-21 02:11 UTC</span>
+        <a href="./ai-topic-radar.md">Markdown</a>
+        <a href="./topic-pool.json">JSON 选题池</a>
+      </div>
+    </header>
+
+    <section id="top">
+      <h2>今日 Top 深挖选题</h2>
+      <div class="topic-grid"><p class="empty">暂无条目。</p></div>
+    </section>
+
+    <section id="pool">
+      <h2>入池选题</h2>
+      <div class="topic-grid">
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a>
+              <div class="meta">GitHub Trending · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>72</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：674 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/colbymchenry/codegraph" target="_blank" rel="noreferrer">colbymchenry/codegraph</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：2123 / 0</li><li>关键词：TypeScript</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer">Imbad0202/academic-research-skills</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1667 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noreferrer">HKUDS/CLI-Anything</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：890 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noreferrer">msitarzewski/agency-agents</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Shell</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1636 / 0</li><li>关键词：Shell</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/truelockmc/streambert" target="_blank" rel="noreferrer">truelockmc/streambert</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>JavaScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：582 / 0</li><li>关键词：JavaScript</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/HKUDS/ViMax" target="_blank" rel="noreferrer">HKUDS/ViMax</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：674 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noreferrer">multica-ai/andrej-karpathy-skills</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>65</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：2679 / 0</li></ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section id="categories">
+      <h2>按五类选题分类摘要</h2>
+      <div class="category-stack">
+      <section>
+        <h3>政策监管、社会影响与 AI 安全</h3>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21083v1" target="_blank" rel="noreferrer">AIMBio-Mat: An AI-Native FAIR Platform for Closed-Loop Materials Discovery and Biomedical Translation</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>physics.app-ph</span><span>cs.LG</span><span>physics.bio-ph</span><span>physics.med-ph</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：physics.app-ph, cs.LG, physics.bio-ph, physics.med-ph</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.20896v1" target="_blank" rel="noreferrer">GenAI-Driven Threat Detection with Microsoft Security Copilot</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.CR</span><span>cs.AI</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.CR, cs.AI, cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21139v1" target="_blank" rel="noreferrer">Distill to Think, Foresee to Act: Cognitive-Physical Reinforcement Learning for Autonomous Driving</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>52</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.CV</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.CV, cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21125v1" target="_blank" rel="noreferrer">Advantage Collapse in Group Relative Policy Optimization: Diagnosis and Mitigation</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>52</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21123v1" target="_blank" rel="noreferrer">Linear-DPO: Linear Direct Preference Optimization for Diffusion and Flow-Matching Generative Models</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>52</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.CV</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.CV, cs.LG</li></ul>
+          </details>
+        </article>
+
+      </section>
+
+
+      <section>
+        <h3>模型与技术突破</h3>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21081v1" target="_blank" rel="noreferrer">Musical Attention Transformer: Music Generation Using a Music-Specific Attention Model</a>
+              <div class="meta">ArXiv · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.SD</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.SD, cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.20978v1" target="_blank" rel="noreferrer">Point Cloud Sequence Encoding for Material-conditioned Graph Network Simulators</a>
+              <div class="meta">ArXiv · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/rohitg00/agentmemory" target="_blank" rel="noreferrer">rohitg00/agentmemory</a>
+              <div class="meta">GitHub Trending · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>56</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1080 / 0</li><li>关键词：TypeScript</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21154v1" target="_blank" rel="noreferrer">Automated ICD Classification of Psychiatric Diagnoses: From Classical NLP to Large Language Models</a>
+              <div class="meta">ArXiv · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>52</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.CL</span><span>cs.AI</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.CL, cs.AI, cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21147v1" target="_blank" rel="noreferrer">SMoA: Spectrum Modulation Adapter for Parameter-Efficient Fine-Tuning</a>
+              <div class="meta">ArXiv · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>52</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.LG</span><span>cs.CL</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.LG, cs.CL</li></ul>
+          </details>
+        </article>
+
+      </section>
+
+
+      <section>
+        <h3>AI 产品与用户入口</h3>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/colbymchenry/codegraph" target="_blank" rel="noreferrer">colbymchenry/codegraph</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：2123 / 0</li><li>关键词：TypeScript</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noreferrer">Imbad0202/academic-research-skills</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1667 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noreferrer">HKUDS/CLI-Anything</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：890 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noreferrer">msitarzewski/agency-agents</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Shell</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1636 / 0</li><li>关键词：Shell</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/truelockmc/streambert" target="_blank" rel="noreferrer">truelockmc/streambert</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>66</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>JavaScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：582 / 0</li><li>关键词：JavaScript</li></ul>
+          </details>
+        </article>
+
+      </section>
+
+
+      <section>
+        <h3>企业落地与行业应用</h3>
+        <p class="empty">暂无条目。</p>
+      </section>
+
+
+      <section>
+        <h3>标杆企业动向、商业格局与投融资</h3>
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a>
+              <div class="meta">GitHub Trending · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>72</strong>
+              <span>入池</span>
+            </div>
+          </div>
+          <p>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：674 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://news.ycombinator.com/item?id=48208281" target="_blank" rel="noreferrer">Ask HN: Suggest Google Antigravity Alternative</a>
+              <div class="meta">Hacker News · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：4 / 5</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://oddguan.com/blog/second-time-same-sandbox-anthropic-claude-code-network-allowlist-bypass-data-exfiltration/" target="_blank" rel="noreferrer">Anthropic Claude Code sandbox bypass allows second data exfiltration exploit</a>
+              <div class="meta">Hacker News · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：3 / 2</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://gist.github.com/HammerMei/8ceef2740cf094188e1383fce014861a" target="_blank" rel="noreferrer">Stopgap for Claude -p before Anthropic's June 15 billing split</a>
+              <div class="meta">Hacker News · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：1 / 1</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+      </section>
+    </div>
+    </section>
+
+    <section id="watch">
+      <h2>观察项</h2>
+      <div class="topic-grid">
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/tinyhumansai/openhuman" target="_blank" rel="noreferrer">tinyhumansai/openhuman</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>64</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Rust</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：3394 / 0</li><li>关键词：Rust</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/rohitg00/ai-engineering-from-scratch" target="_blank" rel="noreferrer">rohitg00/ai-engineering-from-scratch</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>64</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Python</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：765 / 0</li><li>关键词：Python</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/obra/superpowers" target="_blank" rel="noreferrer">obra/superpowers</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>64</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Shell</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1743 / 0</li><li>关键词：Shell</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/rmyndharis/OpenWA" target="_blank" rel="noreferrer">rmyndharis/OpenWA</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>64</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：741 / 0</li><li>关键词：TypeScript</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/zakirullin/files.md" target="_blank" rel="noreferrer">zakirullin/files.md</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>63</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>Go</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：429 / 0</li><li>关键词：Go</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html" target="_blank" rel="noreferrer">Learnings from 100K lines of Rust with AI (2025)</a>
+              <div class="meta">Hacker News · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>60</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：126 / 133</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://news.ycombinator.com/item?id=48208281" target="_blank" rel="noreferrer">Ask HN: Suggest Google Antigravity Alternative</a>
+              <div class="meta">Hacker News · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：4 / 5</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://oddguan.com/blog/second-time-same-sandbox-anthropic-claude-code-network-allowlist-bypass-data-exfiltration/" target="_blank" rel="noreferrer">Anthropic Claude Code sandbox bypass allows second data exfiltration exploit</a>
+              <div class="meta">Hacker News · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：3 / 2</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://gist.github.com/HammerMei/8ceef2740cf094188e1383fce014861a" target="_blank" rel="noreferrer">Stopgap for Claude -p before Anthropic's June 15 billing split</a>
+              <div class="meta">Hacker News · 标杆企业动向、商业格局与投融资</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</p>
+          <div class="tags"><span>community</span><span>discussion</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：Hacker News</li><li>热度信号：1 / 1</li><li>发布时间：2026-05-20</li><li>关键词：community, discussion</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21083v1" target="_blank" rel="noreferrer">AIMBio-Mat: An AI-Native FAIR Platform for Closed-Loop Materials Discovery and Biomedical Translation</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>physics.app-ph</span><span>cs.LG</span><span>physics.bio-ph</span><span>physics.med-ph</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：physics.app-ph, cs.LG, physics.bio-ph, physics.med-ph</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.21081v1" target="_blank" rel="noreferrer">Musical Attention Transformer: Music Generation Using a Music-Specific Attention Model</a>
+              <div class="meta">ArXiv · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.SD</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.SD, cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.20978v1" target="_blank" rel="noreferrer">Point Cloud Sequence Encoding for Material-conditioned Graph Network Simulators</a>
+              <div class="meta">ArXiv · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="http://arxiv.org/abs/2605.20896v1" target="_blank" rel="noreferrer">GenAI-Driven Threat Detection with Microsoft Security Copilot</a>
+              <div class="meta">ArXiv · 政策监管、社会影响与 AI 安全</div>
+            </div>
+            <div class="score">
+              <strong>57</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。</p>
+          <div class="tags"><span>cs.CR</span><span>cs.AI</span><span>cs.LG</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：ArXiv</li><li>发布时间：2026-05-20</li><li>关键词：cs.CR, cs.AI, cs.LG</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/rohitg00/agentmemory" target="_blank" rel="noreferrer">rohitg00/agentmemory</a>
+              <div class="meta">GitHub Trending · 模型与技术突破</div>
+            </div>
+            <div class="score">
+              <strong>56</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：1080 / 0</li><li>关键词：TypeScript</li></ul>
+          </details>
+        </article>
+
+
+        <article class="topic-card">
+          <div class="topic-head">
+            <div>
+              <a class="topic-title" href="https://github.com/can1357/oh-my-pi" target="_blank" rel="noreferrer">can1357/oh-my-pi</a>
+              <div class="meta">GitHub Trending · AI 产品与用户入口</div>
+            </div>
+            <div class="score">
+              <strong>54</strong>
+              <span>观察</span>
+            </div>
+          </div>
+          <p>适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。</p>
+          <div class="tags"><span>TypeScript</span></div>
+          <details>
+            <summary>关键证据</summary>
+            <ul><li>来源：GitHub Trending</li><li>热度信号：270 / 0</li><li>关键词：TypeScript</li></ul>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section id="status">
+      <h2>数据源状态与修复提示</h2>
+      <ul><li>Product Hunt 已跳过；配置 PRODUCTHUNT_TOKEN 后可启用产品榜单信号。</li><li>Hugging Face 获取失败；可检查 huggingface.co API 是否可访问。</li><li>官方内容源今日没有检测到新内容；首次运行后这是正常情况。</li></ul>
+    </section>
+
+    <footer>AI Topic Radar · 单文件报告 · 不包含私有资料或 API key</footer>
+  </main>
+</body>
+</html>

@@ -108,7 +108,7 @@ const FETCH_TIMEOUT_MS = 10_000;
 // ---------------------------------------------------------------------------
 
 const WEB_HEADERS = {
-  "User-Agent": "Mozilla/5.0 (compatible; ai-topic-radar/1.0; +https://github.com/Conradgui/ai-topic-radar)",
+  "User-Agent": "Mozilla/5.0 (compatible; ai-topic-radar/1.0; +https://github.com/Conradgui/AI-TREND-RADAR)",
   Accept: "text/html,application/xml,text/xml,*/*",
   "Accept-Language": "en-US,en;q=0.9",
 };

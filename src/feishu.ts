@@ -14,7 +14,7 @@ import path from "node:path";
 import { NOTIFY_LABELS } from "./i18n.ts";
 import type { Highlights } from "./notify.ts";
 
-const PAGES_URL_DEFAULT = "https://conradgui.github.io/ai-topic-radar";
+const PAGES_URL_DEFAULT = "https://conradgui.github.io/AI-TREND-RADAR";
 
 function getWebhookUrls(): string[] {
   const raw = process.env["FEISHU_WEBHOOK_URLS"] ?? process.env["FEISHU_WEBHOOK_URL"] ?? "";

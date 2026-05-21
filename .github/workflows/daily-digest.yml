@@ -73,13 +73,13 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          PAGES_URL: https://conradgui.github.io/ai-topic-radar
+          PAGES_URL: https://conradgui.github.io/AI-TREND-RADAR
         run: pnpm notify
 
       - name: Send Feishu notification
         env:
           FEISHU_WEBHOOK_URLS: ${{ secrets.FEISHU_WEBHOOK_URLS }}
-          PAGES_URL: https://conradgui.github.io/ai-topic-radar
+          PAGES_URL: https://conradgui.github.io/AI-TREND-RADAR
         run: pnpm notify:feishu
 
       - name: Close stale issues
