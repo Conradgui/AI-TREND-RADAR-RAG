@@ -6,16 +6,16 @@
     <description>AI 热点选题监控 · Daily AI topic radar</description>
     <language>zh-CN</language>
     <atom:link href="https://conradgui.github.io/AI-TREND-RADAR/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 21 May 2026 06:52:04 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 10:04:48 +0000</lastBuildDate>
     <item>
       <title>AI 热点选题池 2026-05-21</title>
       <link>https://conradgui.github.io/AI-TREND-RADAR/digests/2026-05-21/ai-topic-radar.html</link>
       <guid isPermaLink="true">https://conradgui.github.io/AI-TREND-RADAR/digests/2026-05-21/ai-topic-radar.html</guid>
       <pubDate>Thu, 21 May 2026 00:00:00 +0000</pubDate>
-      <description>AI 热点选题池 2026-05-21 生成时间: 2026-05-21 06:51 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题 今日 Top 深挖选题 分数 动作 选题 分类 推荐理由 证据 80 深挖 langchain4j/langchain4j 企业落地与行业应用 值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。 来源：GitHub Search:vector-db热度信号：12047发布时间：2026-05-20关键词：Java, vector-db 80 深挖 ruvnet/ruflo 企业落地与行业应用 值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。 来源：GitHub Search:ai-agent热度信号：53678发布时间：2026-05-21关键词：TypeScript, ai-agent 80 深挖 PollyReach AI 产品与用户入口 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Pro...</description>
+      <description>AI 热点选题池 2026-05-21 生成时间: 2026-05-21 10:04 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题 今日 Top 深挖选题 分数 动作 题目 摘要 分类 推荐选题 推荐理由 证据 80 深挖 open-webui/open-webui User-friendly AI Interface (Supports Ollama, OpenAI API, ...) 标杆企业动向、商业格局与投融资 open-webui/open-webui 为什么值得关注？（大厂动作、商业化路径与竞争格局） 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:llm。 来源：GitHub Search:llm热度信号：138049发布时间：2026-05-21关键词：Python, llm 80 深挖 ruvnet/ruflo 🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, c...</description>
       <content:encoded><![CDATA[<h1>AI 热点选题池 2026-05-21</h1>
 <blockquote>
-<p>生成时间: 2026-05-21 06:51 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题</p>
+<p>生成时间: 2026-05-21 10:04 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题</p>
 </blockquote>
 <h2>今日 Top 深挖选题</h2>
 <table>
@@ -23,8 +23,10 @@
 <tr>
 <th align="right">分数</th>
 <th>动作</th>
-<th>选题</th>
+<th>题目</th>
+<th>摘要</th>
 <th>分类</th>
+<th>推荐选题</th>
 <th>推荐理由</th>
 <th>证据</th>
 </tr>
@@ -32,42 +34,82 @@
 <tbody><tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://github.com/langchain4j/langchain4j">langchain4j/langchain4j</a></td>
-<td>企业落地与行业应用</td>
-<td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：12047<br>发布时间：2026-05-20<br>关键词：Java, vector-db</td>
+<td><a href="https://github.com/open-webui/open-webui">open-webui/open-webui</a></td>
+<td>User-friendly AI Interface (Supports Ollama, OpenAI API, ...)</td>
+<td>标杆企业动向、商业格局与投融资</td>
+<td>open-webui/open-webui 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:llm。</td>
+<td>来源：GitHub Search:llm<br>热度信号：138049<br>发布时间：2026-05-21<br>关键词：Python, llm</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
 <td><a href="https://github.com/ruvnet/ruflo">ruvnet/ruflo</a></td>
+<td>🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration</td>
 <td>企业落地与行业应用</td>
+<td>ruvnet/ruflo 为什么值得关注？（行业场景、落地成本与业务价值）</td>
 <td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。</td>
-<td>来源：GitHub Search:ai-agent<br>热度信号：53678<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：53721<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://www.producthunt.com/r/YNJ3R3XJ5FEEBJ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">PollyReach</a></td>
-<td>AI 产品与用户入口</td>
-<td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：540 / 154<br>发布时间：2026-05-19<br>关键词：Productivity, Artificial Intelligence, Virtual Assistants</td>
+<td><a href="https://github.com/langchain4j/langchain4j">langchain4j/langchain4j</a></td>
+<td>LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.</td>
+<td>企业落地与行业应用</td>
+<td>langchain4j/langchain4j 为什么值得关注？（行业场景、落地成本与业务价值）</td>
+<td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。</td>
+<td>来源：GitHub Search:vector-db<br>热度信号：12051<br>发布时间：2026-05-20<br>关键词：Java, vector-db</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://www.producthunt.com/r/7JHDW73XTTPZ3A?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Drizz</a></td>
+<td><a href="https://www.producthunt.com/r/PVXOOJINEBKKUA?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">StoreClaw</a></td>
+<td>Grow your store profits with agents that know how to sell</td>
 <td>AI 产品与用户入口</td>
+<td>StoreClaw 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：396 / 64<br>发布时间：2026-05-19<br>关键词：Developer Tools, Artificial Intelligence, No-Code</td>
+<td>来源：Product Hunt<br>热度信号：601 / 264<br>发布时间：2026-05-20<br>关键词：Artificial Intelligence, E-Commerce, Marketing automation</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://www.producthunt.com/r/H64HE7ZK3MVBJN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">CtrlOps</a></td>
+<td><a href="https://www.producthunt.com/r/H2XLXASAORMP7Z?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">mailX by mailwarm</a></td>
+<td>Email deliverability toolkit for humans and AI agents</td>
 <td>AI 产品与用户入口</td>
+<td>mailX by mailwarm 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：237 / 59<br>发布时间：2026-05-19<br>关键词：Linux, Developer Tools, Artificial Intelligence</td>
+<td>来源：Product Hunt<br>热度信号：485 / 258<br>发布时间：2026-05-20<br>关键词：Email, Email Marketing, Artificial Intelligence</td>
+</tr>
+<tr>
+<td align="right">80</td>
+<td>深挖</td>
+<td><a href="https://www.producthunt.com/r/U7NUCTTEX6BM3I?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Emdash</a></td>
+<td>One app. Every coding agent. Open-source.</td>
+<td>AI 产品与用户入口</td>
+<td>Emdash 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：362 / 82<br>发布时间：2026-05-20<br>关键词：Productivity, Open Source, Developer Tools, GitHub</td>
+</tr>
+<tr>
+<td align="right">80</td>
+<td>深挖</td>
+<td><a href="https://www.producthunt.com/r/ENOAWGG27PYBQE?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Gemini Omni</a></td>
+<td>Create anything from any input – starting with video</td>
+<td>AI 产品与用户入口</td>
+<td>Gemini Omni 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：339 / 8<br>发布时间：2026-05-20<br>关键词：Artificial Intelligence, Video</td>
+</tr>
+<tr>
+<td align="right">80</td>
+<td>深挖</td>
+<td><a href="https://www.producthunt.com/r/TOZOGOJYMEHTNQ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Runtime</a></td>
+<td>Sandboxed coding agents for everyone on your team</td>
+<td>AI 产品与用户入口</td>
+<td>Runtime 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：260 / 70<br>发布时间：2026-05-20<br>关键词：Slack, Developer Tools, Artificial Intelligence</td>
 </tr>
 </tbody></table>
 <h2>入池选题</h2>
@@ -76,8 +118,10 @@
 <tr>
 <th align="right">分数</th>
 <th>动作</th>
-<th>选题</th>
+<th>题目</th>
+<th>摘要</th>
 <th>分类</th>
+<th>推荐选题</th>
 <th>推荐理由</th>
 <th>证据</th>
 </tr>
@@ -86,121 +130,151 @@
 <td align="right">78</td>
 <td>入池</td>
 <td><a href="https://github.com/zhayujie/CowAgent">zhayujie/CowAgent</a></td>
+<td>CowAgent (chatgpt-on-wechat) 是基于大模型的超级AI助理，能主动思考和任务规划、访问操作系统和外部资源、创造和执行Skills、通过长期记忆和知识库不断成长，比OpenClaw更轻量和便捷。同时支持微信、飞书、钉钉、企微、QQ、公众号、网页等接入，可选择DeepSeek/OpenAI/Claude/Gemini/ MiniMax/Qwen/GLM/LinkAI，能处理文本、语音、图片和文件，可快速搭建个人AI助理和企业数字员工。</td>
 <td>模型与技术突破</td>
+<td>zhayujie/CowAgent 为什么值得关注？（模型能力变化与技术路线）</td>
 <td>适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Search:ai-agent。</td>
-<td>来源：GitHub Search:ai-agent<br>热度信号：44670<br>发布时间：2026-05-21<br>关键词：Python, ai-agent</td>
-</tr>
-<tr>
-<td align="right">76</td>
-<td>入池</td>
-<td><a href="https://github.com/open-webui/open-webui">open-webui/open-webui</a></td>
-<td>标杆企业动向、商业格局与投融资</td>
-<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:rag。</td>
-<td>来源：GitHub Search:rag<br>热度信号：138021<br>发布时间：2026-05-19<br>关键词：Python, rag</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：44673<br>发布时间：2026-05-21<br>关键词：Python, ai-agent</td>
 </tr>
 <tr>
 <td align="right">76</td>
 <td>入池</td>
 <td><a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">An OpenAI model has disproved a central conjecture in discrete geometry</a></td>
+<td>HN discussion by tedsanders</td>
 <td>模型与技术突破</td>
+<td>An OpenAI model has disproved a central conjecture in discrete geometry 为什么值得关注？（模型能力变化与技术路线）</td>
 <td>适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hacker News。</td>
-<td>来源：Hacker News<br>热度信号：1018 / 734<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
+<td>来源：Hacker News<br>热度信号：1167 / 853<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
 </tr>
 <tr>
-<td align="right">74</td>
+<td align="right">76</td>
 <td>入池</td>
-<td><a href="https://github.com/gradio-app/gradio">gradio-app/gradio</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。</td>
-<td>来源：GitHub Search:ml<br>热度信号：42641<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
+<td><a href="https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5">OpenAI Is Preparing to File for an IPO Soon</a></td>
+<td>HN discussion by louiereederson</td>
+<td>标杆企业动向、商业格局与投融资</td>
+<td>OpenAI Is Preparing to File for an IPO Soon 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</td>
+<td>来源：Hacker News<br>热度信号：90 / 225<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
 </tr>
 <tr>
-<td align="right">74</td>
+<td align="right">76</td>
 <td>入池</td>
-<td><a href="https://github.com/ray-project/ray">ray-project/ray</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。</td>
-<td>来源：GitHub Search:ml<br>热度信号：42613<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/meilisearch/meilisearch">meilisearch/meilisearch</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：57659<br>发布时间：2026-05-20<br>关键词：Rust, vector-db</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/milvus-io/milvus">milvus-io/milvus</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：44387<br>发布时间：2026-05-21<br>关键词：Go, vector-db</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/qdrant/qdrant">qdrant/qdrant</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：31450<br>发布时间：2026-05-21<br>关键词：Rust, vector-db</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/weaviate/weaviate">weaviate/weaviate</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：16218<br>发布时间：2026-05-21<br>关键词：Go, vector-db</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/yichuan-w/LEANN">yichuan-w/LEANN</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：11636<br>发布时间：2026-05-21<br>关键词：Python, vector-db</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/oceanbase/oceanbase">oceanbase/oceanbase</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：10118<br>发布时间：2026-05-21<br>关键词：C++, vector-db</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/infiniflow/ragflow">infiniflow/ragflow</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。</td>
-<td>来源：GitHub Search:rag<br>热度信号：80938<br>发布时间：2026-05-21<br>关键词：Python, rag</td>
-</tr>
-<tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/safishamsi/graphify">safishamsi/graphify</a></td>
-<td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。</td>
-<td>来源：GitHub Search:rag<br>热度信号：50387<br>发布时间：2026-05-20<br>关键词：Python, rag</td>
+<td><a href="https://www.producthunt.com/r/IMCJSAWBQKCT3R?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Supercut for Agents</a></td>
+<td>Permission-aware AI access to recordings and metadata</td>
+<td>标杆企业动向、商业格局与投融资</td>
+<td>Supercut for Agents 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：146 / 15<br>发布时间：2026-05-20<br>关键词：Productivity, Developer Tools</td>
 </tr>
 <tr>
 <td align="right">74</td>
 <td>入池</td>
 <td><a href="https://github.com/Significant-Gravitas/AutoGPT">Significant-Gravitas/AutoGPT</a></td>
+<td>AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</td>
 <td>AI 产品与用户入口</td>
+<td>Significant-Gravitas/AutoGPT 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。</td>
-<td>来源：GitHub Search:llm<br>热度信号：184437<br>发布时间：2026-05-21<br>关键词：Python, llm</td>
+<td>来源：GitHub Search:llm<br>热度信号：184443<br>发布时间：2026-05-21<br>关键词：Python, llm</td>
 </tr>
 <tr>
 <td align="right">74</td>
 <td>入池</td>
 <td><a href="https://github.com/shareAI-lab/learn-claude-code">shareAI-lab/learn-claude-code</a></td>
+<td>Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1</td>
 <td>AI 产品与用户入口</td>
+<td>shareAI-lab/learn-claude-code 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。</td>
-<td>来源：GitHub Search:ai-agent<br>热度信号：61659<br>发布时间：2026-05-20<br>关键词：Python, ai-agent</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：61712<br>发布时间：2026-05-20<br>关键词：Python, ai-agent</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/CherryHQ/cherry-studio">CherryHQ/cherry-studio</a></td>
+<td>AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs</td>
+<td>AI 产品与用户入口</td>
+<td>CherryHQ/cherry-studio 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：46039<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/ZhuLinsen/daily_stock_analysis">ZhuLinsen/daily_stock_analysis</a></td>
+<td>LLM驱动的 A/H/美股智能分析：多数据源行情 + 实时新闻 + LLM决策仪表盘 + 多渠道推送，零成本定时运行，纯白嫖. LLM-powered stock analysis system for A/H/US markets.</td>
+<td>AI 产品与用户入口</td>
+<td>ZhuLinsen/daily_stock_analysis 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：38259<br>发布时间：2026-05-20<br>关键词：Python, ai-agent</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/CopilotKit/CopilotKit">CopilotKit/CopilotKit</a></td>
+<td>The Frontend Stack for Agents &amp; Generative UI. React + Angular.  Makers of the AG-UI Protocol</td>
+<td>AI 产品与用户入口</td>
+<td>CopilotKit/CopilotKit 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：31590<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/iOfficeAI/AionUi">iOfficeAI/AionUi</a></td>
+<td>Free, local, open-source 24/7 Cowork app for OpenClaw, Hermes Agent, Claude Code, Codex, OpenCode, Gemini CLI and 20+ more CLI | Customize your assistants | Star if you like it!</td>
+<td>AI 产品与用户入口</td>
+<td>iOfficeAI/AionUi 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：26052<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/nocobase/nocobase">nocobase/nocobase</a></td>
+<td>NocoBase is an open-source AI + no-code platform for building business systems fast. Instead of generating everything from scratch, AI works on top of production-proven infrastructure and a WYSIWYG no-code interface, so you get both speed and reliability.</td>
+<td>AI 产品与用户入口</td>
+<td>nocobase/nocobase 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：22465<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/gradio-app/gradio">gradio-app/gradio</a></td>
+<td>Build and share delightful machine learning apps, all in Python. 🌟 Star to support our work!</td>
+<td>AI 产品与用户入口</td>
+<td>gradio-app/gradio 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。</td>
+<td>来源：GitHub Search:ml<br>热度信号：42644<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/meilisearch/meilisearch">meilisearch/meilisearch</a></td>
+<td>A lightning-fast search engine API bringing AI-powered hybrid search to your sites and applications.</td>
+<td>AI 产品与用户入口</td>
+<td>meilisearch/meilisearch 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
+<td>来源：GitHub Search:vector-db<br>热度信号：57664<br>发布时间：2026-05-21<br>关键词：Rust, vector-db</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/milvus-io/milvus">milvus-io/milvus</a></td>
+<td>Milvus is a high-performance, cloud-native vector database built for scalable vector ANN search</td>
+<td>AI 产品与用户入口</td>
+<td>milvus-io/milvus 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
+<td>来源：GitHub Search:vector-db<br>热度信号：44389<br>发布时间：2026-05-21<br>关键词：Go, vector-db</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://github.com/qdrant/qdrant">qdrant/qdrant</a></td>
+<td>Qdrant - High-performance, massive-scale Vector Database and Vector Search Engine for the next generation of AI. Also available in the cloud <a href="https://cloud.qdrant.io/">https://cloud.qdrant.io/</a></td>
+<td>AI 产品与用户入口</td>
+<td>qdrant/qdrant 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。</td>
+<td>来源：GitHub Search:vector-db<br>热度信号：31456<br>发布时间：2026-05-21<br>关键词：Rust, vector-db</td>
 </tr>
 </tbody></table>
 <h2>按五类选题分类摘要</h2>
@@ -212,8 +286,10 @@
 <tr>
 <th align="right">分数</th>
 <th>动作</th>
-<th>选题</th>
+<th>题目</th>
+<th>摘要</th>
 <th>分类</th>
+<th>推荐选题</th>
 <th>推荐理由</th>
 <th>证据</th>
 </tr>
@@ -222,31 +298,29 @@
 <td align="right">78</td>
 <td>入池</td>
 <td><a href="https://github.com/zhayujie/CowAgent">zhayujie/CowAgent</a></td>
+<td>CowAgent (chatgpt-on-wechat) 是基于大模型的超级AI助理，能主动思考和任务规划、访问操作系统和外部资源、创造和执行Skills、通过长期记忆和知识库不断成长，比OpenClaw更轻量和便捷。同时支持微信、飞书、钉钉、企微、QQ、公众号、网页等接入，可选择DeepSeek/OpenAI/Claude/Gemini/ MiniMax/Qwen/GLM/LinkAI，能处理文本、语音、图片和文件，可快速搭建个人AI助理和企业数字员工。</td>
 <td>模型与技术突破</td>
+<td>zhayujie/CowAgent 为什么值得关注？（模型能力变化与技术路线）</td>
 <td>适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Search:ai-agent。</td>
-<td>来源：GitHub Search:ai-agent<br>热度信号：44670<br>发布时间：2026-05-21<br>关键词：Python, ai-agent</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：44673<br>发布时间：2026-05-21<br>关键词：Python, ai-agent</td>
 </tr>
 <tr>
 <td align="right">76</td>
 <td>入池</td>
 <td><a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">An OpenAI model has disproved a central conjecture in discrete geometry</a></td>
+<td>HN discussion by tedsanders</td>
 <td>模型与技术突破</td>
+<td>An OpenAI model has disproved a central conjecture in discrete geometry 为什么值得关注？（模型能力变化与技术路线）</td>
 <td>适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hacker News。</td>
-<td>来源：Hacker News<br>热度信号：1018 / 734<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
-</tr>
-<tr>
-<td align="right">72</td>
-<td>入池</td>
-<td><a href="https://www.producthunt.com/r/ZEXWSSPQZYCABO?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Composer 2.5</a></td>
-<td>模型与技术突破</td>
-<td>适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：400 / 12<br>发布时间：2026-05-19<br>关键词：Artificial Intelligence, Development</td>
+<td>来源：Hacker News<br>热度信号：1167 / 853<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
 </tr>
 <tr>
 <td align="right">71</td>
 <td>入池</td>
 <td><a href="https://github.com/skyzh/tiny-llm">skyzh/tiny-llm</a></td>
+<td>A course of learning LLM inference serving on Apple Silicon for systems engineers: build a tiny vLLM + Qwen.</td>
 <td>模型与技术突破</td>
+<td>skyzh/tiny-llm 为什么值得关注？（模型能力变化与技术路线）</td>
 <td>适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Search:llm-model。</td>
 <td>来源：GitHub Search:llm-model<br>热度信号：4198<br>发布时间：2026-05-21<br>关键词：Python, llm-model</td>
 </tr>
@@ -257,8 +331,10 @@
 <tr>
 <th align="right">分数</th>
 <th>动作</th>
-<th>选题</th>
+<th>题目</th>
+<th>摘要</th>
 <th>分类</th>
+<th>推荐选题</th>
 <th>推荐理由</th>
 <th>证据</th>
 </tr>
@@ -266,42 +342,52 @@
 <tbody><tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://www.producthunt.com/r/YNJ3R3XJ5FEEBJ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">PollyReach</a></td>
+<td><a href="https://www.producthunt.com/r/PVXOOJINEBKKUA?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">StoreClaw</a></td>
+<td>Grow your store profits with agents that know how to sell</td>
 <td>AI 产品与用户入口</td>
+<td>StoreClaw 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：540 / 154<br>发布时间：2026-05-19<br>关键词：Productivity, Artificial Intelligence, Virtual Assistants</td>
+<td>来源：Product Hunt<br>热度信号：601 / 264<br>发布时间：2026-05-20<br>关键词：Artificial Intelligence, E-Commerce, Marketing automation</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://www.producthunt.com/r/7JHDW73XTTPZ3A?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Drizz</a></td>
+<td><a href="https://www.producthunt.com/r/H2XLXASAORMP7Z?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">mailX by mailwarm</a></td>
+<td>Email deliverability toolkit for humans and AI agents</td>
 <td>AI 产品与用户入口</td>
+<td>mailX by mailwarm 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：396 / 64<br>发布时间：2026-05-19<br>关键词：Developer Tools, Artificial Intelligence, No-Code</td>
+<td>来源：Product Hunt<br>热度信号：485 / 258<br>发布时间：2026-05-20<br>关键词：Email, Email Marketing, Artificial Intelligence</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://www.producthunt.com/r/H64HE7ZK3MVBJN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">CtrlOps</a></td>
+<td><a href="https://www.producthunt.com/r/U7NUCTTEX6BM3I?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Emdash</a></td>
+<td>One app. Every coding agent. Open-source.</td>
 <td>AI 产品与用户入口</td>
+<td>Emdash 为什么值得关注？（用户入口、使用场景与产品体验）</td>
 <td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
-<td>来源：Product Hunt<br>热度信号：237 / 59<br>发布时间：2026-05-19<br>关键词：Linux, Developer Tools, Artificial Intelligence</td>
+<td>来源：Product Hunt<br>热度信号：362 / 82<br>发布时间：2026-05-20<br>关键词：Productivity, Open Source, Developer Tools, GitHub</td>
 </tr>
 <tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/gradio-app/gradio">gradio-app/gradio</a></td>
+<td align="right">80</td>
+<td>深挖</td>
+<td><a href="https://www.producthunt.com/r/ENOAWGG27PYBQE?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Gemini Omni</a></td>
+<td>Create anything from any input – starting with video</td>
 <td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。</td>
-<td>来源：GitHub Search:ml<br>热度信号：42641<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
+<td>Gemini Omni 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：339 / 8<br>发布时间：2026-05-20<br>关键词：Artificial Intelligence, Video</td>
 </tr>
 <tr>
-<td align="right">74</td>
-<td>入池</td>
-<td><a href="https://github.com/ray-project/ray">ray-project/ray</a></td>
+<td align="right">80</td>
+<td>深挖</td>
+<td><a href="https://www.producthunt.com/r/TOZOGOJYMEHTNQ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Runtime</a></td>
+<td>Sandboxed coding agents for everyone on your team</td>
 <td>AI 产品与用户入口</td>
-<td>适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。</td>
-<td>来源：GitHub Search:ml<br>热度信号：42613<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
+<td>Runtime 为什么值得关注？（用户入口、使用场景与产品体验）</td>
+<td>值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：260 / 70<br>发布时间：2026-05-20<br>关键词：Slack, Developer Tools, Artificial Intelligence</td>
 </tr>
 </tbody></table>
 <h3>企业落地与行业应用</h3>
@@ -310,8 +396,10 @@
 <tr>
 <th align="right">分数</th>
 <th>动作</th>
-<th>选题</th>
+<th>题目</th>
+<th>摘要</th>
 <th>分类</th>
+<th>推荐选题</th>
 <th>推荐理由</th>
 <th>证据</th>
 </tr>
@@ -319,42 +407,52 @@
 <tbody><tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://github.com/langchain4j/langchain4j">langchain4j/langchain4j</a></td>
+<td><a href="https://github.com/ruvnet/ruflo">ruvnet/ruflo</a></td>
+<td>🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration</td>
 <td>企业落地与行业应用</td>
-<td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。</td>
-<td>来源：GitHub Search:vector-db<br>热度信号：12047<br>发布时间：2026-05-20<br>关键词：Java, vector-db</td>
+<td>ruvnet/ruflo 为什么值得关注？（行业场景、落地成本与业务价值）</td>
+<td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：53721<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
 </tr>
 <tr>
 <td align="right">80</td>
 <td>深挖</td>
-<td><a href="https://github.com/ruvnet/ruflo">ruvnet/ruflo</a></td>
+<td><a href="https://github.com/langchain4j/langchain4j">langchain4j/langchain4j</a></td>
+<td>LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.</td>
 <td>企业落地与行业应用</td>
-<td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。</td>
-<td>来源：GitHub Search:ai-agent<br>热度信号：53678<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
-</tr>
-<tr>
-<td align="right">73</td>
-<td>入池</td>
-<td><a href="https://github.com/apache/airflow">apache/airflow</a></td>
-<td>企业落地与行业应用</td>
-<td>适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ml。</td>
-<td>来源：GitHub Search:ml<br>热度信号：45472<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
+<td>langchain4j/langchain4j 为什么值得关注？（行业场景、落地成本与业务价值）</td>
+<td>值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。</td>
+<td>来源：GitHub Search:vector-db<br>热度信号：12051<br>发布时间：2026-05-20<br>关键词：Java, vector-db</td>
 </tr>
 <tr>
 <td align="right">73</td>
 <td>入池</td>
 <td><a href="https://github.com/activepieces/activepieces">activepieces/activepieces</a></td>
+<td>AI Agents &amp; MCPs &amp; AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows &amp; AI Agents • MCPs for AI Agents</td>
 <td>企业落地与行业应用</td>
+<td>activepieces/activepieces 为什么值得关注？（行业场景、落地成本与业务价值）</td>
 <td>适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。</td>
-<td>来源：GitHub Search:ai-agent<br>热度信号：22299<br>发布时间：2026-05-20<br>关键词：TypeScript, ai-agent</td>
+<td>来源：GitHub Search:ai-agent<br>热度信号：22309<br>发布时间：2026-05-21<br>关键词：TypeScript, ai-agent</td>
+</tr>
+<tr>
+<td align="right">73</td>
+<td>入池</td>
+<td><a href="https://github.com/apache/airflow">apache/airflow</a></td>
+<td>Apache Airflow - A platform to programmatically author, schedule, and monitor workflows</td>
+<td>企业落地与行业应用</td>
+<td>apache/airflow 为什么值得关注？（行业场景、落地成本与业务价值）</td>
+<td>适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ml。</td>
+<td>来源：GitHub Search:ml<br>热度信号：45475<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
 </tr>
 <tr>
 <td align="right">71</td>
 <td>入池</td>
-<td><a href="https://github.com/OpenBB-finance/OpenBB">OpenBB-finance/OpenBB</a></td>
+<td><a href="https://github.com/langgenius/dify">langgenius/dify</a></td>
+<td>Production-ready platform for agentic workflow development.</td>
 <td>企业落地与行业应用</td>
-<td>适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ml。</td>
-<td>来源：GitHub Search:ml<br>热度信号：67867<br>发布时间：2026-05-21<br>关键词：Python, ml</td>
+<td>langgenius/dify 为什么值得关注？（行业场景、落地成本与业务价值）</td>
+<td>适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:llm。</td>
+<td>来源：GitHub Search:llm<br>热度信号：142131<br>发布时间：2026-05-21<br>关键词：TypeScript, llm</td>
 </tr>
 </tbody></table>
 <h3>标杆企业动向、商业格局与投融资</h3>
@@ -363,35 +461,63 @@
 <tr>
 <th align="right">分数</th>
 <th>动作</th>
-<th>选题</th>
+<th>题目</th>
+<th>摘要</th>
 <th>分类</th>
+<th>推荐选题</th>
 <th>推荐理由</th>
 <th>证据</th>
 </tr>
 </thead>
 <tbody><tr>
+<td align="right">80</td>
+<td>深挖</td>
+<td><a href="https://github.com/open-webui/open-webui">open-webui/open-webui</a></td>
+<td>User-friendly AI Interface (Supports Ollama, OpenAI API, ...)</td>
+<td>标杆企业动向、商业格局与投融资</td>
+<td>open-webui/open-webui 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:llm。</td>
+<td>来源：GitHub Search:llm<br>热度信号：138049<br>发布时间：2026-05-21<br>关键词：Python, llm</td>
+</tr>
+<tr>
 <td align="right">76</td>
 <td>入池</td>
-<td><a href="https://github.com/open-webui/open-webui">open-webui/open-webui</a></td>
+<td><a href="https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5">OpenAI Is Preparing to File for an IPO Soon</a></td>
+<td>HN discussion by louiereederson</td>
 <td>标杆企业动向、商业格局与投融资</td>
-<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:rag。</td>
-<td>来源：GitHub Search:rag<br>热度信号：138021<br>发布时间：2026-05-19<br>关键词：Python, rag</td>
+<td>OpenAI Is Preparing to File for an IPO Soon 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</td>
+<td>来源：Hacker News<br>热度信号：90 / 225<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
+</tr>
+<tr>
+<td align="right">76</td>
+<td>入池</td>
+<td><a href="https://www.producthunt.com/r/IMCJSAWBQKCT3R?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29">Supercut for Agents</a></td>
+<td>Permission-aware AI access to recordings and metadata</td>
+<td>标杆企业动向、商业格局与投融资</td>
+<td>Supercut for Agents 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Product Hunt。</td>
+<td>来源：Product Hunt<br>热度信号：146 / 15<br>发布时间：2026-05-20<br>关键词：Productivity, Developer Tools</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>入池</td>
+<td><a href="https://twitter.com/nottombrown/status/2057194829986300375">Anthropic is expanding to Colossus2. Will use GB200</a></td>
+<td>HN discussion by aurareturn</td>
+<td>标杆企业动向、商业格局与投融资</td>
+<td>Anthropic is expanding to Colossus2. Will use GB200 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
+<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</td>
+<td>来源：Hacker News<br>热度信号：202 / 186<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
 </tr>
 <tr>
 <td align="right">72</td>
 <td>入池</td>
 <td><a href="https://github.com/anthropics/claude-plugins-official">anthropics/claude-plugins-official</a></td>
+<td>Official, Anthropic-managed directory of high quality Claude Code Plugins.</td>
 <td>标杆企业动向、商业格局与投融资</td>
+<td>anthropics/claude-plugins-official 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Trending。</td>
 <td>来源：GitHub Trending<br>热度信号：674 / 0<br>关键词：Python</td>
-</tr>
-<tr>
-<td align="right">69</td>
-<td>入池</td>
-<td><a href="https://twitter.com/nottombrown/status/2057194829986300375">Anthropic is expanding to Colossus2. Will use GB200</a></td>
-<td>标杆企业动向、商业格局与投融资</td>
-<td>适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。</td>
-<td>来源：Hacker News<br>热度信号：144 / 129<br>发布时间：2026-05-20<br>关键词：community, discussion</td>
 </tr>
 </tbody></table>
 <h2>观察项</h2>

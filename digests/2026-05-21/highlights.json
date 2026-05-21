@@ -1,20 +1,12 @@
 {
   "zh": {
     "ai-topic-radar": [
-      "LangChain4j 获80分，适合从行业场景与落地成本切入",
-      "Ruvnet Ruflo 获80分，聚焦AI Agent行业场景价值",
-      "PollyReach 获80分，产品体验与用户入口值得深挖",
-      "Drizz 获80分，使用场景与产品体验亮点突出",
-      "CtrlOps 获80分，用户入口与产品体验值得关注",
-      "CowAgent 获78分，模型能力变化与产品化潜力值得入池"
-    ],
-    "ai-agents": [
-      "Open WebUI 获76分，适合从大厂动作与商业化路径切入",
-      "OpenAI模型推翻了离散几何核心猜想，引发热议",
-      "Gradio 获74分，ML用户入口与产品体验亮点多",
-      "Ray 获74分，ML领域用户入口与场景体验突出",
-      "CowAgent 从技术路线与产品化角度值得深入",
-      "Open WebUI 竞争格局与商业化路径值得分析"
+      "open-webui 深挖价值80分，适合大厂动作与商业化分析",
+      "ruvnet/ruflo 深挖80分，聚焦行业场景与落地成本",
+      "langchain4j 深挖80分，关注向量数据库应用与业务价值",
+      "StoreClaw 深挖80分，从产品体验切入用户入口",
+      "mailX 深挖80分，邮件工具产品体验与场景突破",
+      "Emdash 和 Gemini Omni 均80分，值得深挖入口与体验"
     ]
   },
   "en": {}
