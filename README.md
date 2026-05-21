@@ -2,7 +2,7 @@
 
 面向 AI 内容运营和产品调研的热点选题监控工具。它会每天抓取公开 AI 信号，生成一份中文“值得写、值得测、值得深挖”的选题池，并通过 HTML、Web UI、RSS、Telegram、飞书和 GitHub Actions 分发。
 
-本项目基于 [`duanyytop/agents-radar`](https://github.com/duanyytop/agents-radar) 改造。上游项目提供了 TypeScript 抓取管线、GitHub Actions 定时运行、多源 digest、RSS、Telegram / 飞书通知、Web UI、周报/月报和 MCP server 等基础能力；本仓库在这些能力上增加中文内容选题评分、五类分类、动作建议、单文件 HTML 主报告和结构化 JSON 选题池。你不需要跳转上游 README 才能使用本项目，下面会把完整使用路径讲清楚。
+本项目基于 [`duanyytop/agents-radar`](https://github.com/duanyytop/agents-radar) 改造。
 
 ## 5 分钟理解
 
