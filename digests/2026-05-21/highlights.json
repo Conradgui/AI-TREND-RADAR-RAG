@@ -1,12 +1,18 @@
 {
   "zh": {
     "ai-topic-radar": [
-      "open-webui 深挖价值80分，适合大厂动作与商业化分析",
-      "ruvnet/ruflo 深挖80分，聚焦行业场景与落地成本",
-      "langchain4j 深挖80分，关注向量数据库应用与业务价值",
-      "StoreClaw 深挖80分，从产品体验切入用户入口",
-      "mailX 深挖80分，邮件工具产品体验与场景突破",
-      "Emdash 和 Gemini Omni 均80分，值得深挖入口与体验"
+      "Ruvnet/ruflo: 行业场景落地成本与业务价值深度挖掘",
+      "Open-webui/open-webui: 大厂动作与商业化路径竞争格局解析",
+      "Langchain4j/langchain4j: 行业场景与向量数据库落地成本分析",
+      "StoreClaw: 用户入口与使用场景产品体验新突破",
+      "MailX by mailwarm: 邮件产品用户入口与体验优化",
+      "Emdash: 全新用户入口与使用场景产品体验"
+    ],
+    "ai-agents": [
+      "Gemini Omni: 多模态入口与产品体验创新",
+      "Runtime: 运行时产品用户场景体验升级",
+      "CowAgent: 模型能力变化与技术产品化新路线",
+      "OpenAI IPO: 大厂商业化路径与竞争格局新进展"
     ]
   },
   "en": {}

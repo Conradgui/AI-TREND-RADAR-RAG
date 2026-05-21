@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-05-21T10:04:22.847Z",
+    "lastChecked": "2026-05-21T10:40:20.135Z",
     "seenUrls": {
       "https://www.anthropic.com/research/natural-language-autoencoders": "2026-05-20T14:03:11.000Z",
       "https://www.anthropic.com/research/teaching-claude-why": "2026-05-20T13:19:12.000Z",
@@ -366,14 +366,14 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-05-21T10:04:25.850Z",
+    "lastChecked": "2026-05-21T10:40:21.689Z",
     "seenUrls": {
       "https://openai.com/index/advancing-content-provenance/": "2026-05-21T04:57:25.926Z",
-      "https://openai.com/index/dell-codex-enterprise-partnership/": "2026-05-21T09:25:32.817Z",
+      "https://openai.com/index/dell-codex-enterprise-partnership/": "2026-05-21T10:39:58.406Z",
       "https://openai.com/index/introducing-the-stateful-runtime-environment-for-agents-in-amazon-bedrock/": "2026-05-21T03:57:44.337Z",
-      "https://openai.com/index/personal-finance-chatgpt/": "2026-05-21T08:32:26.452Z",
+      "https://openai.com/index/personal-finance-chatgpt/": "2026-05-21T10:39:22.694Z",
       "https://openai.com/index/openai-campus-network-student-club-interest-form/": "2026-05-21T03:56:54.286Z",
-      "https://openai.com/index/building-codex-windows-sandbox/": "2026-05-21T08:47:20.217Z",
+      "https://openai.com/index/building-codex-windows-sandbox/": "2026-05-21T10:38:14.567Z",
       "https://openai.com/index/our-response-to-the-tanstack-npm-supply-chain-attack/": "2026-05-20T23:53:45.292Z",
       "https://openai.com/index/work-with-codex-from-anywhere/": "2026-05-20T07:50:49.927Z",
       "https://openai.com/index/introducing-the-teen-safety-blueprint/": "2026-05-20T06:30:00.331Z",

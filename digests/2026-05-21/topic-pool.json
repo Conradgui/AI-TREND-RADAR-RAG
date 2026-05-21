@@ -1,35 +1,7 @@
 {
-  "generatedAt": "2026-05-21 10:04",
+  "generatedAt": "2026-05-21 10:40",
   "date": "2026-05-21",
   "candidates": [
-    {
-      "title": "open-webui/open-webui",
-      "summary": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
-      "recommendedTopic": "open-webui/open-webui 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
-      "url": "https://github.com/open-webui/open-webui",
-      "source": "GitHub Search:llm",
-      "category": "标杆企业动向、商业格局与投融资",
-      "score": 80,
-      "action": "深挖",
-      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
-      "reason": "值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:llm。",
-      "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：138049",
-        "发布时间：2026-05-21",
-        "关键词：Python, llm"
-      ],
-      "breakdown": {
-        "commercialImpact": 22,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "Python",
-        "llm"
-      ]
-    },
     {
       "title": "ruvnet/ruflo",
       "summary": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, self-learning swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
@@ -43,7 +15,7 @@
       "reason": "值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
         "来源：GitHub Search:ai-agent",
-        "热度信号：53721",
+        "热度信号：53729",
         "发布时间：2026-05-21",
         "关键词：TypeScript, ai-agent"
       ],
@@ -59,6 +31,34 @@
       ]
     },
     {
+      "title": "open-webui/open-webui",
+      "summary": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
+      "recommendedTopic": "open-webui/open-webui 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
+      "url": "https://github.com/open-webui/open-webui",
+      "source": "GitHub Search:rag",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 80,
+      "action": "深挖",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：138054",
+        "发布时间：2026-05-21",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 22,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
       "title": "langchain4j/langchain4j",
       "summary": "LangChain4j is an idiomatic, open-source Java library for building LLM-powered applications on the JVM. It offers a unified API over popular LLM providers and vector stores, and makes implementing tool calling (including MCP support), agents and RAG easy. It integrates seamlessly with enterprise Java frameworks like Quarkus and Spring Boot.",
       "recommendedTopic": "langchain4j/langchain4j 为什么值得关注？（行业场景、落地成本与业务价值）",
@@ -71,7 +71,7 @@
       "reason": "值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。",
       "evidence": [
         "来源：GitHub Search:vector-db",
-        "热度信号：12051",
+        "热度信号：12052",
         "发布时间：2026-05-20",
         "关键词：Java, vector-db"
       ],
@@ -99,7 +99,7 @@
       "reason": "值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
       "evidence": [
         "来源：Product Hunt",
-        "热度信号：601 / 264",
+        "热度信号：603 / 264",
         "发布时间：2026-05-20",
         "关键词：Artificial Intelligence, E-Commerce, Marketing automation"
       ],
@@ -157,7 +157,7 @@
       "reason": "值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
       "evidence": [
         "来源：Product Hunt",
-        "热度信号：362 / 82",
+        "热度信号：363 / 82",
         "发布时间：2026-05-20",
         "关键词：Productivity, Open Source, Developer Tools, GitHub"
       ],
@@ -187,7 +187,7 @@
       "reason": "值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
       "evidence": [
         "来源：Product Hunt",
-        "热度信号：339 / 8",
+        "热度信号：342 / 8",
         "发布时间：2026-05-20",
         "关键词：Artificial Intelligence, Video"
       ],
@@ -260,6 +260,34 @@
       ]
     },
     {
+      "title": "OpenAI Is Preparing to File for an IPO Soon",
+      "summary": "HN discussion by louiereederson",
+      "recommendedTopic": "OpenAI Is Preparing to File for an IPO Soon 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
+      "url": "https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5",
+      "source": "Hacker News",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 77,
+      "action": "入池",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：100 / 239",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 29,
+        "heat": 20,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
       "title": "An OpenAI model has disproved a central conjecture in discrete geometry",
       "summary": "HN discussion by tedsanders",
       "recommendedTopic": "An OpenAI model has disproved a central conjecture in discrete geometry 为什么值得关注？（模型能力变化与技术路线）",
@@ -272,7 +300,7 @@
       "reason": "适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hacker News。",
       "evidence": [
         "来源：Hacker News",
-        "热度信号：1167 / 853",
+        "热度信号：1191 / 864",
         "发布时间：2026-05-20",
         "关键词：community, discussion"
       ],
@@ -281,34 +309,6 @@
         "heat": 30,
         "freshness": 20,
         "writability": 6
-      },
-      "tags": [
-        "community",
-        "discussion"
-      ]
-    },
-    {
-      "title": "OpenAI Is Preparing to File for an IPO Soon",
-      "summary": "HN discussion by louiereederson",
-      "recommendedTopic": "OpenAI Is Preparing to File for an IPO Soon 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
-      "url": "https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5",
-      "source": "Hacker News",
-      "category": "标杆企业动向、商业格局与投融资",
-      "score": 76,
-      "action": "入池",
-      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
-      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
-      "evidence": [
-        "来源：Hacker News",
-        "热度信号：90 / 225",
-        "发布时间：2026-05-20",
-        "关键词：community, discussion"
-      ],
-      "breakdown": {
-        "commercialImpact": 29,
-        "heat": 19,
-        "freshness": 20,
-        "writability": 8
       },
       "tags": [
         "community",
@@ -328,7 +328,7 @@
       "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Product Hunt。",
       "evidence": [
         "来源：Product Hunt",
-        "热度信号：146 / 15",
+        "热度信号：147 / 15",
         "发布时间：2026-05-20",
         "关键词：Productivity, Developer Tools"
       ],
@@ -344,21 +344,49 @@
       ]
     },
     {
-      "title": "Significant-Gravitas/AutoGPT",
-      "summary": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "recommendedTopic": "Significant-Gravitas/AutoGPT 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/Significant-Gravitas/AutoGPT",
-      "source": "GitHub Search:llm",
+      "title": "Anthropic is expanding to Colossus2. Will use GB200",
+      "summary": "HN discussion by aurareturn",
+      "recommendedTopic": "Anthropic is expanding to Colossus2. Will use GB200 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
+      "url": "https://twitter.com/nottombrown/status/2057194829986300375",
+      "source": "Hacker News",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 75,
+      "action": "入池",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：211 / 197",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 29,
+        "heat": 18,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
+      "title": "gradio-app/gradio",
+      "summary": "Build and share delightful machine learning apps, all in Python. 🌟 Star to support our work!",
+      "recommendedTopic": "gradio-app/gradio 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/gradio-app/gradio",
+      "source": "GitHub Search:ml",
       "category": "AI 产品与用户入口",
       "score": 74,
       "action": "入池",
       "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：184443",
+        "来源：GitHub Search:ml",
+        "热度信号：42644",
         "发布时间：2026-05-21",
-        "关键词：Python, llm"
+        "关键词：Python, ml"
       ],
       "breakdown": {
         "commercialImpact": 14,
@@ -368,7 +396,7 @@
       },
       "tags": [
         "Python",
-        "llm"
+        "ml"
       ]
     },
     {
@@ -384,7 +412,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
         "来源：GitHub Search:ai-agent",
-        "热度信号：61712",
+        "热度信号：61717",
         "发布时间：2026-05-20",
         "关键词：Python, ai-agent"
       ],
@@ -412,7 +440,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
         "来源：GitHub Search:ai-agent",
-        "热度信号：46039",
+        "热度信号：46041",
         "发布时间：2026-05-21",
         "关键词：TypeScript, ai-agent"
       ],
@@ -440,7 +468,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
         "来源：GitHub Search:ai-agent",
-        "热度信号：38259",
+        "热度信号：38263",
         "发布时间：2026-05-20",
         "关键词：Python, ai-agent"
       ],
@@ -468,7 +496,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
         "来源：GitHub Search:ai-agent",
-        "热度信号：31590",
+        "热度信号：31591",
         "发布时间：2026-05-21",
         "关键词：TypeScript, ai-agent"
       ],
@@ -496,7 +524,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
         "来源：GitHub Search:ai-agent",
-        "热度信号：26052",
+        "热度信号：26051",
         "发布时间：2026-05-21",
         "关键词：TypeScript, ai-agent"
       ],
@@ -540,21 +568,21 @@
       ]
     },
     {
-      "title": "gradio-app/gradio",
-      "summary": "Build and share delightful machine learning apps, all in Python. 🌟 Star to support our work!",
-      "recommendedTopic": "gradio-app/gradio 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/gradio-app/gradio",
-      "source": "GitHub Search:ml",
+      "title": "infiniflow/ragflow",
+      "summary": "RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs",
+      "recommendedTopic": "infiniflow/ragflow 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/infiniflow/ragflow",
+      "source": "GitHub Search:rag",
       "category": "AI 产品与用户入口",
       "score": 74,
       "action": "入池",
       "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
       "evidence": [
-        "来源：GitHub Search:ml",
-        "热度信号：42644",
+        "来源：GitHub Search:rag",
+        "热度信号：80968",
         "发布时间：2026-05-21",
-        "关键词：Python, ml"
+        "关键词：Python, rag"
       ],
       "breakdown": {
         "commercialImpact": 14,
@@ -564,7 +592,91 @@
       },
       "tags": [
         "Python",
-        "ml"
+        "rag"
+      ]
+    },
+    {
+      "title": "thedotmack/claude-mem",
+      "summary": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
+      "recommendedTopic": "thedotmack/claude-mem 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：77179",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript",
+        "rag"
+      ]
+    },
+    {
+      "title": "safishamsi/graphify",
+      "summary": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
+      "recommendedTopic": "safishamsi/graphify 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/safishamsi/graphify",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：50470",
+        "发布时间：2026-05-20",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "milvus-io/milvus",
+      "summary": "Milvus is a high-performance, cloud-native vector database built for scalable vector ANN search",
+      "recommendedTopic": "milvus-io/milvus 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/milvus-io/milvus",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：44389",
+        "发布时间：2026-05-21",
+        "关键词：Go, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Go",
+        "rag"
       ]
     },
     {
@@ -592,34 +704,6 @@
       },
       "tags": [
         "Rust",
-        "vector-db"
-      ]
-    },
-    {
-      "title": "milvus-io/milvus",
-      "summary": "Milvus is a high-performance, cloud-native vector database built for scalable vector ANN search",
-      "recommendedTopic": "milvus-io/milvus 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/milvus-io/milvus",
-      "source": "GitHub Search:vector-db",
-      "category": "AI 产品与用户入口",
-      "score": 74,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
-      "evidence": [
-        "来源：GitHub Search:vector-db",
-        "热度信号：44389",
-        "发布时间：2026-05-21",
-        "关键词：Go, vector-db"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 10
-      },
-      "tags": [
-        "Go",
         "vector-db"
       ]
     },
@@ -664,7 +748,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
       "evidence": [
         "来源：GitHub Search:vector-db",
-        "热度信号：16220",
+        "热度信号：16221",
         "发布时间：2026-05-21",
         "关键词：Go, vector-db"
       ],
@@ -692,7 +776,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
       "evidence": [
         "来源：GitHub Search:vector-db",
-        "热度信号：11637",
+        "热度信号：11639",
         "发布时间：2026-05-21",
         "关键词：Python, vector-db"
       ],
@@ -736,21 +820,21 @@
       ]
     },
     {
-      "title": "infiniflow/ragflow",
-      "summary": "RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs",
-      "recommendedTopic": "infiniflow/ragflow 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/infiniflow/ragflow",
-      "source": "GitHub Search:rag",
+      "title": "Significant-Gravitas/AutoGPT",
+      "summary": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+      "recommendedTopic": "Significant-Gravitas/AutoGPT 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/Significant-Gravitas/AutoGPT",
+      "source": "GitHub Search:llm",
       "category": "AI 产品与用户入口",
       "score": 74,
       "action": "入池",
       "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
       "evidence": [
-        "来源：GitHub Search:rag",
-        "热度信号：80968",
+        "来源：GitHub Search:llm",
+        "热度信号：184443",
         "发布时间：2026-05-21",
-        "关键词：Python, rag"
+        "关键词：Python, llm"
       ],
       "breakdown": {
         "commercialImpact": 14,
@@ -760,119 +844,7 @@
       },
       "tags": [
         "Python",
-        "rag"
-      ]
-    },
-    {
-      "title": "thedotmack/claude-mem",
-      "summary": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "recommendedTopic": "thedotmack/claude-mem 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/thedotmack/claude-mem",
-      "source": "GitHub Search:rag",
-      "category": "AI 产品与用户入口",
-      "score": 74,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
-      "evidence": [
-        "来源：GitHub Search:rag",
-        "热度信号：77173",
-        "发布时间：2026-05-21",
-        "关键词：TypeScript, rag"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 10
-      },
-      "tags": [
-        "TypeScript",
-        "rag"
-      ]
-    },
-    {
-      "title": "safishamsi/graphify",
-      "summary": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
-      "recommendedTopic": "safishamsi/graphify 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/safishamsi/graphify",
-      "source": "GitHub Search:rag",
-      "category": "AI 产品与用户入口",
-      "score": 74,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
-      "evidence": [
-        "来源：GitHub Search:rag",
-        "热度信号：50456",
-        "发布时间：2026-05-20",
-        "关键词：Python, rag"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 10
-      },
-      "tags": [
-        "Python",
-        "rag"
-      ]
-    },
-    {
-      "title": "Anthropic is expanding to Colossus2. Will use GB200",
-      "summary": "HN discussion by aurareturn",
-      "recommendedTopic": "Anthropic is expanding to Colossus2. Will use GB200 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
-      "url": "https://twitter.com/nottombrown/status/2057194829986300375",
-      "source": "Hacker News",
-      "category": "标杆企业动向、商业格局与投融资",
-      "score": 74,
-      "action": "入池",
-      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
-      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
-      "evidence": [
-        "来源：Hacker News",
-        "热度信号：202 / 186",
-        "发布时间：2026-05-20",
-        "关键词：community, discussion"
-      ],
-      "breakdown": {
-        "commercialImpact": 29,
-        "heat": 17,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "community",
-        "discussion"
-      ]
-    },
-    {
-      "title": "activepieces/activepieces",
-      "summary": "AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents",
-      "recommendedTopic": "activepieces/activepieces 为什么值得关注？（行业场景、落地成本与业务价值）",
-      "url": "https://github.com/activepieces/activepieces",
-      "source": "GitHub Search:ai-agent",
-      "category": "企业落地与行业应用",
-      "score": 73,
-      "action": "入池",
-      "angle": "适合从行业场景、落地成本和业务价值角度切入",
-      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
-      "evidence": [
-        "来源：GitHub Search:ai-agent",
-        "热度信号：22309",
-        "发布时间：2026-05-21",
-        "关键词：TypeScript, ai-agent"
-      ],
-      "breakdown": {
-        "commercialImpact": 15,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "TypeScript",
-        "ai-agent"
+        "llm"
       ]
     },
     {
@@ -904,6 +876,34 @@
       ]
     },
     {
+      "title": "activepieces/activepieces",
+      "summary": "AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents",
+      "recommendedTopic": "activepieces/activepieces 为什么值得关注？（行业场景、落地成本与业务价值）",
+      "url": "https://github.com/activepieces/activepieces",
+      "source": "GitHub Search:ai-agent",
+      "category": "企业落地与行业应用",
+      "score": 73,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：22310",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
       "title": "anthropics/claude-plugins-official",
       "summary": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
       "recommendedTopic": "anthropics/claude-plugins-official 为什么值得关注？（大厂动作、商业化路径与竞争格局）",
@@ -927,202 +927,6 @@
       },
       "tags": [
         "Python"
-      ]
-    },
-    {
-      "title": "NousResearch/hermes-agent",
-      "summary": "The agent that grows with you",
-      "recommendedTopic": "NousResearch/hermes-agent 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/NousResearch/hermes-agent",
-      "source": "GitHub Search:llm",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
-      "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：160549",
-        "发布时间：2026-05-21",
-        "关键词：Python, llm"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "Python",
-        "llm"
-      ]
-    },
-    {
-      "title": "langchain-ai/langchain",
-      "summary": "The agent engineering platform.",
-      "recommendedTopic": "langchain-ai/langchain 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/langchain-ai/langchain",
-      "source": "GitHub Search:llm",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
-      "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：137275",
-        "发布时间：2026-05-21",
-        "关键词：Python, llm"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "Python",
-        "llm"
-      ]
-    },
-    {
-      "title": "firecrawl/firecrawl",
-      "summary": "🔥 Search, scrape, and clean the web for AI agents.",
-      "recommendedTopic": "firecrawl/firecrawl 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/firecrawl/firecrawl",
-      "source": "GitHub Search:llm",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
-      "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：122505",
-        "发布时间：2026-05-21",
-        "关键词：TypeScript, llm"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "TypeScript",
-        "llm"
-      ]
-    },
-    {
-      "title": "browser-use/browser-use",
-      "summary": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
-      "recommendedTopic": "browser-use/browser-use 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/browser-use/browser-use",
-      "source": "GitHub Search:llm",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
-      "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：94931",
-        "发布时间：2026-05-20",
-        "关键词：Python, llm"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "Python",
-        "llm"
-      ]
-    },
-    {
-      "title": "OpenHands/OpenHands",
-      "summary": "🙌 OpenHands: AI-Driven Development",
-      "recommendedTopic": "OpenHands/OpenHands 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/OpenHands/OpenHands",
-      "source": "GitHub Search:llm",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
-      "evidence": [
-        "来源：GitHub Search:llm",
-        "热度信号：74348",
-        "发布时间：2026-05-21",
-        "关键词：Python, llm"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "Python",
-        "llm"
-      ]
-    },
-    {
-      "title": "Gitlawb/openclaude",
-      "summary": "runs anywhere. uses anything",
-      "recommendedTopic": "Gitlawb/openclaude 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/Gitlawb/openclaude",
-      "source": "GitHub Search:ai-agent",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
-      "evidence": [
-        "来源：GitHub Search:ai-agent",
-        "热度信号：27371",
-        "发布时间：2026-05-20",
-        "关键词：TypeScript, ai-agent"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "TypeScript",
-        "ai-agent"
-      ]
-    },
-    {
-      "title": "jackwener/OpenCLI",
-      "summary": "Make Any Website into CLI & Use your logged-in browser by AI agent. ",
-      "recommendedTopic": "jackwener/OpenCLI 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/jackwener/OpenCLI",
-      "source": "GitHub Search:ai-agent",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
-      "evidence": [
-        "来源：GitHub Search:ai-agent",
-        "热度信号：22157",
-        "发布时间：2026-05-21",
-        "关键词：JavaScript, ai-agent"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "JavaScript",
-        "ai-agent"
       ]
     },
     {
@@ -1166,7 +970,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
         "来源：GitHub Search:ml",
-        "热度信号：100047",
+        "热度信号：100046",
         "发布时间：2026-05-21",
         "关键词：Python, ml"
       ],
@@ -1194,7 +998,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
         "来源：GitHub Search:ml",
-        "热度信号：78882",
+        "热度信号：78883",
         "发布时间：2026-05-21",
         "关键词：C, ml"
       ],
@@ -1278,7 +1082,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
         "来源：GitHub Search:ml",
-        "热度信号：57394",
+        "热度信号：57397",
         "发布时间：2026-05-21",
         "关键词：Python, ml"
       ],
@@ -1306,7 +1110,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
         "来源：GitHub Search:ml",
-        "热度信号：55229",
+        "热度信号：55230",
         "发布时间：2026-05-21",
         "关键词：Python, ml"
       ],
@@ -1362,7 +1166,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
         "来源：GitHub Search:ml",
-        "热度信号：44657",
+        "热度信号：44658",
         "发布时间：2026-05-21",
         "关键词：Python, ml"
       ],
@@ -1378,21 +1182,21 @@
       ]
     },
     {
-      "title": "run-llama/llama_index",
-      "summary": "LlamaIndex is the leading document agent and OCR platform",
-      "recommendedTopic": "run-llama/llama_index 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/run-llama/llama_index",
-      "source": "GitHub Search:vector-db",
+      "title": "NousResearch/hermes-agent",
+      "summary": "The agent that grows with you",
+      "recommendedTopic": "NousResearch/hermes-agent 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "source": "GitHub Search:ai-agent",
       "category": "AI 产品与用户入口",
       "score": 72,
       "action": "入池",
       "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
-        "来源：GitHub Search:vector-db",
-        "热度信号：49550",
-        "发布时间：2026-05-20",
-        "关键词：Python, vector-db"
+        "来源：GitHub Search:ai-agent",
+        "热度信号：160600",
+        "发布时间：2026-05-21",
+        "关键词：Python, ai-agent"
       ],
       "breakdown": {
         "commercialImpact": 14,
@@ -1402,7 +1206,175 @@
       },
       "tags": [
         "Python",
-        "vector-db"
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "Gitlawb/openclaude",
+      "summary": "runs anywhere. uses anything",
+      "recommendedTopic": "Gitlawb/openclaude 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/Gitlawb/openclaude",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：27373",
+        "发布时间：2026-05-20",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "jackwener/OpenCLI",
+      "summary": "Make Any Website into CLI & Use your logged-in browser by AI agent. ",
+      "recommendedTopic": "jackwener/OpenCLI 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/jackwener/OpenCLI",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：22162",
+        "发布时间：2026-05-21",
+        "关键词：JavaScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "JavaScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "langchain-ai/langchain",
+      "summary": "The agent engineering platform.",
+      "recommendedTopic": "langchain-ai/langchain 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/langchain-ai/langchain",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：137275",
+        "发布时间：2026-05-21",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "mem0ai/mem0",
+      "summary": "Universal memory layer for AI Agents",
+      "recommendedTopic": "mem0ai/mem0 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/mem0ai/mem0",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：56326",
+        "发布时间：2026-05-21",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "FlowiseAI/Flowise",
+      "summary": "Build AI Agents, Visually",
+      "recommendedTopic": "FlowiseAI/Flowise 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/FlowiseAI/Flowise",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：52975",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "rag"
+      ]
+    },
+    {
+      "title": "run-llama/llama_index",
+      "summary": "LlamaIndex is the leading document agent and OCR platform",
+      "recommendedTopic": "run-llama/llama_index 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/run-llama/llama_index",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：49550",
+        "发布时间：2026-05-20",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
       ]
     },
     {
@@ -1446,7 +1418,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
       "evidence": [
         "来源：GitHub Search:vector-db",
-        "热度信号：9658",
+        "热度信号：9659",
         "发布时间：2026-05-21",
         "关键词：C++, vector-db"
       ],
@@ -1462,83 +1434,27 @@
       ]
     },
     {
-      "title": "mem0ai/mem0",
-      "summary": "Universal memory layer for AI Agents",
-      "recommendedTopic": "mem0ai/mem0 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/mem0ai/mem0",
-      "source": "GitHub Search:rag",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
-      "evidence": [
-        "来源：GitHub Search:rag",
-        "热度信号：56321",
-        "发布时间：2026-05-21",
-        "关键词：Python, rag"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "Python",
-        "rag"
-      ]
-    },
-    {
-      "title": "FlowiseAI/Flowise",
-      "summary": "Build AI Agents, Visually",
-      "recommendedTopic": "FlowiseAI/Flowise 为什么值得关注？（用户入口、使用场景与产品体验）",
-      "url": "https://github.com/FlowiseAI/Flowise",
-      "source": "GitHub Search:rag",
-      "category": "AI 产品与用户入口",
-      "score": 72,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
-      "evidence": [
-        "来源：GitHub Search:rag",
-        "热度信号：52972",
-        "发布时间：2026-05-21",
-        "关键词：TypeScript, rag"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "TypeScript",
-        "rag"
-      ]
-    },
-    {
-      "title": "langgenius/dify",
-      "summary": "Production-ready platform for agentic workflow development.",
-      "recommendedTopic": "langgenius/dify 为什么值得关注？（行业场景、落地成本与业务价值）",
-      "url": "https://github.com/langgenius/dify",
+      "title": "firecrawl/firecrawl",
+      "summary": "🔥 Search, scrape, and clean the web for AI agents.",
+      "recommendedTopic": "firecrawl/firecrawl 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/firecrawl/firecrawl",
       "source": "GitHub Search:llm",
-      "category": "企业落地与行业应用",
-      "score": 71,
+      "category": "AI 产品与用户入口",
+      "score": 72,
       "action": "入池",
-      "angle": "适合从行业场景、落地成本和业务价值角度切入",
-      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:llm。",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
       "evidence": [
         "来源：GitHub Search:llm",
-        "热度信号：142131",
+        "热度信号：122516",
         "发布时间：2026-05-21",
         "关键词：TypeScript, llm"
       ],
       "breakdown": {
-        "commercialImpact": 15,
+        "commercialImpact": 14,
         "heat": 30,
         "freshness": 20,
-        "writability": 6
+        "writability": 8
       },
       "tags": [
         "TypeScript",
@@ -1546,31 +1462,59 @@
       ]
     },
     {
-      "title": "HKUDS/nanobot",
-      "summary": "Lightweight, open-source AI agent for your tools, chats, and workflows.",
-      "recommendedTopic": "HKUDS/nanobot 为什么值得关注？（行业场景、落地成本与业务价值）",
-      "url": "https://github.com/HKUDS/nanobot",
-      "source": "GitHub Search:ai-agent",
-      "category": "企业落地与行业应用",
-      "score": 71,
+      "title": "browser-use/browser-use",
+      "summary": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
+      "recommendedTopic": "browser-use/browser-use 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/browser-use/browser-use",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 72,
       "action": "入池",
-      "angle": "适合从行业场景、落地成本和业务价值角度切入",
-      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
       "evidence": [
-        "来源：GitHub Search:ai-agent",
-        "热度信号：42900",
-        "发布时间：2026-05-21",
-        "关键词：Python, ai-agent"
+        "来源：GitHub Search:llm",
+        "热度信号：94933",
+        "发布时间：2026-05-20",
+        "关键词：Python, llm"
       ],
       "breakdown": {
-        "commercialImpact": 15,
+        "commercialImpact": 14,
         "heat": 30,
         "freshness": 20,
-        "writability": 6
+        "writability": 8
       },
       "tags": [
         "Python",
-        "ai-agent"
+        "llm"
+      ]
+    },
+    {
+      "title": "OpenHands/OpenHands",
+      "summary": "🙌 OpenHands: AI-Driven Development",
+      "recommendedTopic": "OpenHands/OpenHands 为什么值得关注？（用户入口、使用场景与产品体验）",
+      "url": "https://github.com/OpenHands/OpenHands",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "evidence": [
+        "来源：GitHub Search:llm",
+        "热度信号：74351",
+        "发布时间：2026-05-21",
+        "关键词：Python, llm"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "llm"
       ]
     },
     {
@@ -1614,7 +1558,7 @@
       "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ml。",
       "evidence": [
         "来源：GitHub Search:ml",
-        "热度信号：67879",
+        "热度信号：67880",
         "发布时间：2026-05-21",
         "关键词：Python, ml"
       ],
@@ -1630,6 +1574,62 @@
       ]
     },
     {
+      "title": "HKUDS/nanobot",
+      "summary": "Lightweight, open-source AI agent for your tools, chats, and workflows.",
+      "recommendedTopic": "HKUDS/nanobot 为什么值得关注？（行业场景、落地成本与业务价值）",
+      "url": "https://github.com/HKUDS/nanobot",
+      "source": "GitHub Search:ai-agent",
+      "category": "企业落地与行业应用",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：42901",
+        "发布时间：2026-05-21",
+        "关键词：Python, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 6
+      },
+      "tags": [
+        "Python",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "langgenius/dify",
+      "summary": "Production-ready platform for agentic workflow development.",
+      "recommendedTopic": "langgenius/dify 为什么值得关注？（行业场景、落地成本与业务价值）",
+      "url": "https://github.com/langgenius/dify",
+      "source": "GitHub Search:rag",
+      "category": "企业落地与行业应用",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：142133",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 6
+      },
+      "tags": [
+        "TypeScript",
+        "rag"
+      ]
+    },
+    {
       "title": "PaddlePaddle/PaddleOCR",
       "summary": "Turn any PDF or image document into structured data for your AI. A powerful, lightweight OCR toolkit that bridges the gap between images/PDFs and LLMs. Supports 100+ languages.",
       "recommendedTopic": "PaddlePaddle/PaddleOCR 为什么值得关注？（用户入口、使用场景与产品体验）",
@@ -1642,7 +1642,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
       "evidence": [
         "来源：GitHub Search:rag",
-        "热度信号：78271",
+        "热度信号：78274",
         "发布时间：2026-05-19",
         "关键词：Python, rag"
       ],
@@ -1670,7 +1670,7 @@
       "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
       "evidence": [
         "来源：Product Hunt",
-        "热度信号：161 / 30",
+        "热度信号：161 / 31",
         "发布时间：2026-05-20",
         "关键词：Open Source, Developer Tools, GitHub"
       ],
