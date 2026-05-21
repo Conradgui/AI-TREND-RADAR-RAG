@@ -203,6 +203,7 @@ SAVE_SOURCE_REPORTS: "0"
 
 - Telegram：`pnpm notify`，需要 `TELEGRAM_BOT_TOKEN` 和 `TELEGRAM_CHAT_ID`。
 - 飞书：`pnpm notify:feishu`，需要 `FEISHU_WEBHOOK_URLS`。
+- 邮箱早报：daily workflow 内置 SMTP 发送，需要 `SMTP_HOST`、`SMTP_USERNAME`、`SMTP_PASSWORD`、`EMAIL_TO`。
 - 未配置 token 时会跳过，不会让日报失败。
 
 配置细节见 [配置帮助文档](docs/configuration.zh.md)。
