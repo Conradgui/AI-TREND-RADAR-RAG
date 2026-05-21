@@ -1,7 +1,739 @@
 {
-  "generatedAt": "2026-05-21 02:11",
+  "generatedAt": "2026-05-21 06:51",
   "date": "2026-05-21",
   "candidates": [
+    {
+      "title": "langchain4j/langchain4j",
+      "url": "https://github.com/langchain4j/langchain4j",
+      "source": "GitHub Search:vector-db",
+      "category": "企业落地与行业应用",
+      "score": 80,
+      "action": "深挖",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：12047",
+        "发布时间：2026-05-20",
+        "关键词：Java, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 22,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Java",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "ruvnet/ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "source": "GitHub Search:ai-agent",
+      "category": "企业落地与行业应用",
+      "score": 80,
+      "action": "深挖",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "值得优先深挖：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：53678",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 22,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "PollyReach",
+      "url": "https://www.producthunt.com/r/YNJ3R3XJ5FEEBJ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "AI 产品与用户入口",
+      "score": 80,
+      "action": "深挖",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
+      "evidence": [
+        "来源：Product Hunt",
+        "热度信号：540 / 154",
+        "发布时间：2026-05-19",
+        "关键词：Productivity, Artificial Intelligence, Virtual Assistants"
+      ],
+      "breakdown": {
+        "commercialImpact": 26,
+        "heat": 30,
+        "freshness": 16,
+        "writability": 8
+      },
+      "tags": [
+        "Productivity",
+        "Artificial Intelligence",
+        "Virtual Assistants"
+      ]
+    },
+    {
+      "title": "Drizz",
+      "url": "https://www.producthunt.com/r/7JHDW73XTTPZ3A?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "AI 产品与用户入口",
+      "score": 80,
+      "action": "深挖",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
+      "evidence": [
+        "来源：Product Hunt",
+        "热度信号：396 / 64",
+        "发布时间：2026-05-19",
+        "关键词：Developer Tools, Artificial Intelligence, No-Code"
+      ],
+      "breakdown": {
+        "commercialImpact": 26,
+        "heat": 30,
+        "freshness": 16,
+        "writability": 8
+      },
+      "tags": [
+        "Developer Tools",
+        "Artificial Intelligence",
+        "No-Code"
+      ]
+    },
+    {
+      "title": "CtrlOps",
+      "url": "https://www.producthunt.com/r/H64HE7ZK3MVBJN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "AI 产品与用户入口",
+      "score": 80,
+      "action": "深挖",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
+      "evidence": [
+        "来源：Product Hunt",
+        "热度信号：237 / 59",
+        "发布时间：2026-05-19",
+        "关键词：Linux, Developer Tools, Artificial Intelligence"
+      ],
+      "breakdown": {
+        "commercialImpact": 26,
+        "heat": 30,
+        "freshness": 16,
+        "writability": 8
+      },
+      "tags": [
+        "Linux",
+        "Developer Tools",
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "title": "zhayujie/CowAgent",
+      "url": "https://github.com/zhayujie/CowAgent",
+      "source": "GitHub Search:ai-agent",
+      "category": "模型与技术突破",
+      "score": 78,
+      "action": "入池",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：44670",
+        "发布时间：2026-05-21",
+        "关键词：Python, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 20,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "open-webui/open-webui",
+      "url": "https://github.com/open-webui/open-webui",
+      "source": "GitHub Search:rag",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 76,
+      "action": "入池",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：138021",
+        "发布时间：2026-05-19",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 22,
+        "heat": 30,
+        "freshness": 16,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "An OpenAI model has disproved a central conjecture in discrete geometry",
+      "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+      "source": "Hacker News",
+      "category": "模型与技术突破",
+      "score": 76,
+      "action": "入池",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：1018 / 734",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 20,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 6
+      },
+      "tags": [
+        "community",
+        "discussion"
+      ]
+    },
+    {
+      "title": "gradio-app/gradio",
+      "url": "https://github.com/gradio-app/gradio",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
+      "evidence": [
+        "来源：GitHub Search:ml",
+        "热度信号：42641",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "ml"
+      ]
+    },
+    {
+      "title": "ray-project/ray",
+      "url": "https://github.com/ray-project/ray",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
+      "evidence": [
+        "来源：GitHub Search:ml",
+        "热度信号：42613",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "ml"
+      ]
+    },
+    {
+      "title": "meilisearch/meilisearch",
+      "url": "https://github.com/meilisearch/meilisearch",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：57659",
+        "发布时间：2026-05-20",
+        "关键词：Rust, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Rust",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "milvus-io/milvus",
+      "url": "https://github.com/milvus-io/milvus",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：44387",
+        "发布时间：2026-05-21",
+        "关键词：Go, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Go",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "qdrant/qdrant",
+      "url": "https://github.com/qdrant/qdrant",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：31450",
+        "发布时间：2026-05-21",
+        "关键词：Rust, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Rust",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "weaviate/weaviate",
+      "url": "https://github.com/weaviate/weaviate",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：16218",
+        "发布时间：2026-05-21",
+        "关键词：Go, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Go",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "yichuan-w/LEANN",
+      "url": "https://github.com/yichuan-w/LEANN",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：11636",
+        "发布时间：2026-05-21",
+        "关键词：Python, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "oceanbase/oceanbase",
+      "url": "https://github.com/oceanbase/oceanbase",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：10118",
+        "发布时间：2026-05-21",
+        "关键词：C++, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "C++",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "infiniflow/ragflow",
+      "url": "https://github.com/infiniflow/ragflow",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：80938",
+        "发布时间：2026-05-21",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "safishamsi/graphify",
+      "url": "https://github.com/safishamsi/graphify",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：50387",
+        "发布时间：2026-05-20",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "Significant-Gravitas/AutoGPT",
+      "url": "https://github.com/Significant-Gravitas/AutoGPT",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "evidence": [
+        "来源：GitHub Search:llm",
+        "热度信号：184437",
+        "发布时间：2026-05-21",
+        "关键词：Python, llm"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "llm"
+      ]
+    },
+    {
+      "title": "shareAI-lab/learn-claude-code",
+      "url": "https://github.com/shareAI-lab/learn-claude-code",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：61659",
+        "发布时间：2026-05-20",
+        "关键词：Python, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "CherryHQ/cherry-studio",
+      "url": "https://github.com/CherryHQ/cherry-studio",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：46032",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "ZhuLinsen/daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：38211",
+        "发布时间：2026-05-20",
+        "关键词：Python, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "Python",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "CopilotKit/CopilotKit",
+      "url": "https://github.com/CopilotKit/CopilotKit",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：31583",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "iOfficeAI/AionUi",
+      "url": "https://github.com/iOfficeAI/AionUi",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：26025",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "nocobase/nocobase",
+      "url": "https://github.com/nocobase/nocobase",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：22461",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 10
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "Motion",
+      "url": "https://www.producthunt.com/r/G3NKNLOKUXJ6ZY?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "AI 产品与用户入口",
+      "score": 74,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
+      "evidence": [
+        "来源：Product Hunt",
+        "热度信号：195 / 41",
+        "发布时间：2026-05-19",
+        "关键词：Artificial Intelligence, Animation, Video"
+      ],
+      "breakdown": {
+        "commercialImpact": 26,
+        "heat": 24,
+        "freshness": 16,
+        "writability": 8
+      },
+      "tags": [
+        "Artificial Intelligence",
+        "Animation",
+        "Video"
+      ]
+    },
+    {
+      "title": "apache/airflow",
+      "url": "https://github.com/apache/airflow",
+      "source": "GitHub Search:ml",
+      "category": "企业落地与行业应用",
+      "score": 73,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ml。",
+      "evidence": [
+        "来源：GitHub Search:ml",
+        "热度信号：45472",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "ml"
+      ]
+    },
+    {
+      "title": "activepieces/activepieces",
+      "url": "https://github.com/activepieces/activepieces",
+      "source": "GitHub Search:ai-agent",
+      "category": "企业落地与行业应用",
+      "score": 73,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：22299",
+        "发布时间：2026-05-20",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
     {
       "title": "anthropics/claude-plugins-official",
       "url": "https://github.com/anthropics/claude-plugins-official",
@@ -27,1476 +759,815 @@
       ]
     },
     {
-      "title": "colbymchenry/codegraph",
-      "url": "https://github.com/colbymchenry/codegraph",
-      "source": "GitHub Trending",
+      "title": "tensorflow/tensorflow",
+      "url": "https://github.com/tensorflow/tensorflow",
+      "source": "GitHub Search:ml",
       "category": "AI 产品与用户入口",
-      "score": 66,
+      "score": 72,
       "action": "入池",
       "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：2123 / 0",
-        "关键词：TypeScript"
+        "来源：GitHub Search:ml",
+        "热度信号：195210",
+        "发布时间：2026-05-21",
+        "关键词：C++, ml"
       ],
       "breakdown": {
         "commercialImpact": 14,
         "heat": 30,
-        "freshness": 12,
-        "writability": 10
-      },
-      "tags": [
-        "TypeScript"
-      ]
-    },
-    {
-      "title": "Imbad0202/academic-research-skills",
-      "url": "https://github.com/Imbad0202/academic-research-skills",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 66,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：1667 / 0",
-        "关键词：Python"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 10
-      },
-      "tags": [
-        "Python"
-      ]
-    },
-    {
-      "title": "HKUDS/CLI-Anything",
-      "url": "https://github.com/HKUDS/CLI-Anything",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 66,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：890 / 0",
-        "关键词：Python"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 10
-      },
-      "tags": [
-        "Python"
-      ]
-    },
-    {
-      "title": "msitarzewski/agency-agents",
-      "url": "https://github.com/msitarzewski/agency-agents",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 66,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：1636 / 0",
-        "关键词：Shell"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 10
-      },
-      "tags": [
-        "Shell"
-      ]
-    },
-    {
-      "title": "truelockmc/streambert",
-      "url": "https://github.com/truelockmc/streambert",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 66,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：582 / 0",
-        "关键词：JavaScript"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 10
-      },
-      "tags": [
-        "JavaScript"
-      ]
-    },
-    {
-      "title": "HKUDS/ViMax",
-      "url": "https://github.com/HKUDS/ViMax",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 66,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：674 / 0",
-        "关键词：Python"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 10
-      },
-      "tags": [
-        "Python"
-      ]
-    },
-    {
-      "title": "multica-ai/andrej-karpathy-skills",
-      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 65,
-      "action": "入池",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：2679 / 0"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 9
-      },
-      "tags": []
-    },
-    {
-      "title": "tinyhumansai/openhuman",
-      "url": "https://github.com/tinyhumansai/openhuman",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 64,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：3394 / 0",
-        "关键词：Rust"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 8
-      },
-      "tags": [
-        "Rust"
-      ]
-    },
-    {
-      "title": "rohitg00/ai-engineering-from-scratch",
-      "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 64,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：765 / 0",
-        "关键词：Python"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 8
-      },
-      "tags": [
-        "Python"
-      ]
-    },
-    {
-      "title": "obra/superpowers",
-      "url": "https://github.com/obra/superpowers",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 64,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：1743 / 0",
-        "关键词：Shell"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 8
-      },
-      "tags": [
-        "Shell"
-      ]
-    },
-    {
-      "title": "rmyndharis/OpenWA",
-      "url": "https://github.com/rmyndharis/OpenWA",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 64,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：741 / 0",
-        "关键词：TypeScript"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 30,
-        "freshness": 12,
-        "writability": 8
-      },
-      "tags": [
-        "TypeScript"
-      ]
-    },
-    {
-      "title": "zakirullin/files.md",
-      "url": "https://github.com/zakirullin/files.md",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 63,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：429 / 0",
-        "关键词：Go"
-      ],
-      "breakdown": {
-        "commercialImpact": 14,
-        "heat": 29,
-        "freshness": 12,
-        "writability": 8
-      },
-      "tags": [
-        "Go"
-      ]
-    },
-    {
-      "title": "Learnings from 100K lines of Rust with AI (2025)",
-      "url": "https://zfhuang99.github.io/rust/claude%20code/codex/contracts/spec-driven%20development/2025/12/01/rust-with-ai.html",
-      "source": "Hacker News",
-      "category": "AI 产品与用户入口",
-      "score": 60,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Hacker News。",
-      "evidence": [
-        "来源：Hacker News",
-        "热度信号：126 / 133",
-        "发布时间：2026-05-20",
-        "关键词：community, discussion"
-      ],
-      "breakdown": {
-        "commercialImpact": 21,
-        "heat": 11,
         "freshness": 20,
         "writability": 8
       },
       "tags": [
-        "community",
-        "discussion"
+        "C++",
+        "ml"
       ]
     },
     {
-      "title": "Ask HN: Suggest Google Antigravity Alternative",
-      "url": "https://news.ycombinator.com/item?id=48208281",
-      "source": "Hacker News",
-      "category": "标杆企业动向、商业格局与投融资",
-      "score": 57,
-      "action": "观察",
-      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
-      "reason": "适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "title": "pytorch/pytorch",
+      "url": "https://github.com/pytorch/pytorch",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：Hacker News",
-        "热度信号：4 / 5",
-        "发布时间：2026-05-20",
-        "关键词：community, discussion"
+        "来源：GitHub Search:ml",
+        "热度信号：100042",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
       ],
       "breakdown": {
-        "commercialImpact": 29,
-        "heat": 0,
+        "commercialImpact": 14,
+        "heat": 30,
         "freshness": 20,
         "writability": 8
       },
       "tags": [
-        "community",
-        "discussion"
+        "Python",
+        "ml"
       ]
     },
     {
-      "title": "Anthropic Claude Code sandbox bypass allows second data exfiltration exploit",
-      "url": "https://oddguan.com/blog/second-time-same-sandbox-anthropic-claude-code-network-allowlist-bypass-data-exfiltration/",
-      "source": "Hacker News",
-      "category": "标杆企业动向、商业格局与投融资",
-      "score": 57,
-      "action": "观察",
-      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
-      "reason": "适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "title": "netdata/netdata",
+      "url": "https://github.com/netdata/netdata",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：Hacker News",
-        "热度信号：3 / 2",
-        "发布时间：2026-05-20",
-        "关键词：community, discussion"
+        "来源：GitHub Search:ml",
+        "热度信号：78881",
+        "发布时间：2026-05-21",
+        "关键词：C, ml"
       ],
       "breakdown": {
-        "commercialImpact": 29,
-        "heat": 0,
+        "commercialImpact": 14,
+        "heat": 30,
         "freshness": 20,
         "writability": 8
       },
       "tags": [
-        "community",
-        "discussion"
+        "C",
+        "ml"
       ]
     },
     {
-      "title": "Stopgap for Claude -p before Anthropic's June 15 billing split",
-      "url": "https://gist.github.com/HammerMei/8ceef2740cf094188e1383fce014861a",
-      "source": "Hacker News",
-      "category": "标杆企业动向、商业格局与投融资",
-      "score": 57,
-      "action": "观察",
-      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
-      "reason": "适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "title": "scikit-learn/scikit-learn",
+      "url": "https://github.com/scikit-learn/scikit-learn",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：Hacker News",
-        "热度信号：1 / 1",
+        "来源：GitHub Search:ml",
+        "热度信号：66126",
         "发布时间：2026-05-20",
-        "关键词：community, discussion"
+        "关键词：Python, ml"
       ],
       "breakdown": {
-        "commercialImpact": 29,
-        "heat": 0,
+        "commercialImpact": 14,
+        "heat": 30,
         "freshness": 20,
         "writability": 8
       },
       "tags": [
-        "community",
-        "discussion"
+        "Python",
+        "ml"
       ]
     },
     {
-      "title": "AIMBio-Mat: An AI-Native FAIR Platform for Closed-Loop Materials Discovery and Biomedical Translation",
-      "url": "http://arxiv.org/abs/2605.21083v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 57,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "title": "keras-team/keras",
+      "url": "https://github.com/keras-team/keras",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：ArXiv",
+        "来源：GitHub Search:ml",
+        "热度信号：64074",
         "发布时间：2026-05-20",
-        "关键词：physics.app-ph, cs.LG, physics.bio-ph, physics.med-ph"
+        "关键词：Python, ml"
       ],
       "breakdown": {
-        "commercialImpact": 13,
-        "heat": 16,
+        "commercialImpact": 14,
+        "heat": 30,
         "freshness": 20,
         "writability": 8
       },
       "tags": [
-        "physics.app-ph",
-        "cs.LG",
-        "physics.bio-ph",
-        "physics.med-ph"
+        "Python",
+        "ml"
       ]
     },
     {
-      "title": "Musical Attention Transformer: Music Generation Using a Music-Specific Attention Model",
-      "url": "http://arxiv.org/abs/2605.21081v1",
-      "source": "ArXiv",
+      "title": "ultralytics/ultralytics",
+      "url": "https://github.com/ultralytics/ultralytics",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
+      "evidence": [
+        "来源：GitHub Search:ml",
+        "热度信号：57387",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "ml"
+      ]
+    },
+    {
+      "title": "JuliaLang/julia",
+      "url": "https://github.com/JuliaLang/julia",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
+      "evidence": [
+        "来源：GitHub Search:ml",
+        "热度信号：48725",
+        "发布时间：2026-05-21",
+        "关键词：Julia, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Julia",
+        "ml"
+      ]
+    },
+    {
+      "title": "streamlit/streamlit",
+      "url": "https://github.com/streamlit/streamlit",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
+      "evidence": [
+        "来源：GitHub Search:ml",
+        "热度信号：44656",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "ml"
+      ]
+    },
+    {
+      "title": "run-llama/llama_index",
+      "url": "https://github.com/run-llama/llama_index",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：49549",
+        "发布时间：2026-05-20",
+        "关键词：Python, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "topoteretes/cognee",
+      "url": "https://github.com/topoteretes/cognee",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：17396",
+        "发布时间：2026-05-21",
+        "关键词：Python, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "alibaba/zvec",
+      "url": "https://github.com/alibaba/zvec",
+      "source": "GitHub Search:vector-db",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:vector-db。",
+      "evidence": [
+        "来源：GitHub Search:vector-db",
+        "热度信号：9658",
+        "发布时间：2026-05-21",
+        "关键词：C++, vector-db"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "C++",
+        "vector-db"
+      ]
+    },
+    {
+      "title": "langchain-ai/langchain",
+      "url": "https://github.com/langchain-ai/langchain",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：137255",
+        "发布时间：2026-05-21",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "mem0ai/mem0",
+      "url": "https://github.com/mem0ai/mem0",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：56304",
+        "发布时间：2026-05-21",
+        "关键词：Python, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "rag"
+      ]
+    },
+    {
+      "title": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "evidence": [
+        "来源：GitHub Search:llm",
+        "热度信号：160211",
+        "发布时间：2026-05-21",
+        "关键词：Python, llm"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "llm"
+      ]
+    },
+    {
+      "title": "firecrawl/firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "evidence": [
+        "来源：GitHub Search:llm",
+        "热度信号：122454",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, llm"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "llm"
+      ]
+    },
+    {
+      "title": "browser-use/browser-use",
+      "url": "https://github.com/browser-use/browser-use",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "evidence": [
+        "来源：GitHub Search:llm",
+        "热度信号：94899",
+        "发布时间：2026-05-20",
+        "关键词：Python, llm"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "llm"
+      ]
+    },
+    {
+      "title": "OpenHands/OpenHands",
+      "url": "https://github.com/OpenHands/OpenHands",
+      "source": "GitHub Search:llm",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:llm。",
+      "evidence": [
+        "来源：GitHub Search:llm",
+        "热度信号：74319",
+        "发布时间：2026-05-21",
+        "关键词：Python, llm"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "llm"
+      ]
+    },
+    {
+      "title": "Gitlawb/openclaude",
+      "url": "https://github.com/Gitlawb/openclaude",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：27359",
+        "发布时间：2026-05-20",
+        "关键词：TypeScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "TypeScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "jackwener/OpenCLI",
+      "url": "https://github.com/jackwener/OpenCLI",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 72,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：22131",
+        "发布时间：2026-05-20",
+        "关键词：JavaScript, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "JavaScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "Composer 2.5",
+      "url": "https://www.producthunt.com/r/ZEXWSSPQZYCABO?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
       "category": "模型与技术突破",
-      "score": 57,
-      "action": "观察",
+      "score": 72,
+      "action": "入池",
       "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "reason": "适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Product Hunt。",
       "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.SD, cs.LG"
+        "来源：Product Hunt",
+        "热度信号：400 / 12",
+        "发布时间：2026-05-19",
+        "关键词：Artificial Intelligence, Development"
       ],
       "breakdown": {
-        "commercialImpact": 13,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.SD",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Point Cloud Sequence Encoding for Material-conditioned Graph Network Simulators",
-      "url": "http://arxiv.org/abs/2605.20978v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 57,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 13,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "GenAI-Driven Threat Detection with Microsoft Security Copilot",
-      "url": "http://arxiv.org/abs/2605.20896v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 57,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CR, cs.AI, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 13,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.CR",
-        "cs.AI",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "rohitg00/agentmemory",
-      "url": "https://github.com/rohitg00/agentmemory",
-      "source": "GitHub Trending",
-      "category": "模型与技术突破",
-      "score": 56,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Trending。",
-      "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：1080 / 0",
-        "关键词：TypeScript"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
+        "commercialImpact": 20,
         "heat": 30,
-        "freshness": 12,
+        "freshness": 16,
         "writability": 6
       },
       "tags": [
-        "TypeScript"
+        "Artificial Intelligence",
+        "Development"
       ]
     },
     {
-      "title": "can1357/oh-my-pi",
-      "url": "https://github.com/can1357/oh-my-pi",
-      "source": "GitHub Trending",
-      "category": "AI 产品与用户入口",
-      "score": 54,
-      "action": "观察",
-      "angle": "适合从用户入口、使用场景和产品体验角度切入",
-      "reason": "适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Trending。",
+      "title": "OpenBB-finance/OpenBB",
+      "url": "https://github.com/OpenBB-finance/OpenBB",
+      "source": "GitHub Search:ml",
+      "category": "企业落地与行业应用",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：GitHub Trending",
-        "热度信号：270 / 0",
-        "关键词：TypeScript"
+        "来源：GitHub Search:ml",
+        "热度信号：67867",
+        "发布时间：2026-05-21",
+        "关键词：Python, ml"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 6
+      },
+      "tags": [
+        "Python",
+        "ml"
+      ]
+    },
+    {
+      "title": "langgenius/dify",
+      "url": "https://github.com/langgenius/dify",
+      "source": "GitHub Search:rag",
+      "category": "企业落地与行业应用",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：142095",
+        "发布时间：2026-05-21",
+        "关键词：TypeScript, rag"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 6
+      },
+      "tags": [
+        "TypeScript",
+        "rag"
+      ]
+    },
+    {
+      "title": "skyzh/tiny-llm",
+      "url": "https://github.com/skyzh/tiny-llm",
+      "source": "GitHub Search:llm-model",
+      "category": "模型与技术突破",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
+      "reason": "适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：GitHub Search:llm-model。",
+      "evidence": [
+        "来源：GitHub Search:llm-model",
+        "热度信号：4198",
+        "发布时间：2026-05-21",
+        "关键词：Python, llm-model"
+      ],
+      "breakdown": {
+        "commercialImpact": 13,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 8
+      },
+      "tags": [
+        "Python",
+        "llm-model"
+      ]
+    },
+    {
+      "title": "HKUDS/nanobot",
+      "url": "https://github.com/HKUDS/nanobot",
+      "source": "GitHub Search:ai-agent",
+      "category": "企业落地与行业应用",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。",
+      "evidence": [
+        "来源：GitHub Search:ai-agent",
+        "热度信号：42876",
+        "发布时间：2026-05-21",
+        "关键词：Python, ai-agent"
+      ],
+      "breakdown": {
+        "commercialImpact": 15,
+        "heat": 30,
+        "freshness": 20,
+        "writability": 6
+      },
+      "tags": [
+        "Python",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "Chert",
+      "url": "https://www.producthunt.com/r/5QIYZNUVRIKFZD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "企业落地与行业应用",
+      "score": 71,
+      "action": "入池",
+      "angle": "适合从行业场景、落地成本和业务价值角度切入",
+      "reason": "适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：Product Hunt。",
+      "evidence": [
+        "来源：Product Hunt",
+        "热度信号：179 / 78",
+        "发布时间：2026-05-19",
+        "关键词：Messaging, API, Artificial Intelligence"
+      ],
+      "breakdown": {
+        "commercialImpact": 27,
+        "heat": 22,
+        "freshness": 16,
+        "writability": 6
+      },
+      "tags": [
+        "Messaging",
+        "API",
+        "Artificial Intelligence"
+      ]
+    },
+    {
+      "title": "PaddlePaddle/PaddleOCR",
+      "url": "https://github.com/PaddlePaddle/PaddleOCR",
+      "source": "GitHub Search:rag",
+      "category": "AI 产品与用户入口",
+      "score": 70,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。",
+      "evidence": [
+        "来源：GitHub Search:rag",
+        "热度信号：78256",
+        "发布时间：2026-05-19",
+        "关键词：Python, rag"
       ],
       "breakdown": {
         "commercialImpact": 14,
-        "heat": 18,
-        "freshness": 12,
+        "heat": 30,
+        "freshness": 16,
         "writability": 10
       },
       "tags": [
-        "TypeScript"
+        "Python",
+        "rag"
       ]
     },
     {
-      "title": "Automated ICD Classification of Psychiatric Diagnoses: From Classical NLP to Large Language Models",
-      "url": "http://arxiv.org/abs/2605.21154v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "title": "santifer/career-ops",
+      "url": "https://github.com/santifer/career-ops",
+      "source": "GitHub Search:ai-agent",
+      "category": "AI 产品与用户入口",
+      "score": 70,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。",
       "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CL, cs.AI, cs.LG"
+        "来源：GitHub Search:ai-agent",
+        "热度信号：46428",
+        "发布时间：2026-05-19",
+        "关键词：JavaScript, ai-agent"
       ],
       "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 16,
+        "writability": 10
+      },
+      "tags": [
+        "JavaScript",
+        "ai-agent"
+      ]
+    },
+    {
+      "title": "Anthropic is expanding to Colossus2. Will use GB200",
+      "url": "https://twitter.com/nottombrown/status/2057194829986300375",
+      "source": "Hacker News",
+      "category": "标杆企业动向、商业格局与投融资",
+      "score": 69,
+      "action": "入池",
+      "angle": "适合从大厂动作、商业化路径和竞争格局角度切入",
+      "reason": "适合进入今日选题池：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。",
+      "evidence": [
+        "来源：Hacker News",
+        "热度信号：144 / 129",
+        "发布时间：2026-05-20",
+        "关键词：community, discussion"
+      ],
+      "breakdown": {
+        "commercialImpact": 29,
+        "heat": 12,
         "freshness": 20,
         "writability": 8
       },
       "tags": [
-        "cs.CL",
-        "cs.AI",
-        "cs.LG"
+        "community",
+        "discussion"
       ]
     },
     {
-      "title": "SMoA: Spectrum Modulation Adapter for Parameter-Efficient Fine-Tuning",
-      "url": "http://arxiv.org/abs/2605.21147v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "title": "Voker",
+      "url": "https://www.producthunt.com/r/KEW2UCNMPEMFRD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "AI 产品与用户入口",
+      "score": 69,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
       "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.CL"
+        "来源：Product Hunt",
+        "热度信号：153 / 42",
+        "发布时间：2026-05-19",
+        "关键词：Analytics, Developer Tools, Artificial Intelligence"
       ],
       "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
+        "commercialImpact": 26,
+        "heat": 19,
+        "freshness": 16,
         "writability": 8
       },
       "tags": [
-        "cs.LG",
-        "cs.CL"
+        "Analytics",
+        "Developer Tools",
+        "Artificial Intelligence"
       ]
     },
     {
-      "title": "CoarseSoundNet: Building a reliable model for ecological soundscape analysis",
-      "url": "http://arxiv.org/abs/2605.21143v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
+      "title": "Insights by Omnia",
+      "url": "https://www.producthunt.com/r/GB2EXL52Q43ZUS?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "source": "Product Hunt",
+      "category": "AI 产品与用户入口",
+      "score": 69,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。",
       "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.SD, cs.LG"
+        "来源：Product Hunt",
+        "热度信号：148 / 25",
+        "发布时间：2026-05-19",
+        "关键词：Marketing, Artificial Intelligence"
       ],
       "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
+        "commercialImpact": 26,
+        "heat": 19,
+        "freshness": 16,
         "writability": 8
       },
       "tags": [
-        "cs.SD",
-        "cs.LG"
+        "Marketing",
+        "Artificial Intelligence"
       ]
     },
     {
-      "title": "Distill to Think, Foresee to Act: Cognitive-Physical Reinforcement Learning for Autonomous Driving",
-      "url": "http://arxiv.org/abs/2605.21139v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
+      "title": "rasbt/LLMs-from-scratch",
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
+      "source": "GitHub Search:ml",
+      "category": "AI 产品与用户入口",
+      "score": 68,
+      "action": "入池",
+      "angle": "适合从用户入口、使用场景和产品体验角度切入",
+      "reason": "适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ml。",
       "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CV, cs.LG"
+        "来源：GitHub Search:ml",
+        "热度信号：95308",
+        "发布时间：2026-05-19",
+        "关键词：Jupyter Notebook, ml"
       ],
       "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
+        "commercialImpact": 14,
+        "heat": 30,
+        "freshness": 16,
         "writability": 8
       },
       "tags": [
-        "cs.CV",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Reasoning-Trace Collapse: Evaluating the Loss of Explicit Reasoning During Fine-Tuning",
-      "url": "http://arxiv.org/abs/2605.21127v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Advantage Collapse in Group Relative Policy Optimization: Diagnosis and Mitigation",
-      "url": "http://arxiv.org/abs/2605.21125v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Linear-DPO: Linear Direct Preference Optimization for Diffusion and Flow-Matching Generative Models",
-      "url": "http://arxiv.org/abs/2605.21123v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CV, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.CV",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Automated Byzantine-Resilient Clustered Decentralized Federated Learning for Battery Intelligence in Connected EVs",
-      "url": "http://arxiv.org/abs/2605.21115v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.DC, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.DC",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "A Unified Framework for Uncertainty-Aware Explainable Artificial Intelligence: A Case Study in Power Quality Disturbance Classification",
-      "url": "http://arxiv.org/abs/2605.21114v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Efficient Learning of Deep State Space Models via Importance Smoothing",
-      "url": "http://arxiv.org/abs/2605.21108v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.AI"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "Improved Guarantees for Constrained Online Convex Optimization via Self-Contraction",
-      "url": "http://arxiv.org/abs/2605.21107v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, stat.ML"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "stat.ML"
-      ]
-    },
-    {
-      "title": "HORST: Composing Optimizer Geometries for Sparse Transformer Training",
-      "url": "http://arxiv.org/abs/2605.21104v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "A Typed Tensor Language for Federated Learning",
-      "url": "http://arxiv.org/abs/2605.21103v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "UOTIP: Unbalanced Optimal Transport Map for Unpaired Inverse Problems",
-      "url": "http://arxiv.org/abs/2605.21094v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Reviving Error Correction in Modern Deep Time-Series Forecasting",
-      "url": "http://arxiv.org/abs/2605.21088v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Decoupling Communication from Policy: Robust MARL under Bandwidth Constraints",
-      "url": "http://arxiv.org/abs/2605.21085v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.MA, cs.AI, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.MA",
-        "cs.AI",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining",
-      "url": "http://arxiv.org/abs/2605.21075v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CV, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.CV",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Towards Understanding Self-Pretraining for Sequence Classification",
-      "url": "http://arxiv.org/abs/2605.21070v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Robust Personalized Recommendation under Hidden Confounding in MNAR",
-      "url": "http://arxiv.org/abs/2605.21066v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Divide et Calibra: Multiclass Local Calibration via Vector Quantization",
-      "url": "http://arxiv.org/abs/2605.21060v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.AI, stat.ML"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.AI",
-        "stat.ML"
-      ]
-    },
-    {
-      "title": "Multimodal LLMs under Pairwise Modalities",
-      "url": "http://arxiv.org/abs/2605.21059v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CV, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.CV",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "A Dialogue between Causal and Traditional Representation Learning: Toward Mutual Benefits in a Unified Formulation",
-      "url": "http://arxiv.org/abs/2605.21058v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Genetic Programming with Transformer-Based Mutation for Approximate Circuit Design",
-      "url": "http://arxiv.org/abs/2605.21055v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.NE, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.NE",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Conditioning Gaussian Processes on Almost Anything",
-      "url": "http://arxiv.org/abs/2605.21041v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：stat.ML, cs.LG, stat.ME"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "stat.ML",
-        "cs.LG",
-        "stat.ME"
-      ]
-    },
-    {
-      "title": "Efficient Banzhaf-Based Data Valuation for $k$-Nearest Neighbors Classification",
-      "url": "http://arxiv.org/abs/2605.21033v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.DS"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.DS"
-      ]
-    },
-    {
-      "title": "Playing Devil's Advocate: Off-the-Shelf Persona Vectors Rival Targeted Steering for Sycophancy",
-      "url": "http://arxiv.org/abs/2605.21006v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.AI, cs.CL, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.AI",
-        "cs.CL",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Concentration of General Stochastic Approximation Under Heavy-Tailed Markovian Noise",
-      "url": "http://arxiv.org/abs/2605.20999v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：math.PR, cs.LG, math.OC, stat.ML"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "math.PR",
-        "cs.LG",
-        "math.OC",
-        "stat.ML"
-      ]
-    },
-    {
-      "title": "Hybrid Machine Learning Model for Forest Height Estimation from TanDEM-X and Landsat Data",
-      "url": "http://arxiv.org/abs/2605.20997v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.CV, cs.AI, cs.LG, physics.comp-ph"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.CV",
-        "cs.AI",
-        "cs.LG",
-        "physics.comp-ph"
-      ]
-    },
-    {
-      "title": "Beyond the Bellman Recursion: A Pontryagin-Guided Framework for Non-Exponential Discounting",
-      "url": "http://arxiv.org/abs/2605.20996v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, math.OC"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "math.OC"
-      ]
-    },
-    {
-      "title": "Modeling Temporal scRNA-seq Data with Latent Gaussian Process and Optimal Transport",
-      "url": "http://arxiv.org/abs/2605.20989v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, q-bio.GN"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "q-bio.GN"
-      ]
-    },
-    {
-      "title": "A Sharper Picture of Generalization in Transformers",
-      "url": "http://arxiv.org/abs/2605.20988v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.AI"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.AI"
-      ]
-    },
-    {
-      "title": "Diagnosing Overhead in Dispatch Operations: Cross-architecture Observatory",
-      "url": "http://arxiv.org/abs/2605.20982v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.DC, cs.AI, cs.LG"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.DC",
-        "cs.AI",
-        "cs.LG"
-      ]
-    },
-    {
-      "title": "Choose Wisely and Privately: Proactive Client Selection for Fair and Efficient Federated Learning",
-      "url": "http://arxiv.org/abs/2605.20975v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.CR"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.CR"
-      ]
-    },
-    {
-      "title": "A Deployment Audit of Release-Side Risk in Conformal Triage under Prevalence Shift",
-      "url": "http://arxiv.org/abs/2605.20956v1",
-      "source": "ArXiv",
-      "category": "政策监管、社会影响与 AI 安全",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从政策变化、信任风险和安全治理角度切入",
-      "reason": "适合作为观察项：适合从政策变化、信任风险和安全治理角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.CY"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.CY"
-      ]
-    },
-    {
-      "title": "DASH: Fast Differentiable Architecture Search for Hybrid Attention in Minutes on a Single GPU",
-      "url": "http://arxiv.org/abs/2605.20936v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.AI, cs.CL"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
-      ]
-    },
-    {
-      "title": "Winfree Oscillatory Neural Network",
-      "url": "http://arxiv.org/abs/2605.20922v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.AI, cs.CV"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CV"
-      ]
-    },
-    {
-      "title": "Sutra: Tensor-Op RNNs as a Compilation Target for Vector Symbolic Architectures",
-      "url": "http://arxiv.org/abs/2605.20919v1",
-      "source": "ArXiv",
-      "category": "模型与技术突破",
-      "score": 52,
-      "action": "观察",
-      "angle": "适合从模型能力变化、技术路线和产品化可能性角度切入",
-      "reason": "适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：ArXiv。",
-      "evidence": [
-        "来源：ArXiv",
-        "发布时间：2026-05-20",
-        "关键词：cs.LG, cs.AI, cs.PL"
-      ],
-      "breakdown": {
-        "commercialImpact": 8,
-        "heat": 16,
-        "freshness": 20,
-        "writability": 8
-      },
-      "tags": [
-        "cs.LG",
-        "cs.AI",
-        "cs.PL"
+        "Jupyter Notebook",
+        "ml"
       ]
     }
   ],
   "warnings": [
-    "Product Hunt 已跳过；配置 PRODUCTHUNT_TOKEN 后可启用产品榜单信号。",
-    "Hugging Face 获取失败；可检查 huggingface.co API 是否可访问。",
     "官方内容源今日没有检测到新内容；首次运行后这是正常情况。"
   ]
 }
