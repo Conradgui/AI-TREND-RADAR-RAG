@@ -288,6 +288,13 @@ RSS：
 https://conradgui.github.io/AI-TREND-RADAR/feed.xml
 ```
 
+如果访问 Web UI、RSS 或单日报告时看到 404：
+
+- 先等待 GitHub Pages 部署完成，刚开启 Pages 时可能需要几分钟。
+- 确认 `Settings -> Pages` 使用 `main` 分支和 `/ (root)` 目录。
+- 确认仓库 main 分支存在 `index.html`、`feed.xml`、`manifest.json`、`.nojekyll` 和 `digests/YYYY-MM-DD/ai-topic-radar.html`。
+- 如果 Actions 刚生成日报，等提交和 Pages 部署都完成后再刷新链接。
+
 ## 输出开关
 
 默认只生成中文主报告：

@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach } from "vitest";
-import { buildMessage, type Highlights } from "../notify.ts";
+import { buildMessage, buildTopicPoolMessages, type Highlights } from "../notify.ts";
 
 const BASE_URL = "https://example.com/radar";
 
@@ -100,5 +100,95 @@ describe("buildMessage", () => {
     const msg = buildMessage("2026-03-09", ["ai-cli", "ai-cli-en"], BASE_URL);
     expect(msg).toContain("AI CLI 工具");
     expect(msg).not.toContain("◦");
+  });
+});
+
+describe("buildTopicPoolMessages", () => {
+  it("builds complete topic pool messages from topic-pool candidates", () => {
+    const messages = buildTopicPoolMessages(
+      "2026-03-09",
+      {
+        candidates: [
+          {
+            title: "OpenAI research launch",
+            url: "https://openai.com/research",
+            category: "模型与技术突破",
+            score: 88,
+            action: "深挖",
+            summary: "OpenAI 发布新的科研模型能力信号。",
+            recommendedTopic: "OpenAI 科研模型能力到哪一步了？（模型能力变化与技术路线）",
+            reason: "值得优先深挖：模型能力变化明显。",
+            evidence: ["来源：OpenAI", "热度信号：1000", "关键词：research"],
+          },
+          {
+            title: "New AI product",
+            url: "https://example.com/product",
+            category: "AI 产品与用户入口",
+            score: 70,
+            action: "入池",
+            summary: "一个新的 AI 产品入口值得观察。",
+            recommendedTopic: "New AI product 为什么值得关注？（用户入口、使用场景与产品体验）",
+            reason: "适合进入今日选题池：产品入口清晰。",
+            evidence: ["来源：Product Hunt"],
+          },
+        ],
+      },
+      BASE_URL,
+    );
+    const msg = messages.join("\n");
+
+    expect(msg).toContain("今日 Top 深挖选题");
+    expect(msg).toContain("入池选题");
+    expect(msg).toContain("OpenAI research launch");
+    expect(msg).toContain("OpenAI 发布新的科研模型能力信号。");
+    expect(msg).toContain("OpenAI 科研模型能力到哪一步了？（模型能力变化与技术路线）");
+    expect(msg).toContain("New AI product");
+    expect(msg).toContain("一个新的 AI 产品入口值得观察。");
+    expect(msg).toContain(`${BASE_URL}/digests/2026-03-09/ai-topic-radar.html`);
+    expect(msg).toContain(`${BASE_URL}/feed.xml`);
+  });
+
+  it("falls back to reason and angle when summary or recommended topic is missing", () => {
+    const messages = buildTopicPoolMessages(
+      "2026-03-09",
+      {
+        candidates: [
+          {
+            title: "Fallback item",
+            url: "https://example.com/fallback",
+            category: "企业落地与行业应用",
+            score: 80,
+            action: "深挖",
+            angle: "适合从行业场景、落地成本和业务价值角度切入",
+            reason: "值得优先深挖：来自旧 topic-pool。",
+            evidence: [],
+          },
+        ],
+      },
+      BASE_URL,
+    );
+    const msg = messages.join("\n");
+
+    expect(msg).toContain("摘要：值得优先深挖：来自旧 topic-pool。");
+    expect(msg).toContain("Fallback item 为什么值得关注？（行业场景、落地成本和业务价值）");
+  });
+
+  it("splits long Telegram messages", () => {
+    const candidates = Array.from({ length: 20 }, (_, index) => ({
+      title: `Long item ${index}`,
+      url: `https://example.com/${index}`,
+      category: "AI 产品与用户入口",
+      score: index < 8 ? 80 : 70,
+      action: index < 8 ? "深挖" : "入池",
+      summary: "这是一段较长的摘要，用来触发 Telegram 消息拆分。".repeat(12),
+      recommendedTopic: `Long item ${index} 为什么值得关注？（用户入口、使用场景与产品体验）`,
+      reason: "适合进入今日选题池：内容较长。",
+      evidence: ["来源：测试"],
+    }));
+
+    const messages = buildTopicPoolMessages("2026-03-09", { candidates }, BASE_URL);
+
+    expect(messages.length).toBeGreaterThan(1);
+    expect(messages.every((msg) => msg.length <= 3400)).toBe(true);
   });
 });

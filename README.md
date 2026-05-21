@@ -181,6 +181,8 @@ https://conradgui.github.io/AI-TREND-RADAR
 https://conradgui.github.io/AI-TREND-RADAR/digests/YYYY-MM-DD/ai-topic-radar.html
 ```
 
+如果 Web UI 或 RSS 返回 404，先确认 GitHub Pages 已完成部署。仓库需要包含并发布 `index.html`、`feed.xml`、`manifest.json`、`.nojekyll` 和 `digests/`；刚开启 Pages 后通常需要等待几分钟。
+
 ## 自动化与通知
 
 本仓库包含三条自动化 workflow：
