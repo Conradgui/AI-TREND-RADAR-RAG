@@ -1,0 +1,13 @@
+{
+  "zh": {
+    "ai-topic-radar": [
+      "ruvnet/ruflo 适合从行业场景切入，落地成本低",
+      "open-webui/open-webui 商业化路径清晰，大厂动作值得关注",
+      "langchain4j 聚焦 vector-db，业务价值高",
+      "StoreClaw 在 Product Hunt 上线，用户体验突出",
+      "mailX by mailwarm 主打邮件场景，产品体验优化",
+      "Gemini Omni 和 Runtime 分别从入口和场景切入"
+    ]
+  },
+  "en": {}
+}
