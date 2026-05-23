@@ -1,0 +1,21 @@
+{
+  "zh": {
+    "ai-topic-radar": [
+      "Gartner 2026报告深挖Agentic Coding，OpenAI视角解析大厂动作。",
+      "Project Glasswing更新，Anthropic聚焦政策变化与安全治理风险。",
+      "Google Antigravity 2.0上线，主打行业场景落地与业务价值。",
+      "ruvnet/ruflo项目亮相，降低AI Agent落地成本。",
+      "Microsoft推出ML-For-Beginners，降低机器学习入门门槛。",
+      "Tycoon AI上线，优化用户入口与产品使用体验。"
+    ],
+    "ai-agents": [
+      "Bun支持受限并弃用，影响用户入口与产品体验。",
+      "Mintlify Workflows发布，聚焦行业场景与落地成本。",
+      "CowAgent开源，探索AI Agent技术路线与产品化可能性。",
+      "ruvnet/ruflo获80分，适合从行业与业务价值深挖。",
+      "Bun弃用引发社区热议，用户需关注替代方案。",
+      "Mintlify Workflows获79分，可入选题池评估商业价值。"
+    ]
+  },
+  "en": {}
+}
