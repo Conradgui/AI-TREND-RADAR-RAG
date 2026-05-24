@@ -1,0 +1,19 @@
+{
+  "zh": {
+    "ai-topic-radar": [
+      "Open WebUI 深挖：聚焦大厂动作与商业化路径",
+      "ruvnet/ruflo 深挖：关注行业场景与业务价值",
+      "LangChain4j 深挖：从行业场景到落地成本分析",
+      "Microsoft ML-For-Beginners 深挖：大厂动作与竞争格局",
+      "TestSprite 3.0 深挖：用户入口与产品体验优化",
+      "Cleo 深挖：聚焦用户入口与使用场景体验"
+    ],
+    "ai-agents": [
+      "CowAgent 入池：模型能力变化与技术路线分析",
+      "AutoGPT 入池：用户入口与使用场景体验",
+      "CherryStudio 入池：聚焦用户入口与产品体验",
+      "daily_stock_analysis 入池：用户场景与体验分析"
+    ]
+  },
+  "en": {}
+}
