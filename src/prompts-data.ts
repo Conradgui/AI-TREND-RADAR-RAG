@@ -300,6 +300,8 @@ Generate an AI Tools Ecosystem Weekly Report with these sections:
 6. **Official Announcements** - Important content published by Anthropic and OpenAI this week (if any)
 7. **Next Week's Signals** - Based on this week's data, predict trends and upcoming events worth watching
 
+Output constraints: Start directly with the first report section. Do not include greetings, analyst byline, repeated title, report period, source metadata, or any explanation about how the report was generated.
+
 Style: English, concise and professional, helping technical developers quickly grasp the week's developments.
 `;
   }
@@ -319,6 +321,8 @@ ${digestEntries}
 5. **HN 社区热议** - 本周 Hacker News AI 讨论的核心话题与社区情绪
 6. **官方动态** - Anthropic 和 OpenAI 本周发布的重要内容（若有）
 7. **下周信号** - 基于本周数据，预判值得关注的趋势或即将到来的事件
+
+输出限制：直接从第一个正文小节开始。不要输出寒暄、分析师署名、重复标题、报告周期、数据来源元信息，也不要说明报告是如何生成的。
 
 语言要求：中文，简洁专业，适合技术开发者快速掌握一周动态。
 `;
@@ -350,6 +354,8 @@ Generate an AI Tools Ecosystem Monthly Report with these sections:
 6. **Official Announcements Review** - Strategic analysis of Anthropic and OpenAI content published this month
 7. **Next Month's Outlook** - Based on this month's trends, predict key directions and potential events to watch
 
+Output constraints: Start directly with the first report section. Do not include greetings, analyst byline, repeated title, report period, source metadata, or any explanation about how the report was generated.
+
 Style: English, in-depth analysis, data-driven, suited for monthly retrospectives and strategic decision-making.
 `;
   }
@@ -369,6 +375,8 @@ ${digestEntries}
 5. **社区生态健康度** - 各主要项目月度活跃度对比、开发者参与度评估
 6. **官方动态回顾** - Anthropic 和 OpenAI 本月发布内容的战略意义分析
 7. **下月展望** - 基于本月趋势，预判值得重点关注的方向和潜在事件
+
+输出限制：直接从第一个正文小节开始。不要输出寒暄、分析师署名、重复标题、报告周期、数据来源元信息，也不要说明报告是如何生成的。
 
 语言要求：中文，深度分析，数据驱动，适合月度复盘和战略决策参考。
 `;

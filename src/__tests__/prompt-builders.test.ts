@@ -283,6 +283,20 @@ describe("buildWeeklyPrompt", () => {
     const result = buildWeeklyPrompt({ "2026-03-03": "content" }, "2026-W10", "en");
     expect(result).toContain("weekly recap");
   });
+
+  it("tells the model not to include boilerplate meta text", () => {
+    const result = buildWeeklyPrompt({ "2026-03-03": "content" }, "2026-W10");
+    expect(result).toContain("不要输出寒暄");
+    expect(result).toContain("分析师");
+    expect(result).toContain("重复标题");
+  });
+
+  it("tells the English model not to include boilerplate meta text", () => {
+    const result = buildWeeklyPrompt({ "2026-03-03": "content" }, "2026-W10", "en");
+    expect(result).toContain("Do not include greetings");
+    expect(result).toContain("analyst byline");
+    expect(result).toContain("repeated title");
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -301,6 +315,20 @@ describe("buildMonthlyPrompt", () => {
   it("generates English variant", () => {
     const result = buildMonthlyPrompt({ "2026-02-01": "w1" }, "2026-02", "en");
     expect(result).toContain("monthly review");
+  });
+
+  it("tells the model not to include boilerplate meta text", () => {
+    const result = buildMonthlyPrompt({ "2026-02-01": "w1" }, "2026-02");
+    expect(result).toContain("不要输出寒暄");
+    expect(result).toContain("分析师");
+    expect(result).toContain("重复标题");
+  });
+
+  it("tells the English model not to include boilerplate meta text", () => {
+    const result = buildMonthlyPrompt({ "2026-02-01": "w1" }, "2026-02", "en");
+    expect(result).toContain("Do not include greetings");
+    expect(result).toContain("analyst byline");
+    expect(result).toContain("repeated title");
   });
 });
 

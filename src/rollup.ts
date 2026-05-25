@@ -21,6 +21,7 @@ const MAX_CHARS_PER_REPORT = 2500;
 
 // Source report types to read for rollups (in priority order)
 const ROLLUP_SOURCES = ["ai-cli", "ai-agents", "ai-trending", "ai-hn", "ai-web"];
+type RollupKind = "weekly" | "monthly";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -65,6 +66,48 @@ export function toWeekStr(date: Date): string {
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
   const week = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+}
+
+const SECTION_START_PATTERNS: Record<RollupKind, Record<Lang, RegExp[]>> = {
+  weekly: {
+    zh: [/^\s*(?:#{1,6}\s*)?(?:\d+[.、]\s*)?(?:\*\*)?本周要闻(?:\*\*)?/m],
+    en: [/^\s*(?:#{1,6}\s*)?(?:\d+[.)]\s*)?(?:\*\*)?Week's Top Stories(?:\*\*)?/im],
+  },
+  monthly: {
+    zh: [/^\s*(?:#{1,6}\s*)?(?:\d+[.、]\s*)?(?:\*\*)?月度要闻(?:\*\*)?/m],
+    en: [/^\s*(?:#{1,6}\s*)?(?:\d+[.)]\s*)?(?:\*\*)?Month's Top Stories(?:\*\*)?/im],
+  },
+};
+
+const LEADING_META_PATTERNS = [
+  /^\s*$/,
+  /^\s*(?:#{1,6}\s*)?(?:AI\s*)?工具生态(?:周报|月报)\b/i,
+  /^\s*(?:#{1,6}\s*)?AI Tools Ecosystem (?:Weekly|Monthly) Report\b/i,
+  /^\s*(?:好的|当然|以下是|下面是|Sure\b|Certainly\b|Here is\b|As an\b|As a\b).*(?:报告|recap|review|report)\s*[。.]?\s*$/i,
+  /^\s*(?:\*\*)?(?:分析师|报告周期|数据来源|生成时间|Analyst|Report Period|Coverage|Sources|Generated)(?:\*\*)?\s*[：:].*$/i,
+];
+
+export function sanitizeRollupSummary(summary: string, kind: RollupKind, lang: Lang): string {
+  const normalized = summary.replace(/\r\n/g, "\n").trim();
+
+  const sectionStart = SECTION_START_PATTERNS[kind][lang]
+    .map((pattern) => normalized.match(pattern)?.index)
+    .filter((index): index is number => index !== undefined)
+    .sort((a, b) => a - b)[0];
+
+  if (sectionStart !== undefined) {
+    return normalized.slice(sectionStart).trim();
+  }
+
+  const lines = normalized.split("\n");
+  let firstContentLine = 0;
+  while (firstContentLine < lines.length) {
+    const line = lines[firstContentLine];
+    if (line === undefined || !LEADING_META_PATTERNS.some((pattern) => pattern.test(line))) break;
+    firstContentLine++;
+  }
+
+  return lines.slice(firstContentLine).join("\n").trim();
 }
 
 // ---------------------------------------------------------------------------
@@ -156,10 +199,12 @@ export async function runWeeklyRollup(): Promise<void> {
 
   // Generate ZH and EN in parallel
   console.log("[weekly] Calling LLM for ZH and EN weekly reports in parallel...");
-  const [zhSummary, enSummary] = await Promise.all([
+  const [rawZhSummary, rawEnSummary] = await Promise.all([
     callLlm(buildWeeklyPrompt(dailyDigests, weekStr, "zh"), LLM_TOKENS_ROLLUP),
     callLlm(buildWeeklyPrompt(dailyDigests, weekStr, "en"), LLM_TOKENS_ROLLUP),
   ]);
+  const zhSummary = sanitizeRollupSummary(rawZhSummary, "weekly", "zh");
+  const enSummary = sanitizeRollupSummary(rawEnSummary, "weekly", "en");
 
   const footer = autoGenFooter("zh");
   const enFooter = autoGenFooter("en");
@@ -250,10 +295,12 @@ export async function runMonthlyRollup(): Promise<void> {
 
   // Generate ZH and EN in parallel
   console.log("[monthly] Calling LLM for ZH and EN monthly reports in parallel...");
-  const [zhSummary, enSummary] = await Promise.all([
+  const [rawZhSummary, rawEnSummary] = await Promise.all([
     callLlm(buildMonthlyPrompt(sourceDigests, monthStr, "zh"), LLM_TOKENS_ROLLUP),
     callLlm(buildMonthlyPrompt(sourceDigests, monthStr, "en"), LLM_TOKENS_ROLLUP),
   ]);
+  const zhSummary = sanitizeRollupSummary(rawZhSummary, "monthly", "zh");
+  const enSummary = sanitizeRollupSummary(rawEnSummary, "monthly", "en");
 
   const footer = autoGenFooter("zh");
   const enFooter = autoGenFooter("en");
