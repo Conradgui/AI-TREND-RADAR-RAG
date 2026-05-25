@@ -39,6 +39,7 @@ jobs:
 
       - name: Run weekly rollup
         env:
+          LLM_PROVIDER: deepseek
           GITHUB_TOKEN: ${{ secrets.AI_RADAR_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
