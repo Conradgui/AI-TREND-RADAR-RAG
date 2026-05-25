@@ -7,7 +7,32 @@
       "免费使用，降低商业化门槛",
       "命令行界面，适合技术深度用户",
       "大厂背书，生态潜力巨大"
+    ],
+    "ai-cli": [
+      "Claude Code 发布新版本，支持多模型切换功能。",
+      "OpenAI Codex 集成上下文感知，提升代码补全准确性。",
+      "Gemini CLI 获 5000+ star，聚焦 Google 生态深度整合。",
+      "GitHub Copilot CLI 新增工作流模板，提升开发效率。",
+      "Kimi Code CLI 升级至 v2.0，支持本地优先隐私模式。",
+      "OpenCode 宣布开源，社区贡献者突破 200 人。"
+    ],
+    "ai-agents": [
+      "OpenClaw 生态进入静默期，13 个项目零活动。",
+      "NanoBot 获 3000+ star，主打轻量级个人助理。",
+      "Hermes Agent 发布 v0.5，强化多工具编排能力。",
+      "PicoClaw 宣布暂停开发，社区期待未来更新。",
+      "Agent 技能生态爆发，Karpathy 技能包下载量破万。",
+      "Anthropic 收购 Stainless，强化平台整合能力。"
     ]
   },
-  "en": {}
+  "en": {
+    "ai-weekly": [
+      "Anthropic buys Stainless for agent SDK tooling",
+      "OpenAI adopts Google's SynthID watermark standard",
+      "Andrej Karpathy leaves OpenAI, joins Anthropic",
+      "Claude Plugins Marketplace launches for agent skills",
+      "OpenHuman hits 3,600+ stars in one day",
+      "KPMG & PwC deepen Anthropic partnerships"
+    ]
+  }
 }
