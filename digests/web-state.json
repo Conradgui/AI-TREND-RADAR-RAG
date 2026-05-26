@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-05-25T04:42:24.085Z",
+    "lastChecked": "2026-05-26T04:17:32.428Z",
     "seenUrls": {
       "https://www.anthropic.com/research/natural-language-autoencoders": "2026-05-20T14:03:11.000Z",
       "https://www.anthropic.com/research/teaching-claude-why": "2026-05-20T13:19:12.000Z",
@@ -363,11 +363,12 @@
       "https://www.anthropic.com/news/krishna-rao-joins-anthropic": "2024-05-21T17:52:07.000Z",
       "https://www.anthropic.com/research/probes-catch-sleeper-agents": "2024-05-02T15:41:15.000Z",
       "https://www.anthropic.com/research/circuits-updates-april-2024": "2024-04-26T20:32:53.000Z",
-      "https://www.anthropic.com/research/glasswing-initial-update": "2026-05-22T20:37:40.000Z"
+      "https://www.anthropic.com/research/glasswing-initial-update": "2026-05-22T20:37:40.000Z",
+      "https://www.anthropic.com/news/chris-olah-pope-leo-encyclical": "2026-05-25T18:41:28.000Z"
     }
   },
   "openai": {
-    "lastChecked": "2026-05-25T04:42:24.641Z",
+    "lastChecked": "2026-05-26T04:17:30.849Z",
     "seenUrls": {
       "https://openai.com/index/advancing-content-provenance/": "2026-05-22T19:26:25.776Z",
       "https://openai.com/index/dell-codex-enterprise-partnership/": "2026-05-23T00:56:26.583Z",
