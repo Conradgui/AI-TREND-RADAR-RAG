@@ -2,7 +2,6 @@
 
 面向 AI 内容运营和产品调研的热点选题监控工具。它会每天抓取公开 AI 信号，生成一份中文“值得写、值得测、值得深挖”的选题池，并通过 HTML、Web UI、RSS、Telegram、飞书和 GitHub Actions 分发。
 
-本项目基于 [`duanyytop/agents-radar`](https://github.com/duanyytop/agents-radar) 改造。
 
 ## 5 分钟理解
 
@@ -34,7 +33,6 @@
 - AI 内容运营：每天做热点日报、社群内容、选题池。
 - AI 产品研究：跟踪新产品、新模型和竞品动态。
 - 技术/开源观察者：追踪 GitHub、Hacker News、arXiv、Hugging Face 信号。
-- 作品集展示：展示一个公开、可复现、无公司内部资料的 AI 调研工作流。
 
 ## 最快跑通
 
