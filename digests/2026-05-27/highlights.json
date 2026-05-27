@@ -1,0 +1,23 @@
+{
+  "zh": {
+    "ai-topic-radar": [
+      "Anthropic 任命 KiYoung Choi 为韩国代表董事，聚焦信任风险",
+      "Claude 跨产品安全治理新框架，适合政策与安全角度切入",
+      "Microsoft ML-For-Beginners 课程，大厂动作与商业化路径",
+      "ruflo 项目让 AI Agent 落地成本更低，业务价值突出",
+      "langchain4j 向量数据库集成简化行业场景开发流程",
+      "Unabyss 和 Yansu 登陆 Product Hunt，优化用户入口与体验",
+      "Product Hunt 推 tweet.md，用户入口与场景体验成热点",
+      "Open-WebUI 入池，聚焦大厂动作与 LLM 商业化竞争",
+      "Anthropic 知识工作插件获 GitHub Trending，突出场景价值"
+    ],
+    "ai-agents": [],
+    "anthropic": [],
+    "big-tech": [],
+    "app-and-product": [],
+    "model-release": [],
+    "policy-and-ethics": [],
+    "noteworthy-papers": []
+  },
+  "en": {}
+}
