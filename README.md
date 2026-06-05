@@ -1,12 +1,28 @@
 # AI Trend Radar RAG
 
-在 [AI Trend Radar](https://github.com/Conradgui/AI-TREND-RADAR) 每日数据管道的基础上，构建 **Agentic RAG + Graph RAG** 智能选题助手。
+**[AI Trend Radar](https://github.com/Conradgui/AI-TREND-RADAR) 的扩展版本**——包含数据管道的全部代码 + Graph RAG + Agentic RAG 智能查询层。
+
+> **项目关系**：[AI-TREND-RADAR](https://github.com/Conradgui/AI-TREND-RADAR) 是数据管道（采集 → 评分 → 报告 → 分发），本仓库是它的超集，在数据管道基础上增加了知识图谱、向量检索和 Agent 对话能力。两个仓库共享同一份 `.env` 配置和 `digests/` 数据目录。
 
 ---
 
 AI Trend Radar 面向 AI 内容运营和产品调研，每天抓取公开 AI 信号（国内外共 15+ 数据源），生成一份中文"值得写、值得测、值得深挖"的选题池，并通过 HTML、Web UI、RSS、Telegram、飞书和 GitHub Actions 分发。它不是一个简单的信息搬运脚本，而是把分散的 AI 行业信号转成可排序、可解释、可交付的选题决策流：先采集公开证据，再用评分框架判断优先级，最后沉淀成报告、结构化数据和自动化分发链路。
 
-**RAG 版本在此基础上增加了智能对话能力**——通过 Neo4j 知识图谱构建选题实体之间的关系网络，通过 ChromaDB 向量搜索实现跨报告的语义检索，再由 LangGraph ReAct Agent 编排多个检索工具，让用户可以用自然语言直接查询历史选题数据、分析趋势、获取选题推荐。
+**本仓库在此基础上增加了智能对话能力**——通过 Neo4j 知识图谱构建选题实体之间的关系网络，通过 ChromaDB 向量搜索实现跨报告的语义检索，再由 LangGraph ReAct Agent 编排多个检索工具，让用户可以用自然语言直接查询历史选题数据、分析趋势、获取选题推荐。
+
+### 开发方向：Nexus-inspired Knowledge Engine
+
+```
+Nexus-inspired Knowledge Engine
+= Agentic RAG                          — Agent 自主决定何时检索、用哪个工具、如何综合
++ Pre-runtime Knowledge Compilation    — 每日 ingestion 阶段预编译知识制品
++ Knowledge Artifact Layer             — 结构化知识实体（话题图谱、趋势轨迹、实体关系）
++ Structured Knowledge Query           — 声明式查询（Cypher + 语义混合）
++ Evidence & Governance Layer          — 每条结论可追溯到原始数据源和评分证据
++ Evaluation Feedback Loop             — 选题质量反馈驱动评分权重和分类规则的持续优化
+```
+
+当前进度：基础 Graph RAG（知识图谱构建 + 混合检索 + 6 工具 Agent）已完成，后续迭代预编译知识制品和声明式查询层。
 
 ## 它能做什么？
 
@@ -150,20 +166,34 @@ rag/
 
 ## 与 AI Trend Radar 的关系
 
+本仓库是 [AI-TREND-RADAR](https://github.com/Conradgui/AI-TREND-RADAR) 的**超集**——包含其全部代码，外加 RAG 层。两个仓库的 `src/`（TypeScript 数据管道）代码完全一致。
+
 ```
-AI-TREND-RADAR（数据管道）          AI-TREND-RADAR-RAG（本项目）
-├── 抓取 15+ 数据源                 ├── 读取 digest 数据
-├── 生成日报/周报/月报              ├── 构建知识图谱 + 向量索引
-├── 输出到 digests/                 ├── 提供 Agent 对话
-├── GitHub Pages 展示               └── 本地 http://localhost:8001
-└── 评分框架（商业影响/热度/新鲜度）
+AI-TREND-RADAR（数据管道）          AI-TREND-RADAR-RAG（本项目 = 数据管道 + RAG）
+├── 抓取 15+ 数据源                 ├── [同左] 全部数据管道代码
+├── 生成日报/周报/月报              ├── Neo4j 知识图谱
+├── 输出到 digests/                 ├── ChromaDB 向量搜索
+├── GitHub Pages 展示               ├── LangGraph ReAct Agent（6 工具）
+└── 评分框架（商业影响/热度/新鲜度）  ├── Chat UI（http://localhost:8001）
+                                    └── MCP Worker（Cloudflare）
 ```
 
-两个项目共享同一份 `.env` 配置和 `digests/` 数据目录。
+两个项目共享同一份 `.env` 配置和 `digests/` 数据目录。主仓库的 `rag/`、`services/agentdb/`、`mcp/` 是从本仓库引入的实验性代码副本。
 
-## 架构参考
+## 架构参考：Pinecone Nexus
 
-本项目的知识图谱设计参考了 **Pinecone Nexus** 的"知识引擎"理念——将分散的数据预编译为结构化的知识制品，让 Agent 查询时直接获取已组织好的知识，而非每次从原始文档中检索。当前实现已完成基础的图谱构建和混合检索层，后续将持续迭代预编译知识制品和声明式查询等高级特性。
+本项目的整体架构参考了 **Pinecone Nexus** 的"知识引擎"理念——将分散的数据预编译为结构化的知识制品（Knowledge Artifacts），让 Agent 查询时直接获取已组织好的知识，而非每次从原始文档中检索。
+
+当前实现覆盖了 Nexus 架构的前两层（Agentic RAG + 基础知识图谱），后续迭代方向：
+
+| Nexus 层 | 当前状态 | 下一步 |
+|----------|---------|--------|
+| Agentic RAG | ✅ LangGraph ReAct Agent + 6 工具 | 优化工具选择策略 |
+| Pre-runtime Knowledge Compilation | ✅ 每日 ingestion 预构建图谱 | 增量更新 + 去重 |
+| Knowledge Artifact Layer | ✅ Topic/Entity/Source/Document 节点 | 增加趋势轨迹制品 |
+| Structured Knowledge Query | ⚠️ 基础 Cypher + 语义混合 | 声明式查询模板 |
+| Evidence & Governance Layer | ⚠️ 选题有 evidence 字段 | 完整溯源链 |
+| Evaluation Feedback Loop | 🔲 未开始 | 评分权重自适应 |
 
 ## License
 
