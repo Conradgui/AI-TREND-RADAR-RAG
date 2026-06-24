@@ -152,6 +152,66 @@ Small issues should be fixed inside the current module.
 
 Architecture-level issues should be recorded as follow-up modules instead of hidden behind passing tests.
 
+## 2.6 Loop V2.1 Artifact Quality Extension
+
+Use these rules when a module produces a user-facing research artifact, especially P2 Trend Brief outputs.
+
+Do not apply the full artifact gate to small helper changes unless they affect artifact content, evidence, or user-facing claims.
+
+### Artifact First Gate
+
+If a module produces a user-facing artifact, inspect the artifact before closing the module.
+
+Acceptable inspection methods:
+
+- script-based structural inspection for required sections, counts, and schema;
+- focused human review for readability, claims, and source adequacy;
+- both, when the artifact is used as phase-gate evidence.
+
+Tests can prove that the artifact was generated. They do not prove that the artifact is useful.
+
+### Evidence Quality Gate
+
+For `live external` modules, do not treat "has external citation" as sufficient.
+
+The source-quality label must be part of the gate result:
+
+- `research_quality_verified`: artifact has relevant primary or high-quality sources for the key claims;
+- `runtime_verified`: artifact runs and cites sources, but source quality is weak, mixed, or insufficient;
+- `blocked`: artifact cannot support its core claims safely.
+
+`weak_only` can pass runtime verification, but it cannot pass research-quality verification.
+
+### Artifact Consistency Check
+
+For generated research artifacts, keep these views consistent:
+
+- CLI summary;
+- Markdown appendix;
+- evidence table.
+
+At module close, citation count and evidence type counts should match across those views, or the mismatch must be recorded as a residual risk.
+
+### Checkpoint Hygiene
+
+For every P2 module checkpoint, include a change inventory:
+
+- code changed;
+- docs/specs/plans changed;
+- artifacts/evals/evidence generated;
+- historical dirty files included in the baseline, if any;
+- local-only ignored files that remained excluded.
+
+### Next-Step Bias
+
+Every important loop close must name the next bottleneck:
+
+- product bottleneck: user value, scope, positioning, or judgment is unclear;
+- engineering bottleneck: implementation, integration, reliability, or maintainability is limiting progress;
+- evidence bottleneck: source quality, citation quality, corpus freshness, or evaluation confidence is limiting progress.
+
+When the bottleneck is evidence quality, do not keep tuning formatting or tests as the main work.
+
 ## 3. Definition Of Done Template
 
 Each module must define completion using this shape:
@@ -400,22 +460,22 @@ As of 2026-06-24:
 - Completed: P2 Trend Brief Workflow MVP Spec.
 - Completed: P2 Trend Brief Workflow MVP Implementation.
 - Completed: P2 Trend Brief Product Review And Live External Mode.
-- Current checkpoint work: Loop V2.1 Governance And Baseline Checkpoint.
+- Completed: Loop V2.1 Governance And Baseline Checkpoint.
+- Completed: Loop V2.1 Artifact Quality Extension.
 - Next: P2 Trend Brief External Source Quality Upgrade.
 - Still needed: DeepSeek live validation when environment permits it, broader semantic contradiction coverage, semantic reranking, richer graph question coverage, and original UI integration after the RAG core matures.
 
 ## 9. Current Gate Definition
 
-Current gate: Loop V2.1 Governance And Baseline Checkpoint.
+Current gate: P2 Trend Brief External Source Quality Upgrade.
 
 This gate is complete when:
 
-- Loop V2.1 is recorded in the execution loop spec;
-- the GitHub checkpoint branch exists locally;
-- baseline verification passes or any blocker is explicitly recorded;
-- baseline commit is pushed to `codex/rag-transformation-checkpoints`, or push failure is recorded as `Checkpoint Blocked`;
-- evidence and execution log record verification results, branch, commit hash, and push status;
-- no API keys or secrets are written to code, docs, eval outputs, or staged files.
+- the generated trend brief improves from `weak_only` external evidence toward primary or high-quality supporting sources;
+- CLI summary, Markdown appendix, and evidence table have consistent citation and evidence-type counts, or any mismatch is recorded as residual risk;
+- source-quality status distinguishes `runtime_verified` from `research_quality_verified`;
+- the module checkpoint includes a change inventory;
+- the next bottleneck is explicitly classified as product, engineering, or evidence.
 
 ## 10. How To Update This Spec
 

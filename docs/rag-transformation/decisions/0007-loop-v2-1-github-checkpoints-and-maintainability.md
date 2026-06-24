@@ -24,6 +24,7 @@ Loop V2.1 adds:
 2. Architecture Boundary Gate
 3. Anti-Rabbit-Hole Rule
 4. Maintainability Review Gate
+5. Artifact Quality Extension
 
 This rule applies only to the AI Trend Radar RAG project. It does not apply to the original AI Trend Radar UI project until that project is intentionally brought into scope.
 
@@ -106,6 +107,26 @@ Before closing important modules, check:
 - orphan code, dead flags, or unused parameters;
 - temporary strategy that needs a decision or residual-risk record.
 
+## Artifact Quality Extension
+
+For user-facing research artifacts, especially P2 Trend Brief outputs, Loop V2.1 adds five narrower artifact rules.
+
+1. Artifact First Gate
+   - inspect the generated artifact before closing the module;
+   - tests prove generation, not usefulness.
+2. Evidence Quality Gate
+   - `live external` must report source quality, not only citation presence;
+   - `weak_only` means `runtime_verified`, not `research_quality_verified`.
+3. Artifact Consistency Check
+   - CLI summary, Markdown appendix, and evidence table should agree on citation count and evidence type counts;
+   - mismatches must be fixed or recorded as residual risk.
+4. Checkpoint Hygiene
+   - P2 checkpoints need a change inventory covering code, docs, artifacts, evals, evidence, historical baseline files, and ignored local files.
+5. Next-Step Bias
+   - each important loop close must identify whether the next bottleneck is product, engineering, or evidence.
+
+Current next bottleneck after the Trend Brief live-external smoke is evidence quality: external sources exist, but source quality remains `weak_only`.
+
 ## Consequences
 
 Positive:
@@ -114,6 +135,7 @@ Positive:
 - Future reviews can inspect branch history, evidence, and execution logs together.
 - The loop has explicit controls against local benchmark overfitting.
 - Code changes are judged against long-term module boundaries, not only passing tests.
+- P2 artifacts are judged by usefulness and evidence quality, not only by successful generation.
 
 Trade-offs:
 

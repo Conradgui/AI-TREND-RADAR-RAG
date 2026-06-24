@@ -438,16 +438,18 @@ Last updated: 2026-06-24
 
 ### Current Gate
 
-Current module: Loop V2.1 Governance And Baseline Checkpoint.
+Current module: P2 Trend Brief External Source Quality Upgrade.
 
-Next useful module after checkpoint: P2 Trend Brief External Source Quality Upgrade.
+Next bottleneck: evidence quality.
 
 Decision rule:
 
 - Use the current RAG core to produce a durable research artifact.
 - Start with Markdown/file output, not UI, unless Conrad explicitly changes priority.
 - Keep the MVP focused on one workflow: topic -> evidence -> graph summary -> source review -> uncertainty -> follow-up actions.
-- Before further module work, complete the baseline checkpoint on `codex/rag-transformation-checkpoints`.
+- Treat `weak_only` external evidence as `runtime_verified`, not `research_quality_verified`.
+- Require CLI summary, Markdown appendix, and evidence table consistency before closing the next P2 artifact module.
+- Include a checkpoint change inventory at P2 module close.
 
 Completed:
 
