@@ -145,4 +145,6 @@ Next module:
 
 ## Checkpoint
 
-Pending.
+- branch: `codex/rag-transformation-checkpoints`
+- commit: `4450b42`
+- push status: pushed to `origin/codex/rag-transformation-checkpoints`

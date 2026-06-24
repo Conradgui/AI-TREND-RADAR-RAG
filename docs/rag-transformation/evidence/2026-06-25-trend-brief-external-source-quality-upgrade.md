@@ -105,3 +105,9 @@ The next module should review whether high-quality sources directly support the 
 - Domain-based classification can still overrate sources whose content is only tangentially relevant.
 - Live search results can change over time and may vary by provider ranking.
 - Semantic correctness still needs claim-level review.
+
+## Checkpoint
+
+- branch: `codex/rag-transformation-checkpoints`
+- commit: `4450b42`
+- push status: pushed to `origin/codex/rag-transformation-checkpoints`
