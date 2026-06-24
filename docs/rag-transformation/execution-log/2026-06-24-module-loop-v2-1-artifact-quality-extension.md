@@ -113,4 +113,5 @@ Next module:
 
 - `git diff --check`: passed
 - secret scan: passed, no matches for known local API key/token patterns
-- checkpoint push: pending
+- checkpoint commit: `463dbfd`
+- checkpoint push: pushed to `origin/codex/rag-transformation-checkpoints`
