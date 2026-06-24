@@ -1,0 +1,87 @@
+[
+  {
+    "id": "Q1-C1",
+    "question_id": "Q1",
+    "label": "should_support",
+    "claim": "Recent RAG movement answer should mention concrete RAG directions from the internal corpus.",
+    "answer_must_contain_any": ["Graph RAG", "图RAG", "知识图谱", "RAG 系统", "LightRAG"],
+    "min_citations": 2,
+    "min_internal_citations": 2,
+    "required_citation_types": ["internal"],
+    "rationale": "Q1 is an internal-corpus trend question and should be grounded in recent AI Trend Radar evidence.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q1-C2",
+    "question_id": "Q1",
+    "label": "should_support",
+    "claim": "Recent RAG answer should surface graph or structured knowledge signals when present.",
+    "answer_must_contain_any": ["图", "Graph", "知识图谱"],
+    "min_graph_citations": 1,
+    "rationale": "The current corpus contains Graph RAG and graph-related evidence; the answer should not degrade to vector-only trend language.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q2-C1",
+    "question_id": "Q2",
+    "label": "should_support",
+    "claim": "RAG evolution answer needs external paper or article evidence.",
+    "answer_must_contain_any": ["论文", "文章", "学术", "arXiv", "Survey"],
+    "min_external_citations": 1,
+    "required_citation_types": ["external"],
+    "required_source_quality_any": ["academic", "official", "developer"],
+    "rationale": "A learning map for RAG evolution cannot rely only on recent internal trend corpus.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q2-C2",
+    "question_id": "Q2",
+    "label": "should_support",
+    "claim": "RAG evolution answer should separate internal trend evidence and external references.",
+    "answer_must_contain_any": ["内部语料", "外部证据"],
+    "min_internal_citations": 1,
+    "min_external_citations": 1,
+    "rationale": "Needs-web answers should preserve source boundaries instead of blending evidence types.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q5-C1",
+    "question_id": "Q5",
+    "label": "should_mark_uncertain",
+    "claim": "OKF and ALM Wiki relationship should be marked uncertain when evidence is insufficient.",
+    "uncertainty_markers": ["证据不足", "无法确认", "未出现", "缺乏", "无法就此给出明确结论", "无法判断", "无法确定"],
+    "rationale": "The question asks for a relationship that may not be supported by retrieved sources.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q5-C2",
+    "question_id": "Q5",
+    "label": "should_support",
+    "claim": "OKF answer should use official external evidence when available.",
+    "answer_must_contain_any": ["OKF", "Open Knowledge Format", "格式，而非平台", "Format, not platform"],
+    "min_external_citations": 1,
+    "required_citation_types": ["external"],
+    "required_source_quality_any": ["official"],
+    "rationale": "Google OKF claims should prioritize Google or official source evidence.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q5-C3",
+    "question_id": "Q5",
+    "label": "should_avoid",
+    "claim": "OKF answer must not claim proven user preference efficiency improvement without evidence.",
+    "answer_must_not_contain_any": ["已经证明", "显著提升", "明确提升", "性能提升已被证明"],
+    "rationale": "Performance and user-preference-efficiency claims need strong evidence and should not be inferred from standardization alone.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q5-C4",
+    "question_id": "Q5",
+    "label": "should_support",
+    "claim": "OKF answer should state that user preference efficiency has no quantified evidence if none was retrieved.",
+    "answer_must_contain_any": ["缺乏可量化", "未提供任何", "无法做出有效评估", "证据未提供", "现有证据为零", "没有关于", "没有任何证据", "无法评价"],
+    "min_external_citations": 1,
+    "rationale": "The answer should distinguish interoperability value from measured efficiency outcomes.",
+    "needs_conrad_review": true
+  }
+]

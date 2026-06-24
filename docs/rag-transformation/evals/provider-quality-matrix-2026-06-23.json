@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-06-22T18:06:13.464858+00:00",
+  "input": "docs/rag-transformation/evals/hybrid-live-chat-snapshot-2026-06-23.json",
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "with_graph_citations": 5,
+    "with_external_citations": 2,
+    "failure_counts": {}
+  },
+  "rows": [
+    {
+      "id": "Q1",
+      "expected_answerability": "internal-only",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_grounded",
+      "citation_count": 8,
+      "internal_citation_count": 8,
+      "external_citation_count": 0,
+      "graph_citation_count": 4,
+      "source_review_status": "internal_only",
+      "external_search_attempted": false
+    },
+    {
+      "id": "Q2",
+      "expected_answerability": "needs-web",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_and_external_grounded",
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 5,
+      "source_review_status": "primary_sources_available",
+      "external_search_attempted": true
+    },
+    {
+      "id": "Q3",
+      "expected_answerability": "internal-only",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_grounded",
+      "citation_count": 8,
+      "internal_citation_count": 8,
+      "external_citation_count": 0,
+      "graph_citation_count": 4,
+      "source_review_status": "internal_only",
+      "external_search_attempted": false
+    },
+    {
+      "id": "Q4",
+      "expected_answerability": "internal-only",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_grounded",
+      "citation_count": 8,
+      "internal_citation_count": 8,
+      "external_citation_count": 0,
+      "graph_citation_count": 4,
+      "source_review_status": "internal_only",
+      "external_search_attempted": false
+    },
+    {
+      "id": "Q5",
+      "expected_answerability": "needs-web",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_and_external_grounded",
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 4,
+      "source_review_status": "mixed_quality",
+      "external_search_attempted": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-06-22T03:14:27.320529+00:00",
+  "input": "docs/rag-transformation/evals/live-chat-snapshot-2026-06-22.json",
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "rows": [
+    {
+      "id": "Q1",
+      "expected_answerability": "internal-only",
+      "passed": true,
+      "failed_checks": []
+    },
+    {
+      "id": "Q2",
+      "expected_answerability": "needs-web",
+      "passed": true,
+      "failed_checks": []
+    },
+    {
+      "id": "Q3",
+      "expected_answerability": "internal-only",
+      "passed": true,
+      "failed_checks": []
+    },
+    {
+      "id": "Q4",
+      "expected_answerability": "internal-only",
+      "passed": true,
+      "failed_checks": []
+    },
+    {
+      "id": "Q5",
+      "expected_answerability": "needs-web",
+      "passed": true,
+      "failed_checks": []
+    }
+  ]
+}

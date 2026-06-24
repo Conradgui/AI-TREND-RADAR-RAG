@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-06-22T07:30:26.927010+00:00",
+  "passed": true,
+  "failed_checks": [],
+  "rows": [
+    {
+      "provider": "brave",
+      "available": false,
+      "errors": [
+        "missing_api_key"
+      ]
+    },
+    {
+      "provider": "tavily",
+      "available": false,
+      "errors": [
+        "missing_api_key"
+      ]
+    },
+    {
+      "provider": "exa",
+      "available": false,
+      "errors": [
+        "missing_api_key"
+      ]
+    },
+    {
+      "provider": "serpapi",
+      "available": false,
+      "errors": [
+        "missing_api_key"
+      ]
+    },
+    {
+      "provider": "github",
+      "available": false,
+      "errors": [
+        "missing_api_key"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "Q5-SC1",
+    "question_id": "Q5",
+    "label": "source_status_requires_uncertainty",
+    "when_source_status_in": ["mixed_quality", "weak_only", "supporting_only"],
+    "rationale": "When OKF/ALM Wiki evidence is mixed or weak, the answer must preserve uncertainty instead of implying a confirmed relationship.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q5-SC2",
+    "question_id": "Q5",
+    "label": "forbid_overclaim_terms",
+    "answer_must_not_contain_any": ["已经证明", "证明了", "显著提升", "明确提升", "完全解决"],
+    "rationale": "User-preference efficiency or relationship claims should not be overstated without strong evidence.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q2-SC1",
+    "question_id": "Q2",
+    "label": "external_claim_requires_external_citation",
+    "external_claim_terms_any": ["论文", "文章", "学术", "arXiv", "Survey"],
+    "min_external_citations": 1,
+    "rationale": "A RAG evolution learning map that mentions papers or academic references needs external citations or explicit uncertainty.",
+    "needs_conrad_review": true
+  }
+]

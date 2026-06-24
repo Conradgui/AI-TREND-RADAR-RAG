@@ -1,0 +1,98 @@
+"""Tests for bounded deep-fetch integration policy."""
+
+import unittest
+
+from rag.deep_fetch_policy import apply_deep_fetch_policy, choose_deep_fetch_targets
+
+
+class DeepFetchPolicyTests(unittest.TestCase):
+    def test_choose_deep_fetch_targets_prioritizes_authoritative_then_weak_sources(self):
+        citations = [
+            {
+                "evidence_type": "external",
+                "source_quality": "generic",
+                "needs_deep_fetch": True,
+                "url": "https://generic.example/okf",
+            },
+            {
+                "evidence_type": "external",
+                "source_quality": "official",
+                "needs_deep_fetch": False,
+                "url": "https://cloud.google.com/okf",
+            },
+            {
+                "evidence_type": "internal",
+                "url": "https://internal.example/not-fetchable",
+            },
+            {
+                "evidence_type": "external",
+                "source_quality": "social",
+                "needs_deep_fetch": True,
+                "url": "https://x.com/example",
+            },
+        ]
+
+        targets = choose_deep_fetch_targets(citations, max_urls=2)
+
+        self.assertEqual([target["url"] for target in targets], [
+            "https://cloud.google.com/okf",
+            "https://generic.example/okf",
+        ])
+
+    def test_apply_deep_fetch_policy_attaches_records_and_trace(self):
+        citations = [
+            {
+                "evidence_type": "external",
+                "source_quality": "official",
+                "needs_deep_fetch": False,
+                "url": "https://cloud.google.com/okf",
+            },
+            {
+                "evidence_type": "external",
+                "source_quality": "generic",
+                "needs_deep_fetch": True,
+                "url": "https://generic.example/okf",
+            },
+        ]
+        calls = []
+
+        def fake_fetcher(url):
+            calls.append(url)
+            return {
+                "ok": url.startswith("https://cloud.google.com"),
+                "url": url,
+                "final_url": url,
+                "fetched_at": "2026-06-22T00:00:00+00:00",
+                "title": "Fetched source",
+                "text_excerpt": "Fetched source evidence.",
+                "error": "" if url.startswith("https://cloud.google.com") else "network_error",
+            }
+
+        deepened, trace = apply_deep_fetch_policy(citations, fetcher=fake_fetcher, max_urls=2)
+
+        self.assertEqual(calls, ["https://cloud.google.com/okf", "https://generic.example/okf"])
+        self.assertTrue(deepened[0]["deep_fetch"]["ok"])
+        self.assertFalse(deepened[1]["deep_fetch"]["ok"])
+        self.assertEqual(trace["attempted"], True)
+        self.assertEqual(trace["selected_count"], 2)
+        self.assertEqual(trace["success_count"], 1)
+        self.assertEqual(trace["failure_count"], 1)
+
+    def test_apply_deep_fetch_policy_can_be_disabled(self):
+        citations = [
+            {
+                "evidence_type": "external",
+                "source_quality": "official",
+                "url": "https://cloud.google.com/okf",
+            }
+        ]
+
+        deepened, trace = apply_deep_fetch_policy(citations, fetcher=lambda url: {"ok": True}, enabled=False)
+
+        self.assertEqual(deepened, citations)
+        self.assertFalse(trace["attempted"])
+        self.assertEqual(trace["reason"], "disabled")
+
+
+if __name__ == "__main__":
+    unittest.main()

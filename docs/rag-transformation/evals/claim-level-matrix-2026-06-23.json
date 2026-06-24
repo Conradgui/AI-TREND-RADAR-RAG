@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-06-23T10:25:02.498427+00:00",
+  "input": "docs/rag-transformation/evals/hybrid-live-chat-snapshot-2026-06-23.json",
+  "seed": "docs/rag-transformation/evals/claim-level-seed-2026-06-23.json",
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "failure_counts": {}
+  },
+  "rows": [
+    {
+      "id": "Q1-C1",
+      "question_id": "Q1",
+      "label": "should_support",
+      "claim": "Recent RAG movement answer should mention concrete RAG directions from the internal corpus.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 8,
+      "internal_citation_count": 8,
+      "external_citation_count": 0,
+      "graph_citation_count": 4,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q1-C2",
+      "question_id": "Q1",
+      "label": "should_support",
+      "claim": "Recent RAG answer should surface graph or structured knowledge signals when present.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 8,
+      "internal_citation_count": 8,
+      "external_citation_count": 0,
+      "graph_citation_count": 4,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q2-C1",
+      "question_id": "Q2",
+      "label": "should_support",
+      "claim": "RAG evolution answer needs external paper or article evidence.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 5,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q2-C2",
+      "question_id": "Q2",
+      "label": "should_support",
+      "claim": "RAG evolution answer should separate internal trend evidence and external references.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 5,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q5-C1",
+      "question_id": "Q5",
+      "label": "should_mark_uncertain",
+      "claim": "OKF and ALM Wiki relationship should be marked uncertain when evidence is insufficient.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 4,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q5-C2",
+      "question_id": "Q5",
+      "label": "should_support",
+      "claim": "OKF answer should use official external evidence when available.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 4,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q5-C3",
+      "question_id": "Q5",
+      "label": "should_avoid",
+      "claim": "OKF answer must not claim proven user preference efficiency improvement without evidence.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 4,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q5-C4",
+      "question_id": "Q5",
+      "label": "should_support",
+      "claim": "OKF answer should state that user preference efficiency has no quantified evidence if none was retrieved.",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 12,
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "graph_citation_count": 4,
+      "needs_conrad_review": true
+    }
+  ]
+}

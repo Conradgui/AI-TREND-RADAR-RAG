@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-06-24T07:47:47+00:00",
+  "asset": "docs/rag-transformation/evals/golden-questions.json",
+  "summary": {
+    "total": 12,
+    "answerability": {
+      "internal-only": 9,
+      "needs-web": 2,
+      "insufficient": 1
+    },
+    "needs_conrad_review": 12,
+    "current_status": {
+      "dataset-ready-not-live-evaluated": 5,
+      "draft-needs-review": 7
+    }
+  },
+  "query_plan_summary": {
+    "total": 12,
+    "needs_web_search": 2,
+    "with_metadata_filter": 10,
+    "intents": {
+      "evidence_sufficiency": 1,
+      "learning_map": 1,
+      "product_update": 1,
+      "recent_trend": 5,
+      "source_specific_discovery": 3,
+      "technical_comparison": 1
+    }
+  },
+  "corpus_availability_summary": {
+    "total": 12,
+    "likely_has_corpus_evidence": 11,
+    "likely_missing_corpus_evidence": 1,
+    "needs_web_but_has_local_signals": 2
+  },
+  "notes": [
+    "Q6-Q12 are draft review items, not final product truth labels.",
+    "Q11 is intentionally insufficient to test evidence-boundary behavior.",
+    "Q12 exposed and verified mixed-source filter behavior for GitHub plus Product Hunt."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-06-22T11:20:32.781867+00:00",
+  "query": "AI Trend Radar RAG official source",
+  "provider": "tavily",
+  "available": true,
+  "citation_count": 1,
+  "raw_results_count": 1,
+  "errors": [],
+  "usage": {
+    "credits": 1
+  },
+  "citations": [
+    {
+      "evidence_type": "external",
+      "provider": "tavily",
+      "source": "sites.google.com",
+      "source_type": "web",
+      "title": "Dan's tech blog - Google Sites",
+      "url": "https://sites.google.com/view/dan-tech-blog",
+      "retrieved_at": "2026-06-22",
+      "excerpt": "Windows Recall: Security Flaws through RAG AI Agents · Its reliance on SSD storage for vector indexing creates a persistent attack surface where",
+      "score": 0.24065454,
+      "source_quality": "official",
+      "quality_score": 0.95,
+      "needs_deep_fetch": false,
+      "quality_notes": [
+        "primary official domain for requested entity"
+      ]
+    }
+  ]
+}

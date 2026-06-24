@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-06-22T17:02:05.668157+00:00",
+  "question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+  "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据 AI Trend Radar 内部语料检索，Claude 近期确实有值得关注的新功能更新。具体来说，**Claude Code Artifacts** 于 **2026年6月19日** 发布（来源：Product Hunt）[1]，并在后续的 **2026年6月21日** 内部雷达中被标记为“深挖”热点，评分达 **80分**，归类于 **AI编程与开发者工具** 方向 [2][3]。\n\n该功能被推荐为值得深入分析的选题，推荐理由围绕其作为 **Agentic coding（智能代理编程）** 工具的能力提升。内部语料引用显示：“Agentic coding has taken off. The share of GitHub projects with coding agent activity...”，并明确指出 **Claude Code Artifacts** 适合从 **“政策变化、信任风险与安全治理”** 等角度切入 [4]。\n\n需要注意的是，当前检索证据中未提及Claude是否上线了传统意义上的“插件”功能。目前可确认的关键更新是 **Claude Code Artifacts**，它不属于独立插件形态，而是集成的开发工具能力扩展。\n\n如果你还想了解该功能的具体能力细节或与其他开发工具的对比，以上证据未直接覆盖，建议补充更精确的检索需求。",
+  "citation_count": 8,
+  "internal_citation_count": 8,
+  "external_citation_count": 0,
+  "deep_fetch": {
+    "attempted": false,
+    "reason": "no_external_citations",
+    "selected_count": 0,
+    "success_count": 0,
+    "failure_count": 0,
+    "targets": []
+  },
+  "query_understanding": {
+    "original_question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+    "intent": "product_update",
+    "retrieval_query": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。 Anthropic Claude Code Artifacts plugins developer tools",
+    "top_k": 8,
+    "topics": [],
+    "entities": [
+      "Claude",
+      "Anthropic"
+    ],
+    "sources": [],
+    "time_window": {
+      "label": "recent_corpus_first",
+      "days": 14,
+      "requires_date_filter": false
+    },
+    "answerability_hint": "internal-first",
+    "needs_web_search": false,
+    "routing_notes": [
+      "Question asks for recent information; retrieval should prefer the freshest local corpus."
+    ],
+    "latest_corpus_date": "2026-06-21",
+    "metadata_filter": {
+      "date": {
+        "$in": [
+          "2026-06-08",
+          "2026-06-09",
+          "2026-06-10",
+          "2026-06-11",
+          "2026-06-12",
+          "2026-06-13",
+          "2026-06-14",
+          "2026-06-15",
+          "2026-06-16",
+          "2026-06-17",
+          "2026-06-18",
+          "2026-06-19",
+          "2026-06-20",
+          "2026-06-21"
+        ]
+      }
+    },
+    "answer_policy": {
+      "mode": "internal_grounded",
+      "should_call_llm": true,
+      "external_search_required": false,
+      "evidence_boundary": "internal_corpus_only",
+      "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+      "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+    },
+    "tool_routing": {
+      "status": "internal_only_ready",
+      "external_tools_required": false,
+      "external_tools_available": false,
+      "max_tool_calls": 1,
+      "steps": [
+        {
+          "tool": "search_corpus",
+          "state": "executed",
+          "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+        }
+      ],
+      "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+    },
+    "external_search": {
+      "attempted": false,
+      "citations": []
+    },
+    "deep_fetch": {
+      "attempted": false,
+      "reason": "no_external_citations",
+      "selected_count": 0,
+      "success_count": 0,
+      "failure_count": 0,
+      "targets": []
+    }
+  },
+  "citations": [
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-21",
+      "source": "Product Hunt",
+      "title": "Claude Code Artifacts",
+      "citation_id": "2026-06-21/topic-pool/0",
+      "excerpt": "来源：Product Hunt\n热度信号：451 / 14\n发布时间：2026-06-19\n关键词：Software Engineering, Developer Tools, Artificial Intelligence",
+      "url": "https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "score": 80,
+      "category": "AI 产品与用户入口"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-21",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-21/ai-topic-radar/1",
+      "excerpt": "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [Claude Code Artifacts](https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Appl"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-21",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-21/ai-topic-radar/16",
+      "excerpt": "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [Claude Code Artifacts](https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Appl"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-19/ai-topic-radar/6",
+      "excerpt": "age. Introduction Agentic coding has taken off. The share of GitHub projects with coding agent activity  | 政策监管、社会影响与 AI 安全 | Agentic coding and persistent returns to expertise 为什么值得关注？（政策变化、信任风险与安全治理） | 值得优先深挖：适合从政策变化、信任风险和安全治理角度切入，来源：Anth"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "Product Hunt",
+      "title": "Retool",
+      "citation_id": "2026-06-20/topic-pool/11",
+      "excerpt": "来源：Product Hunt\n热度信号：148 / 7\n发布时间：2026-06-18\n关键词：Productivity, Developer Tools, Vibe coding",
+      "url": "https://www.producthunt.com/r/UYZGXGCDJD22K6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "score": 69,
+      "category": "AI 产品与用户入口"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-19/ai-topic-radar/46",
+      "excerpt": "6-17<br>关键词：Developer Tools, Artificial Intelligence, Audio |\n| 63 | 观察 | [Wolfram Language 15](https://www.producthunt.com/r/3NQNKLV5OK7622?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+28"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-19/ai-topic-radar/31",
+      "excerpt": "Far from it. The latest Claude models still struggled with using the robot to precisely move the b | 模型与技术突破 | Project Fetch: Phase two 为什么值得关注？（模型能力变化与技术路线） | 值得优先深挖：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Anthropic (Claude)。 | 来源：Anthropic (Claude)<"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-20/ai-topic-radar/32",
+      "excerpt": "lling-for-its-claude-agent-sdk/) | HN discussion by mikhael | 标杆企业动向、商业格局与投融资 | Anthropic \"pauses\" token-based billing for its Claude Agent SDK 为什么值得关注？（大厂动作、商业化路径与竞争格局） | 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。 | 来源：Hacker News<br>热"
+    }
+  ]
+}

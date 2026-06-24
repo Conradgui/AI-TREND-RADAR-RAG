@@ -1,0 +1,182 @@
+{
+  "generated_at": "2026-06-22T17:58:36.050268+00:00",
+  "query": "Agentic RAG",
+  "node_counts": [
+    {
+      "labels": [
+        "Topic"
+      ],
+      "count": 279
+    },
+    {
+      "labels": [
+        "Entity"
+      ],
+      "count": 268
+    },
+    {
+      "labels": [
+        "Document"
+      ],
+      "count": 22
+    },
+    {
+      "labels": [
+        "Source"
+      ],
+      "count": 19
+    },
+    {
+      "labels": [
+        "DailyDigest"
+      ],
+      "count": 14
+    }
+  ],
+  "relationship_counts": [
+    {
+      "type": "MENTIONS",
+      "count": 945
+    },
+    {
+      "type": "APPEARED_ON",
+      "count": 812
+    },
+    {
+      "type": "DISCOVERED_VIA",
+      "count": 290
+    },
+    {
+      "type": "PART_OF",
+      "count": 22
+    }
+  ],
+  "indexes": [
+    {
+      "name": "chunk_embeddings",
+      "type": "VECTOR",
+      "state": "ONLINE"
+    },
+    {
+      "name": "digest_date",
+      "type": "RANGE",
+      "state": "ONLINE"
+    },
+    {
+      "name": "document_id",
+      "type": "RANGE",
+      "state": "ONLINE"
+    },
+    {
+      "name": "entity_id",
+      "type": "RANGE",
+      "state": "ONLINE"
+    },
+    {
+      "name": "entity_search",
+      "type": "FULLTEXT",
+      "state": "ONLINE"
+    },
+    {
+      "name": "index_343aff4e",
+      "type": "LOOKUP",
+      "state": "ONLINE"
+    },
+    {
+      "name": "index_f7700477",
+      "type": "LOOKUP",
+      "state": "ONLINE"
+    },
+    {
+      "name": "source_id",
+      "type": "RANGE",
+      "state": "ONLINE"
+    },
+    {
+      "name": "topic_id",
+      "type": "RANGE",
+      "state": "ONLINE"
+    }
+  ],
+  "citation_count": 8,
+  "graph_citation_count": 4,
+  "first_citations": [
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-19/ai-topic-radar/18",
+      "excerpt": "Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + Mor"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "Dev.to",
+      "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+      "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+      "excerpt": "话题: Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes | 分类: 标杆企业动向、商业格局与投融资 | 分数: 60 | 摘要: This article covers the fifth layer of the full-stack architecture: Full-",
+      "url": "https://dev.to/jamesli/part-5-installing-a-black-box-recorder-in-your-rag-system-4-layer-metadata-3-level-2nb",
+      "score": 60,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-05-22",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-05-22/ai-topic-radar/10",
+      "excerpt": "：GitHub Search:ai-agent<br>热度信号：22471<br>发布时间：2026-05-22<br>关键词：TypeScript, ai-agent |\n| 74 | 入池 | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine th"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-05-30",
+      "source": "GitHub Search:rag",
+      "title": "HKUDS/LightRAG",
+      "citation_id": "2026-05-30/graph-topic/hkuds/lightrag",
+      "excerpt": "话题: HKUDS/LightRAG | 分类: AI 产品与用户入口 | 分数: 72 | 摘要: [EMNLP2025] \"LightRAG: Simple and Fast Retrieval-Augmented Generation\" | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 证据: 来源：GitHub Search:rag；热度信号：35966；发布时间：2026-05-30；关键",
+      "url": "https://github.com/HKUDS/LightRAG",
+      "score": 72,
+      "category": "AI 产品与用户入口"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-05-25",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-05-25/ai-topic-radar/9",
+      "excerpt": "that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs | AI 产品与用户入口 | infiniflow/ragflow 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-05-30",
+      "source": "GitHub Search:rag",
+      "title": "mindsdb/minds-platform",
+      "citation_id": "2026-05-30/graph-topic/mindsdb/minds-platform",
+      "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+      "url": "https://github.com/mindsdb/minds-platform",
+      "score": 74,
+      "category": "AI 产品与用户入口"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-05-28",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-05-28/ai-topic-radar/11",
+      "excerpt": "ding。 | 来源：GitHub Trending<br>热度信号：695 / 0<br>关键词：Python |\n| 74 | 入池 | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG wi"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-05-26",
+      "source": "GitHub Search:rag",
+      "title": "mindsdb/minds-platform",
+      "citation_id": "2026-05-26/graph-topic/mindsdb/minds-platform",
+      "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+      "url": "https://github.com/mindsdb/minds-platform",
+      "score": 74,
+      "category": "AI 产品与用户入口"
+    }
+  ],
+  "passed": true
+}

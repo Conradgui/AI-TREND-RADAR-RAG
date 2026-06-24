@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-06-24T01:53:52.389994+00:00",
+  "input": "docs/rag-transformation/evals/hybrid-live-chat-snapshot-2026-06-23-after-filter.json",
+  "seed": "docs/rag-transformation/evals/semantic-contradiction-seed-2026-06-24.json",
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "failure_counts": {}
+  },
+  "rows": [
+    {
+      "id": "Q5-SC1",
+      "question_id": "Q5",
+      "label": "source_status_requires_uncertainty",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_and_external_grounded",
+      "source_review_status": "mixed_quality",
+      "external_citation_count": 2,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q5-SC2",
+      "question_id": "Q5",
+      "label": "forbid_overclaim_terms",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_and_external_grounded",
+      "source_review_status": "mixed_quality",
+      "external_citation_count": 2,
+      "needs_conrad_review": true
+    },
+    {
+      "id": "Q2-SC1",
+      "question_id": "Q2",
+      "label": "external_claim_requires_external_citation",
+      "passed": true,
+      "failed_checks": [],
+      "answer_policy_mode": "internal_and_external_grounded",
+      "source_review_status": "primary_sources_available",
+      "external_citation_count": 2,
+      "needs_conrad_review": true
+    }
+  ]
+}

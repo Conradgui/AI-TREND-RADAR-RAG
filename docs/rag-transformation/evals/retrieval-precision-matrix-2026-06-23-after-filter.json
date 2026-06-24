@@ -1,0 +1,164 @@
+{
+  "generated_at": "2026-06-24T01:37:56.367520+00:00",
+  "input": "docs/rag-transformation/evals/hybrid-live-chat-snapshot-2026-06-23-after-filter.json",
+  "seed": "docs/rag-transformation/evals/retrieval-precision-seed-2026-06-23.json",
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "citation_count": 13,
+    "distracting_count": 0,
+    "failure_counts": {}
+  },
+  "rows": [
+    {
+      "question_id": "Q1",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 5,
+      "relevant_count": 5,
+      "redundant_count": 0,
+      "distracting_count": 0,
+      "weak_count": 0,
+      "distracting_rate": 0.0,
+      "weak_rate": 0.0,
+      "classified_citations": [
+        {
+          "rank": 1,
+          "classification": "relevant",
+          "title": "ai-topic-radar",
+          "source": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/19",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 2,
+          "classification": "relevant",
+          "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "source": "Dev.to",
+          "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 3,
+          "classification": "relevant",
+          "title": "HKUDS/LightRAG",
+          "source": "GitHub Search:rag",
+          "citation_id": "2026-05-30/graph-topic/hkuds/lightrag",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 4,
+          "classification": "relevant",
+          "title": "safishamsi/graphify",
+          "source": "GitHub Search:rag",
+          "citation_id": "2026-06-19/topic-pool/19",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 5,
+          "classification": "relevant",
+          "title": "mindsdb/minds-platform",
+          "source": "GitHub Search:rag",
+          "citation_id": "2026-05-30/graph-topic/mindsdb/minds-platform",
+          "evidence_type": "internal"
+        }
+      ],
+      "needs_conrad_review": true
+    },
+    {
+      "question_id": "Q2",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 4,
+      "relevant_count": 4,
+      "redundant_count": 0,
+      "distracting_count": 0,
+      "weak_count": 0,
+      "distracting_rate": 0.0,
+      "weak_rate": 0.0,
+      "classified_citations": [
+        {
+          "rank": 1,
+          "classification": "relevant",
+          "title": "ai-topic-radar",
+          "source": "ai-topic-radar",
+          "citation_id": "2026-05-26/ai-topic-radar/12",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 2,
+          "classification": "relevant",
+          "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "source": "Dev.to",
+          "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 3,
+          "classification": "relevant",
+          "title": "A Comprehensive Survey of Retrieval-Augmented Generation (RAG)",
+          "source": "arxiv.org",
+          "citation_id": "",
+          "evidence_type": "external"
+        },
+        {
+          "rank": 4,
+          "classification": "relevant",
+          "title": "[2410.12837v1] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions",
+          "source": "arxiv.org",
+          "citation_id": "",
+          "evidence_type": "external"
+        }
+      ],
+      "needs_conrad_review": true
+    },
+    {
+      "question_id": "Q5",
+      "passed": true,
+      "failed_checks": [],
+      "citation_count": 4,
+      "relevant_count": 2,
+      "redundant_count": 0,
+      "distracting_count": 0,
+      "weak_count": 2,
+      "distracting_rate": 0.0,
+      "weak_rate": 0.5,
+      "classified_citations": [
+        {
+          "rank": 1,
+          "classification": "weak",
+          "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+          "source": "InfoQ 中国",
+          "citation_id": "2026-06-19/topic-pool/53",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 2,
+          "classification": "weak",
+          "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+          "source": "InfoQ 中国",
+          "citation_id": "2026-06-19/topic-pool/54",
+          "evidence_type": "internal"
+        },
+        {
+          "rank": 3,
+          "classification": "relevant",
+          "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+          "source": "cloud.google.com",
+          "citation_id": "",
+          "evidence_type": "external"
+        },
+        {
+          "rank": 4,
+          "classification": "relevant",
+          "title": "Google's Open Knowledge Format: The Markdown Standard That Could Replace Your Wiki | Flowtivity",
+          "source": "flowtivity.ai",
+          "citation_id": "",
+          "evidence_type": "external"
+        }
+      ],
+      "needs_conrad_review": true
+    }
+  ]
+}

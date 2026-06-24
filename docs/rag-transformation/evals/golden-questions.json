@@ -1,0 +1,401 @@
+[
+  {
+    "id": "Q1",
+    "question": "最近 RAG 领域有什么值得关注的新动向？",
+    "intent": "Recent trend discovery for RAG-related topics.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "recent AI Trend Radar reports and topic-pool candidates",
+      "keywords": ["RAG", "retrieval", "vector database", "knowledge graph", "Graph RAG", "Agentic RAG", "evaluation"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["AI Trend Radar corpus", "topic-pool", "ai-topic-radar"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Lists several recent RAG-related movements.",
+      "Separates corpus-backed claims from weaker observations.",
+      "Explains why each movement matters.",
+      "Uses citations with dates and sources."
+    ],
+    "bad_answer_patterns": [
+      "Generic RAG textbook explanation without recent evidence.",
+      "Claims recent developments without citations.",
+      "Mixes internal and external evidence without labeling."
+    ],
+    "web_search_policy": "Allowed later only when internal corpus has insufficient recent RAG evidence; external findings must be labeled external.",
+    "current_status": "dataset-ready-not-live-evaluated",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q2",
+    "question": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。",
+    "intent": "Background research and learning map for RAG evolution.",
+    "answerability": "needs-web",
+    "expected_retrieval": {
+      "primary_corpus": "internal corpus first",
+      "keywords": ["RAG", "Graph RAG", "Agentic RAG", "rerank", "hybrid search", "evaluation"],
+      "time_window": "not limited to recent corpus"
+    },
+    "required_evidence": {
+      "must_include_dates": false,
+      "must_include_sources": true,
+      "preferred_sources": ["AI Trend Radar corpus", "future external papers", "future official or academic references"]
+    },
+    "citation_requirement": {
+      "min_citations": 3,
+      "required_fields": ["source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Explains evolution from basic retrieve-then-read to hybrid search, reranking, Graph RAG, Agentic RAG, evaluation, and governance.",
+      "Clearly labels which claims are supported by internal corpus.",
+      "States that external papers/articles are needed for a complete academic route."
+    ],
+    "bad_answer_patterns": [
+      "Pretends the internal corpus contains a complete academic history.",
+      "Fabricates papers or citations.",
+      "Fails to separate learning-map content from recent trend evidence."
+    ],
+    "web_search_policy": "Allowed later and likely necessary; external references must be cited separately.",
+    "current_status": "dataset-ready-not-live-evaluated",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q3",
+    "question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+    "intent": "Recent company and product update tracking for Claude.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "recent AI Trend Radar corpus",
+      "keywords": ["Claude", "Anthropic", "Claude Code", "plugin", "Artifacts", "developer tools"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Anthropic", "Product Hunt", "GitHub", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 1,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Distinguishes product features, developer tools, ecosystem updates, research updates, and partnerships.",
+      "Includes dates and sources for key claims.",
+      "Avoids presenting rumors as confirmed launches."
+    ],
+    "bad_answer_patterns": [
+      "Says Claude has many updates without specific dates or sources.",
+      "Confuses Claude product features with unrelated AI tools.",
+      "Claims official Anthropic updates without evidence."
+    ],
+    "web_search_policy": "Allowed later for latest official Anthropic confirmation.",
+    "current_status": "dataset-ready-not-live-evaluated",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q4",
+    "question": "过去一周 GitHub 热榜上有什么值得关注的选题？",
+    "intent": "Weekly source-specific topic discovery from GitHub signals.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "last seven days of AI Trend Radar corpus",
+      "keywords": ["GitHub", "GitHub Trending", "GitHub Search", "repository", "open source"],
+      "time_window": "last seven days"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["GitHub Trending", "GitHub Search", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Lists notable GitHub-sourced projects or topics.",
+      "Explains why each is worth watching.",
+      "Includes score or heat signal when available.",
+      "Does not mix non-GitHub items without labeling them."
+    ],
+    "bad_answer_patterns": [
+      "Mixes Product Hunt, OpenAI, Anthropic, and GitHub items without source separation.",
+      "Ignores the last-seven-days time window.",
+      "Lists projects without explaining relevance."
+    ],
+    "web_search_policy": "Not needed for P0 if internal corpus has GitHub source data.",
+    "current_status": "dataset-ready-not-live-evaluated",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q5",
+    "question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+    "intent": "Deep technical comparison and evidence sufficiency judgment.",
+    "answerability": "needs-web",
+    "expected_retrieval": {
+      "primary_corpus": "internal corpus first",
+      "keywords": ["Google", "OKF", "ALM Wiki", "knowledge framework", "user preference"],
+      "time_window": "recent corpus first, then external if insufficient"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Google", "DeepMind", "AI Trend Radar corpus", "future external primary sources"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "First reports whether internal corpus contains OKF and ALM Wiki evidence.",
+      "Refuses to invent the relationship if evidence is insufficient.",
+      "Labels external research as external when used.",
+      "Avoids unsupported performance claims about user preference efficiency."
+    ],
+    "bad_answer_patterns": [
+      "Fabricates a relationship between OKF and ALM Wiki.",
+      "Claims performance improvement without source evidence.",
+      "Treats a Google-related phrase as confirmed without citations."
+    ],
+    "web_search_policy": "Allowed later and likely necessary; external findings must be labeled external and should prioritize primary sources.",
+    "current_status": "dataset-ready-not-live-evaluated",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q6",
+    "question": "AI Agent 相关主题最近是否跨多个日期和来源持续出现？这些信号说明了什么？",
+    "intent": "Graph relationship trend coverage for AI Agent topics.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "Neo4j graph plus recent AI Trend Radar corpus",
+      "keywords": ["AI Agent", "agent", "智能体", "workflow", "tool use"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Neo4j graph", "AI Trend Radar corpus", "topic-pool"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Uses graph relationship evidence when available.",
+      "Reports whether Agent-related topics recur across dates and sources.",
+      "Avoids claiming market certainty from counts alone."
+    ],
+    "bad_answer_patterns": [
+      "Only gives a generic Agent definition.",
+      "Claims a long-term trend without dated evidence.",
+      "Treats graph counts as proof of business adoption."
+    ],
+    "web_search_policy": "Not needed for first-pass internal graph coverage; external search may be used later for adoption claims.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q7",
+    "question": "最近有哪些 AI 编码工具或开发者工具值得关注？它们分别解决什么问题？",
+    "intent": "Developer-tool trend discovery.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "recent AI Trend Radar topic-pool candidates and reports",
+      "keywords": ["developer tools", "coding", "Claude Code", "Artifacts", "GitHub", "AI coding"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Product Hunt", "GitHub Search", "GitHub Trending", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Groups tools by user problem such as coding workflow, sharing, debugging, or automation.",
+      "Includes dates and sources.",
+      "Separates product launches from open-source repository signals."
+    ],
+    "bad_answer_patterns": [
+      "Lists tool names without explaining use cases.",
+      "Mixes coding tools with unrelated AI products.",
+      "Claims official product capabilities without evidence."
+    ],
+    "web_search_policy": "Optional for official confirmation; internal corpus is enough for trend discovery.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q8",
+    "question": "最近 Product Hunt 上有哪些 AI 产品值得深挖？为什么？",
+    "intent": "Source-specific Product Hunt product discovery.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "AI Trend Radar topic-pool candidates sourced from Product Hunt",
+      "keywords": ["Product Hunt", "AI product", "launch", "score", "heat signal"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Product Hunt", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Only treats Product Hunt-sourced items as Product Hunt evidence.",
+      "Explains why each product is worth deep research.",
+      "Includes score or heat signal when available."
+    ],
+    "bad_answer_patterns": [
+      "Mixes GitHub and Product Hunt items without labeling.",
+      "Recommends products without source/date.",
+      "Turns launch buzz into unsupported business traction claims."
+    ],
+    "web_search_policy": "Not needed for first-pass Product Hunt source review.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q9",
+    "question": "OpenAI 最近相关的趋势信号主要集中在哪些方向？这些信号来自哪些来源？",
+    "intent": "Company-centered trend synthesis.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "Neo4j graph and recent AI Trend Radar corpus",
+      "keywords": ["OpenAI", "GPT", "agent", "developer", "model"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Neo4j graph", "AI Trend Radar corpus", "topic-pool"]
+    },
+    "citation_requirement": {
+      "min_citations": 2,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Summarizes themes rather than a raw list.",
+      "Reports source/date coverage.",
+      "Avoids official-company claims unless official evidence exists."
+    ],
+    "bad_answer_patterns": [
+      "Uses model memory about OpenAI instead of local evidence.",
+      "Claims official releases without source quality.",
+      "Ignores graph relationship coverage when available."
+    ],
+    "web_search_policy": "Allowed later only for official OpenAI confirmation; internal trend synthesis should stay labeled as internal.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q10",
+    "question": "哪些 AI 主题在最近语料中跨多个来源反复出现？请按主题归类。",
+    "intent": "Cross-source repeated topic discovery.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "Neo4j graph plus recent topic-pool candidates",
+      "keywords": ["source", "date", "topic", "repeated", "trend"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Neo4j graph", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 3,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Groups repeated themes instead of listing every item.",
+      "Shows which dates and sources support each repeated theme.",
+      "Separates strong repeated signals from one-off items."
+    ],
+    "bad_answer_patterns": [
+      "Reports one-off items as repeated trends.",
+      "Does not cite dates or sources.",
+      "Uses external web popularity as if it came from internal corpus."
+    ],
+    "web_search_policy": "Not needed for internal repeated-signal analysis.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q11",
+    "question": "当前语料中有没有足够证据说明某个 AI 产品已经取得明确商业成功？",
+    "intent": "Evidence sufficiency and refusal behavior.",
+    "answerability": "insufficient",
+    "expected_retrieval": {
+      "primary_corpus": "AI Trend Radar corpus and source review",
+      "keywords": ["commercial success", "revenue", "customers", "traction", "商业成功"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["official company sources", "trusted media", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 0,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Explains what evidence would be required to claim commercial success.",
+      "Refuses to infer business success from launch buzz alone.",
+      "Suggests follow-up evidence to collect."
+    ],
+    "bad_answer_patterns": [
+      "Treats Product Hunt heat or GitHub stars as commercial success.",
+      "Claims revenue or customer adoption without citations.",
+      "Fails to state evidence insufficiency."
+    ],
+    "web_search_policy": "Allowed later if official or reliable business evidence is needed; otherwise answer should remain insufficient.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "Q12",
+    "question": "请比较 Claude Code Artifacts、GitHub 热榜 AI 项目和 Product Hunt AI 产品三类信号的差异。",
+    "intent": "Source-comparison and signal-quality analysis.",
+    "answerability": "internal-only",
+    "expected_retrieval": {
+      "primary_corpus": "AI Trend Radar corpus across Product Hunt and GitHub sources",
+      "keywords": ["Claude Code Artifacts", "GitHub", "Product Hunt", "developer tools", "signal quality"],
+      "time_window": "recent corpus first"
+    },
+    "required_evidence": {
+      "must_include_dates": true,
+      "must_include_sources": true,
+      "preferred_sources": ["Product Hunt", "GitHub Search", "GitHub Trending", "AI Trend Radar corpus"]
+    },
+    "citation_requirement": {
+      "min_citations": 3,
+      "required_fields": ["date", "source", "title", "citation_id", "excerpt"]
+    },
+    "good_answer_criteria": [
+      "Compares signal types: product launch, developer activity, and source-specific trend signal.",
+      "Explains what each source can and cannot prove.",
+      "Avoids ranking signals without evidence criteria."
+    ],
+    "bad_answer_patterns": [
+      "Treats all sources as equally reliable for the same claim.",
+      "Confuses product launch signal with open-source adoption.",
+      "Does not cite one example from each signal type."
+    ],
+    "web_search_policy": "Not needed for first-pass internal source comparison; external search may be used later for official confirmation.",
+    "current_status": "draft-needs-review",
+    "needs_conrad_review": true
+  }
+]

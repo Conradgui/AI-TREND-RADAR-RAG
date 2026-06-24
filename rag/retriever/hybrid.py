@@ -4,9 +4,11 @@ Uses Reciprocal Rank Fusion (RRF) to merge results from both sources."""
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
 
-from rag.graphrag.driver import Neo4jDriver
-from rag.retriever.vector_store import VectorStore
+if TYPE_CHECKING:
+    from rag.graphrag.driver import Neo4jDriver
+    from rag.retriever.vector_store import VectorStore
 
 
 @dataclass
@@ -25,9 +27,9 @@ class HybridRetriever:
         self.neo4j = neo4j_driver
         self.rrf_k = rrf_k
 
-    async def search(self, query: str, k: int = 5) -> list[RetrievedChunk]:
+    async def search(self, query: str, k: int = 5, where: dict | None = None) -> list[RetrievedChunk]:
         """Hybrid search: vector + graph, merge via Reciprocal Rank Fusion."""
-        vector_results = self._safe_vector_search(query, k)
+        vector_results = self._safe_vector_search(query, k, where=where)
         graph_results = await self._safe_graph_search(query, k)
 
         # Reciprocal Rank Fusion — use full text as key to avoid hash collisions
@@ -47,9 +49,9 @@ class HybridRetriever:
         ranked = sorted(fused.values(), key=lambda x: x["score"], reverse=True)
         return [item["chunk"] for item in ranked[:k]]
 
-    def _safe_vector_search(self, query: str, k: int) -> list[RetrievedChunk]:
+    def _safe_vector_search(self, query: str, k: int, where: dict | None = None) -> list[RetrievedChunk]:
         try:
-            hits = self.vector.search(query, k=k)
+            hits = self.vector.search(query, k=k, where=where)
             return [
                 RetrievedChunk(
                     text=hit["text"],
@@ -68,21 +70,63 @@ class HybridRetriever:
             hits = await self.neo4j.execute_query(
                 "CALL db.index.fulltext.queryNodes('entity_search', $query) "
                 "YIELD node, score "
-                "MATCH (node)-[:MENTIONS]->(t:Topic) "
-                "RETURN t.name AS topic, t.category AS category, t.totalScore AS totalScore "
+                "MATCH (node)-[:MENTIONS]->(t:Topic)-[r:APPEARED_ON]->(d:DailyDigest) "
+                "RETURN t.name AS topic, t.category AS category, t.totalScore AS totalScore, "
+                "t.url AS topicUrl, t.source AS topicSource, t.summary AS topicSummary, "
+                "r.url AS occurrenceUrl, r.source AS occurrenceSource, r.summary AS occurrenceSummary, "
+                "r.reason AS occurrenceReason, r.evidence AS occurrenceEvidence, d.date AS date "
                 "ORDER BY score DESC LIMIT $k",
                 query=query,
                 k=k,
             )
             return [
                 RetrievedChunk(
-                    text=f"话题: {h['topic']} | 分类: {h['category']} | 分数: {h['totalScore']}",
+                    text=_graph_hit_text(h),
                     source="graph",
                     score=float(h.get("totalScore", 0)),
-                    metadata=h,
+                    metadata=_graph_hit_metadata(h),
                 )
                 for h in hits
             ]
         except Exception as e:
             print(f"[hybrid] graph search failed: {e}")
             return []
+
+
+def _graph_hit_text(hit: dict) -> str:
+    evidence = hit.get("occurrenceEvidence") or []
+    if isinstance(evidence, list):
+        evidence_text = "；".join(str(item) for item in evidence)
+    else:
+        evidence_text = str(evidence or "")
+    pieces = [
+        f"话题: {hit.get('topic', '')}",
+        f"分类: {hit.get('category', '')}",
+        f"分数: {hit.get('totalScore', '')}",
+        f"摘要: {hit.get('occurrenceSummary') or hit.get('topicSummary') or ''}",
+        f"推荐理由: {hit.get('occurrenceReason', '')}",
+        f"证据: {evidence_text}",
+    ]
+    return " | ".join(piece for piece in pieces if piece.strip(" |"))
+
+
+def _graph_hit_metadata(hit: dict) -> dict:
+    date = hit.get("date", "")
+    title = hit.get("topic", "")
+    source = hit.get("occurrenceSource") or hit.get("topicSource") or "graph"
+    evidence = hit.get("occurrenceEvidence") or []
+    if isinstance(evidence, list):
+        evidence_excerpt = "；".join(str(item) for item in evidence)
+    else:
+        evidence_excerpt = str(evidence or "")
+    return {
+        "content_type": "graph_topic",
+        "date": date,
+        "source": source,
+        "title": title,
+        "url": hit.get("occurrenceUrl") or hit.get("topicUrl") or "",
+        "citation_id": f"{date}/graph-topic/{str(title).lower().strip()}",
+        "excerpt": evidence_excerpt or hit.get("occurrenceSummary") or hit.get("topicSummary") or "",
+        "category": hit.get("category", ""),
+        "score": hit.get("totalScore", 0),
+    }

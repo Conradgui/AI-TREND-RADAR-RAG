@@ -22,6 +22,11 @@ jobs:
           node-version: 22
           cache: pnpm
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
@@ -36,3 +41,6 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      - name: RAG P0 focused suite
+        run: pnpm rag:check:p0

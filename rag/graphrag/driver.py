@@ -32,9 +32,16 @@ class Neo4jDriver:
 
     async def execute_query(self, cypher: str, **params):
         async with self.driver.session() as session:
-            result = await session.execute_read(lambda tx: tx.run(cypher, **params))
-            return [r.data() for r in result]
+            async def run_read(tx):
+                result = await tx.run(cypher, parameters=params)
+                return [record.data() async for record in result]
+
+            return await session.execute_read(run_read)
 
     async def execute_write(self, cypher: str, **params):
         async with self.driver.session() as session:
-            await session.execute_write(lambda tx: tx.run(cypher, **params))
+            async def run_write(tx):
+                result = await tx.run(cypher, parameters=params)
+                await result.consume()
+
+            await session.execute_write(run_write)

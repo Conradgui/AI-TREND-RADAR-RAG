@@ -1,0 +1,195 @@
+{
+  "generated_at": "2026-06-24T01:42:45.100839+00:00",
+  "seed": "docs/rag-transformation/evals/graph-reasoning-seed-2026-06-24.json",
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "failure_counts": {}
+  },
+  "rows": [
+    {
+      "id": "G1",
+      "entity_id": "rag",
+      "question": "RAG 相关主题是否跨多个日期和来源反复出现？",
+      "passed": true,
+      "failed_checks": [],
+      "topic_count": 18,
+      "date_count": 14,
+      "source_count": 4,
+      "sample_paths": [
+        {
+          "date": "2026-06-19",
+          "topic": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "source": "Dev.to",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-05-30",
+          "topic": "HKUDS/LightRAG",
+          "source": "GitHub Search:rag",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-05-30",
+          "topic": "mindsdb/minds-platform",
+          "source": "GitHub Search:rag",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-05-26",
+          "topic": "mindsdb/minds-platform",
+          "source": "GitHub Search:rag",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-05-24",
+          "topic": "jeecgboot/JeecgBoot",
+          "source": "GitHub Search:rag",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-06-19",
+          "topic": "Mintplex-Labs/anything-llm",
+          "source": "GitHub Search:vector-db",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-05-24",
+          "topic": "Mintplex-Labs/anything-llm",
+          "source": "GitHub Search:vector-db",
+          "entity": "rag"
+        },
+        {
+          "date": "2026-06-19",
+          "topic": "Mintplex-Labs/anything-llm",
+          "source": "GitHub Search:rag",
+          "entity": "rag"
+        }
+      ],
+      "needs_conrad_review": true
+    },
+    {
+      "id": "G2",
+      "entity_id": "openai",
+      "question": "OpenAI 相关主题是否能通过图谱关联到多个趋势主题和日期？",
+      "passed": true,
+      "failed_checks": [],
+      "topic_count": 29,
+      "date_count": 8,
+      "source_count": 3,
+      "sample_paths": [
+        {
+          "date": "2026-06-20",
+          "topic": "chatstore – persistent chat history service for LLM apps, zero infrastructure",
+          "source": "Dev.to",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-06-20",
+          "topic": "I accidentally became a solo dev studio",
+          "source": "Dev.to",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-06-21",
+          "topic": "万亿估值前夜，OpenAI 被曝一年亏约 2600 亿",
+          "source": "InfoQ 中国",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-06-19",
+          "topic": "万亿估值前夜，OpenAI 被曝一年亏约 2600 亿",
+          "source": "InfoQ 中国",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-06-19",
+          "topic": "Chatgpt Enterprise Spend Controls",
+          "source": "OpenAI",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-06-19",
+          "topic": "Improving Health Intelligence In Chatgpt",
+          "source": "OpenAI",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-05-30",
+          "topic": "Trustworthy Third Party Evaluations Foundations",
+          "source": "OpenAI",
+          "entity": "OpenAI"
+        },
+        {
+          "date": "2026-05-30",
+          "topic": "Strengthening Societal Resilience With Rosalind Biodefense",
+          "source": "OpenAI",
+          "entity": "OpenAI"
+        }
+      ],
+      "needs_conrad_review": true
+    },
+    {
+      "id": "G3",
+      "entity_id": "ai-agent",
+      "question": "AI Agent 相关主题是否能跨日期形成关系覆盖？",
+      "passed": true,
+      "failed_checks": [],
+      "topic_count": 16,
+      "date_count": 14,
+      "source_count": 2,
+      "sample_paths": [
+        {
+          "date": "2026-05-30",
+          "topic": "thedaviddias/Front-End-Checklist",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-06-20",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-05-30",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-05-29",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-05-28",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-05-27",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-05-26",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        },
+        {
+          "date": "2026-05-25",
+          "topic": "hugohe3/ppt-master",
+          "source": "GitHub Search:ai-agent",
+          "entity": "ai-agent"
+        }
+      ],
+      "needs_conrad_review": true
+    }
+  ]
+}

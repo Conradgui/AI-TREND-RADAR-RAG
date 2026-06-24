@@ -18,12 +18,19 @@ from rag.config import (
     RAG_PORT,
     is_configured,
     LLM_PROVIDER,
+    get_search_provider_api_keys,
+    is_deep_fetch_enabled,
 )
 from rag.graphrag.driver import Neo4jDriver
 from rag.graphrag.schema import init_schema
 from rag.retriever.vector_store import VectorStore
 from rag.retriever.hybrid import HybridRetriever
+from rag.retriever.vector_only import VectorOnlyRetriever
 from rag.agent.agent import create_agent
+from rag.agent.llm import create_direct_llm_agent
+from rag.chat_service import build_chat_response
+from rag.runtime_tools import select_external_deep_fetcher
+from rag.search_provider_adapters import SearchProviderRegistry
 
 
 class ChatRequest(BaseModel):
@@ -34,6 +41,7 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     citations: list[dict] = Field(default_factory=list)
+    query_understanding: dict = Field(default_factory=dict)
 
 
 class ConfigRequest(BaseModel):
@@ -45,14 +53,19 @@ class ConfigRequest(BaseModel):
 
 neo4j_driver: Neo4jDriver | None = None
 vector_store: VectorStore | None = None
+chat_retriever = None
 agent = None
+external_search_registry: SearchProviderRegistry | None = None
+external_deep_fetcher = None
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global neo4j_driver, vector_store, agent
+    global neo4j_driver, vector_store, chat_retriever, agent, external_search_registry, external_deep_fetcher
 
     vector_store = VectorStore(CHROMA_DIR)
+    external_search_registry = SearchProviderRegistry(get_search_provider_api_keys())
+    external_deep_fetcher = select_external_deep_fetcher(is_deep_fetch_enabled())
 
     if is_configured():
         neo4j_driver = Neo4jDriver(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
@@ -65,12 +78,14 @@ async def lifespan(app: FastAPI):
             neo4j_driver = None
 
         try:
-            hybrid = HybridRetriever(vector_store, neo4j_driver) if neo4j_driver else None
-            if hybrid:
-                agent = create_agent(neo4j_driver, hybrid)
+            if neo4j_driver:
+                chat_retriever = HybridRetriever(vector_store, neo4j_driver)
+                agent = create_agent(neo4j_driver, chat_retriever)
                 print("[server] Agent initialized with 6 tools")
             else:
-                print("[server] Neo4j unavailable, agent disabled")
+                chat_retriever = VectorOnlyRetriever(vector_store)
+                agent = create_direct_llm_agent()
+                print("[server] Neo4j unavailable, vector-only chat fallback initialized")
         except Exception as e:
             print(f"[server] Agent creation failed: {e}")
 
@@ -100,6 +115,8 @@ async def health():
         "neo4j_connected": neo4j_driver is not None,
         "chromadb_chunks": vector_store.count() if vector_store else 0,
         "provider": LLM_PROVIDER,
+        "retriever_mode": "hybrid" if neo4j_driver is not None else "vector-only",
+        "deep_fetch_enabled": is_deep_fetch_enabled(),
     }
 
 
@@ -153,15 +170,15 @@ async def chat(req: ChatRequest):
         )
 
     try:
-        history = [{"role": m.get("role", "user"), "content": m.get("content", "")} for m in req.history]
-        messages = history + [{"role": "user", "content": req.message}]
-
-        result = await agent.ainvoke({"messages": messages})
-
-        ai_messages = [m for m in result["messages"] if m.type == "ai"]
-        answer = ai_messages[-1].content if ai_messages else "No response generated."
-
-        return ChatResponse(answer=answer, citations=[])
+        response = await build_chat_response(
+            agent,
+            chat_retriever,
+            req.message,
+            req.history,
+            external_search_registry=external_search_registry,
+            external_deep_fetcher=external_deep_fetcher,
+        )
+        return ChatResponse(**response)
     except Exception as e:
         print(f"[server] /chat error: {e}")
         raise HTTPException(status_code=500, detail="Internal error occurred")

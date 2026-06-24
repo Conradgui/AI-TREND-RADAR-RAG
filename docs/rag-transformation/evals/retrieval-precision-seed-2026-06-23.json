@@ -1,0 +1,35 @@
+[
+  {
+    "question_id": "Q1",
+    "description": "Recent RAG movement discovery should retrieve RAG-specific project, graph, retrieval, and evaluation evidence.",
+    "relevant_terms_any": ["RAG", "retrieval", "检索", "Graph", "知识图谱", "LightRAG", "ragflow", "graphify"],
+    "distracting_terms_any": ["WhatsApp", "Chrome extension", "Vue3"],
+    "min_relevant_citations": 5,
+    "max_distracting_rate": 0.15,
+    "max_weak_rate": 0.35,
+    "max_redundant_rate": 0.35,
+    "needs_conrad_review": true
+  },
+  {
+    "question_id": "Q2",
+    "description": "RAG evolution answer should retrieve RAG papers, surveys, engineering articles, and RAG project evidence.",
+    "relevant_terms_any": ["RAG", "retrieval", "检索", "Survey", "arXiv", "论文", "LightRAG", "ragflow", "Graph"],
+    "distracting_terms_any": ["WhatsApp", "Chrome extension", "Vue3"],
+    "min_relevant_citations": 4,
+    "max_distracting_rate": 0.15,
+    "max_weak_rate": 0.35,
+    "max_redundant_rate": 0.35,
+    "needs_conrad_review": true
+  },
+  {
+    "question_id": "Q5",
+    "description": "OKF/ALM Wiki comparison should prioritize OKF, Open Knowledge Format, ALM Wiki, and Google primary/source-adjacent evidence.",
+    "relevant_terms_any": ["OKF", "Open Knowledge Format", "ALM Wiki", "Google Cloud", "open knowledge format"],
+    "distracting_terms_any": ["Vue3", "DiffusionGemma", "GLM", "乱码", "coding assistant"],
+    "min_relevant_citations": 2,
+    "max_distracting_rate": 0.2,
+    "max_weak_rate": 0.55,
+    "max_redundant_rate": 0.3,
+    "needs_conrad_review": true
+  }
+]

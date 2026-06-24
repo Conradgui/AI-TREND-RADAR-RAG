@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-06-22T04:11:48.238994+00:00",
+  "configured_providers": [],
+  "total": 5,
+  "rows": [
+    {
+      "id": "Q1",
+      "question": "最近 RAG 领域有什么值得关注的新动向？",
+      "expected_answerability": "internal-only",
+      "needs_web_search": false,
+      "search_task_type": "recent_web",
+      "provider_route": {
+        "query": "最近 RAG 领域有什么值得关注的新动向？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "task_type": "recent_web",
+        "primary_provider": null,
+        "provider_chain": [
+          "brave",
+          "tavily",
+          "exa"
+        ],
+        "available_provider_chain": [],
+        "fallback_providers": [],
+        "unavailable_providers": [
+          "brave",
+          "tavily",
+          "exa"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "rationale": "recent web tasks prefer Brave for fresh broad web search, then Tavily."
+      }
+    },
+    {
+      "id": "Q2",
+      "question": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。",
+      "expected_answerability": "needs-web",
+      "needs_web_search": true,
+      "search_task_type": "research_paper",
+      "provider_route": {
+        "query": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。 retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "task_type": "research_paper",
+        "primary_provider": null,
+        "provider_chain": [
+          "exa",
+          "tavily",
+          "serpapi"
+        ],
+        "available_provider_chain": [],
+        "fallback_providers": [],
+        "unavailable_providers": [
+          "exa",
+          "tavily",
+          "serpapi"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 4,
+          "serpapi_role": "specialty_provider"
+        },
+        "rationale": "research tasks prefer Exa for AI-native research/paper search, then Tavily, then SerpAPI."
+      }
+    },
+    {
+      "id": "Q3",
+      "question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+      "expected_answerability": "internal-only",
+      "needs_web_search": false,
+      "search_task_type": "recent_web",
+      "provider_route": {
+        "query": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。 Anthropic Claude Code Artifacts plugins developer tools",
+        "task_type": "recent_web",
+        "primary_provider": null,
+        "provider_chain": [
+          "brave",
+          "tavily",
+          "exa"
+        ],
+        "available_provider_chain": [],
+        "fallback_providers": [],
+        "unavailable_providers": [
+          "brave",
+          "tavily",
+          "exa"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "rationale": "recent web tasks prefer Brave for fresh broad web search, then Tavily."
+      }
+    },
+    {
+      "id": "Q4",
+      "question": "过去一周 GitHub 热榜上有什么值得关注的选题？",
+      "expected_answerability": "internal-only",
+      "needs_web_search": false,
+      "search_task_type": "github_repo",
+      "provider_route": {
+        "query": "过去一周 GitHub 热榜上有什么值得关注的选题？ GitHub Trending GitHub Search repository open source",
+        "task_type": "github_repo",
+        "primary_provider": null,
+        "provider_chain": [
+          "github",
+          "brave",
+          "tavily"
+        ],
+        "available_provider_chain": [],
+        "fallback_providers": [],
+        "unavailable_providers": [
+          "github",
+          "brave",
+          "tavily"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "rationale": "GitHub repository tasks prefer the GitHub API before generic web search."
+      }
+    },
+    {
+      "id": "Q5",
+      "question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+      "expected_answerability": "needs-web",
+      "needs_web_search": true,
+      "search_task_type": "official_source_lookup",
+      "provider_route": {
+        "query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+        "task_type": "official_source_lookup",
+        "primary_provider": null,
+        "provider_chain": [
+          "tavily",
+          "brave",
+          "serpapi"
+        ],
+        "available_provider_chain": [],
+        "fallback_providers": [],
+        "unavailable_providers": [
+          "tavily",
+          "brave",
+          "serpapi"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "rationale": "official source lookup prefers Tavily for domain-constrained search, then Brave."
+      }
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "needs_web": 2,
+    "needs_web_with_configured_primary": 0,
+    "needs_web_without_configured_primary": 2
+  }
+}

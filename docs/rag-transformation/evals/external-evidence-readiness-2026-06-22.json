@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-06-22T03:52:09.813941+00:00",
+  "passed": true,
+  "failed_checks": [],
+  "valid_external_citation_errors": [],
+  "web_search": {
+    "tool": "web_search",
+    "available": false,
+    "query": "Google OKF ALM Wiki",
+    "reason": "not_enabled_in_current_module",
+    "citations": [],
+    "retrieved_at": "2026-06-22",
+    "user_message": "当前版本尚未启用联网搜索，因此不能声称已经获取外部证据。请先基于内部语料回答，并标注仍需要外部证据确认。"
+  }
+}

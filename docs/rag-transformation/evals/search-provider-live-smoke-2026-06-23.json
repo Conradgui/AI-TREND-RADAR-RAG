@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-06-22T17:11:29.780043+00:00",
+  "rows": [
+    {
+      "provider": "brave",
+      "task_type": "recent_web",
+      "available": true,
+      "citation_count": 1,
+      "raw_results_count": 1,
+      "errors": [],
+      "usage": {},
+      "citations": [
+        {
+          "evidence_type": "external",
+          "provider": "brave",
+          "source": "releasebot.io",
+          "source_type": "web",
+          "title": "Claude Updates by Anthropic - June 2026 - Releasebot",
+          "url": "https://releasebot.io/updates/anthropic/claude",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "Claude support with the Foundation Models framework will be available tomorrow and works through Apple&#x27;s Foundation Models framework on iOS 27, iPadOS 27, macOS 27, and visionOS 27, and watch OS 27. Add it to your project, sign in with an Anthropic API key, and pass typed outputs from Apple&#x27;s on-device pass into a Claude request — the package handles streaming, tool calls, and structured responses back into your SwiftUI view. Our talks go behind the scenes of building Claude with Anthropic teams and share how customers like Asana, Cursor, GitHub, Replit, and Vercel about how they’re designing production-ready agents and pushing the boundaries of agentic development. Browse a full list of updates made to Claude by Anthropic. Follow to get all release notes by email, RSS, and more.",
+          "score": null,
+          "source_quality": "generic",
+          "quality_score": 0.55,
+          "needs_deep_fetch": true,
+          "quality_notes": [
+            "generic web source; verify before strong claims"
+          ]
+        }
+      ]
+    },
+    {
+      "provider": "exa",
+      "task_type": "research_paper",
+      "available": true,
+      "citation_count": 1,
+      "raw_results_count": 1,
+      "errors": [],
+      "usage": {
+        "costDollars": {
+          "total": 0.008,
+          "search": {
+            "neural": 0.007
+          },
+          "summary": 0.001
+        }
+      },
+      "citations": [
+        {
+          "evidence_type": "external",
+          "provider": "exa",
+          "source": "arxiv.org",
+          "source_type": "web",
+          "title": "Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG",
+          "url": "https://arxiv.org/html/2501.09136v4",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "Summary:\n\n- Topic: A survey of Agentic Retrieval-Augmented Generation (Agentic RAG), a framework that embeds autonomous AI agents into the RAG pipeline to enable dynamic, multi-step reasoning and adaptive workflows.\n- Key idea: Traditional RAG combines LLMs with real-time retrieval but often uses static, linear processes. Agentic RAG enhances this by adding agent design patterns (reflection, planning, tool use, and multi-agent collaboration) to manage retrieval strategies, refine context, and coordinate tasks.\n- Taxonomy: Introduces a principled classification of Agentic RAG architectures by agent cardinality, control structure, autonomy, and knowledge representation; compares design trade-offs across frameworks.\n- Scope and applications: Covers evolution from naïve, modular, and graph-based RAG to agentic variants; discusses real-world use cases in healthcare, finance, education, and enterprise document processing; highlights lessons for system designers.\n- Challenges and future directions: Identifies open research questions in evaluation, coordination, memory management, efficiency, and governance, with guidance for future work.\n\nRelevance to your query: The paper provides a structured overview of how Agentic RAG differs from standard graph RAG and other RAG paradigms, emphasizing agent-based control, autonomy, and collaborative strategies to improve retrieval decisions and complex task handling. If you’re specifically looking for comparisons between Graph RAG and Agentic RAG, the survey offers a taxonomy and design trade-offs that illuminate their differences and practic",
+          "score": null,
+          "published_at": "2026-04-01T00:00:00.000Z",
+          "source_quality": "academic",
+          "quality_score": 0.9,
+          "needs_deep_fetch": false,
+          "quality_notes": [
+            "academic or paper source"
+          ]
+        }
+      ]
+    },
+    {
+      "provider": "github",
+      "task_type": "github_repo",
+      "available": true,
+      "citation_count": 1,
+      "raw_results_count": 1,
+      "errors": [],
+      "usage": {
+        "total_count": 17469,
+        "incomplete_results": false
+      },
+      "citations": [
+        {
+          "evidence_type": "external",
+          "provider": "github",
+          "source": "github.com",
+          "source_type": "api",
+          "title": "langgenius/dify",
+          "url": "https://github.com/langgenius/dify",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "Production-ready platform for agentic workflow development. Stars: 146158. Forks: 22985. Language: TypeScript. Updated at: 2026-06-22T16:35:14Z.",
+          "score": 146158,
+          "published_at": "2023-04-12T07:40:24Z",
+          "source_quality": "official",
+          "quality_score": 0.95,
+          "needs_deep_fetch": false,
+          "quality_notes": [
+            "primary official domain for requested entity"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "provider_count": 3,
+    "available_count": 3,
+    "providers_with_citations": [
+      "brave",
+      "exa",
+      "github"
+    ],
+    "providers_with_errors": []
+  }
+}

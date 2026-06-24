@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-06-24T01:49:38.216138+00:00",
+  "question": "RAG 相关主题是否跨多个日期和来源反复出现？",
+  "passed": true,
+  "failed_checks": [],
+  "graph_question_plan": {
+    "original_question": "RAG 相关主题是否跨多个日期和来源反复出现？",
+    "entity_id": "rag",
+    "entity_label": "RAG",
+    "question_type": "entity_topic_date_source_relationship",
+    "required_paths": [
+      "entity_topic_date",
+      "entity_multiple_topics",
+      "entity_topic_source"
+    ],
+    "answer_mode": "graph_relationship_summary",
+    "routing_notes": [
+      "Question asks for entity/topic/date/source relationship coverage.",
+      "Use graph evidence before answer synthesis."
+    ]
+  },
+  "graph_evidence": {
+    "entity_id": "rag",
+    "entity_label": "RAG",
+    "entity": "rag",
+    "topic_count": 18,
+    "date_count": 14,
+    "source_count": 4,
+    "sample_paths": [
+      {
+        "date": "2026-06-19",
+        "topic": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+        "source": "Dev.to",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-05-30",
+        "topic": "HKUDS/LightRAG",
+        "source": "GitHub Search:rag",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-05-30",
+        "topic": "mindsdb/minds-platform",
+        "source": "GitHub Search:rag",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-05-26",
+        "topic": "mindsdb/minds-platform",
+        "source": "GitHub Search:rag",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-05-24",
+        "topic": "jeecgboot/JeecgBoot",
+        "source": "GitHub Search:rag",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-06-19",
+        "topic": "Mintplex-Labs/anything-llm",
+        "source": "GitHub Search:vector-db",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-05-24",
+        "topic": "Mintplex-Labs/anything-llm",
+        "source": "GitHub Search:vector-db",
+        "entity": "rag"
+      },
+      {
+        "date": "2026-06-19",
+        "topic": "Mintplex-Labs/anything-llm",
+        "source": "GitHub Search:rag",
+        "entity": "rag"
+      }
+    ],
+    "required_paths": [
+      "entity_topic_date",
+      "entity_multiple_topics",
+      "entity_topic_source"
+    ],
+    "generated_at": "2026-06-24T01:49:38.214097+00:00"
+  },
+  "citation": {
+    "evidence_type": "internal",
+    "content_type": "graph_reasoning",
+    "date": "2026-06-19",
+    "source": "Neo4j graph",
+    "title": "RAG graph relationship evidence",
+    "citation_id": "graph-reasoning/rag",
+    "excerpt": "RAG 在图谱中关联 18 个主题、14 个日期、4 个来源。样例路径：Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes / 2026-06-19 / Dev.to；HKUDS/LightRAG / 2026-05-30 / GitHub Search:rag；mindsdb/minds-platform / 2026-05-30 / GitHub Search:rag。"
+  }
+}

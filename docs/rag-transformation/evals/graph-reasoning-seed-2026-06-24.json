@@ -1,0 +1,35 @@
+[
+  {
+    "id": "G1",
+    "question": "RAG 相关主题是否跨多个日期和来源反复出现？",
+    "entity_id": "rag",
+    "min_topics": 5,
+    "min_dates": 5,
+    "min_sources": 1,
+    "required_paths": ["entity_topic_date", "entity_topic_source", "entity_multiple_topics"],
+    "rationale": "RAG should support entity -> topic -> date/source traversal, not only vector retrieval.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "G2",
+    "question": "OpenAI 相关主题是否能通过图谱关联到多个趋势主题和日期？",
+    "entity_id": "openai",
+    "min_topics": 5,
+    "min_dates": 3,
+    "min_sources": 1,
+    "required_paths": ["entity_topic_date", "entity_topic_source", "entity_multiple_topics"],
+    "rationale": "Company entities should support topic/date/source traversal for trend research.",
+    "needs_conrad_review": true
+  },
+  {
+    "id": "G3",
+    "question": "AI Agent 相关主题是否能跨日期形成关系覆盖？",
+    "entity_id": "ai-agent",
+    "min_topics": 5,
+    "min_dates": 5,
+    "min_sources": 1,
+    "required_paths": ["entity_topic_date", "entity_topic_source", "entity_multiple_topics"],
+    "rationale": "Agentic RAG work depends on graph coverage for agent-related entities.",
+    "needs_conrad_review": true
+  }
+]

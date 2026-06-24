@@ -1,0 +1,1214 @@
+{
+  "generated_at": "2026-06-22T18:06:05.727820+00:00",
+  "mode": "hybrid",
+  "total": 5,
+  "rows": [
+    {
+      "id": "Q1",
+      "question": "最近 RAG 领域有什么值得关注的新动向？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据 AI Trend Radar 内部语料，最近 RAG 领域有以下值得关注的新动向：\n\n1.  **知识图谱与 RAG 的结合项目热度极高**：GitHub 上的 **`safishamsi/graphify`** 项目在 2026 年 6 月 18 日至 19 日期间，热度信号飙升至 69,200 至 83,145，关键词为 `Python` 和 `rag`，表明图结构与 RAG 的结合正在快速吸引关注（[1][5][7]）。\n\n2.  **RAG 系统的运维与可观测性深化**：一篇发布于 2026 年 6 月 19 日的文章《Part 5 — Installing a Black Box Recorder in Your RAG System》探讨了如何为 RAG 系统构建**4层元数据 + 3级验证**的“黑匣子”监控机制，以实现 5 分钟内定位根因，这反映出业界开始关注 RAG 系统的工程化运维与调试能力（[2]）。\n\n3.  **轻量级、高效的 RAG 框架持续演进**：来自 **HKUDS/LightRAG** 的项目（2026 年 5 月 30 日，热度 35,966）入选了 EMNLP2025，其核心理念为“简单快速的检索增强生成”，体现了在追求高性能同时简化系统复杂度的趋势（[4]）。\n\n4.  **面向生产环境的 RAG 平台建设**：**mindsdb/minds-platform**（2026 年 5 月 26 日至 30 日，分数 74）致力于构建一个开放的基础平台，旨在帮助用户“真正控制、扩展和部署生产就绪的 AI 系统”，这表明 RAG 正从实验性项目向企业级生产部署平台发展（[6][8]）。\n\n此外，**`infiniflow/ragflow`** 项目（2026年6月20日入池）被描述为“领先的开源检索增强生成引擎”，也值得持续关注（[3]）。",
+      "citation_count": 8,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/19",
+          "excerpt": "ag。 | 来源：GitHub Search:rag<br>热度信号：83145<br>发布时间：2026-06-19<br>关键词：Python, rag |\n| 68 | 入池 | [safishamsi/graphify](https://github.com/safishamsi/graphify) | AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and mo"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Dev.to",
+          "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+          "excerpt": "话题: Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes | 分类: 标杆企业动向、商业格局与投融资 | 分数: 60 | 摘要: This article covers the fifth layer of the full-stack architecture: Full-",
+          "url": "https://dev.to/jamesli/part-5-installing-a-black-box-recorder-in-your-rag-system-4-layer-metadata-3-level-2nb",
+          "score": 60,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-20/ai-topic-radar/8",
+          "excerpt": "Hunt<br>热度信号：148 / 7<br>发布时间：2026-06-18<br>关键词：Productivity, Developer Tools, Vibe coding |\n| 68 | 入池 | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) | RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engi"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "HKUDS/LightRAG",
+          "citation_id": "2026-05-30/graph-topic/hkuds/lightrag",
+          "excerpt": "话题: HKUDS/LightRAG | 分类: AI 产品与用户入口 | 分数: 72 | 摘要: [EMNLP2025] \"LightRAG: Simple and Fast Retrieval-Augmented Generation\" | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 证据: 来源：GitHub Search:rag；热度信号：35966；发布时间：2026-05-30；关键",
+          "url": "https://github.com/HKUDS/LightRAG",
+          "score": 72,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "GitHub Search:rag",
+          "title": "safishamsi/graphify",
+          "citation_id": "2026-06-19/topic-pool/19",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：69200\n发布时间：2026-06-18\n关键词：Python, rag",
+          "url": "https://github.com/safishamsi/graphify",
+          "score": 68,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "mindsdb/minds-platform",
+          "citation_id": "2026-05-30/graph-topic/mindsdb/minds-platform",
+          "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+          "url": "https://github.com/mindsdb/minds-platform",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "GitHub Search:rag",
+          "title": "safishamsi/graphify",
+          "citation_id": "2026-06-20/topic-pool/13",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：69598\n发布时间：2026-06-19\n关键词：Python, rag",
+          "url": "https://github.com/safishamsi/graphify",
+          "score": 68,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-26",
+          "source": "GitHub Search:rag",
+          "title": "mindsdb/minds-platform",
+          "citation_id": "2026-05-26/graph-topic/mindsdb/minds-platform",
+          "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+          "url": "https://github.com/mindsdb/minds-platform",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "最近 RAG 领域有什么值得关注的新动向？",
+        "intent": "recent_trend",
+        "retrieval_query": "最近 RAG 领域有什么值得关注的新动向？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 8,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q2",
+      "question": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。",
+      "expected_answerability": "needs-web",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。\n\n好的，根据AI Trend Radar的内部语料和已检索到的外部学术证据，我为你梳理了RAG（检索增强生成）技术的发展演进路线及相关资料。\n\n**证据范围：** 当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。\n\n---\n\n### RAG 技术演进路线梳理\n\nRAG技术的发展可以看作是从“基础检索+生成”的简单组合，向更智能、更结构化、更可信赖的复杂系统演进的过程。主要可以分为以下几个阶段：\n\n#### 1. 奠基与基础架构阶段\n\n这是RAG概念的成型期，核心在于解决大语言模型知识更新慢、易产生幻觉的问题。外部的学术综述提供了宏观框架：\n*   **核心架构：** 根据外部证据，2024年10月发布的综述论文《A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions》明确探讨了RAG的基础架构，即**如何将检索（Retrieval）与生成（Generation）集成**，以处理知识密集型任务。该文献来自arXiv，是一篇高质量的学术论文 （[12] 外部证据，日期：2024-10-17）。\n*   **面临的挑战：** 同一篇综述也指出了该阶段的核心挑战，包括**可扩展性、偏见和部署中的伦理问题** （[11] 外部证据，来源：Semantic Scholar）。\n\n#### 2. 增强与工程化阶段\n\n随着RAG应用进入生产环境，业界开始关注如何提升RAG系统的可靠性、可解释性和可调试性。内部语料捕捉到了这一趋势的具体实践。\n*   **系统可观测性：** 内部语料记录了一篇来自Dev.to的实践文章（日期：2026-06-19），该文章提出了为RAG系统安装“黑匣子记录器（Black Box Recorder）”的概念，通过**4层元数据 + 3级验证**来实现5分钟内定位根因。这反映了RAG系统从“能用”向“好用、可控”演进的具体案例 （[2] 内部语料）。\n*   **工具与平台：** 内部语料显示，市面上出现了多种旨在降低RAG应用开发门槛的工具。例如：\n    *   **infiniflow/ragflow**（GitHub热度信号约8万，日期：2026-05-26）和 **HKUDS/LightRAG**（热度信号约3.6万，日期：2026-05-30）均被标记为“AI产品与用户入口”分类，提示可以从用户入口和使用场景角度进行关注 （[1], [4] 内部语料）。\n    *   **mindsdb/minds-platform**（热度信号约7.4万，日期：2026-05-30）被描述为构建生产级AI系统的开源平台，旨在提供可控、可扩展的应用基础 （[6], [8] 内部语料）。\n\n#### 3. 先进范式：图RAG与知识图谱融合\n\n近年来，将知识图谱（Knowledge Graph）与RAG结合成为一个重要方向，旨在解决传统RAG在捕捉实体间复杂关系上的不足。\n*   **图RAG兴起：** 内部语料在日期2026-05-27、2026-06-19等多个时间点，反复提及一个名为 **safishamsi/graphify** 的项目。该项目被描述为一种“AI编码助手技能”，能将代码、文档、图片等**任何文件夹**转化为**可查询的知识图谱** （[3], [5], [7] 内部语料）。这表明“图化一切并用于查询”已成为一个活跃的探索方向。\n*   **学术认可：** 外部证据《A Comprehensive Survey of Retrieval-Augmented Generation (RAG)》综述中，也提及了“检索增强生成与理解在视觉领域”的进展，虽然这不是严格意义上的图RAG，但体现了RAG向**多模态和结构化知识**融合的演进趋势 （[11] 外部证据）。\n\n#### 4. 当前挑战与未来方向\n\n根据外部学术综述，RAG领域当前和未来的关注点包括：\n*   **可扩展性与效率：** 如何在更大规模的数据集上高效运行RAG系统。\n*   **伦理与偏见：** 检索到的信息可能包含偏见，如何确保生成内容的公平性和无偏见性。\n*   **应用深化：** 探索RAG在法律、医疗、视觉理解、具身智能（Embodied AI）等特定领域的应用。外部证据明确指出了RAG在法律科技中的精密化和可解释性提升这一方向 （[11] 外部证据）。\n\n### 相关资料汇总\n\n#### 外部学术证据（高质量来源）\n1.  **论文：** **《A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions》**\n    *   **日期：** 2024-10-17\n    *   **来源：** arXiv (arXiv:2410.12837) & Semantic Scholar\n    *   **核心价值：** 全面梳理了RAG的基础架构、演进、当前景观和未来方向，是了解整个领域的绝佳起点（[11], [12] 外部证据）。\n\n2.  **论文：** 《Retrieval Augmented Generation and Understanding in Vision: A Survey and New Outlook》（综述中提及）\n    *   **核心价值：** 探讨了RAG在计算机视觉领域的进展，包括视觉理解和视觉生成，以及具身AI中的应用（[11] 外部证据）。\n\n3.  **论文：** 《Enhancing the Precision and Interpretability of Retrieval-Augmented Generation (RAG) in Legal Technology: A Survey》（综述中提及）\n    *   **核心价值：** 分析了RAG在法律领域的具体方法、阶段、技术和应用（[11] 外部证据）。\n\n#### 内部语料（AI Trend Radar观察）\n1.  **实践文章：** **《Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes》**\n    *   **日期：** 2026-06-19\n    *   **来源：** Dev.to\n    *   **核心价值：** 提供了提升RAG系统可观测性和调试效率的具体工程方案（[2] 内部语料）。\n\n2.  **开源项目：**\n    *   **infiniflow/ragflow** (热度高, 2026-05-26)\n    *   **HKUDS/LightRAG** (EMNLP2025论文, 2026-05-30)\n    *   **safishamsi/graphify** (多次提及, 2026-05至2026-06)\n    *   **mindsdb/minds-platform** (热度高, 2026-05-26/30)\n    *   **jeecgboot/JeecgBoot** (AI低代码平台, 2026-05-24)\n    *   *注：这些项目均从GitHub Search:rag等渠道获取，代表了当前热门的实践方向（[1], [3], [4], [5], [6], [7], [8], [9], [10] 内部语料）。*",
+      "citation_count": 12,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-26",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-26/ai-topic-radar/12",
+          "excerpt": "er for LLMs | AI 产品与用户入口 | infiniflow/ragflow 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信号：81246<br>发布时间：2026-05-26<br>关键词：Python, rag |\n| 74 | 入池 | [safishamsi/graphify](ht"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Dev.to",
+          "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+          "excerpt": "话题: Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes | 分类: 标杆企业动向、商业格局与投融资 | 分数: 60 | 摘要: This article covers the fifth layer of the full-stack architecture: Full-",
+          "url": "https://dev.to/jamesli/part-5-installing-a-black-box-recorder-in-your-rag-system-4-layer-metadata-3-level-2nb",
+          "score": 60,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-27",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-27/ai-topic-radar/13",
+          "excerpt": "raphify) | AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + "
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "HKUDS/LightRAG",
+          "citation_id": "2026-05-30/graph-topic/hkuds/lightrag",
+          "excerpt": "话题: HKUDS/LightRAG | 分类: AI 产品与用户入口 | 分数: 72 | 摘要: [EMNLP2025] \"LightRAG: Simple and Fast Retrieval-Augmented Generation\" | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 证据: 来源：GitHub Search:rag；热度信号：35966；发布时间：2026-05-30；关键",
+          "url": "https://github.com/HKUDS/LightRAG",
+          "score": 72,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-25",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-25/ai-topic-radar/10",
+          "excerpt": "2026-05-25<br>关键词：TypeScript, rag |\n| 74 | 入池 | [safishamsi/graphify](https://github.com/safishamsi/graphify) | AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R "
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "mindsdb/minds-platform",
+          "citation_id": "2026-05-30/graph-topic/mindsdb/minds-platform",
+          "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+          "url": "https://github.com/mindsdb/minds-platform",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/19",
+          "excerpt": "ag。 | 来源：GitHub Search:rag<br>热度信号：83145<br>发布时间：2026-06-19<br>关键词：Python, rag |\n| 68 | 入池 | [safishamsi/graphify](https://github.com/safishamsi/graphify) | AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and mo"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-26",
+          "source": "GitHub Search:rag",
+          "title": "mindsdb/minds-platform",
+          "citation_id": "2026-05-26/graph-topic/mindsdb/minds-platform",
+          "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+          "url": "https://github.com/mindsdb/minds-platform",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-28",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-28/ai-topic-radar/12",
+          "excerpt": "dex, Gemini, Hermes, Copilot, OpenCode + More | AI 产品与用户入口 | thedotmack/claude-mem 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信号：79199<br>发布时间：2026-05-28<br>关键词：TypeScript, r"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-24",
+          "source": "GitHub Search:rag",
+          "title": "jeecgboot/JeecgBoot",
+          "citation_id": "2026-05-24/graph-topic/jeecgboot/jeecgboot",
+          "excerpt": "话题: jeecgboot/JeecgBoot | 分类: 模型与技术突破 | 分数: 66 | 摘要: AI 低代码平台，「低代码 + 零代码」双模式驱动：低代码一键生成前后端代码，零代码 5 分钟搭建系统，AI Skills 一句话画流程、设计表单、生成整套系统。内置 AI聊天、知识库、流程编排、MCP插件等，兼容主流大模型。引领「AI 生成 → 在线配置 → 代码生成 → 手工合并->AI修改」开发模式，消除 Java 项目 80% 的重复工作，提效而不失灵活。 | 推",
+          "url": "https://github.com/jeecgboot/JeecgBoot",
+          "score": 66,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "external",
+          "provider": "tavily",
+          "source": "www.semanticscholar.org",
+          "source_type": "web",
+          "title": "[PDF] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions | Semantic Scholar",
+          "url": "https://www.semanticscholar.org/paper/A-Comprehensive-Survey-of-Retrieval-Augmented-and-Gupta-Ranjan/88dc871460a3a03699dc0a8ca248542a5d39f41e",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "# A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions. title={A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions},. The study explores the basic architecture of RAG, focusing on how retrieval and generation are integrated to handle knowledge-intensive tasks, and examines ongoing challenges such as scalability, bias, and ethical concerns in deployment. ### A Survey of Retrieval-Augmented Generation (RAG) for Large Language Models-Ma-Nie/bfd3b74cda3812bfb20f39d98aec3c5ff72363c0). ### Retrieval Augmented Generation and Understanding in Vision: A Survey and New Outlook. Xu ZhengZiqiao Weng Xuming Hu. A comprehensive review of the current state of retrieval-augmented techniques in CV, focusing on two main areas: visual understanding and visual generation, and exploring recent advancements in RAG for embodied AI. ### Enhancing the Precision and Interpretability of Retrieval-Augmented Generation (RAG) in Legal Technology: A Survey. This paper presents an overview of the main RAG methods, stages, techniques, and applications in the legal domain, and briefly discusses the different information retrieval models, processes, and applied methods in current legal RAG solutions.",
+          "score": 0.8539252,
+          "source_quality": "academic",
+          "quality_score": 0.9,
+          "needs_deep_fetch": false,
+          "quality_notes": [
+            "academic or paper source"
+          ]
+        },
+        {
+          "evidence_type": "external",
+          "provider": "tavily",
+          "source": "arxiv.org",
+          "source_type": "web",
+          "title": "[2410.12837] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions",
+          "url": "https://arxiv.org/abs/2410.12837",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "[Skip to main content](https://arxiv.org/abs/2410.12837#content). [![Image 1: Cornell University Logo](https://arxiv.org/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg)](https://www.cornell.edu/). We gratefully acknowledge support from the Simons Foundation, [member institutions](https://info.arxiv.org/about/ourmembers.html), and all contributors.[Donate](https://info.arxiv.org/about/donate.html). [![Image 2: arxiv logo](https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg)](https://arxiv.org/)>[cs](https://arxiv.org/list/cs/recent)> arXiv:2410.12837. [Help](https://info.arxiv.org/help) | [Advanced Search](https://arxiv.org/search/advanced). [![Image 3: arXiv logo](https://arxiv.org/static/browse/0.3.4/images/arxiv-logomark-small-white.svg)](https://arxiv.org/). [![Image 4: Cornell University Logo](https://arxiv.org/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg)](https://www.cornell.edu/). *   [Login](https://arxiv.org/login). *   [Help Pages](https://info.arxiv.org/help). *   [About](https://info.arxiv.org/about). [View PDF](https://arxiv.org/pdf/2410.12837). Cite as:[arXiv:2410.12837](https://arxiv.org/abs/2410.12837) [cs.CL]. (or [arXiv:2410.12837v1](https://arxiv.org/abs/2410.12837v1) [cs.CL] for this version). [https://doi.org/10.48550/arXiv.2410.12837](https://doi.org/10.48550/arXiv.2410.12837). From: Rajesh Ranjan [[view email](https://arxiv.org/show-email/c62ef03e/2410.12837)]. [](https://arxiv.org/abs/2410.12837)Full-text links:. *   [View PDF](https://arxiv.org/pdf/2410.12837). [![Image 5: license i",
+          "score": 0.7959917,
+          "source_quality": "academic",
+          "quality_score": 0.9,
+          "needs_deep_fetch": false,
+          "quality_notes": [
+            "academic or paper source"
+          ]
+        }
+      ],
+      "query_understanding": {
+        "original_question": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。",
+        "intent": "learning_map",
+        "retrieval_query": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。 retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 10,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "needs-web",
+        "needs_web_search": true,
+        "routing_notes": [
+          "A complete learning map needs external papers or primary references."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": null,
+        "answer_policy": {
+          "mode": "internal_and_external_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_plus_external_evidence",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。",
+          "instruction": "当前问题已包含内部语料和外部证据。请清楚区分两类来源；只基于引用证据作结论，仍不确定的关系或效果要明确标注。"
+        },
+        "tool_routing": {
+          "status": "external_executed",
+          "external_tools_required": true,
+          "external_tools_available": true,
+          "max_tool_calls": 4,
+          "provider_route": {
+            "query": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。 retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+            "task_type": "research_paper",
+            "primary_provider": "exa",
+            "provider_chain": [
+              "exa",
+              "tavily",
+              "serpapi"
+            ],
+            "available_provider_chain": [
+              "exa",
+              "tavily"
+            ],
+            "fallback_providers": [
+              "tavily"
+            ],
+            "unavailable_providers": [
+              "serpapi"
+            ],
+            "budget_policy": {
+              "free_quota_first": true,
+              "max_external_providers": 2,
+              "max_external_calls": 4,
+              "serpapi_role": "specialty_provider"
+            },
+            "rationale": "research tasks prefer Exa for AI-native research/paper search, then Tavily, then SerpAPI."
+          },
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched first."
+            },
+            {
+              "tool": "web_search",
+              "state": "executed",
+              "reason": "External search returned 2 citation(s)."
+            },
+            {
+              "tool": "fetch_url",
+              "state": "not_executed",
+              "reason": "Deep fetch not executed: disabled."
+            },
+            {
+              "tool": "compare_internal_and_external",
+              "state": "prompt_level",
+              "reason": "Comparison is delegated to the grounded answer prompt."
+            }
+          ],
+          "fallback": "已获取外部证据；回答仍需区分内部语料与外部证据。"
+        },
+        "external_search": {
+          "attempted": true,
+          "provider": "tavily",
+          "attempts": [
+            {
+              "provider": "exa",
+              "available": false,
+              "errors": [
+                "exa_network_error"
+              ],
+              "citation_count": 0
+            },
+            {
+              "provider": "tavily",
+              "available": true,
+              "errors": [],
+              "citation_count": 2
+            }
+          ],
+          "citations": [
+            {
+              "evidence_type": "external",
+              "provider": "tavily",
+              "source": "www.semanticscholar.org",
+              "source_type": "web",
+              "title": "[PDF] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions | Semantic Scholar",
+              "url": "https://www.semanticscholar.org/paper/A-Comprehensive-Survey-of-Retrieval-Augmented-and-Gupta-Ranjan/88dc871460a3a03699dc0a8ca248542a5d39f41e",
+              "retrieved_at": "2026-06-23",
+              "excerpt": "# A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions. title={A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions},. The study explores the basic architecture of RAG, focusing on how retrieval and generation are integrated to handle knowledge-intensive tasks, and examines ongoing challenges such as scalability, bias, and ethical concerns in deployment. ### A Survey of Retrieval-Augmented Generation (RAG) for Large Language Models-Ma-Nie/bfd3b74cda3812bfb20f39d98aec3c5ff72363c0). ### Retrieval Augmented Generation and Understanding in Vision: A Survey and New Outlook. Xu ZhengZiqiao Weng Xuming Hu. A comprehensive review of the current state of retrieval-augmented techniques in CV, focusing on two main areas: visual understanding and visual generation, and exploring recent advancements in RAG for embodied AI. ### Enhancing the Precision and Interpretability of Retrieval-Augmented Generation (RAG) in Legal Technology: A Survey. This paper presents an overview of the main RAG methods, stages, techniques, and applications in the legal domain, and briefly discusses the different information retrieval models, processes, and applied methods in current legal RAG solutions.",
+              "score": 0.8539252,
+              "source_quality": "academic",
+              "quality_score": 0.9,
+              "needs_deep_fetch": false,
+              "quality_notes": [
+                "academic or paper source"
+              ]
+            },
+            {
+              "evidence_type": "external",
+              "provider": "tavily",
+              "source": "arxiv.org",
+              "source_type": "web",
+              "title": "[2410.12837] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions",
+              "url": "https://arxiv.org/abs/2410.12837",
+              "retrieved_at": "2026-06-23",
+              "excerpt": "[Skip to main content](https://arxiv.org/abs/2410.12837#content). [![Image 1: Cornell University Logo](https://arxiv.org/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg)](https://www.cornell.edu/). We gratefully acknowledge support from the Simons Foundation, [member institutions](https://info.arxiv.org/about/ourmembers.html), and all contributors.[Donate](https://info.arxiv.org/about/donate.html). [![Image 2: arxiv logo](https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg)](https://arxiv.org/)>[cs](https://arxiv.org/list/cs/recent)> arXiv:2410.12837. [Help](https://info.arxiv.org/help) | [Advanced Search](https://arxiv.org/search/advanced). [![Image 3: arXiv logo](https://arxiv.org/static/browse/0.3.4/images/arxiv-logomark-small-white.svg)](https://arxiv.org/). [![Image 4: Cornell University Logo](https://arxiv.org/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg)](https://www.cornell.edu/). *   [Login](https://arxiv.org/login). *   [Help Pages](https://info.arxiv.org/help). *   [About](https://info.arxiv.org/about). [View PDF](https://arxiv.org/pdf/2410.12837). Cite as:[arXiv:2410.12837](https://arxiv.org/abs/2410.12837) [cs.CL]. (or [arXiv:2410.12837v1](https://arxiv.org/abs/2410.12837v1) [cs.CL] for this version). [https://doi.org/10.48550/arXiv.2410.12837](https://doi.org/10.48550/arXiv.2410.12837). From: Rajesh Ranjan [[view email](https://arxiv.org/show-email/c62ef03e/2410.12837)]. [](https://arxiv.org/abs/2410.12837)Full-text links:. *   [View PDF](https://arxiv.org/pdf/2410.12837). [![Image 5: license i",
+              "score": 0.7959917,
+              "source_quality": "academic",
+              "quality_score": 0.9,
+              "needs_deep_fetch": false,
+              "quality_notes": [
+                "academic or paper source"
+              ]
+            }
+          ],
+          "raw_results_count": 2,
+          "errors": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "disabled",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "primary_sources_available",
+          "external_count": 2,
+          "primary_count": 2,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [
+            {
+              "citation_index": 1,
+              "source": "www.semanticscholar.org",
+              "title": "[PDF] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions | Semantic Scholar",
+              "url": "https://www.semanticscholar.org/paper/A-Comprehensive-Survey-of-Retrieval-Augmented-and-Gupta-Ranjan/88dc871460a3a03699dc0a8ca248542a5d39f41e",
+              "source_quality": "academic",
+              "role": "primary_evidence",
+              "needs_deep_fetch": false
+            },
+            {
+              "citation_index": 2,
+              "source": "arxiv.org",
+              "title": "[2410.12837] A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions",
+              "url": "https://arxiv.org/abs/2410.12837",
+              "source_quality": "academic",
+              "role": "primary_evidence",
+              "needs_deep_fetch": false
+            }
+          ],
+          "instruction": "Use primary-quality external sources for strong external claims."
+        }
+      }
+    },
+    {
+      "id": "Q3",
+      "question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据 AI Trend Radar 内部语料，Claude 在近期确实有值得关注的新功能动态。\n\n具体来看，**Claude Code Artifacts** 被收录为高热度话题（分数 80，建议“深挖”）。该功能于 **2026 年 6 月 19 日** 在 Product Hunt 上线，热度信号为 **451 / 14**（来源：2026-06-21 内部语料）。其关键词涉及 **Software Engineering, Developer Tools, Artificial Intelligence**，本质上属于 AI 代码开发和开发工具领域的更新（来源：2026-06-21/topic-pool/0）。\n\n另外，与之相关的 **Agentic Coding** 话题在 **2026 年 6 月 19 日** 的语料中被标记为“值得优先深挖”，分类落在“政策监管、社会影响与 AI 安全”，提示其背后涉及**政策变化、信任风险与安全治理**（来源：2026-06-19/ai-topic-radar/6）。\n\n综合来看，目前搜索到的证据主要集中在 **Claude Code Artifacts** 这一具体新功能上。关于用户提到的“插件”或其他类似更新，当前内部语料尚未收录相关内容。如果需要了解更多细节，建议查阅官方渠道或后续的雷达更新。",
+      "citation_count": 8,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-21/ai-topic-radar/1",
+          "excerpt": "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [Claude Code Artifacts](https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Appl"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Claude Code Artifacts",
+          "citation_id": "2026-06-21/topic-pool/0",
+          "excerpt": "来源：Product Hunt\n热度信号：451 / 14\n发布时间：2026-06-19\n关键词：Software Engineering, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Darkmoon",
+          "citation_id": "2026-06-21/graph-topic/darkmoon",
+          "excerpt": "话题: Darkmoon | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Autonomous penetration testing platform | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：96 / 11；发布时间：2026-06-19；关键词：Open Source, Developer Tools, Artificial Inte",
+          "url": "https://www.producthunt.com/r/IGCLIJUOUCKHWR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Screen Ruler",
+          "citation_id": "2026-06-21/graph-topic/screen ruler",
+          "excerpt": "话题: Screen Ruler | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Edit anything on the web with change tracking | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：97 / 8；发布时间：2026-06-19；关键词：Chrome Extensions, Design Tools, Dev",
+          "url": "https://www.producthunt.com/r/ZUN64WP6WVM4J6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "MeshPilot",
+          "citation_id": "2026-06-21/graph-topic/meshpilot",
+          "excerpt": "话题: MeshPilot | 分类: AI 产品与用户入口 | 分数: 63 | 摘要: Your AI workspace for terminals, tasks, and agents | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：100 / 12；发布时间：2026-06-19；关键词：Productivity, Developer Tools, A",
+          "url": "https://www.producthunt.com/r/SWHLL43IMABPKD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 63,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/6",
+          "excerpt": "age. Introduction Agentic coding has taken off. The share of GitHub projects with coding agent activity  | 政策监管、社会影响与 AI 安全 | Agentic coding and persistent returns to expertise 为什么值得关注？（政策变化、信任风险与安全治理） | 值得优先深挖：适合从政策变化、信任风险和安全治理角度切入，来源：Anth"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "API to MCP",
+          "citation_id": "2026-06-21/graph-topic/api to mcp",
+          "excerpt": "话题: API to MCP | 分类: AI 产品与用户入口 | 分数: 75 | 摘要: Turn any API into an MCP server for AI agents | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：196 / 29；发布时间：2026-06-19；关键词：API, SaaS, Developer Tools",
+          "url": "https://www.producthunt.com/r/IE7RIXXZEK4WSO?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 75,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Retool",
+          "citation_id": "2026-06-20/topic-pool/11",
+          "excerpt": "来源：Product Hunt\n热度信号：148 / 7\n发布时间：2026-06-18\n关键词：Productivity, Developer Tools, Vibe coding",
+          "url": "https://www.producthunt.com/r/UYZGXGCDJD22K6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 69,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+        "intent": "product_update",
+        "retrieval_query": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。 Anthropic Claude Code Artifacts plugins developer tools",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q4",
+      "question": "过去一周 GitHub 热榜上有什么值得关注的选题？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据过去一周（2026年6月17日至6月21日）AI Trend Radar 内部语料的检索结果，GitHub 热榜上有以下几个值得关注的选题：\n\n1. **langchain-ai/langchain**（2026年6月20日检索）：热度信号高达 **139730**，关键词为 Python 和 RAG。该项目是目前 RAG（检索增强生成）领域最热门的框架之一，持续保持极高关注度。\n2. **firecrawl/firecrawl**（2026年6月21日检索）：热度信号 **135885**，关键词为 TypeScript 和 LLM。这是一个面向代理（agent）的 AI/ML 研究索引工具，同样处于高热趋势。\n3. **ZhuLinsen/daily_stock_analysis**：分别于2026年6月19日（热度信号43135）和6月20日（热度信号43217）连续出现在热榜，关键词为 Python 和 AI-agent。该项目聚焦于每日股票分析，在 AI 代理应用方向上具有代表性。\n\n以上三个方向（RAG框架、LLM研究索引、AI代理驱动分析）在过去一周的 GitHub 热榜中热度集中且信号稳定，适合作为深入关注的选题。\n\n*注：以上证据均来源于 AI Trend Radar 内部语料库中的 GitHub Search 检索数据，具体日期和热度信号已在上文列出。*",
+      "citation_count": 8,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "GitHub Search:rag",
+          "title": "langchain-ai/langchain",
+          "citation_id": "2026-06-20/topic-pool/22",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：139730\n发布时间：2026-06-20\n关键词：Python, rag",
+          "url": "https://github.com/langchain-ai/langchain",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Darkmoon",
+          "citation_id": "2026-06-21/graph-topic/darkmoon",
+          "excerpt": "话题: Darkmoon | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Autonomous penetration testing platform | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：96 / 11；发布时间：2026-06-19；关键词：Open Source, Developer Tools, Artificial Inte",
+          "url": "https://www.producthunt.com/r/IGCLIJUOUCKHWR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "GitHub Search:ai-agent",
+          "title": "ZhuLinsen/daily_stock_analysis",
+          "citation_id": "2026-06-19/topic-pool/25",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：43135\n发布时间：2026-06-19\n关键词：Python, ai-agent",
+          "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+          "score": 67,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Firecrawl Research Index",
+          "citation_id": "2026-06-21/graph-topic/firecrawl research index",
+          "excerpt": "话题: Firecrawl Research Index | 分类: AI 产品与用户入口 | 分数: 78 | 摘要: An index for agents pushing the frontier of AI/ML research | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：222 / 14；发布时间：2026-06-19；关键词：Develop",
+          "url": "https://www.producthunt.com/r/WV2Z2GVPLLUUE3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 78,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "GitHub Search:ai-agent",
+          "title": "ZhuLinsen/daily_stock_analysis",
+          "citation_id": "2026-06-20/topic-pool/18",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：43217\n发布时间：2026-06-20\n关键词：Python, ai-agent",
+          "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+          "score": 67,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Tabstack Dev Tools",
+          "citation_id": "2026-06-20/graph-topic/tabstack dev tools",
+          "excerpt": "话题: Tabstack Dev Tools | 分类: AI 产品与用户入口 | 分数: 80 | 摘要: Ditch your scraper. Make one API call with any tool. | 推荐理由: 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：357 / 58；发布时间：2026-06-18；关键词：API, Developer Tools, ",
+          "url": "https://www.producthunt.com/r/BTEFHM3YD7BEYD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "GitHub Search:llm",
+          "title": "firecrawl/firecrawl",
+          "citation_id": "2026-06-21/topic-pool/23",
+          "excerpt": "来源：GitHub Search:llm\n热度信号：135885\n发布时间：2026-06-21\n关键词：TypeScript, llm",
+          "url": "https://github.com/firecrawl/firecrawl",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Product Hunt",
+          "title": "memi",
+          "citation_id": "2026-06-19/graph-topic/memi",
+          "excerpt": "话题: memi | 分类: AI 产品与用户入口 | 分数: 64 | 摘要: The AI agent harness for product design teams | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：111 / 8；发布时间：2026-06-17；关键词：Design Tools, Developer Tools, GitHub, SDK",
+          "url": "https://www.producthunt.com/r/DEFEOZOV5TL4MK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 64,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "过去一周 GitHub 热榜上有什么值得关注的选题？",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "过去一周 GitHub 热榜上有什么值得关注的选题？ GitHub Trending GitHub Search repository open source",
+        "top_k": 8,
+        "topics": [],
+        "entities": [],
+        "sources": [
+          "GitHub"
+        ],
+        "time_window": {
+          "label": "last_7_days",
+          "days": 7,
+          "requires_date_filter": true
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question contains a one-week time constraint; retrieval should prefer recent dated corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "$and": [
+            {
+              "source_family": "GitHub"
+            },
+            {
+              "date": {
+                "$in": [
+                  "2026-06-15",
+                  "2026-06-16",
+                  "2026-06-17",
+                  "2026-06-18",
+                  "2026-06-19",
+                  "2026-06-20",
+                  "2026-06-21"
+                ]
+              }
+            }
+          ]
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q5",
+      "question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+      "expected_answerability": "needs-web",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。\n\n根据现有证据，我可以回答您关于 Google OKF（开放知识格式）的核心思想，但关于其与“ALM Wiki”的关系以及用户偏好效率表现，现有证据存在不足，需明确说明。\n\n### 1. OKF 与“ALM Wiki”的关系？\n\n**证据不足，无法确认具体关系。**\n\n在本次检索到的内部语料和外部证据中，**均未出现“ALM Wiki”这一具体术语**。因此，我无法确认您提到的“ALM Wiki”是否是一个特定项目、内部代号或记忆中的概念。\n\n不过，根据现有信息可以进行合理推测：**OKF 可以被视为是该类思想的标准化和产业化落地**。证据显示，OKF 的核心是将知识表示为 Markdown 文件目录，其形式“如果你使用过 Obsidian、Notion、Hugo 或过去一年出现的任何 LLM wiki 模式，你会觉得这种形式很熟悉” [11]。这暗示 OKF 旨在**将已有的、非正式的“LLM wiki 模式”进行标准化，使其成为智能体可互操作的通用格式**。\n\n### 2. OKF 的核心思想是什么？\n\n根据 **2026年6月23日** 来自 Google Cloud 官方博客的外部证据（来源：[cloud.google.com](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing)），OKF 的核心思想可以概括为：**“格式，而非平台”（Format, not platform）**。\n\n具体体现在：\n- **去中心化与互操作性**：OKF 的核心是一套简单的约定——将知识表示为**带有 YAML 前言的 Markdown 文件目录**。这套约定允许由不同生产者编写的知识库，能够被不同的智能体直接消费，**无需翻译** [11]。\n- **无绑定与开放性**：OKF 不绑定任何特定的云服务、数据库、模型供应商或智能体框架。它**永远不会要求使用专有账户或 SDK** 来读、写或提供服务，任何支持 Markdown 和 YAML 的工具都可以使用它 [11]。\n- **代理无关性**：格式本身不要求特定的智能体框架或大语言模型（LLM）。它只是一种知识表示方法，生产或消费 OKF 的方式可以是多样化的（例如用智能体生成，用可视化工具查看）[11]。\n\n简而言之，OKF 的核心目标是**为 AI 智能体提供一个通用的、开放的知识交换“语言”**，让知识在不同系统和智能体间自由流动。\n\n### 3. 在提升用户偏好效率方面表现如何？\n\n**现有证据未提供任何关于“用户偏好效率”的具体表现数据。**\n\n当前证据（包括 Google 官方博客）仅说明 OKF 是一个**概念验证（Proofs of concept）** 阶段的标准 [11]。官方将其定位为“**格式，而非平台**”，其首要目标是**互操作性**和**开放性**，而非直接针对“用户偏好效率”这一具体指标进行优化或提供基准数据。\n\n**结论**：关于 OKF 如何提升用户偏好效率（例如学习成本降低百分比、任务完成速度提升等），目前缺乏可量化的证据支持，无法做出有效评估。其当前阶段的价值主要体现在知识表示的标准化上。\n\n**补充上下文**：\n值得注意的是，在同一时期内（2026年6月），Google 在智能体生态上有多项动作。内部语料显示，**2026年6月21日**，Google 发布了 **WebMCP 标准提案**，旨在让智能体通过原生接口操作网页 [1]；**2026年6月19日**，也有关于“Google 想为 AI Agent 打造下一个 Kubernetes”的讨论 [3]。这表明 OKF 是 Google 构建更开放、更标准化智能体基础设施的众多举措之一。",
+      "citation_count": 12,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "InfoQ 中国",
+          "title": "Chrome 推出 WebMCP 标准提案（Origin Trial）：为智能体提供原生 Web 操作能力",
+          "citation_id": "2026-06-21/graph-topic/chrome 推出 webmcp 标准提案（origin trial）：为智能体提供原生 web 操作能力",
+          "excerpt": "话题: Chrome 推出 WebMCP 标准提案（Origin Trial）：为智能体提供原生 Web 操作能力 | 分类: 标杆企业动向、商业格局与投融资 | 分数: 62 | 摘要: 谷歌近日宣布，WebMCP 已进入 Chrome 149 的 Origin Trial 阶段。WebMCP 是一项新的标准提案，它允许网站向浏览器内的 AI 智能体暴露可调用工具，例如 JavaScript 函数或 HTML 表单。这样一来，智能体便可以通过明确的接口完成用户操作，而不再需",
+          "url": "https://www.infoq.cn/article/wCUdx4sZt94siodQI7u0",
+          "score": 62,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+          "citation_id": "2026-06-19/topic-pool/53",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+          "citation_id": "2026-06-19/topic-pool/54",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058432-03\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/jNsfjJuAJjDzGYS51jHC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Hugging Face",
+          "title": "unsloth/diffusiongemma-26B-A4B-it-GGUF",
+          "citation_id": "2026-06-19/graph-topic/unsloth/diffusiongemma-26b-a4b-it-gguf",
+          "excerpt": "话题: unsloth/diffusiongemma-26B-A4B-it-GGUF | 分类: 模型与技术突破 | 分数: 59 | 摘要: image-text-to-text model by unsloth | 推荐理由: 适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：308 / 164209；发布时间：2026-06-12；关键词：image-text-to",
+          "url": "https://huggingface.co/unsloth/diffusiongemma-26B-A4B-it-GGUF",
+          "score": 59,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Adapt",
+          "citation_id": "2026-06-20/topic-pool/27",
+          "excerpt": "来源：Product Hunt\n热度信号：129 / 16\n发布时间：2026-06-18\n关键词：Productivity, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/KAFR42VPDW36WZ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-20/ai-topic-radar/9",
+          "excerpt": "ueryable knowledge graph. App code + database schema + infrastructure in one graph. | AI 产品与用户入口 | safishamsi/graphify 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信号：69598<br>"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-21/ai-topic-radar/7",
+          "excerpt": "用场景和产品体验角度切入，来源：Product Hunt。 | 来源：Product Hunt<br>热度信号：155 / 4<br>发布时间：2026-06-19<br>关键词：Artificial Intelligence, Games, Development |\n| 69 | 入池 | [SMPTE Makes Its Standards Freely Accessible](https://www.smpte.org/blog/smpte-makes-its-sta"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "掘金",
+          "title": "GLM5.2超过Opus4.8Think，全球第二了！",
+          "citation_id": "2026-06-21/graph-topic/glm5.2超过opus4.8think，全球第二了！",
+          "excerpt": "话题: GLM5.2超过Opus4.8Think，全球第二了！ | 分类: AI 产品与用户入口 | 分数: 51 | 摘要: 关于 GLM5.2 我已经测过很多，并且写过一篇非常长的文章了。 我的结论是：绝对干不过 Opus4.8！ 所以要是不加前提地说“GLM5 超过 Opus4.8”，就是一个鬼故事！ 但是今天，我不是来 | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：掘金。 | 证据: 来源：掘金；热度信号：21 / 2494；发布时",
+          "url": "https://juejin.cn/post/7651840740916002816",
+          "score": 51,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "掘金",
+          "title": "告别 AI 乱码！Vue3+TS 项目的 AI 编码助手规范实践",
+          "citation_id": "2026-06-20/graph-topic/告别 ai 乱码！vue3+ts 项目的 ai 编码助手规范实践",
+          "excerpt": "话题: 告别 AI 乱码！Vue3+TS 项目的 AI 编码助手规范实践 | 分类: AI 产品与用户入口 | 分数: 51 | 摘要: 大家好，作为前端开发者，我们都在享受 AI 编码助手（如 Cursor、OpenCode）带来的效率提升。但你是否也遇到过：AI 生成的代码风格混乱、命名不统一、TypeScript 类型缺失、甚至引 | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：掘金。 | 证据: 来源：掘金；热度信号：28 / 134",
+          "url": "https://juejin.cn/post/7650089863866286115",
+          "score": 51,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-20/ai-topic-radar/2",
+          "excerpt": "产品与用户入口 | Upstream 为什么值得关注？（用户入口、使用场景与产品体验） | 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 来源：Product Hunt<br>热度信号：662 / 244<br>发布时间：2026-06-18<br>关键词：Email, Productivity, Artificial Intelligence |\n| 80 | 深挖 | [Jesse](https://www.product"
+        },
+        {
+          "evidence_type": "external",
+          "provider": "brave",
+          "source": "cloud.google.com",
+          "source_type": "web",
+          "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+          "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. These are proofs of concept, deliberately. The agent demonstrates one way to produce OKF; nothing about the format requires a specific agent framework or LLM. The visualizer demonstrates one way to consume it; nothing about the format requires HTML or a graph view. 3. Format, not platform. OKF is not tied to any specific cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve. As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. If you've used Obsidian, Notion, Hugo, or any of the LLM wiki patterns that have emerged over the past year, the shape will feel familiar. OKF formalizes the small set of conventions needed to make these patterns interoperable.",
+          "score": null,
+          "source_quality": "official",
+          "quality_score": 0.95,
+          "needs_deep_fetch": false,
+          "quality_notes": [
+            "primary official domain for requested entity"
+          ]
+        },
+        {
+          "evidence_type": "external",
+          "provider": "brave",
+          "source": "www.mariehaynes.com",
+          "source_type": "web",
+          "title": "The Open Knowledge Format (OKF) from Google is a new layer for agents",
+          "url": "https://www.mariehaynes.com/okf/",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "Google just published documentation on what they&#x27;re calling the Open Knowledge Format (OKF). It represents a standardized way for agents to access knowledge via very simple directories of Markdown files. While storing files in Markdown is nothing new, Google is now creating a specific standard that agents can understand without the need for specific software […] Google just published documentation on what they're calling the Open Knowledge Format (OKF). It represents a standardized way for agents to access knowledge via very simple directories of Markdown files. While storing files in Markdown is nothing new, Google is now creating a specific standard that agents can understand without the need for specific software […] While the examples Google gives are mostly for using agents to an",
+          "score": null,
+          "source_quality": "generic",
+          "quality_score": 0.55,
+          "needs_deep_fetch": true,
+          "quality_notes": [
+            "generic web source; verify before strong claims"
+          ]
+        }
+      ],
+      "query_understanding": {
+        "original_question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+        "intent": "technical_comparison",
+        "retrieval_query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+        "top_k": 10,
+        "topics": [
+          "OKF",
+          "ALM Wiki"
+        ],
+        "entities": [
+          "Google"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "needs-web",
+        "needs_web_search": true,
+        "routing_notes": [
+          "This comparison likely needs primary external sources after internal corpus search.",
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_and_external_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_plus_external_evidence",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。",
+          "instruction": "当前问题已包含内部语料和外部证据。请清楚区分两类来源；只基于引用证据作结论，仍不确定的关系或效果要明确标注。"
+        },
+        "tool_routing": {
+          "status": "external_executed",
+          "external_tools_required": true,
+          "external_tools_available": true,
+          "max_tool_calls": 4,
+          "provider_route": {
+            "query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+            "task_type": "official_source_lookup",
+            "primary_provider": "tavily",
+            "provider_chain": [
+              "tavily",
+              "brave",
+              "serpapi"
+            ],
+            "available_provider_chain": [
+              "tavily",
+              "brave"
+            ],
+            "fallback_providers": [
+              "brave"
+            ],
+            "unavailable_providers": [
+              "serpapi"
+            ],
+            "budget_policy": {
+              "free_quota_first": true,
+              "max_external_providers": 2,
+              "max_external_calls": 2,
+              "serpapi_role": "fallback_not_default"
+            },
+            "rationale": "official source lookup prefers Tavily for domain-constrained search, then Brave."
+          },
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched first."
+            },
+            {
+              "tool": "web_search",
+              "state": "executed",
+              "reason": "External search returned 2 citation(s)."
+            },
+            {
+              "tool": "fetch_url",
+              "state": "not_executed",
+              "reason": "Deep fetch not executed: disabled."
+            },
+            {
+              "tool": "compare_internal_and_external",
+              "state": "prompt_level",
+              "reason": "Comparison is delegated to the grounded answer prompt."
+            }
+          ],
+          "fallback": "已获取外部证据；回答仍需区分内部语料与外部证据。"
+        },
+        "external_search": {
+          "attempted": true,
+          "provider": "brave",
+          "attempts": [
+            {
+              "provider": "tavily",
+              "available": true,
+              "errors": [],
+              "citation_count": 0
+            },
+            {
+              "provider": "brave",
+              "available": true,
+              "errors": [],
+              "citation_count": 2
+            }
+          ],
+          "citations": [
+            {
+              "evidence_type": "external",
+              "provider": "brave",
+              "source": "cloud.google.com",
+              "source_type": "web",
+              "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+              "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+              "retrieved_at": "2026-06-23",
+              "excerpt": "As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. These are proofs of concept, deliberately. The agent demonstrates one way to produce OKF; nothing about the format requires a specific agent framework or LLM. The visualizer demonstrates one way to consume it; nothing about the format requires HTML or a graph view. 3. Format, not platform. OKF is not tied to any specific cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve. As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. If you've used Obsidian, Notion, Hugo, or any of the LLM wiki patterns that have emerged over the past year, the shape will feel familiar. OKF formalizes the small set of conventions needed to make these patterns interoperable.",
+              "score": null,
+              "source_quality": "official",
+              "quality_score": 0.95,
+              "needs_deep_fetch": false,
+              "quality_notes": [
+                "primary official domain for requested entity"
+              ]
+            },
+            {
+              "evidence_type": "external",
+              "provider": "brave",
+              "source": "www.mariehaynes.com",
+              "source_type": "web",
+              "title": "The Open Knowledge Format (OKF) from Google is a new layer for agents",
+              "url": "https://www.mariehaynes.com/okf/",
+              "retrieved_at": "2026-06-23",
+              "excerpt": "Google just published documentation on what they&#x27;re calling the Open Knowledge Format (OKF). It represents a standardized way for agents to access knowledge via very simple directories of Markdown files. While storing files in Markdown is nothing new, Google is now creating a specific standard that agents can understand without the need for specific software […] Google just published documentation on what they're calling the Open Knowledge Format (OKF). It represents a standardized way for agents to access knowledge via very simple directories of Markdown files. While storing files in Markdown is nothing new, Google is now creating a specific standard that agents can understand without the need for specific software […] While the examples Google gives are mostly for using agents to an",
+              "score": null,
+              "source_quality": "generic",
+              "quality_score": 0.55,
+              "needs_deep_fetch": true,
+              "quality_notes": [
+                "generic web source; verify before strong claims"
+              ]
+            }
+          ],
+          "raw_results_count": 2,
+          "errors": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "disabled",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "mixed_quality",
+          "external_count": 2,
+          "primary_count": 1,
+          "supporting_count": 0,
+          "weak_count": 1,
+          "source_roles": [
+            {
+              "citation_index": 1,
+              "source": "cloud.google.com",
+              "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+              "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+              "source_quality": "official",
+              "role": "primary_evidence",
+              "needs_deep_fetch": false
+            },
+            {
+              "citation_index": 2,
+              "source": "www.mariehaynes.com",
+              "title": "The Open Knowledge Format (OKF) from Google is a new layer for agents",
+              "url": "https://www.mariehaynes.com/okf/",
+              "source_quality": "generic",
+              "role": "weak_context",
+              "needs_deep_fetch": true
+            }
+          ],
+          "instruction": "Use official, academic, or developer sources as primary evidence. Treat generic or social sources as context only unless confirmed by primary sources."
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "with_citations": 5,
+    "with_graph_citations": 5,
+    "with_external_citations": 2,
+    "needs_web_questions": 2
+  }
+}

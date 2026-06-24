@@ -1,0 +1,373 @@
+{
+  "generated_at": "2026-06-22T17:12:34.307471+00:00",
+  "question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+  "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。\n\n根据 AI Trend Radar 当前检索到的证据，**无法确定 Google OKF（Open Knowledge Format）与所谓的“ALM Wiki 知识框架”之间的关系**。在所有内部语料和已获取的外部证据中，**均未出现“ALM Wiki”这一概念或相关记录**。因此，无法对二者进行对比分析。\n\n### OKF 的核心思想\n\nOKF 由 Google Cloud 在 **2026 年 6 月 12 日** 正式宣布（来源：外部证据 flowtivity.ai / Google Cloud Blog）。其核心思想是**创建一个开放、与供应商无关的知识存储规范**，让 AI 智能体（Agent）能够像人类一样轻松地读写和共享知识，消除组织知识的碎片化。\n\n具体来说，OKF 将知识定义为一个**包含 YAML 前置元数据（YAML frontmatter）的 Markdown 文件目录**。每个“概念”就是一个独立的 Markdown 文件，通过普通的 Markdown 链接相互连接，形成一个“活着的” Wiki。这个格式是**故意极简的**：只需要一个必填的 `type` 字段，其余元数据（如 title、description、tags 等）和正文均为可选。它不绑定任何特定云、数据库、模型提供商或智能体框架，不需要专有账户或 SDK 即可读取、写入或提供服务（来源：Google Cloud Blog 外部证据）。\n\nOKF 被描述为 **AI 知识的“USB-C 线缆”**（来源：外部证据 flowtivity.ai），其意图是让不同生产者编写的 Wiki 可以被不同的消费者（包括不同 AI 智能体）直接使用，而无需任何翻译或转换。\n\n### 在提升“用户偏好效率”方面的表现\n\n当前证据中**没有提供具体的定量或定性数据**来衡量 OKF 在提升“用户偏好效率”方面的表现。不过，从其设计意图可以推断：\n\n- **对于工程师和数据团队**：OKF 可能**显著提升效率**，因为他们已经习惯于使用 Git 和 Markdown。外部证据 flowtivity.ai 指出，OKF “可以在数月内取代内部 Wiki”，因为它将零散的、不同平台上的信息（如元数据目录、Wiki、代码注释、共享驱动器等）统一为一个标准格式，**降低了 AI 智能体（或其背后的人类用户）在检索和整合知识时的“上下文组装”成本**。\n- **对于更广泛的用户**：外部证据 flowtivity.ai 提到，OKF 对更广泛的组织而言，会“成为 AI 智能体使用的后端格式——而人类则继续通过他们喜欢的任何前端进行交互”。这意味着**用户偏好的效率提升可能更多体现在间接层面**：后端知识的统一会使得前端的 AI 工具（如问答机器人、代码助手）能提供更准确、更一致的答案，从而改善终端用户的体验。\n\n**总结**：\n- **与 ALM Wiki 的关系**：证据中无相关信息，无法确认。\n- **核心思想**：OKF 是一种开放的、基于 Markdown + YAML 的、与供应商无关的组织知识格式，旨在成为 AI 智能体间知识交换的通用标准（来源：2026年6月12日 Google Cloud 官方宣布，外部证据）。\n- **效率表现**：证据中无用户偏好效率的量化数据。其效率提升潜力在于**减少知识碎片化**和**降低智能体上下文组装的摩擦力**，特别是对技术团队而言可能更为直接。对于一般用户，其影响需要通过更强大的 AI 工具间接体现。**这些结论是基于设计意图的推断，具体效率提升效果仍有待实证数据验证。**",
+  "citation_count": 12,
+  "internal_citation_count": 10,
+  "external_citation_count": 2,
+  "deep_fetch": {
+    "attempted": true,
+    "reason": "completed",
+    "selected_count": 2,
+    "success_count": 1,
+    "failure_count": 1,
+    "max_urls": 2,
+    "targets": [
+      {
+        "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+        "source_quality": "official",
+        "needs_deep_fetch": false
+      },
+      {
+        "url": "https://flowtivity.ai/blog/google-open-knowledge-format/",
+        "source_quality": "generic",
+        "needs_deep_fetch": true
+      }
+    ]
+  },
+  "query_understanding": {
+    "original_question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+    "intent": "technical_comparison",
+    "retrieval_query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+    "top_k": 10,
+    "topics": [
+      "OKF",
+      "ALM Wiki"
+    ],
+    "entities": [
+      "Google"
+    ],
+    "sources": [],
+    "time_window": {
+      "label": "recent_corpus_first",
+      "days": 14,
+      "requires_date_filter": false
+    },
+    "answerability_hint": "needs-web",
+    "needs_web_search": true,
+    "routing_notes": [
+      "This comparison likely needs primary external sources after internal corpus search.",
+      "Question asks for recent information; retrieval should prefer the freshest local corpus."
+    ],
+    "latest_corpus_date": "2026-06-21",
+    "metadata_filter": {
+      "date": {
+        "$in": [
+          "2026-06-08",
+          "2026-06-09",
+          "2026-06-10",
+          "2026-06-11",
+          "2026-06-12",
+          "2026-06-13",
+          "2026-06-14",
+          "2026-06-15",
+          "2026-06-16",
+          "2026-06-17",
+          "2026-06-18",
+          "2026-06-19",
+          "2026-06-20",
+          "2026-06-21"
+        ]
+      }
+    },
+    "answer_policy": {
+      "mode": "internal_and_external_grounded",
+      "should_call_llm": true,
+      "external_search_required": false,
+      "evidence_boundary": "internal_corpus_plus_external_evidence",
+      "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和已检索到的外部证据。",
+      "instruction": "当前问题已包含内部语料和外部证据。请清楚区分两类来源；只基于引用证据作结论，仍不确定的关系或效果要明确标注。"
+    },
+    "tool_routing": {
+      "status": "external_executed",
+      "external_tools_required": true,
+      "external_tools_available": true,
+      "max_tool_calls": 4,
+      "provider_route": {
+        "query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+        "task_type": "official_source_lookup",
+        "primary_provider": "tavily",
+        "provider_chain": [
+          "tavily",
+          "brave",
+          "serpapi"
+        ],
+        "available_provider_chain": [
+          "tavily",
+          "brave"
+        ],
+        "fallback_providers": [
+          "brave"
+        ],
+        "unavailable_providers": [
+          "serpapi"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "rationale": "official source lookup prefers Tavily for domain-constrained search, then Brave."
+      },
+      "steps": [
+        {
+          "tool": "search_corpus",
+          "state": "executed",
+          "reason": "Internal AI Trend Radar corpus searched first."
+        },
+        {
+          "tool": "web_search",
+          "state": "executed",
+          "reason": "External search returned 2 citation(s)."
+        },
+        {
+          "tool": "fetch_url",
+          "state": "executed",
+          "reason": "Deep fetch selected 2 URL(s); 1 succeeded, 1 failed."
+        },
+        {
+          "tool": "compare_internal_and_external",
+          "state": "prompt_level",
+          "reason": "Comparison is delegated to the grounded answer prompt."
+        }
+      ],
+      "fallback": "已获取外部证据；回答仍需区分内部语料与外部证据。"
+    },
+    "external_search": {
+      "attempted": true,
+      "provider": "brave",
+      "attempts": [
+        {
+          "provider": "tavily",
+          "available": true,
+          "errors": [],
+          "citation_count": 0
+        },
+        {
+          "provider": "brave",
+          "available": true,
+          "errors": [],
+          "citation_count": 2
+        }
+      ],
+      "citations": [
+        {
+          "evidence_type": "external",
+          "provider": "brave",
+          "source": "cloud.google.com",
+          "source_type": "web",
+          "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+          "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. These are proofs of concept, deliberately. The agent demonstrates one way to produce OKF; nothing about the format requires a specific agent framework or LLM. The visualizer demonstrates one way to consume it; nothing about the format requires HTML or a graph view. 3. Format, not platform. OKF is not tied to any specific cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve. As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. If you've used Obsidian, Notion, Hugo, or any of the LLM wiki patterns that have emerged over the past year, the shape will feel familiar. OKF formalizes the small set of conventions needed to make these patterns interoperable.",
+          "score": null,
+          "source_quality": "official",
+          "quality_score": 0.95,
+          "needs_deep_fetch": false,
+          "quality_notes": [
+            "primary official domain for requested entity"
+          ]
+        },
+        {
+          "evidence_type": "external",
+          "provider": "brave",
+          "source": "flowtivity.ai",
+          "source_type": "web",
+          "title": "Google's Open Knowledge Format: The Markdown Standard That Could Replace Your Wiki | Flowtivity",
+          "url": "https://flowtivity.ai/blog/google-open-knowledge-format/",
+          "retrieved_at": "2026-06-23",
+          "excerpt": "For engineering and data teams already living in git and markdown, OKF could replace internal wikis within months. For broader organizations, it becomes the backend format that AI agents use — while humans continue interacting through whatever frontend they prefer. For engineering and data teams already living in git and markdown, OKF could replace internal wikis within months. For broader organizations, it becomes the backend format that AI agents use — while humans continue interacting through whatever frontend they prefer. OKF is not tied to any cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve. The Open Knowledge Format (OKF) is an open, vendor-neutral specification for storing organizational knowledge as a ",
+          "score": null,
+          "source_quality": "generic",
+          "quality_score": 0.55,
+          "needs_deep_fetch": true,
+          "quality_notes": [
+            "generic web source; verify before strong claims"
+          ]
+        }
+      ],
+      "raw_results_count": 2,
+      "errors": []
+    },
+    "deep_fetch": {
+      "attempted": true,
+      "reason": "completed",
+      "selected_count": 2,
+      "success_count": 1,
+      "failure_count": 1,
+      "max_urls": 2,
+      "targets": [
+        {
+          "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+          "source_quality": "official",
+          "needs_deep_fetch": false
+        },
+        {
+          "url": "https://flowtivity.ai/blog/google-open-knowledge-format/",
+          "source_quality": "generic",
+          "needs_deep_fetch": true
+        }
+      ]
+    }
+  },
+  "citations": [
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "InfoQ 中国",
+      "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+      "citation_id": "2026-06-19/topic-pool/53",
+      "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+      "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "InfoQ 中国",
+      "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+      "citation_id": "2026-06-20/topic-pool/48",
+      "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+      "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-21",
+      "source": "InfoQ 中国",
+      "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+      "citation_id": "2026-06-21/topic-pool/47",
+      "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+      "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "Product Hunt",
+      "title": "Adapt",
+      "citation_id": "2026-06-20/topic-pool/27",
+      "excerpt": "来源：Product Hunt\n热度信号：129 / 16\n发布时间：2026-06-18\n关键词：Productivity, SaaS, Artificial Intelligence",
+      "url": "https://www.producthunt.com/r/KAFR42VPDW36WZ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+      "score": 66,
+      "category": "AI 产品与用户入口"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-20/ai-topic-radar/9",
+      "excerpt": "ueryable knowledge graph. App code + database schema + infrastructure in one graph. | AI 产品与用户入口 | safishamsi/graphify 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信号：69598<br>"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-21",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-21/ai-topic-radar/7",
+      "excerpt": "用场景和产品体验角度切入，来源：Product Hunt。 | 来源：Product Hunt<br>热度信号：155 / 4<br>发布时间：2026-06-19<br>关键词：Artificial Intelligence, Games, Development |\n| 69 | 入池 | [SMPTE Makes Its Standards Freely Accessible](https://www.smpte.org/blog/smpte-makes-its-sta"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-19",
+      "source": "InfoQ 中国",
+      "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+      "citation_id": "2026-06-19/topic-pool/54",
+      "excerpt": "来源：InfoQ 中国\n发布时间：+058432-03\n关键词：infoq-cn, 生成式 AI",
+      "url": "https://www.infoq.cn/article/jNsfjJuAJjDzGYS51jHC",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "InfoQ 中国",
+      "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+      "citation_id": "2026-06-20/topic-pool/49",
+      "excerpt": "来源：InfoQ 中国\n发布时间：+058432-03\n关键词：infoq-cn, 生成式 AI",
+      "url": "https://www.infoq.cn/article/jNsfjJuAJjDzGYS51jHC",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-21",
+      "source": "InfoQ 中国",
+      "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+      "citation_id": "2026-06-21/topic-pool/48",
+      "excerpt": "来源：InfoQ 中国\n发布时间：+058432-03\n关键词：infoq-cn, 生成式 AI",
+      "url": "https://www.infoq.cn/article/jNsfjJuAJjDzGYS51jHC",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资"
+    },
+    {
+      "evidence_type": "internal",
+      "date": "2026-06-20",
+      "source": "ai-topic-radar",
+      "title": "ai-topic-radar",
+      "citation_id": "2026-06-20/ai-topic-radar/2",
+      "excerpt": "产品与用户入口 | Upstream 为什么值得关注？（用户入口、使用场景与产品体验） | 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 来源：Product Hunt<br>热度信号：662 / 244<br>发布时间：2026-06-18<br>关键词：Email, Productivity, Artificial Intelligence |\n| 80 | 深挖 | [Jesse](https://www.product"
+    },
+    {
+      "evidence_type": "external",
+      "provider": "brave",
+      "source": "cloud.google.com",
+      "source_type": "web",
+      "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+      "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+      "retrieved_at": "2026-06-23",
+      "excerpt": "As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. These are proofs of concept, deliberately. The agent demonstrates one way to produce OKF; nothing about the format requires a specific agent framework or LLM. The visualizer demonstrates one way to consume it; nothing about the format requires HTML or a graph view. 3. Format, not platform. OKF is not tied to any specific cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve. As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. If you've used Obsidian, Notion, Hugo, or any of the LLM wiki patterns that have emerged over the past year, the shape will feel familiar. OKF formalizes the small set of conventions needed to make these patterns interoperable.",
+      "score": null,
+      "source_quality": "official",
+      "quality_score": 0.95,
+      "needs_deep_fetch": false,
+      "quality_notes": [
+        "primary official domain for requested entity"
+      ],
+      "deep_fetch": {
+        "ok": false,
+        "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+        "final_url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+        "fetched_at": "2026-06-22T17:12:11.323559+00:00",
+        "status_code": null,
+        "content_type": "",
+        "title": "",
+        "text_excerpt": "",
+        "error": "network_error"
+      }
+    },
+    {
+      "evidence_type": "external",
+      "provider": "brave",
+      "source": "flowtivity.ai",
+      "source_type": "web",
+      "title": "Google's Open Knowledge Format: The Markdown Standard That Could Replace Your Wiki | Flowtivity",
+      "url": "https://flowtivity.ai/blog/google-open-knowledge-format/",
+      "retrieved_at": "2026-06-23",
+      "excerpt": "For engineering and data teams already living in git and markdown, OKF could replace internal wikis within months. For broader organizations, it becomes the backend format that AI agents use — while humans continue interacting through whatever frontend they prefer. For engineering and data teams already living in git and markdown, OKF could replace internal wikis within months. For broader organizations, it becomes the backend format that AI agents use — while humans continue interacting through whatever frontend they prefer. OKF is not tied to any cloud, database, model provider, or agent framework. It will never require a proprietary account or SDK to read, write, or serve. The Open Knowledge Format (OKF) is an open, vendor-neutral specification for storing organizational knowledge as a ",
+      "score": null,
+      "source_quality": "generic",
+      "quality_score": 0.55,
+      "needs_deep_fetch": true,
+      "quality_notes": [
+        "generic web source; verify before strong claims"
+      ],
+      "deep_fetch": {
+        "ok": true,
+        "url": "https://flowtivity.ai/blog/google-open-knowledge-format/",
+        "final_url": "https://flowtivity.ai/blog/google-open-knowledge-format/",
+        "fetched_at": "2026-06-22T17:12:14.640214+00:00",
+        "status_code": 200,
+        "content_type": "text/html; charset=utf-8",
+        "title": "Google's Open Knowledge Format: The Markdown Standard That Could Replace Your Wiki | Flowtivity",
+        "text_excerpt": "Flowtivity Home Services Private AI Insights Blog Case Studies FAQ About Contact Us Back to Blog Original Google's Open Knowledge Format: The Markdown Standard That Could Replace Your Wiki Google just formalized the digital brain pattern — plain markdown files that AI agents can read, write, and share. Here's what OKF means for your business and why it could replace Notion or Obsidian for technical teams. 13 June 2026 14 min read Google's Open Knowledge Format: The Markdown Standard That Could Replace Your Wiki Last Updated: June 13, 2026 Google just formalized the \"digital brain\" pattern — plain markdown files that AI agents can read, write, and share. Here's what it means for your business and why it matters more than you think. What Is the Open Knowledge Format (OKF)? The Open Knowledge Format (OKF) is an open, vendor-neutral specification for storing organizational knowledge as a directory of markdown files with YAML frontmatter. Announced by Google Cloud on June 12, 2026, OKF gives AI agents a standardized way to read, write, and exchange knowledge without proprietary platforms, SDKs, or lock-in. Each \"concept\" is a single markdown file. Files interlink with normal markdown links, creating a living wiki that both humans and AI agents can navigate. The format is deliberately minimal: one required field ( type ), optional metadata (title, description, resource, tags, timestamp), and a free-form markdown body. That's it. No database, no runtime, no API keys required to read it. The key insight: OKF formalizes what teams were already doing ad hoc — using markdown + frontmatter as agent-readable knowledge bases — into something interoperable. Wikis written by different producers can now be consumed by different agents without translation. Read the official spec on GitHub → Why OKF Matters Now Organizational knowledge is catastrophically fragmented. The information that AI agents need lives in metadata catalogs with their own APIs, wikis behind login walls, code comments buried in repos, notebook cells, shared drives, and — worst of all — inside the heads of a few senior people. When an AI agent needs to answer \"How do we compute weekly active users from our event stream?\", it has to assemble the answer from these scattered, mutually incompatible surfaces. Every agent builder solves the same context-assembly problem from scratch. Every catalog vendor reinvents the same data models. And the knowledge itself is locked behind whichever platform created it. OKF breaks this pattern by being the lingua franca — a shared format that anyone can produce and anyone can consume. It's the USB-C cable of AI knowledge. How OKF Works: The 60-Second Tour An OKF bundle is a directory of markdown files. Each file represents one \"concept\" — a table, an API endpoint, a metric, a playbook, anything you want to capture. File Structure my_knowledge/ ├── index.md # Directory listing (optional) ├── log.md # Update history (optional) ├── datasets/ │ ├── index.md │ └── sale",
+        "error": ""
+      }
+    }
+  ]
+}

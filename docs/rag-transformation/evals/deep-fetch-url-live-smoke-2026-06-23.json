@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-06-22T17:05:19.833884+00:00",
+  "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+  "trace": {
+    "attempted": true,
+    "reason": "completed",
+    "selected_count": 1,
+    "success_count": 1,
+    "failure_count": 0,
+    "max_urls": 1,
+    "targets": [
+      {
+        "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+        "source_quality": "official",
+        "needs_deep_fetch": false
+      }
+    ]
+  },
+  "citation": {
+    "evidence_type": "external",
+    "provider": "manual_live_smoke",
+    "source": "cloud.google.com",
+    "source_type": "web",
+    "title": "How the Open Knowledge Format can improve data sharing",
+    "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+    "retrieved_at": "2026-06-23",
+    "excerpt": "Known official URL used to validate live URL deep-fetch behavior.",
+    "source_quality": "official",
+    "quality_score": 1.0,
+    "needs_deep_fetch": false,
+    "quality_notes": [],
+    "deep_fetch": {
+      "ok": true,
+      "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+      "final_url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
+      "fetched_at": "2026-06-22T17:05:19.833403+00:00",
+      "status_code": 200,
+      "content_type": "text/html; charset=utf-8",
+      "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+      "text_excerpt": "Jump to Content Cloud Blog Contact sales Get started for free Cloud Blog Solutions & technology AI & Machine Learning API Management Application Development Application Modernization Chrome Enterprise Compute Containers & Kubernetes Data Analytics Databases DevOps & SRE Maps & Geospatial Security Security & Identity Threat Intelligence Infrastructure Infrastructure Modernization Networking Productivity & Collaboration SAP on Google Cloud Storage & Data Transfer Sustainability Ecosystem IT Leaders Industries Financial Services Healthcare & Life Sciences Manufacturing Media & Entertainment Public Sector Retail Supply Chain Telecommunications Partners Startups & SMB Training & Certifications Inside Google Cloud Google Cloud Next & Events Google Cloud Consulting Google Maps Platform Google Workspace Developers & Practitioners Transform with Google Cloud Contact sales Get started for free Data Analytics Introducing the Open Knowledge Format June 13, 2026 Sam McVeety Tech Lead, Data Analytics, Engineering, Data Cloud, Google Cloud Amir Hormati Tech Lead, BigQuery, Engineering, Data Cloud, Google Cloud Try Gemini Enterprise Business Edition today The front door to AI in the workplace Try now As foundation models continue to improve, the lack of relevant context often limits what they can do, especially as they are used to build agentic systems. While these models can help you write code, summarize documents, or analyze a dataset, they still need the right information to produce accurate and actionable results. That’s why today, we’re introducing the Open Knowledge Format (OKF), an open specification that formalizes the LLM-wiki pattern into a portable, interoperable format. This is a vendor-neutral, agent- and human-friendly standard for representing the metadata, context, and curated knowledge that modern AI systems need. As published, OKF v0.1 represents knowledge as a directory of markdown files with YAML frontmatter, with a small set of agreed-upon conventions that let wikis written by different producers be consumed by different agents without translation. That's it. No complex compression scheme, no new runtime, no required SDK. A bundle of OKF documents is: Just markdown — readable in any editor, renderable on GitHub, indexable by any search tool Just files — shippable as a tarball, hostable in any git repo, mountable on any filesystem Just YAML frontmatter — for the small set of structured fields that need to be queryable: type , title , description , resource , tags , and timestamp If you've used Obsidian, Notion, Hugo, or any of the LLM wiki patterns that have emerged over the past year, the shape will feel familiar. OKF formalizes the small set of conventions needed to make these patterns interoperable. Let’s take a look at the problem that OKF can solve for your organization, how it works, how to get started with it, and what’s next. A fragmented context landscape In most organizations, the information that foundation models use is overwhelm",
+      "error": ""
+    }
+  },
+  "summary": {
+    "attempted": true,
+    "selected_count": 1,
+    "success_count": 1,
+    "failure_count": 0,
+    "fetch_ok": true,
+    "status_code": 200,
+    "content_type": "text/html; charset=utf-8",
+    "title": "How the Open Knowledge Format can improve data sharing | Google Cloud Blog",
+    "text_excerpt_length": 3000,
+    "error": ""
+  }
+}

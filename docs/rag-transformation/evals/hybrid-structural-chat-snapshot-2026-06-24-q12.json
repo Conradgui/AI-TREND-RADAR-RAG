@@ -1,0 +1,1986 @@
+{
+  "generated_at": "2026-06-24T08:02:47.816809+00:00",
+  "mode": "hybrid_structural_local_only",
+  "total": 12,
+  "rows": [
+    {
+      "id": "Q1",
+      "question": "最近 RAG 领域有什么值得关注的新动向？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 5,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/19",
+          "excerpt": "ag。 | 来源：GitHub Search:rag<br>热度信号：83145<br>发布时间：2026-06-19<br>关键词：Python, rag |\n| 68 | 入池 | [safishamsi/graphify](https://github.com/safishamsi/graphify) | AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and mo"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Dev.to",
+          "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+          "excerpt": "话题: Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes | 分类: 标杆企业动向、商业格局与投融资 | 分数: 60 | 摘要: This article covers the fifth layer of the full-stack architecture: Full-",
+          "url": "https://dev.to/jamesli/part-5-installing-a-black-box-recorder-in-your-rag-system-4-layer-metadata-3-level-2nb",
+          "score": 60,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "HKUDS/LightRAG",
+          "citation_id": "2026-05-30/graph-topic/hkuds/lightrag",
+          "excerpt": "话题: HKUDS/LightRAG | 分类: AI 产品与用户入口 | 分数: 72 | 摘要: [EMNLP2025] \"LightRAG: Simple and Fast Retrieval-Augmented Generation\" | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 证据: 来源：GitHub Search:rag；热度信号：35966；发布时间：2026-05-30；关键",
+          "url": "https://github.com/HKUDS/LightRAG",
+          "score": 72,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "GitHub Search:rag",
+          "title": "safishamsi/graphify",
+          "citation_id": "2026-06-19/topic-pool/19",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：69200\n发布时间：2026-06-18\n关键词：Python, rag",
+          "url": "https://github.com/safishamsi/graphify",
+          "score": 68,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "mindsdb/minds-platform",
+          "citation_id": "2026-05-30/graph-topic/mindsdb/minds-platform",
+          "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+          "url": "https://github.com/mindsdb/minds-platform",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "最近 RAG 领域有什么值得关注的新动向？",
+        "intent": "recent_trend",
+        "retrieval_query": "最近 RAG 领域有什么值得关注的新动向？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 8,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q2",
+      "question": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。",
+      "expected_answerability": "needs-web",
+      "answer": "证据范围：当前回答只基于 AI Trend Radar 内部语料；该问题仍需要外部证据确认。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 5,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-26",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-26/ai-topic-radar/12",
+          "excerpt": "er for LLMs | AI 产品与用户入口 | infiniflow/ragflow 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信号：81246<br>发布时间：2026-05-26<br>关键词：Python, rag |\n| 74 | 入池 | [safishamsi/graphify](ht"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Dev.to",
+          "title": "Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes",
+          "citation_id": "2026-06-19/graph-topic/part 5 — installing a black box recorder in your rag system: 4-layer metadata + 3-level verification, root cause in 5 minutes",
+          "excerpt": "话题: Part 5 — Installing a Black Box Recorder in Your RAG System: 4-Layer Metadata + 3-Level Verification, Root Cause in 5 Minutes | 分类: 标杆企业动向、商业格局与投融资 | 分数: 60 | 摘要: This article covers the fifth layer of the full-stack architecture: Full-",
+          "url": "https://dev.to/jamesli/part-5-installing-a-black-box-recorder-in-your-rag-system-4-layer-metadata-3-level-2nb",
+          "score": 60,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "HKUDS/LightRAG",
+          "citation_id": "2026-05-30/graph-topic/hkuds/lightrag",
+          "excerpt": "话题: HKUDS/LightRAG | 分类: AI 产品与用户入口 | 分数: 72 | 摘要: [EMNLP2025] \"LightRAG: Simple and Fast Retrieval-Augmented Generation\" | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 证据: 来源：GitHub Search:rag；热度信号：35966；发布时间：2026-05-30；关键",
+          "url": "https://github.com/HKUDS/LightRAG",
+          "score": 72,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:rag",
+          "title": "mindsdb/minds-platform",
+          "citation_id": "2026-05-30/graph-topic/mindsdb/minds-platform",
+          "excerpt": "话题: mindsdb/minds-platform | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: Platform dedicated to building an open foundation for applied Artificial Intelligence, designed for people seeking production-ready AI systems they can truly control, extend and dep",
+          "url": "https://github.com/mindsdb/minds-platform",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-24",
+          "source": "GitHub Search:rag",
+          "title": "jeecgboot/JeecgBoot",
+          "citation_id": "2026-05-24/graph-topic/jeecgboot/jeecgboot",
+          "excerpt": "话题: jeecgboot/JeecgBoot | 分类: 模型与技术突破 | 分数: 66 | 摘要: AI 低代码平台，「低代码 + 零代码」双模式驱动：低代码一键生成前后端代码，零代码 5 分钟搭建系统，AI Skills 一句话画流程、设计表单、生成整套系统。内置 AI聊天、知识库、流程编排、MCP插件等，兼容主流大模型。引领「AI 生成 → 在线配置 → 代码生成 → 手工合并->AI修改」开发模式，消除 Java 项目 80% 的重复工作，提效而不失灵活。 | 推",
+          "url": "https://github.com/jeecgboot/JeecgBoot",
+          "score": 66,
+          "category": "模型与技术突破"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。",
+        "intent": "learning_map",
+        "retrieval_query": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。 retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 10,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "needs-web",
+        "needs_web_search": true,
+        "routing_notes": [
+          "A complete learning map needs external papers or primary references."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": null,
+        "answer_policy": {
+          "mode": "needs_external_evidence",
+          "should_call_llm": true,
+          "external_search_required": true,
+          "evidence_boundary": "internal_corpus_plus_external_needed",
+          "disclosure": "证据范围：当前回答只基于 AI Trend Radar 内部语料；该问题仍需要外部证据确认。",
+          "instruction": "当前问题仍需要外部证据。只总结内部语料能支持的内容；不要声称已经完成外部检索；不要编造论文、官方来源、性能数据或实体关系。"
+        },
+        "tool_routing": {
+          "status": "external_required_not_available",
+          "external_tools_required": true,
+          "external_tools_available": false,
+          "max_tool_calls": 4,
+          "provider_route": {
+            "query": "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。 retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+            "task_type": "research_paper",
+            "primary_provider": null,
+            "provider_chain": [
+              "exa",
+              "tavily",
+              "serpapi"
+            ],
+            "available_provider_chain": [],
+            "fallback_providers": [],
+            "unavailable_providers": [
+              "exa",
+              "tavily",
+              "serpapi"
+            ],
+            "budget_policy": {
+              "free_quota_first": true,
+              "max_external_providers": 2,
+              "max_external_calls": 4,
+              "serpapi_role": "specialty_provider"
+            },
+            "rationale": "research tasks prefer Exa for AI-native research/paper search, then Tavily, then SerpAPI."
+          },
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched first."
+            },
+            {
+              "tool": "web_search",
+              "state": "planned_unavailable",
+              "reason": "External discovery is required but not implemented in this module."
+            },
+            {
+              "tool": "fetch_url",
+              "state": "planned_unavailable",
+              "reason": "Specific external source fetching is required after web_search."
+            },
+            {
+              "tool": "compare_internal_and_external",
+              "state": "planned_unavailable",
+              "reason": "External findings must be compared with internal corpus before final claims."
+            }
+          ],
+          "fallback": "只回答内部语料可支持的部分，并明确提示仍需要外部证据确认。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q3",
+      "question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 7,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-21/ai-topic-radar/1",
+          "excerpt": "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [Claude Code Artifacts](https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Appl"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Claude Code Artifacts",
+          "citation_id": "2026-06-21/topic-pool/0",
+          "excerpt": "来源：Product Hunt\n热度信号：451 / 14\n发布时间：2026-06-19\n关键词：Software Engineering, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Darkmoon",
+          "citation_id": "2026-06-21/graph-topic/darkmoon",
+          "excerpt": "话题: Darkmoon | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Autonomous penetration testing platform | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：96 / 11；发布时间：2026-06-19；关键词：Open Source, Developer Tools, Artificial Inte",
+          "url": "https://www.producthunt.com/r/IGCLIJUOUCKHWR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Screen Ruler",
+          "citation_id": "2026-06-21/graph-topic/screen ruler",
+          "excerpt": "话题: Screen Ruler | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Edit anything on the web with change tracking | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：97 / 8；发布时间：2026-06-19；关键词：Chrome Extensions, Design Tools, Dev",
+          "url": "https://www.producthunt.com/r/ZUN64WP6WVM4J6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "MeshPilot",
+          "citation_id": "2026-06-21/graph-topic/meshpilot",
+          "excerpt": "话题: MeshPilot | 分类: AI 产品与用户入口 | 分数: 63 | 摘要: Your AI workspace for terminals, tasks, and agents | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：100 / 12；发布时间：2026-06-19；关键词：Productivity, Developer Tools, A",
+          "url": "https://www.producthunt.com/r/SWHLL43IMABPKD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 63,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "API to MCP",
+          "citation_id": "2026-06-21/graph-topic/api to mcp",
+          "excerpt": "话题: API to MCP | 分类: AI 产品与用户入口 | 分数: 75 | 摘要: Turn any API into an MCP server for AI agents | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：196 / 29；发布时间：2026-06-19；关键词：API, SaaS, Developer Tools",
+          "url": "https://www.producthunt.com/r/IE7RIXXZEK4WSO?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 75,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Retool",
+          "citation_id": "2026-06-20/topic-pool/11",
+          "excerpt": "来源：Product Hunt\n热度信号：148 / 7\n发布时间：2026-06-18\n关键词：Productivity, Developer Tools, Vibe coding",
+          "url": "https://www.producthunt.com/r/UYZGXGCDJD22K6?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 69,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。",
+        "intent": "product_update",
+        "retrieval_query": "Claude 最近有没有上线什么新功能？比如新的插件或者类似的功能更新。 Anthropic Claude Code Artifacts plugins developer tools",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q4",
+      "question": "过去一周 GitHub 热榜上有什么值得关注的选题？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 7,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "GitHub Search:rag",
+          "title": "langchain-ai/langchain",
+          "citation_id": "2026-06-20/topic-pool/22",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：139730\n发布时间：2026-06-20\n关键词：Python, rag",
+          "url": "https://github.com/langchain-ai/langchain",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Darkmoon",
+          "citation_id": "2026-06-21/graph-topic/darkmoon",
+          "excerpt": "话题: Darkmoon | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Autonomous penetration testing platform | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：96 / 11；发布时间：2026-06-19；关键词：Open Source, Developer Tools, Artificial Inte",
+          "url": "https://www.producthunt.com/r/IGCLIJUOUCKHWR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "GitHub Search:ai-agent",
+          "title": "ZhuLinsen/daily_stock_analysis",
+          "citation_id": "2026-06-19/topic-pool/25",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：43135\n发布时间：2026-06-19\n关键词：Python, ai-agent",
+          "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+          "score": 67,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Firecrawl Research Index",
+          "citation_id": "2026-06-21/graph-topic/firecrawl research index",
+          "excerpt": "话题: Firecrawl Research Index | 分类: AI 产品与用户入口 | 分数: 78 | 摘要: An index for agents pushing the frontier of AI/ML research | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：222 / 14；发布时间：2026-06-19；关键词：Develop",
+          "url": "https://www.producthunt.com/r/WV2Z2GVPLLUUE3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 78,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Tabstack Dev Tools",
+          "citation_id": "2026-06-20/graph-topic/tabstack dev tools",
+          "excerpt": "话题: Tabstack Dev Tools | 分类: AI 产品与用户入口 | 分数: 80 | 摘要: Ditch your scraper. Make one API call with any tool. | 推荐理由: 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：357 / 58；发布时间：2026-06-18；关键词：API, Developer Tools, ",
+          "url": "https://www.producthunt.com/r/BTEFHM3YD7BEYD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "GitHub Search:llm",
+          "title": "firecrawl/firecrawl",
+          "citation_id": "2026-06-21/topic-pool/23",
+          "excerpt": "来源：GitHub Search:llm\n热度信号：135885\n发布时间：2026-06-21\n关键词：TypeScript, llm",
+          "url": "https://github.com/firecrawl/firecrawl",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Product Hunt",
+          "title": "memi",
+          "citation_id": "2026-06-19/graph-topic/memi",
+          "excerpt": "话题: memi | 分类: AI 产品与用户入口 | 分数: 64 | 摘要: The AI agent harness for product design teams | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：111 / 8；发布时间：2026-06-17；关键词：Design Tools, Developer Tools, GitHub, SDK",
+          "url": "https://www.producthunt.com/r/DEFEOZOV5TL4MK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 64,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "过去一周 GitHub 热榜上有什么值得关注的选题？",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "过去一周 GitHub 热榜上有什么值得关注的选题？ GitHub Trending GitHub Search repository open source",
+        "top_k": 8,
+        "topics": [],
+        "entities": [],
+        "sources": [
+          "GitHub"
+        ],
+        "time_window": {
+          "label": "last_7_days",
+          "days": 7,
+          "requires_date_filter": true
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question contains a one-week time constraint; retrieval should prefer recent dated corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "$and": [
+            {
+              "source_family": "GitHub"
+            },
+            {
+              "date": {
+                "$in": [
+                  "2026-06-15",
+                  "2026-06-16",
+                  "2026-06-17",
+                  "2026-06-18",
+                  "2026-06-19",
+                  "2026-06-20",
+                  "2026-06-21"
+                ]
+              }
+            }
+          ]
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q5",
+      "question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+      "expected_answerability": "needs-web",
+      "answer": "证据范围：当前回答只基于 AI Trend Radar 内部语料；该问题仍需要外部证据确认。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 8,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "InfoQ 中国",
+          "title": "Chrome 推出 WebMCP 标准提案（Origin Trial）：为智能体提供原生 Web 操作能力",
+          "citation_id": "2026-06-21/graph-topic/chrome 推出 webmcp 标准提案（origin trial）：为智能体提供原生 web 操作能力",
+          "excerpt": "话题: Chrome 推出 WebMCP 标准提案（Origin Trial）：为智能体提供原生 Web 操作能力 | 分类: 标杆企业动向、商业格局与投融资 | 分数: 62 | 摘要: 谷歌近日宣布，WebMCP 已进入 Chrome 149 的 Origin Trial 阶段。WebMCP 是一项新的标准提案，它允许网站向浏览器内的 AI 智能体暴露可调用工具，例如 JavaScript 函数或 HTML 表单。这样一来，智能体便可以通过明确的接口完成用户操作，而不再需",
+          "url": "https://www.infoq.cn/article/wCUdx4sZt94siodQI7u0",
+          "score": 62,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+          "citation_id": "2026-06-19/topic-pool/53",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+          "citation_id": "2026-06-19/topic-pool/54",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058432-03\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/jNsfjJuAJjDzGYS51jHC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Hugging Face",
+          "title": "unsloth/diffusiongemma-26B-A4B-it-GGUF",
+          "citation_id": "2026-06-19/graph-topic/unsloth/diffusiongemma-26b-a4b-it-gguf",
+          "excerpt": "话题: unsloth/diffusiongemma-26B-A4B-it-GGUF | 分类: 模型与技术突破 | 分数: 59 | 摘要: image-text-to-text model by unsloth | 推荐理由: 适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：308 / 164209；发布时间：2026-06-12；关键词：image-text-to",
+          "url": "https://huggingface.co/unsloth/diffusiongemma-26B-A4B-it-GGUF",
+          "score": 59,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Adapt",
+          "citation_id": "2026-06-20/topic-pool/27",
+          "excerpt": "来源：Product Hunt\n热度信号：129 / 16\n发布时间：2026-06-18\n关键词：Productivity, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/KAFR42VPDW36WZ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-20/ai-topic-radar/9",
+          "excerpt": "ueryable knowledge graph. App code + database schema + infrastructure in one graph. | AI 产品与用户入口 | safishamsi/graphify 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:rag。 | 来源：GitHub Search:rag<br>热度信号：69598<br>"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "掘金",
+          "title": "GLM5.2超过Opus4.8Think，全球第二了！",
+          "citation_id": "2026-06-21/graph-topic/glm5.2超过opus4.8think，全球第二了！",
+          "excerpt": "话题: GLM5.2超过Opus4.8Think，全球第二了！ | 分类: AI 产品与用户入口 | 分数: 51 | 摘要: 关于 GLM5.2 我已经测过很多，并且写过一篇非常长的文章了。 我的结论是：绝对干不过 Opus4.8！ 所以要是不加前提地说“GLM5 超过 Opus4.8”，就是一个鬼故事！ 但是今天，我不是来 | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：掘金。 | 证据: 来源：掘金；热度信号：21 / 2494；发布时",
+          "url": "https://juejin.cn/post/7651840740916002816",
+          "score": 51,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "掘金",
+          "title": "告别 AI 乱码！Vue3+TS 项目的 AI 编码助手规范实践",
+          "citation_id": "2026-06-20/graph-topic/告别 ai 乱码！vue3+ts 项目的 ai 编码助手规范实践",
+          "excerpt": "话题: 告别 AI 乱码！Vue3+TS 项目的 AI 编码助手规范实践 | 分类: AI 产品与用户入口 | 分数: 51 | 摘要: 大家好，作为前端开发者，我们都在享受 AI 编码助手（如 Cursor、OpenCode）带来的效率提升。但你是否也遇到过：AI 生成的代码风格混乱、命名不统一、TypeScript 类型缺失、甚至引 | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：掘金。 | 证据: 来源：掘金；热度信号：28 / 134",
+          "url": "https://juejin.cn/post/7650089863866286115",
+          "score": 51,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？",
+        "intent": "technical_comparison",
+        "retrieval_query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+        "top_k": 10,
+        "topics": [
+          "OKF",
+          "ALM Wiki"
+        ],
+        "entities": [
+          "Google"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "needs-web",
+        "needs_web_search": true,
+        "routing_notes": [
+          "This comparison likely needs primary external sources after internal corpus search.",
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "needs_external_evidence",
+          "should_call_llm": true,
+          "external_search_required": true,
+          "evidence_boundary": "internal_corpus_plus_external_needed",
+          "disclosure": "证据范围：当前回答只基于 AI Trend Radar 内部语料；该问题仍需要外部证据确认。",
+          "instruction": "当前问题仍需要外部证据。只总结内部语料能支持的内容；不要声称已经完成外部检索；不要编造论文、官方来源、性能数据或实体关系。"
+        },
+        "tool_routing": {
+          "status": "external_required_not_available",
+          "external_tools_required": true,
+          "external_tools_available": false,
+          "max_tool_calls": 4,
+          "provider_route": {
+            "query": "比如最近 Google 出了一个 OKF，它与之前提出的 ALM Wiki 知识框架有什么关系？既然是 Google 提出来的，它整体的核心思想是什么？在提升用户偏好效率方面表现如何？ knowledge framework user preference",
+            "task_type": "official_source_lookup",
+            "primary_provider": null,
+            "provider_chain": [
+              "tavily",
+              "brave",
+              "serpapi"
+            ],
+            "available_provider_chain": [],
+            "fallback_providers": [],
+            "unavailable_providers": [
+              "tavily",
+              "brave",
+              "serpapi"
+            ],
+            "budget_policy": {
+              "free_quota_first": true,
+              "max_external_providers": 2,
+              "max_external_calls": 2,
+              "serpapi_role": "fallback_not_default"
+            },
+            "rationale": "official source lookup prefers Tavily for domain-constrained search, then Brave."
+          },
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched first."
+            },
+            {
+              "tool": "web_search",
+              "state": "planned_unavailable",
+              "reason": "External discovery is required but not implemented in this module."
+            },
+            {
+              "tool": "fetch_url",
+              "state": "planned_unavailable",
+              "reason": "Specific external source fetching is required after web_search."
+            },
+            {
+              "tool": "compare_internal_and_external",
+              "state": "planned_unavailable",
+              "reason": "External findings must be compared with internal corpus before final claims."
+            }
+          ],
+          "fallback": "只回答内部语料可支持的部分，并明确提示仍需要外部证据确认。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q6",
+      "question": "AI Agent 相关主题最近是否跨多个日期和来源持续出现？这些信号说明了什么？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 6,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/22",
+          "excerpt": "at, autonomous agents, and 300+ assistants. Unified access to frontier LLMs | AI 产品与用户入口 | CherryHQ/cherry-studio 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。 | 来源：GitHub Search:ai-agent<br>热度信号：4752"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hugging Face",
+          "title": "Jackrong/Qwopus3.6-27B-Coder-MTP-GGUF",
+          "citation_id": "2026-06-21/graph-topic/jackrong/qwopus3.6-27b-coder-mtp-gguf",
+          "excerpt": "话题: Jackrong/Qwopus3.6-27B-Coder-MTP-GGUF | 分类: 模型与技术突破 | 分数: 64 | 摘要: image-text-to-text model by Jackrong | 推荐理由: 适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：269 / 168502；发布时间：2026-06-20；关键词：image-text-to",
+          "url": "https://huggingface.co/Jackrong/Qwopus3.6-27B-Coder-MTP-GGUF",
+          "score": 64,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hugging Face",
+          "title": "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF",
+          "citation_id": "2026-06-21/graph-topic/yuxinlu1/gemma-4-12b-agentic-fable5-composer2.5-v2-3.5x-tau2-gguf",
+          "excerpt": "话题: yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF | 分类: 模型与技术突破 | 分数: 65 | 摘要: text-generation model by yuxinlu1 | 推荐理由: 适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：197 / 6307；发布时间：202",
+          "url": "https://huggingface.co/yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF",
+          "score": 65,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-30",
+          "source": "GitHub Search:ai-agent",
+          "title": "thedaviddias/Front-End-Checklist",
+          "citation_id": "2026-05-30/graph-topic/thedaviddias/front-end-checklist",
+          "excerpt": "话题: thedaviddias/Front-End-Checklist | 分类: AI 产品与用户入口 | 分数: 72 | 摘要: 🗂 The essential checklist for modern web development, for humans and AI agents | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。 | 证据: 来源：GitHub Search:ai",
+          "url": "https://github.com/thedaviddias/Front-End-Checklist",
+          "score": 72,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "GitHub Search:ai-agent",
+          "title": "CherryHQ/cherry-studio",
+          "citation_id": "2026-06-21/topic-pool/18",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：47599\n发布时间：2026-06-21\n关键词：TypeScript, ai-agent",
+          "url": "https://github.com/CherryHQ/cherry-studio",
+          "score": 67,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "GitHub Search:ai-agent",
+          "title": "hugohe3/ppt-master",
+          "citation_id": "2026-06-20/graph-topic/hugohe3/ppt-master",
+          "excerpt": "话题: hugohe3/ppt-master | 分类: AI 产品与用户入口 | 分数: 74 | 摘要: AI generates a real, editable PowerPoint from any document — native shapes & animations, speaker notes voiced as audio narration, and the option to follow your own .pptx template, not s",
+          "url": "https://github.com/hugohe3/ppt-master",
+          "score": 74,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "AI Agent 相关主题最近是否跨多个日期和来源持续出现？这些信号说明了什么？",
+        "intent": "recent_trend",
+        "retrieval_query": "AI Agent 相关主题最近是否跨多个日期和来源持续出现？这些信号说明了什么？ agentic 智能体 workflow tool use",
+        "top_k": 8,
+        "topics": [
+          "AI Agent"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q7",
+      "question": "最近有哪些 AI 编码工具或开发者工具值得关注？它们分别解决什么问题？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 6,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-21/ai-topic-radar/1",
+          "excerpt": "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [Claude Code Artifacts](https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Appl"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Claude Code Artifacts",
+          "citation_id": "2026-06-21/topic-pool/0",
+          "excerpt": "来源：Product Hunt\n热度信号：451 / 14\n发布时间：2026-06-19\n关键词：Software Engineering, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hugging Face",
+          "title": "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF",
+          "citation_id": "2026-06-21/graph-topic/yuxinlu1/gemma-4-12b-agentic-fable5-composer2.5-v2-3.5x-tau2-gguf",
+          "excerpt": "话题: yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF | 分类: 模型与技术突破 | 分数: 65 | 摘要: text-generation model by yuxinlu1 | 推荐理由: 适合进入今日选题池：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：197 / 6307；发布时间：202",
+          "url": "https://huggingface.co/yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF",
+          "score": 65,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hugging Face",
+          "title": "MiniMaxAI/MiniMax-M3",
+          "citation_id": "2026-06-21/graph-topic/minimaxai/minimax-m3",
+          "excerpt": "话题: MiniMaxAI/MiniMax-M3 | 分类: 模型与技术突破 | 分数: 54 | 摘要: image-text-to-text model by MiniMaxAI | 推荐理由: 适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：1165 / 85771；发布时间：2026-06-16；关键词：image-text-to-text, transform",
+          "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+          "score": 54,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hugging Face",
+          "title": "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF",
+          "citation_id": "2026-06-21/graph-topic/yuxinlu1/gemma-4-12b-coder-fable5-composer2.5-v1-gguf",
+          "excerpt": "话题: yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF | 分类: 模型与技术突破 | 分数: 69 | 摘要: text-generation model by yuxinlu1 | 推荐理由: 适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 证据: 来源：Hugging Face；热度信号：1996 / 312332；发布时间：2026-06-19；关键词",
+          "url": "https://huggingface.co/yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF",
+          "score": 69,
+          "category": "模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "GitHub Search:ai-agent",
+          "title": "santifer/career-ops",
+          "citation_id": "2026-06-21/topic-pool/15",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：54939\n发布时间：2026-06-21\n关键词：JavaScript, ai-agent",
+          "url": "https://github.com/santifer/career-ops",
+          "score": 68,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "最近有哪些 AI 编码工具或开发者工具值得关注？它们分别解决什么问题？",
+        "intent": "recent_trend",
+        "retrieval_query": "最近有哪些 AI 编码工具或开发者工具值得关注？它们分别解决什么问题？ AI coding developer tools coding assistant Claude Code GitHub",
+        "top_k": 8,
+        "topics": [
+          "AI Coding Tools"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q8",
+      "question": "最近 Product Hunt 上有哪些 AI 产品值得深挖？为什么？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 8,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Adapt",
+          "citation_id": "2026-06-20/topic-pool/27",
+          "excerpt": "来源：Product Hunt\n热度信号：129 / 16\n发布时间：2026-06-18\n关键词：Productivity, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/KAFR42VPDW36WZ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 66,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Dev.to",
+          "title": "\"I Stopped Pretending Every AI Provider Was the Same\"",
+          "citation_id": "2026-06-21/graph-topic/\"i stopped pretending every ai provider was the same\"",
+          "excerpt": "话题: \"I Stopped Pretending Every AI Provider Was the Same\" | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: My local AI gateway got much more reliable once I stopped treating Claude, Codex, Gemini, and OpenAI-style backends as interchangeable and made r",
+          "url": "https://dev.to/codekingai/i-stopped-pretending-every-ai-provider-was-the-same-18k8",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Product Hunt",
+          "title": "memi",
+          "citation_id": "2026-06-19/topic-pool/32",
+          "excerpt": "来源：Product Hunt\n热度信号：111 / 8\n发布时间：2026-06-17\n关键词：Design Tools, Developer Tools, GitHub, SDK",
+          "url": "https://www.producthunt.com/r/DEFEOZOV5TL4MK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 64,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Dev.to",
+          "title": "hreflang in Next.js 16: 3 mistakes that quietly delete your translated pages from Google",
+          "citation_id": "2026-06-21/graph-topic/hreflang in next.js 16: 3 mistakes that quietly delete your translated pages from google",
+          "excerpt": "话题: hreflang in Next.js 16: 3 mistakes that quietly delete your translated pages from Google | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: TL;DR — If you ship the same page in several languages, hreflang is what tells Google \"these are... | 推荐理由: 适合",
+          "url": "https://dev.to/youssefroop/hreflang-in-nextjs-16-3-mistakes-that-quietly-delete-your-translated-pages-from-google-ima",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Product Hunt",
+          "title": "Locus Founder",
+          "citation_id": "2026-06-19/topic-pool/38",
+          "excerpt": "来源：Product Hunt\n热度信号：98 / 13\n发布时间：2026-06-17\n关键词：SaaS, Artificial Intelligence, No-Code",
+          "url": "https://www.producthunt.com/r/5EPNMKHP73F6IK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Dev.to",
+          "title": "chatstore – persistent chat history service for LLM apps, zero infrastructure",
+          "citation_id": "2026-06-20/graph-topic/chatstore – persistent chat history service for llm apps, zero infrastructure",
+          "excerpt": "话题: chatstore – persistent chat history service for LLM apps, zero infrastructure | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: 🚀 I just open-sourced chatstore — a lightweight, framework-agnostic persistent chat library for LLM... | 推荐理由: 适合作为观察项：适合",
+          "url": "https://dev.to/naman_kumar_29295fe9d5838/chatstore-persistent-chat-history-service-for-llm-apps-zero-infrastructure-566f",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Unreal Engine 5.8",
+          "citation_id": "2026-06-21/topic-pool/8",
+          "excerpt": "来源：Product Hunt\n热度信号：155 / 4\n发布时间：2026-06-19\n关键词：Artificial Intelligence, Games, Development",
+          "url": "https://www.producthunt.com/r/3FHIEYAZL5HDRV?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 69,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Dev.to",
+          "title": "I accidentally became a solo dev studio",
+          "citation_id": "2026-06-20/graph-topic/i accidentally became a solo dev studio",
+          "excerpt": "话题: I accidentally became a solo dev studio | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: About a month ago, I didn't really think of myself as a solo dev studio.  I was just a person with... | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Dev.to。 | 证据: 来",
+          "url": "https://dev.to/quietware/i-accidentally-became-a-solo-dev-studio-2o0n",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "最近 Product Hunt 上有哪些 AI 产品值得深挖？为什么？",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "最近 Product Hunt 上有哪些 AI 产品值得深挖？为什么？ launch AI product heat signal",
+        "top_k": 8,
+        "topics": [],
+        "entities": [],
+        "sources": [
+          "Product Hunt"
+        ],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "$and": [
+            {
+              "source": "Product Hunt"
+            },
+            {
+              "date": {
+                "$in": [
+                  "2026-06-08",
+                  "2026-06-09",
+                  "2026-06-10",
+                  "2026-06-11",
+                  "2026-06-12",
+                  "2026-06-13",
+                  "2026-06-14",
+                  "2026-06-15",
+                  "2026-06-16",
+                  "2026-06-17",
+                  "2026-06-18",
+                  "2026-06-19",
+                  "2026-06-20",
+                  "2026-06-21"
+                ]
+              }
+            }
+          ]
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q9",
+      "question": "OpenAI 最近相关的趋势信号主要集中在哪些方向？这些信号来自哪些来源？",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 5,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "InfoQ 中国",
+          "title": "万亿估值前夜，OpenAI 被曝一年亏约 2600 亿",
+          "citation_id": "2026-06-21/graph-topic/万亿估值前夜，openai 被曝一年亏约 2600 亿",
+          "excerpt": "话题: 万亿估值前夜，OpenAI 被曝一年亏约 2600 亿 | 分类: 标杆企业动向、商业格局与投融资 | 分数: 53 | 摘要: 这不是 AI 泡沫破裂，但也不是好消息。 | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：InfoQ 中国。 | 证据: 来源：InfoQ 中国；发布时间：+058430-04；关键词：infoq-cn, OpenAI, 生成式 AI",
+          "url": "https://www.infoq.cn/article/XHlhul82geYax30TcJbP",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/20",
+          "excerpt": "atch processing. | AI 产品与用户入口 | santifer/career-ops 为什么值得关注？（用户入口、使用场景与产品体验） | 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：GitHub Search:ai-agent。 | 来源：GitHub Search:ai-agent<br>热度信号：54624<br>发布时间：2026-06-18<br>关键词：JavaScript, ai-agent |\n| 68 | 入池 |"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Dev.to",
+          "title": "chatstore – persistent chat history service for LLM apps, zero infrastructure",
+          "citation_id": "2026-06-20/graph-topic/chatstore – persistent chat history service for llm apps, zero infrastructure",
+          "excerpt": "话题: chatstore – persistent chat history service for LLM apps, zero infrastructure | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: 🚀 I just open-sourced chatstore — a lightweight, framework-agnostic persistent chat library for LLM... | 推荐理由: 适合作为观察项：适合",
+          "url": "https://dev.to/naman_kumar_29295fe9d5838/chatstore-persistent-chat-history-service-for-llm-apps-zero-infrastructure-566f",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Dev.to",
+          "title": "I accidentally became a solo dev studio",
+          "citation_id": "2026-06-20/graph-topic/i accidentally became a solo dev studio",
+          "excerpt": "话题: I accidentally became a solo dev studio | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: About a month ago, I didn't really think of myself as a solo dev studio.  I was just a person with... | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Dev.to。 | 证据: 来",
+          "url": "https://dev.to/quietware/i-accidentally-became-a-solo-dev-studio-2o0n",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Product Hunt",
+          "title": "memi",
+          "citation_id": "2026-06-19/topic-pool/32",
+          "excerpt": "来源：Product Hunt\n热度信号：111 / 8\n发布时间：2026-06-17\n关键词：Design Tools, Developer Tools, GitHub, SDK",
+          "url": "https://www.producthunt.com/r/DEFEOZOV5TL4MK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 64,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "OpenAI 最近相关的趋势信号主要集中在哪些方向？这些信号来自哪些来源？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI 最近相关的趋势信号主要集中在哪些方向？这些信号来自哪些来源？ GPT agent developer model",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q10",
+      "question": "哪些 AI 主题在最近语料中跨多个来源反复出现？请按主题归类。",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 7,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+          "citation_id": "2026-06-19/topic-pool/53",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-20/ai-topic-radar/13",
+          "excerpt": "## 按五类选题分类摘要\n\n### 政策监管、社会影响与 AI 安全\n\n_暂无条目。_\n\n\n### 模型与技术突破"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "36kr",
+          "title": "诺贝尔奖得主约翰·江珀宣布加盟Anthropic",
+          "citation_id": "2026-06-20/graph-topic/诺贝尔奖得主约翰·江珀宣布加盟anthropic",
+          "excerpt": "话题: 诺贝尔奖得主约翰·江珀宣布加盟Anthropic | 分类: 企业落地与行业应用 | 分数: 56 | 摘要: 当地时间6月19日，资深研究科学家约翰·江珀（John Jumper）宣布，他将离开谷歌DeepMind，加入人工智能初创企业Anthropic。江珀在社交平台X发文称：“历经近九年工作，我决定离开谷歌DeepMind，加盟Anthropic。”据了解，约翰·江珀曾与谷歌DeepMind同事德米斯·哈萨比斯（Demis Hassabis）和美国华盛顿大学西雅",
+          "url": "<![CDATA[https://36kr.com/newsflashes/3860793998267653?f=rss]]>",
+          "score": 56,
+          "category": "企业落地与行业应用"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "开源中国",
+          "title": "美团海报生成 AIGC 技术创新与实践",
+          "citation_id": "2026-06-19/graph-topic/美团海报生成 aigc 技术创新与实践",
+          "excerpt": "话题: 美团海报生成 AIGC 技术创新与实践 | 分类: 标杆企业动向、商业格局与投融资 | 分数: 51 | 摘要: 一张商业海报，对设计师来说可能是半天工作；对百万中小商家来说，却可能是一道迈不过去的门槛。外包一张专业海报，少则数百、多则数千元；临时促销要求分钟级交付，传统设计流水线却要 1 到 3 天；好不容易批量生产出来，质量又参差不齐 ------ 这是美团平台上数百万商家每天都在面对的真实困境。 | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格",
+          "url": "<![CDATA[https://my.oschina.net/meituantech/blog/19707227]]>",
+          "score": 51,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "开源中国",
+          "title": "ChatGPT 市场份额首次跌破 50%",
+          "citation_id": "2026-06-19/graph-topic/chatgpt 市场份额首次跌破 50%",
+          "excerpt": "话题: ChatGPT 市场份额首次跌破 50% | 分类: 标杆企业动向、商业格局与投融资 | 分数: 52 | 摘要: 自 ChatGPT 首次发布以来已过去三年半多，竞争格局也日新月异。分析公司 Sensor Tower 发布的《2026 年 AI 现状报告》显示，随着用户在谷歌的 Gemini、Anthropic 的 Claude 以及 xAI 的 Grok 等类似工具之间进行切换，ChatGPT 的市场份额已经首次跌破 50%。 Sensor Tower 本月报道称",
+          "url": "<![CDATA[https://www.oschina.net/news/460241]]>",
+          "score": 52,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Dev.to",
+          "title": "\"I Stopped Pretending Every AI Provider Was the Same\"",
+          "citation_id": "2026-06-21/graph-topic/\"i stopped pretending every ai provider was the same\"",
+          "excerpt": "话题: \"I Stopped Pretending Every AI Provider Was the Same\" | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: My local AI gateway got much more reliable once I stopped treating Claude, Codex, Gemini, and OpenAI-style backends as interchangeable and made r",
+          "url": "https://dev.to/codekingai/i-stopped-pretending-every-ai-provider-was-the-same-18k8",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Dev.to",
+          "title": "hreflang in Next.js 16: 3 mistakes that quietly delete your translated pages from Google",
+          "citation_id": "2026-06-21/graph-topic/hreflang in next.js 16: 3 mistakes that quietly delete your translated pages from google",
+          "excerpt": "话题: hreflang in Next.js 16: 3 mistakes that quietly delete your translated pages from Google | 分类: 标杆企业动向、商业格局与投融资 | 分数: 59 | 摘要: TL;DR — If you ship the same page in several languages, hreflang is what tells Google \"these are... | 推荐理由: 适合",
+          "url": "https://dev.to/youssefroop/hreflang-in-nextjs-16-3-mistakes-that-quietly-delete-your-translated-pages-from-google-ima",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "哪些 AI 主题在最近语料中跨多个来源反复出现？请按主题归类。",
+        "intent": "recent_trend",
+        "retrieval_query": "哪些 AI 主题在最近语料中跨多个来源反复出现？请按主题归类。",
+        "top_k": 8,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "date": {
+            "$in": [
+              "2026-06-08",
+              "2026-06-09",
+              "2026-06-10",
+              "2026-06-11",
+              "2026-06-12",
+              "2026-06-13",
+              "2026-06-14",
+              "2026-06-15",
+              "2026-06-16",
+              "2026-06-17",
+              "2026-06-18",
+              "2026-06-19",
+              "2026-06-20",
+              "2026-06-21"
+            ]
+          }
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q11",
+      "question": "当前语料中有没有足够证据说明某个 AI 产品已经取得明确商业成功？",
+      "expected_answerability": "insufficient",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料，但需要判断证据是否足够支持强结论。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 6,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "InfoQ 中国",
+          "title": "Google 想为 AI Agent 打造下一个 Kubernetes",
+          "citation_id": "2026-06-21/graph-topic/google 想为 ai agent 打造下一个 kubernetes",
+          "excerpt": "话题: Google 想为 AI Agent 打造下一个 Kubernetes | 分类: 标杆企业动向、商业格局与投融资 | 分数: 53 | 摘要: 两个新的 Apache 2.0 项目让具有突发性的 Agent 工作负载硬件效率提升了 97%。 | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：InfoQ 中国。 | 证据: 来源：InfoQ 中国；发布时间：+058432-03；关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/jNsfjJuAJjDzGYS51jHC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-21",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-21/ai-topic-radar/27",
+          "excerpt": "## 数据源状态与修复提示\n\n- 官方内容源今日没有检测到新内容；首次运行后这是正常情况。"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "InfoQ 中国",
+          "title": "万亿估值前夜，OpenAI 被曝一年亏约 2600 亿",
+          "citation_id": "2026-06-21/graph-topic/万亿估值前夜，openai 被曝一年亏约 2600 亿",
+          "excerpt": "话题: 万亿估值前夜，OpenAI 被曝一年亏约 2600 亿 | 分类: 标杆企业动向、商业格局与投融资 | 分数: 53 | 摘要: 这不是 AI 泡沫破裂，但也不是好消息。 | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：InfoQ 中国。 | 证据: 来源：InfoQ 中国；发布时间：+058430-04；关键词：infoq-cn, OpenAI, 生成式 AI",
+          "url": "https://www.infoq.cn/article/XHlhul82geYax30TcJbP",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "36kr",
+          "title": "诺贝尔奖得主约翰·江珀宣布加盟Anthropic",
+          "citation_id": "2026-06-20/graph-topic/诺贝尔奖得主约翰·江珀宣布加盟anthropic",
+          "excerpt": "话题: 诺贝尔奖得主约翰·江珀宣布加盟Anthropic | 分类: 企业落地与行业应用 | 分数: 56 | 摘要: 当地时间6月19日，资深研究科学家约翰·江珀（John Jumper）宣布，他将离开谷歌DeepMind，加入人工智能初创企业Anthropic。江珀在社交平台X发文称：“历经近九年工作，我决定离开谷歌DeepMind，加盟Anthropic。”据了解，约翰·江珀曾与谷歌DeepMind同事德米斯·哈萨比斯（Demis Hassabis）和美国华盛顿大学西雅",
+          "url": "<![CDATA[https://36kr.com/newsflashes/3860793998267653?f=rss]]>",
+          "score": 56,
+          "category": "企业落地与行业应用"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "开源中国",
+          "title": "美团海报生成 AIGC 技术创新与实践",
+          "citation_id": "2026-06-19/graph-topic/美团海报生成 aigc 技术创新与实践",
+          "excerpt": "话题: 美团海报生成 AIGC 技术创新与实践 | 分类: 标杆企业动向、商业格局与投融资 | 分数: 51 | 摘要: 一张商业海报，对设计师来说可能是半天工作；对百万中小商家来说，却可能是一道迈不过去的门槛。外包一张专业海报，少则数百、多则数千元；临时促销要求分钟级交付，传统设计流水线却要 1 到 3 天；好不容易批量生产出来，质量又参差不齐 ------ 这是美团平台上数百万商家每天都在面对的真实困境。 | 推荐理由: 适合作为观察项：适合从大厂动作、商业化路径和竞争格",
+          "url": "<![CDATA[https://my.oschina.net/meituantech/blog/19707227]]>",
+          "score": 51,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "开源中国",
+          "title": "ChatGPT 市场份额首次跌破 50%",
+          "citation_id": "2026-06-19/graph-topic/chatgpt 市场份额首次跌破 50%",
+          "excerpt": "话题: ChatGPT 市场份额首次跌破 50% | 分类: 标杆企业动向、商业格局与投融资 | 分数: 52 | 摘要: 自 ChatGPT 首次发布以来已过去三年半多，竞争格局也日新月异。分析公司 Sensor Tower 发布的《2026 年 AI 现状报告》显示，随着用户在谷歌的 Gemini、Anthropic 的 Claude 以及 xAI 的 Grok 等类似工具之间进行切换，ChatGPT 的市场份额已经首次跌破 50%。 Sensor Tower 本月报道称",
+          "url": "<![CDATA[https://www.oschina.net/news/460241]]>",
+          "score": 52,
+          "category": "标杆企业动向、商业格局与投融资"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "当前语料中有没有足够证据说明某个 AI 产品已经取得明确商业成功？",
+        "intent": "evidence_sufficiency",
+        "retrieval_query": "当前语料中有没有足够证据说明某个 AI 产品已经取得明确商业成功？",
+        "top_k": 8,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "insufficient-risk",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks whether evidence is sufficient; answer should avoid inferring proof from weak signals."
+        ],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": null,
+        "answer_policy": {
+          "mode": "evidence_sufficiency_review",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_sufficiency_review",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料，但需要判断证据是否足够支持强结论。",
+          "instruction": "当前问题要求判断证据是否足够。请先说明强结论需要哪些证据；不要把 Product Hunt 热度、GitHub stars、媒体讨论或零散 traction 信号直接等同于商业成功。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    },
+    {
+      "id": "Q12",
+      "question": "请比较 Claude Code Artifacts、GitHub 热榜 AI 项目和 Product Hunt AI 产品三类信号的差异。",
+      "expected_answerability": "internal-only",
+      "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n结构性评测占位回答：仅用于验证检索、引用和策略链路。",
+      "citation_count": 5,
+      "citations": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "GitHub Trending",
+          "title": "anthropics/claude-plugins-official",
+          "citation_id": "2026-05-20/topic-pool/57",
+          "excerpt": "来源：GitHub Trending\n热度信号：706 / 0\n关键词：Python",
+          "url": "https://github.com/anthropics/claude-plugins-official",
+          "score": 72,
+          "category": "标杆企业动向、商业格局与投融资"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Darkmoon",
+          "citation_id": "2026-06-21/graph-topic/darkmoon",
+          "excerpt": "话题: Darkmoon | 分类: AI 产品与用户入口 | 分数: 62 | 摘要: Autonomous penetration testing platform | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：96 / 11；发布时间：2026-06-19；关键词：Open Source, Developer Tools, Artificial Inte",
+          "url": "https://www.producthunt.com/r/IGCLIJUOUCKHWR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 62,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Firecrawl Research Index",
+          "citation_id": "2026-06-21/graph-topic/firecrawl research index",
+          "excerpt": "话题: Firecrawl Research Index | 分类: AI 产品与用户入口 | 分数: 78 | 摘要: An index for agents pushing the frontier of AI/ML research | 推荐理由: 适合进入今日选题池：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：222 / 14；发布时间：2026-06-19；关键词：Develop",
+          "url": "https://www.producthunt.com/r/WV2Z2GVPLLUUE3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 78,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-20",
+          "source": "Product Hunt",
+          "title": "Tabstack Dev Tools",
+          "citation_id": "2026-06-20/graph-topic/tabstack dev tools",
+          "excerpt": "话题: Tabstack Dev Tools | 分类: AI 产品与用户入口 | 分数: 80 | 摘要: Ditch your scraper. Make one API call with any tool. | 推荐理由: 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：357 / 58；发布时间：2026-06-18；关键词：API, Developer Tools, ",
+          "url": "https://www.producthunt.com/r/BTEFHM3YD7BEYD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口"
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Product Hunt",
+          "title": "memi",
+          "citation_id": "2026-06-19/graph-topic/memi",
+          "excerpt": "话题: memi | 分类: AI 产品与用户入口 | 分数: 64 | 摘要: The AI agent harness for product design teams | 推荐理由: 适合作为观察项：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 证据: 来源：Product Hunt；热度信号：111 / 8；发布时间：2026-06-17；关键词：Design Tools, Developer Tools, GitHub, SDK",
+          "url": "https://www.producthunt.com/r/DEFEOZOV5TL4MK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 64,
+          "category": "AI 产品与用户入口"
+        }
+      ],
+      "query_understanding": {
+        "original_question": "请比较 Claude Code Artifacts、GitHub 热榜 AI 项目和 Product Hunt AI 产品三类信号的差异。",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "请比较 Claude Code Artifacts、GitHub 热榜 AI 项目和 Product Hunt AI 产品三类信号的差异。 Anthropic plugins developer tools GitHub Trending GitHub Search repository open source launch AI product heat signal",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [
+          "GitHub",
+          "Product Hunt"
+        ],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "latest_corpus_date": "2026-06-21",
+        "metadata_filter": {
+          "$or": [
+            {
+              "source_family": "GitHub"
+            },
+            {
+              "source": "Product Hunt"
+            }
+          ]
+        },
+        "answer_policy": {
+          "mode": "internal_grounded",
+          "should_call_llm": true,
+          "external_search_required": false,
+          "evidence_boundary": "internal_corpus_only",
+          "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+          "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+        },
+        "tool_routing": {
+          "status": "internal_only_ready",
+          "external_tools_required": false,
+          "external_tools_available": false,
+          "max_tool_calls": 1,
+          "steps": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+        },
+        "external_search": {
+          "attempted": false,
+          "citations": []
+        },
+        "deep_fetch": {
+          "attempted": false,
+          "reason": "no_external_citations",
+          "selected_count": 0,
+          "success_count": 0,
+          "failure_count": 0,
+          "targets": []
+        },
+        "source_review": {
+          "status": "internal_only",
+          "external_count": 0,
+          "primary_count": 0,
+          "supporting_count": 0,
+          "weak_count": 0,
+          "source_roles": [],
+          "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "with_citations": 12,
+    "with_graph_citations": 12,
+    "with_external_citations": 0,
+    "needs_web_questions": 2,
+    "evidence_sufficiency_review": 1,
+    "answer_policy_modes": {
+      "evidence_sufficiency_review": 1,
+      "internal_grounded": 9,
+      "needs_external_evidence": 2
+    }
+  }
+}

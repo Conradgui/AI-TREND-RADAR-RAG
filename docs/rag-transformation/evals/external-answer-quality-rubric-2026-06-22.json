@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-22T11:41:49.467282+00:00",
+  "input": "docs/rag-transformation/evals/external-chat-smoke-2026-06-22.json",
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "failure_counts": {}
+  },
+  "rows": [
+    {
+      "id": "external-chat-smoke",
+      "passed": true,
+      "failed_checks": [],
+      "internal_citation_count": 10,
+      "external_citation_count": 2,
+      "answer_policy_mode": "internal_and_external_grounded"
+    }
+  ]
+}

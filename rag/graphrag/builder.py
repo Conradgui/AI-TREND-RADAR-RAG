@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
+from typing import TYPE_CHECKING
 
-from rag.graphrag.driver import Neo4jDriver
+if TYPE_CHECKING:
+    from rag.graphrag.driver import Neo4jDriver
 
 
 def _infer_entity_type(tag: str) -> str:
@@ -38,7 +40,7 @@ def _infer_entity_type(tag: str) -> str:
 class KnowledgeGraphBuilder:
     """Builds and updates the Neo4j knowledge graph from digest data."""
 
-    def __init__(self, driver: Neo4jDriver):
+    def __init__(self, driver: "Neo4jDriver"):
         self.driver = driver
 
     async def ingest_date(
@@ -52,7 +54,7 @@ class KnowledgeGraphBuilder:
         await self.driver.execute_write(
             "MERGE (d:DailyDigest {date: $date}) "
             "SET d.candidateCount = $count, d.generatedAt = $now",
-            date=date_str, count=candidate_count, now=datetime.now(datetime.timezone.utc).isoformat(),
+            date=date_str, count=candidate_count, now=datetime.now(timezone.utc).isoformat(),
         )
 
         sources = set()
@@ -98,22 +100,49 @@ class KnowledgeGraphBuilder:
         score = candidate.get("score", 0)
         action = candidate.get("action", "")
         source = candidate.get("source", "")
+        summary = candidate.get("summary", "")
+        url = candidate.get("url", "")
+        reason = candidate.get("reason", "")
+        evidence = candidate.get("evidence", [])
+        if not isinstance(evidence, list):
+            evidence = [str(evidence)] if evidence else []
 
         await self.driver.execute_write(
             "MERGE (t:Topic {id: $id}) "
             "SET t.name = $name, t.category = $category, "
+            "t.summary = $summary, t.url = $url, t.source = $source, "
+            "t.reason = $reason, t.evidence = $evidence, "
             "t.totalScore = CASE WHEN t.totalScore IS NULL OR $score > t.totalScore "
             "THEN $score ELSE t.totalScore END, "
             "t.mentionCount = COALESCE(t.mentionCount, 0) + 1, "
             "t.lastSeen = $date, "
             "t.firstSeen = COALESCE(t.firstSeen, $date)",
-            id=topic_id, name=title, category=category, score=score, date=date_str,
+            id=topic_id,
+            name=title,
+            category=category,
+            score=score,
+            date=date_str,
+            summary=summary,
+            url=url,
+            source=source,
+            reason=reason,
+            evidence=evidence,
         )
 
         await self.driver.execute_write(
             "MATCH (t:Topic {id: $topic_id}), (d:DailyDigest {date: $date}) "
-            "MERGE (t)-[r:APPEARED_ON]->(d) SET r.score = $score, r.action = $action",
-            topic_id=topic_id, date=date_str, score=score, action=action,
+            "MERGE (t)-[r:APPEARED_ON]->(d) "
+            "SET r.score = $score, r.action = $action, r.source = $source, r.url = $url, "
+            "r.summary = $summary, r.reason = $reason, r.evidence = $evidence",
+            topic_id=topic_id,
+            date=date_str,
+            score=score,
+            action=action,
+            source=source,
+            url=url,
+            summary=summary,
+            reason=reason,
+            evidence=evidence,
         )
 
         if source:
