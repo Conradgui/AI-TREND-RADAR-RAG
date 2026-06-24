@@ -90,8 +90,8 @@ Official component check:
 
 ## Checkpoint
 
-Pending:
+Result:
 
 - branch: `codex/rag-transformation-checkpoints`
-- baseline commit: pending
-- push status: pending
+- baseline commit: `9a89f6a`
+- push status: pushed to `origin/codex/rag-transformation-checkpoints`
