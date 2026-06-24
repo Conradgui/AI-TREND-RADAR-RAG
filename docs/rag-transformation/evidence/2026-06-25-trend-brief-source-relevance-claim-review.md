@@ -102,3 +102,9 @@ The next module should not call external APIs one at a time. It should first lis
 - Deterministic relevance scoring is keyword-based and coarse.
 - It does not prove full semantic correctness.
 - It is currently strongest for RAG-topic artifacts and should be generalized cautiously.
+
+## Checkpoint
+
+- branch: `codex/rag-transformation-checkpoints`
+- commit: `695edeb`
+- push status: pushed to `origin/codex/rag-transformation-checkpoints`
