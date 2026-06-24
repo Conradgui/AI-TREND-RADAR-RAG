@@ -17,6 +17,7 @@ from rag.retrieval_planning import build_metadata_filter, load_latest_corpus_dat
 from rag.search_provider_adapters import SearchProviderRegistry, SearchRequest
 from rag.search_provider_routing import build_search_provider_route
 from rag.source_review import build_source_review, classify_artifact_quality_status
+from rag.source_relevance import inspect_trend_brief_source_relevance
 from rag.tool_routing import infer_search_task_type
 from rag.trend_brief import build_trend_brief_markdown, inspect_trend_brief_artifact, save_trend_brief, select_brief_citations
 
@@ -33,6 +34,7 @@ def build_generation_summary(
     policy_mode: str,
     source_review: dict | None = None,
     artifact_consistency: dict | None = None,
+    source_relevance: dict | None = None,
     external_search_trace: dict | None = None,
 ) -> dict:
     """Build the machine-readable CLI result summary."""
@@ -49,6 +51,7 @@ def build_generation_summary(
         "source_review_status": source_review.get("status", "unknown"),
         "artifact_quality_status": classify_artifact_quality_status(source_review),
         "artifact_consistency": artifact_consistency or {"consistent": False, "issues": ["not_checked"]},
+        "source_relevance": source_relevance or {"relevance_status": "not_checked"},
         "external_search": external_search_trace or {"attempted": False, "citations": []},
     }
 
@@ -154,6 +157,7 @@ async def generate_trend_brief(
             mode=mode,
         )
         artifact_consistency = inspect_trend_brief_artifact(markdown)
+        source_relevance = inspect_trend_brief_source_relevance(markdown, topic=topic)
         output = save_trend_brief(markdown, topic=topic, output_path=output_path)
     finally:
         await driver.close()
@@ -175,6 +179,7 @@ async def generate_trend_brief(
         policy_mode=answer_policy.get("mode", "unknown"),
         source_review=source_review,
         artifact_consistency=artifact_consistency,
+        source_relevance=source_relevance,
         external_search_trace=external_search,
     )
 

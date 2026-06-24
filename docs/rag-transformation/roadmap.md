@@ -447,12 +447,21 @@ Last updated: 2026-06-24
   - Artifact quality status: `research_quality_verified`.
   - Artifact consistency: passed; Evidence Table and appendix both report 8 citations with 3 external, 1 graph, and 4 internal.
   - Status: source quality gate `Live Smoke Verified`; semantic source relevance still needs review.
+- Trend Brief Source Relevance And Claim Review
+  - Adds deterministic source relevance classification on top of source-domain quality.
+  - Distinguishes `direct_support`, `partial_support`, `weak_context`, and `irrelevant_context`.
+  - Adds source relevance to newly generated Trend Brief appendix and CLI summary.
+  - Reuses the existing live artifact without new external API calls.
+  - Current focused result: 19 tests passed.
+  - Current canonical result: 183 tests passed.
+  - Current source relevance matrix for `trend-brief-rag-source-quality-2026-06-25.md`: 1 direct support, 1 partial support, 1 weak context, 0 irrelevant context.
+  - Status: source relevance gate `CI Ready`; saved artifact relevance inspection `Locally Verified`.
 
 ### Current Gate
 
-Current module: P2 Trend Brief Source Relevance And Claim Review.
+Current module: P2 Batched External Evidence Acquisition Plan.
 
-Next bottleneck: evidence relevance.
+Next bottleneck: batched evidence acquisition.
 
 Decision rule:
 
@@ -461,6 +470,7 @@ Decision rule:
 - Keep the MVP focused on one workflow: topic -> evidence -> graph summary -> source review -> uncertainty -> follow-up actions.
 - Treat `research_quality_verified` as a source-quality gate, not proof that every selected external source is semantically ideal.
 - Review whether selected external sources support the specific Trend Brief claims, not only whether the domains are authoritative.
+- Before making more external search API calls, list all claim gaps, source types, provider choices, and budget in one batch plan.
 - Include a checkpoint change inventory at P2 module close.
 
 Completed:
@@ -499,6 +509,7 @@ Completed:
 - Trend Brief live external mode is implemented behind an explicit CLI flag.
 - Trend Brief live external runtime path is verified with filtered external citations.
 - Trend Brief external source quality gate is live-smoke verified with `mixed_quality`, `research_quality_verified`, and artifact consistency passed.
+- Trend Brief source relevance review is locally verified without additional external API calls.
 
 ### Verified Runtime Claims
 
@@ -543,7 +554,8 @@ Completed:
 - Full semantic contradiction detection is not implemented yet; only a seed-level guardrail exists.
 - DeepSeek expanded 12-question live benchmark is not run because this execution environment blocks the external data transfer.
 - Trend Brief semantic quality as a research artifact has not been manually reviewed yet.
-- Trend Brief semantic source relevance as a research artifact has not been manually or rubric-reviewed yet.
+- Trend Brief source relevance is deterministic and coarse; full semantic correctness is still not claimed.
+- Batched external evidence acquisition has not been planned or executed yet.
 - LangGraph-style stateful agent workflow is not implemented yet.
 - Dedicated chat UI graph-reasoning mode is not implemented yet.
 - Stage 2.5 single-repo local demo workspace is accepted as direction but not implemented yet.

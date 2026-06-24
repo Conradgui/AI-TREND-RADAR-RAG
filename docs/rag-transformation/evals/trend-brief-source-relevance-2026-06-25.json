@@ -1,0 +1,45 @@
+{
+  "artifact": "docs/rag-transformation/briefs/trend-brief-rag-source-quality-2026-06-25.md",
+  "topic": "RAG",
+  "external_count": 3,
+  "relevance_status": "relevance_verified",
+  "relevance_counts": {
+    "direct_support": 1,
+    "partial_support": 1,
+    "weak_context": 1
+  },
+  "reviews": [
+    {
+      "citation_id": "https://arxiv.org/html/2606.24725",
+      "source": "arxiv.org",
+      "title": "A Grounded Evidence-Retrieval Benchmark and Hybrid RAG Framework for Silicon Pixel Detector R&D",
+      "source_quality": "academic",
+      "relevance_label": "direct_support",
+      "relevance_score": 0.85,
+      "relevance_reasons": ["rag_core_match", "claim_term_match"]
+    },
+    {
+      "citation_id": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+      "source": "en.wikipedia.org",
+      "title": "Retrieval-augmented generation - Wikipedia",
+      "source_quality": "generic",
+      "relevance_label": "weak_context",
+      "relevance_score": 0.45,
+      "relevance_reasons": ["rag_core_match"]
+    },
+    {
+      "citation_id": "https://www.braintrust.dev/articles/best-rag-evaluation-tools",
+      "source": "www.braintrust.dev",
+      "title": "Best RAG Evaluation Tools in 2026, Compared - Articles - Braintrust",
+      "source_quality": "generic",
+      "relevance_label": "partial_support",
+      "relevance_score": 0.65,
+      "relevance_reasons": ["rag_core_match", "claim_term_match"]
+    }
+  ],
+  "external_api_calls": 0,
+  "notes": [
+    "This matrix reuses the existing live artifact and does not call external search APIs.",
+    "Source relevance is a deterministic coarse review, not a full semantic correctness proof."
+  ]
+}

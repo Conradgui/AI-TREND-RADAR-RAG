@@ -22,6 +22,7 @@ class GenerateTrendBriefTests(unittest.TestCase):
             evidence_type_counts={"external": 1, "internal": 2},
             source_review={"status": "mixed_quality", "external_count": 1, "primary_count": 1, "supporting_count": 0},
             artifact_consistency={"consistent": True},
+            source_relevance={"relevance_status": "relevance_verified", "external_count": 1},
             external_search_trace={"attempted": True, "provider": "brave"},
         )
 
@@ -35,6 +36,7 @@ class GenerateTrendBriefTests(unittest.TestCase):
         self.assertEqual(summary["source_review_status"], "mixed_quality")
         self.assertEqual(summary["artifact_quality_status"], "research_quality_verified")
         self.assertTrue(summary["artifact_consistency"]["consistent"])
+        self.assertEqual(summary["source_relevance"]["relevance_status"], "relevance_verified")
         self.assertEqual(summary["external_search"]["provider"], "brave")
         self.assertTrue(summary["output"].endswith("trend-brief-rag-2026-06-24.md"))
 

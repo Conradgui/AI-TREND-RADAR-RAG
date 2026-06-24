@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from rag.source_review import classify_artifact_quality_status
+from rag.source_relevance import summarize_source_relevance
 
 
 DEFAULT_BRIEF_DIR = Path("docs/rag-transformation/briefs")
@@ -123,6 +124,7 @@ def summarize_brief_inputs(
             for c in citations
             if c.get("source_quality")
         ).items())),
+        "source_relevance": summarize_source_relevance(citations, topic=topic),
         "residual_risks": _residual_risks(citations, graph_evidence, answer_policy),
     }
 

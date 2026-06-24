@@ -67,6 +67,7 @@ class TrendBriefTests(unittest.TestCase):
         self.assertEqual(summary["graph_counts"], {"topic_count": 5, "date_count": 2, "source_count": 3})
         self.assertEqual(summary["policy_mode"], "internal_grounded")
         self.assertEqual(summary["artifact_quality_status"], "internal_only")
+        self.assertEqual(summary["source_relevance"]["relevance_status"], "internal_only")
 
     def test_markdown_contains_required_sections_and_parseable_appendix(self):
         markdown = build_trend_brief_markdown(
@@ -258,6 +259,7 @@ class TrendBriefTests(unittest.TestCase):
                     "title": "What is RAG?",
                     "url": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
                     "source_quality": "developer",
+                    "excerpt": "RAG evaluation benchmark and graph RAG workflow guidance.",
                 },
                 {
                     "evidence_type": "external",
@@ -274,6 +276,8 @@ class TrendBriefTests(unittest.TestCase):
 
         self.assertEqual(summary["source_quality_counts"], {"developer": 1, "generic": 1})
         self.assertEqual(summary["artifact_quality_status"], "research_quality_verified")
+        self.assertEqual(summary["source_relevance"]["relevance_counts"]["direct_support"], 1)
+        self.assertEqual(summary["source_relevance"]["relevance_counts"]["weak_context"], 1)
 
 
 if __name__ == "__main__":

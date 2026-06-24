@@ -216,7 +216,7 @@ As of 2026-06-25:
 - Evidence Layer: internal citations, multi-provider external citations, provider fallback, live URL deep fetch, claim-level seed checks, retrieval precision checks, and seed-level semantic contradiction checks `CI Ready`; full semantic correctness `Not Claimed`
 - Agent Layer: deterministic routing `Locally Verified`; full workflow agent `Not Claimed`
 - Evaluation Layer: expanded 12-question draft asset, provider quality matrix, claim-level seed, semantic contradiction seed, retrieval precision, graph reasoning, and graph question planner checks `CI Ready`
-- Research Artifact Layer: deterministic Trend Brief generator `CI Ready`; first real generated artifact `Live Smoke Verified`; live external runtime `Live Smoke Verified`; external source quality gate `Live Smoke Verified`; semantic source relevance review `Planned`
+- Research Artifact Layer: deterministic Trend Brief generator `CI Ready`; first real generated artifact `Live Smoke Verified`; live external runtime `Live Smoke Verified`; external source quality gate `Live Smoke Verified`; source relevance review `Locally Verified`; batched external evidence acquisition `Planned`
 - Runtime Layer: vector-only local runtime `Live Smoke Verified`; live deep fetch toggle `CI Ready`
 - Integration Layer: Stage 2.5 unified local demo workspace `Planned`; full local app `Not Claimed`
 
@@ -224,7 +224,7 @@ As of 2026-06-25:
 
 The next useful work should focus on:
 
-1. Review Trend Brief source relevance and claim support after the external source-quality gate.
+1. Plan batched external evidence acquisition before any further search API calls.
 2. Consider source deepening for weak external citations.
 3. Add LLM-assisted summary only if deterministic output is structurally useful but too hard to read.
 4. Expanded live answer benchmark only when the execution environment permits external LLM data transfer.
