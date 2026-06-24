@@ -9,6 +9,8 @@ from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
+from rag.source_review import classify_artifact_quality_status
+
 
 DEFAULT_BRIEF_DIR = Path("docs/rag-transformation/briefs")
 
@@ -115,7 +117,39 @@ def summarize_brief_inputs(
         "policy_mode": answer_policy.get("mode", "unknown"),
         "external_search_required": bool(answer_policy.get("external_search_required")),
         "source_review_status": source_review.get("status", "unknown"),
+        "artifact_quality_status": classify_artifact_quality_status(source_review),
+        "source_quality_counts": dict(sorted(Counter(
+            c.get("source_quality", "")
+            for c in citations
+            if c.get("source_quality")
+        ).items())),
         "residual_risks": _residual_risks(citations, graph_evidence, answer_policy),
+    }
+
+
+def inspect_trend_brief_artifact(markdown: str) -> dict:
+    """Inspect consistency between the evidence table and machine-readable appendix."""
+    appendix = _extract_appendix_json(markdown)
+    table_types = _extract_evidence_table_types(markdown)
+    table_counts = dict(sorted(Counter(table_types).items()))
+    appendix_count = appendix.get("citation_count")
+    appendix_types = appendix.get("evidence_types", {})
+    issues = []
+    if appendix_count is None:
+        issues.append("missing_appendix_citation_count")
+    elif int(appendix_count) != len(table_types):
+        issues.append("citation_count_mismatch")
+    if appendix_types != table_counts:
+        issues.append("evidence_type_counts_mismatch")
+    return {
+        "consistent": not issues,
+        "issues": issues,
+        "evidence_table_count": len(table_types),
+        "evidence_table_types": table_counts,
+        "appendix_citation_count": appendix_count,
+        "appendix_evidence_types": appendix_types,
+        "artifact_quality_status": appendix.get("artifact_quality_status", "unknown"),
+        "source_review_status": appendix.get("source_review_status", "unknown"),
     }
 
 
@@ -372,3 +406,36 @@ def _clean_markdown_text(value: object) -> str:
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+
+def _extract_appendix_json(markdown: str) -> dict:
+    match = re.search(r"## Machine-Readable Appendix\s+```json\n(.*?)\n```", markdown, flags=re.S)
+    if not match:
+        return {}
+    try:
+        parsed = json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return {}
+    return parsed if isinstance(parsed, dict) else {}
+
+
+def _extract_evidence_table_types(markdown: str) -> list[str]:
+    lines = markdown.splitlines()
+    in_table = False
+    evidence_types = []
+    for line in lines:
+        if line.strip() == "## Evidence Table":
+            in_table = True
+            continue
+        if in_table and line.startswith("## "):
+            break
+        if not in_table or not line.startswith("|"):
+            continue
+        if "Evidence Type" in line or re.fullmatch(r"\|\s*[-: ]+\|.*", line):
+            continue
+        cells = [cell.strip() for cell in re.split(r"(?<!\\)\|", line)]
+        cells = [cell for cell in cells if cell]
+        if len(cells) < 4 or "No usable evidence" in line:
+            continue
+        evidence_types.append(cells[3])
+    return evidence_types

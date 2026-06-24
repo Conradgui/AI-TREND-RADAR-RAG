@@ -43,6 +43,17 @@ class ExternalSourceQualityTests(unittest.TestCase):
         self.assertGreater(len(official), 600)
         self.assertLessEqual(len(social), 600)
 
+    def test_authoritative_technical_vendor_source_is_developer_quality(self):
+        quality = classify_source_quality(
+            "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+            task_type="recent_web",
+            entities=[],
+        )
+
+        self.assertEqual(quality["source_quality"], "developer")
+        self.assertGreaterEqual(quality["quality_score"], 0.8)
+        self.assertFalse(quality["needs_deep_fetch"])
+
     def test_official_lookup_domain_policy_prefers_google_and_excludes_social(self):
         policy = official_lookup_domain_policy(["Google"])
 

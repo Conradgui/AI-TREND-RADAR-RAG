@@ -2,7 +2,7 @@
 
 import unittest
 
-from rag.source_review import build_source_review, format_source_review_for_prompt
+from rag.source_review import build_source_review, classify_artifact_quality_status, format_source_review_for_prompt
 
 
 class SourceReviewTests(unittest.TestCase):
@@ -72,6 +72,16 @@ class SourceReviewTests(unittest.TestCase):
         self.assertIn("来源审查", prompt)
         self.assertIn("primary_evidence", prompt)
         self.assertIn("arxiv.org", prompt)
+
+    def test_artifact_quality_status_distinguishes_runtime_from_research_quality(self):
+        self.assertEqual(
+            classify_artifact_quality_status({"external_count": 1, "primary_count": 0, "supporting_count": 0}),
+            "runtime_verified",
+        )
+        self.assertEqual(
+            classify_artifact_quality_status({"external_count": 1, "primary_count": 1, "supporting_count": 0}),
+            "research_quality_verified",
+        )
 
 
 if __name__ == "__main__":

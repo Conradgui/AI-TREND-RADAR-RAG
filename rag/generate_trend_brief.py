@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+from collections import Counter
 from pathlib import Path
 
 from rag.answer_policy import build_answer_policy, mark_external_evidence_used
@@ -15,9 +16,9 @@ from rag.query_understanding import analyze_query
 from rag.retrieval_planning import build_metadata_filter, load_latest_corpus_date
 from rag.search_provider_adapters import SearchProviderRegistry, SearchRequest
 from rag.search_provider_routing import build_search_provider_route
-from rag.source_review import build_source_review
+from rag.source_review import build_source_review, classify_artifact_quality_status
 from rag.tool_routing import infer_search_task_type
-from rag.trend_brief import build_trend_brief_markdown, save_trend_brief, select_brief_citations
+from rag.trend_brief import build_trend_brief_markdown, inspect_trend_brief_artifact, save_trend_brief, select_brief_citations
 
 
 def build_generation_summary(
@@ -26,20 +27,28 @@ def build_generation_summary(
     topic: str,
     citation_count: int,
     external_citation_count: int = 0,
+    evidence_type_counts: dict | None = None,
     has_graph_summary: bool,
     mode: str = "local-only",
     policy_mode: str,
+    source_review: dict | None = None,
+    artifact_consistency: dict | None = None,
     external_search_trace: dict | None = None,
 ) -> dict:
     """Build the machine-readable CLI result summary."""
+    source_review = source_review or {}
     return {
         "output": output,
         "topic": topic,
         "citation_count": citation_count,
         "external_citation_count": external_citation_count,
+        "evidence_type_counts": evidence_type_counts or {},
         "has_graph_summary": has_graph_summary,
         "mode": mode,
         "policy_mode": policy_mode,
+        "source_review_status": source_review.get("status", "unknown"),
+        "artifact_quality_status": classify_artifact_quality_status(source_review),
+        "artifact_consistency": artifact_consistency or {"consistent": False, "issues": ["not_checked"]},
         "external_search": external_search_trace or {"attempted": False, "citations": []},
     }
 
@@ -144,6 +153,7 @@ async def generate_trend_brief(
             latest_corpus_date=latest_corpus_date,
             mode=mode,
         )
+        artifact_consistency = inspect_trend_brief_artifact(markdown)
         output = save_trend_brief(markdown, topic=topic, output_path=output_path)
     finally:
         await driver.close()
@@ -156,9 +166,15 @@ async def generate_trend_brief(
             1 for citation in citations_for_policy
             if citation.get("evidence_type") == "external"
         ),
+        evidence_type_counts=dict(sorted(Counter(
+            citation.get("evidence_type", "unknown")
+            for citation in citations_for_policy
+        ).items())),
         has_graph_summary=bool(graph_evidence),
         mode=mode,
         policy_mode=answer_policy.get("mode", "unknown"),
+        source_review=source_review,
+        artifact_consistency=artifact_consistency,
         external_search_trace=external_search,
     )
 
@@ -218,6 +234,8 @@ def _build_trend_brief_external_query(topic: str, plan, task_type: str) -> str:
         terms.extend(["AI", "trending repositories"])
     else:
         terms.extend(["latest updates", "primary sources", "retrieval augmented generation"])
+    if topic.strip().casefold() == "rag":
+        terms.extend(["arxiv", "benchmark", "evaluation", "graph rag", "agentic rag"])
     return _join_unique_terms(terms)
 
 

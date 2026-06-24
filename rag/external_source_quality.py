@@ -33,6 +33,19 @@ DEVELOPER_DOMAINS = [
     "github.com",
     "docs.github.com",
     "huggingface.co",
+    "aws.amazon.com",
+    "docs.aws.amazon.com",
+    "ibm.com",
+    "microsoft.com",
+    "learn.microsoft.com",
+    "nvidia.com",
+    "docs.nvidia.com",
+    "pinecone.io",
+    "docs.pinecone.io",
+    "elastic.co",
+    "docs.databricks.com",
+    "langchain.com",
+    "python.langchain.com",
 ]
 
 TRUSTED_MEDIA_DOMAINS = [

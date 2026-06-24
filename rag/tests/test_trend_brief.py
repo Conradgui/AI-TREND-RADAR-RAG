@@ -6,6 +6,7 @@ import unittest
 
 from rag.trend_brief import (
     build_trend_brief_markdown,
+    inspect_trend_brief_artifact,
     select_brief_citations,
     slugify_topic,
     summarize_brief_inputs,
@@ -65,6 +66,7 @@ class TrendBriefTests(unittest.TestCase):
         self.assertEqual(summary["citation_count"], 2)
         self.assertEqual(summary["graph_counts"], {"topic_count": 5, "date_count": 2, "source_count": 3})
         self.assertEqual(summary["policy_mode"], "internal_grounded")
+        self.assertEqual(summary["artifact_quality_status"], "internal_only")
 
     def test_markdown_contains_required_sections_and_parseable_appendix(self):
         markdown = build_trend_brief_markdown(
@@ -100,6 +102,11 @@ class TrendBriefTests(unittest.TestCase):
         self.assertEqual(appendix["topic"], "RAG")
         self.assertEqual(appendix["citation_count"], 2)
         self.assertEqual(appendix["graph_counts"]["topic_count"], 5)
+
+        inspection = inspect_trend_brief_artifact(markdown)
+        self.assertTrue(inspection["consistent"])
+        self.assertEqual(inspection["evidence_table_count"], 2)
+        self.assertEqual(inspection["appendix_citation_count"], 2)
 
     def test_markdown_marks_weak_evidence_when_citations_are_sparse(self):
         markdown = build_trend_brief_markdown(
@@ -240,6 +247,33 @@ class TrendBriefTests(unittest.TestCase):
 
         self.assertIn("https://aws.amazon.com/what-is/retrieval-augmented-generation/", markdown)
         self.assertIn("| 2026-06-24 | aws.amazon.com | What is RAG? | external | https://aws.amazon.com", markdown)
+
+    def test_summary_exposes_source_quality_counts_and_artifact_quality_status(self):
+        summary = summarize_brief_inputs(
+            topic="RAG",
+            citations=[
+                {
+                    "evidence_type": "external",
+                    "source": "aws.amazon.com",
+                    "title": "What is RAG?",
+                    "url": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+                    "source_quality": "developer",
+                },
+                {
+                    "evidence_type": "external",
+                    "source": "example.blog",
+                    "title": "RAG blog",
+                    "url": "https://example.blog/rag",
+                    "source_quality": "generic",
+                },
+            ],
+            graph_evidence=None,
+            answer_policy={"mode": "internal_and_external_grounded"},
+            source_review={"status": "mixed_quality", "external_count": 2, "primary_count": 1, "supporting_count": 0},
+        )
+
+        self.assertEqual(summary["source_quality_counts"], {"developer": 1, "generic": 1})
+        self.assertEqual(summary["artifact_quality_status"], "research_quality_verified")
 
 
 if __name__ == "__main__":

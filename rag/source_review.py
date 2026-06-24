@@ -37,6 +37,11 @@ def build_source_review(citations: list[dict]) -> dict:
 
     return {
         "status": status,
+        "artifact_quality_status": classify_artifact_quality_status({
+            "external_count": len(external),
+            "primary_count": primary_count,
+            "supporting_count": supporting_count,
+        }),
         "external_count": len(external),
         "primary_count": primary_count,
         "supporting_count": supporting_count,
@@ -44,6 +49,20 @@ def build_source_review(citations: list[dict]) -> dict:
         "source_roles": source_roles,
         "instruction": instruction,
     }
+
+
+def classify_artifact_quality_status(review: dict) -> str:
+    """Classify whether an artifact has runtime-only or research-quality external evidence."""
+    external_count = int(review.get("external_count") or 0)
+    primary_count = int(review.get("primary_count") or 0)
+    supporting_count = int(review.get("supporting_count") or 0)
+    if primary_count:
+        return "research_quality_verified"
+    if supporting_count:
+        return "supporting_evidence_verified"
+    if external_count:
+        return "runtime_verified"
+    return "internal_only"
 
 
 def format_source_review_for_prompt(review: dict) -> str:

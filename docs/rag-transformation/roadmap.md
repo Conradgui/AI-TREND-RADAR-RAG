@@ -435,20 +435,32 @@ Last updated: 2026-06-24
   - Runtime smoke generated `docs/rag-transformation/briefs/trend-brief-rag-live-external-2026-06-24.md` with 8 citations: 4 internal, 1 graph, 3 external.
   - Source quality remained `weak_only`.
   - Status: live external mode `Live Smoke Verified`; source quality improvement `Planned`.
+- Trend Brief External Source Quality Upgrade
+  - Expands deterministic source-quality classification for authoritative technical/vendor documentation sources.
+  - Adds `artifact_quality_status` to CLI summary and Markdown appendix.
+  - Adds deterministic artifact consistency inspection for Evidence Table vs Machine-Readable Appendix.
+  - Adds RAG-specific external query terms for arXiv/benchmark/evaluation/Graph RAG/Agentic RAG discovery.
+  - Current focused result: 23 focused tests passed.
+  - Current canonical result: 177 tests passed.
+  - Live external artifact generated `docs/rag-transformation/briefs/trend-brief-rag-source-quality-2026-06-25.md` with 8 citations: 4 internal, 1 graph, 3 external.
+  - Source review improved from `weak_only` to `mixed_quality`.
+  - Artifact quality status: `research_quality_verified`.
+  - Artifact consistency: passed; Evidence Table and appendix both report 8 citations with 3 external, 1 graph, and 4 internal.
+  - Status: source quality gate `Live Smoke Verified`; semantic source relevance still needs review.
 
 ### Current Gate
 
-Current module: P2 Trend Brief External Source Quality Upgrade.
+Current module: P2 Trend Brief Source Relevance And Claim Review.
 
-Next bottleneck: evidence quality.
+Next bottleneck: evidence relevance.
 
 Decision rule:
 
 - Use the current RAG core to produce a durable research artifact.
 - Start with Markdown/file output, not UI, unless Conrad explicitly changes priority.
 - Keep the MVP focused on one workflow: topic -> evidence -> graph summary -> source review -> uncertainty -> follow-up actions.
-- Treat `weak_only` external evidence as `runtime_verified`, not `research_quality_verified`.
-- Require CLI summary, Markdown appendix, and evidence table consistency before closing the next P2 artifact module.
+- Treat `research_quality_verified` as a source-quality gate, not proof that every selected external source is semantically ideal.
+- Review whether selected external sources support the specific Trend Brief claims, not only whether the domains are authoritative.
 - Include a checkpoint change inventory at P2 module close.
 
 Completed:
@@ -486,6 +498,7 @@ Completed:
 - First RAG Trend Brief artifact is generated and ready for product review.
 - Trend Brief live external mode is implemented behind an explicit CLI flag.
 - Trend Brief live external runtime path is verified with filtered external citations.
+- Trend Brief external source quality gate is live-smoke verified with `mixed_quality`, `research_quality_verified`, and artifact consistency passed.
 
 ### Verified Runtime Claims
 
@@ -530,7 +543,7 @@ Completed:
 - Full semantic contradiction detection is not implemented yet; only a seed-level guardrail exists.
 - DeepSeek expanded 12-question live benchmark is not run because this execution environment blocks the external data transfer.
 - Trend Brief semantic quality as a research artifact has not been manually reviewed yet.
-- Trend Brief live external source quality is still weak/generic.
+- Trend Brief semantic source relevance as a research artifact has not been manually or rubric-reviewed yet.
 - LangGraph-style stateful agent workflow is not implemented yet.
 - Dedicated chat UI graph-reasoning mode is not implemented yet.
 - Stage 2.5 single-repo local demo workspace is accepted as direction but not implemented yet.
