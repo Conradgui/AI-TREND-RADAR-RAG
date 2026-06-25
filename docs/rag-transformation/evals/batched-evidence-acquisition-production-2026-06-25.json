@@ -1,0 +1,1309 @@
+{
+  "generated_at": "2026-06-25T02:20:06.443397+00:00",
+  "mode": "live_batch",
+  "configured_providers": [
+    "brave",
+    "exa",
+    "github",
+    "tavily"
+  ],
+  "plan": {
+    "topic": "RAG",
+    "input_artifact": "docs/rag-transformation/briefs/trend-brief-rag-source-quality-2026-06-25.md",
+    "source_relevance_status": "relevance_verified",
+    "external_api_calls": 0,
+    "execution_status": "ready_to_execute",
+    "budget": {
+      "free_quota_first": true,
+      "strategy_mode": "production",
+      "max_total_calls": 4,
+      "planned_calls": 4,
+      "execute_now": true,
+      "max_results_per_call": 8
+    },
+    "claim_gaps": [
+      {
+        "gap_id": "en-wikipedia-org-primary-confirmation",
+        "claim_family": "definition_or_background",
+        "current_citation_id": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+        "current_source": "en.wikipedia.org",
+        "current_relevance": "weak_context",
+        "needed_source_type": "primary_or_authoritative_technical_reference",
+        "query": "retrieval augmented generation authoritative technical documentation definition",
+        "task_type": "technical_article",
+        "priority": "P1"
+      },
+      {
+        "gap_id": "www-braintrust-dev-claim-corroboration",
+        "claim_family": "evaluation_or_tooling_claim",
+        "current_citation_id": "https://www.braintrust.dev/articles/best-rag-evaluation-tools",
+        "current_source": "www.braintrust.dev",
+        "current_relevance": "partial_support",
+        "needed_source_type": "primary_benchmark_or_vendor_docs",
+        "query": "retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval",
+        "task_type": "research_paper",
+        "priority": "P1"
+      }
+    ],
+    "search_tasks": [
+      {
+        "gap_id": "en-wikipedia-org-primary-confirmation",
+        "query": "retrieval augmented generation authoritative technical documentation definition",
+        "task_type": "technical_article",
+        "needed_source_type": "primary_or_authoritative_technical_reference",
+        "priority": "P1",
+        "provider_chain": [
+          "exa",
+          "tavily",
+          "brave"
+        ],
+        "available_provider_chain": [
+          "exa",
+          "tavily"
+        ],
+        "fallback_providers": [
+          "tavily"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "strategy_mode": "production",
+        "rationale": "technical_article uses provider chain: exa, tavily, brave."
+      },
+      {
+        "gap_id": "www-braintrust-dev-claim-corroboration",
+        "query": "retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval",
+        "task_type": "research_paper",
+        "needed_source_type": "primary_benchmark_or_vendor_docs",
+        "priority": "P1",
+        "provider_chain": [
+          "exa",
+          "tavily",
+          "serpapi"
+        ],
+        "available_provider_chain": [
+          "exa",
+          "tavily"
+        ],
+        "fallback_providers": [
+          "tavily"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 4,
+          "serpapi_role": "specialty_provider"
+        },
+        "strategy_mode": "production",
+        "rationale": "research tasks prefer Exa for AI-native research/paper search, then Tavily, then SerpAPI."
+      }
+    ],
+    "notes": [
+      "Build the full evidence request set before making provider calls.",
+      "Use exploration mode for wider test-stage pooling and production mode for routed low-latency use."
+    ]
+  },
+  "result": {
+    "topic": "RAG",
+    "input_artifact": "docs/rag-transformation/briefs/trend-brief-rag-source-quality-2026-06-25.md",
+    "source_relevance_status": "relevance_verified",
+    "execution_status": "executed",
+    "executed_at": "2026-06-25",
+    "external_api_calls": 4,
+    "budget": {
+      "free_quota_first": true,
+      "strategy_mode": "production",
+      "max_total_calls": 4,
+      "planned_calls": 4,
+      "execute_now": true,
+      "max_results_per_call": 8
+    },
+    "claim_gap_results": [
+      {
+        "gap_id": "en-wikipedia-org-primary-confirmation",
+        "query": "retrieval augmented generation authoritative technical documentation definition",
+        "task_type": "technical_article",
+        "needed_source_type": "primary_or_authoritative_technical_reference",
+        "attempts": [
+          {
+            "provider": "exa",
+            "available": true,
+            "citation_count": 8,
+            "raw_results_count": 8,
+            "errors": []
+          },
+          {
+            "provider": "tavily",
+            "available": true,
+            "citation_count": 8,
+            "raw_results_count": 8,
+            "errors": []
+          }
+        ],
+        "citations": [
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "aws.amazon.com",
+            "source_type": "web",
+            "title": "What is RAG (Retrieval-Augmented Generation)?",
+            "url": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\nRetrieval-Augmented Generation (RAG) enhances large language models by first retrieving relevant, authoritative external documents from knowledge sources (e.g., policy manuals, databases) and then supplying those retrieved materials to the LLM as context. This approach keeps outputs accurate and up-to-date without retraining the model, improves domain-specific or organization-specific responses, and provides transparency by showing the sourcing process. The workflow typically involves: converting the user query into a vector, retrieving highly relevant documents from vector databases, and augmenting the prompt with this retrieved data before the LLM generates a response. This enables precise, context-aware answers (e.g., HR policies, technical docs) while maintaining control over content quality.",
+            "score": null,
+            "published_at": "",
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "docs.aws.amazon.com",
+            "source_type": "web",
+            "title": "Understanding Retrieval Augmented Generation - AWS Prescriptive Guidance",
+            "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/retrieval-augmented-generation-options/what-is-rag.html",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\n- Retrieval Augmented Generation (RAG) is a technique that augments a large language model (LLM) with external data (e.g., internal documents) to provide relevant, accurate outputs for specific use cases.\n- Core components:\n  - Embeddings: convert documents into semantic vectors; stored in a vector database (vector store/index) after cleaning, formatting, and chunking (one-time upfront effort).\n  - Vector database: index of embeddings, texts, and metadata optimized for search and retrieval.\n  - Retriever/orchestrator: performs similarity searches in the vector store, retrieves relevant context, and adds it to the user query prompt.\n  - Foundation model (LLM): processes the combined prompt and retrieved context to generate the final response.\n- Four-step process (repeated as needed after the initial setup):\n  1) Create embeddings and ingest documents into the vector database (one-time).\n  2) Prepare/format data for ingestion (one-time).\n  3) Orchestrator performs similarity search and retrieves context.\n  4) Orchestrator sends query + context to the LLM to generate a response.\n- Relevancy search workflow: convert documents and queries into embeddings, use the vector store t",
+            "score": null,
+            "published_at": "",
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "learn.microsoft.com",
+            "source_type": "web",
+            "title": "RAG and Generative AI - Azure AI Search | Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview?tabs=docs",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Retrieval-augmented generation (RAG) in Azure AI Search is a pattern that grounds LLM outputs in your own content. Microsoft Learn distinguishes two approaches:\n\n- Agentic retrieval (preview): A complete RAG pipeline that uses LLM-assisted query planning, multi-source access, parallel subqueries, and structured, grounded responses optimized for chat. Features include context-aware query planning, parallel subqueries, structured results with citations and execution metadata, built-in semantic ranking, and optional LLM-synthesized answers. Recommended for new RAG implementations.\n- Classic RAG: The traditional approach using a single user query to Azure AI Search, then an LLM synthesizes an answer from the flattened results. Simpler to implement, fewer components, and faster when GA features are required or query planning isn’t needed.\n\nKey takeaway: For authoritative, technically grounded RAG implementations, agentic retrieval is the modern, recommended pattern, offering better accuracy and context handling through multi-query, structured, and cited responses. Classic RAG remains suitable for simpler or GA-only use cases.",
+            "score": null,
+            "published_at": "",
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "learn.microsoft.com",
+            "source_type": "web",
+            "title": "Retrieval augmented generation (RAG) and indexes in Microsoft Foundry - Microsoft Foundry | Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/retrieval-augmented-generation?view=foundry-classic",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\nThis Microsoft Learn article defines and explains Retrieval Augmented Generation (RAG) in Microsoft Foundry. RAG combines search with large language models to ground responses in your data, using an index to retrieve relevant content, and then augmenting prompts before generation. Key concepts:\n- Grounding data: retrieved content provided to the model to reduce guessing and enable citations.\n- Index: data structure for efficient retrieval (keyword, semantic, vector, or hybrid search). \n- Embeddings: numeric representations used for vector similarity search.\n- RAG workflow (three steps): Retrieve (find relevant content via an index), Augment (combine question + grounding data into a prompt), Generate (model outputs a grounded answer with possible citations).\n- Retrieval modes: keyword, semantic, vector, and hybrid search; Azure AI Search is recommended for RAG in Foundry.\n- Agentic RAG: an advanced pattern where a model generates subqueries to fetch focused grounding data in parallel, improving handling of complex inputs.\n- Practical note: RAG is most effective when retrieval is fast and reliable, enabling grounded responses and source citations.",
+            "score": null,
+            "published_at": "",
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "docs.langchain.com",
+            "source_type": "web",
+            "title": "Retrieval - Docs by LangChain",
+            "url": "https://docs.langchain.com/oss/python/langchain/retrieval",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\n\n- Retrieval-Augmented Generation (RAG) combines an LLM with a retrieval step to fetch relevant external documents at query time, grounding and enriching the model’s answers with context-specific information.\n- Core idea: integrate retrieval with generation to create grounded, context-aware responses. The retrieval pipeline provides source material that the LLM uses during answer generation, enabling more accurate and verifiable outputs.\n- Key concepts:\n  - Retriever: an interface that returns documents in response to an unstructured query.\n  - RAG architectures:\n    - 2-Step RAG: retrieval occurs before generation; simple, predictable.\n    - Agentic RAG: an LLM-based agent decides when/how to retrieve during interaction.\n    - Hybrid RAG: combines aspects of both with intermediate steps (query preprocessing, retrieval validation, post-generation checks) for more flexibility and quality control.\n  - Retrieval validation: assess retrieved docs for relevance; may trigger re-query if needed.\n  - Answer validation: verify generated outputs against sources; may trigger regeneration or revision.\n- Practical takeaway: authoritative technical documentation on RAG emphasizes ground",
+            "score": null,
+            "published_at": "",
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "en.wikipedia.org",
+            "source_type": "web",
+            "title": "Retrieval-augmented generation",
+            "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Retrieval-augmented generation (RAG) is a technique that enhances large language models by retrieving relevant external documents before generating responses. Key points:\n\n- Workflow: Given a user query, a document retriever selects the most relevant texts from external sources or a vector database; the retrieved content is then combined with the model’s internal knowledge to produce the answer.\n- Data sources: Can use unstructured text, semi-structured data, or structured data (e.g., knowledge graphs); data is stored as embeddings in a vector database.\n- Benefits: Improves factual accuracy, enables use of domain-specific or updated information, and helps reduce hallucinations by grounding responses in retrieved sources.\n- Origins and use: Introduced in a 2020 paper as combining a parametr",
+            "score": null,
+            "published_at": "",
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "www.ibm.com",
+            "source_type": "web",
+            "title": "What is RAG (Retrieval Augmented Generation)?",
+            "url": "https://www.ibm.com/think/topics/retrieval-augmented-generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\nRetrieval Augmented Generation (RAG) is an architecture that enhances AI model performance by connecting a generative model with external knowledge bases. It combines an information retrieval component with a generator to produce more accurate, domain-specific content without retraining the model. Key roles:\n- Knowledge base: external data source (internal docs, journals, specialized datasets)\n- Retriever: converts the user query into embeddings and fetches relevant data from the knowledge base\n- Integration layer: coordinates retrieval and generation, creating an augmented prompt (original query + retrieved context)\n- Generator: produces the final output using the augmented prompt (often pretrained models like GPT, Claude, or Llama)\n\nHow RAG works in brief:\n1) The retriever searches the knowledge base for relevant information related to the user query.\n2) The integration layer combines the retrieved data with the original query to form an augmented prompt.\n3) The generator produces a response guided by the augmented prompt, resulting in more authoritative, context-rich output.\n\nDifference from fine-tuning:\n- RAG uses external data at inference time to augment responses, w",
+            "score": null,
+            "published_at": "",
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "docs.spring.io",
+            "source_type": "web",
+            "title": "Retrieval Augmented Generation :: Spring AI Reference",
+            "url": "https://docs.spring.io/spring-ai/reference/api/retrieval-augmented-generation.html",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\n- The document explains Retrieval Augmented Generation (RAG) in Spring AI, a technique to improve long-form content handling, factual accuracy, and context-awareness for LLMs.\n- Spring AI provides a modular RAG architecture with an out-of-the-box RetrievalAugmentationAdvisor (RAG advisor) and the ability to build custom RAG flows.\n- Key components:\n  - VectorStoreDocumentRetriever: fetches semantically similar documents from a vector store, with optional metadata filters, similarity thresholds, and top-k control.\n  - RetrievalAugmentationAdvisor: an Advisor that orchestrates common RAG flows; can be used with the ai-rag dependency.\n  - ContextualQueryAugmenter: augments user queries with contextual data from retrieved documents to provide necessary context to the model.\n  - Questi",
+            "score": null,
+            "published_at": "",
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "tensoria.fr",
+            "source_type": "web",
+            "title": "RAG (Retrieval Augmented Generation): A Technical Guide | Tensoria",
+            "url": "https://tensoria.fr/en/blog/rag-retrieval-augmented-generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "# RAG (Retrieval Augmented Generation): A Technical Guide. It connects an LLM to a live, private knowledge base at inference time, making the model's output grounded, verifiable, and updatable without retraining. It is a technique that improves the output of a large language model (LLM) by supplying it with reliable external information before it generates a response. A useful mental model: a standard generative AI is like a student taking an exam from memory — their knowledge is frozen at training time. 3. **Generation:** The LLM receives the augmented prompt and produces a response in natural language — but one that is grounded in the documents provided at the retrieval step, not in its parametric memory alone. The difference between those and an enterprise RAG system is what's in the in",
+            "score": 0.7940821,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "en.wikipedia.org",
+            "source_type": "web",
+            "title": "Retrieval-augmented generation - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "[Jump to content](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#bodyContent). *   [(Top)](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#). *   [3 Applications](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Applications). *   [4.1 Encoder](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Encoder). *   [4.3 Language model](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Language_model). *   [4.4 Chunking](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Chunking). *   [6 References](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#References). *   [Article](https://en.wikipedia.org/wiki/Retrieval-augmented_generation \"View the content page [alt-c]\"). *   [Talk](https://en.wikipedia.org/wiki/Talk:Ret",
+            "score": 0.7724109,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.ibm.com",
+            "source_type": "web",
+            "title": "What is RAG (Retrieval Augmented Generation)?",
+            "url": "https://www.ibm.com/think/topics/retrieval-augmented-generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "*   [Overview](https://www.ibm.com/think/topics/generative-ai#257779831). *   [Generative model](https://www.ibm.com/think/topics/generative-model#257779832). *   [Overview](https://www.ibm.com/think/topics/retrieval-augmented-generation#824202002). *   [Overview](https://www.ibm.com/think/topics/ai-code-generation#1329760627). *   [Overview](https://www.ibm.com/think/topics/model-training#1580786329). [](https://www.ibm.com/think/topics/retrieval-augmented-generation). Retrieval augmented generation, or RAG, is an architecture for optimizing the performance of an [artificial intelligence (AI)](https://www.ibm.com/think/topics/artificial-intelligence) model by connecting it with external knowledge bases. RAG helps [large language models (LLMs)](https://www.ibm.com/think/topics/large-language-models) deliver more relevant responses at a higher quality. [Generative AI](https://www.ibm.com/think/topics/generative-ai) (gen AI) models are trained on large datasets and refer to this information to generate outputs. [](https://www.ibm.com/think/topics/retrieval-augmented-generation). Enterprises can use RAG to complete gaps in a [machine learning](https://www.ibm.com/think/topics/machine-",
+            "score": 0.7192461,
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "blogs.nvidia.com",
+            "source_type": "web",
+            "title": "What Is Retrieval-Augmented Generation aka RAG",
+            "url": "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "![Image 22: NVIDIA artist's concept of retrieval-augmented generation aka RAG](https://blogs.nvidia.com/wp-content/uploads/2023/11/Retrieval-Augmented-Generation-RAG-KV-1-1280x683.jpg). The court clerk of AI is a process called [retrieval-augmented generation](https://www.nvidia.com/en-us/glossary/retrieval-augmented-generation/), or RAG for short. [Retrieval-augmented generation](https://www.nvidia.com/en-us/glossary/retrieval-augmented-generation/) is a technique for enhancing the accuracy and reliability of generative AI models with information fetched from specific and relevant data sources. The broad potential is why companies including [AWS](https://aws.amazon.com/blogs/machine-learning/simplify-access-to-internal-information-using-retrieval-augmented-generation-and-langchain-agents/), [IBM](https://research.ibm.com/blog/retrieval-augmented-generation-RAG), [Glean](https://www.glean.com/resources/guides/what-is-retrieval-augmented-generation-rag), [Google](https://cloud.google.com/use-cases/retrieval-augmented-generation?hl=en), [Microsoft](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview), NVIDIA, [Oracle](https://www.oracle.com/artifici",
+            "score": 0.7014069,
+            "source_quality": "developer",
+            "quality_score": 0.82,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "developer platform or documentation source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.k2view.com",
+            "source_type": "web",
+            "title": "A practical guide to Retrieval-Augmented Generation (RAG)",
+            "url": "https://www.k2view.com/what-is-retrieval-augmented-generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "RAG transforms real-time, multi-source business data into intelligent, context-aware, and compliant prompts to reduce [AI hallucinations](https://www.k2view.com/what-are-ai-hallucinations/) and elevate the effectiveness and trust of generative AI apps. The [RAG architecture](https://www.k2view.com/blog/rag-architecture/) diagram below illustrates the retrieval-augmented generation framework and data flow, from the user prompt to response:. [Active retrieval-augmented generation](https://www.k2view.com/blog/active-retrieval-augmented-generation/) integrates fresh, trusted data retrieved from a company’s internal sources – docs stored in document databases and data stored in enterprise systems – directly into the generation process. Finally, to give your LLM tools visibility into all your cr",
+            "score": 0.638588,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "[2506.23136] LLM-Assisted Question-Answering on Technical Documents Using Structured Data-Aware Retrieval Augmented Generation",
+            "url": "https://arxiv.org/abs/2506.23136",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "## quick links. # Computer Science > Computation and Language. # Title:LLM-Assisted Question-Answering on Technical Documents Using Structured Data-Aware Retrieval Augmented Generation. | Comments: | 29 Pages, 11 Tables |. | Subjects: | Computation and Language (cs.CL) |. | Cite as: | arXiv:2506.23136 [cs.CL] |. |  | (or  arXiv:2506.23136v1 [cs.CL] for this version) |. |  |  Focus to learn more  arXiv-issued DOI via DataCite |. ## BibTeX formatted citation. # Bibliographic and Citation Tools. # Code, Data and Media Associated with this Article. # Recommenders and Search Tools. # arXivLabs: experimental projects with community collaborators. arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website. Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them. Have an idea for a project that will add value for arXiv's community?",
+            "score": 0.55796635,
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.databricks.com",
+            "source_type": "web",
+            "title": "What is Retrieval Augmented Generation (RAG)?",
+            "url": "https://www.databricks.com/blog/what-is-retrieval-augmented-generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "*   [How RAG works](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-2). *   [Future of RAG technology](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-3). *   [How RAG works](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-2). *   [Future of RAG technology](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-3). By building their GenAI chatbot — Latte — on the Databricks Data Intelligence Platform, [Experian](https://www.databricks.com/customers/experian/genai) was able to [improve prompt handling and model accuracy](https://www.databricks.com/product/machine-learning/retrieval-augmented-generation), which gave their teams greater flexibility to experiment with different ",
+            "score": 0.5010992,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.youtube.com",
+            "source_type": "web",
+            "title": "What is Retrieval-Augmented Generation (RAG)?",
+            "url": "https://www.youtube.com/watch?v=T-D1OfcDW1M",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "[What is Retrieval-Augmented Generation (RAG)?](https://www.youtube.com/watch?v=T-D1OfcDW1M). (Retrieval Augmented Generation)Don Woodlock 291K views • 2 years ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=u47GtXwePms)[9:49 What is a Vector Database? CAG: Solving Knowledge Gaps in AI Models IBM Technology 608K views • 1 year ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=HdafI0t3sEY)[8:48 RAG's Evolution: From Simple Retrieval to Agentic AI IBM Technology 110K views • 1 month ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=JB2P5Gk23VI)[12:06 RAG Explained in 12 Minutes Aishwarya Srinivasan 513K views • 2 months ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=v0ynfDPpe4E)[15:05 Karpathy's LLM Wiki - Full Beginner Setup Guide Tea",
+            "score": 0.424341,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          }
+        ],
+        "citation_count": 16
+      },
+      {
+        "gap_id": "www-braintrust-dev-claim-corroboration",
+        "query": "retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval",
+        "task_type": "research_paper",
+        "needed_source_type": "primary_benchmark_or_vendor_docs",
+        "attempts": [
+          {
+            "provider": "exa",
+            "available": true,
+            "citation_count": 8,
+            "raw_results_count": 8,
+            "errors": []
+          },
+          {
+            "provider": "tavily",
+            "available": true,
+            "citation_count": 8,
+            "raw_results_count": 8,
+            "errors": []
+          }
+        ],
+        "citations": [
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "Do We Still Need GraphRAG? Benchmarking RAG and GraphRAG for Agentic Search Systems",
+            "url": "https://arxiv.org/pdf/2604.09666",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\n- This work introduces RAGSearch, a unified benchmark for evaluating retrieval-augmented generation (RAG) under agentic (multi-round, decision-based) search workflows.\n- It compares dense RAG and graph-based RAG (GraphRAG) as alternative retrieval infrastructures within the RAG paradigm, across training-free and training-based agentic inference.\n- Key goal: assess whether agentic search can compensate for the lack of explicit graph structure, reducing the need for GraphRAG in complex reasoning tasks.\n- Methodology highlights:\n  - Standardized LLM backbone, retrieval budgets, and inference protocols\n  - Full test-set evaluation with both offline preprocessing costs and online inference efficiency included\n  - Evaluates across multiple QA benchmarks in iterative, multi-step settings\n- Findings:\n  - Agentic search substantially improves dense RAG performance and narrows the gap to GraphRAG, especially in reinforcement-learning–based (RL-based) agentic setups\n  - GraphRAG still offers advantages for complex multi-hop reasoning and yields more stable agentic behavior when its offline costs are amortized\n- Practical takeaway: explicit graph structure and agentic search play complementary roles; design choices should consider task complexity (multi-hop vs. simpler QA) and cost trade-offs.\n- Resources: benchmark and code available at GitHub (RAGSearch).\n\nRelevance to query: Addresses evaluation and performance trade-offs between RAG, GraphRAG, and agentic (hybrid) retrieval approaches, with a concrete benchmark and findings on how agentic search interacts with graph-based ",
+            "score": null,
+            "published_at": "",
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "How Much Reasoning Do Retrieval-Augmented Models Add beyond LLMs? A Benchmarking Framework for Multi-Hop Inference over Hybrid Knowledge",
+            "url": "https://arxiv.org/html/2602.10210",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\nThe paper benchmarks how much reasoning retrieval-augmented models (RAG) gain beyond base LLMs by introducing HybridRAG-Bench, a fully automated framework for evaluating multi-hop reasoning over hybrid knowledge (text and structured graphs). Key points:\n- Framework purpose: quantify additional reasoning contributed by retrieval-augmented approaches that combine unstructured text with structured knowledge graphs.\n- Pipeline: four stages\n  1) Collect time-framed arXiv corpora as external knowledge sources.\n  2) Build hybrid knowledge environments with aligned unstructured text chunks and knowledge graphs to support both document retrieval and graph traversal.\n  3) Generate diverse QA pairs grounded in explicit reasoning paths (single-hop, multi-hop, hard multi-hop, conditional, counterfactual, open-ended).\n  4) Automated quality control to ensure answerability, independence from document phrasing, and non-redundancy.\n- Findings (RQ3): Structured knowledge complements text-based retrieval. Hybrid KG-RAG methods that jointly use structured graphs and unstructured text consistently outperform text-only RAG across domains, especially for relational reasoning, entity disambiguation, and multi-hop tasks. This demonstrates additive value of structured knowledge beyond unstructured retrieval.\n- Significance: HybridRAG-Bench serves as a sensitive testbed to evaluate how well models integrate text and graph evidence and to assess structured reasoning capabilities in KG-RAG systems.\n\nIf you’re evaluating graph-enabled or hybrid RAG systems (graph agentic or hybrid retrieval) fo",
+            "score": null,
+            "published_at": "",
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "link.springer.com",
+            "source_type": "web",
+            "title": "Evaluating Retrieval Augmented Generation: A Comprehensive Review of Evaluation Dimensions, Question Types, and Application | SN Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s42979-026-05134-x",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\n- The article provides a comprehensive, end-to-end evaluation framework for Retrieval Augmented Generation (RAG), linking retrieval and generation dimensions to evaluator families.\n- It systematizes dataset and question-type characteristics, input prerequisites for metrics, and describes an evaluation pipeline with run configuration and parameter tracking for repeatable experiments.\n- It discusses advanced RAG components (query rewriting, reranking, graph retrieval) and their evaluation implications, especially for multi-step retrieval and adaptability.\n- The retrieval phase is covered with emphasis on selecting top-k chunks via embeddings, addressing semantic mismatches, and using hybrid dense-sparse methods.\n- It highlights the need to evaluate multiple retrievals within dynamic",
+            "score": null,
+            "published_at": "2026-06-16T00:00:00.000Z",
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "github.com",
+            "source_type": "web",
+            "title": "junhongmit/HybridRAG-Bench",
+            "url": "https://github.com/junhongmit/HybridRAG-Bench",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "HybridRAG-Bench is a benchmark construction and evaluation framework for retrieval-intensive, multi-hop reasoning in large language models. It automatically builds a hybrid knowledge environment by pairing unstructured text (documents) with a linked knowledge graph extracted from the same corpus, enabling both document retrieval and graph traversal for reasoning-grounded QA.\n\nKey points for your query:\n- Purpose: Diagnose how retrieval-augmented generation (RAG) methods actually use external knowledge, beyond parametric memory.\n- Hybrid knowledge environment: Unstructured text plus a linked knowledge graph (imported into Neo4j) from the same corpus.\n- QA generation: Produces reasoning-grounded question–answer pairs across single-hop, multi-hop, conditional, counterfactual, and open-ended scenarios; includes validation by an LLM-as-a-Judge.\n- Four-stage pipeline: Data extraction, hybrid knowledge construction, reasoning-grounded QA generation, and evaluation.\n- Benchmark components: Text corpora, a graph representation, and a suite of ground-truth QA pairs aligned to explicit reasoning paths.\n- RAG baselines support: Reproduced baselines (e.g., LightRAG, GraphRAG, HippoRAG) with indexing workflows and cache management for evaluating retrieval plus reasoning.\n\nWhat it helps you compare:\n- Retrieval quality versus reasoning capability in RAG systems on hybrid (text + graph) data.\n",
+            "score": null,
+            "published_at": "",
+            "source_quality": "official",
+            "quality_score": 0.95,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "primary official domain for requested entity"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "aclanthology.org",
+            "source_type": "web",
+            "title": "MIRAGE: A Metric-Intensive Benchmark for Retrieval-Augmented Generation Evaluation",
+            "url": "https://aclanthology.org/2025.findings-naacl.157.pdf",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\nMIRAGE is a compact, high-signal benchmark designed to evaluate Retrieval-Augmented Generation (RAG) systems. It presents 7,560 QA queries linked to a retrieval pool of 37,800 document chunks, with at least one positive chunk per query and several challenging negatives. This structure enables precise, fast evaluation of both retrieval and generation components, while keeping the retrieval pool manageable. The authors introduce four new metrics to analyze RAG behavior: noise vulnerability, context acceptability, context insensitivity, and context misinterpretation, capturing how retrieval and generation interact under varying input conditions. The dataset and evaluation code are publicly available for easy integration and customization.",
+            "score": null,
+            "published_at": "",
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2506.05690v2",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary for the query “retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval”:\n\n- The paper introduces GraphRAG-Bench, a dedicated benchmark to evaluate GraphRAG (Graph Retrieval-Augmented Generation) systems across the full pipeline: graph construction, knowledge retrieval, and final generation.\n- GraphRAG-Bench targets when graph-structured knowledge provides benefits over vanilla RAG, using tasks of increasing difficulty and real-world corpora with varying information density.\n- It covers four task types: fact retrieval, multi-hop reasoning, contextual summarization, and creative generation, with specialized metrics (e.g., ROUGE, accuracy, evidence coverage, and faithfulness) to assess different outputs.\n- Key findings aim to identify conditions under which GraphRAG outperforms traditional RAG and to provide practical guidelines for applying graph structures in RAG systems.\n- The work includes a public resource hub: GraphRAG-Bench/GraphRAG-Benchmark on GitHub for datasets, evaluation protocols, and frameworks to reproduce results.",
+            "score": null,
+            "published_at": "",
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "github.com",
+            "source_type": "web",
+            "title": "GraphRAG-Bench/GraphRAG-Benchmark",
+            "url": "https://github.com/graphrag-bench/graphrag-benchmark",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "GraphRAG-Bench is a benchmarking framework for evaluating Graph Retrieval-Augmented Generation (GraphRAG) models. It investigates when graph-augmented retrieval provides benefits over traditional RAG, across the full pipeline: graph construction, knowledge retrieval, and final generation. Key points:\n\n- Purpose: systematically identify scenarios where GraphRAG outperforms vanilla RAG and provide practical guidelines for its use.\n- What it covers: a comprehensive dataset and tasks with increasing difficulty, spanning fact retrieval, complex reasoning, contextual summarization, and creative generation.\n- Evaluation dimensions: fact retrieval accuracy, ROUGE-L; complex reasoning accuracy and ROUGE-L; contextual summarization accuracy and coverage; creative generation accuracy, factual score, and coverage.\n- Structure: detailed benchmark with end-to-end instructions, including how to perform index construction and batch inference for GraphRAG and traditional RAG; examples and an Examples README for practical usage.\n- Context: GraphRAG leverages hierarchical graph structures to improve knowledge retrieval and reasoning in LLM-assisted tasks; the benchmark analyzes conditions under which GraphRAG provides measurable benefits.\n\nIf you’re evaluating a GraphRAG setup, GraphRAG-Bench offers: a standardized evaluation suite, task difficulty progression, and guided methodology to compare a",
+            "score": null,
+            "published_at": "",
+            "source_quality": "official",
+            "quality_score": 0.95,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "primary official domain for requested entity"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "exa",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "Open-Source Agentic Hybrid RAG Framework for Scientific Literature Review",
+            "url": "https://arxiv.org/html/2508.05660v1",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "Summary:\n- Objective: Presents an open-source, agentic hybrid Retrieval Augmented Generation (RAG) framework for scientific literature review that dynamically selects between graph-based (GraphRAG) and vector-based (VectorRAG) retrieval, with uncertainty quantification.\n- Key components:\n  - Data ingestion from PubMed, arXiv, and Google Scholar APIs to build a Neo4j knowledge graph with citation relationships.\n  - Full-text PDFs embedded into a FAISS vector store using all-MiniLM-L6-v2.\n  - A Llama-3.3-70B versatile agent that decides per query whether GraphRAG or VectorRAG is most appropriate, and adjusts instruction-tuned generation accordingly.\n  - Uncertainty estimates provided at runtime to improve transparency and reduce hallucinations.\n- Retrieval and reasoning:\n  - GraphRAG: translates user queries into Cypher queries over the KG.\n  - VectorRAG: combines sparse and dense retrieval with re-ranking over the embedding space.\n- Evaluation:\n  - Bootstrapped with 12 resamples; uncertainty quantified via standard deviations.\n  - Instruction-Tuned Agent with Direct Preference Optimization (DPO) outperforms baselines.\n  - Reported gains (vs baseline) include improvements in VS Context Recall (+0.63), Context Precision (+0.56), Faithfulness (+0.24), KG Answer Relevance (+0.12), and overall Precision (+0.04–0.11 range across metrics).\n- Significance: Demonstrates improved relevance, reduced hallucinations, and reproducible workflows by dynamically selecting retrieval pathways and integrating uncertainty, contributing to robust, scalable autonomous literature discovery.",
+            "score": null,
+            "published_at": "",
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "Benchmarking Vector, Graph and Hybrid Retrieval Augmented ...",
+            "url": "https://arxiv.org/html/2507.03608v1",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "# Benchmarking Vector, Graph and Hybrid Retrieval Augmented Generation (RAG) Pipelines for Open Radio Access Networks (ORAN). While traditional RAG systems rely on vector-based retrieval, emerging variants such as GraphRAG and Hybrid GraphRAG incorporate knowledge graphs or dual retrieval strategies to support multi-hop reasoning and improve factual grounding. In this study, we conduct a comparative evaluation of Vector RAG, GraphRAG, and Hybrid GraphRAG using ORAN specifications. We assess performance across varying question complexities using established generation metrics: faithfulness, answer relevance, context relevance, and factual correctness. Recent research has proposed Hybrid GraphRAG [5], a unified framework that combines vector-based and graph-based retrieval to leverage the complementary strengths of semantic similarity and structured reasoning. By employing independent generation metrics such as faithfulness, answer relevance, and context relevance, we provide a more comprehensive and interpretable assessment of system performance [13], particularly in high-. In this work, we present an open, metric-driven comparison of Hybrid GraphRAG, GraphRAG, and Vector RAG pipelines using ORAN specification documents.",
+            "score": 0.8512743,
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "lushbinary.com",
+            "source_type": "web",
+            "title": "RAG Production Guide 2026: Retrieval-Augmented Generation | Lushbinary",
+            "url": "https://lushbinary.com/blog/rag-retrieval-augmented-generation-production-guide",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "# RAG in 2026: The Complete Production Guide to Retrieval-Augmented Generation. RAG is the dominant architecture for grounding LLMs with external knowledge - but naive pipelines fail 40% of the time at retrieval. We cover hybrid search, agentic RAG, reranking, chunking strategies, vector databases, evaluation with RAGAS, and production patterns that actually work. Retrieval-Augmented Generation has become the default architecture for any AI application that needs to answer questions using private or current data. Instead of fine-tuning a model on your corpus (expensive, slow, hard to update), RAG retrieves relevant information at query time and feeds it to the LLM as context. But here's the problem: naive RAG pipelines fail at retrieval roughly 40% of the time. In 2026, the retrieval step ",
+            "score": 0.7738498,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "arxiv.org",
+            "source_type": "web",
+            "title": "Retrieval-Augmented Generation: A Comprehensive ...",
+            "url": "https://arxiv.org/html/2506.00054v1",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "4.   [3 Taxonomy of RAG Architectures](https://arxiv.org/html/2506.00054v1#S3 \"In Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\"). 5.   [4 Enhancements in RAG](https://arxiv.org/html/2506.00054v1#S4 \"In Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\"). 7.   [6 Evaluation and Benchmarking of RAG Systems](https://arxiv.org/html/2506.00054v1#S6 \"In Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\"). Evaluation and Benchmarking of RAG Systems ‣ Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\")), compare prominent frameworks (Section[5](https://arxiv.org/html/2506.00054v1#S5 \"5. Similarly, FILCO (Filter Context)(Wang et al., [2023](https://arxiv.org/html/2506.00054v1#bib.bib70)) enhances retrieval granularity by filtering irrelevant or low-utility spans from retrieved passages before generation, improving the faithfulness and efficiency of RAG outputs. R 2 AG (Retrieval information into RAG)(Ye et al., [2024](https://arxiv.org/html/2506.00054v1#bib.bib83)) extends this by recursively reranking candidates during generation, dynamically prioritizing evidence based on the evolving answer state. M-RAG(Wang et al., [2024b](https://arxiv.org/html/2506.00054v1#bib.bib71)) applies multi-agent reinforcement learning, coordinating distributed retrievers and generators via shared memory and task-specific roles.",
+            "score": 0.70067,
+            "source_quality": "academic",
+            "quality_score": 0.9,
+            "needs_deep_fetch": false,
+            "quality_notes": [
+              "academic or paper source"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.researchgate.net",
+            "source_type": "web",
+            "title": "Graph-Based Agentic Retrieval-Augmented Generation: A Comprehensive Survey",
+            "url": "https://www.researchgate.net/publication/396209481_Graph-Based_Agentic_Retrieval-Augmented_Generation_A_Comprehensive_Survey",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "(PDF) Graph-Based Agentic Retrieval-Augmented Generation: A Comprehensive Survey. Graph-Based Agentic Retrieval-Augmented Generation: A Comprehensive Survey. This survey on Graph-Based Agentic Retrieval-Augmented Generation (GA-RAG) unifies structured knowledge graphs, autonomous agentic workflows, and large language models to advance compositional, multi-hop reasoning beyond traditional RAG pipelines. In this survey we formalize the GA-RAG paradigm, present a compact taxonomy of reasoning workflows, agent orchestration patterns, retrieval and knowledge-engineering practices, and adaptation mechanisms, and synthesize empirical and methodological trends across recent work (including documented gains in multi-hop accuracy over flat RAG approaches. Graph-Based Agentic Retriev al-Augmented. Ab",
+            "score": 0.80625874,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "datanucleus.dev",
+            "source_type": "web",
+            "title": "Retrieval Augmented Generation — RAG & Agentic AI Knowledge Hub — Data Nucleus",
+            "url": "https://datanucleus.dev/rag-and-agentic-ai/tag/Retrieval+Augmented+Generation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "# Data Nucleus Resource Centre. ## Retrieval Augmented Generation & Agentic AI. Actionable insights for AI in finance and legal: Proven strategies, action plans, business use cases and groundbreaking research. Agentic RAG in 2026: the enterprise playbook for grounded, multi‑step AI. Agentic AI,  Retrieval-Augmented Generation  Moiz Pirkani    Agentic AI,  Retrieval-Augmented Generation  Moiz Pirkani. Agentic RAG fuses retrieval with planning, tool‑use and self‑checking to deliver grounded answers to real workplace questions. This UK/EU‑focused guide covers architecture, security trimming, evaluation, compliance (AI Act, ICO, Data Act), and a 90‑day rollout plan—plus how Data Nucleus helps teams ship safe, ROI‑positive deployments. RAG, demystified: how retrieval augmented generation became",
+            "score": 0.8033131,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.researchgate.net",
+            "source_type": "web",
+            "title": "Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation",
+            "url": "https://www.researchgate.net/publication/397040674_Retrieval_Augmented_Generation_RAG_for_Fintech_Agentic_Design_and_Evaluation",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "(PDF) Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation. Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation. Retrieval-Augmented Generation (RAG) systems often face limitations in specialized domains such as fintech, where domain-specific ontologies, dense terminology, and acronyms complicate effective retrieval and synthesis. This paper introduces an agentic RAG architecture designed to address these challenges through a modular pipeline of specialized agents. We evaluate our approach against a standard RAG baseline using a curated dataset of 85 question--answer--reference triples derived from an enterprise fintech knowledge base. Experimental results demonstrate that the agentic RAG system outperforms the baseline in retrieval pr",
+            "score": 0.798077,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "www.emergentmind.com",
+            "source_type": "web",
+            "title": "Hybrid Retrieval-Augmented Generation (RAG)",
+            "url": "https://www.emergentmind.com/topics/hybrid-retrieval-augmented-generation-rag",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "# Hybrid Retrieval-Augmented Generation (RAG). * Hybrid RAG is a framework combining sparse, dense, and knowledge graph retrieval methods to enhance language model outputs. Hybrid Retrieval-Augmented Generation (RAG) systems integrate multiple retrieval strategies and dynamic query adaptation to address the precision, efficiency, and robustness challenges inherent in standard retrieval-augmented pipelines. Unlike monolithic dense or sparse retrieval baselines, hybrid RAG frameworks fuse heterogeneous evidence sources—typically sparse (BM25), dense (embedding-based), structured (knowledge graph), and sometimes relational or multimodal stores—prior to or in conjunction with LLM generation. * **Fusion mechanisms**: Rank aggregation (e.g., Reciprocal Rank Fusion, weighted sum, late/score fusio",
+            "score": 0.79041743,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          },
+          {
+            "evidence_type": "external",
+            "provider": "tavily",
+            "source": "airbyte.com",
+            "source_type": "web",
+            "title": "Graph RAG for Agentic Retrieval Explained",
+            "url": "https://airbyte.com/agentic-data/graph-rag-agentic-retrieval",
+            "retrieved_at": "2026-06-25",
+            "excerpt": "# Graph RAG for Agentic Retrieval. Graph RAG adds multi-hop reasoning to AI agents by combining knowledge graphs with RAG. Most AI agents retrieve context by finding text that looks similar to a query. That works until someone asks a question that requires connecting information across multiple records, like tracing a customer to their support tickets to the product update that triggered the complaint. Vector-based Retrieval-Augmented Generation (RAG) was not built for that kind of multi-hop reasoning. Graph RAG fills this gap by combining knowledge graphs with retrieval-augmented generation, giving agents the ability to traverse relationships and reason across entity boundaries in a way aligned with GraphRAG architectures. When agents dynamically choose between vector search and graph tra",
+            "score": 0.77792513,
+            "source_quality": "generic",
+            "quality_score": 0.55,
+            "needs_deep_fetch": true,
+            "quality_notes": [
+              "generic web source; verify before strong claims"
+            ]
+          }
+        ],
+        "citation_count": 16
+      }
+    ],
+    "citations": [
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "aws.amazon.com",
+        "source_type": "web",
+        "title": "What is RAG (Retrieval-Augmented Generation)?",
+        "url": "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\nRetrieval-Augmented Generation (RAG) enhances large language models by first retrieving relevant, authoritative external documents from knowledge sources (e.g., policy manuals, databases) and then supplying those retrieved materials to the LLM as context. This approach keeps outputs accurate and up-to-date without retraining the model, improves domain-specific or organization-specific responses, and provides transparency by showing the sourcing process. The workflow typically involves: converting the user query into a vector, retrieving highly relevant documents from vector databases, and augmenting the prompt with this retrieved data before the LLM generates a response. This enables precise, context-aware answers (e.g., HR policies, technical docs) while maintaining control over content quality.",
+        "score": null,
+        "published_at": "",
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "docs.aws.amazon.com",
+        "source_type": "web",
+        "title": "Understanding Retrieval Augmented Generation - AWS Prescriptive Guidance",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/retrieval-augmented-generation-options/what-is-rag.html",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\n- Retrieval Augmented Generation (RAG) is a technique that augments a large language model (LLM) with external data (e.g., internal documents) to provide relevant, accurate outputs for specific use cases.\n- Core components:\n  - Embeddings: convert documents into semantic vectors; stored in a vector database (vector store/index) after cleaning, formatting, and chunking (one-time upfront effort).\n  - Vector database: index of embeddings, texts, and metadata optimized for search and retrieval.\n  - Retriever/orchestrator: performs similarity searches in the vector store, retrieves relevant context, and adds it to the user query prompt.\n  - Foundation model (LLM): processes the combined prompt and retrieved context to generate the final response.\n- Four-step process (repeated as needed after the initial setup):\n  1) Create embeddings and ingest documents into the vector database (one-time).\n  2) Prepare/format data for ingestion (one-time).\n  3) Orchestrator performs similarity search and retrieves context.\n  4) Orchestrator sends query + context to the LLM to generate a response.\n- Relevancy search workflow: convert documents and queries into embeddings, use the vector store t",
+        "score": null,
+        "published_at": "",
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "learn.microsoft.com",
+        "source_type": "web",
+        "title": "RAG and Generative AI - Azure AI Search | Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview?tabs=docs",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Retrieval-augmented generation (RAG) in Azure AI Search is a pattern that grounds LLM outputs in your own content. Microsoft Learn distinguishes two approaches:\n\n- Agentic retrieval (preview): A complete RAG pipeline that uses LLM-assisted query planning, multi-source access, parallel subqueries, and structured, grounded responses optimized for chat. Features include context-aware query planning, parallel subqueries, structured results with citations and execution metadata, built-in semantic ranking, and optional LLM-synthesized answers. Recommended for new RAG implementations.\n- Classic RAG: The traditional approach using a single user query to Azure AI Search, then an LLM synthesizes an answer from the flattened results. Simpler to implement, fewer components, and faster when GA features are required or query planning isn’t needed.\n\nKey takeaway: For authoritative, technically grounded RAG implementations, agentic retrieval is the modern, recommended pattern, offering better accuracy and context handling through multi-query, structured, and cited responses. Classic RAG remains suitable for simpler or GA-only use cases.",
+        "score": null,
+        "published_at": "",
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "learn.microsoft.com",
+        "source_type": "web",
+        "title": "Retrieval augmented generation (RAG) and indexes in Microsoft Foundry - Microsoft Foundry | Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/retrieval-augmented-generation?view=foundry-classic",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\nThis Microsoft Learn article defines and explains Retrieval Augmented Generation (RAG) in Microsoft Foundry. RAG combines search with large language models to ground responses in your data, using an index to retrieve relevant content, and then augmenting prompts before generation. Key concepts:\n- Grounding data: retrieved content provided to the model to reduce guessing and enable citations.\n- Index: data structure for efficient retrieval (keyword, semantic, vector, or hybrid search). \n- Embeddings: numeric representations used for vector similarity search.\n- RAG workflow (three steps): Retrieve (find relevant content via an index), Augment (combine question + grounding data into a prompt), Generate (model outputs a grounded answer with possible citations).\n- Retrieval modes: keyword, semantic, vector, and hybrid search; Azure AI Search is recommended for RAG in Foundry.\n- Agentic RAG: an advanced pattern where a model generates subqueries to fetch focused grounding data in parallel, improving handling of complex inputs.\n- Practical note: RAG is most effective when retrieval is fast and reliable, enabling grounded responses and source citations.",
+        "score": null,
+        "published_at": "",
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "docs.langchain.com",
+        "source_type": "web",
+        "title": "Retrieval - Docs by LangChain",
+        "url": "https://docs.langchain.com/oss/python/langchain/retrieval",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\n\n- Retrieval-Augmented Generation (RAG) combines an LLM with a retrieval step to fetch relevant external documents at query time, grounding and enriching the model’s answers with context-specific information.\n- Core idea: integrate retrieval with generation to create grounded, context-aware responses. The retrieval pipeline provides source material that the LLM uses during answer generation, enabling more accurate and verifiable outputs.\n- Key concepts:\n  - Retriever: an interface that returns documents in response to an unstructured query.\n  - RAG architectures:\n    - 2-Step RAG: retrieval occurs before generation; simple, predictable.\n    - Agentic RAG: an LLM-based agent decides when/how to retrieve during interaction.\n    - Hybrid RAG: combines aspects of both with intermediate steps (query preprocessing, retrieval validation, post-generation checks) for more flexibility and quality control.\n  - Retrieval validation: assess retrieved docs for relevance; may trigger re-query if needed.\n  - Answer validation: verify generated outputs against sources; may trigger regeneration or revision.\n- Practical takeaway: authoritative technical documentation on RAG emphasizes ground",
+        "score": null,
+        "published_at": "",
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "en.wikipedia.org",
+        "source_type": "web",
+        "title": "Retrieval-augmented generation",
+        "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Retrieval-augmented generation (RAG) is a technique that enhances large language models by retrieving relevant external documents before generating responses. Key points:\n\n- Workflow: Given a user query, a document retriever selects the most relevant texts from external sources or a vector database; the retrieved content is then combined with the model’s internal knowledge to produce the answer.\n- Data sources: Can use unstructured text, semi-structured data, or structured data (e.g., knowledge graphs); data is stored as embeddings in a vector database.\n- Benefits: Improves factual accuracy, enables use of domain-specific or updated information, and helps reduce hallucinations by grounding responses in retrieved sources.\n- Origins and use: Introduced in a 2020 paper as combining a parametr",
+        "score": null,
+        "published_at": "",
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "www.ibm.com",
+        "source_type": "web",
+        "title": "What is RAG (Retrieval Augmented Generation)?",
+        "url": "https://www.ibm.com/think/topics/retrieval-augmented-generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\nRetrieval Augmented Generation (RAG) is an architecture that enhances AI model performance by connecting a generative model with external knowledge bases. It combines an information retrieval component with a generator to produce more accurate, domain-specific content without retraining the model. Key roles:\n- Knowledge base: external data source (internal docs, journals, specialized datasets)\n- Retriever: converts the user query into embeddings and fetches relevant data from the knowledge base\n- Integration layer: coordinates retrieval and generation, creating an augmented prompt (original query + retrieved context)\n- Generator: produces the final output using the augmented prompt (often pretrained models like GPT, Claude, or Llama)\n\nHow RAG works in brief:\n1) The retriever searches the knowledge base for relevant information related to the user query.\n2) The integration layer combines the retrieved data with the original query to form an augmented prompt.\n3) The generator produces a response guided by the augmented prompt, resulting in more authoritative, context-rich output.\n\nDifference from fine-tuning:\n- RAG uses external data at inference time to augment responses, w",
+        "score": null,
+        "published_at": "",
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "docs.spring.io",
+        "source_type": "web",
+        "title": "Retrieval Augmented Generation :: Spring AI Reference",
+        "url": "https://docs.spring.io/spring-ai/reference/api/retrieval-augmented-generation.html",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\n- The document explains Retrieval Augmented Generation (RAG) in Spring AI, a technique to improve long-form content handling, factual accuracy, and context-awareness for LLMs.\n- Spring AI provides a modular RAG architecture with an out-of-the-box RetrievalAugmentationAdvisor (RAG advisor) and the ability to build custom RAG flows.\n- Key components:\n  - VectorStoreDocumentRetriever: fetches semantically similar documents from a vector store, with optional metadata filters, similarity thresholds, and top-k control.\n  - RetrievalAugmentationAdvisor: an Advisor that orchestrates common RAG flows; can be used with the ai-rag dependency.\n  - ContextualQueryAugmenter: augments user queries with contextual data from retrieved documents to provide necessary context to the model.\n  - Questi",
+        "score": null,
+        "published_at": "",
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "tensoria.fr",
+        "source_type": "web",
+        "title": "RAG (Retrieval Augmented Generation): A Technical Guide | Tensoria",
+        "url": "https://tensoria.fr/en/blog/rag-retrieval-augmented-generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "# RAG (Retrieval Augmented Generation): A Technical Guide. It connects an LLM to a live, private knowledge base at inference time, making the model's output grounded, verifiable, and updatable without retraining. It is a technique that improves the output of a large language model (LLM) by supplying it with reliable external information before it generates a response. A useful mental model: a standard generative AI is like a student taking an exam from memory — their knowledge is frozen at training time. 3. **Generation:** The LLM receives the augmented prompt and produces a response in natural language — but one that is grounded in the documents provided at the retrieval step, not in its parametric memory alone. The difference between those and an enterprise RAG system is what's in the in",
+        "score": 0.7940821,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "en.wikipedia.org",
+        "source_type": "web",
+        "title": "Retrieval-augmented generation - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "[Jump to content](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#bodyContent). *   [(Top)](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#). *   [3 Applications](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Applications). *   [4.1 Encoder](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Encoder). *   [4.3 Language model](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Language_model). *   [4.4 Chunking](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#Chunking). *   [6 References](https://en.wikipedia.org/wiki/Retrieval-augmented_generation#References). *   [Article](https://en.wikipedia.org/wiki/Retrieval-augmented_generation \"View the content page [alt-c]\"). *   [Talk](https://en.wikipedia.org/wiki/Talk:Ret",
+        "score": 0.7724109,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.ibm.com",
+        "source_type": "web",
+        "title": "What is RAG (Retrieval Augmented Generation)?",
+        "url": "https://www.ibm.com/think/topics/retrieval-augmented-generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "*   [Overview](https://www.ibm.com/think/topics/generative-ai#257779831). *   [Generative model](https://www.ibm.com/think/topics/generative-model#257779832). *   [Overview](https://www.ibm.com/think/topics/retrieval-augmented-generation#824202002). *   [Overview](https://www.ibm.com/think/topics/ai-code-generation#1329760627). *   [Overview](https://www.ibm.com/think/topics/model-training#1580786329). [](https://www.ibm.com/think/topics/retrieval-augmented-generation). Retrieval augmented generation, or RAG, is an architecture for optimizing the performance of an [artificial intelligence (AI)](https://www.ibm.com/think/topics/artificial-intelligence) model by connecting it with external knowledge bases. RAG helps [large language models (LLMs)](https://www.ibm.com/think/topics/large-language-models) deliver more relevant responses at a higher quality. [Generative AI](https://www.ibm.com/think/topics/generative-ai) (gen AI) models are trained on large datasets and refer to this information to generate outputs. [](https://www.ibm.com/think/topics/retrieval-augmented-generation). Enterprises can use RAG to complete gaps in a [machine learning](https://www.ibm.com/think/topics/machine-",
+        "score": 0.7192461,
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "blogs.nvidia.com",
+        "source_type": "web",
+        "title": "What Is Retrieval-Augmented Generation aka RAG",
+        "url": "https://blogs.nvidia.com/blog/what-is-retrieval-augmented-generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "![Image 22: NVIDIA artist's concept of retrieval-augmented generation aka RAG](https://blogs.nvidia.com/wp-content/uploads/2023/11/Retrieval-Augmented-Generation-RAG-KV-1-1280x683.jpg). The court clerk of AI is a process called [retrieval-augmented generation](https://www.nvidia.com/en-us/glossary/retrieval-augmented-generation/), or RAG for short. [Retrieval-augmented generation](https://www.nvidia.com/en-us/glossary/retrieval-augmented-generation/) is a technique for enhancing the accuracy and reliability of generative AI models with information fetched from specific and relevant data sources. The broad potential is why companies including [AWS](https://aws.amazon.com/blogs/machine-learning/simplify-access-to-internal-information-using-retrieval-augmented-generation-and-langchain-agents/), [IBM](https://research.ibm.com/blog/retrieval-augmented-generation-RAG), [Glean](https://www.glean.com/resources/guides/what-is-retrieval-augmented-generation-rag), [Google](https://cloud.google.com/use-cases/retrieval-augmented-generation?hl=en), [Microsoft](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview), NVIDIA, [Oracle](https://www.oracle.com/artifici",
+        "score": 0.7014069,
+        "source_quality": "developer",
+        "quality_score": 0.82,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "developer platform or documentation source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.k2view.com",
+        "source_type": "web",
+        "title": "A practical guide to Retrieval-Augmented Generation (RAG)",
+        "url": "https://www.k2view.com/what-is-retrieval-augmented-generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "RAG transforms real-time, multi-source business data into intelligent, context-aware, and compliant prompts to reduce [AI hallucinations](https://www.k2view.com/what-are-ai-hallucinations/) and elevate the effectiveness and trust of generative AI apps. The [RAG architecture](https://www.k2view.com/blog/rag-architecture/) diagram below illustrates the retrieval-augmented generation framework and data flow, from the user prompt to response:. [Active retrieval-augmented generation](https://www.k2view.com/blog/active-retrieval-augmented-generation/) integrates fresh, trusted data retrieved from a company’s internal sources – docs stored in document databases and data stored in enterprise systems – directly into the generation process. Finally, to give your LLM tools visibility into all your cr",
+        "score": 0.638588,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "[2506.23136] LLM-Assisted Question-Answering on Technical Documents Using Structured Data-Aware Retrieval Augmented Generation",
+        "url": "https://arxiv.org/abs/2506.23136",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "## quick links. # Computer Science > Computation and Language. # Title:LLM-Assisted Question-Answering on Technical Documents Using Structured Data-Aware Retrieval Augmented Generation. | Comments: | 29 Pages, 11 Tables |. | Subjects: | Computation and Language (cs.CL) |. | Cite as: | arXiv:2506.23136 [cs.CL] |. |  | (or  arXiv:2506.23136v1 [cs.CL] for this version) |. |  |  Focus to learn more  arXiv-issued DOI via DataCite |. ## BibTeX formatted citation. # Bibliographic and Citation Tools. # Code, Data and Media Associated with this Article. # Recommenders and Search Tools. # arXivLabs: experimental projects with community collaborators. arXivLabs is a framework that allows collaborators to develop and share new arXiv features directly on our website. Both individuals and organizations that work with arXivLabs have embraced and accepted our values of openness, community, excellence, and user data privacy. arXiv is committed to these values and only works with partners that adhere to them. Have an idea for a project that will add value for arXiv's community?",
+        "score": 0.55796635,
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.databricks.com",
+        "source_type": "web",
+        "title": "What is Retrieval Augmented Generation (RAG)?",
+        "url": "https://www.databricks.com/blog/what-is-retrieval-augmented-generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "*   [How RAG works](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-2). *   [Future of RAG technology](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-3). *   [How RAG works](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-2). *   [Future of RAG technology](https://www.databricks.com/blog/what-is-retrieval-augmented-generation#section-3). By building their GenAI chatbot — Latte — on the Databricks Data Intelligence Platform, [Experian](https://www.databricks.com/customers/experian/genai) was able to [improve prompt handling and model accuracy](https://www.databricks.com/product/machine-learning/retrieval-augmented-generation), which gave their teams greater flexibility to experiment with different ",
+        "score": 0.5010992,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.youtube.com",
+        "source_type": "web",
+        "title": "What is Retrieval-Augmented Generation (RAG)?",
+        "url": "https://www.youtube.com/watch?v=T-D1OfcDW1M",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "[What is Retrieval-Augmented Generation (RAG)?](https://www.youtube.com/watch?v=T-D1OfcDW1M). (Retrieval Augmented Generation)Don Woodlock 291K views • 2 years ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=u47GtXwePms)[9:49 What is a Vector Database? CAG: Solving Knowledge Gaps in AI Models IBM Technology 608K views • 1 year ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=HdafI0t3sEY)[8:48 RAG's Evolution: From Simple Retrieval to Agentic AI IBM Technology 110K views • 1 month ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=JB2P5Gk23VI)[12:06 RAG Explained in 12 Minutes Aishwarya Srinivasan 513K views • 2 months ago Live Playlist ()Mix (50+)](https://www.youtube.com/watch?v=v0ynfDPpe4E)[15:05 Karpathy's LLM Wiki - Full Beginner Setup Guide Tea",
+        "score": 0.424341,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "Do We Still Need GraphRAG? Benchmarking RAG and GraphRAG for Agentic Search Systems",
+        "url": "https://arxiv.org/pdf/2604.09666",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\n- This work introduces RAGSearch, a unified benchmark for evaluating retrieval-augmented generation (RAG) under agentic (multi-round, decision-based) search workflows.\n- It compares dense RAG and graph-based RAG (GraphRAG) as alternative retrieval infrastructures within the RAG paradigm, across training-free and training-based agentic inference.\n- Key goal: assess whether agentic search can compensate for the lack of explicit graph structure, reducing the need for GraphRAG in complex reasoning tasks.\n- Methodology highlights:\n  - Standardized LLM backbone, retrieval budgets, and inference protocols\n  - Full test-set evaluation with both offline preprocessing costs and online inference efficiency included\n  - Evaluates across multiple QA benchmarks in iterative, multi-step settings\n- Findings:\n  - Agentic search substantially improves dense RAG performance and narrows the gap to GraphRAG, especially in reinforcement-learning–based (RL-based) agentic setups\n  - GraphRAG still offers advantages for complex multi-hop reasoning and yields more stable agentic behavior when its offline costs are amortized\n- Practical takeaway: explicit graph structure and agentic search play complementary roles; design choices should consider task complexity (multi-hop vs. simpler QA) and cost trade-offs.\n- Resources: benchmark and code available at GitHub (RAGSearch).\n\nRelevance to query: Addresses evaluation and performance trade-offs between RAG, GraphRAG, and agentic (hybrid) retrieval approaches, with a concrete benchmark and findings on how agentic search interacts with graph-based ",
+        "score": null,
+        "published_at": "",
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "How Much Reasoning Do Retrieval-Augmented Models Add beyond LLMs? A Benchmarking Framework for Multi-Hop Inference over Hybrid Knowledge",
+        "url": "https://arxiv.org/html/2602.10210",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\nThe paper benchmarks how much reasoning retrieval-augmented models (RAG) gain beyond base LLMs by introducing HybridRAG-Bench, a fully automated framework for evaluating multi-hop reasoning over hybrid knowledge (text and structured graphs). Key points:\n- Framework purpose: quantify additional reasoning contributed by retrieval-augmented approaches that combine unstructured text with structured knowledge graphs.\n- Pipeline: four stages\n  1) Collect time-framed arXiv corpora as external knowledge sources.\n  2) Build hybrid knowledge environments with aligned unstructured text chunks and knowledge graphs to support both document retrieval and graph traversal.\n  3) Generate diverse QA pairs grounded in explicit reasoning paths (single-hop, multi-hop, hard multi-hop, conditional, counterfactual, open-ended).\n  4) Automated quality control to ensure answerability, independence from document phrasing, and non-redundancy.\n- Findings (RQ3): Structured knowledge complements text-based retrieval. Hybrid KG-RAG methods that jointly use structured graphs and unstructured text consistently outperform text-only RAG across domains, especially for relational reasoning, entity disambiguation, and multi-hop tasks. This demonstrates additive value of structured knowledge beyond unstructured retrieval.\n- Significance: HybridRAG-Bench serves as a sensitive testbed to evaluate how well models integrate text and graph evidence and to assess structured reasoning capabilities in KG-RAG systems.\n\nIf you’re evaluating graph-enabled or hybrid RAG systems (graph agentic or hybrid retrieval) fo",
+        "score": null,
+        "published_at": "",
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "link.springer.com",
+        "source_type": "web",
+        "title": "Evaluating Retrieval Augmented Generation: A Comprehensive Review of Evaluation Dimensions, Question Types, and Application | SN Computer Science | Springer Nature Link",
+        "url": "https://link.springer.com/article/10.1007/s42979-026-05134-x",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\n- The article provides a comprehensive, end-to-end evaluation framework for Retrieval Augmented Generation (RAG), linking retrieval and generation dimensions to evaluator families.\n- It systematizes dataset and question-type characteristics, input prerequisites for metrics, and describes an evaluation pipeline with run configuration and parameter tracking for repeatable experiments.\n- It discusses advanced RAG components (query rewriting, reranking, graph retrieval) and their evaluation implications, especially for multi-step retrieval and adaptability.\n- The retrieval phase is covered with emphasis on selecting top-k chunks via embeddings, addressing semantic mismatches, and using hybrid dense-sparse methods.\n- It highlights the need to evaluate multiple retrievals within dynamic",
+        "score": null,
+        "published_at": "2026-06-16T00:00:00.000Z",
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "github.com",
+        "source_type": "web",
+        "title": "junhongmit/HybridRAG-Bench",
+        "url": "https://github.com/junhongmit/HybridRAG-Bench",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "HybridRAG-Bench is a benchmark construction and evaluation framework for retrieval-intensive, multi-hop reasoning in large language models. It automatically builds a hybrid knowledge environment by pairing unstructured text (documents) with a linked knowledge graph extracted from the same corpus, enabling both document retrieval and graph traversal for reasoning-grounded QA.\n\nKey points for your query:\n- Purpose: Diagnose how retrieval-augmented generation (RAG) methods actually use external knowledge, beyond parametric memory.\n- Hybrid knowledge environment: Unstructured text plus a linked knowledge graph (imported into Neo4j) from the same corpus.\n- QA generation: Produces reasoning-grounded question–answer pairs across single-hop, multi-hop, conditional, counterfactual, and open-ended scenarios; includes validation by an LLM-as-a-Judge.\n- Four-stage pipeline: Data extraction, hybrid knowledge construction, reasoning-grounded QA generation, and evaluation.\n- Benchmark components: Text corpora, a graph representation, and a suite of ground-truth QA pairs aligned to explicit reasoning paths.\n- RAG baselines support: Reproduced baselines (e.g., LightRAG, GraphRAG, HippoRAG) with indexing workflows and cache management for evaluating retrieval plus reasoning.\n\nWhat it helps you compare:\n- Retrieval quality versus reasoning capability in RAG systems on hybrid (text + graph) data.\n",
+        "score": null,
+        "published_at": "",
+        "source_quality": "official",
+        "quality_score": 0.95,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "primary official domain for requested entity"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "aclanthology.org",
+        "source_type": "web",
+        "title": "MIRAGE: A Metric-Intensive Benchmark for Retrieval-Augmented Generation Evaluation",
+        "url": "https://aclanthology.org/2025.findings-naacl.157.pdf",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\nMIRAGE is a compact, high-signal benchmark designed to evaluate Retrieval-Augmented Generation (RAG) systems. It presents 7,560 QA queries linked to a retrieval pool of 37,800 document chunks, with at least one positive chunk per query and several challenging negatives. This structure enables precise, fast evaluation of both retrieval and generation components, while keeping the retrieval pool manageable. The authors introduce four new metrics to analyze RAG behavior: noise vulnerability, context acceptability, context insensitivity, and context misinterpretation, capturing how retrieval and generation interact under varying input conditions. The dataset and evaluation code are publicly available for easy integration and customization.",
+        "score": null,
+        "published_at": "",
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "When to use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation",
+        "url": "https://arxiv.org/html/2506.05690v2",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary for the query “retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval”:\n\n- The paper introduces GraphRAG-Bench, a dedicated benchmark to evaluate GraphRAG (Graph Retrieval-Augmented Generation) systems across the full pipeline: graph construction, knowledge retrieval, and final generation.\n- GraphRAG-Bench targets when graph-structured knowledge provides benefits over vanilla RAG, using tasks of increasing difficulty and real-world corpora with varying information density.\n- It covers four task types: fact retrieval, multi-hop reasoning, contextual summarization, and creative generation, with specialized metrics (e.g., ROUGE, accuracy, evidence coverage, and faithfulness) to assess different outputs.\n- Key findings aim to identify conditions under which GraphRAG outperforms traditional RAG and to provide practical guidelines for applying graph structures in RAG systems.\n- The work includes a public resource hub: GraphRAG-Bench/GraphRAG-Benchmark on GitHub for datasets, evaluation protocols, and frameworks to reproduce results.",
+        "score": null,
+        "published_at": "",
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "github.com",
+        "source_type": "web",
+        "title": "GraphRAG-Bench/GraphRAG-Benchmark",
+        "url": "https://github.com/graphrag-bench/graphrag-benchmark",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "GraphRAG-Bench is a benchmarking framework for evaluating Graph Retrieval-Augmented Generation (GraphRAG) models. It investigates when graph-augmented retrieval provides benefits over traditional RAG, across the full pipeline: graph construction, knowledge retrieval, and final generation. Key points:\n\n- Purpose: systematically identify scenarios where GraphRAG outperforms vanilla RAG and provide practical guidelines for its use.\n- What it covers: a comprehensive dataset and tasks with increasing difficulty, spanning fact retrieval, complex reasoning, contextual summarization, and creative generation.\n- Evaluation dimensions: fact retrieval accuracy, ROUGE-L; complex reasoning accuracy and ROUGE-L; contextual summarization accuracy and coverage; creative generation accuracy, factual score, and coverage.\n- Structure: detailed benchmark with end-to-end instructions, including how to perform index construction and batch inference for GraphRAG and traditional RAG; examples and an Examples README for practical usage.\n- Context: GraphRAG leverages hierarchical graph structures to improve knowledge retrieval and reasoning in LLM-assisted tasks; the benchmark analyzes conditions under which GraphRAG provides measurable benefits.\n\nIf you’re evaluating a GraphRAG setup, GraphRAG-Bench offers: a standardized evaluation suite, task difficulty progression, and guided methodology to compare a",
+        "score": null,
+        "published_at": "",
+        "source_quality": "official",
+        "quality_score": 0.95,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "primary official domain for requested entity"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "exa",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "Open-Source Agentic Hybrid RAG Framework for Scientific Literature Review",
+        "url": "https://arxiv.org/html/2508.05660v1",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "Summary:\n- Objective: Presents an open-source, agentic hybrid Retrieval Augmented Generation (RAG) framework for scientific literature review that dynamically selects between graph-based (GraphRAG) and vector-based (VectorRAG) retrieval, with uncertainty quantification.\n- Key components:\n  - Data ingestion from PubMed, arXiv, and Google Scholar APIs to build a Neo4j knowledge graph with citation relationships.\n  - Full-text PDFs embedded into a FAISS vector store using all-MiniLM-L6-v2.\n  - A Llama-3.3-70B versatile agent that decides per query whether GraphRAG or VectorRAG is most appropriate, and adjusts instruction-tuned generation accordingly.\n  - Uncertainty estimates provided at runtime to improve transparency and reduce hallucinations.\n- Retrieval and reasoning:\n  - GraphRAG: translates user queries into Cypher queries over the KG.\n  - VectorRAG: combines sparse and dense retrieval with re-ranking over the embedding space.\n- Evaluation:\n  - Bootstrapped with 12 resamples; uncertainty quantified via standard deviations.\n  - Instruction-Tuned Agent with Direct Preference Optimization (DPO) outperforms baselines.\n  - Reported gains (vs baseline) include improvements in VS Context Recall (+0.63), Context Precision (+0.56), Faithfulness (+0.24), KG Answer Relevance (+0.12), and overall Precision (+0.04–0.11 range across metrics).\n- Significance: Demonstrates improved relevance, reduced hallucinations, and reproducible workflows by dynamically selecting retrieval pathways and integrating uncertainty, contributing to robust, scalable autonomous literature discovery.",
+        "score": null,
+        "published_at": "",
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "Benchmarking Vector, Graph and Hybrid Retrieval Augmented ...",
+        "url": "https://arxiv.org/html/2507.03608v1",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "# Benchmarking Vector, Graph and Hybrid Retrieval Augmented Generation (RAG) Pipelines for Open Radio Access Networks (ORAN). While traditional RAG systems rely on vector-based retrieval, emerging variants such as GraphRAG and Hybrid GraphRAG incorporate knowledge graphs or dual retrieval strategies to support multi-hop reasoning and improve factual grounding. In this study, we conduct a comparative evaluation of Vector RAG, GraphRAG, and Hybrid GraphRAG using ORAN specifications. We assess performance across varying question complexities using established generation metrics: faithfulness, answer relevance, context relevance, and factual correctness. Recent research has proposed Hybrid GraphRAG [5], a unified framework that combines vector-based and graph-based retrieval to leverage the complementary strengths of semantic similarity and structured reasoning. By employing independent generation metrics such as faithfulness, answer relevance, and context relevance, we provide a more comprehensive and interpretable assessment of system performance [13], particularly in high-. In this work, we present an open, metric-driven comparison of Hybrid GraphRAG, GraphRAG, and Vector RAG pipelines using ORAN specification documents.",
+        "score": 0.8512743,
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "lushbinary.com",
+        "source_type": "web",
+        "title": "RAG Production Guide 2026: Retrieval-Augmented Generation | Lushbinary",
+        "url": "https://lushbinary.com/blog/rag-retrieval-augmented-generation-production-guide",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "# RAG in 2026: The Complete Production Guide to Retrieval-Augmented Generation. RAG is the dominant architecture for grounding LLMs with external knowledge - but naive pipelines fail 40% of the time at retrieval. We cover hybrid search, agentic RAG, reranking, chunking strategies, vector databases, evaluation with RAGAS, and production patterns that actually work. Retrieval-Augmented Generation has become the default architecture for any AI application that needs to answer questions using private or current data. Instead of fine-tuning a model on your corpus (expensive, slow, hard to update), RAG retrieves relevant information at query time and feeds it to the LLM as context. But here's the problem: naive RAG pipelines fail at retrieval roughly 40% of the time. In 2026, the retrieval step ",
+        "score": 0.7738498,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "arxiv.org",
+        "source_type": "web",
+        "title": "Retrieval-Augmented Generation: A Comprehensive ...",
+        "url": "https://arxiv.org/html/2506.00054v1",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "4.   [3 Taxonomy of RAG Architectures](https://arxiv.org/html/2506.00054v1#S3 \"In Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\"). 5.   [4 Enhancements in RAG](https://arxiv.org/html/2506.00054v1#S4 \"In Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\"). 7.   [6 Evaluation and Benchmarking of RAG Systems](https://arxiv.org/html/2506.00054v1#S6 \"In Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\"). Evaluation and Benchmarking of RAG Systems ‣ Retrieval-Augmented Generation: A Comprehensive Survey of Architectures, Enhancements, and Robustness Frontiers\")), compare prominent frameworks (Section[5](https://arxiv.org/html/2506.00054v1#S5 \"5. Similarly, FILCO (Filter Context)(Wang et al., [2023](https://arxiv.org/html/2506.00054v1#bib.bib70)) enhances retrieval granularity by filtering irrelevant or low-utility spans from retrieved passages before generation, improving the faithfulness and efficiency of RAG outputs. R 2 AG (Retrieval information into RAG)(Ye et al., [2024](https://arxiv.org/html/2506.00054v1#bib.bib83)) extends this by recursively reranking candidates during generation, dynamically prioritizing evidence based on the evolving answer state. M-RAG(Wang et al., [2024b](https://arxiv.org/html/2506.00054v1#bib.bib71)) applies multi-agent reinforcement learning, coordinating distributed retrievers and generators via shared memory and task-specific roles.",
+        "score": 0.70067,
+        "source_quality": "academic",
+        "quality_score": 0.9,
+        "needs_deep_fetch": false,
+        "quality_notes": [
+          "academic or paper source"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.researchgate.net",
+        "source_type": "web",
+        "title": "Graph-Based Agentic Retrieval-Augmented Generation: A Comprehensive Survey",
+        "url": "https://www.researchgate.net/publication/396209481_Graph-Based_Agentic_Retrieval-Augmented_Generation_A_Comprehensive_Survey",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "(PDF) Graph-Based Agentic Retrieval-Augmented Generation: A Comprehensive Survey. Graph-Based Agentic Retrieval-Augmented Generation: A Comprehensive Survey. This survey on Graph-Based Agentic Retrieval-Augmented Generation (GA-RAG) unifies structured knowledge graphs, autonomous agentic workflows, and large language models to advance compositional, multi-hop reasoning beyond traditional RAG pipelines. In this survey we formalize the GA-RAG paradigm, present a compact taxonomy of reasoning workflows, agent orchestration patterns, retrieval and knowledge-engineering practices, and adaptation mechanisms, and synthesize empirical and methodological trends across recent work (including documented gains in multi-hop accuracy over flat RAG approaches. Graph-Based Agentic Retriev al-Augmented. Ab",
+        "score": 0.80625874,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "datanucleus.dev",
+        "source_type": "web",
+        "title": "Retrieval Augmented Generation — RAG & Agentic AI Knowledge Hub — Data Nucleus",
+        "url": "https://datanucleus.dev/rag-and-agentic-ai/tag/Retrieval+Augmented+Generation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "# Data Nucleus Resource Centre. ## Retrieval Augmented Generation & Agentic AI. Actionable insights for AI in finance and legal: Proven strategies, action plans, business use cases and groundbreaking research. Agentic RAG in 2026: the enterprise playbook for grounded, multi‑step AI. Agentic AI,  Retrieval-Augmented Generation  Moiz Pirkani    Agentic AI,  Retrieval-Augmented Generation  Moiz Pirkani. Agentic RAG fuses retrieval with planning, tool‑use and self‑checking to deliver grounded answers to real workplace questions. This UK/EU‑focused guide covers architecture, security trimming, evaluation, compliance (AI Act, ICO, Data Act), and a 90‑day rollout plan—plus how Data Nucleus helps teams ship safe, ROI‑positive deployments. RAG, demystified: how retrieval augmented generation became",
+        "score": 0.8033131,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.researchgate.net",
+        "source_type": "web",
+        "title": "Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation",
+        "url": "https://www.researchgate.net/publication/397040674_Retrieval_Augmented_Generation_RAG_for_Fintech_Agentic_Design_and_Evaluation",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "(PDF) Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation. Retrieval Augmented Generation (RAG) for Fintech: Agentic Design and Evaluation. Retrieval-Augmented Generation (RAG) systems often face limitations in specialized domains such as fintech, where domain-specific ontologies, dense terminology, and acronyms complicate effective retrieval and synthesis. This paper introduces an agentic RAG architecture designed to address these challenges through a modular pipeline of specialized agents. We evaluate our approach against a standard RAG baseline using a curated dataset of 85 question--answer--reference triples derived from an enterprise fintech knowledge base. Experimental results demonstrate that the agentic RAG system outperforms the baseline in retrieval pr",
+        "score": 0.798077,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "www.emergentmind.com",
+        "source_type": "web",
+        "title": "Hybrid Retrieval-Augmented Generation (RAG)",
+        "url": "https://www.emergentmind.com/topics/hybrid-retrieval-augmented-generation-rag",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "# Hybrid Retrieval-Augmented Generation (RAG). * Hybrid RAG is a framework combining sparse, dense, and knowledge graph retrieval methods to enhance language model outputs. Hybrid Retrieval-Augmented Generation (RAG) systems integrate multiple retrieval strategies and dynamic query adaptation to address the precision, efficiency, and robustness challenges inherent in standard retrieval-augmented pipelines. Unlike monolithic dense or sparse retrieval baselines, hybrid RAG frameworks fuse heterogeneous evidence sources—typically sparse (BM25), dense (embedding-based), structured (knowledge graph), and sometimes relational or multimodal stores—prior to or in conjunction with LLM generation. * **Fusion mechanisms**: Rank aggregation (e.g., Reciprocal Rank Fusion, weighted sum, late/score fusio",
+        "score": 0.79041743,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      },
+      {
+        "evidence_type": "external",
+        "provider": "tavily",
+        "source": "airbyte.com",
+        "source_type": "web",
+        "title": "Graph RAG for Agentic Retrieval Explained",
+        "url": "https://airbyte.com/agentic-data/graph-rag-agentic-retrieval",
+        "retrieved_at": "2026-06-25",
+        "excerpt": "# Graph RAG for Agentic Retrieval. Graph RAG adds multi-hop reasoning to AI agents by combining knowledge graphs with RAG. Most AI agents retrieve context by finding text that looks similar to a query. That works until someone asks a question that requires connecting information across multiple records, like tracing a customer to their support tickets to the product update that triggered the complaint. Vector-based Retrieval-Augmented Generation (RAG) was not built for that kind of multi-hop reasoning. Graph RAG fills this gap by combining knowledge graphs with retrieval-augmented generation, giving agents the ability to traverse relationships and reason across entity boundaries in a way aligned with GraphRAG architectures. When agents dynamically choose between vector search and graph tra",
+        "score": 0.77792513,
+        "source_quality": "generic",
+        "quality_score": 0.55,
+        "needs_deep_fetch": true,
+        "quality_notes": [
+          "generic web source; verify before strong claims"
+        ]
+      }
+    ],
+    "citation_count": 32
+  },
+  "summary": {
+    "external_api_calls": 4,
+    "citation_count": 32,
+    "claim_gap_count": 2,
+    "gaps_with_citations": [
+      "en-wikipedia-org-primary-confirmation",
+      "www-braintrust-dev-claim-corroboration"
+    ]
+  }
+}

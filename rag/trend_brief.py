@@ -30,6 +30,7 @@ def build_trend_brief_markdown(
     graph_evidence: dict | None = None,
     source_review: dict | None = None,
     answer_policy: dict | None = None,
+    batch_evidence_trace: dict | None = None,
     latest_corpus_date: str | None = None,
     generated_at: str | None = None,
     mode: str = "local-only",
@@ -45,6 +46,7 @@ def build_trend_brief_markdown(
         graph_evidence=graph_evidence,
         answer_policy=answer_policy,
         source_review=source_review,
+        batch_evidence_trace=batch_evidence_trace,
     )
 
     lines = [
@@ -100,6 +102,7 @@ def summarize_brief_inputs(
     graph_evidence: dict | None,
     answer_policy: dict | None,
     source_review: dict | None,
+    batch_evidence_trace: dict | None = None,
 ) -> dict:
     """Build a compact machine-readable summary for later benchmarking."""
     graph_evidence = graph_evidence or {}
@@ -125,6 +128,7 @@ def summarize_brief_inputs(
             if c.get("source_quality")
         ).items())),
         "source_relevance": summarize_source_relevance(citations, topic=topic),
+        "batch_evidence": _summarize_batch_evidence_trace(batch_evidence_trace),
         "residual_risks": _residual_risks(citations, graph_evidence, answer_policy),
     }
 
@@ -319,6 +323,19 @@ def _residual_risks(citations: list[dict], graph_evidence: dict, answer_policy: 
         risks.append("问题需要外部证据；当前 local-only 输出不能声称已完成实时研究。")
     risks.append("语义正确性仍需人工复核；本模块只保证结构化证据边界。")
     return risks
+
+
+def _summarize_batch_evidence_trace(trace: dict | None) -> dict:
+    if not trace or not trace.get("attempted"):
+        return {"attempted": False}
+    return {
+        "attempted": True,
+        "path": trace.get("path", ""),
+        "candidate_count": int(trace.get("candidate_count") or 0),
+        "selected_count": int(trace.get("selected_count") or 0),
+        "background_candidate_count": int(trace.get("background_candidate_count") or 0),
+        "source_quality_counts": trace.get("source_quality_counts", {}),
+    }
 
 
 def _theme_label(citation: dict) -> str:

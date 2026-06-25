@@ -465,18 +465,19 @@ As of 2026-06-24:
 - Completed: P2 Trend Brief External Source Quality Upgrade.
 - Completed: P2 Trend Brief Source Relevance And Claim Review.
 - Completed: P2 Batched External Evidence Acquisition.
-- Next: P2 Trend Brief Batch Evidence Integration.
+- Completed: P2 Trend Brief Batch Evidence Integration.
+- Next: P2 Source Relevance-Aware Evidence Selection.
 - Still needed: DeepSeek live validation when environment permits it, broader semantic contradiction coverage, semantic reranking, richer graph question coverage, and original UI integration after the RAG core matures.
 
 ## 9. Current Gate Definition
 
-Current gate: P2 Trend Brief Batch Evidence Integration.
+Current gate: P2 Source Relevance-Aware Evidence Selection.
 
 This gate is complete when:
 
-- live batch evidence can be consumed by the Trend Brief generation path;
-- academic/official/developer citations are preferred over generic citations;
-- generic citations are either excluded or clearly treated as background;
+- selection ranks citations by source quality and source relevance together;
+- weak-context official/developer definition pages do not displace direct-support academic/official evidence for benchmark/evaluation claims;
+- production and exploration briefs keep artifact consistency;
 - source relevance and source quality summaries remain consistent across CLI summary, Markdown appendix, and evidence table;
 - the module checkpoint includes a change inventory;
 - the next bottleneck is explicitly classified as product, engineering, or evidence.

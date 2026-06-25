@@ -459,9 +459,9 @@ Last updated: 2026-06-24
 
 ### Current Gate
 
-Current module: P2 Batched External Evidence Acquisition.
+Current module: P2 Trend Brief Batch Evidence Integration.
 
-Next bottleneck: evidence integration.
+Next bottleneck: evidence quality.
 
 Decision rule:
 
@@ -473,16 +473,20 @@ Decision rule:
 - Before making more external search API calls, list all claim gaps, source types, provider choices, and budget in one batch plan.
 - Use live external calls when they improve evidence quality or reduce repeated manual/model work; the savings target is Codex token consumption, not avoiding external APIs at the expense of quality.
 - Integrate academic/official/developer citations before generic citations.
+- Use production search mode for routine usage: routed providers, 8 results per provider call.
+- Use exploration search mode for testing/benchmarking: all task-suitable configured providers, 15 results per provider call.
 - Include a checkpoint change inventory at P2 module close.
 
-Current batched evidence result:
+Current batch evidence integration result:
 
-- Artifact: `docs/rag-transformation/evals/batched-evidence-acquisition-result-2026-06-25.json`
-- External API calls: 4
-- Returned citations: 9
+- Production artifact: `docs/rag-transformation/evals/batched-evidence-acquisition-production-2026-06-25.json`
+- Production returned citations: 32
+- Exploration artifact: `docs/rag-transformation/evals/batched-evidence-acquisition-exploration-2026-06-25.json`
+- Exploration returned citations: 75
 - Claim gaps with citations: 2 / 2
-- Source quality: 4 academic, 1 official, 1 developer, 3 generic
-- Status: batched external evidence acquisition `Live Batch Verified`.
+- Generated production brief: `docs/rag-transformation/briefs/trend-brief-rag-production-batch-evidence-2026-06-25.md`
+- Generated exploration brief: `docs/rag-transformation/briefs/trend-brief-rag-exploration-batch-evidence-2026-06-25.md`
+- Status: batch evidence integration `Live Artifact Verified`.
 
 Completed:
 

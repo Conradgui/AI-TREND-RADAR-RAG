@@ -10,7 +10,7 @@ from pathlib import Path
 
 from rag.config import get_configured_search_providers, get_search_provider_api_keys
 from rag.evidence_batch_plan import (
-    DEFAULT_MAX_TOTAL_CALLS,
+    DEFAULT_PRODUCTION_MAX_TOTAL_CALLS,
     build_batched_evidence_acquisition_plan,
     execute_batched_evidence_acquisition_plan,
 )
@@ -26,7 +26,9 @@ async def build_batched_evidence_acquisition_artifact(
     *,
     input_path: Path = DEFAULT_INPUT,
     execute: bool = False,
-    max_total_calls: int = DEFAULT_MAX_TOTAL_CALLS,
+    max_total_calls: int = DEFAULT_PRODUCTION_MAX_TOTAL_CALLS,
+    max_results_per_call: int | None = None,
+    strategy_mode: str = "production",
 ) -> dict:
     """Build a planned or executed batch artifact from a source relevance matrix."""
     relevance_matrix = json.loads(input_path.read_text(encoding="utf-8"))
@@ -35,6 +37,8 @@ async def build_batched_evidence_acquisition_artifact(
         relevance_matrix,
         configured_providers=configured_providers,
         max_total_calls=max_total_calls,
+        max_results_per_call=max_results_per_call,
+        strategy_mode=strategy_mode,
         execute=execute,
     )
     artifact = {
@@ -50,6 +54,7 @@ async def build_batched_evidence_acquisition_artifact(
         plan,
         SearchProviderRegistry(get_search_provider_api_keys()),
         max_total_calls=max_total_calls,
+        max_results_per_call=max_results_per_call,
     )
     return {
         **artifact,
@@ -72,7 +77,9 @@ def main() -> None:
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--execute", action="store_true")
-    parser.add_argument("--max-total-calls", type=int, default=DEFAULT_MAX_TOTAL_CALLS)
+    parser.add_argument("--strategy-mode", choices=["production", "exploration"], default="production")
+    parser.add_argument("--max-total-calls", type=int, default=DEFAULT_PRODUCTION_MAX_TOTAL_CALLS)
+    parser.add_argument("--max-results-per-call", type=int, default=None)
     args = parser.parse_args()
 
     output = args.output or (DEFAULT_RESULT_OUTPUT if args.execute else DEFAULT_PLAN_OUTPUT)
@@ -81,6 +88,8 @@ def main() -> None:
             input_path=args.input,
             execute=args.execute,
             max_total_calls=args.max_total_calls,
+            max_results_per_call=args.max_results_per_call,
+            strategy_mode=args.strategy_mode,
         )
     )
     output.parent.mkdir(parents=True, exist_ok=True)

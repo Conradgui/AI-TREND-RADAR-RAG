@@ -24,6 +24,7 @@ class GenerateTrendBriefTests(unittest.TestCase):
             artifact_consistency={"consistent": True},
             source_relevance={"relevance_status": "relevance_verified", "external_count": 1},
             external_search_trace={"attempted": True, "provider": "brave"},
+            batch_evidence_trace={"attempted": True, "selected_count": 2, "selected_citations": [{"url": "https://arxiv.org/html/1"}]},
         )
 
         self.assertEqual(summary["topic"], "RAG")
@@ -38,6 +39,7 @@ class GenerateTrendBriefTests(unittest.TestCase):
         self.assertTrue(summary["artifact_consistency"]["consistent"])
         self.assertEqual(summary["source_relevance"]["relevance_status"], "relevance_verified")
         self.assertEqual(summary["external_search"]["provider"], "brave")
+        self.assertEqual(summary["batch_evidence"]["selected_count"], 2)
         self.assertTrue(summary["output"].endswith("trend-brief-rag-2026-06-24.md"))
 
     def test_build_external_search_requests_is_empty_for_local_only_mode(self):

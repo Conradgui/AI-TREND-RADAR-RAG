@@ -9,6 +9,7 @@ from collections import Counter
 from pathlib import Path
 
 from rag.answer_policy import build_answer_policy, mark_external_evidence_used
+from rag.batch_evidence import load_batch_evidence_trace
 from rag.citations import retrieve_citations
 from rag.graph_question_planning import build_graph_question_plan
 from rag.graph_reasoning_service import build_graph_reasoning_citation, build_graph_reasoning_evidence
@@ -36,6 +37,7 @@ def build_generation_summary(
     artifact_consistency: dict | None = None,
     source_relevance: dict | None = None,
     external_search_trace: dict | None = None,
+    batch_evidence_trace: dict | None = None,
 ) -> dict:
     """Build the machine-readable CLI result summary."""
     source_review = source_review or {}
@@ -53,6 +55,7 @@ def build_generation_summary(
         "artifact_consistency": artifact_consistency or {"consistent": False, "issues": ["not_checked"]},
         "source_relevance": source_relevance or {"relevance_status": "not_checked"},
         "external_search": external_search_trace or {"attempted": False, "citations": []},
+        "batch_evidence": batch_evidence_trace or {"attempted": False, "selected_citations": []},
     }
 
 
@@ -92,6 +95,8 @@ async def generate_trend_brief(
     output_path: Path | None = None,
     max_internal_citations: int = 8,
     max_external_citations: int = 3,
+    batch_evidence_path: Path | None = None,
+    max_batch_evidence_citations: int = 4,
     mode: str = "local-only",
 ) -> dict:
     """Generate and save a deterministic trend brief from local RAG evidence."""
@@ -137,7 +142,19 @@ async def generate_trend_brief(
             SearchProviderRegistry(get_search_provider_api_keys()),
             external_search_requests,
         )
-        external_citations = external_search.get("citations", [])
+        batch_evidence = (
+            load_batch_evidence_trace(
+                batch_evidence_path,
+                topic=topic,
+                max_citations=max_batch_evidence_citations,
+            )
+            if batch_evidence_path
+            else {"attempted": False, "selected_citations": []}
+        )
+        external_citations = (
+            list(external_search.get("citations", []) or [])
+            + list(batch_evidence.get("selected_citations", []) or [])
+        )
         citations_for_policy = select_brief_citations(
             citations + ([graph_citation] if graph_citation else []) + external_citations,
             topic=topic,
@@ -153,6 +170,7 @@ async def generate_trend_brief(
             graph_evidence=graph_evidence,
             source_review=source_review,
             answer_policy=answer_policy,
+            batch_evidence_trace=batch_evidence,
             latest_corpus_date=latest_corpus_date,
             mode=mode,
         )
@@ -181,6 +199,7 @@ async def generate_trend_brief(
         artifact_consistency=artifact_consistency,
         source_relevance=source_relevance,
         external_search_trace=external_search,
+        batch_evidence_trace=batch_evidence,
     )
 
 
@@ -262,6 +281,8 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--max-internal-citations", type=int, default=8)
     parser.add_argument("--max-external-citations", type=int, default=3)
+    parser.add_argument("--batch-evidence-path", type=Path, default=None)
+    parser.add_argument("--max-batch-evidence-citations", type=int, default=4)
     parser.add_argument("--mode", choices=["local-only", "live-external"], default="local-only")
     args = parser.parse_args()
 
@@ -271,6 +292,8 @@ def main() -> None:
             output_path=args.output,
             max_internal_citations=args.max_internal_citations,
             max_external_citations=args.max_external_citations,
+            batch_evidence_path=args.batch_evidence_path,
+            max_batch_evidence_citations=args.max_batch_evidence_citations,
             mode=args.mode,
         )
     )

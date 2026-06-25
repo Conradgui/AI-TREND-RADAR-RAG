@@ -60,6 +60,7 @@ class TrendBriefTests(unittest.TestCase):
             graph_evidence=SAMPLE_GRAPH_EVIDENCE,
             answer_policy={"mode": "internal_grounded"},
             source_review={"status": "internal_only"},
+            batch_evidence_trace={"attempted": True, "candidate_count": 75, "selected_count": 4, "background_candidate_count": 71, "source_quality_counts": {"academic": 19}},
         )
 
         self.assertEqual(summary["topic"], "RAG")
@@ -68,6 +69,8 @@ class TrendBriefTests(unittest.TestCase):
         self.assertEqual(summary["policy_mode"], "internal_grounded")
         self.assertEqual(summary["artifact_quality_status"], "internal_only")
         self.assertEqual(summary["source_relevance"]["relevance_status"], "internal_only")
+        self.assertEqual(summary["batch_evidence"]["candidate_count"], 75)
+        self.assertEqual(summary["batch_evidence"]["selected_count"], 4)
 
     def test_markdown_contains_required_sections_and_parseable_appendix(self):
         markdown = build_trend_brief_markdown(
@@ -103,6 +106,7 @@ class TrendBriefTests(unittest.TestCase):
         self.assertEqual(appendix["topic"], "RAG")
         self.assertEqual(appendix["citation_count"], 2)
         self.assertEqual(appendix["graph_counts"]["topic_count"], 5)
+        self.assertEqual(appendix["batch_evidence"]["attempted"], False)
 
         inspection = inspect_trend_brief_artifact(markdown)
         self.assertTrue(inspection["consistent"])

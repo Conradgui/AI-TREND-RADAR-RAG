@@ -43,6 +43,7 @@ class EvidenceBatchPlanTests(unittest.TestCase):
         self.assertEqual(plan["topic"], "RAG")
         self.assertEqual(plan["external_api_calls"], 0)
         self.assertEqual(plan["execution_status"], "planned_not_executed")
+        self.assertEqual(plan["budget"]["max_results_per_call"], 8)
         self.assertEqual(plan["budget"]["planned_calls"], 4)
         self.assertEqual(len(plan["claim_gaps"]), 2)
         self.assertEqual(len(plan["search_tasks"]), 2)
@@ -58,6 +59,20 @@ class EvidenceBatchPlanTests(unittest.TestCase):
         self.assertEqual(task["task_type"], "research_paper")
         self.assertEqual(task["available_provider_chain"], ["exa", "tavily"])
         self.assertIn("benchmark", task["query"])
+
+    def test_exploration_mode_pools_more_providers_and_results(self):
+        plan = build_batched_evidence_acquisition_plan(
+            SAMPLE_MATRIX,
+            configured_providers={"brave", "tavily", "exa", "github"},
+            strategy_mode="exploration",
+        )
+
+        task = next(task for task in plan["search_tasks"] if task["gap_id"].startswith("www-braintrust-dev"))
+
+        self.assertEqual(plan["budget"]["strategy_mode"], "exploration")
+        self.assertEqual(plan["budget"]["max_results_per_call"], 15)
+        self.assertEqual(plan["budget"]["max_total_calls"], 8)
+        self.assertEqual(task["available_provider_chain"], ["exa", "tavily", "brave"])
 
     def test_weak_context_gets_authoritative_definition_gap(self):
         plan = build_batched_evidence_acquisition_plan(
