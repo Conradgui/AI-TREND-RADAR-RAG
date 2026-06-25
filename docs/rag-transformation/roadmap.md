@@ -119,6 +119,50 @@ Use these labels instead of vague "done" language:
    - Log query, retrieval candidates, citations, tool calls, duration, and failure reason.
    - Use logs to improve the evaluation set.
 
+## Stage 2.4: Local RAG Cockpit
+
+**Goal:** Convert the working RAG capabilities into a usable local product flow before attempting Stage 2.5 repo/workspace unification.
+
+### Product Rationale
+
+The project should not jump directly from backend RAG modules to a full local app or repo unification.
+
+Stage 2.4 proves that the local product experience is useful:
+
+- read AI Trend Radar reports;
+- ask the Agent from the same dashboard;
+- inspect citations and evidence boundaries;
+- review Trend Brief artifacts;
+- inspect system readiness when needed.
+
+### Baseline UI
+
+Reuse the existing AI Trend Radar Web UI in `index.html`.
+
+Do not build a new dashboard from scratch. The current AI Trend Radar interface already provides the right mental model: report navigation, search, latest trend reading, dark mode, and an Agent entry point.
+
+### Modules
+
+1. Local dashboard entry
+   - FastAPI `/` serves the AI Trend Radar dashboard shell instead of the old experimental chat page.
+   - Verification: local service opens into the report dashboard.
+
+2. Agent local wiring
+   - The existing `AGENT` entry calls local `/chat` when running under the FastAPI runtime.
+   - Verification: local Agent answers with citations; static mode fails gracefully.
+
+3. System status
+   - Runtime health moves into a System area, not the default homepage.
+   - Verification: provider, Neo4j, Chroma, retriever mode, search provider status, deep fetch, and latest corpus date are visible without exposing secrets.
+
+4. Briefs view
+   - Existing Trend Brief artifacts become discoverable from the UI.
+   - Verification: local briefs are listed with topic, date, mode, and source quality metadata when available.
+
+5. Optional brief generation action
+   - Trigger existing Trend Brief generation from the UI only after read-only Briefs is stable.
+   - Verification: explicit user-triggered generation returns artifact metadata.
+
 ## Stage 2.5: Unified Local Demo Workspace
 
 **Goal:** Reduce two-project deployment friction without prematurely building a full desktop/local software product.
