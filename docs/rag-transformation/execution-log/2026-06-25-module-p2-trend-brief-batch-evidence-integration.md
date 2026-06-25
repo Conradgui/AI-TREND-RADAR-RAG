@@ -156,4 +156,7 @@ The next module should improve citation selection quality beyond deterministic s
 
 ## Checkpoint
 
-Pending.
+- Branch: `codex/rag-transformation-checkpoints`
+- Artifact checkpoint commit: `f517208`
+- Message: `checkpoint(rag): trend brief batch evidence integration - live artifacts verified`
+- Push status: pending.
