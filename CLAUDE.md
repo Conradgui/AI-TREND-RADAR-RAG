@@ -1,5 +1,18 @@
 # CLAUDE.md
 
+## AI assistant handoff
+
+For AI Trend Radar RAG transformation work, first read:
+
+1. `AGENTS.md`
+2. `docs/rag-transformation/AI_HANDOFF.md`
+3. `docs/rag-transformation/roadmap.md`
+4. `docs/rag-transformation/specs/2026-06-22-execution-loop-spec.md`
+5. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
+6. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
+
+Those files override older assumptions in this file when working on the RAG transformation. Verify current RAG implementation from code before claiming LangGraph, LangChain, or any other framework is actually active.
+
 ## Project overview
 
 AI Topic Radar is a daily AI topic discovery workflow for public-source monitoring, Chinese editorial topic scoring, and Markdown/JSON topic-pool output. A GitHub Actions cron job runs at 00:00 UTC (08:00 CST), gathers public AI signals, and produces digest files under `digests/YYYY-MM-DD/`.
@@ -16,23 +29,23 @@ pnpm format         # Prettier --write src
 pnpm format:check   # Prettier --check src
 ```
 
-Required env vars for local runs:
+Required env vars for local runs. Use `.env` or shell exports, but never commit real values:
 
 ```bash
-export GITHUB_TOKEN=ghp_xxxxx
-export DIGEST_REPO=owner/repo   # omit to skip GitHub issue creation
+GITHUB_TOKEN: <github-token>
+DIGEST_REPO: owner/repo   # omit to skip GitHub issue creation
 
 # LLM provider (default: anthropic)
-export LLM_PROVIDER=deepseek    # anthropic | openai | github-copilot | openrouter | deepseek
-export DEEPSEEK_API_KEY=sk-xxxxx
-export DEEPSEEK_MODEL=deepseek-chat
+LLM_PROVIDER: deepseek    # anthropic | openai | github-copilot | openrouter | deepseek
+DEEPSEEK_API_KEY: <deepseek-api-key>
+DEEPSEEK_MODEL: deepseek-chat
 
 # Anthropic (default)
-export ANTHROPIC_API_KEY=sk-ant-xxxxx
-export ANTHROPIC_BASE_URL=https://api.kimi.com/coding/  # omit for Anthropic
+ANTHROPIC_API_KEY: <anthropic-api-key>
+ANTHROPIC_BASE_URL: https://api.kimi.com/coding/  # omit for Anthropic
 
 # OpenAI
-# export OPENAI_API_KEY=sk-xxxxx
+OPENAI_API_KEY: <openai-api-key>
 
 # GitHub Copilot — uses GITHUB_TOKEN
 

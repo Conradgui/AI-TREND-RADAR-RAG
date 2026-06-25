@@ -8,6 +8,19 @@ It exists for three reasons:
 2. Make each module understandable before implementation, especially for a non-coding learner.
 3. Prevent project drift by checking every execution step against the same source of truth.
 
+## AI Handoff Entry
+
+If a new AI coding assistant takes over this project, it must start from:
+
+1. `AGENTS.md`
+2. `docs/rag-transformation/AI_HANDOFF.md`
+3. `docs/rag-transformation/roadmap.md`
+4. `docs/rag-transformation/specs/2026-06-22-execution-loop-spec.md`
+5. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
+6. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
+
+Do not rely on chat history as the source of truth.
+
 ## Current Product Boundary
 
 AI Trend Radar is the data production system. It fetches AI signals, scores topics, generates reports, and publishes them to GitHub Pages.
@@ -19,12 +32,15 @@ For the current phase, do not fix the Agent entry in the original AI Trend Radar
 Medium-term direction:
 
 - keep two projects separate during current RAG core work;
-- after Nexus-like iteration, reduce deployment friction through a Stage 2.5 unified local demo workspace;
+- first close the Stage 2.4 local product/dashboard flow inside this RAG project;
+- then improve Agent ability and evidence selection quality;
+- after Nexus-like iteration and local cockpit validation, reduce deployment friction through the former Stage 2.5 unified local demo workspace, now treated as a later Stage 2.7 direction;
 - do not jump directly into a full desktop/local software product unless repeated real use proves it is worth the cost.
 
 ## Folder Map
 
 - `roadmap.md`: P0/P1/P2/P3 transformation roadmap.
+- `AI_HANDOFF.md`: compact operating manual for future AI coding assistants.
 - `plans/`: module-level implementation plans.
 - `specs/`: quality governance and acceptance rules.
 - `decisions/`: durable product and technical decisions.
@@ -76,6 +92,6 @@ For this project, each module should follow the execution loop in `specs/2026-06
 
 ## Current Phase
 
-P1: Retrieval Quality + Agent Control.
+Stage 2.4: Local Product Flow And Dashboard Closure.
 
-P0 local grounding is complete as a focused-test baseline. The current work is improving controlled external evidence, deep fetch, provider routing, graph runtime hardening, and evaluation quality before any original AI Trend Radar UI integration.
+P0/P1 grounding and P2 Trend Brief / Evidence foundation exist. The current work is turning those capabilities into a coherent local cockpit by reusing the existing AI Trend Radar `index.html`, wiring local `/chat`, exposing Briefs, and moving runtime readiness into System.

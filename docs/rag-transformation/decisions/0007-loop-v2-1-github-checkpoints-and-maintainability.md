@@ -2,7 +2,7 @@
 
 Date: 2026-06-24
 
-Status: Accepted
+Status: Accepted; refined by Decision 0008
 
 ## Context
 
@@ -142,3 +142,7 @@ Trade-offs:
 - Important nodes now include commit and push overhead.
 - Some work will stop earlier for product or architecture decisions.
 - Baseline checkpoint is intentionally broad because the worktree already contains many accumulated changes.
+
+## Later Refinement
+
+Decision 0008 keeps the V2.1 quality gates but relaxes documentation and checkpoint frequency. V2.2 moves full roadmap/evidence/execution-log updates to stage close by default and requires strategic direction review before accepting major roadmap, architecture, product, Agent, dependency, deployment, or testing-depth changes.

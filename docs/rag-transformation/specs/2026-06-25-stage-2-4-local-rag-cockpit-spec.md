@@ -20,7 +20,7 @@ It should not feel like:
 - a standalone system-health dashboard;
 - a replacement for the original online AI Trend Radar GitHub Pages site;
 - a full desktop app;
-- a premature Stage 2.5 repo unification.
+- a premature Stage 2.7 / former Stage 2.5 repo unification.
 
 ## 3. User Jobs
 
@@ -389,10 +389,12 @@ Stage 2.4 is complete when:
 
 ## 14. Relationship To Roadmap
 
-Stage 2.4 sits between P2 and Stage 2.5.
+Stage 2.4 sits between P2 Trend Brief / Evidence foundation and the later Agent/Evidence/Workspace stages.
 
 - P2 creates research workflows and artifacts.
 - Stage 2.4 makes those capabilities usable from a local cockpit.
-- Stage 2.5 later reduces two-project deployment friction.
+- Stage 2.5 improves Agent ability inside the cockpit.
+- Stage 2.6 improves evidence selection quality after real Agent usage exposes the highest-value retrieval failures.
+- Stage 2.7, formerly recorded as Stage 2.5, later reduces two-project deployment friction.
 
 This prevents the project from jumping directly from backend capability work to repo unification before the local product experience is proven.

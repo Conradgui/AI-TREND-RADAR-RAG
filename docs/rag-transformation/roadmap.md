@@ -41,6 +41,40 @@ Use these labels instead of vague "done" language:
 - `Production Ready`: deployable with monitoring, failure modes, cost controls, and security review.
 - `Not Claimed`: intentionally not represented as complete.
 
+## Delivery Sequence
+
+This roadmap uses provisional stage names for the next productization steps.
+
+The naming can be normalized later, but the execution logic is:
+
+```text
+P2 Trend Brief / Evidence foundation
+    ↓
+Stage 2.4 Local Product Flow And Dashboard Closure
+    ↓
+Stage 2.5 Agent Ability Closure
+    ↓
+Stage 2.6 Evidence Selection Quality
+    ↓
+Stage 2.7 / Former Stage 2.5 Unified Local Demo Workspace
+```
+
+Meaning:
+
+- Stage 2.4 proves the local product flow inside this RAG project.
+- Stage 2.5 improves the Agent's practical ability after the user-facing flow exists.
+- Stage 2.6 returns to evidence selection, ranking, and source-quality rigor after Agent usage exposes real bottlenecks.
+- Stage 2.7, formerly recorded as Stage 2.5, reduces two-project deployment friction after the local cockpit and Agent are useful.
+
+Cross-cutting work continues across all stages:
+
+- runtime reliability and local setup;
+- evaluation set maintenance;
+- observability and execution logs;
+- secret safety and provider configuration;
+- documentation and checkpoint hygiene;
+- dependency minimization and official-component preference.
+
 ## P0: Fresh Corpus Sync + RAG Grounding
 
 **Goal:** Make AI Trend Radar RAG fresh, runnable, and verifiable.
@@ -121,7 +155,7 @@ Use these labels instead of vague "done" language:
 
 ## Stage 2.4: Local RAG Cockpit
 
-**Goal:** Convert the working RAG capabilities into a usable local product flow before attempting Stage 2.5 repo/workspace unification.
+**Goal:** Convert the working RAG capabilities into a usable local product flow before attempting Stage 2.7 / former Stage 2.5 repo/workspace unification.
 
 ### Product Rationale
 
@@ -163,13 +197,91 @@ Do not build a new dashboard from scratch. The current AI Trend Radar interface 
    - Trigger existing Trend Brief generation from the UI only after read-only Briefs is stable.
    - Verification: explicit user-triggered generation returns artifact metadata.
 
-## Stage 2.5: Unified Local Demo Workspace
+## Stage 2.5: Agent Ability Closure
+
+**Goal:** Make the Agent useful inside the local cockpit, not just technically callable.
+
+### Product Rationale
+
+Once Stage 2.4 gives the user a coherent local dashboard, the next bottleneck becomes Agent usefulness.
+
+The Agent should help with real research tasks:
+
+- answer follow-up questions about the current report;
+- decide when to use internal corpus, graph retrieval, external search, or URL fetch;
+- expose why it used a tool;
+- avoid over-calling expensive or noisy tools;
+- admit uncertainty and missing evidence.
+
+### Modules
+
+1. Context-aware Agent entry
+   - The Agent can receive the current report/date/topic context from the dashboard.
+   - Verification: asking about the open report uses that context when available.
+
+2. Tool trace presentation
+   - Show compact tool decisions, not raw logs.
+   - Verification: user can tell whether the answer used internal retrieval, graph evidence, web search, or deep fetch.
+
+3. Agent task modes
+   - Support common modes such as explain, compare, timeline, brief follow-up, and source check.
+   - Verification: mode selection changes retrieval/tool strategy without requiring prompt hacks.
+
+4. Failure and uncertainty behavior
+   - Agent surfaces insufficient evidence, provider failure, or stale corpus clearly.
+   - Verification: negative and weak-evidence scenarios return bounded answers.
+
+5. Cost and latency guardrails
+   - Keep simple questions cheap and complex questions bounded.
+   - Verification: tool budget and provider routing are visible in traces or runtime metadata.
+
+## Stage 2.6: Evidence Selection Quality
+
+**Goal:** Improve evidence quality after real local Agent usage reveals which retrieval and ranking problems matter.
+
+### Product Rationale
+
+Evidence quality should not be tuned in isolation forever. It should be improved after the product flow and Agent surface expose real usage failures.
+
+Stage 2.6 focuses on:
+
+- better citation relevance;
+- reranking;
+- source diversity;
+- source quality weighting;
+- deduplication;
+- conflict detection;
+- freshness-aware retrieval.
+
+### Modules
+
+1. Reranking strategy
+   - Compare lightweight deterministic scoring, embedding similarity, and optional LLM reranking.
+   - Verification: retrieval precision improves on the golden/evaluation set without excessive latency.
+
+2. Source quality weighting
+   - Prefer official, primary, paper, repository, and high-signal technical sources when relevant.
+   - Verification: weak-only evidence is not labeled research-quality complete.
+
+3. Evidence diversity
+   - Avoid many citations from the same provider or near-duplicate source.
+   - Verification: citation sets include diverse evidence when available.
+
+4. Freshness and temporal logic
+   - Treat "recent", "past week", and date-sensitive questions explicitly.
+   - Verification: time-window questions retrieve evidence from the correct period or state insufficiency.
+
+5. Evaluation refresh
+   - Add real failures from Stage 2.4 and Stage 2.5 usage into the eval set.
+   - Verification: regressions are caught without turning every draft artifact into a benchmark rabbit hole.
+
+## Stage 2.7 / Former Stage 2.5: Unified Local Demo Workspace
 
 **Goal:** Reduce two-project deployment friction without prematurely building a full desktop/local software product.
 
 ### Product Rationale
 
-Stage 2.5 is the accepted B plan.
+This stage was previously recorded as Stage 2.5. It is now treated as a later unification step after Stage 2.4, Stage 2.5, and Stage 2.6.
 
 The user should experience one local workspace:
 
@@ -210,7 +322,7 @@ Recommended first path:
 
 ## P3 / Future Vision: Unified Local App
 
-**Goal:** Consider a complete local-first software product only after Stage 2.5 and Nexus-like usage prove the need.
+**Goal:** Consider a complete local-first software product only after Stage 2.7 and Nexus-like usage prove the need.
 
 ### Modules
 
@@ -614,9 +726,9 @@ Completed:
 - DeepSeek expanded 12-question live benchmark is not run because this execution environment blocks the external data transfer.
 - Trend Brief semantic quality as a research artifact has not been manually reviewed yet.
 - Trend Brief source relevance is deterministic and coarse; full semantic correctness is still not claimed.
-- Batched external evidence acquisition has not been planned or executed yet.
+- Batched external evidence acquisition has been implemented, but downstream source selection quality still needs Stage 2.6 work.
 - LangGraph-style stateful agent workflow is not implemented yet.
 - Dedicated chat UI graph-reasoning mode is not implemented yet.
-- Stage 2.5 single-repo local demo workspace is accepted as direction but not implemented yet.
+- Stage 2.7 / former Stage 2.5 single-repo local demo workspace is accepted as direction but not implemented yet.
 - Production deployment, monitoring, cost controls, and UI integration are not implemented yet.
 - Original AI Trend Radar UI integration remains out of scope until this RAG project core is mature.

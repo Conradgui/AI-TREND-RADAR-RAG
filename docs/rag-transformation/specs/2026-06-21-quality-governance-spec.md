@@ -13,9 +13,13 @@ The goal is not to maximize review activity. The goal is to prevent silent quali
 This spec applies to:
 
 - P0 Fresh Corpus Sync + RAG Grounding
-- Future P1 retrieval quality and agent control work
-- Future P2 research workflow work
-- Future P3 integration back to AI Trend Radar UI
+- P1 retrieval quality and agent control work
+- P2 research workflow work
+- Stage 2.4 local product/dashboard closure
+- Stage 2.5 Agent ability closure
+- Stage 2.6 evidence selection quality
+- Stage 2.7 unified local demo workspace
+- future local app work if repeated real use proves it is worth the cost
 
 It covers:
 
@@ -26,6 +30,7 @@ It covers:
 - Bug handling
 - Dead code and unfinished feature handling
 - Token and progress control
+- Cross-agent handoff
 
 It does not cover:
 
@@ -49,6 +54,8 @@ Use three layers of project documents:
 3. `specs/*.md`
    - Defines quality rules and acceptance boundaries.
    - Answers: what does good enough mean?
+
+New AI coding assistants must also read `AGENTS.md` and `docs/rag-transformation/AI_HANDOFF.md` before changing code. Those files summarize the current route, operating loop, and cross-tool handoff expectations.
 
 A module is not complete because code runs once. A module is complete only when its behavior, business logic, and evidence are all acceptable for its stage.
 
@@ -115,6 +122,19 @@ Before expanding a custom implementation, check `decisions/0004-official-compone
 If a mature component can reduce maintenance without hiding product logic, prefer the component.
 
 If custom code is still chosen, keep it thin, tested, replaceable, and documented.
+
+### 4.6 Cross-Agent Continuity
+
+Project governance must not live only in chat history.
+
+When a module or stage changes product direction, architecture boundaries, evidence standards, or execution-loop behavior, update the handoff path:
+
+- `AGENTS.md` for high-level agent rules;
+- `docs/rag-transformation/AI_HANDOFF.md` for current route and operating constraints;
+- `roadmap.md` for delivery sequence;
+- the relevant spec, plan, decision, evidence, or execution-log file.
+
+Do not scatter new governance rules only in one assistant's private context.
 
 ## 5. Stage Gates
 

@@ -9,15 +9,25 @@ The loop exists to prevent two failure modes:
 - Moving fast but leaving ungrounded, untested, or half-finished behavior.
 - Reviewing so heavily that the project stops progressing.
 
+For cross-agent continuity, new AI coding assistants must first read:
+
+1. `AGENTS.md`
+2. `docs/rag-transformation/AI_HANDOFF.md`
+3. `docs/rag-transformation/roadmap.md`
+4. this execution-loop spec
+5. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
+6. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
+
 ## 2. Core Loop
 
-Current version: V2.1.
+Current version: V2.2.
 
 Every substantial module should follow this loop:
 
 1. Orient
    - Read the roadmap, target architecture spec, current plan, quality spec, and latest execution logs.
    - Confirm the current module and why it matters.
+   - Classify the current bottleneck as product, architecture, engineering, evidence, or evaluation before coding.
 
 2. Explain
    - Explain the module in plain Chinese before implementation.
@@ -32,6 +42,7 @@ Every substantial module should follow this loop:
    - Prefer existing project patterns.
    - Prefer official or authoritative components for generic infrastructure.
    - Avoid unrelated refactors.
+   - Do not let evidence tuning or benchmark polish displace a more important product or architecture bottleneck.
 
 5. Verify Precisely
    - Run focused tests or smoke checks for the changed behavior.
@@ -42,9 +53,9 @@ Every substantial module should follow this loop:
    - Use module gate review for completed modules.
    - Use reviewer agent only when required by the quality governance spec.
 
-7. Record Evidence
-   - Save evidence under `docs/rag-transformation/evidence/`.
-   - Save execution notes under `docs/rag-transformation/execution-log/`.
+7. Record Evidence At The Right Granularity
+   - During active implementation, keep evidence notes lightweight.
+   - Save full evidence and execution-log updates at stage close, module gate, or high-risk live artifact close.
    - Record residual risks instead of hiding them.
 
 8. Decide Next
@@ -52,13 +63,14 @@ Every substantial module should follow this loop:
    - If complete, return to the roadmap and move to the next module.
    - If user decision is required, stop and ask Conrad.
 
-9. Checkpoint To GitHub
+9. Checkpoint To GitHub At Stage Gates
    - Run the minimum required verification for the module risk level.
    - Run secret scan and staged-file review before commit.
    - Commit to `codex/rag-transformation-checkpoints`.
    - Push the checkpoint branch to GitHub.
-   - Record branch, commit hash, push status, verification result, and residual risks in evidence and execution log.
+   - Record branch, commit hash, verification result, and residual risks at the next documentation update.
    - If push fails, record `Checkpoint Blocked`; do not claim the work is backed up.
+   - Do not create metadata-only commits solely to record push status.
 
 ## 2.1 Loop V2 Efficiency Rule
 
@@ -82,6 +94,8 @@ Use model judgment for:
 - user-facing synthesis.
 
 Do not spend model context reading long raw artifacts when a command can summarize the required fact.
+
+External API quota is not the primary bottleneck during testing when the user has provided adequate search/LLM budget. Optimize for evidence quality, development throughput, and Codex token efficiency. Use larger batched external calls when they reduce repeated small searches or repeated model reasoning.
 
 ## 2.2 Loop V2 Draft-Test Rule
 
@@ -107,7 +121,7 @@ Before writing important code, answer these questions:
 2. What are its inputs and outputs?
 3. Does it introduce a new data boundary or evidence boundary?
 4. Does it reuse an existing module or create a new module? Why?
-5. Will it make future UI, Stage 2.5, or local app integration harder?
+5. Will it make future UI, Stage 2.7, or local app integration harder?
 6. Is there an official or authoritative component that should be reused instead of custom infrastructure?
 
 If the answers reveal an architecture shift, stop and ask Conrad before implementation.
@@ -211,6 +225,60 @@ Every important loop close must name the next bottleneck:
 - evidence bottleneck: source quality, citation quality, corpus freshness, or evaluation confidence is limiting progress.
 
 When the bottleneck is evidence quality, do not keep tuning formatting or tests as the main work.
+
+## 2.7 Loop V2.2 Strategic Direction Review Gate
+
+Use this gate before changing roadmap priority, product direction, architecture shape, Agent capability boundaries, deployment model, dependency strategy, or testing depth.
+
+Do not automatically agree with Conrad's suggested direction. Treat it as an input hypothesis and review it from three roles:
+
+- senior AI product manager: user value, scope, timing, and opportunity cost;
+- senior AI product architect: module boundaries, data flow, maintainability, and future integration;
+- senior full-stack engineer: implementation cost, reliability, dependency risk, and operability.
+
+Before accepting a direction change, answer:
+
+1. What real problem does this solve now?
+2. Is it the highest-leverage bottleneck for the current stage?
+3. Is there a simpler or more reversible option?
+4. What engineering, time, maintenance, and API cost does it add?
+5. What product capability or user workflow becomes better?
+6. What should be explicitly deferred?
+
+If the review shows that the idea is premature, over-scoped, or only makes the system look more sophisticated without improving the current product path, push back and propose the smaller path.
+
+## 2.8 Loop V2.2 Mainline Balance Rule
+
+Evidence, tests, and benchmarks are quality controls. They are not always the main product work.
+
+At every stage boundary, choose one primary bottleneck:
+
+- product function: user workflow or feature capability is missing;
+- architecture: module boundary, service shape, or integration path is unclear;
+- engineering: implementation or reliability blocks use;
+- evidence: citation/source quality blocks trust;
+- evaluation: repeatable measurement is missing.
+
+Only one bottleneck should dominate a stage. If the last two completed modules were both evidence/evaluation-heavy, the next stage must explicitly re-check whether product function or architecture should move ahead.
+
+## 2.9 Loop V2.2 Documentation And Checkpoint Cadence
+
+Documentation and checkpointing should support execution, not interrupt it.
+
+Default cadence:
+
+- update roadmap/spec/evidence/execution-log at stage close, not after every small code change;
+- checkpoint after a completed stage, a shared-path module with real regression risk, or a major product/architecture decision;
+- do not create extra commits only to record that a previous checkpoint was pushed;
+- use short in-conversation status updates during implementation instead of repeatedly editing docs;
+- keep raw evidence artifacts only when they will be reused for benchmark, comparison, or product review.
+
+Exceptions:
+
+- secrets or deployment risk;
+- destructive migration risk;
+- live external artifact needed as audit evidence;
+- user explicitly asks for an immediate record.
 
 ## 3. Definition Of Done Template
 
@@ -448,7 +516,7 @@ Blocking issues must be fixed before continuing.
 
 ## 8. Current Loop Position
 
-As of 2026-06-24:
+As of 2026-06-25:
 
 - Completed: P0 baseline through fresh corpus sync, citation-ready ingestion, chat citations, golden question evaluation, and web-search tool boundary.
 - Completed: P1 slices through query understanding, hybrid retrieval slice 1, runtime readiness, live answer benchmark, agent control, tool routing, provider routing, Tavily live provider, source-quality controls, external evidence merge into chat, external evidence answer quality benchmark, URL fetch/source-deepening foundation, deep fetch integration policy, live Brave/Exa/GitHub provider adapters, minimal source role handling, graph citation-ready retrieval, live Neo4j hybrid runtime verification, provider quality matrix, claim-level evaluation seed, retrieval precision benchmark seed, and deterministic citation dedup/noise filtering.
@@ -466,21 +534,24 @@ As of 2026-06-24:
 - Completed: P2 Trend Brief Source Relevance And Claim Review.
 - Completed: P2 Batched External Evidence Acquisition.
 - Completed: P2 Trend Brief Batch Evidence Integration.
-- Next: P2 Source Relevance-Aware Evidence Selection.
-- Still needed: DeepSeek live validation when environment permits it, broader semantic contradiction coverage, semantic reranking, richer graph question coverage, and original UI integration after the RAG core matures.
+- Completed: Stage 2.4 Local RAG Cockpit Spec and implementation plan.
+- Current strategic direction: Stage 2.4 Local Product Flow And Dashboard Closure.
+- Next: implement Stage 2.4 local cockpit entry, local Agent wiring, System status, and Briefs discovery.
+- Still needed: Agent ability closure, evidence selection quality, broader semantic contradiction coverage, semantic reranking if justified by real failures, richer graph question coverage, and later Stage 2.7 unified local demo workspace.
 
 ## 9. Current Gate Definition
 
-Current gate: P2 Source Relevance-Aware Evidence Selection.
+Current gate: Stage 2.4 Local Product Flow And Dashboard Closure.
 
 This gate is complete when:
 
-- selection ranks citations by source quality and source relevance together;
-- weak-context official/developer definition pages do not displace direct-support academic/official evidence for benchmark/evaluation claims;
-- production and exploration briefs keep artifact consistency;
-- source relevance and source quality summaries remain consistent across CLI summary, Markdown appendix, and evidence table;
-- the module checkpoint includes a change inventory;
-- the next bottleneck is explicitly classified as product, engineering, or evidence.
+- local FastAPI `/` serves the AI Trend Radar dashboard shell instead of the old experimental chat page;
+- the existing Agent drawer calls local `/chat` and fails gracefully in static mode;
+- System exposes runtime readiness without becoming the homepage;
+- Briefs lists existing Trend Brief artifacts;
+- static GitHub Pages compatibility is preserved;
+- focused API/UI checks and any required canonical checks pass;
+- the next bottleneck is explicitly classified as product, engineering, evidence, architecture, or evaluation.
 
 ## 10. How To Update This Spec
 

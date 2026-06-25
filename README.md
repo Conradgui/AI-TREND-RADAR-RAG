@@ -4,6 +4,8 @@
 
 > **项目关系**：[AI-TREND-RADAR](https://github.com/Conradgui/AI-TREND-RADAR) 是数据管道（采集 → 评分 → 报告 → 分发），本仓库是它的超集，在数据管道基础上增加了知识图谱、向量检索和 Agent 对话能力。两个仓库共享同一份 `.env` 配置和 `digests/` 数据目录。
 
+> **AI coding assistant handoff**：任何 AI 编程辅助工具接手本仓库前，请先阅读 [`AGENTS.md`](./AGENTS.md) 和 [`docs/rag-transformation/AI_HANDOFF.md`](./docs/rag-transformation/AI_HANDOFF.md)。RAG 转型工作的当前路线、Loop、证据标准和阶段边界以 `docs/rag-transformation/` 为准；旧 README 中的架构描述需要结合当前代码复核后再引用。
+
 ---
 
 AI Trend Radar 面向 AI 内容运营和产品调研，每天抓取公开 AI 信号（国内外共 15+ 数据源），生成一份中文"值得写、值得测、值得深挖"的选题池，并通过 HTML、Web UI、RSS、Telegram、飞书和 GitHub Actions 分发。它不是一个简单的信息搬运脚本，而是把分散的 AI 行业信号转成可排序、可解释、可交付的选题决策流：先采集公开证据，再用评分框架判断优先级，最后沉淀成报告、结构化数据和自动化分发链路。
