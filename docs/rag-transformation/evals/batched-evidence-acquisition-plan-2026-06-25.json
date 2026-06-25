@@ -1,0 +1,106 @@
+{
+  "generated_at": "2026-06-25T02:06:44.894107+00:00",
+  "mode": "plan_only",
+  "configured_providers": [
+    "brave",
+    "exa",
+    "github",
+    "tavily"
+  ],
+  "plan": {
+    "topic": "RAG",
+    "input_artifact": "docs/rag-transformation/briefs/trend-brief-rag-source-quality-2026-06-25.md",
+    "source_relevance_status": "relevance_verified",
+    "external_api_calls": 0,
+    "execution_status": "planned_not_executed",
+    "budget": {
+      "free_quota_first": true,
+      "max_total_calls": 4,
+      "planned_calls": 4,
+      "execute_now": false,
+      "max_results_per_call": 3
+    },
+    "claim_gaps": [
+      {
+        "gap_id": "en-wikipedia-org-primary-confirmation",
+        "claim_family": "definition_or_background",
+        "current_citation_id": "https://en.wikipedia.org/wiki/Retrieval-augmented_generation",
+        "current_source": "en.wikipedia.org",
+        "current_relevance": "weak_context",
+        "needed_source_type": "primary_or_authoritative_technical_reference",
+        "query": "retrieval augmented generation authoritative technical documentation definition",
+        "task_type": "technical_article",
+        "priority": "P1"
+      },
+      {
+        "gap_id": "www-braintrust-dev-claim-corroboration",
+        "claim_family": "evaluation_or_tooling_claim",
+        "current_citation_id": "https://www.braintrust.dev/articles/best-rag-evaluation-tools",
+        "current_source": "www.braintrust.dev",
+        "current_relevance": "partial_support",
+        "needed_source_type": "primary_benchmark_or_vendor_docs",
+        "query": "retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval",
+        "task_type": "research_paper",
+        "priority": "P1"
+      }
+    ],
+    "search_tasks": [
+      {
+        "gap_id": "en-wikipedia-org-primary-confirmation",
+        "query": "retrieval augmented generation authoritative technical documentation definition",
+        "task_type": "technical_article",
+        "needed_source_type": "primary_or_authoritative_technical_reference",
+        "priority": "P1",
+        "provider_chain": [
+          "exa",
+          "tavily",
+          "brave"
+        ],
+        "available_provider_chain": [
+          "exa",
+          "tavily"
+        ],
+        "fallback_providers": [
+          "tavily"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 2,
+          "serpapi_role": "fallback_not_default"
+        },
+        "rationale": "technical_article uses provider chain: exa, tavily, brave."
+      },
+      {
+        "gap_id": "www-braintrust-dev-claim-corroboration",
+        "query": "retrieval augmented generation RAG evaluation benchmark graph agentic hybrid retrieval",
+        "task_type": "research_paper",
+        "needed_source_type": "primary_benchmark_or_vendor_docs",
+        "priority": "P1",
+        "provider_chain": [
+          "exa",
+          "tavily",
+          "serpapi"
+        ],
+        "available_provider_chain": [
+          "exa",
+          "tavily"
+        ],
+        "fallback_providers": [
+          "tavily"
+        ],
+        "budget_policy": {
+          "free_quota_first": true,
+          "max_external_providers": 2,
+          "max_external_calls": 4,
+          "serpapi_role": "specialty_provider"
+        },
+        "rationale": "research tasks prefer Exa for AI-native research/paper search, then Tavily, then SerpAPI."
+      }
+    ],
+    "notes": [
+      "Build the full evidence request set before making provider calls.",
+      "Execute as one audited batch when external evidence improves quality or efficiency."
+    ]
+  }
+}

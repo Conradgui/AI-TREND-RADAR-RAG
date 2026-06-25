@@ -464,19 +464,20 @@ As of 2026-06-24:
 - Completed: Loop V2.1 Artifact Quality Extension.
 - Completed: P2 Trend Brief External Source Quality Upgrade.
 - Completed: P2 Trend Brief Source Relevance And Claim Review.
-- Next: P2 Batched External Evidence Acquisition Plan.
+- Completed: P2 Batched External Evidence Acquisition.
+- Next: P2 Trend Brief Batch Evidence Integration.
 - Still needed: DeepSeek live validation when environment permits it, broader semantic contradiction coverage, semantic reranking, richer graph question coverage, and original UI integration after the RAG core matures.
 
 ## 9. Current Gate Definition
 
-Current gate: P2 Batched External Evidence Acquisition Plan.
+Current gate: P2 Trend Brief Batch Evidence Integration.
 
 This gate is complete when:
 
-- claim gaps are listed before any new external API request;
-- required source types are listed before any new external API request;
-- provider routing and free-quota budget are planned before any new external API request;
-- one planned batch can be run or explicitly deferred;
+- live batch evidence can be consumed by the Trend Brief generation path;
+- academic/official/developer citations are preferred over generic citations;
+- generic citations are either excluded or clearly treated as background;
+- source relevance and source quality summaries remain consistent across CLI summary, Markdown appendix, and evidence table;
 - the module checkpoint includes a change inventory;
 - the next bottleneck is explicitly classified as product, engineering, or evidence.
 

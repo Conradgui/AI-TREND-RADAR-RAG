@@ -459,9 +459,9 @@ Last updated: 2026-06-24
 
 ### Current Gate
 
-Current module: P2 Batched External Evidence Acquisition Plan.
+Current module: P2 Batched External Evidence Acquisition.
 
-Next bottleneck: batched evidence acquisition.
+Next bottleneck: evidence integration.
 
 Decision rule:
 
@@ -471,7 +471,18 @@ Decision rule:
 - Treat `research_quality_verified` as a source-quality gate, not proof that every selected external source is semantically ideal.
 - Review whether selected external sources support the specific Trend Brief claims, not only whether the domains are authoritative.
 - Before making more external search API calls, list all claim gaps, source types, provider choices, and budget in one batch plan.
+- Use live external calls when they improve evidence quality or reduce repeated manual/model work; the savings target is Codex token consumption, not avoiding external APIs at the expense of quality.
+- Integrate academic/official/developer citations before generic citations.
 - Include a checkpoint change inventory at P2 module close.
+
+Current batched evidence result:
+
+- Artifact: `docs/rag-transformation/evals/batched-evidence-acquisition-result-2026-06-25.json`
+- External API calls: 4
+- Returned citations: 9
+- Claim gaps with citations: 2 / 2
+- Source quality: 4 academic, 1 official, 1 developer, 3 generic
+- Status: batched external evidence acquisition `Live Batch Verified`.
 
 Completed:
 
