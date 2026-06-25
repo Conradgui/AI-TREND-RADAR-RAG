@@ -139,6 +139,6 @@ The next module should integrate the returned academic/official/developer citati
 ## Checkpoint
 
 - Branch: `codex/rag-transformation-checkpoints`
-- Commit: `6eb9e80`
+- Artifact checkpoint commit: `07b6076`
 - Message: `checkpoint(rag): batched external evidence acquisition - live batch verified`
 - Push status: pending.
