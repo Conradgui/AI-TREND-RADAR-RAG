@@ -87,6 +87,7 @@ class QueryPlan:
     answerability_hint: str = "internal-first"
     needs_web_search: bool = False
     routing_notes: list[str] = field(default_factory=list)
+    task_mode: str = "general"  # 任务模式：general, explain, compare, timeline, brief_followup, source_check
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -103,7 +104,7 @@ def analyze_query(question: str) -> QueryPlan:
     sources: list[str] = []
     terms: list[str] = []
     notes: list[str] = []
-    top_k = 5
+    top_k = 10
     answerability_hint = "internal-first"
     needs_web_search = False
     time_window = _infer_time_window(normalized, lowered)
@@ -164,6 +165,14 @@ def analyze_query(question: str) -> QueryPlan:
         needs_web_search = True
         notes.append("A complete learning map needs external papers or primary references.")
 
+    # 识别用户明确要求联网搜索的意图
+    if _contains_any(normalized, ["联网搜索", "搜索最新", "搜索外部", "web search", "search online"]):
+        intent = "web_search_request"
+        top_k = max(top_k, 15)
+        answerability_hint = "needs-web"
+        needs_web_search = True
+        notes.append("User explicitly requested web search.")
+
     if _contains_any(normalized, ["足够证据", "证据说明", "明确商业成功", "商业成功"]):
         intent = "evidence_sufficiency"
         top_k = max(top_k, 8)
@@ -182,6 +191,9 @@ def analyze_query(question: str) -> QueryPlan:
 
     retrieval_query = _build_retrieval_query(normalized, terms)
 
+    # 检测任务模式
+    task_mode = _detect_task_mode(normalized, lowered, intent)
+
     return QueryPlan(
         original_question=normalized,
         intent=intent,
@@ -194,7 +206,44 @@ def analyze_query(question: str) -> QueryPlan:
         answerability_hint=answerability_hint,
         needs_web_search=needs_web_search,
         routing_notes=notes,
+        task_mode=task_mode,
     )
+
+
+def _detect_task_mode(question: str, lowered: str, intent: str) -> str:
+    """检测任务模式"""
+    # explain: 解释复杂话题
+    if _contains_any(lowered, ["解释", "什么是", "如何理解", "帮我理解", "说明"]):
+        return "explain"
+
+    # compare: 对比多个项目
+    if _contains_any(lowered, ["对比", "比较", "区别", "差异", "vs", "versus"]):
+        return "compare"
+
+    # timeline: 追踪演进（排除"趋势"在一般查询中的使用）
+    if _contains_any(lowered, ["演进", "发展", "历程", "历史", "变化"]):
+        return "timeline"
+    # "趋势"只在明确要求演进时触发timeline
+    if _contains_any(lowered, ["趋势"]) and _contains_any(lowered, ["演进", "发展", "历程"]):
+        return "timeline"
+
+    # brief_followup: 深入Brief话题
+    if _contains_any(lowered, ["brief", "简报", "详细", "深入", "展开"]):
+        return "brief_followup"
+
+    # source_check: 验证来源
+    if _contains_any(lowered, ["验证", "来源", "出处", "真实性", "可靠性"]):
+        return "source_check"
+
+    # 根据intent推断
+    if intent == "technical_comparison":
+        return "compare"
+    if intent == "learning_map":
+        return "timeline"
+    if intent == "evidence_sufficiency":
+        return "source_check"
+
+    return "general"
 
 
 def _infer_time_window(question: str, lowered: str) -> dict:
@@ -202,7 +251,7 @@ def _infer_time_window(question: str, lowered: str) -> dict:
         return {"label": "last_7_days", "days": 7, "requires_date_filter": True}
     if _contains_any(question, ["最近", "新动向", "动态", "更新"]):
         return {"label": "recent_corpus_first", "days": 14, "requires_date_filter": False}
-    if _contains_any(question, ["发展演进", "演进路线", "论文", "文章", "资料"]) or "history" in lowered:
+    if _contains_any(question, ["发展演进", "演进路线", "演进历程", "论文", "文章", "资料"]) or "history" in lowered:
         return {"label": "not_limited", "days": None, "requires_date_filter": False}
     return {"label": "unspecified", "days": None, "requires_date_filter": False}
 

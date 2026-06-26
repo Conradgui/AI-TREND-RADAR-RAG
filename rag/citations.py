@@ -30,11 +30,12 @@ def _semantic_citation_key(metadata: dict) -> str:
     return re.sub(r"\s+", " ", raw.casefold()).strip()
 
 
-def build_citations(chunks: list, max_citations: int = 5, excerpt_chars: int = 240) -> list[dict]:
+def build_citations(chunks: list, max_citations: int = 15, excerpt_chars: int = 240) -> list[dict]:
     """Build citations from retrieved chunks without asking the LLM to invent them."""
     citations = []
     seen = set()
     seen_semantic = set()
+    source_counts = {}  # 用于多样性检查
 
     for chunk in chunks:
         metadata = _chunk_metadata(chunk)
@@ -47,6 +48,11 @@ def build_citations(chunks: list, max_citations: int = 5, excerpt_chars: int = 2
             continue
         seen.add(citation_id)
         seen_semantic.add(semantic_key)
+
+        # 多样性检查：限制单一来源的引用数量
+        source = metadata.get("source", "unknown")
+        if source_counts.get(source, 0) >= 2:  # 每个来源最多2个引用
+            continue
 
         excerpt = metadata.get("evidence") or _chunk_text(chunk)
         citation = {
@@ -64,13 +70,15 @@ def build_citations(chunks: list, max_citations: int = 5, excerpt_chars: int = 2
                 citation[optional_field] = value
 
         citations.append(citation)
+        source_counts[source] = source_counts.get(source, 0) + 1
+
         if len(citations) >= max_citations:
             break
 
     return citations
 
 
-async def retrieve_citations(retriever, question: str, k: int = 5, where: dict | None = None) -> list[dict]:
+async def retrieve_citations(retriever, question: str, k: int = 10, where: dict | None = None) -> list[dict]:
     """Retrieve citation candidates from the corpus retriever."""
     try:
         chunks = await retriever.search(question, k=k, where=where)

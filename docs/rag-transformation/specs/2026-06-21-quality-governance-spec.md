@@ -171,6 +171,35 @@ Review depth:
 - Reviewer may be the main agent for small modules.
 - Use a separate reviewer agent for complex modules or risky changes.
 
+#### Gate B Detailed Checklist
+
+**Functionality Check**:
+- [ ] Function implementation is complete, meets spec requirements
+- [ ] Function tests pass, no obvious defects
+- [ ] Function documentation is complete, clear explanation
+
+**Quality Check**:
+- [ ] Code follows project conventions
+- [ ] Error handling is complete, no silent failures
+- [ ] Security boundaries are clear, no obvious vulnerabilities
+- [ ] Performance meets requirements, no obvious bottlenecks
+
+**Testing Check**:
+- [ ] Unit tests pass, coverage > 80%
+- [ ] Integration tests pass, coverage > 60%
+- [ ] End-to-end tests pass, coverage > 40%
+
+**Documentation Check**:
+- [ ] Code comments are complete, key logic explained
+- [ ] API documentation is complete, interface description clear
+- [ ] Usage documentation is complete, user understandable
+
+**Review Requirements**:
+- Must conduct code review
+- Must conduct security review
+- Must conduct performance review
+- Must record review results in evidence document
+
 ### Gate C: Phase Completion Gate
 
 Use when finishing a whole phase such as P0.
@@ -185,6 +214,34 @@ Required checks:
 Review depth:
 
 - Use a separate reviewer agent with product, architecture, and full-stack perspectives.
+
+#### Gate C Detailed Checklist
+
+**Functionality Check**:
+- [ ] All module functionality is complete
+- [ ] All module tests pass
+- [ ] All module documentation is complete
+
+**Quality Check**:
+- [ ] Code quality meets standards, no obvious issues
+- [ ] Security meets standards, no obvious vulnerabilities
+- [ ] Performance meets standards, no obvious bottlenecks
+
+**Integration Check**:
+- [ ] Module integration is normal, no interface issues
+- [ ] End-to-end flow is normal, no flow breaks
+- [ ] Regression tests pass, no functionality regression
+
+**Documentation Check**:
+- [ ] All documentation is updated, content accurate
+- [ ] Evidence documentation is complete, traceable
+- [ ] Decision records are complete, with basis
+
+**Review Requirements**:
+- Must conduct full code review
+- Must conduct security专项review
+- Must conduct performance专项review
+- Must record review results in evidence document
 
 ### Gate D: Cross-Project Integration Gate
 
@@ -264,6 +321,40 @@ Required Before Continuing:
 ```
 
 The reviewer should not rewrite the whole project plan unless the plan itself is wrong.
+
+### Review Result Recording Mechanism
+
+#### Recording Template
+
+```markdown
+## Review Record
+
+### Review Information
+- **Review ID**: [YYYY-MM-DD-NNN] (e.g., 2026-06-26-001)
+- **Review Time**: [YYYY-MM-DD HH:MM] (e.g., 2026-06-26 10:00)
+- **Reviewer**: [Reviewer] (e.g., Claude Code)
+- **Review Type**: [Code/Security/Performance] (e.g., Code)
+
+### Review Content
+- **Review Module**: [Module Name] (e.g., rag/server.py)
+- **Review Scope**: [Scope Description] (e.g., new /dashboard/status endpoint)
+- **Review Standard**: [Standard Description] (e.g., reference quality-governance-spec.md Section 5)
+
+### Review Results
+- **Review Passed**: [Yes/No] (e.g., Yes)
+- **Issues Found**: [Issue List] (e.g., None / 1. Error handling incomplete)
+- **Improvement Suggestions**: [Suggestion List] (e.g., None / 1. Add exception catching)
+
+### Review Conclusion
+- **Conclusion**: [Conclusion] (e.g., Passed, can proceed to next stage)
+- **Follow-up Actions**: [Actions] (e.g., None / 1. Fix error handling)
+```
+
+#### Recording Flow
+
+1. After review completion, fill in review record
+2. Save review record to evidence document
+3. Synchronize review record to Quality Agent
 
 ## 7. Bug And Quality Issue Policy
 

@@ -8,8 +8,11 @@ SCHEMA_QUERIES = [
     "CREATE CONSTRAINT document_id IF NOT EXISTS FOR (d:Document) REQUIRE d.id IS UNIQUE",
     "CREATE CONSTRAINT digest_date IF NOT EXISTS FOR (d:DailyDigest) REQUIRE d.date IS UNIQUE",
 
-    # Full-text index for hybrid search
+    # Full-text index for Entity hybrid search
     "CREATE FULLTEXT INDEX entity_search IF NOT EXISTS FOR (e:Entity) ON EACH [e.name, e.description]",
+
+    # Full-text index for Topic name lookup (G-2: replaces toLower() CONTAINS pattern)
+    "CREATE FULLTEXT INDEX topic_search IF NOT EXISTS FOR (t:Topic) ON EACH [t.name]",
 
     # Vector index for chunk embeddings (1536 dims for text-embedding-3-small)
     """CREATE VECTOR INDEX chunk_embeddings IF NOT EXISTS

@@ -6,6 +6,9 @@ from neo4j import AsyncGraphDatabase, AsyncDriver
 
 from rag.config import NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
 
+# G-5 修复：默认查询超时（秒），防止慢查询阻塞整个 pipeline
+DEFAULT_QUERY_TIMEOUT_S = 30
+
 
 class Neo4jDriver:
     """Thin wrapper around Neo4j async driver with lifecycle management."""
@@ -30,18 +33,25 @@ class Neo4jDriver:
             raise RuntimeError("Driver not connected. Call connect() first.")
         return self._driver
 
-    async def execute_query(self, cypher: str, **params):
+    async def execute_query(self, cypher: str, timeout: float = DEFAULT_QUERY_TIMEOUT_S, **params):
+        """执行只读 Cypher 查询，带超时保护。
+        G-5 修复：通过 tx.run(timeout=...) 设置单次查询超时，
+        防止慢查询或全表扫描阻塞 pipeline。
+        """
         async with self.driver.session() as session:
             async def run_read(tx):
-                result = await tx.run(cypher, parameters=params)
+                result = await tx.run(cypher, parameters=params, timeout=timeout)
                 return [record.data() async for record in result]
 
             return await session.execute_read(run_read)
 
-    async def execute_write(self, cypher: str, **params):
+    async def execute_write(self, cypher: str, timeout: float = DEFAULT_QUERY_TIMEOUT_S, **params):
+        """执行写入 Cypher 查询，带超时保护。
+        G-5 修复：同 execute_query，在 transaction 级别设置 timeout。
+        """
         async with self.driver.session() as session:
             async def run_write(tx):
-                result = await tx.run(cypher, parameters=params)
+                result = await tx.run(cypher, parameters=params, timeout=timeout)
                 await result.consume()
 
             await session.execute_write(run_write)

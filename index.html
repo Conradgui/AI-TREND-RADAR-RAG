@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
   <link rel="alternate" type="application/rss+xml" title="AI Topic Radar RSS" href="./feed.xml">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@18.0.5/lib/marked.umd.js" integrity="sha384-ZD0fTOwPMHi7zM6WTVIWJR21I07lq0ccnqz3J6WMvQKG9thh4y7TA1QE6PJu0Af8" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.11/dist/purify.min.js" integrity="sha384-o44XUELLEnv/iSlA1NWxBweqbD4TSR0qgq2VzVsxtkHS989JJjGKSE9vkfo5MN4K" crossorigin="anonymous"></script>
   <style>
     :root {
       --bg:         #0B0D14;
@@ -297,22 +297,53 @@
       text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
     }
     .chat-cit-link {
-      display: inline-block; padding: 2px 8px; margin: 2px 4px 2px 0;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; margin: 2px 4px 2px 0;
       background: var(--code-bg); border: 1px solid var(--border);
-      border-radius: 4px; color: var(--link); font-size: 10px;
+      border-radius: 4px; color: var(--link); font-size: 11px;
       text-decoration: none; cursor: pointer; transition: border-color 0.15s;
     }
     .chat-cit-link:hover { border-color: var(--accent); }
+    .chat-cit-link .cit-external {
+      font-size: 10px; opacity: 0.6; transition: opacity 0.15s;
+    }
+    .chat-cit-link:hover .cit-external { opacity: 1; }
+
+    .chat-trace {
+      margin-top: 8px; padding-top: 8px;
+      border-top: 1px solid var(--border); font-size: 11px;
+    }
+    .chat-trace .trace-label {
+      font-size: 10px; color: var(--dim);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+    }
+    .chat-trace .trace-content {
+      color: var(--muted); font-size: 11px;
+    }
 
     .chat-typing {
       align-self: flex-start; padding: 10px 14px;
       font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .chat-typing .thinking-icon {
+      animation: thinking-shake 0.8s ease-in-out infinite;
     }
     .chat-typing .dots span {
       animation: blink 1.4s infinite both;
     }
     .chat-typing .dots span:nth-child(2) { animation-delay: 0.2s; }
     .chat-typing .dots span:nth-child(3) { animation-delay: 0.4s; }
+    .chat-typing .progress-text {
+      font-size: 11px; color: var(--dim);
+      margin-left: 4px;
+    }
+
+    @keyframes thinking-shake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-5deg); }
+      75% { transform: rotate(5deg); }
+    }
 
     #chatInputWrap {
       display: flex; align-items: center; gap: 8px;
@@ -355,6 +386,218 @@
     .chat-suggestion:hover { border-color: var(--accent); color: var(--accent); }
 
     .hdr-btn.chat-active { border-color: var(--accent); color: var(--accent); }
+
+    /* ── System Panel ── */
+    #systemPanel {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 400px; max-width: 90vw;
+      background: var(--bg-side); border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -8px 0 32px rgba(0,0,0,0.3);
+    }
+    #systemPanel.open { transform: translateX(0); }
+
+    #systemHeader {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #systemHeader .system-title {
+      font-size: 13px; font-weight: 700; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    #systemHeader .system-title .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 6px var(--accent);
+    }
+    .system-close {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 18px; padding: 2px 6px;
+      border-radius: 4px; transition: color 0.15s, background 0.15s;
+    }
+    .system-close:hover { color: var(--text); background: var(--bg-hover); }
+
+    #systemContent {
+      flex: 1; overflow-y: auto; padding: 16px;
+    }
+    #systemContent::-webkit-scrollbar { width: 4px; }
+    #systemContent::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 2px; }
+
+    .system-section {
+      margin-bottom: 20px;
+    }
+    .system-section-title {
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 12px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .system-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; font-size: 12px;
+    }
+    .system-item-label {
+      color: var(--muted);
+    }
+    .system-item-value {
+      color: var(--text); font-weight: 500;
+    }
+    .system-item-value.connected {
+      color: #4caf50;
+    }
+    .system-item-value.disconnected {
+      color: #f44336;
+    }
+    .system-item-value.warning {
+      color: #ff9800;
+    }
+
+    .system-status-dot {
+      display: inline-block; width: 6px; height: 6px;
+      border-radius: 50%; margin-right: 6px;
+    }
+    .system-status-dot.green { background: #4caf50; }
+    .system-status-dot.red { background: #f44336; }
+    .system-status-dot.orange { background: #ff9800; }
+
+    .system-toggle-btn {
+      padding: 4px 12px; border: 1px solid var(--border);
+      border-radius: 4px; background: var(--bg); color: var(--text);
+      font-size: 11px; cursor: pointer; transition: all 0.15s;
+    }
+    .system-toggle-btn:hover {
+      border-color: var(--accent); background: var(--bg-hover);
+    }
+    .system-toggle-btn.enabled {
+      background: #4caf50; border-color: #4caf50; color: white;
+    }
+    .system-toggle-btn.disabled {
+      background: var(--bg); border-color: var(--border); color: var(--muted);
+    }
+
+    .hdr-btn.system-active { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Briefs Panel ── */
+    #briefsPanel {
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: 400px; max-width: 90vw;
+      background: var(--bg-side); border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -8px 0 32px rgba(0,0,0,0.3);
+    }
+    #briefsPanel.open { transform: translateX(0); }
+
+    #briefsHeader {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    #briefsHeader .briefs-title {
+      font-size: 13px; font-weight: 700; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    #briefsHeader .briefs-title .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 6px var(--accent);
+    }
+    .briefs-close {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 18px; padding: 2px 6px;
+      border-radius: 4px; transition: color 0.15s, background 0.15s;
+    }
+    .briefs-close:hover { color: var(--text); background: var(--bg-hover); }
+
+    #briefsContent {
+      flex: 1; overflow-y: auto; padding: 16px;
+    }
+    #briefsContent::-webkit-scrollbar { width: 4px; }
+    #briefsContent::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 2px; }
+
+    .brief-item {
+      padding: 12px; margin-bottom: 12px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .brief-item:hover {
+      border-color: var(--accent); background: var(--bg-hover);
+    }
+    .brief-item-title {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin-bottom: 8px;
+    }
+    .brief-item-meta {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      font-size: 11px; color: var(--muted);
+    }
+    .brief-item-tag {
+      padding: 2px 8px; background: var(--code-bg);
+      border: 1px solid var(--border); border-radius: 4px;
+    }
+    .brief-item-tag.mode {
+      color: var(--link);
+    }
+    .brief-item-tag.quality {
+      color: #4caf50;
+    }
+
+    .briefs-loading {
+      text-align: center; padding: 40px 20px; color: var(--muted);
+    }
+    .briefs-empty {
+      text-align: center; padding: 40px 20px; color: var(--muted);
+    }
+
+    .brief-back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; margin-bottom: 12px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 6px; color: var(--text); font-size: 12px;
+      cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    }
+    .brief-back-btn:hover {
+      border-color: var(--accent); background: var(--bg-hover);
+    }
+
+    .brief-content {
+      font-size: 13px; line-height: 1.6; color: var(--text);
+    }
+    .brief-content h1, .brief-content h2, .brief-content h3 {
+      margin: 16px 0 8px; font-weight: 600;
+    }
+    .brief-content h1 { font-size: 18px; }
+    .brief-content h2 { font-size: 16px; }
+    .brief-content h3 { font-size: 14px; }
+    .brief-content p { margin-bottom: 8px; }
+    .brief-content ul, .brief-content ol {
+      padding-left: 20px; margin-bottom: 8px;
+    }
+    .brief-content table {
+      width: 100%; border-collapse: collapse; margin: 12px 0;
+    }
+    .brief-content th, .brief-content td {
+      padding: 8px; border: 1px solid var(--border); text-align: left;
+    }
+    .brief-content th {
+      background: var(--bg-hover); font-weight: 600;
+    }
+    .brief-content code {
+      background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+      font-family: 'Space Mono', monospace; font-size: 12px;
+    }
+    .brief-content pre {
+      background: var(--code-bg); padding: 12px; border-radius: 6px;
+      overflow-x: auto; margin: 12px 0;
+    }
+    .brief-content pre code {
+      background: none; padding: 0;
+    }
+
+    .hdr-btn.briefs-active { border-color: var(--accent); color: var(--accent); }
 
     /* ── Mobile ── */
     #mob-toggle { display: none; }
@@ -411,6 +654,12 @@
       <button id="chatBtn" class="hdr-btn" onclick="toggleChat()" title="AI Agent 对话">
         <span class="hdr-icon">🤖</span><span class="hdr-label">AGENT</span>
       </button>
+      <button id="systemBtn" class="hdr-btn" onclick="toggleSystem()" title="系统状态">
+        <span class="hdr-icon">⚙</span><span class="hdr-label">SYSTEM</span>
+      </button>
+      <button id="briefsBtn" class="hdr-btn" onclick="toggleBriefs()" title="Trend Briefs">
+        <span class="hdr-icon">📊</span><span class="hdr-label">BRIEFS</span>
+      </button>
       <button id="themeBtn" class="hdr-btn"><span class="hdr-icon">◐</span><span class="hdr-label">LIGHT</span></button>
     </div>
   </div>
@@ -460,6 +709,94 @@
       <button id="chatSend" onclick="sendChatMessage()" title="发送">➤</button>
     </div>
   </div>
+
+  <!-- System Overlay -->
+  <div id="systemOverlay" onclick="toggleSystem()" style="position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transition: opacity 0.25s;"></div>
+
+  <!-- System Panel -->
+  <div id="systemPanel">
+    <div id="systemHeader">
+      <div class="system-title"><span class="dot"></span>系统状态</div>
+      <button class="system-close" onclick="toggleSystem()" title="关闭">✕</button>
+    </div>
+    <div id="systemContent">
+      <div class="system-section">
+        <div class="system-section-title">服务配置</div>
+        <div class="system-item">
+          <span class="system-item-label">服务状态</span>
+          <span class="system-item-value" id="systemStatus">-</span>
+        </div>
+        <div class="system-item">
+          <span class="system-item-label">LLM Provider</span>
+          <span class="system-item-value" id="systemProvider">-</span>
+        </div>
+        <div class="system-item">
+          <span class="system-item-label">检索模式</span>
+          <span class="system-item-value" id="systemRetriever">
+            <button class="system-toggle-btn" id="retrieverToggle" onclick="toggleRetrieverMode()">-</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="system-section">
+        <div class="system-section-title">数据库</div>
+        <div class="system-item">
+          <span class="system-item-label">Neo4j</span>
+          <span class="system-item-value" id="systemNeo4j">-</span>
+        </div>
+        <div class="system-item">
+          <span class="system-item-label">ChromaDB</span>
+          <span class="system-item-value" id="systemChroma">-</span>
+        </div>
+      </div>
+
+      <div class="system-section">
+        <div class="system-section-title">数据源</div>
+        <div class="system-item">
+          <span class="system-item-label">最新语料</span>
+          <span class="system-item-value" id="systemCorpus">-</span>
+        </div>
+        <div class="system-item">
+          <span class="system-item-label">搜索Provider</span>
+          <span class="system-item-value" id="systemSearch">-</span>
+        </div>
+        <div class="system-item">
+          <span class="system-item-label">联网搜索</span>
+          <span class="system-item-value" id="systemWebSearch">
+            <button class="system-toggle-btn" id="webSearchToggle" onclick="toggleWebSearch()">-</button>
+          </span>
+        </div>
+        <div class="system-item" id="deepFetchRow" style="display: none;">
+          <span class="system-item-label" style="padding-left: 16px;">└ 深度抓取</span>
+          <span class="system-item-value" id="systemDeepFetch">
+            <button class="system-toggle-btn" id="deepFetchToggle" onclick="toggleDeepFetch()">-</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="system-section">
+        <div class="system-section-title">版本</div>
+        <div class="system-item">
+          <span class="system-item-label">服务版本</span>
+          <span class="system-item-value" id="systemVersion">-</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Briefs Overlay -->
+  <div id="briefsOverlay" onclick="toggleBriefs()" style="position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transition: opacity 0.25s;"></div>
+
+  <!-- Briefs Panel -->
+  <div id="briefsPanel">
+    <div id="briefsHeader">
+      <div class="briefs-title"><span class="dot"></span>Trend Briefs</div>
+      <button class="briefs-close" onclick="toggleBriefs()" title="关闭">✕</button>
+    </div>
+    <div id="briefsContent">
+      <div class="briefs-loading">正在加载...</div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -472,12 +809,49 @@ DOMPurify.addHook('uponSanitizeElement', (node, data) => {
   }
 });
 
+// 智能概括标题
+function summarizeTitle(title, maxLength = 25) {
+  if (!title || title.length <= maxLength) return title;
+
+  // 尝试在标点符号处截断
+  const punctuation = ['：', '：', '，', '。', '！', '？', '；', '、', ' ', '—', '–', '-'];
+  for (const p of punctuation) {
+    const idx = title.indexOf(p);
+    if (idx > 0 && idx < maxLength) {
+      return title.substring(0, idx) + '…';
+    }
+  }
+
+  // 如果没有标点符号，在单词边界截断
+  const words = title.split(/\s+/);
+  let result = '';
+  for (const word of words) {
+    if ((result + ' ' + word).trim().length > maxLength) break;
+    result = result ? result + ' ' + word : word;
+  }
+
+  // 如果还是太长，直接截断
+  if (!result || result.length > maxLength) {
+    return title.substring(0, maxLength - 1) + '…';
+  }
+
+  return result + '…';
+}
+
 function renderMarkdown(raw) {
-  const html = marked.parse(raw);
-  return DOMPurify.sanitize(html, {
-    ADD_TAGS: ['details', 'summary'],
-    ADD_ATTR: ['open'],
-  });
+  try {
+    const html = marked.parse(raw);
+    return DOMPurify.sanitize(html, {
+      ADD_TAGS: ['details', 'summary'],
+      ADD_ATTR: ['open'],
+    });
+  } catch (e) {
+    console.error('Markdown rendering failed:', e);
+    // 返回转义的原始文本作为fallback
+    const escaped = document.createElement('div');
+    escaped.textContent = raw;
+    return escaped.innerHTML;
+  }
 }
 
 const LABELS = {
@@ -655,7 +1029,20 @@ async function loadReport(date, report, push = true) {
     const safe = renderMarkdown(raw);
     setContent(`<div class="md fade">${safe}</div>`);
   } catch (e) {
-    setContent(`<div class="msg"><div class="msg-icon">⚠️</div><div>加载失败：${e.message}</div></div>`);
+    // 使用textContent防止XSS
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'msg';
+
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'msg-icon';
+    iconDiv.textContent = '⚠️';
+
+    const textDiv = document.createElement('div');
+    textDiv.textContent = `加载失败：${e.message}`;
+
+    msgDiv.appendChild(iconDiv);
+    msgDiv.appendChild(textDiv);
+    setContent(msgDiv.outerHTML);
   }
 }
 
@@ -799,11 +1186,383 @@ window.addEventListener('popstate', () => {
   }
 })();
 
+// ── Briefs Panel ──
+
+let briefsOpen = false;
+let briefsData = null;
+
+function toggleBriefs() {
+  briefsOpen = !briefsOpen;
+  document.getElementById('briefsPanel').classList.toggle('open', briefsOpen);
+  document.getElementById('briefsOverlay').style.opacity = briefsOpen ? '1' : '0';
+  document.getElementById('briefsOverlay').style.pointerEvents = briefsOpen ? 'auto' : 'none';
+  document.getElementById('briefsBtn').classList.toggle('briefs-active', briefsOpen);
+
+  if (briefsOpen && !briefsData) {
+    loadBriefs();
+  }
+}
+
+async function loadBriefs() {
+  const content = document.getElementById('briefsContent');
+  content.innerHTML = '<div class="briefs-loading">正在加载...</div>';
+
+  try {
+    const isLocal = window.location.hostname === 'localhost' ||
+                    window.location.hostname === '127.0.0.1' ||
+                    window.location.hostname === '0.0.0.0';
+
+    if (!isLocal) {
+      content.innerHTML = '<div class="briefs-empty">⚠️ Briefs功能需要本地RAG服务支持</div>';
+      return;
+    }
+
+    const res = await fetch('http://localhost:8001/briefs');
+    if (!res.ok) throw new Error('Failed to fetch briefs');
+
+    const data = await res.json();
+    briefsData = data.briefs;
+
+    if (!briefsData || briefsData.length === 0) {
+      content.innerHTML = '<div class="briefs-empty">暂无Trend Brief制品</div>';
+      return;
+    }
+
+    content.innerHTML = '';
+
+    briefsData.forEach(brief => {
+      const item = document.createElement('div');
+      item.className = 'brief-item';
+      item.onclick = () => {
+        // 在面板内显示Brief内容
+        loadBriefContent(brief);
+      };
+
+      const title = document.createElement('div');
+      title.className = 'brief-item-title';
+      title.textContent = brief.title || brief.topic || 'Untitled';
+
+      const meta = document.createElement('div');
+      meta.className = 'brief-item-meta';
+
+      if (brief.generated_date) {
+        const dateTag = document.createElement('span');
+        dateTag.className = 'brief-item-tag';
+        dateTag.textContent = brief.generated_date;
+        meta.appendChild(dateTag);
+      }
+
+      if (brief.mode) {
+        const modeTag = document.createElement('span');
+        modeTag.className = 'brief-item-tag mode';
+        modeTag.textContent = brief.mode;
+        meta.appendChild(modeTag);
+      }
+
+      if (brief.source_quality) {
+        const qualityTag = document.createElement('span');
+        qualityTag.className = 'brief-item-tag quality';
+        qualityTag.textContent = brief.source_quality;
+        meta.appendChild(qualityTag);
+      }
+
+      item.appendChild(title);
+      item.appendChild(meta);
+      content.appendChild(item);
+    });
+
+  } catch (e) {
+    console.error('Failed to load briefs:', e);
+    // 使用textContent防止XSS
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'briefs-empty';
+    errorDiv.textContent = `⚠️ 加载失败：${e.message}`;
+    content.innerHTML = '';
+    content.appendChild(errorDiv);
+  }
+}
+
+async function loadBriefContent(brief) {
+  const content = document.getElementById('briefsContent');
+  content.innerHTML = '<div class="briefs-loading">正在加载Brief内容...</div>';
+
+  try {
+    // 构建Brief文件的URL
+    const briefUrl = `http://localhost:8001/${brief.path}`;
+
+    const res = await fetch(briefUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const markdown = await res.text();
+
+    // 清空内容
+    content.innerHTML = '';
+
+    // 添加返回按钮
+    const backBtn = document.createElement('button');
+    backBtn.className = 'brief-back-btn';
+    backBtn.innerHTML = '← 返回列表';
+    backBtn.onclick = () => {
+      loadBriefs(); // 重新加载列表
+    };
+    content.appendChild(backBtn);
+
+    // 添加Brief标题
+    const briefTitle = document.createElement('h2');
+    briefTitle.style.cssText = 'margin: 0 0 16px; font-size: 16px; color: var(--text);';
+    briefTitle.textContent = brief.title || brief.topic || 'Untitled';
+    content.appendChild(briefTitle);
+
+    // 添加Brief元信息
+    const briefMeta = document.createElement('div');
+    briefMeta.style.cssText = 'margin-bottom: 16px; font-size: 12px; color: var(--muted);';
+    const metaParts = [];
+    if (brief.generated_date) metaParts.push(`生成日期: ${brief.generated_date}`);
+    if (brief.mode) metaParts.push(`模式: ${brief.mode}`);
+    if (brief.source_quality) metaParts.push(`来源质量: ${brief.source_quality}`);
+    briefMeta.textContent = metaParts.join(' | ');
+    content.appendChild(briefMeta);
+
+    // 添加Brief内容（使用Markdown渲染）
+    const briefContent = document.createElement('div');
+    briefContent.className = 'brief-content';
+    briefContent.innerHTML = renderMarkdown(markdown);
+    content.appendChild(briefContent);
+
+  } catch (e) {
+    console.error('Failed to load brief content:', e);
+    content.innerHTML = '';
+
+    // 添加返回按钮
+    const backBtn = document.createElement('button');
+    backBtn.className = 'brief-back-btn';
+    backBtn.innerHTML = '← 返回列表';
+    backBtn.onclick = () => {
+      loadBriefs();
+    };
+    content.appendChild(backBtn);
+
+    // 显示错误信息
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'briefs-empty';
+    errorDiv.textContent = `⚠️ 加载失败：${e.message}`;
+    content.appendChild(errorDiv);
+  }
+}
+
+// ── System Panel ──
+
+let systemOpen = false;
+let systemData = null;
+
+function toggleSystem() {
+  systemOpen = !systemOpen;
+  document.getElementById('systemPanel').classList.toggle('open', systemOpen);
+  document.getElementById('systemOverlay').style.opacity = systemOpen ? '1' : '0';
+  document.getElementById('systemOverlay').style.pointerEvents = systemOpen ? 'auto' : 'none';
+  document.getElementById('systemBtn').classList.toggle('system-active', systemOpen);
+
+  if (systemOpen && !systemData) {
+    loadSystemStatus();
+  }
+}
+
+async function loadSystemStatus() {
+  try {
+    const isLocal = window.location.hostname === 'localhost' ||
+                    window.location.hostname === '127.0.0.1' ||
+                    window.location.hostname === '0.0.0.0';
+
+    if (!isLocal) {
+      // 静态模式
+      document.getElementById('systemStatus').innerHTML = '<span class="system-status-dot orange"></span>静态模式';
+      document.getElementById('systemProvider').textContent = 'N/A';
+      document.getElementById('systemRetriever').textContent = 'N/A';
+      document.getElementById('systemNeo4j').innerHTML = '<span class="system-status-dot orange"></span>N/A';
+      document.getElementById('systemChroma').textContent = 'N/A';
+      document.getElementById('systemCorpus').textContent = 'N/A';
+      document.getElementById('systemSearch').textContent = 'N/A';
+      document.getElementById('systemDeepFetch').textContent = 'N/A';
+      document.getElementById('systemVersion').textContent = 'N/A';
+      return;
+    }
+
+    const res = await fetch('http://localhost:8001/dashboard/status');
+    if (!res.ok) throw new Error('Failed to fetch status');
+
+    systemData = await res.json();
+
+    // 更新UI - 使用textContent防止XSS
+    const statusEl = document.getElementById('systemStatus');
+    statusEl.innerHTML = ''; // 清空
+    const statusDot = document.createElement('span');
+    statusDot.className = 'system-status-dot green';
+    statusEl.appendChild(statusDot);
+    statusEl.appendChild(document.createTextNode(systemData.service || '未知'));
+
+    document.getElementById('systemProvider').textContent =
+      systemData.provider || '未配置';
+
+    // 更新检索模式按钮
+    const retrieverToggle = document.getElementById('retrieverToggle');
+    retrieverToggle.textContent = systemData.retriever_mode || '未知';
+    retrieverToggle.className = 'system-toggle-btn enabled';
+
+    const neo4jEl = document.getElementById('systemNeo4j');
+    neo4jEl.innerHTML = ''; // 清空
+    const neo4jDot = document.createElement('span');
+    neo4jDot.className = `system-status-dot ${systemData.neo4j_connected ? 'green' : 'red'}`;
+    neo4jEl.appendChild(neo4jDot);
+    neo4jEl.appendChild(document.createTextNode(systemData.neo4j_connected ? '已连接' : '未连接'));
+
+    document.getElementById('systemChroma').textContent =
+      `${systemData.chromadb_chunks || 0} chunks`;
+
+    document.getElementById('systemCorpus').textContent =
+      systemData.latest_corpus_date || '无数据';
+
+    document.getElementById('systemSearch').textContent =
+      systemData.search_providers?.join(', ') || '未配置';
+
+    // 更新联网搜索开关
+    const webSearchToggle = document.getElementById('webSearchToggle');
+    const webSearchEnabled = systemData.web_search_enabled || false;
+    webSearchToggle.textContent = webSearchEnabled ? '已启用' : '未启用';
+    webSearchToggle.className = `system-toggle-btn ${webSearchEnabled ? 'enabled' : 'disabled'}`;
+
+    // 更新深度抓取开关（仅在联网搜索启用时显示）
+    const deepFetchRow = document.getElementById('deepFetchRow');
+    const deepFetchToggle = document.getElementById('deepFetchToggle');
+    const deepFetchEnabled = systemData.deep_fetch_enabled || false;
+
+    if (webSearchEnabled) {
+      deepFetchRow.style.display = 'flex';
+      deepFetchToggle.textContent = deepFetchEnabled ? '已启用' : '未启用';
+      deepFetchToggle.className = `system-toggle-btn ${deepFetchEnabled ? 'enabled' : 'disabled'}`;
+    } else {
+      deepFetchRow.style.display = 'none';
+    }
+
+    document.getElementById('systemVersion').textContent =
+      systemData.service_version || '未知';
+
+  } catch (e) {
+    console.error('Failed to load system status:', e);
+    const statusEl = document.getElementById('systemStatus');
+    statusEl.innerHTML = ''; // 清空
+    const statusDot = document.createElement('span');
+    statusDot.className = 'system-status-dot red';
+    statusEl.appendChild(statusDot);
+    statusEl.appendChild(document.createTextNode('连接失败'));
+  }
+}
+
+// 联网搜索开关
+async function toggleWebSearch() {
+  try {
+    const newState = !systemData?.web_search_enabled;
+    const res = await fetch(`http://localhost:8001/config/web-search?enabled=${newState}`, {
+      method: 'POST',
+      headers: { 'X-API-Key': 'dev-key-change-in-production' }
+    });
+
+    if (!res.ok) throw new Error('Failed to toggle web search');
+
+    // 更新本地状态
+    if (systemData) {
+      systemData.web_search_enabled = newState;
+    }
+
+    // 更新UI
+    const webSearchToggle = document.getElementById('webSearchToggle');
+    webSearchToggle.textContent = newState ? '已启用' : '未启用';
+    webSearchToggle.className = `system-toggle-btn ${newState ? 'enabled' : 'disabled'}`;
+
+    // 显示/隐藏深度抓取选项
+    const deepFetchRow = document.getElementById('deepFetchRow');
+    deepFetchRow.style.display = newState ? 'flex' : 'none';
+
+  } catch (e) {
+    console.error('Failed to toggle web search:', e);
+    alert('切换联网搜索失败：' + e.message);
+  }
+}
+
+// 深度抓取开关
+async function toggleDeepFetch() {
+  try {
+    const newState = !systemData?.deep_fetch_enabled;
+    const res = await fetch(`http://localhost:8001/config/deep-fetch?enabled=${newState}`, {
+      method: 'POST',
+      headers: { 'X-API-Key': 'dev-key-change-in-production' }
+    });
+
+    if (!res.ok) throw new Error('Failed to toggle deep fetch');
+
+    // 更新本地状态
+    if (systemData) {
+      systemData.deep_fetch_enabled = newState;
+    }
+
+    // 更新UI
+    const deepFetchToggle = document.getElementById('deepFetchToggle');
+    deepFetchToggle.textContent = newState ? '已启用' : '未启用';
+    deepFetchToggle.className = `system-toggle-btn ${newState ? 'enabled' : 'disabled'}`;
+
+  } catch (e) {
+    console.error('Failed to toggle deep fetch:', e);
+    alert('切换深度抓取失败：' + e.message);
+  }
+}
+
+// 检索模式切换
+async function toggleRetrieverMode() {
+  try {
+    const modes = ['hybrid', 'vector-only'];
+    const currentIndex = modes.indexOf(systemData?.retriever_mode || 'hybrid');
+    const newMode = modes[(currentIndex + 1) % modes.length];
+
+    const res = await fetch(`http://localhost:8001/config/retriever-mode?mode=${newMode}`, {
+      method: 'POST',
+      headers: { 'X-API-Key': 'dev-key-change-in-production' }
+    });
+
+    if (!res.ok) throw new Error('Failed to toggle retriever mode');
+
+    // 更新本地状态
+    if (systemData) {
+      systemData.retriever_mode = newMode;
+    }
+
+    // 更新UI - 只更新按钮文本，不覆盖整个span
+    const retrieverToggle = document.getElementById('retrieverToggle');
+    retrieverToggle.textContent = newMode;
+
+  } catch (e) {
+    console.error('Failed to toggle retriever mode:', e);
+    alert('切换检索模式失败：' + e.message);
+  }
+}
+
 // ── Chat Agent ──
 
-// MCP Worker URL — update this to your deployed Worker URL
-const CHAT_API_URL = 'https://ai-topic-radar-mcp.your-subdomain.workers.dev/chat';
-// For local dev: 'http://localhost:8787/chat'
+// 环境检测：本地服务 vs 静态模式
+function detectChatApiUrl() {
+  // 检测是否在本地服务环境
+  const isLocal = window.location.hostname === 'localhost' ||
+                  window.location.hostname === '127.0.0.1' ||
+                  window.location.hostname === '0.0.0.0';
+
+  if (isLocal) {
+    // 本地模式：调用本地FastAPI服务
+    return 'http://localhost:8001/chat';
+  } else {
+    // 静态模式：禁用Agent功能
+    return null;
+  }
+}
+
+const CHAT_API_URL = detectChatApiUrl();
 
 let chatHistory = [];
 let chatOpen = false;
@@ -824,7 +1583,7 @@ function sendSuggestion(el) {
   sendChatMessage();
 }
 
-function appendChatMessage(role, content, citations) {
+function appendChatMessage(role, content, citations, toolTrace) {
   const container = document.getElementById('chatMessages');
   // Remove welcome message if present
   const welcome = container.querySelector('.chat-welcome');
@@ -843,6 +1602,24 @@ function appendChatMessage(role, content, citations) {
     mdDiv.innerHTML = renderMarkdown(content);
     msg.appendChild(mdDiv);
 
+    // Add tool trace - 使用textContent防止XSS
+    if (toolTrace && toolTrace.summary) {
+      const traceDiv = document.createElement('div');
+      traceDiv.className = 'chat-trace';
+
+      const traceLabel = document.createElement('div');
+      traceLabel.className = 'trace-label';
+      traceLabel.textContent = '🔍 推理过程';
+
+      const traceContent = document.createElement('div');
+      traceContent.className = 'trace-content';
+      traceContent.textContent = toolTrace.summary;
+
+      traceDiv.appendChild(traceLabel);
+      traceDiv.appendChild(traceContent);
+      msg.appendChild(traceDiv);
+    }
+
     // Add citations
     if (citations && citations.length > 0) {
       const citDiv = document.createElement('div');
@@ -851,14 +1628,35 @@ function appendChatMessage(role, content, citations) {
       citations.forEach((c) => {
         const link = document.createElement('a');
         link.className = 'chat-cit-link';
-        link.textContent = `${c.date} · ${c.source}`;
         link.title = c.excerpt || '';
-        link.href = `#${c.date}/${c.source}`;
+
+        // 主链接：点击跳转到本地日报
+        const titleText = c.title ? ` · ${summarizeTitle(c.title, 25)}` : '';
+        // 使用固定的日报文件名（ai-topic-radar），而不是source
+        const reportName = 'ai-topic-radar';
+        link.href = `#${c.date}/${reportName}`;
+        link.innerHTML = `${c.date} · ${c.source}${titleText}`;
         link.onclick = (e) => {
           e.preventDefault();
           toggleChat(); // close chat panel
-          loadReport(c.date, c.source);
+          loadReport(c.date, reportName);
         };
+
+        // 外部链接图标：点击打开原始信息源
+        if (c.url) {
+          const externalIcon = document.createElement('a');
+          externalIcon.className = 'cit-external';
+          externalIcon.href = c.url;
+          externalIcon.target = '_blank';
+          externalIcon.rel = 'noopener noreferrer';
+          externalIcon.textContent = '↗';
+          externalIcon.title = '打开原始链接';
+          externalIcon.onclick = (e) => {
+            e.stopPropagation(); // 阻止冒泡
+          };
+          link.appendChild(externalIcon);
+        }
+
         citDiv.appendChild(link);
       });
       msg.appendChild(citDiv);
@@ -871,13 +1669,29 @@ function appendChatMessage(role, content, citations) {
   container.scrollTop = container.scrollHeight;
 }
 
-function showTypingIndicator() {
+function showTypingIndicator(progressText = '') {
   const container = document.getElementById('chatMessages');
   const typing = document.createElement('div');
   typing.className = 'chat-typing';
-  typing.innerHTML = '思考中<span class="dots"><span>.</span><span>.</span><span>.</span></span>';
+  const progressHtml = progressText ? `<span class="progress-text">${progressText}</span>` : '';
+  typing.innerHTML = `<span class="thinking-icon">🤔</span>思考中<span class="dots"><span>.</span><span>.</span><span>.</span></span>${progressHtml}`;
   container.appendChild(typing);
   container.scrollTop = container.scrollHeight;
+  return typing; // 返回元素引用，方便后续更新
+}
+
+function updateTypingProgress(typingElement, progressText) {
+  if (typingElement) {
+    const progressEl = typingElement.querySelector('.progress-text');
+    if (progressEl) {
+      progressEl.textContent = progressText;
+    } else {
+      const progressSpan = document.createElement('span');
+      progressSpan.className = 'progress-text';
+      progressSpan.textContent = progressText;
+      typingElement.appendChild(progressSpan);
+    }
+  }
 }
 
 async function sendChatMessage() {
@@ -895,8 +1709,34 @@ async function sendChatMessage() {
   appendChatMessage('user', message);
   chatHistory.push({ role: 'user', content: message });
 
-  // Show typing indicator
-  showTypingIndicator();
+  // 限制chatHistory大小，保留最近20轮对话
+  const MAX_HISTORY_LENGTH = 40; // 20轮 * 2条消息/轮
+  if (chatHistory.length > MAX_HISTORY_LENGTH) {
+    chatHistory = chatHistory.slice(-MAX_HISTORY_LENGTH);
+  }
+
+  // Show typing indicator with progress
+  const typingElement = showTypingIndicator('正在检索语料...');
+  setTimeout(() => updateTypingProgress(typingElement, '正在分析查询...'), 1000);
+  setTimeout(() => updateTypingProgress(typingElement, '正在生成回答...'), 3000);
+
+  // 检查API URL是否可用
+  if (!CHAT_API_URL) {
+    const errorMsg = `⚠️ Agent功能不可用
+
+当前为静态模式，Agent功能需要本地RAG服务支持。
+
+请执行以下步骤启用Agent功能：
+1. 启动本地RAG服务：\`python -m rag.server\`
+2. 访问 http://localhost:8001
+
+当前您仍可浏览报告和使用其他功能。`;
+    appendChatMessage('assistant', errorMsg, []);
+    chatHistory.pop();
+    sendBtn.disabled = false;
+    input.focus();
+    return;
+  }
 
   try {
     const res = await fetch(CHAT_API_URL, {
@@ -910,16 +1750,28 @@ async function sendChatMessage() {
 
     if (!res.ok) {
       const errData = await res.json().catch(() => ({}));
-      throw new Error(errData.error || `HTTP ${res.status}`);
+      throw new Error(errData.detail || errData.error || `HTTP ${res.status}`);
     }
 
     const data = await res.json();
 
     // Show assistant response
-    appendChatMessage('assistant', data.answer, data.citations);
+    appendChatMessage('assistant', data.answer, data.citations, data.tool_trace);
     chatHistory.push({ role: 'assistant', content: data.answer });
   } catch (e) {
-    const errorMsg = `请求失败：${e.message}\n\n请确认 MCP Worker 已部署且 LLM 环境变量已配置。`;
+    let errorMsg;
+    if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
+      errorMsg = `⚠️ 无法连接到本地RAG服务
+
+请确认：
+1. RAG服务已启动：\`python -m rag.server\`
+2. 服务运行在 http://localhost:8001
+3. Neo4j数据库已启动
+
+错误详情：${e.message}`;
+    } else {
+      errorMsg = `请求失败：${e.message}`;
+    }
     appendChatMessage('assistant', errorMsg, []);
     // Remove the failed user message from history
     chatHistory.pop();

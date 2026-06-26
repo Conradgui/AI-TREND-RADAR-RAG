@@ -45,7 +45,7 @@
 
 ## 🎯 项目简介
 
-**AI Trend Radar RAG** 是 [AI Trend Radar](https://github.com/Conradgui/AI-TREND-RADAR) 的扩展版本——在数据管道基础上叠加了 Graph RAG 与 Agentic RAG 智能查询层。
+**AI Trend Radar RAG** 是一个本地AI研究驾驶舱，专为AI产品经理、内容运营和产品调研人员设计。
 
 ### 核心价值
 
@@ -53,10 +53,6 @@
 - 🤖 **Agent问答**：支持自然语言查询，提供带引用的智能回答
 - 📝 **研究制品**：自动生成Trend Brief研究制品
 - 🔍 **证据可溯**：所有回答都有可追溯的引用来源
-
-### 项目关系
-
-> **AI-TREND-RADAR** 是数据管道（采集 → 评分 → 报告 → 分发），本仓库是它的超集，在数据管道基础上增加了知识图谱、向量检索和 Agent 对话能力。两个仓库共享同一份 `.env` 配置和 `digests/` 数据目录。
 
 ### 技术栈
 
@@ -76,16 +72,16 @@
 
 ### 📊 智能趋势分析
 
-- 每日抓取15+公开数据源（GitHub、Product Hunt、Hacker News、ArXiv等）
+- 每日抓取15+公开数据源
 - 自动生成中文选题池
 - 支持趋势追踪和热度分析
 
 ### 🤖 Agent问答
 
 - 支持自然语言查询
-- 自动选择检索策略（内部语料优先，可选联网搜索）
+- 自动选择检索策略
 - 提供带引用的智能回答
-- 支持6个内置工具：search、topic_trend、entity_info、daily_overview、source_coverage、recommend
+- 支持联网搜索（可选）
 
 ### 📝 研究制品
 
@@ -109,7 +105,6 @@
 ```bash
 # 双击 start.command 文件
 # 或在终端运行：
-chmod +x start.command
 ./start.command
 ```
 
@@ -125,7 +120,7 @@ start.bat
 2. ✅ 创建虚拟环境
 3. ✅ 安装依赖
 4. ✅ 启动Neo4j数据库
-5. ✅ 同步最新数据（从GitHub AI-TREND-RADAR）
+5. ✅ 同步最新数据
 6. ✅ 启动RAG服务器
 7. ✅ 打开浏览器
 
@@ -248,12 +243,6 @@ npm install -g pnpm
 2. 输入问题，如"最近有什么热门趋势？"
 3. 查看带引用的智能回答
 
-**示例问题**：
-- "最近有什么热门趋势？"
-- "推荐值得深挖的选题"
-- "Claude最近有什么动态？"
-- "RAG技术有什么发展？"
-
 ### 系统状态
 
 1. 点击右上角"SYSTEM"按钮
@@ -283,7 +272,6 @@ npm install -g pnpm
 | `/ingest` | POST | 数据摄取 | ✅ |
 | `/metrics` | GET | 指标统计 | ❌ |
 | `/metrics/recent` | GET | 最近指标 | ❌ |
-| `/health/consistency` | GET | 数据一致性 | ❌ |
 
 ### 请求示例
 
@@ -397,13 +385,13 @@ curl http://localhost:8001/briefs
 AI-TREND-RADAR (GitHub)
         │
         ▼
-   数据同步脚本 (scripts/sync-from-github.sh)
+   数据同步脚本
         │
         ▼
    digests/ 目录
         │
         ▼
-   数据摄取 (python -m rag.ingest)
+   数据摄取 (ingest.py)
         │
         ├────────────────┐
         ▼                ▼
@@ -538,8 +526,6 @@ AI-TREND-RADAR-RAG/
 │   ├── server.py                 # FastAPI服务器
 │   ├── config.py                 # 配置管理
 │   ├── chat_service.py           # 聊天服务
-│   ├── consistency.py            # 数据一致性校验
-│   ├── metrics.py                # 指标收集
 │   ├── agent/                    # Agent模块
 │   ├── retriever/                # 检索模块
 │   ├── graphrag/                 # 图谱模块
@@ -549,9 +535,7 @@ AI-TREND-RADAR-RAG/
 ├── digests/                      # 报告数据
 ├── docs/                         # 文档
 ├── scripts/                      # 脚本
-│   └── sync-from-github.sh       # 数据同步脚本
-├── start.command                 # macOS启动脚本
-├── start.bat                     # Windows启动脚本
+├── start.command                 # 启动脚本
 └── docker-compose.yml            # Docker配置
 ```
 

@@ -244,11 +244,18 @@ def chunk_text(text: str | None, chunk_size: int = 1000, overlap: int = 200) -> 
     return [c for c in chunks if len(c) > 20]
 
 
-async def run_ingestion() -> int:
+async def run_ingestion() -> tuple[int, dict]:
+    """Run full ingestion pipeline with post-ingestion consistency verification.
+
+    Returns:
+        Tuple of (ingested_date_count, consistency_report_dict).
+        G-4 修复：ingestion 完成后自动校验 Neo4j 与 ChromaDB 的数据一致性。
+    """
     from rag.graphrag.builder import KnowledgeGraphBuilder
     from rag.graphrag.driver import Neo4jDriver
     from rag.graphrag.schema import init_schema
     from rag.retriever.vector_store import VectorStore
+    from rag.consistency import post_ingestion_verify
 
     driver = Neo4jDriver(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
     await driver.connect()
@@ -260,6 +267,7 @@ async def run_ingestion() -> int:
         dates = _find_digest_dates()
         print(f"[ingest] Found {len(dates)} digest dates")
 
+        ingested_dates = []
         for date_str in dates:
             date_dir = Path(DIGESTS_DIR) / date_str
             topic_pool = normalize_topic_pool(_load_topic_pool(date_dir), date_str)
@@ -277,10 +285,26 @@ async def run_ingestion() -> int:
                 chunk_count = 0
                 print(f"  [ingest] ChromaDB write failed for {date_str}: {e}")
 
+            ingested_dates.append(date_str)
             print(f"[ingest] {date_str}: ingested ({chunk_count} chunks → ChromaDB)")
 
         print(f"[ingest] ChromaDB total: {vector_store.count()} chunks")
-        return len(dates)
+
+        # G-4 修复：ingestion 后执行一致性校验
+        consistency_report = None
+        if ingested_dates:
+            try:
+                report = await post_ingestion_verify(driver, vector_store, ingested_dates)
+                consistency_report = report.to_dict()
+                if report.is_consistent:
+                    print("[ingest] Consistency check PASSED — Neo4j and ChromaDB are in sync")
+                else:
+                    print(f"[ingest] Consistency check FAILED — missing_in_chroma: {report.missing_in_chroma}, missing_in_neo4j: {report.missing_in_neo4j}")
+            except Exception as e:
+                print(f"[ingest] Consistency check error: {e}")
+                consistency_report = {"error": str(e), "is_consistent": False}
+
+        return len(ingested_dates), consistency_report or {}
     finally:
         await driver.close()
 
@@ -292,6 +316,11 @@ def main():
         action="store_true",
         help="Ingest only ChromaDB vector chunks without connecting to Neo4j.",
     )
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="Run consistency verification after ingestion (G-4 fix).",
+    )
     args = parser.parse_args()
 
     if args.vector_only:
@@ -301,8 +330,15 @@ def main():
         print(f"[ingest:vector] Done. Ingested {count} chunks.")
         return
 
-    count = asyncio.run(run_ingestion())
+    count, consistency = asyncio.run(run_ingestion())
     print(f"[ingest] Done. Processed {count} dates.")
+    if consistency:
+        if consistency.get("is_consistent"):
+            print("[ingest] Data consistency: VERIFIED")
+        elif consistency.get("error"):
+            print(f"[ingest] Data consistency check error: {consistency['error']}")
+        else:
+            print(f"[ingest] Data consistency: MISMATCH — {consistency}")
 
 
 if __name__ == "__main__":

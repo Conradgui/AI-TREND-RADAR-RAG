@@ -47,11 +47,13 @@ Every substantial module should follow this loop:
 5. Verify Precisely
    - Run focused tests or smoke checks for the changed behavior.
    - Use broader tests only when the risk expands.
+   - See Section 5.1 for detailed verification requirements.
 
 6. Review At The Right Gate
    - Use light self-review for small changes.
    - Use module gate review for completed modules.
    - Use reviewer agent only when required by the quality governance spec.
+   - See Section 5.2 for detailed review requirements.
 
 7. Record Evidence At The Right Granularity
    - During active implementation, keep evidence notes lightweight.
@@ -434,9 +436,87 @@ If GitHub push fails:
 - record `Checkpoint Blocked` in evidence and execution log;
 - do not claim the work is backed up.
 
-## 5. Decision Boundary
+## 5. Detailed Verification And Review Requirements
 
-### 5.1 Codex Can Decide Independently
+### 5.1 Verify Step Requirements
+
+The Verify step ensures code changes work correctly before proceeding.
+
+#### Automation Testing Requirements
+
+**Unit Tests**:
+- Coverage target: core modules > 80%
+- Test scope: every public function
+- Test tools: pytest (Python), vitest (TypeScript)
+- Execution timing: every code change
+
+**Integration Tests**:
+- Coverage target: critical paths > 60%
+- Test scope: module interactions
+- Test tools: pytest (Python), vitest (TypeScript)
+- Execution timing: every module completion
+
+**End-to-End Tests**:
+- Coverage target: core features > 40%
+- Test scope: complete user flows
+- Test tools: Playwright, Selenium
+- Execution timing: every stage completion
+
+#### Verification Flow
+
+1. Run unit tests, ensure all pass
+2. Run integration tests, ensure all pass
+3. Run end-to-end tests, ensure all pass
+4. Record test results in evidence document
+
+#### Verification Criteria
+
+- Unit test coverage > 80%
+- Integration test coverage > 60%
+- End-to-end test coverage > 40%
+- All tests pass
+
+### 5.2 Review Step Requirements
+
+The Review step ensures code quality and correctness.
+
+#### Review Checklist
+
+**Code Review**:
+- [ ] Code follows project conventions
+- [ ] Error handling is complete
+- [ ] No security vulnerabilities
+- [ ] Performance meets requirements
+
+**Security Review**:
+- [ ] Input validation is complete
+- [ ] Permission control is correct
+- [ ] Key management is secure
+- [ ] No SQL injection risk
+- [ ] No XSS risk
+
+**Performance Review**:
+- [ ] Response time meets requirements
+- [ ] Resource usage is reasonable
+- [ ] Concurrency handling is correct
+
+#### Review Flow
+
+1. Self-review, check code conventions
+2. Security review, check security risks
+3. Performance review, check performance bottlenecks
+4. Record review results in evidence document
+
+#### Review Criteria
+
+- Code conventions meet project requirements
+- No security vulnerabilities
+- Performance meets requirements
+- Documentation is complete
+
+## 6. Decision Boundary
+
+### 6.1 Codex Can Decide Independently
 
 Codex can independently decide:
 
@@ -479,7 +559,7 @@ The original UI should be revisited only after:
 - Web search/tool boundary is defined.
 - GitHub Actions are stable enough for the RAG project.
 
-## 6. Evaluation Set Policy
+## 7. Evaluation Set Policy
 
 The evaluation set is a product asset, not just test code.
 
@@ -501,7 +581,7 @@ Draft evaluation questions must keep `needs_conrad_review: true`.
 
 Codex may use draft questions to find obvious shared-path bugs, but should not keep tuning architecture to satisfy draft questions without first classifying whether the failure is a product issue, a local bug, or a future optimization.
 
-## 7. Residual Risk Policy
+## 8. Residual Risk Policy
 
 Do not hide unresolved problems.
 
@@ -514,7 +594,7 @@ For each non-blocking issue, record:
 
 Blocking issues must be fixed before continuing.
 
-## 8. Current Loop Position
+## 9. Current Loop Position
 
 As of 2026-06-25:
 
@@ -539,7 +619,7 @@ As of 2026-06-25:
 - Next: implement Stage 2.4 local cockpit entry, local Agent wiring, System status, and Briefs discovery.
 - Still needed: Agent ability closure, evidence selection quality, broader semantic contradiction coverage, semantic reranking if justified by real failures, richer graph question coverage, and later Stage 2.7 unified local demo workspace.
 
-## 9. Current Gate Definition
+## 10. Current Gate Definition
 
 Current gate: Stage 2.4 Local Product Flow And Dashboard Closure.
 
@@ -553,7 +633,7 @@ This gate is complete when:
 - focused API/UI checks and any required canonical checks pass;
 - the next bottleneck is explicitly classified as product, engineering, evidence, architecture, or evaluation.
 
-## 10. How To Update This Spec
+## 11. How To Update This Spec
 
 After each completed module:
 
@@ -561,3 +641,58 @@ After each completed module:
 - replace the current gate definition;
 - keep historical module details in evidence and execution-log files rather than leaving stale gate text here;
 - if a new architectural or component-selection principle is discovered, update the quality governance spec or add a decision record.
+
+## 12. Integration With Quality Agent Protocol
+
+### 12.1 Collaboration Mechanism
+
+The Quality Agent monitors and validates the execution loop:
+
+**Verify Step Collaboration**:
+- Quality Agent monitors Verify step execution
+- Quality Agent validates test results
+- Quality Agent records verification results
+
+**Review Step Collaboration**:
+- Quality Agent monitors Review step execution
+- Quality Agent validates review results
+- Quality Agent records review results
+
+**Quality Gate Collaboration**:
+- Quality Agent participates in Gate B checks
+- Quality Agent participates in Gate C checks
+- Quality Agent records gate check results
+
+### 12.2 Information Synchronization
+
+- Verify step results are synchronized to Quality Agent
+- Review step results are synchronized to Quality Agent
+- Quality gate check results are synchronized to Quality Agent
+
+### 12.3 Conflict Resolution
+
+- Quality Agent can request pause when issues are found
+- Main Workflow evaluates the issue and decides whether to pause
+- Conrad makes final decisions
+
+### 12.4 Pause Mechanism
+
+Quality Agent can request pause when:
+- Blocking issues are found
+- Quality standards are violated
+- Documentation is inconsistent
+- Test coverage is insufficient
+
+Main Workflow evaluates pause requests based on:
+- Issue severity
+- Impact scope
+- Resolution complexity
+- Project timeline
+
+### 12.5 Retrospective And Feedback
+
+After each stage:
+- Quality Agent conducts retrospective
+- Quality Agent identifies improvement opportunities
+- Quality Agent proposes updates to Loop, Spec, and Plan
+- Updates are reviewed and approved before implementation
