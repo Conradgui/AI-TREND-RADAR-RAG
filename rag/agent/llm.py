@@ -2,9 +2,6 @@
 
 from __future__ import annotations
 
-from langchain_anthropic import ChatAnthropic
-from langchain_openai import ChatOpenAI
-
 from rag.config import (
     ANTHROPIC_BASE_URL,
     DEEPSEEK_BASE_URL,
@@ -20,10 +17,19 @@ def create_chat_model():
     provider = LLM_PROVIDER.lower()
 
     if provider == "anthropic":
+        try:
+            from langchain_anthropic import ChatAnthropic
+        except ImportError as exc:
+            raise RuntimeError("Anthropic LLM requires langchain-anthropic to be installed.") from exc
         kwargs = {"model": "claude-sonnet-4-20250514", "api_key": api_key}
         if ANTHROPIC_BASE_URL:
             kwargs["base_url"] = ANTHROPIC_BASE_URL
         return ChatAnthropic(**kwargs)
+
+    try:
+        from langchain_openai import ChatOpenAI
+    except ImportError as exc:
+        raise RuntimeError("OpenAI-compatible LLMs require langchain-openai to be installed.") from exc
 
     if provider == "deepseek":
         return ChatOpenAI(
@@ -41,8 +47,13 @@ class DirectLLMAgent:
     def __init__(self, llm):
         self.llm = llm
 
-    async def ainvoke(self, payload: dict) -> dict:
-        response = await self.llm.ainvoke(payload.get("messages", []))
+    async def ainvoke(self, payload: dict, config: dict | None = None) -> dict:
+        """Invoke the backing chat model using the shared agent contract.
+
+        LangGraph agents accept a Runnable config (for example, a recursion limit),
+        so the direct fallback accepts and forwards the same optional argument.
+        """
+        response = await self.llm.ainvoke(payload.get("messages", []), config=config)
         return {"messages": [response]}
 
 

@@ -313,8 +313,12 @@ async def build_chat_response(
                 fetcher=external_deep_fetcher,
                 enabled=external_deep_fetcher is not None,
             )
-            # 合并引用，优先保留本地RAG结果
-            citations = _merge_citations_with_priority(citations, external_citations)
+            # 合并后再去重并删除 needs-web 场景中的明显内部噪声。
+            citations = _refine_citations_for_answer(
+                _merge_citations_with_priority(citations, external_citations),
+                query_plan,
+                external_citations,
+            )
             answer_policy = mark_external_evidence_used(answer_policy, external_citations)
             tool_route = _mark_external_tool_executed(tool_route, external_search, deep_fetch_trace)
         else:
@@ -357,7 +361,7 @@ async def build_chat_response(
             result = await asyncio.wait_for(
                 agent.ainvoke(
                     {"messages": messages},
-                    {"recursion_limit": recursion_limit},
+                    config={"recursion_limit": recursion_limit},
                 ),
                 timeout=agent_timeout,
             )
@@ -571,30 +575,26 @@ def _sort_citations_by_quality(citations: list[dict]) -> list[dict]:
 
 
 # A-5 修复：外部搜索缓存（TTL 5分钟）
-_external_search_cache: dict[str, tuple[float, dict]] = {}
+_external_search_cache: dict[tuple, tuple[float, dict]] = {}
 _external_search_cache_ttl = 300  # 5分钟
 
 
-def _get_cached_external_search(query: str) -> dict | None:
+def _get_cached_external_search(cache_key: tuple) -> dict | None:
     """获取缓存的外部搜索结果"""
-    import time
-    cache_key = query.strip().lower()
     if cache_key in _external_search_cache:
         timestamp, result = _external_search_cache[cache_key]
         if time.time() - timestamp < _external_search_cache_ttl:
-            logger.debug("External search cache hit for: %s", query[:50])
-            return result
+            logger.debug("External search cache hit for: %s", cache_key[0][:50])
+            return {**result, "attempted": False, "from_cache": True}
         else:
             # 缓存过期，删除
             del _external_search_cache[cache_key]
     return None
 
 
-def _set_cached_external_search(query: str, result: dict) -> None:
+def _set_cached_external_search(cache_key: tuple, result: dict) -> None:
     """设置外部搜索缓存"""
-    import time
-    cache_key = query.strip().lower()
-    _external_search_cache[cache_key] = (time.time(), result)
+    _external_search_cache[cache_key] = (time.time(), {**result, "from_cache": False})
     # 限制缓存大小
     if len(_external_search_cache) > 100:
         # 删除最旧的缓存
@@ -606,13 +606,13 @@ async def _maybe_search_external(query_plan, tool_route: dict, external_search_r
     if not external_search_registry or not getattr(query_plan, "needs_web_search", False):
         return {"attempted": False, "citations": []}
 
-    # A-5 修复：检查缓存
-    cached_result = _get_cached_external_search(query_plan.original_question)
+    provider_route = tool_route.get("provider_route", {})
+    providers = provider_route.get("available_provider_chain") or []
+    cache_key = _external_search_cache_key(query_plan, provider_route, providers)
+    cached_result = _get_cached_external_search(cache_key)
     if cached_result:
         return cached_result
 
-    provider_route = tool_route.get("provider_route", {})
-    providers = provider_route.get("available_provider_chain") or []
     attempted = []
     best_non_official_result = None
     for provider in providers[: provider_route.get("budget_policy", {}).get("max_external_providers", 5)]:
@@ -643,7 +643,7 @@ async def _maybe_search_external(query_plan, tool_route: dict, external_search_r
                 "errors": result.get("errors", []),
             }
             # A-5 修复：缓存搜索结果
-            _set_cached_external_search(query_plan.original_question, search_result)
+            _set_cached_external_search(cache_key, search_result)
             return search_result
 
     if best_non_official_result:
@@ -666,6 +666,16 @@ async def _maybe_search_external(query_plan, tool_route: dict, external_search_r
         "citations": [],
         "errors": ["external_search_no_citations"] if attempted else ["external_search_no_provider"],
     }
+
+
+def _external_search_cache_key(query_plan, provider_route: dict, providers: list[str]) -> tuple:
+    """Scope cached evidence to the question and search route that produced it."""
+    return (
+        str(getattr(query_plan, "original_question", "")).strip().casefold(),
+        str(provider_route.get("task_type", "")),
+        tuple(providers),
+        int(provider_route.get("budget_policy", {}).get("max_external_providers", 0)),
+    )
 
 
 def _has_official_external_citation(citations: list[dict]) -> bool:
@@ -699,7 +709,7 @@ def _build_external_search_query(query_plan, task_type: str) -> str:
     if task_type == "official_source_lookup":
         return _join_query_terms([*entities, *topics, "official site"])
     if task_type == "research_paper":
-        return _join_query_terms([*topics, "research", "paper"])
+        return _join_query_terms([*topics, "evolution", "papers", "survey"])
     if task_type == "github_repo":
         return _join_query_terms([*sources, *topics, "trending"])
     if task_type == "recent_web":
@@ -729,10 +739,15 @@ def _mark_external_tool_executed(tool_route: dict, external_search: dict, deep_f
     steps = []
     for step in tool_route.get("steps", []):
         if step.get("tool") == "web_search":
+            from_cache = external_search.get("from_cache", False)
             steps.append({
                 "tool": "web_search",
-                "state": "executed",
-                "reason": f"External search returned {len(external_search.get('citations', []))} citation(s).",
+                "state": "reused_cached_result" if from_cache else "executed",
+                "reason": (
+                    f"Reused {len(external_search.get('citations', []))} cached external citation(s)."
+                    if from_cache
+                    else f"External search returned {len(external_search.get('citations', []))} citation(s)."
+                ),
             })
         elif step.get("tool") == "fetch_url":
             if deep_fetch_trace.get("attempted"):

@@ -2,7 +2,10 @@
 
 import unittest
 from dataclasses import dataclass, field
+from datetime import date
 
+from rag import chat_service
+from rag.agent.llm import DirectLLMAgent
 from rag.chat_service import build_chat_response
 
 
@@ -23,10 +26,18 @@ class FakeAgent:
     def __init__(self):
         self.called = False
 
-    async def ainvoke(self, payload):
+    async def ainvoke(self, payload, config=None):
         self.called = True
         self.payload = payload
+        self.config = config
         return {"messages": [FakeMessage("这是基于知识库证据生成的回答。")]}
+
+
+class FakeLLM:
+    async def ainvoke(self, messages, config=None):
+        self.messages = messages
+        self.config = config
+        return FakeMessage("Direct LLM answer")
 
 
 class FakeRetriever:
@@ -61,6 +72,9 @@ class FakeExternalRegistryByProvider:
 
 
 class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
+    def setUp(self):
+        chat_service._external_search_cache.clear()
+
     async def test_build_chat_response_returns_agent_answer_with_citations(self):
         agent = FakeAgent()
         retriever = FakeRetriever([
@@ -78,6 +92,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         response = await build_chat_response(agent, retriever, "Claude 最近有什么动态？", [])
 
         self.assertTrue(agent.called)
+        self.assertEqual(agent.config, {"recursion_limit": 11})
         self.assertIn("检索证据", agent.payload["messages"][0]["content"])
         self.assertIn("回答策略", agent.payload["messages"][0]["content"])
         self.assertIn("来源审查", agent.payload["messages"][0]["content"])
@@ -220,7 +235,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
                         "needs_deep_fetch": False,
                         "title": "Retrieval-Augmented Generation",
                         "url": "https://arxiv.org/abs/example",
-                        "retrieved_at": "2026-06-22",
+                        "retrieved_at": date.today().isoformat(),
                         "excerpt": "External paper evidence.",
                     }
                 ],
@@ -287,7 +302,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
                         "needs_deep_fetch": False,
                         "title": "How the Open Knowledge Format can improve data sharing",
                         "url": "https://cloud.google.com/blog/okf",
-                        "retrieved_at": "2026-06-22",
+                        "retrieved_at": date.today().isoformat(),
                         "excerpt": "Provider snippet.",
                     }
                 ],
@@ -374,7 +389,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
                         "needs_deep_fetch": False,
                         "title": "How the Open Knowledge Format can improve data sharing",
                         "url": "https://cloud.google.com/blog/okf",
-                        "retrieved_at": "2026-06-22",
+                        "retrieved_at": date.today().isoformat(),
                         "excerpt": "OKF official evidence.",
                     }
                 ],
@@ -426,7 +441,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
                             "needs_deep_fetch": True,
                             "title": "Open Knowledge Format overview",
                             "url": "https://tinycommand.com/okf",
-                            "retrieved_at": "2026-06-23",
+                            "retrieved_at": date.today().isoformat(),
                             "excerpt": "Generic OKF context.",
                         }
                     ],
@@ -446,7 +461,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
                             "needs_deep_fetch": False,
                             "title": "How the Open Knowledge Format can improve data sharing",
                             "url": "https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing",
-                            "retrieved_at": "2026-06-23",
+                            "retrieved_at": date.today().isoformat(),
                             "excerpt": "Official OKF evidence.",
                         }
                     ],
@@ -466,6 +481,70 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual([request.provider for request in external_registry.requests], ["tavily", "brave"])
         self.assertEqual(response["query_understanding"]["external_search"]["provider"], "brave")
         self.assertEqual(response["citations"][-1]["source_quality"], "official")
+
+    async def test_direct_llm_agent_accepts_the_shared_agent_config(self):
+        llm = FakeLLM()
+        agent = DirectLLMAgent(llm)
+
+        result = await agent.ainvoke(
+            {"messages": [{"role": "user", "content": "hello"}]},
+            config={"recursion_limit": 11},
+        )
+
+        self.assertEqual(llm.config, {"recursion_limit": 11})
+        self.assertEqual(result["messages"][0].content, "Direct LLM answer")
+
+    async def test_cached_external_evidence_is_not_reported_as_new_search_execution(self):
+        agent = FakeAgent()
+        retriever = FakeRetriever([
+            FakeChunk(
+                text="RAG evolution evidence",
+                metadata={
+                    "date": "2026-06-20",
+                    "source": "ai-topic-radar",
+                    "title": "RAG research map",
+                    "citation_id": "2026-06-20/topic-pool/2",
+                },
+            )
+        ])
+        external_registry = FakeExternalRegistry(
+            {
+                "provider": "tavily",
+                "available": True,
+                "raw_results_count": 1,
+                "errors": [],
+                "citations": [{
+                    "evidence_type": "external",
+                    "provider": "tavily",
+                    "source": "arxiv.org",
+                    "source_quality": "academic",
+                    "quality_score": 0.9,
+                    "needs_deep_fetch": False,
+                    "title": "Retrieval-Augmented Generation",
+                    "url": "https://arxiv.org/abs/example",
+                    "retrieved_at": date.today().isoformat(),
+                    "excerpt": "External paper evidence.",
+                }],
+            }
+        )
+        question = "请帮我梳理一下 RAG 技术的发展演进路线，以及相关的论文、文章等资料。"
+
+        await build_chat_response(
+            agent, retriever, question, [], external_search_registry=external_registry,
+            configured_search_providers={"tavily"},
+        )
+        cached_response = await build_chat_response(
+            agent, retriever, question, [], external_search_registry=external_registry,
+            configured_search_providers={"tavily"},
+        )
+
+        self.assertEqual(len(external_registry.requests), 1)
+        self.assertTrue(cached_response["query_understanding"]["external_search"]["from_cache"])
+        web_search_step = next(
+            step for step in cached_response["query_understanding"]["tool_routing"]["steps"]
+            if step["tool"] == "web_search"
+        )
+        self.assertEqual(web_search_step["state"], "reused_cached_result")
 
 
 if __name__ == "__main__":

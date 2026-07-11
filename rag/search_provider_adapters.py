@@ -291,16 +291,17 @@ class SearchProviderRegistry:
 def _build_tavily_payload(request: SearchRequest) -> dict:
     payload = {
         "query": request.query,
-        "search_depth": "advanced",
-        "topic": "news",
+        "search_depth": "basic",
+        "topic": "news" if request.task_type == "recent_web" else "general",
         "max_results": request.max_results,
         "include_answer": False,
         "include_raw_content": False,
         "include_images": False,
         "include_favicon": False,
         "include_usage": True,
-        "days": 10,  # 只搜索近10天的内容
     }
+    if request.task_type == "recent_web":
+        payload["days"] = 10
     if request.include_domains:
         payload["include_domains"] = request.include_domains
     if request.exclude_domains:
@@ -316,8 +317,8 @@ def _build_brave_params(request: SearchRequest) -> dict:
         "text_decorations": "false",
         "extra_snippets": "true",
     }
-    # 默认添加时间过滤：过去10天
-    params["freshness"] = "pw"
+    if request.task_type == "recent_web":
+        params["freshness"] = "pw"
     return params
 
 
