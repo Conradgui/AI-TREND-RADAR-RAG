@@ -4,11 +4,12 @@ This file is the first handoff entry for AI coding assistants working in this re
 
 If you are an AI coding assistant, read this file before editing code. Then read:
 
-1. `docs/rag-transformation/AI_HANDOFF.md`
-2. `docs/rag-transformation/roadmap.md`
-3. `docs/rag-transformation/specs/2026-06-22-execution-loop-spec.md`
-4. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
-5. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
+1. `docs/rag-transformation/CURRENT_HANDOFF.md`
+2. `docs/rag-transformation/AI_HANDOFF.md`
+3. `docs/rag-transformation/roadmap.md`
+4. `docs/rag-transformation/specs/2026-06-22-execution-loop-spec.md`
+5. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
+6. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
 
 ## Product North Star
 

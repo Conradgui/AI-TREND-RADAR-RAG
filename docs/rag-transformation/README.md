@@ -13,11 +13,12 @@ It exists for three reasons:
 If a new AI coding assistant takes over this project, it must start from:
 
 1. `AGENTS.md`
-2. `docs/rag-transformation/AI_HANDOFF.md`
-3. `docs/rag-transformation/roadmap.md`
-4. `docs/rag-transformation/specs/2026-06-22-execution-loop-spec.md`
-5. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
-6. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
+2. `docs/rag-transformation/CURRENT_HANDOFF.md`
+3. `docs/rag-transformation/AI_HANDOFF.md`
+4. `docs/rag-transformation/roadmap.md`
+5. `docs/rag-transformation/specs/2026-06-22-execution-loop-spec.md`
+6. `docs/rag-transformation/specs/2026-06-21-quality-governance-spec.md`
+7. `docs/rag-transformation/specs/2026-06-22-target-architecture-spec.md`
 
 Do not rely on chat history as the source of truth.
 
