@@ -41,7 +41,6 @@ services:
     image: neo4j:5
     environment:
       NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?Run setup.command or setup.bat before starting the stack.}
-      NEO4J_PLUGINS: '["graph-data-science"]'
     volumes:
       - neo4j_data:/data
     healthcheck:
