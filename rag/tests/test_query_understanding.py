@@ -6,6 +6,13 @@ from rag.query_understanding import analyze_query
 
 
 class QueryUnderstandingTests(unittest.TestCase):
+    def test_spaced_numeric_recent_window_is_parsed(self):
+        plan = analyze_query("请联网核实 OpenAI 过去 7 天有哪些官方技术发布")
+
+        self.assertEqual(plan.time_window["label"], "last_7_days")
+        self.assertEqual(plan.time_window["days"], 7)
+        self.assertTrue(plan.time_window["requires_date_filter"])
+
     def test_recent_rag_question_prefers_recent_trend_retrieval(self):
         plan = analyze_query("最近 RAG 领域有什么值得关注的新动向？")
 

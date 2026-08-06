@@ -4,10 +4,15 @@ import unittest
 
 from rag.answer_policy import build_answer_policy
 from rag.query_understanding import analyze_query
-from rag.tool_routing import build_tool_route
+from rag.tool_routing import build_tool_route, infer_search_task_type
 
 
 class ToolRoutingTests(unittest.TestCase):
+    def test_named_vendor_official_verification_uses_official_source_lookup(self):
+        plan = analyze_query("请联网核实 OpenAI 过去 7 天有哪些官方技术发布")
+
+        self.assertEqual(infer_search_task_type(plan), "official_source_lookup")
+
     def test_internal_only_question_routes_to_internal_corpus_only(self):
         plan = analyze_query("Claude 最近有没有上线什么新功能？")
         citations = [{"citation_id": "c1"}]

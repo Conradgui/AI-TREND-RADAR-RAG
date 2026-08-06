@@ -56,6 +56,24 @@ class SourceReviewTests(unittest.TestCase):
         self.assertEqual(review["weak_count"], 1)
         self.assertIn("weak", review["instruction"])
 
+    def test_claim_aware_supporting_source_is_not_promoted_by_official_domain(self):
+        review = build_source_review([
+            {
+                "evidence_type": "external",
+                "source": "vendor.example",
+                "source_quality": "official",
+                "source_role": "supporting_context",
+                "title": "Vendor view of its market position",
+                "url": "https://vendor.example/market-view",
+            }
+        ])
+
+        self.assertEqual(review["status"], "supporting_only")
+        self.assertEqual(review["primary_count"], 0)
+        self.assertEqual(review["supporting_count"], 1)
+        self.assertEqual(review["source_roles"][0]["role"], "supporting_context")
+        self.assertEqual(review["artifact_quality_status"], "supporting_evidence_verified")
+
     def test_format_source_review_for_prompt_includes_roles(self):
         review = build_source_review([
             {

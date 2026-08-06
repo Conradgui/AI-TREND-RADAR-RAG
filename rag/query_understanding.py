@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from dataclasses import asdict, dataclass, field
 
 
@@ -247,7 +248,8 @@ def _detect_task_mode(question: str, lowered: str, intent: str) -> str:
 
 
 def _infer_time_window(question: str, lowered: str) -> dict:
-    if _contains_any(question, ["过去一周", "近一周", "最近一周", "7天", "七天"]):
+    compact_question = re.sub(r"\s+", "", question)
+    if _contains_any(compact_question, ["过去一周", "近一周", "最近一周", "7天", "七天"]):
         return {"label": "last_7_days", "days": 7, "requires_date_filter": True}
     if _contains_any(question, ["最近", "新动向", "动态", "更新"]):
         return {"label": "recent_corpus_first", "days": 14, "requires_date_filter": False}

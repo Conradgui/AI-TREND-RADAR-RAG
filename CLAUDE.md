@@ -15,7 +15,9 @@ Those files override older assumptions in this file when working on the RAG tran
 
 ## Project overview
 
-AI Topic Radar is a daily AI topic discovery workflow for public-source monitoring, Chinese editorial topic scoring, and Markdown/JSON topic-pool output. A GitHub Actions cron job runs at 00:00 UTC (08:00 CST), gathers public AI signals, and produces digest files under `digests/YYYY-MM-DD/`.
+AI Trend Radar RAG is a downstream research cockpit. The separate `AI-TREND-RADAR` repository is the canonical content producer; this repository consumes its public Pages artifacts, indexes them locally in Neo4j and ChromaDB, and exposes grounded Agent queries. Do not reintroduce scheduled news production here: `.github/workflows/rag-corpus-sync.yml` is the only automatic corpus workflow, while legacy producer workflows are manual rollback paths.
+
+The local one-click flow is `start.command` → `python -m rag.corpus_update` → incremental ingestion of changed dates → RAG server. Update failure must preserve the last successful corpus and must not prevent the local service from starting.
 
 ## Commands
 

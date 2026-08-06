@@ -28,10 +28,9 @@
 
 ### 前置条件
 
-- Python 3.11+
-- Node.js 18+
-- Docker 20+
-- pnpm 8+
+- Docker Desktop（运行完整本地 RAG 栈）
+- Python 3.11+（修改 `rag/` 并运行 Python 测试时需要）
+- Node.js / pnpm（仅修改上游日报生产流水线或运行前端工程检查时需要）
 
 ### 设置开发环境
 
@@ -44,15 +43,15 @@ cd AI-TREND-RADAR-RAG
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 3. 安装依赖
+# 3. 安装 RAG 开发依赖
 pip install -r rag/requirements.txt
-pnpm install
 
 # 4. 配置环境变量
 cp .env.example .env
 # 编辑 .env 添加API密钥
 
-# 5. 启动开发服务器
+# 5. 启动数据库和开发服务器
+docker compose up -d neo4j
 python -m rag.server
 ```
 
@@ -62,7 +61,7 @@ python -m rag.server
 # Python测试
 pytest rag/tests/
 
-# TypeScript测试
+# 只有改动上游生产流水线时才需要 TypeScript 测试
 pnpm test
 
 # 完整检查

@@ -51,6 +51,36 @@ class AnswerPolicyTests(unittest.TestCase):
         self.assertIn("仍需要外部证据", answer)
         self.assertEqual(answer, answer_again)
 
+    def test_apply_answer_policy_normalizes_markdown_wrapped_disclosure(self):
+        plan = analyze_query("Claude 最近有没有上线什么新功能？")
+        policy = build_answer_policy(plan, citations=[{"citation_id": "c1"}])
+        model_answer = f"**{policy['disclosure']}**\n\n这是有证据的回答。"
+
+        answer = apply_answer_policy(model_answer, policy)
+
+        self.assertEqual(answer.count("证据范围："), 1)
+        self.assertNotIn(f"**{policy['disclosure']}**", answer)
+        self.assertTrue(answer.startswith(policy["disclosure"]))
+
+    def test_apply_answer_policy_removes_a_repeated_trailing_disclosure(self):
+        plan = analyze_query("Claude 最近有没有上线什么新功能？")
+        policy = build_answer_policy(plan, citations=[{"citation_id": "c1"}])
+        model_answer = f"这是有证据的回答。\n\n{policy['disclosure']}"
+
+        answer = apply_answer_policy(model_answer, policy)
+
+        self.assertEqual(answer.count("证据范围："), 1)
+        self.assertTrue(answer.endswith("这是有证据的回答。"))
+
+    def test_apply_answer_policy_keeps_heading_boundary_when_disclosure_is_inline(self):
+        plan = analyze_query("Claude 最近有没有上线什么新功能？")
+        policy = build_answer_policy(plan, citations=[{"citation_id": "c1"}])
+        model_answer = f"## 证据边界说明\n\n{policy['disclosure']}\n\n需要坦诚说明。"
+
+        answer = apply_answer_policy(model_answer, policy)
+
+        self.assertIn("## 证据边界说明\n\n需要坦诚说明。", answer)
+
 
 if __name__ == "__main__":
     unittest.main()

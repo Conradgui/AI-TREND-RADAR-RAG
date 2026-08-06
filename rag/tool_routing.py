@@ -13,17 +13,30 @@ def build_tool_route(
 ) -> dict:
     """Build a serializable tool-routing trace without executing external tools."""
     if not citations:
+        external_required = bool(answer_policy.get("external_search_required"))
+        provider_route = build_search_provider_route(
+            {
+                "query": getattr(plan, "retrieval_query", getattr(plan, "original_question", "")),
+                "task_type": infer_search_task_type(plan),
+            },
+            configured_providers=configured_search_providers or set(),
+        ) if external_required else {}
         return {
-            "status": "evidence_insufficient",
-            "external_tools_required": bool(answer_policy.get("external_search_required")),
-            "external_tools_available": False,
-            "max_tool_calls": 1,
+            "status": "external_fallback_planned" if external_required else "evidence_insufficient",
+            "external_tools_required": external_required,
+            "external_tools_available": bool(provider_route.get("available_provider_chain")),
+            "provider_route": provider_route,
+            "max_tool_calls": 2 if external_required else 1,
             "steps": [
                 _step(
                     "search_corpus",
                     "executed",
                     "Internal corpus search returned no usable citation-ready evidence.",
-                )
+                ),
+                *(
+                    [_step("web_search", "planned", "External search may recover an internal evidence gap.")]
+                    if external_required else []
+                ),
             ],
             "fallback": "停止生成确定性结论；建议补充语料、调整检索词，或在后续启用带外部来源标注的 web_search。",
         }
@@ -92,6 +105,8 @@ def _step(tool: str, state: str, reason: str) -> dict:
 
 def infer_search_task_type(plan) -> str:
     intent = getattr(plan, "intent", "")
+    task_mode = getattr(plan, "task_mode", "")
+    question = str(getattr(plan, "original_question", "")).casefold()
     sources = set(getattr(plan, "sources", []) or [])
     topics = set(getattr(plan, "topics", []) or [])
     entities = set(getattr(plan, "entities", []) or [])
@@ -100,6 +115,8 @@ def infer_search_task_type(plan) -> str:
         return "github_repo"
     if intent == "learning_map":
         return "research_paper"
+    if entities and (task_mode == "source_check" or any(term in question for term in ("官方", "官网", "primary source"))):
+        return "official_source_lookup"
     if "OKF" in topics or "ALM Wiki" in topics or "Google" in entities:
         return "official_source_lookup"
     if intent in {"recent_trend", "product_update"}:

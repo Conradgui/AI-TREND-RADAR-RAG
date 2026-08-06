@@ -1,0 +1,78 @@
+"""Public release-package contracts for a clone-and-run local deployment."""
+
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+
+def test_compose_declares_the_complete_local_product_stack():
+    """`docker compose up` must start both the app and its graph database."""
+    source = (PROJECT_ROOT / "docker-compose.yml").read_text(encoding="utf-8")
+
+    assert "  app:" in source
+    assert "  neo4j:" in source
+    assert ":8001\"" in source
+    assert "NEO4J_URI: bolt://neo4j:7687" in source
+    assert "container_name:" not in source
+
+
+def test_docker_build_keeps_local_secrets_and_development_artifacts_out():
+    dockerignore = (PROJECT_ROOT / ".dockerignore").read_text(encoding="utf-8")
+
+    assert ".env" in dockerignore
+    assert ".venv" in dockerignore
+    assert "node_modules" in dockerignore
+    assert "rag/data/chroma" in dockerignore
+
+
+def test_docker_image_prepares_the_local_embedding_model_before_first_startup():
+    """First-use model download belongs to the visible image build, not hidden startup."""
+    source = (PROJECT_ROOT / "Dockerfile").read_text(encoding="utf-8")
+
+    assert "DefaultEmbeddingFunction" in source
+    assert "warmup" in source
+
+
+def test_example_environment_is_safe_and_ready_for_the_setup_wizard():
+    source = (PROJECT_ROOT / ".env.example").read_text(encoding="utf-8")
+
+    assert "DEEPSEEK_API_KEY=" in source
+    assert "DEEPSEEK_API_KEY=your_" not in source
+    assert "NEO4J_PASSWORD=" in source
+    assert "RAG_API_KEY=" in source
+
+
+def test_one_click_launchers_delegate_to_compose_instead_of_installing_python():
+    for launcher in ("start.command", "start.bat"):
+        source = (PROJECT_ROOT / launcher).read_text(encoding="utf-8")
+        assert "docker compose up -d --build" in source
+        assert "pip install" not in source
+    assert "python -m venv" not in source
+
+    assert "start.command" in (PROJECT_ROOT / "setup.command").read_text(encoding="utf-8")
+    assert "setup-windows.ps1" in (PROJECT_ROOT / "setup.bat").read_text(encoding="utf-8")
+
+
+def test_start_launchers_wait_for_the_product_health_check_before_opening_browser():
+    for launcher in ("start.command", "start.bat"):
+        source = (PROJECT_ROOT / launcher).read_text(encoding="utf-8")
+        assert "/health" in source
+        assert "等待服务就绪" in source
+
+
+def test_windows_setup_hides_provider_key_while_writing_only_local_env_file():
+    source = (PROJECT_ROOT / "scripts" / "setup-windows.ps1").read_text(encoding="utf-8")
+
+    assert "-AsSecureString" in source
+    assert "WriteAllLines" in source
+    assert "Set-Content" not in source
+
+
+def test_release_assets_state_the_project_license_and_security_boundary():
+    license_text = (PROJECT_ROOT / "LICENSE").read_text(encoding="utf-8")
+    security_text = (PROJECT_ROOT / "SECURITY.md").read_text(encoding="utf-8")
+
+    assert "MIT License" in license_text
+    assert "Copyright (c) 2026 Conradgui" in license_text
+    assert "密钥" in security_text

@@ -3,9 +3,7 @@ name: Deploy GitHub Pages
 on:
   workflow_run:
     workflows:
-      - Daily AI Topic Radar
-      - Weekly AI Topic Radar
-      - Monthly AI Topic Radar
+      - RAG Corpus Sync
     types:
       - completed
   workflow_dispatch:

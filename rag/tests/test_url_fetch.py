@@ -80,6 +80,79 @@ class UrlFetchTests(unittest.TestCase):
         self.assertIn("Google Cloud describes OKF", result["text_excerpt"])
         self.assertNotIn("ignore()", result["text_excerpt"])
 
+    def test_fetch_url_rejects_transport_redirect_to_private_target(self):
+        def fake_transport(url, headers, timeout, max_bytes):
+            return {
+                "status_code": 200,
+                "final_url": "http://127.0.0.1/admin",
+                "content_type": "text/plain",
+                "body": b"private service",
+            }
+
+        result = fetch_url(
+            "https://public.example/link",
+            resolver=lambda hostname: ["8.8.8.8"] if hostname == "public.example" else ["127.0.0.1"],
+            transport=fake_transport,
+        )
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "blocked_redirect_target")
+
+    def test_default_fetch_pins_validated_dns_answer_before_connecting(self):
+        resolutions = iter([["8.8.8.8"], ["127.0.0.1"]])
+        connection_attempts = []
+
+        def changing_resolver(hostname):
+            return next(resolutions)
+
+        def connection_factory(*args):
+            connection_attempts.append(args)
+            raise AssertionError("private rebound address must not be connected")
+
+        result = fetch_url(
+            "https://public.example/article",
+            resolver=changing_resolver,
+            connection_factory=connection_factory,
+        )
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "blocked_redirect_target")
+        self.assertEqual(connection_attempts, [])
+
+    def test_default_fetch_validates_every_redirect_before_connecting(self):
+        resolutions = iter([["8.8.8.8"], ["8.8.8.8"], ["169.254.169.254"]])
+        connection_attempts = []
+
+        class RedirectResponse:
+            status = 302
+
+            def getheader(self, name, default=None):
+                return "http://169.254.169.254/latest/meta-data" if name == "Location" else default
+
+        class FakeConnection:
+            def request(self, *args, **kwargs):
+                return None
+
+            def getresponse(self):
+                return RedirectResponse()
+
+            def close(self):
+                return None
+
+        def connection_factory(*args):
+            connection_attempts.append(args)
+            return FakeConnection()
+
+        result = fetch_url(
+            "https://public.example/redirect",
+            resolver=lambda hostname: next(resolutions),
+            connection_factory=connection_factory,
+        )
+
+        self.assertFalse(result["ok"])
+        self.assertEqual(result["error"], "blocked_redirect_target")
+        self.assertEqual(len(connection_attempts), 1)
+
     def test_deepen_external_citations_records_success_and_preserves_original(self):
         citations = [
             {

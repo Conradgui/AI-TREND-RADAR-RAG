@@ -1,9 +1,7 @@
-name: Daily AI Topic Radar
+name: Legacy Daily Producer (manual only)
 
 on:
-  schedule:
-    # 每天 00:00 UTC = 08:00 CST (UTC+8)
-    - cron: "0 0 * * *"
+  # AI-TREND-RADAR is the canonical producer. Kept only for manual rollback.
   workflow_dispatch:
 
 permissions:

@@ -21,6 +21,10 @@ def build_metadata_filter(plan, latest_corpus_date: str | None = None) -> dict |
     """Build a Chroma-compatible metadata filter from a query plan."""
     clauses = []
 
+    content_type_filter = _build_content_type_filter(plan)
+    if content_type_filter:
+        clauses.append(content_type_filter)
+
     source_filter = _build_source_filter(getattr(plan, "sources", []))
     if source_filter:
         clauses.append(source_filter)
@@ -34,6 +38,17 @@ def build_metadata_filter(plan, latest_corpus_date: str | None = None) -> dict |
     if len(clauses) == 1:
         return clauses[0]
     return {"$and": clauses}
+
+
+def _build_content_type_filter(plan) -> dict | None:
+    """Route broad trend discovery to structured candidates, not report boilerplate."""
+    has_focus = any(
+        getattr(plan, field, [])
+        for field in ("topics", "entities", "sources")
+    )
+    if getattr(plan, "intent", "") == "recent_trend" and not has_focus:
+        return {"content_type": "topic_candidate"}
+    return None
 
 
 def load_latest_corpus_date(manifest_path: Path | None = None) -> str | None:

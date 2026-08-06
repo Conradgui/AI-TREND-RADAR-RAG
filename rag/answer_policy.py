@@ -2,6 +2,13 @@
 
 from __future__ import annotations
 
+import re
+
+
+_LEADING_EVIDENCE_DISCLOSURE = re.compile(
+    r"^(?:\*\*|__)?\s*证据范围：[^\n]*(?:\*\*|__)?(?:\s*\n\s*)*"
+)
+
 
 def build_answer_policy(plan, citations: list[dict]) -> dict:
     """Build a user-visible answer policy from query plan and citation state."""
@@ -75,11 +82,18 @@ def mark_external_evidence_used(policy: dict, external_citations: list[dict]) ->
 
 
 def apply_answer_policy(answer: str, policy: dict) -> str:
-    """Prepend deterministic evidence-boundary disclosure exactly once."""
+    """Normalize and prepend the deterministic evidence-boundary disclosure once."""
     cleaned = (answer or "").strip()
     disclosure = policy.get("disclosure", "").strip()
     if not disclosure:
         return cleaned
-    if cleaned.startswith(disclosure) or cleaned.startswith("证据范围："):
-        return cleaned
-    return f"{disclosure}\n\n{cleaned}"
+    # 模型有时会自行输出证据范围，并使用 **...** 或 __...__ 包裹。
+    # 无论该文本出现在开头或结尾，都以服务端策略为唯一用户可见版本，
+    # 避免回答中出现重复的边界披露。
+    policy_disclosure = re.compile(
+        rf"(?:\*\*|__)?{re.escape(disclosure)}(?:\*\*|__)?"
+    )
+    cleaned = policy_disclosure.sub("", cleaned).strip()
+    cleaned = _LEADING_EVIDENCE_DISCLOSURE.sub("", cleaned, count=1).strip()
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
+    return f"{disclosure}\n\n{cleaned}" if cleaned else disclosure

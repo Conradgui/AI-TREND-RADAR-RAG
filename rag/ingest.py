@@ -7,6 +7,7 @@ import argparse
 import json
 import re
 from pathlib import Path
+from typing import Callable
 
 from rag.config import DIGESTS_DIR, CHROMA_DIR, NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
 
@@ -244,8 +245,30 @@ def chunk_text(text: str | None, chunk_size: int = 1000, overlap: int = 200) -> 
     return [c for c in chunks if len(c) > 20]
 
 
-async def run_ingestion() -> tuple[int, dict]:
-    """Run full ingestion pipeline with post-ingestion consistency verification.
+def select_ingestion_dates(requested_dates: list[str] | None = None) -> list[str]:
+    """Resolve an optional date subset against corpus dates that exist locally."""
+    available = _find_digest_dates()
+    if requested_dates is None:
+        return available
+
+    invalid = sorted({date for date in requested_dates if not DATE_PATTERN.fullmatch(date)})
+    if invalid:
+        raise ValueError(f"Invalid digest date(s): {', '.join(invalid)}")
+
+    available_set = set(available)
+    missing = sorted(set(requested_dates) - available_set)
+    if missing:
+        raise ValueError(f"Digest date(s) not found locally: {', '.join(missing)}")
+    # The caller may intentionally prioritize recent reports for first-use
+    # availability. Validation must not silently replace that product order.
+    return list(dict.fromkeys(requested_dates))
+
+
+async def run_ingestion(
+    dates: list[str] | None = None,
+    on_date_ingested: Callable[[str], None] | None = None,
+) -> tuple[int, dict]:
+    """Ingest all dates or a requested subset, then verify store consistency.
 
     Returns:
         Tuple of (ingested_date_count, consistency_report_dict).
@@ -264,11 +287,12 @@ async def run_ingestion() -> tuple[int, dict]:
     try:
         await init_schema(driver)
         builder = KnowledgeGraphBuilder(driver)
-        dates = _find_digest_dates()
-        print(f"[ingest] Found {len(dates)} digest dates")
+        selected_dates = select_ingestion_dates(dates)
+        scope = "changed" if dates is not None else "available"
+        print(f"[ingest] Found {len(selected_dates)} {scope} digest dates")
 
         ingested_dates = []
-        for date_str in dates:
+        for date_str in selected_dates:
             date_dir = Path(DIGESTS_DIR) / date_str
             topic_pool = normalize_topic_pool(_load_topic_pool(date_dir), date_str)
             reports = _load_reports(date_dir)
@@ -282,10 +306,14 @@ async def run_ingestion() -> tuple[int, dict]:
             try:
                 chunk_count = ingest_vector_chunks_for_date(vector_store, date_str, topic_pool, reports)
             except Exception as e:
-                chunk_count = 0
                 print(f"  [ingest] ChromaDB write failed for {date_str}: {e}")
+                # Do not checkpoint a date whose vector evidence is missing.
+                # A later restart can safely retry it from the beginning.
+                continue
 
             ingested_dates.append(date_str)
+            if on_date_ingested:
+                on_date_ingested(date_str)
             print(f"[ingest] {date_str}: ingested ({chunk_count} chunks → ChromaDB)")
 
         print(f"[ingest] ChromaDB total: {vector_store.count()} chunks")

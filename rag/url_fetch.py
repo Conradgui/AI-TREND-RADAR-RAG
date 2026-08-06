@@ -3,15 +3,16 @@
 from __future__ import annotations
 
 import html
+import http.client
 import ipaddress
 import re
 import socket
+import ssl
 import urllib.error
-import urllib.request
 from copy import deepcopy
 from datetime import datetime, timezone
 from html.parser import HTMLParser
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 
 DEFAULT_TIMEOUT_SECONDS = 15
@@ -20,10 +21,19 @@ DEFAULT_TEXT_LIMIT = 3000
 USER_AGENT = "AI-Trend-Radar-RAG/0.1 (+local research assistant)"
 
 
+class _UnsafeRedirectError(Exception):
+    """Raised before following a redirect to a disallowed network target."""
+
+
+class _RedirectLimitError(Exception):
+    """Raised when an external source redirects too many times."""
+
+
 def fetch_url(
     url: str,
     resolver=None,
     transport=None,
+    connection_factory=None,
     timeout: int = DEFAULT_TIMEOUT_SECONDS,
     max_bytes: int = DEFAULT_MAX_BYTES,
 ) -> dict:
@@ -32,16 +42,34 @@ def fetch_url(
     if safety_error:
         return _fetch_result(url=url, ok=False, error=safety_error)
 
-    transport = transport or _default_transport
+    if transport is None:
+        transport = lambda target, target_headers, target_timeout, target_max_bytes: _default_transport(
+            target,
+            target_headers,
+            target_timeout,
+            target_max_bytes,
+            resolver=resolver,
+            connection_factory=connection_factory,
+        )
     headers = {"User-Agent": USER_AGENT, "Accept": "text/html, text/plain;q=0.9,*/*;q=0.1"}
     try:
         raw = transport(url, headers, timeout, max_bytes)
+    except _UnsafeRedirectError:
+        return _fetch_result(url=url, ok=False, error="blocked_redirect_target")
+    except _RedirectLimitError:
+        return _fetch_result(url=url, ok=False, error="redirect_limit_exceeded")
     except urllib.error.HTTPError as exc:
         return _fetch_result(url=url, ok=False, error=f"http_{exc.code}", status_code=exc.code)
     except urllib.error.URLError:
         return _fetch_result(url=url, ok=False, error="network_error")
     except Exception:
         return _fetch_result(url=url, ok=False, error="fetch_failed")
+
+    final_url = raw.get("final_url", url)
+    if final_url != url and _validate_url_for_fetch(final_url, resolver=resolver):
+        # Custom transports are checked after returning as a defence-in-depth
+        # fallback. The default transport validates before every redirect.
+        return _fetch_result(url=url, ok=False, error="blocked_redirect_target", final_url=final_url)
 
     body = raw.get("body", b"")
     if isinstance(body, bytes):
@@ -60,7 +88,7 @@ def fetch_url(
         ok=True,
         error="",
         status_code=raw.get("status_code"),
-        final_url=raw.get("final_url", url),
+        final_url=final_url,
         content_type=content_type,
         title=title,
         text_excerpt=extracted[:DEFAULT_TEXT_LIMIT],
@@ -138,15 +166,94 @@ def _is_managed_proxy_address(ip) -> bool:
     return ip in ipaddress.ip_network("198.18.0.0/15")
 
 
-def _default_transport(url: str, headers: dict, timeout: int, max_bytes: int) -> dict:
-    request = urllib.request.Request(url, headers=headers, method="GET")
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        return {
-            "status_code": response.status,
-            "final_url": response.geturl(),
-            "content_type": response.headers.get("Content-Type", ""),
-            "body": response.read(max_bytes),
-        }
+def _default_transport(
+    url: str,
+    headers: dict,
+    timeout: int,
+    max_bytes: int,
+    resolver=None,
+    connection_factory=None,
+    max_redirects: int = 5,
+) -> dict:
+    resolver = resolver or _resolve_hostname
+    connection_factory = connection_factory or _open_pinned_connection
+    current_url = url
+
+    for redirect_count in range(max_redirects + 1):
+        parsed = urlparse(current_url)
+        try:
+            addresses = resolver(parsed.hostname)
+        except Exception as exc:
+            raise _UnsafeRedirectError(current_url) from exc
+        hostname_is_ip = _parse_ip_address(parsed.hostname) is not None
+        if not addresses or any(
+            _is_private_or_local_address(address, allow_managed_proxy=not hostname_is_ip)
+            for address in addresses
+        ):
+            raise _UnsafeRedirectError(current_url)
+
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        connection = connection_factory(parsed.scheme, parsed.hostname, port, addresses[0], timeout)
+        path = parsed.path or "/"
+        if parsed.query:
+            path += f"?{parsed.query}"
+        request_headers = dict(headers)
+        default_port = 443 if parsed.scheme == "https" else 80
+        request_headers["Host"] = parsed.hostname if port == default_port else f"{parsed.hostname}:{port}"
+        try:
+            connection.request("GET", path, headers=request_headers)
+            response = connection.getresponse()
+            if response.status in {301, 302, 303, 307, 308}:
+                location = response.getheader("Location")
+                if not location:
+                    raise urllib.error.HTTPError(current_url, response.status, "redirect_without_location", {}, None)
+                if redirect_count >= max_redirects:
+                    raise _RedirectLimitError(current_url)
+                current_url = urljoin(current_url, location)
+                continue
+            return {
+                "status_code": response.status,
+                "final_url": current_url,
+                "content_type": response.getheader("Content-Type", ""),
+                "body": response.read(max_bytes),
+            }
+        finally:
+            connection.close()
+
+    raise _RedirectLimitError(current_url)
+
+
+class _PinnedHTTPConnection(http.client.HTTPConnection):
+    def __init__(self, hostname: str, connect_ip: str, port: int, timeout: int):
+        super().__init__(hostname, port=port, timeout=timeout)
+        self._connect_ip = connect_ip
+
+    def connect(self):
+        self.sock = socket.create_connection(
+            (self._connect_ip, self.port),
+            self.timeout,
+            self.source_address,
+        )
+
+
+class _PinnedHTTPSConnection(http.client.HTTPSConnection):
+    def __init__(self, hostname: str, connect_ip: str, port: int, timeout: int):
+        super().__init__(hostname, port=port, timeout=timeout, context=ssl.create_default_context())
+        self._connect_ip = connect_ip
+
+    def connect(self):
+        raw_socket = socket.create_connection(
+            (self._connect_ip, self.port),
+            self.timeout,
+            self.source_address,
+        )
+        self.sock = self._context.wrap_socket(raw_socket, server_hostname=self.host)
+
+
+def _open_pinned_connection(scheme: str, hostname: str, port: int, connect_ip: str, timeout: int):
+    if scheme == "https":
+        return _PinnedHTTPSConnection(hostname, connect_ip, port, timeout)
+    return _PinnedHTTPConnection(hostname, connect_ip, port, timeout)
 
 
 def _fetch_result(

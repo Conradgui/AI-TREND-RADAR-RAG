@@ -16,6 +16,7 @@
 from __future__ import annotations
 
 import logging
+import math
 import time
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -39,8 +40,16 @@ class ChatMetrics:
     deep_fetch_count: int
     has_results: bool
     response_time_ms: float
+    model_calls_count: int = 0
+    retrieval_ms: float = 0
+    agent_ms: float = 0
+    repair_ms: float = 0
     agent_timeout: bool = False
     error: str | None = None
+    search_candidate_count: int = 0
+    admitted_external_count: int = 0
+    deep_fetch_success_count: int = 0
+    deep_fetch_failure_count: int = 0
 
 
 @dataclass
@@ -54,8 +63,20 @@ class MetricsSummary:
     avg_citations_per_request: float
     avg_tool_calls_per_request: float
     avg_response_time_ms: float
+    response_time_p50_ms: float
+    response_time_p95_ms: float
+    avg_model_calls_per_request: float
+    avg_retrieval_ms: float
+    avg_agent_ms: float
+    avg_repair_ms: float
     citation_type_distribution: dict[str, int]
     tool_call_distribution: dict[str, int]
+    web_search_request_count: int
+    provider_call_count: int
+    search_candidate_count: int
+    admitted_external_count: int
+    deep_fetch_success_count: int
+    deep_fetch_failure_count: int
     period_start: str
     period_end: str
     sample_count: int
@@ -74,8 +95,20 @@ class MetricsSummary:
             "avg_citations_per_request": round(self.avg_citations_per_request, 2),
             "avg_tool_calls_per_request": round(self.avg_tool_calls_per_request, 2),
             "avg_response_time_ms": round(self.avg_response_time_ms, 2),
+            "response_time_p50_ms": round(self.response_time_p50_ms, 2),
+            "response_time_p95_ms": round(self.response_time_p95_ms, 2),
+            "avg_model_calls_per_request": round(self.avg_model_calls_per_request, 2),
+            "avg_retrieval_ms": round(self.avg_retrieval_ms, 2),
+            "avg_agent_ms": round(self.avg_agent_ms, 2),
+            "avg_repair_ms": round(self.avg_repair_ms, 2),
             "citation_type_distribution": self.citation_type_distribution,
             "tool_call_distribution": self.tool_call_distribution,
+            "web_search_request_count": self.web_search_request_count,
+            "provider_call_count": self.provider_call_count,
+            "search_candidate_count": self.search_candidate_count,
+            "admitted_external_count": self.admitted_external_count,
+            "deep_fetch_success_count": self.deep_fetch_success_count,
+            "deep_fetch_failure_count": self.deep_fetch_failure_count,
             "period": {
                 "start": self.period_start,
                 "end": self.period_end,
@@ -111,8 +144,16 @@ class MetricsCollector:
         deep_fetch_count: int,
         has_results: bool,
         response_time_ms: float,
+        model_calls_count: int = 0,
+        retrieval_ms: float = 0,
+        agent_ms: float = 0,
+        repair_ms: float = 0,
         agent_timeout: bool = False,
         error: str | None = None,
+        search_candidate_count: int = 0,
+        admitted_external_count: int = 0,
+        deep_fetch_success_count: int = 0,
+        deep_fetch_failure_count: int = 0,
     ) -> None:
         """记录一次聊天请求的指标。"""
         metrics = ChatMetrics(
@@ -126,8 +167,16 @@ class MetricsCollector:
             deep_fetch_count=deep_fetch_count,
             has_results=has_results,
             response_time_ms=response_time_ms,
+            model_calls_count=model_calls_count,
+            retrieval_ms=retrieval_ms,
+            agent_ms=agent_ms,
+            repair_ms=repair_ms,
             agent_timeout=agent_timeout,
             error=error,
+            search_candidate_count=search_candidate_count,
+            admitted_external_count=admitted_external_count,
+            deep_fetch_success_count=deep_fetch_success_count,
+            deep_fetch_failure_count=deep_fetch_failure_count,
         )
 
         with self._lock:
@@ -160,8 +209,20 @@ class MetricsCollector:
                 avg_citations_per_request=0,
                 avg_tool_calls_per_request=0,
                 avg_response_time_ms=0,
+                response_time_p50_ms=0,
+                response_time_p95_ms=0,
+                avg_model_calls_per_request=0,
+                avg_retrieval_ms=0,
+                avg_agent_ms=0,
+                avg_repair_ms=0,
                 citation_type_distribution={},
                 tool_call_distribution={},
+                web_search_request_count=0,
+                provider_call_count=0,
+                search_candidate_count=0,
+                admitted_external_count=0,
+                deep_fetch_success_count=0,
+                deep_fetch_failure_count=0,
                 period_start=self._start_time,
                 period_end=datetime.now().isoformat(),
                 sample_count=0,
@@ -174,6 +235,11 @@ class MetricsCollector:
         avg_citations = sum(s.citation_count for s in samples) / len(samples)
         avg_tool_calls = sum(s.tool_calls_count for s in samples) / len(samples)
         avg_response_time = sum(s.response_time_ms for s in samples) / len(samples)
+        response_times = sorted(s.response_time_ms for s in samples)
+        avg_model_calls = sum(s.model_calls_count for s in samples) / len(samples)
+        avg_retrieval = sum(s.retrieval_ms for s in samples) / len(samples)
+        avg_agent = sum(s.agent_ms for s in samples) / len(samples)
+        avg_repair = sum(s.repair_ms for s in samples) / len(samples)
 
         # 引用类型分布
         citation_types: dict[str, int] = defaultdict(int)
@@ -206,8 +272,20 @@ class MetricsCollector:
             avg_citations_per_request=avg_citations,
             avg_tool_calls_per_request=avg_tool_calls,
             avg_response_time_ms=avg_response_time,
+            response_time_p50_ms=_nearest_rank(response_times, 0.50),
+            response_time_p95_ms=_nearest_rank(response_times, 0.95),
+            avg_model_calls_per_request=avg_model_calls,
+            avg_retrieval_ms=avg_retrieval,
+            avg_agent_ms=avg_agent,
+            avg_repair_ms=avg_repair,
             citation_type_distribution=dict(citation_types),
             tool_call_distribution=dict(tool_distribution),
+            web_search_request_count=sum(1 for sample in samples if sample.web_search_count > 0),
+            provider_call_count=sum(sample.web_search_count for sample in samples),
+            search_candidate_count=sum(sample.search_candidate_count for sample in samples),
+            admitted_external_count=sum(sample.admitted_external_count for sample in samples),
+            deep_fetch_success_count=sum(sample.deep_fetch_success_count for sample in samples),
+            deep_fetch_failure_count=sum(sample.deep_fetch_failure_count for sample in samples),
             period_start=samples[0].timestamp,
             period_end=samples[-1].timestamp,
             sample_count=len(samples),
@@ -226,7 +304,18 @@ class MetricsCollector:
                 "tool_calls_count": s.tool_calls_count,
                 "has_results": s.has_results,
                 "response_time_ms": round(s.response_time_ms, 2),
+                "model_calls_count": s.model_calls_count,
+                "total_ms": round(s.response_time_ms, 2),
+                "retrieval_ms": round(s.retrieval_ms, 2),
+                "agent_ms": round(s.agent_ms, 2),
+                "repair_ms": round(s.repair_ms, 2),
+                "agent_timeout": s.agent_timeout,
                 "error": s.error,
+                "web_search_count": s.web_search_count,
+                "search_candidate_count": s.search_candidate_count,
+                "admitted_external_count": s.admitted_external_count,
+                "deep_fetch_success_count": s.deep_fetch_success_count,
+                "deep_fetch_failure_count": s.deep_fetch_failure_count,
             }
             for s in recent
         ]
@@ -244,3 +333,10 @@ class MetricsCollector:
 
 # 全局单例
 metrics_collector = MetricsCollector()
+
+
+def _nearest_rank(values: list[float], percentile: float) -> float:
+    if not values:
+        return 0
+    index = max(0, min(len(values) - 1, math.ceil(percentile * len(values)) - 1))
+    return values[index]

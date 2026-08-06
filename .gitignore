@@ -13,6 +13,9 @@ reports/private/
 
 # RAG data
 rag/data/chroma/
+rag/data/chroma.backup-*/
 rag/data/artifacts/
+rag/data/corpus-update-state.json
+rag/data/runtime-settings.json
 !rag/data/.gitkeep
 *.pyc

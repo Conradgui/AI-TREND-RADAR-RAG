@@ -15,9 +15,10 @@ from collections import defaultdict
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 from fastapi import FastAPI, HTTPException, Depends, Header
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -30,6 +31,7 @@ from rag.config import (
     RAG_PORT,
     is_configured,
     LLM_PROVIDER,
+    get_configured_search_providers,
     get_search_provider_api_keys,
     is_deep_fetch_enabled,
 )
@@ -41,7 +43,10 @@ from rag.retriever.vector_only import VectorOnlyRetriever
 from rag.agent.agent import create_agent
 from rag.agent.llm import create_direct_llm_agent
 from rag.chat_service import build_chat_response
+from rag.chat_stream import encode_stream_event, iter_chat_events
+from rag.corpus_update import load_update_state, summarize_update_state
 from rag.runtime_tools import select_external_deep_fetcher
+from rag.runtime_settings import load_runtime_settings, save_runtime_setting
 from rag.search_provider_adapters import SearchProviderRegistry
 
 # 配置日志
@@ -58,11 +63,12 @@ APP_VERSION = "0.2.0"
 # 滑动窗口速率限制器 — 按客户端 IP 限制 /chat 端点请求频率
 RATE_LIMIT_MAX_REQUESTS = 10      # 窗口内最大请求数
 RATE_LIMIT_WINDOW_SECONDS = 60    # 滑动窗口时长（秒）
-CHAT_REQUEST_TIMEOUT_SECONDS = 35  # /chat 端点整体请求超时（秒），大于 agent 内部 25 秒超时
+CHAT_REQUEST_TIMEOUT_SECONDS = 105  # 高于最长 90 秒 Agent 预算，仍保留整体硬上限
+RAG_CONFIG_LOCK = asyncio.Lock()
 
 
 class RateLimitMiddleware:
-    """滑动窗口速率限制中间件 — 仅对 /chat POST 端点生效。
+    """滑动窗口速率限制中间件 — 对聊天 POST 端点生效。
 
     使用 defaultdict(list) 按客户端 IP 记录请求时间戳，
     每次请求清理窗口外的旧记录，超限返回 429 Too Many Requests。
@@ -77,8 +83,13 @@ class RateLimitMiddleware:
         self._requests: dict[str, list[float]] = defaultdict(list)
 
     async def __call__(self, scope, receive, send):
-        # 仅对 HTTP POST /chat 生效，其他请求直接放行
-        if scope["type"] == "http" and scope.get("method") == "POST" and scope.get("path") == "/chat":
+        # 流式与非流式聊天共享同一成本边界，避免通过换端点绕过限流。
+        is_chat_request = (
+            scope["type"] == "http"
+            and scope.get("method") == "POST"
+            and scope.get("path") in {"/chat", "/chat/stream"}
+        )
+        if is_chat_request:
             client_ip = self._get_client_ip(scope)
             now = time.time()
 
@@ -158,6 +169,7 @@ class RagState:
     neo4j_driver: Neo4jDriver | None
     chat_retriever: object | None
     agent: object | None
+    answer_composer: object | None
     external_search_registry: SearchProviderRegistry | None
     external_deep_fetcher: object | None
 
@@ -166,11 +178,18 @@ class ChatRequest(BaseModel):
     message: str = Field(..., max_length=2000)
     history: list[dict] = Field(default_factory=list)
     context: dict = Field(default_factory=dict)  # 报告上下文：report, date, topic
+    web_search_mode: Literal["auto", "always", "never"] = "auto"
 
 
 class ChatResponse(BaseModel):
     answer: str
+    display_answer: str = ""
     citations: list[dict] = Field(default_factory=list)
+    evidence_display_map: dict[str, str] = Field(default_factory=dict)
+    search_references: list[dict] = Field(default_factory=list)
+    source_summary: dict = Field(default_factory=dict)
+    claim_evidence: list[dict] = Field(default_factory=list)
+    evidence_integrity: dict = Field(default_factory=dict)
     query_understanding: dict = Field(default_factory=dict)
     tool_trace: dict = Field(default_factory=dict)  # 工具跟踪信息
 
@@ -202,12 +221,18 @@ async def lifespan(app: FastAPI):
     logger.info("Starting AI Topic Radar RAG server v%s", APP_VERSION)
 
     vector_store = VectorStore(CHROMA_DIR)
-    external_search_registry = SearchProviderRegistry(get_search_provider_api_keys())
-    external_deep_fetcher = select_external_deep_fetcher(is_deep_fetch_enabled())
+    runtime_settings = load_runtime_settings(deep_fetch_default=is_deep_fetch_enabled())
+    external_search_registry = (
+        SearchProviderRegistry(get_search_provider_api_keys())
+        if runtime_settings["web_search_enabled"]
+        else None
+    )
+    external_deep_fetcher = select_external_deep_fetcher(runtime_settings["deep_fetch_enabled"])
 
     neo4j_driver = None
     chat_retriever = None
     agent = None
+    answer_composer = None
 
     if is_configured():
         neo4j_driver = Neo4jDriver(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
@@ -220,13 +245,14 @@ async def lifespan(app: FastAPI):
             neo4j_driver = None
 
         try:
+            answer_composer = create_direct_llm_agent()
             if neo4j_driver:
                 chat_retriever = HybridRetriever(vector_store, neo4j_driver)
                 agent = create_agent(neo4j_driver, chat_retriever)
                 logger.info("Agent initialized with 6 tools")
             else:
                 chat_retriever = VectorOnlyRetriever(vector_store)
-                agent = create_direct_llm_agent()
+                agent = answer_composer
                 logger.info("Neo4j unavailable, vector-only chat fallback initialized")
         except Exception as e:
             logger.error("Agent creation failed: %s", e)
@@ -237,6 +263,7 @@ async def lifespan(app: FastAPI):
         neo4j_driver=neo4j_driver,
         chat_retriever=chat_retriever,
         agent=agent,
+        answer_composer=answer_composer,
         external_search_registry=external_search_registry,
         external_deep_fetcher=external_deep_fetcher,
     )
@@ -292,7 +319,7 @@ async def health(rag: RagState = Depends(_get_rag_state)):
         "chromadb_chunks": rag.vector_store.count() if rag.vector_store else 0,
         "provider": LLM_PROVIDER,
         "retriever_mode": "hybrid" if rag.neo4j_driver is not None else "vector-only",
-        "deep_fetch_enabled": is_deep_fetch_enabled(),
+        "deep_fetch_enabled": rag.external_deep_fetcher is not None,
     }
 
     # G-4 修复：快速一致性摘要（只在两端都可用时检查）
@@ -346,7 +373,7 @@ async def health_consistency(rag: RagState = Depends(_get_rag_state)):
 async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
     """返回仪表盘完整的系统状态"""
     # 获取搜索provider信息
-    search_providers = list(get_search_provider_api_keys().keys())
+    search_providers = sorted(get_configured_search_providers())
 
     # 获取最新语料日期
     latest_corpus_date = None
@@ -359,6 +386,7 @@ async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
     # C-2: 对响应中的 API Key 做掩码处理
     raw_keys = get_search_provider_api_keys()
     masked_keys = {k: _mask_secret(v) for k, v in raw_keys.items()}
+    corpus_update = summarize_update_state(load_update_state())
 
     return {
         "service": "ai-trend-radar-rag",
@@ -367,12 +395,14 @@ async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
         "neo4j_connected": rag.neo4j_driver is not None,
         "chromadb_chunks": rag.vector_store.count() if rag.vector_store else 0,
         "retriever_mode": "hybrid" if rag.neo4j_driver is not None else "vector-only",
-        "deep_fetch_enabled": is_deep_fetch_enabled(),
+        "deep_fetch_enabled": rag.external_deep_fetcher is not None,
         "search_providers": search_providers,
         "search_api_keys_masked": masked_keys,
         "latest_corpus_date": latest_corpus_date,
+        "corpus_update": corpus_update,
         "service_version": APP_VERSION,
         "web_search_enabled": rag.external_search_registry is not None and len(search_providers) > 0,
+        "web_search_capability": "available" if search_providers else "unconfigured",
     }
 
 
@@ -380,27 +410,44 @@ async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
 async def toggle_web_search(enabled: bool, api_key: str = Depends(verify_api_key),
                              rag: RagState = Depends(_get_rag_state)):
     """切换联网搜索状态 — 通过 dataclasses.replace() 原子替换状态"""
-    if enabled:
-        if not rag.external_search_registry:
+    async with RAG_CONFIG_LOCK:
+        current = await _get_rag_state()
+        configured_providers = get_configured_search_providers()
+        if enabled and not configured_providers:
+            raise HTTPException(
+                status_code=409,
+                detail="No web search provider is configured. Add at least one provider API key first.",
+            )
+        new_registry = None
+        if enabled:
             from rag.search_provider_adapters import SearchProviderRegistry
             from rag.config import get_search_provider_api_keys as _get_keys
-            new_registry = SearchProviderRegistry(_get_keys())
-            app.state.rag = dataclasses.replace(rag, external_search_registry=new_registry)
-        logger.info("Web search enabled")
-        return {"status": "ok", "web_search_enabled": True}
-    else:
-        app.state.rag = dataclasses.replace(rag, external_search_registry=None)
-        logger.info("Web search disabled")
-        return {"status": "ok", "web_search_enabled": False}
+            new_registry = current.external_search_registry or SearchProviderRegistry(_get_keys())
+        # Persist first: if disk write fails, the in-memory state remains truthful.
+        save_runtime_setting(
+            "web_search_enabled",
+            enabled,
+            deep_fetch_default=current.external_deep_fetcher is not None,
+        )
+        app.state.rag = dataclasses.replace(current, external_search_registry=new_registry)
+    logger.info("Web search %s", "enabled" if enabled else "disabled")
+    return {"status": "ok", "web_search_enabled": enabled}
 
 
 @app.post("/config/deep-fetch")
 async def toggle_deep_fetch(enabled: bool, api_key: str = Depends(verify_api_key),
                              rag: RagState = Depends(_get_rag_state)):
     """切换深度抓取状态"""
-    os.environ["RAG_ENABLE_DEEP_FETCH"] = "true" if enabled else "false"
-    new_fetcher = select_external_deep_fetcher(enabled)
-    app.state.rag = dataclasses.replace(rag, external_deep_fetcher=new_fetcher)
+    async with RAG_CONFIG_LOCK:
+        current = await _get_rag_state()
+        new_fetcher = select_external_deep_fetcher(enabled)
+        save_runtime_setting(
+            "deep_fetch_enabled",
+            enabled,
+            deep_fetch_default=current.external_deep_fetcher is not None,
+        )
+        os.environ["RAG_ENABLE_DEEP_FETCH"] = "true" if enabled else "false"
+        app.state.rag = dataclasses.replace(current, external_deep_fetcher=new_fetcher)
     logger.info("Deep fetch %s", "enabled" if enabled else "disabled")
     return {"status": "ok", "deep_fetch_enabled": enabled}
 
@@ -413,18 +460,20 @@ async def set_retriever_mode(mode: str, api_key: str = Depends(verify_api_key),
     if mode not in allowed_modes:
         raise HTTPException(status_code=400, detail=f"Invalid mode. Allowed: {allowed_modes}")
 
-    new_retriever = None
-    if mode == "hybrid" and rag.neo4j_driver:
-        from rag.retriever.hybrid import HybridRetriever
-        new_retriever = HybridRetriever(rag.vector_store, rag.neo4j_driver)
-    elif mode == "vector-only":
-        from rag.retriever.vector_only import VectorOnlyRetriever
-        new_retriever = VectorOnlyRetriever(rag.vector_store)
-    elif mode == "graph-only" and rag.neo4j_driver:
-        # 需要实现GraphOnlyRetriever
-        raise HTTPException(status_code=400, detail="Graph-only mode not yet implemented")
+    async with RAG_CONFIG_LOCK:
+        current = await _get_rag_state()
+        new_retriever = None
+        if mode == "hybrid" and current.neo4j_driver:
+            from rag.retriever.hybrid import HybridRetriever
+            new_retriever = HybridRetriever(current.vector_store, current.neo4j_driver)
+        elif mode == "vector-only":
+            from rag.retriever.vector_only import VectorOnlyRetriever
+            new_retriever = VectorOnlyRetriever(current.vector_store)
+        elif mode == "graph-only" and current.neo4j_driver:
+            # 需要实现GraphOnlyRetriever
+            raise HTTPException(status_code=400, detail="Graph-only mode not yet implemented")
 
-    app.state.rag = dataclasses.replace(rag, chat_retriever=new_retriever)
+        app.state.rag = dataclasses.replace(current, chat_retriever=new_retriever)
     logger.info("Retriever mode set to: %s", mode)
     return {"status": "ok", "retriever_mode": mode}
 
@@ -595,7 +644,7 @@ async def chat(req: ChatRequest, rag: RagState = Depends(_get_rag_state)):
 
     try:
         # C-6 修复：用 asyncio.wait_for 包裹整个请求链路，设置整体超时
-        # 超时时间（35s）大于 agent 内部超时（25s），确保 agent 超时先触发并返回友好错误
+        # 总超时（105s）高于最长 90 秒 Agent 预算，确保内部阶段先给出可诊断反馈。
         response = await asyncio.wait_for(
             build_chat_response(
                 rag.agent,
@@ -603,8 +652,10 @@ async def chat(req: ChatRequest, rag: RagState = Depends(_get_rag_state)):
                 req.message,
                 req.history,
                 context=req.context,
+                web_search_mode=req.web_search_mode,
                 external_search_registry=rag.external_search_registry,
                 external_deep_fetcher=rag.external_deep_fetcher,
+                answer_composer=rag.answer_composer,
             ),
             timeout=CHAT_REQUEST_TIMEOUT_SECONDS,
         )
@@ -619,6 +670,46 @@ async def chat(req: ChatRequest, rag: RagState = Depends(_get_rag_state)):
         # C-4 修复：对外返回通用错误消息，详细错误仅写日志
         logger.error("Chat error: %s", e)
         raise HTTPException(status_code=500, detail="Chat processing failed. Please try again later.")
+
+
+@app.post("/chat/stream")
+async def chat_stream(req: ChatRequest, rag: RagState = Depends(_get_rag_state)):
+    """Stream truthful execution progress and a validated answer as NDJSON."""
+    if not rag.agent:
+        raise HTTPException(
+            status_code=503,
+            detail="Agent not initialized. Check Neo4j connection and API key configuration.",
+        )
+
+    async def build(progress_callback):
+        return await build_chat_response(
+            rag.agent,
+            rag.chat_retriever,
+            req.message,
+            req.history,
+            context=req.context,
+            web_search_mode=req.web_search_mode,
+            external_search_registry=rag.external_search_registry,
+            external_deep_fetcher=rag.external_deep_fetcher,
+            answer_composer=rag.answer_composer,
+            progress_callback=progress_callback,
+        )
+
+    async def body():
+        async for event in iter_chat_events(
+            build,
+            timeout_seconds=CHAT_REQUEST_TIMEOUT_SECONDS,
+        ):
+            yield encode_stream_event(event)
+
+    return StreamingResponse(
+        body(),
+        media_type="application/x-ndjson",
+        headers={
+            "Cache-Control": "no-cache, no-transform",
+            "X-Accel-Buffering": "no",
+        },
+    )
 
 
 @app.post("/ingest")

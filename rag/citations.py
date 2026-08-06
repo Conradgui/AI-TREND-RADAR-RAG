@@ -2,10 +2,22 @@
 
 from __future__ import annotations
 
+import asyncio
 import re
+import time
+from dataclasses import dataclass
+from datetime import date
 
 
 REQUIRED_CITATION_FIELDS = ("date", "source", "title", "citation_id")
+
+
+@dataclass(frozen=True)
+class RetrievalOutcome:
+    status: str
+    citations: list[dict]
+    error_code: str = ""
+    elapsed_ms: float = 0.0
 
 
 def _chunk_metadata(chunk) -> dict:
@@ -64,7 +76,7 @@ def build_citations(chunks: list, max_citations: int = 15, excerpt_chars: int = 
             "excerpt": _clean_excerpt(excerpt, excerpt_chars),
         }
 
-        for optional_field in ("url", "score", "category"):
+        for optional_field in ("url", "score", "category", "entities"):
             value = metadata.get(optional_field)
             if value not in (None, ""):
                 citation[optional_field] = value
@@ -78,13 +90,106 @@ def build_citations(chunks: list, max_citations: int = 15, excerpt_chars: int = 
     return citations
 
 
-async def retrieve_citations(retriever, question: str, k: int = 10, where: dict | None = None) -> list[dict]:
-    """Retrieve citation candidates from the corpus retriever."""
+async def retrieve_citations(
+    retriever,
+    question: str,
+    k: int = 10,
+    where: dict | None = None,
+    *,
+    prefer_recent: bool = False,
+    latest_date: str | None = None,
+) -> list[dict]:
+    """Backward-compatible citation-only retrieval interface."""
+    outcome = await retrieve_citations_with_status(
+        retriever,
+        question,
+        k=k,
+        where=where,
+        prefer_recent=prefer_recent,
+        latest_date=latest_date,
+    )
+    return outcome.citations
+
+
+async def retrieve_citations_with_status(
+    retriever,
+    question: str,
+    k: int = 10,
+    where: dict | None = None,
+    *,
+    prefer_recent: bool = False,
+    latest_date: str | None = None,
+) -> RetrievalOutcome:
+    """Retrieve citations without confusing empty results with system failure.
+
+    The retriever's order remains the relevance proxy. Recent questions inspect a
+    wider bounded pool, then blend that rank with document age before admitting
+    at most ``k`` citation-ready records.
+    """
+    started_at = time.perf_counter()
     try:
-        chunks = await retriever.search(question, k=k, where=where)
-    except Exception:
-        return []
-    return build_citations(chunks, max_citations=k)
+        candidate_k = min(max(k * 3, k), 30) if prefer_recent else k
+        chunks = await retriever.search(question, k=candidate_k, where=where)
+    except asyncio.TimeoutError:
+        return RetrievalOutcome(
+            status="timeout",
+            citations=[],
+            error_code="timeout",
+            elapsed_ms=(time.perf_counter() - started_at) * 1000,
+        )
+    except Exception as exc:
+        return RetrievalOutcome(
+            status="error",
+            citations=[],
+            error_code=type(exc).__name__,
+            elapsed_ms=(time.perf_counter() - started_at) * 1000,
+        )
+    if prefer_recent:
+        chunks = _rerank_recent_chunks(chunks, latest_date)
+    citations = build_citations(chunks, max_citations=k)
+    return RetrievalOutcome(
+        status="ready" if citations else "empty",
+        citations=citations,
+        elapsed_ms=(time.perf_counter() - started_at) * 1000,
+    )
+
+
+def _rerank_recent_chunks(chunks: list, latest_date: str | None) -> list:
+    """Blend original retrieval rank with age for explicitly recent questions."""
+    if len(chunks) < 2:
+        return chunks
+
+    dated_chunks = []
+    for chunk in chunks:
+        value = _chunk_metadata(chunk).get("date")
+        try:
+            parsed = date.fromisoformat(str(value))
+        except (TypeError, ValueError):
+            parsed = None
+        dated_chunks.append(parsed)
+
+    try:
+        newest = date.fromisoformat(latest_date) if latest_date else None
+    except ValueError:
+        newest = None
+    newest = newest or max((value for value in dated_chunks if value), default=None)
+    if newest is None:
+        return chunks
+
+    pool_size = len(chunks)
+    scored = []
+    for index, (chunk, chunk_date) in enumerate(zip(chunks, dated_chunks)):
+        relevance = 1.0 - (index / pool_size)
+        if chunk_date is None:
+            freshness = 0.0
+        else:
+            age_days = max(0, (newest - chunk_date).days)
+            freshness = max(0.0, 1.0 - (age_days / 14.0))
+        score = 0.45 * relevance + 0.55 * freshness
+        scored.append((score, index, chunk))
+
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [item[2] for item in scored]
 
 
 def evidence_insufficient_answer(question: str) -> str:

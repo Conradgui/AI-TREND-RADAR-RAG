@@ -1,9 +1,7 @@
-name: Monthly AI Topic Radar
+name: Legacy Monthly Producer (manual only)
 
 on:
-  schedule:
-    # 每月1日 02:00 UTC = 10:00 CST，日报运行后2小时
-    - cron: "0 2 1 * *"
+  # Rollups belong to the upstream producer; retained only as a rollback path.
   workflow_dispatch:
 
 permissions:

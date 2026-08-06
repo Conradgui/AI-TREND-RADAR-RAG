@@ -14,6 +14,23 @@ class MockDriver:
 
 
 class KnowledgeGraphBuilderTests(unittest.IsolatedAsyncioTestCase):
+    async def test_ingest_date_replaces_date_projection_and_refreshes_rollups(self):
+        driver = MockDriver()
+        builder = KnowledgeGraphBuilder(driver)
+
+        await builder.ingest_date(
+            "2026-08-05",
+            {"candidates": [{"title": "Agentic RAG", "source": "Anthropic"}]},
+            {},
+        )
+
+        queries = [cypher for cypher, _ in driver.writes]
+        self.assertIn("DETACH DELETE doc", queries[0])
+        self.assertIn("DETACH DELETE d", queries[1])
+        occurrence_query = next(query for query in queries if "APPEARED_ON" in query)
+        self.assertIn("ON CREATE SET t.mentionCount", occurrence_query)
+        self.assertIn("count(d)", queries[-1])
+
     async def test_ingest_candidate_preserves_citation_metadata(self):
         driver = MockDriver()
         builder = KnowledgeGraphBuilder(driver)

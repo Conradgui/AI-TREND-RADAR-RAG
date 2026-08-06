@@ -93,6 +93,55 @@ class DeepFetchPolicyTests(unittest.TestCase):
         self.assertFalse(trace["attempted"])
         self.assertEqual(trace["reason"], "disabled")
 
+    def test_sufficient_verified_snippet_does_not_trigger_deep_fetch(self):
+        citations = [
+            {
+                "evidence_type": "external",
+                "source_quality": "official",
+                "needs_deep_fetch": False,
+                "url": "https://openai.com/research/example",
+                "excerpt": "A" * 240,
+                "provenance_status": "verified",
+                "date_status": "verified",
+            }
+        ]
+
+        targets = choose_deep_fetch_targets(citations)
+
+        self.assertEqual(targets, [])
+
+    def test_explicit_evidence_demand_triggers_deep_fetch(self):
+        citations = [
+            {
+                "evidence_type": "external",
+                "source_quality": "official",
+                "needs_deep_fetch": False,
+                "url": "https://openai.com/research/example",
+                "excerpt": "A" * 240,
+                "provenance_status": "verified",
+                "date_status": "verified",
+                "evidence_demand": "verify_methodology",
+            }
+        ]
+
+        targets = choose_deep_fetch_targets(citations)
+
+        self.assertEqual([target["url"] for target in targets], ["https://openai.com/research/example"])
+
+    def test_primary_claim_source_with_sufficient_snippet_does_not_require_independence_status(self):
+        citations = [{
+            "evidence_type": "external",
+            "source_quality": "official",
+            "source_role": "primary_claim_source",
+            "needs_deep_fetch": False,
+            "url": "https://openai.com/release",
+            "excerpt": "A" * 240,
+            "provenance_status": "unknown",
+            "date_status": "verified",
+        }]
+
+        assert choose_deep_fetch_targets(citations) == []
+
 
 if __name__ == "__main__":
     unittest.main()

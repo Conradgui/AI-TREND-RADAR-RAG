@@ -49,7 +49,8 @@ class KnowledgeGraphBuilder:
         topic_pool: dict | None,
         reports: dict[str, str],
     ) -> None:
-        """Ingest one day's data into the knowledge graph."""
+        """Replace one day's graph projection and refresh topic rollups."""
+        await self._clear_date(date_str)
         candidate_count = len(topic_pool.get("candidates", [])) if topic_pool else 0
         await self.driver.execute_write(
             "MERGE (d:DailyDigest {date: $date}) "
@@ -89,6 +90,32 @@ class KnowledgeGraphBuilder:
                 id=f"{date_str}/{report_type}", date=date_str,
             )
 
+        await self._refresh_topic_rollups()
+
+    async def _clear_date(self, date_str: str) -> None:
+        """Remove only date-scoped graph data before a deterministic replacement."""
+        await self.driver.execute_write(
+            "MATCH (doc:Document {date: $date}) DETACH DELETE doc",
+            date=date_str,
+        )
+        await self.driver.execute_write(
+            "MATCH (d:DailyDigest {date: $date}) DETACH DELETE d",
+            date=date_str,
+        )
+
+    async def _refresh_topic_rollups(self) -> None:
+        """Derive topic counts and date ranges from APPEARED_ON relationships."""
+        await self.driver.execute_write(
+            "MATCH (t:Topic) "
+            "WHERE NOT (t)-[:APPEARED_ON]->(:DailyDigest) "
+            "DETACH DELETE t"
+        )
+        await self.driver.execute_write(
+            "MATCH (t:Topic)-[:APPEARED_ON]->(d:DailyDigest) "
+            "WITH t, count(d) AS mentionCount, min(d.date) AS firstSeen, max(d.date) AS lastSeen "
+            "SET t.mentionCount = mentionCount, t.firstSeen = firstSeen, t.lastSeen = lastSeen"
+        )
+
     async def _ingest_candidate(self, candidate: dict, date_str: str) -> None:
         """Ingest a single topic candidate into the graph."""
         title = candidate.get("title", "") or candidate.get("topic", "")
@@ -114,7 +141,6 @@ class KnowledgeGraphBuilder:
             "t.reason = $reason, t.evidence = $evidence, "
             "t.totalScore = CASE WHEN t.totalScore IS NULL OR $score > t.totalScore "
             "THEN $score ELSE t.totalScore END, "
-            "t.mentionCount = COALESCE(t.mentionCount, 0) + 1, "
             "t.lastSeen = $date, "
             "t.firstSeen = COALESCE(t.firstSeen, $date)",
             id=topic_id,
@@ -132,6 +158,7 @@ class KnowledgeGraphBuilder:
         await self.driver.execute_write(
             "MATCH (t:Topic {id: $topic_id}), (d:DailyDigest {date: $date}) "
             "MERGE (t)-[r:APPEARED_ON]->(d) "
+            "ON CREATE SET t.mentionCount = COALESCE(t.mentionCount, 0) + 1 "
             "SET r.score = $score, r.action = $action, r.source = $source, r.url = $url, "
             "r.summary = $summary, r.reason = $reason, r.evidence = $evidence",
             topic_id=topic_id,

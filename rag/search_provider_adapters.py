@@ -361,6 +361,7 @@ def _tavily_result_to_citation(item: dict, task_type: str) -> dict:
         "retrieved_at": date.today().isoformat(),
         "excerpt": apply_excerpt_policy(item.get("content", ""), quality),
         "score": item.get("score"),
+        "published_at": item.get("published_date") or item.get("publishedDate") or "",
         **quality,
     }
 
@@ -380,6 +381,7 @@ def _brave_result_to_citation(item: dict, task_type: str) -> dict:
         "retrieved_at": date.today().isoformat(),
         "excerpt": apply_excerpt_policy(" ".join(excerpt_parts), quality),
         "score": item.get("rank"),
+        "published_at": item.get("page_age") or item.get("published_at") or "",
         **quality,
     }
 

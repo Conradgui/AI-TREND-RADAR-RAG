@@ -83,6 +83,7 @@ class SearchProviderAdapterTests(unittest.IsolatedAsyncioTestCase):
                         "url": "https://example.com/rag-paper",
                         "content": "A useful source excerpt.",
                         "score": 0.91,
+                        "published_date": "2026-08-04T08:00:00Z",
                     }
                 ],
                 "usage": {"credits": 1},
@@ -103,7 +104,9 @@ class SearchProviderAdapterTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result["raw_results_count"], 1)
         self.assertEqual(result["usage"], {"credits": 1})
         self.assertEqual(calls[0]["url"], "https://api.tavily.com/search")
-        self.assertEqual(calls[0]["payload"]["search_depth"], "basic")
+        # 高质量联网策略使用 advanced，并把默认时效窗口限制在近 10 天。
+        self.assertEqual(calls[0]["payload"]["search_depth"], "advanced")
+        self.assertEqual(calls[0]["payload"]["days"], 10)
         self.assertEqual(calls[0]["payload"]["max_results"], 1)
         self.assertFalse(calls[0]["payload"]["include_raw_content"])
         citation = result["citations"][0]
@@ -114,6 +117,7 @@ class SearchProviderAdapterTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(citation["excerpt"], "A useful source excerpt.")
         self.assertIn("source_quality", citation)
         self.assertIn("quality_score", citation)
+        self.assertEqual(citation["published_at"], "2026-08-04T08:00:00Z")
 
     async def test_registry_uses_tavily_adapter_when_key_exists(self):
         calls = []
@@ -153,6 +157,7 @@ class SearchProviderAdapterTests(unittest.IsolatedAsyncioTestCase):
                             "description": "Claude shipped a new feature.",
                             "extra_snippets": ["Additional context."],
                             "rank": 1,
+                            "page_age": "2026-08-03T12:00:00Z",
                         }
                     ]
                 }
@@ -172,6 +177,7 @@ class SearchProviderAdapterTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(citation["title"], "Claude release notes")
         self.assertIn("Additional context", citation["excerpt"])
         self.assertEqual(citation["source_quality"], "official")
+        self.assertEqual(citation["published_at"], "2026-08-03T12:00:00Z")
 
     async def test_exa_adapter_normalizes_search_results_to_external_citations(self):
         calls = []

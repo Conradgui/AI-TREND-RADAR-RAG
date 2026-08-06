@@ -1,0 +1,48 @@
+name: RAG Corpus Sync
+
+on:
+  schedule:
+    # GitHub scheduled jobs can be delayed at the top of the hour, so use :17.
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rag-corpus-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout RAG repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify sync behavior
+        run: python -m unittest rag.tests.test_sync_corpus
+
+      - name: Pull the latest published corpus
+        # 30 days is the recent revision recheck window; historical catch-up is unbounded.
+        run: python -m rag.sync_corpus --days 30
+
+      - name: Commit auditable corpus artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add digests/ manifest.json
+          if git diff --cached --quiet; then
+            echo "Corpus already up to date"
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "corpus: sync upstream through ${DATE}"
+            git push
+          fi

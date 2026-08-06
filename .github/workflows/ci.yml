@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/rag-transformation-checkpoints]
   pull_request:
 
 jobs:

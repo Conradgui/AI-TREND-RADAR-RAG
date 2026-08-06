@@ -2,722 +2,159 @@
 
 # 📡 AI Trend Radar RAG
 
-**本地AI研究驾驶舱 — 基于RAG的智能趋势分析系统**
+**把公开 AI 趋势日报变成可追问、可核验的本地研究驾驶舱。**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
-[![Neo4j](https://img.shields.io/badge/Neo4j-5-purple.svg)](https://neo4j.com/)
-[![ChromaDB](https://img.shields.io/badge/ChromaDB-latest-orange.svg)](https://www.trychroma.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Docker Compose](https://img.shields.io/badge/Deploy-Docker%20Compose-2496ED.svg)](https://docs.docker.com/compose/)
+[![Python](https://img.shields.io/badge/Runtime-Python%203.12-3776AB.svg)](Dockerfile)
 
-[快速开始](#-快速开始) •
-[功能特性](#-功能特性) •
-[API文档](#-api文档) •
-[部署指南](#-部署指南) •
-[贡献指南](#-贡献指南)
+[3 分钟开始](#3-分钟开始) · [产品能力](#它解决什么问题) · [部署说明](docs/deployment.zh.md) · [配置说明](docs/configuration-rag.zh.md) · [排错](docs/troubleshooting-rag.zh.md) · [贡献](CONTRIBUTING.md)
 
 </div>
 
 ---
 
-## 📖 目录
+## 它解决什么问题
 
-<details>
-<summary>点击展开目录</summary>
+AI Trend Radar 每天会产出公开的 AI 趋势报告，但“读很多日报”不等于“能快速形成有依据的判断”。本项目只消费上游公开报告：它把报告同步到本地，建立向量与图谱索引，并让 Agent 在当前请求的**证据账本**范围内回答问题、展示可点击引用。
 
-- [项目简介](#-项目简介)
-- [功能特性](#-功能特性)
-- [快速开始](#-快速开始)
-- [详细安装](#-详细安装)
-- [使用指南](#-使用指南)
-- [API文档](#-api文档)
-- [架构设计](#-架构设计)
-- [部署指南](#-部署指南)
-- [开发指南](#-开发指南)
-- [故障排除](#-故障排除)
-- [路线图](#-路线图)
-- [贡献指南](#-贡献指南)
-- [许可证](#-许可证)
+它适合需要持续追踪 AI 产品、模型、研究与行业变化的人：先浏览日报，再问“近三天哪些趋势值得深挖”“OpenAI 的产品动向有哪些证据”“哪些信号来自联网搜索”。
 
-</details>
+| 能力 | 用户得到什么 |
+| --- | --- |
+| 本地研究驾驶舱 | 按日浏览报告；长表格可横向滚动、调整阅读密度、展开摘要 |
+| Graph + Vector RAG | 从文本相似度与实体/时间关系两条路径找证据 |
+| 证据型 Agent | 回答绑定本次检索到的证据记录，而非把“相关链接”混作结论依据 |
+| 可控联网搜索 | 默认内部语料优先；开启后只在时效性或证据不足时补充外部来源，并标记外部内容 |
+| 增量同步 | 每次容器启动检查上游变化，只重新索引新增或变更的日报；失败时继续使用最后成功索引 |
 
----
+### 与上游项目的边界
 
-## 🎯 项目简介
+[`AI-TREND-RADAR`](https://github.com/Conradgui/AI-TREND-RADAR) 是内容生产者：采集、评分、生成日报、通过 GitHub Actions 发布。本仓库是内容消费者：单向同步公开报告、建立本地索引、提供检索与问答。
 
-**AI Trend Radar RAG** 是 [AI Trend Radar](https://github.com/Conradgui/AI-TREND-RADAR) 的扩展版本——在数据管道基础上叠加了 Graph RAG 与 Agentic RAG 智能查询层。
+两者不共享本地目录、数据库或密钥。本仓库不会回写、修改或替代上游的日报生产流程。
 
-### 核心价值
+## 3 分钟开始
 
-- 📊 **智能分析**：基于RAG技术，从15+数据源自动分析AI趋势
-- 🤖 **Agent问答**：支持自然语言查询，提供带引用的智能回答
-- 📝 **研究制品**：自动生成Trend Brief研究制品
-- 🔍 **证据可溯**：所有回答都有可追溯的引用来源
+### 开始前只需要两样东西
 
-### 项目关系
+1. [Docker Desktop](https://www.docker.com/products/docker-desktop/) 已安装并正在运行。
+2. 一个模型 Provider 的 API Key（DeepSeek、Anthropic 或 OpenAI，推荐 DeepSeek）。
 
-> **AI-TREND-RADAR** 是数据管道（采集 → 评分 → 报告 → 分发），本仓库是它的超集，在数据管道基础上增加了知识图谱、向量检索和 Agent 对话能力。两个仓库共享同一份 `.env` 配置和 `digests/` 数据目录。
+不需要预装 Python、Node.js、Neo4j 或 pnpm。
 
-### 技术栈
-
-| 层 | 技术 | 用途 |
-|---|---|---|
-| 数据管道 | TypeScript | 数据抓取和处理 |
-| 知识图谱 | Neo4j 5 | 实体关系网络 |
-| 向量库 | ChromaDB | 向量检索 |
-| Agent框架 | LangGraph | 工具编排 |
-| LLM | LangChain | 多provider支持 |
-| 后端 | FastAPI | API服务 |
-| 前端 | 原生HTML/JS | 用户界面 |
-
----
-
-## ✨ 功能特性
-
-### 📊 智能趋势分析
-
-- 每日抓取15+公开数据源（GitHub、Product Hunt、Hacker News、ArXiv等）
-- 自动生成中文选题池
-- 支持趋势追踪和热度分析
-
-### 🤖 Agent问答
-
-- 支持自然语言查询
-- 自动选择检索策略（内部语料优先，可选联网搜索）
-- 提供带引用的智能回答
-- 支持6个内置工具：search、topic_trend、entity_info、daily_overview、source_coverage、recommend
-
-### 📝 研究制品
-
-- 自动生成Trend Brief
-- 支持多种模式（local-only、live-external）
-- 可追溯的证据链
-
-### 🔍 证据可溯
-
-- 所有回答都有引用来源
-- 支持内部/外部证据区分
-- 可追溯到原始数据源
-
----
-
-## 🚀 快速开始
-
-### 方式一：一键启动（推荐）
-
-**macOS / Linux：**
-```bash
-# 双击 start.command 文件
-# 或在终端运行：
-chmod +x start.command
-./start.command
-```
-
-**Windows：**
-```cmd
-# 双击 start.bat 文件
-# 或在命令行运行：
-start.bat
-```
-
-脚本会自动：
-1. ✅ 检查Python环境
-2. ✅ 创建虚拟环境
-3. ✅ 安装依赖
-4. ✅ 启动Neo4j数据库
-5. ✅ 同步最新数据（从GitHub AI-TREND-RADAR）
-6. ✅ 启动RAG服务器
-7. ✅ 打开浏览器
-
-### 方式二：手动安装
+### 第一次使用
 
 ```bash
-# 1. 克隆仓库
 git clone https://github.com/Conradgui/AI-TREND-RADAR-RAG.git
 cd AI-TREND-RADAR-RAG
+```
 
-# 2. 切换到工作分支
-git checkout claude/rag-transformation-checkpoints
+然后双击配置向导：
 
-# 3. 创建虚拟环境
+| 系统 | 打开方式 |
+| --- | --- |
+| macOS / Linux | 双击 `setup.command`；若系统阻止执行，在终端运行一次 `chmod +x setup.command && ./setup.command` |
+| Windows | 双击 `setup.bat` |
+
+向导只会询问 Provider 和 API Key，自动生成本地 Neo4j 密码并写到 `.env`。`.env` 已被 Git 忽略，绝不应提交。首次运行会下载 Docker 镜像、安装容器内依赖并预热检索模型；这些准备完成后页面会打开。
+
+完成后打开 [http://127.0.0.1:8001](http://127.0.0.1:8001)。首次语料索引会在后台继续：**最新日报优先可检索，历史报告随后补齐**。在 System 面板看到“语料同步：同步中”是正常状态；此时 Agent 的结论只基于已建立的证据。以后只需双击 `start.command` 或 `start.bat`。
+
+> 一键启动的真实边界：Docker Desktop 和你自己的 Provider Key 无法被项目替你安装或提供；除此之外的 Python、依赖与数据库都在 Docker 容器中处理。
+
+## 第一次体验建议
+
+1. 在左侧输入 `Open AI`（带空格也可以），搜索会聚焦包含 `OpenAI` 的报告日期。
+2. 拖动侧栏右边缘，或点页头的 `NAV` 收起导航，让报告表格获得更多空间。
+3. 用“表格阅读密度”滑条切换紧凑、标准、舒展；摘要默认收束，点“展开摘要”查看全文。
+4. 点击醒目的 `AGENT`，先问“最近三天有哪些值得关注的 AI 产品趋势？”。
+5. 在 Agent 输入框上方选择“自动 / 关闭 / 开启”联网搜索策略。外部内容会和内部语料分组标记，不会伪装成日报证据。
+
+## 本地运维
+
+```bash
+# 查看服务与启动过程（含同步/索引日志）
+docker compose logs -f app
+
+# 暂停服务，数据仍会保留
+docker compose stop
+
+# 再次启动
+docker compose up -d
+
+# 校验 Compose 配置语法（不输出密钥）
+docker compose config --quiet
+```
+
+不要把 `docker compose down -v` 当作普通停止命令：它会删除本项目的 Neo4j 与 RAG 本地数据卷。需要彻底重建索引时，请先阅读[部署与数据迁移说明](docs/deployment.zh.md)。
+
+## GitHub 自动化的发布边界
+
+仓库包含 `RAG Corpus Sync`：它每天从上游公开站点拉取新日报，并把可审计的语料变化提交回本仓库。GitHub 的定时工作流只在仓库**默认分支**稳定运行；当前 GitHub Pages 工作流也固定发布默认分支。
+
+这意味着功能分支上的工作流文件可以被手动触发来验证，但不会替代默认分支的长期自动化。推荐顺序是：功能分支完成测试与干净克隆验收 → 代码审查 → 合并到默认分支 → 每日同步与 Pages 发布生效。
+
+## 配置层级
+
+首次向导只处理“能聊天”的最小配置。其他能力按需开启，不会打扰第一次使用：
+
+| 层级 | 何时需要 | 入口 |
+| --- | --- | --- |
+| 必需 | 第一次启动 | Provider + API Key（`setup.command` / `setup.bat`） |
+| 可选 | 希望 Agent 查找最新外部资料 | `.env` 中配置任意一个搜索 Provider key，然后在页面开启联网搜索 |
+| 高级 | 需要把 API 暴露给其他客户端 | `RAG_API_KEY` 与反向代理；本地浏览器仪表盘默认不保存该密钥 |
+
+完整变量含义、Provider 切换与安全边界见[配置说明](docs/configuration-rag.zh.md)。
+
+## 架构概览
+
+```mermaid
+flowchart LR
+  UPSTREAM["AI-TREND-RADAR\n公开日报"] -->|"单向同步"| CORPUS["本地语料"]
+  CORPUS --> VECTOR[("ChromaDB\n语义检索")]
+  CORPUS --> GRAPH[("Neo4j\n实体/时间关系")]
+  VECTOR --> RAG["混合检索与证据账本"]
+  GRAPH --> RAG
+  RAG --> AGENT["AI Agent"]
+  WEB["可选权威外部来源"] -."按需补充".-> AGENT
+  AGENT --> UI["本地 Web 驾驶舱\n:8001"]
+```
+
+“证据账本”是一次提问实际取到、可以支撑当前答案的证据集合。Agent 不应拿账本外的内容伪装成引用；更完整的术语约定见 [`CONTEXT.md`](CONTEXT.md)。
+
+## 文档地图
+
+| 我想做什么 | 阅读 |
+| --- | --- |
+| 首次部署、迁移旧 Docker 数据、重建索引 | [部署说明](docs/deployment.zh.md) |
+| 切换 Provider、开启联网搜索、保护密钥 | [配置说明](docs/configuration-rag.zh.md) |
+| 解决启动、页面、Agent、数据库问题 | [故障排除](docs/troubleshooting-rag.zh.md) |
+| 参与开发或跑测试 | [贡献指南](CONTRIBUTING.md) |
+| 了解安全边界与漏洞报告 | [安全说明](SECURITY.md) |
+| 准备发布版本 | [发布检查清单](docs/release-checklist.zh.md) |
+| 维护上游日报生产流水线 | 上游的 [`docs/`](https://github.com/Conradgui/AI-TREND-RADAR/tree/main/docs)（不是本地 RAG 的运行前置） |
+
+## 开发与测试
+
+Docker 是普通用户默认路径。只有参与开发时才需要本地 Python 环境：
+
+```bash
 python3 -m venv .venv
-source .venv/bin/activate  # macOS/Linux
-# 或 .venv\Scripts\activate  # Windows
-
-# 4. 安装依赖
+source .venv/bin/activate
 pip install -r rag/requirements.txt
-
-# 5. 配置环境变量
-cp .env.example .env
-# 编辑 .env，添加你的API密钥
-
-# 6. 启动Neo4j
-docker-compose up -d neo4j
-
-# 7. 同步数据
-bash scripts/sync-from-github.sh
-
-# 8. 启动服务器
-python -m rag.server
+pytest rag/tests -q
 ```
 
-### 方式三：Docker部署
+对 UI 或发布包的改动，至少运行：
 
 ```bash
-# 构建并启动所有服务
-docker-compose up -d
-
-# 访问 http://localhost:8001
+pytest rag/tests/test_release_package.py rag/tests/test_dashboard_readability.py rag/tests/test_dashboard_same_origin.py -q
+docker compose config
 ```
 
----
+## 贡献、安全与许可证
 
-## 📦 详细安装
+欢迎贡献。提交前请阅读[贡献指南](CONTRIBUTING.md)、[行为准则](CODE_OF_CONDUCT.md)与[安全说明](SECURITY.md)。
 
-### 前置条件
-
-| 依赖 | 版本 | 用途 |
-|------|------|------|
-| Python | 3.11+ | RAG引擎 |
-| Node.js | 18+ | 数据管道 |
-| Docker | 20+ | Neo4j数据库 |
-| pnpm | 8+ | 包管理器 |
-
-### 安装步骤
-
-#### 1. 安装Python
-
-```bash
-# macOS
-brew install python@3.11
-
-# Ubuntu/Debian
-sudo apt update
-sudo apt install python3.11 python3.11-venv
-
-# Windows
-# 从 https://www.python.org/downloads/ 下载安装
-```
-
-#### 2. 安装Node.js
-
-```bash
-# macOS
-brew install node@18
-
-# Ubuntu/Debian
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install nodejs
-
-# Windows
-# 从 https://nodejs.org/ 下载安装
-```
-
-#### 3. 安装Docker
-
-```bash
-# macOS
-brew install --cask docker
-
-# Ubuntu/Debian
-sudo apt install docker.io docker-compose
-
-# Windows
-# 从 https://www.docker.com/products/docker-desktop 下载安装
-```
-
-#### 4. 安装pnpm
-
-```bash
-npm install -g pnpm
-```
-
----
-
-## 📘 使用指南
-
-### 仪表盘
-
-1. 访问 http://localhost:8001
-2. 左侧边栏选择日期和报告
-3. 查看报告内容
-
-### Agent问答
-
-1. 点击右上角"AGENT"按钮
-2. 输入问题，如"最近有什么热门趋势？"
-3. 查看带引用的智能回答
-
-**示例问题**：
-- "最近有什么热门趋势？"
-- "推荐值得深挖的选题"
-- "Claude最近有什么动态？"
-- "RAG技术有什么发展？"
-
-### 系统状态
-
-1. 点击右上角"SYSTEM"按钮
-2. 查看系统状态信息
-3. 监控服务健康状态
-
-### Briefs制品
-
-1. 点击右上角"BRIEFS"按钮
-2. 查看Trend Brief制品列表
-3. 点击查看详细内容
-
----
-
-## 📚 API文档
-
-### 核心端点
-
-| 端点 | 方法 | 说明 | 认证 |
-|------|------|------|------|
-| `/` | GET | 仪表盘首页 | ❌ |
-| `/health` | GET | 健康检查 | ❌ |
-| `/dashboard/status` | GET | 系统状态 | ❌ |
-| `/briefs` | GET | Briefs列表 | ❌ |
-| `/chat` | POST | Agent聊天 | ❌ |
-| `/config` | POST | 配置管理 | ✅ |
-| `/ingest` | POST | 数据摄取 | ✅ |
-| `/metrics` | GET | 指标统计 | ❌ |
-| `/metrics/recent` | GET | 最近指标 | ❌ |
-| `/health/consistency` | GET | 数据一致性 | ❌ |
-
-### 请求示例
-
-#### Agent聊天
-
-```bash
-curl -X POST http://localhost:8001/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "最近有什么热门趋势？",
-    "history": [],
-    "context": {}
-  }'
-```
-
-#### 系统状态
-
-```bash
-curl http://localhost:8001/dashboard/status
-```
-
-#### Briefs列表
-
-```bash
-curl http://localhost:8001/briefs
-```
-
-### 响应格式
-
-#### Agent聊天响应
-
-```json
-{
-  "answer": "根据AI Trend Radar内部语料...",
-  "citations": [
-    {
-      "evidence_type": "internal",
-      "date": "2026-06-21",
-      "source": "InfoQ 中国",
-      "title": "OpenAI最新动态",
-      "citation_id": "2026-06-21/infoq-cn/1",
-      "excerpt": "..."
-    }
-  ],
-  "query_understanding": {
-    "intent": "recent_trend",
-    "topics": ["RAG"],
-    "needs_web_search": false
-  },
-  "tool_trace": {
-    "tools_used": ["search_corpus"],
-    "evidence_sources": ["internal"],
-    "total_calls": 1,
-    "summary": "使用了 search_corpus；基于内部语料；共 3 条引用"
-  }
-}
-```
-
----
-
-## 🏗️ 架构设计
-
-### 系统架构
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    用户界面层                              │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
-│  │   仪表盘    │  │   Agent     │  │   Briefs    │     │
-│  └─────────────┘  └─────────────┘  └─────────────┘     │
-└─────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                    API服务层                              │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
-│  │   FastAPI   │  │   /chat     │  │   /status   │     │
-│  └─────────────┘  └─────────────┘  └─────────────┘     │
-└─────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                    Agent层                               │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
-│  │   LangGraph │  │   6个工具   │  │   提示词    │     │
-│  └─────────────┘  └─────────────┘  └─────────────┘     │
-└─────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                    检索层                                │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
-│  │   向量检索  │  │   图检索    │  │   混合检索  │     │
-│  │  (ChromaDB) │  │  (Neo4j)    │  │   (RRF)     │     │
-│  └─────────────┘  └─────────────┘  └─────────────┘     │
-└─────────────────────────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                    数据层                                │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
-│  │   语料库    │  │   知识图谱  │  │   向量库    │     │
-│  │  (digests/) │  │  (Neo4j)    │  │  (ChromaDB) │     │
-│  └─────────────┘  └─────────────┘  └─────────────┘     │
-└─────────────────────────────────────────────────────────┘
-```
-
-### 数据流
-
-```
-AI-TREND-RADAR (GitHub)
-        │
-        ▼
-   数据同步脚本 (scripts/sync-from-github.sh)
-        │
-        ▼
-   digests/ 目录
-        │
-        ▼
-   数据摄取 (python -m rag.ingest)
-        │
-        ├────────────────┐
-        ▼                ▼
-   ChromaDB          Neo4j
-   (向量索引)        (图索引)
-        │                │
-        └────────┬───────┘
-                 ▼
-           混合检索器
-           (RRF融合)
-                 │
-                 ▼
-             Agent
-           (LangGraph)
-                 │
-                 ▼
-           API响应
-          (带引用)
-                 │
-                 ▼
-             用户界面
-```
-
----
-
-## 🚢 部署指南
-
-### 本地部署
-
-```bash
-# 1. 克隆仓库
-git clone https://github.com/Conradgui/AI-TREND-RADAR-RAG.git
-cd AI-TREND-RADAR-RAG
-
-# 2. 配置环境
-cp .env.example .env
-# 编辑 .env 添加API密钥
-
-# 3. 一键启动
-./start.command
-```
-
-### Docker部署
-
-```bash
-# 构建镜像
-docker-compose build
-
-# 启动服务
-docker-compose up -d
-
-# 查看日志
-docker-compose logs -f
-
-# 停止服务
-docker-compose down
-```
-
-### 生产环境部署
-
-#### 1. Nginx反向代理
-
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com;
-
-    location / {
-        proxy_pass http://localhost:8001;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
-
-#### 2. HTTPS配置
-
-```bash
-# 安装Certbot
-sudo apt install certbot python3-certbot-nginx
-
-# 获取证书
-sudo certbot --nginx -d your-domain.com
-```
-
-#### 3. systemd服务
-
-```ini
-[Unit]
-Description=AI Trend Radar RAG
-After=network.target
-
-[Service]
-Type=simple
-User=www-data
-WorkingDirectory=/path/to/AI-TREND-RADAR-RAG
-ExecStart=/path/to/AI-TREND-RADAR-RAG/.venv/bin/python -m rag.server
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
----
-
-## 🛠️ 开发指南
-
-### 本地开发环境
-
-```bash
-# 1. 克隆仓库
-git clone https://github.com/Conradgui/AI-TREND-RADAR-RAG.git
-cd AI-TREND-RADAR-RAG
-
-# 2. 安装依赖
-pip install -r rag/requirements.txt
-pnpm install
-
-# 3. 启动开发服务器
-python -m rag.server
-
-# 4. 运行测试
-pytest rag/tests/
-pnpm test
-```
-
-### 项目结构
-
-```
-AI-TREND-RADAR-RAG/
-├── rag/                          # Python RAG引擎
-│   ├── server.py                 # FastAPI服务器
-│   ├── config.py                 # 配置管理
-│   ├── chat_service.py           # 聊天服务
-│   ├── consistency.py            # 数据一致性校验
-│   ├── metrics.py                # 指标收集
-│   ├── agent/                    # Agent模块
-│   ├── retriever/                # 检索模块
-│   ├── graphrag/                 # 图谱模块
-│   └── tests/                    # 测试
-├── src/                          # TypeScript数据管道
-├── index.html                    # 仪表盘UI
-├── digests/                      # 报告数据
-├── docs/                         # 文档
-├── scripts/                      # 脚本
-│   └── sync-from-github.sh       # 数据同步脚本
-├── start.command                 # macOS启动脚本
-├── start.bat                     # Windows启动脚本
-└── docker-compose.yml            # Docker配置
-```
-
-### 常用命令
-
-```bash
-# 启动服务器
-python -m rag.server
-
-# 数据摄取
-python -m rag.ingest
-
-# 运行测试
-pytest rag/tests/
-
-# 同步数据
-bash scripts/sync-from-github.sh
-
-# 代码检查
-pnpm lint
-```
-
----
-
-## ❓ 故障排除
-
-### 常见问题
-
-#### 1. Neo4j连接失败
-
-**症状**：`Neo4j connection failed`
-
-**解决方案**：
-```bash
-# 检查Neo4j是否运行
-docker ps | grep neo4j
-
-# 启动Neo4j
-docker-compose up -d neo4j
-
-# 等待启动
-sleep 10
-```
-
-#### 2. API密钥错误
-
-**症状**：`API key not configured`
-
-**解决方案**：
-```bash
-# 检查.env文件
-cat .env
-
-# 确保密钥正确配置
-# LLM_PROVIDER=deepseek
-# DEEPSEEK_API_KEY=your_key_here
-```
-
-#### 3. 端口被占用
-
-**症状**：`Port already in use`
-
-**解决方案**：
-```bash
-# 查找占用端口的进程
-lsof -i :8001
-
-# 终止进程
-kill -9 <PID>
-```
-
-#### 4. 数据同步失败
-
-**症状**：`manifest.json not found`
-
-**解决方案**：
-```bash
-# 手动同步数据
-bash scripts/sync-from-github.sh
-
-# 或手动下载
-git clone --depth 1 https://github.com/Conradgui/AI-TREND-RADAR.git
-cp -r AI-TREND-RADAR/digests/* digests/
-```
-
----
-
-## 🗺️ 路线图
-
-### 已完成
-
-- [x] P0: 数据同步 + RAG基础
-- [x] P1: 检索质量 + Agent控制
-- [x] P2: Trend Brief工作流
-- [x] Stage 2.4: 本地产品流
-- [x] Stage 2.5: Agent能力闭合
-- [x] Stage 2.6: 证据选择质量
-- [x] Stage 2.7: 统一工作区
-
-### 进行中
-
-- [ ] 集成测试完善
-- [ ] 性能优化
-- [ ] 文档完善
-
-### 计划中
-
-- [ ] 用户反馈收集
-- [ ] 评估体系建立
-- [ ] 持续改进机制
-
----
-
-## 🤝 贡献指南
-
-### 如何贡献
-
-1. **Fork** 仓库
-2. **创建** 特性分支 (`git checkout -b feature/AmazingFeature`)
-3. **提交** 更改 (`git commit -m 'Add some AmazingFeature'`)
-4. **推送** 到分支 (`git push origin feature/AmazingFeature`)
-5. **创建** Pull Request
-
-### 贡献类型
-
-- 🐛 **Bug修复**：修复已知问题
-- ✨ **新功能**：添加新功能
-- 📝 **文档**：改进文档
-- 🧪 **测试**：添加测试
-- 🎨 **设计**：改进UI/UX
-
-### 代码规范
-
-- Python: PEP 8
-- TypeScript: ESLint
-- 提交信息: Conventional Commits
-
----
-
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
-
----
-
-## 🙏 致谢
-
-- [LangChain](https://github.com/langchain-ai/langchain) - LLM框架
-- [LangGraph](https://github.com/langchain-ai/langgraph) - Agent框架
-- [FastAPI](https://github.com/tiangolo/fastapi) - Web框架
-- [Neo4j](https://neo4j.com/) - 图数据库
-- [ChromaDB](https://www.trychroma.com/) - 向量数据库
-- [marked](https://github.com/markedjs/marked) - Markdown渲染
-- [DOMPurify](https://github.com/cure53/DOMPurify) - XSS防护
-
----
-
-## 📞 联系方式
-
-- **GitHub**: [Conradgui/AI-TREND-RADAR-RAG](https://github.com/Conradgui/AI-TREND-RADAR-RAG)
-- **Issues**: [GitHub Issues](https://github.com/Conradgui/AI-TREND-RADAR-RAG/issues)
-
----
-
-<div align="center">
-
-**[⬆ 回到顶部](#-ai-trend-radar-rag)**
-
-</div>
+本项目使用 [MIT License](LICENSE)。

@@ -1,6 +1,276 @@
 {
-  "generated": "2026-06-21T05:07:03.937Z",
+  "generated": "2026-08-05T03:20:50.526Z",
   "dates": [
+    {
+      "date": "2026-08-05",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-08-04",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-08-02",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-31",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-29",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-28",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-27",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-26",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-25",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-24",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-23",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-22",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-21",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-20",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-19",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-18",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-17",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-15",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-12",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-11",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-09",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-07",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-06",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-05",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-04",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-03",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-02",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-07-01",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-30",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-29",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-28",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-27",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-26",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-25",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-23",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
+    {
+      "date": "2026-06-22",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
     {
       "date": "2026-06-21",
       "reports": [
@@ -15,120 +285,6 @@
     },
     {
       "date": "2026-06-19",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-18",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-17",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-16",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-15",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-14",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-13",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-12",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-11",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-10",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-09",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-08",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-07",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-06",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-05",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-04",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-03",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-02",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-06-01",
-      "reports": [
-        "ai-topic-radar"
-      ]
-    },
-    {
-      "date": "2026-05-31",
       "reports": [
         "ai-topic-radar"
       ]
@@ -167,7 +323,8 @@
       "date": "2026-05-25",
       "reports": [
         "ai-topic-radar",
-        "ai-weekly"
+        "ai-weekly",
+        "ai-weekly-en"
       ]
     },
     {
@@ -197,7 +354,23 @@
     {
       "date": "2026-05-20",
       "reports": [
-        "ai-topic-radar"
+        "ai-agents",
+        "ai-agents-en",
+        "ai-arxiv",
+        "ai-arxiv-en",
+        "ai-cli",
+        "ai-cli-en",
+        "ai-community",
+        "ai-community-en",
+        "ai-hf",
+        "ai-hf-en",
+        "ai-hn",
+        "ai-hn-en",
+        "ai-topic-radar",
+        "ai-trending",
+        "ai-trending-en",
+        "ai-web",
+        "ai-web-en"
       ]
     }
   ]

@@ -1,9 +1,7 @@
-name: Weekly AI Topic Radar
+name: Legacy Weekly Producer (manual only)
 
 on:
-  schedule:
-    # 每周一 01:00 UTC = 09:00 CST，日报运行后1小时
-    - cron: "0 1 * * 1"
+  # Rollups belong to the upstream producer; retained only as a rollback path.
   workflow_dispatch:
 
 permissions:

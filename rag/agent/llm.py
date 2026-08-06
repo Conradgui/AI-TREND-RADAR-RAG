@@ -41,8 +41,8 @@ class DirectLLMAgent:
     def __init__(self, llm):
         self.llm = llm
 
-    async def ainvoke(self, payload: dict) -> dict:
-        response = await self.llm.ainvoke(payload.get("messages", []))
+    async def ainvoke(self, payload: dict, config=None) -> dict:
+        response = await self.llm.ainvoke(payload.get("messages", []), config=config)
         return {"messages": [response]}
 
 

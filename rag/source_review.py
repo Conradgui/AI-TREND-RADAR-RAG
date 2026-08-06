@@ -85,7 +85,14 @@ def format_source_review_for_prompt(review: dict) -> str:
 
 def _source_role(citation: dict, citation_index: int) -> dict:
     quality = citation.get("source_quality", "generic")
-    if quality in PRIMARY_QUALITIES:
+    admitted_role = citation.get("source_role", "")
+    if admitted_role in {"primary_claim_source", "independent_corroboration"}:
+        role = "primary_evidence"
+    elif admitted_role == "supporting_context":
+        role = "supporting_context"
+    elif admitted_role in {"discovery_only", "rejected"}:
+        role = "weak_context"
+    elif quality in PRIMARY_QUALITIES:
         role = "primary_evidence"
     elif quality in SUPPORTING_QUALITIES:
         role = "supporting_context"

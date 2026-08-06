@@ -1,6 +1,7 @@
 """Tests for ingestion pipeline — chunk_text and topic pool normalization."""
 
 import unittest
+from unittest.mock import patch
 
 from rag.ingest import (
     build_report_chunk_metadata,
@@ -9,8 +10,25 @@ from rag.ingest import (
     infer_source_family,
     ingest_vector_chunks_for_date,
     ingest_all_vector_chunks,
+    select_ingestion_dates,
     normalize_topic_pool,
 )
+
+
+class IngestionDateSelectionTests(unittest.TestCase):
+    @patch("rag.ingest._find_digest_dates", return_value=["2026-08-03", "2026-08-04", "2026-08-05"])
+    def test_selects_only_requested_existing_dates_without_reordering_the_callers_priority(self, _find_dates):
+        self.assertEqual(
+            select_ingestion_dates(["2026-08-05", "2026-08-04", "2026-08-05"]),
+            ["2026-08-05", "2026-08-04"],
+        )
+
+    @patch("rag.ingest._find_digest_dates", return_value=["2026-08-05"])
+    def test_rejects_missing_or_malformed_dates(self, _find_dates):
+        with self.assertRaisesRegex(ValueError, "Invalid digest date"):
+            select_ingestion_dates(["latest"])
+        with self.assertRaisesRegex(ValueError, "not found locally"):
+            select_ingestion_dates(["2026-08-04"])
 
 
 class ChunkTextTests(unittest.TestCase):

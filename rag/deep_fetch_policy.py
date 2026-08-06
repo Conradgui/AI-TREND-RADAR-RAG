@@ -17,7 +17,11 @@ def choose_deep_fetch_targets(citations: list[dict], max_urls: int = DEFAULT_MAX
     candidates = [
         (index, citation)
         for index, citation in enumerate(citations)
-        if citation.get("evidence_type") == "external" and citation.get("url")
+        if (
+            citation.get("evidence_type") == "external"
+            and citation.get("url")
+            and _requires_deep_fetch(citation)
+        )
     ]
     ranked = sorted(candidates, key=lambda item: (_priority(item[1]), item[0]))
     return [
@@ -176,3 +180,19 @@ def _priority(citation: dict) -> int:
     if citation.get("needs_deep_fetch") or source_quality in WEAK_QUALITIES:
         return 1
     return 2
+
+
+def _requires_deep_fetch(citation: dict) -> bool:
+    """Fetch only when the search snippet cannot support the requested claim."""
+    if citation.get("needs_deep_fetch") or citation.get("evidence_demand"):
+        return True
+    excerpt = str(citation.get("excerpt") or "").strip()
+    source_role = citation.get("source_role")
+    provenance_verified = citation.get("provenance_status") in {
+        "verified",
+        "confirmed_same_origin",
+        "likely_same_origin",
+        "independent",
+    } or source_role == "primary_claim_source"
+    date_verified = citation.get("date_status") in {"verified", "not_required"}
+    return len(excerpt) < 160 or not provenance_verified or not date_verified

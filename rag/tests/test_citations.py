@@ -1,9 +1,15 @@
 """Tests for citation extraction from retrieval metadata."""
 
+import asyncio
 import unittest
 from dataclasses import dataclass, field
 
-from rag.citations import build_citations, evidence_insufficient_answer, retrieve_citations
+from rag.citations import (
+    build_citations,
+    evidence_insufficient_answer,
+    retrieve_citations,
+    retrieve_citations_with_status,
+)
 
 
 @dataclass
@@ -125,6 +131,43 @@ class CitationTests(unittest.TestCase):
 
 
 class RetrieveCitationTests(unittest.IsolatedAsyncioTestCase):
+    async def test_structured_retrieval_distinguishes_ready_empty_error_and_timeout(self):
+        class ReadyRetriever:
+            async def search(self, query, k=5, where=None):
+                return [FakeChunk(
+                    text="Evidence",
+                    metadata={
+                        "date": "2026-08-06",
+                        "source": "OpenAI",
+                        "title": "Release",
+                        "citation_id": "release-1",
+                    },
+                )]
+
+        class EmptyRetriever:
+            async def search(self, query, k=5, where=None):
+                return []
+
+        class FailingRetriever:
+            async def search(self, query, k=5, where=None):
+                raise RuntimeError("retriever down")
+
+        class TimeoutRetriever:
+            async def search(self, query, k=5, where=None):
+                raise asyncio.TimeoutError
+
+        ready = await retrieve_citations_with_status(ReadyRetriever(), "OpenAI")
+        empty = await retrieve_citations_with_status(EmptyRetriever(), "OpenAI")
+        error = await retrieve_citations_with_status(FailingRetriever(), "OpenAI")
+        timeout = await retrieve_citations_with_status(TimeoutRetriever(), "OpenAI")
+
+        self.assertEqual(ready.status, "ready")
+        self.assertEqual(len(ready.citations), 1)
+        self.assertEqual(empty.status, "empty")
+        self.assertEqual(error.status, "error")
+        self.assertEqual(error.error_code, "RuntimeError")
+        self.assertEqual(timeout.status, "timeout")
+
     async def test_retrieve_citations_uses_retriever_results(self):
         class FakeRetriever:
             async def search(self, query, k=5, where=None):
@@ -159,6 +202,44 @@ class RetrieveCitationTests(unittest.IsolatedAsyncioTestCase):
                 raise RuntimeError("retriever down")
 
         self.assertEqual(await retrieve_citations(FailingRetriever(), "RAG"), [])
+
+    async def test_recent_retrieval_expands_candidates_and_prioritizes_fresh_evidence(self):
+        class FakeRetriever:
+            async def search(self, query, k=5, where=None):
+                self.k = k
+                return [
+                    FakeChunk(
+                        text="Older but top-ranked evidence",
+                        metadata={
+                            "date": "2026-07-23",
+                            "source": "Source A",
+                            "title": "Older trend",
+                            "citation_id": "2026-07-23/topic-pool/0",
+                        },
+                    ),
+                    FakeChunk(
+                        text="Fresh evidence from the latest corpus date",
+                        metadata={
+                            "date": "2026-08-05",
+                            "source": "Source B",
+                            "title": "Fresh trend",
+                            "citation_id": "2026-08-05/topic-pool/0",
+                        },
+                    ),
+                ]
+
+        retriever = FakeRetriever()
+        citations = await retrieve_citations(
+            retriever,
+            "最近有什么热门趋势？",
+            k=10,
+            prefer_recent=True,
+            latest_date="2026-08-05",
+        )
+
+        self.assertEqual(retriever.k, 30)
+        self.assertEqual(citations[0]["date"], "2026-08-05")
+        self.assertEqual(citations[0]["title"], "Fresh trend")
 
 
 if __name__ == "__main__":

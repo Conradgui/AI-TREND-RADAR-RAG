@@ -24,17 +24,22 @@ class RetrievalPlanningTests(unittest.TestCase):
         self.assertEqual(
             where,
             {
-                "date": {
-                    "$in": [
-                        "2026-06-15",
-                        "2026-06-16",
-                        "2026-06-17",
-                        "2026-06-18",
-                        "2026-06-19",
-                        "2026-06-20",
-                        "2026-06-21",
-                    ]
-                }
+                "$and": [
+                    {"content_type": "topic_candidate"},
+                    {
+                        "date": {
+                            "$in": [
+                                "2026-06-15",
+                                "2026-06-16",
+                                "2026-06-17",
+                                "2026-06-18",
+                                "2026-06-19",
+                                "2026-06-20",
+                                "2026-06-21",
+                            ]
+                        }
+                    },
+                ]
             },
         )
 
@@ -45,6 +50,14 @@ class RetrievalPlanningTests(unittest.TestCase):
 
         self.assertEqual(where["date"]["$in"][0], "2026-06-08")
         self.assertEqual(where["date"]["$in"][-1], "2026-06-21")
+
+    def test_generic_recent_trends_use_structured_topic_candidates(self):
+        plan = analyze_query("最近有什么热门趋势？")
+
+        where = build_metadata_filter(plan, latest_corpus_date="2026-08-05")
+
+        self.assertEqual(where["$and"][0], {"content_type": "topic_candidate"})
+        self.assertEqual(where["$and"][1]["date"]["$in"][-1], "2026-08-05")
 
     def test_github_weekly_question_combines_source_and_date_filters(self):
         plan = analyze_query("过去一周 GitHub 热榜上有什么值得关注的选题？")
@@ -93,10 +106,13 @@ class RetrievalPlanningTests(unittest.TestCase):
 
         self.assertIsNone(build_metadata_filter(plan, latest_corpus_date="2026-06-21"))
 
-    def test_no_date_filter_without_latest_corpus_date(self):
+    def test_generic_discovery_keeps_structured_filter_without_latest_date(self):
         plan = analyze_query("过去一周有什么值得关注的选题？")
 
-        self.assertIsNone(build_metadata_filter(plan, latest_corpus_date=None))
+        self.assertEqual(
+            build_metadata_filter(plan, latest_corpus_date=None),
+            {"content_type": "topic_candidate"},
+        )
 
     def test_load_latest_corpus_date_reads_first_manifest_date(self):
         with tempfile.TemporaryDirectory() as tmp:

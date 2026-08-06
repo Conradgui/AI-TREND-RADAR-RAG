@@ -7,6 +7,8 @@ import re
 
 from langchain_core.tools import tool
 
+from rag.citations import build_citations
+from rag.evidence_ledger import admit_active_evidence
 from rag.graphrag.driver import Neo4jDriver
 from rag.retriever.hybrid import HybridRetriever
 
@@ -28,9 +30,12 @@ def _escape_lucene(query: str) -> str:
 # "no results" (empty) from "system error" (error)
 # ---------------------------------------------------------------------------
 
-def _ok(result: str) -> str:
+def _ok(result: str, evidence: list[dict] | None = None) -> str:
     """Successful tool call with data."""
-    return json.dumps({"status": "success", "result": result}, ensure_ascii=False)
+    payload = {"status": "success", "result": result}
+    if evidence:
+        payload["evidence"] = evidence
+    return json.dumps(payload, ensure_ascii=False)
 
 
 def _empty(message: str) -> str:
@@ -54,7 +59,7 @@ def _error(message: str, error_type: str = "") -> str:
 _SEARCH_TEXT_LIMIT = 500  # 文本摘要截断上限（字符数）
 
 
-def _format_search_result(index: int, result) -> str:
+def _format_search_result(index: int, result, evidence_id: str = "") -> str:
     """格式化单条搜索结果，优先使用结构化元数据，附带文本摘要。
 
     A-4 修复：不再硬截断 200 字符，而是：
@@ -68,6 +73,8 @@ def _format_search_result(index: int, result) -> str:
 
     # 结构化头部：利用元数据字段构建信息密度更高的摘要
     header_parts = [f"[{date}/{source}]"]
+    if evidence_id:
+        header_parts.append(f"[{evidence_id}]")
     if meta.get("title"):
         header_parts.append(f"**{meta['title']}**")
     if meta.get("category"):
@@ -119,9 +126,22 @@ def create_tools(neo4j_driver: Neo4jDriver, hybrid_retriever: HybridRetriever) -
                     f"没有找到与 '{query}' 相关的内容。\n"
                     "建议：换一个关键词，或使用 topic_trend / recommend 工具。"
                 )
-            # A-4 修复：使用结构化格式化替代硬截断 200 字符
-            lines = [_format_search_result(i, r) for i, r in enumerate(results, 1)]
-            return _ok("搜索结果：\n" + "\n".join(lines))
+            # search 是初版唯一的证据工具：把原始检索元数据写入请求级账本，
+            # 并把账本编号回显给 Agent，供最终答案使用 [E#] 标记。
+            evidence = admit_active_evidence(build_citations(results, max_citations=len(results)))
+            evidence_by_citation_id = {
+                str(item.get("citation_id", "")): item.get("evidence_id", "")
+                for item in evidence
+            }
+            lines = [
+                _format_search_result(
+                    i,
+                    result,
+                    evidence_by_citation_id.get(str(result.metadata.get("citation_id", "")), ""),
+                )
+                for i, result in enumerate(results, 1)
+            ]
+            return _ok("搜索结果：\n" + "\n".join(lines), evidence=evidence)
         except Exception as e:
             return _error(f"搜索失败: {e}", type(e).__name__)
 
