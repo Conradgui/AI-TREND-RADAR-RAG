@@ -12,7 +12,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Awaitable, Callable
 
-from rag.sync_corpus import DEFAULT_BASE_URL, PROJECT_ROOT, SyncResult, sync_corpus
+from rag.sync_corpus import (
+    DEFAULT_BASE_URL,
+    PROJECT_ROOT,
+    SyncResult,
+    build_local_date_fingerprints,
+    sync_corpus,
+)
 
 
 DEFAULT_STATE_PATH = PROJECT_ROOT / "rag" / "data" / "corpus-update-state.json"
@@ -22,7 +28,11 @@ DEFAULT_STATE_PATH = PROJECT_ROOT / "rag" / "data" / "corpus-update-state.json"
 class UpdateResult:
     status: str
     checked_at: str
+    # Compatibility note: this is deliberately the time of a successful
+    # *upstream* synchronization.  It must not be overwritten just because
+    # the bundled local corpus was indexed while the upstream was unavailable.
     last_success_at: str
+    local_indexed_at: str
     upstream_latest_date: str
     local_latest_date: str
     changed_dates: list[str] = field(default_factory=list)
@@ -51,6 +61,7 @@ def summarize_update_state(state: dict) -> dict:
         "status": state.get("status", ""),
         "checked_at": state.get("checked_at", ""),
         "last_success_at": state.get("last_success_at", ""),
+        "local_indexed_at": state.get("local_indexed_at", ""),
         "upstream_latest_date": state.get("upstream_latest_date", ""),
         "local_latest_date": state.get("local_latest_date", ""),
         "changed_date_count": len(state.get("changed_dates", [])),
@@ -96,18 +107,141 @@ async def update_corpus(
     if not isinstance(previous_fingerprints, dict):
         previous_fingerprints = {}
 
-    if not dry_run:
+    indexed_fingerprints = dict(previous_fingerprints)
+    checkpointed_dates: list[str] = []
+    previous_local_indexed_at = str(previous.get("local_indexed_at", ""))
+    local_fingerprints = build_local_date_fingerprints(output_root)
+    bootstrap_dates = sorted(
+        (
+            date
+            for date, fingerprint in local_fingerprints.items()
+            if indexed_fingerprints.get(date) != fingerprint
+        ),
+        reverse=True,
+    )
+
+    def checkpoint(
+        date: str,
+        fingerprints: dict[str, str],
+        status: str,
+        changed_dates: list[str],
+        upstream_latest_date: str = "",
+        local_latest_date: str = "",
+    ) -> None:
+        """Persist each successful date so an interrupted first run can resume."""
+        if date not in checkpointed_dates:
+            checkpointed_dates.append(date)
+        fingerprint = fingerprints.get(date)
+        if fingerprint:
+            indexed_fingerprints[date] = fingerprint
         _write_update_state(
             UpdateResult(
-                status="syncing",
+                status=status,
                 checked_at=checked_at,
                 last_success_at=str(previous.get("last_success_at", "")),
-                upstream_latest_date=str(previous.get("upstream_latest_date", "")),
-                local_latest_date=str(previous.get("local_latest_date", "")),
-                indexed_fingerprints=previous_fingerprints,
+                local_indexed_at=checked_at,
+                upstream_latest_date=upstream_latest_date,
+                local_latest_date=local_latest_date,
+                changed_dates=changed_dates,
+                ingested_dates=checkpointed_dates,
+                indexed_fingerprints=indexed_fingerprints,
             ),
             state_path,
         )
+
+    async def ingest_dates(
+        dates: list[str],
+        fingerprints: dict[str, str],
+        status: str,
+        upstream_latest_date: str = "",
+        local_latest_date: str = "",
+    ) -> tuple[bool, dict, str]:
+        """Ingest one ordered batch and keep its checkpoint independent of sync."""
+        if not dates:
+            return True, {}, ""
+        if ingester is None:
+            from rag.ingest import run_ingestion
+
+            try:
+                _, consistency = await run_ingestion(
+                    dates,
+                    on_date_ingested=lambda date: checkpoint(
+                        date,
+                        fingerprints,
+                        status,
+                        dates,
+                        upstream_latest_date,
+                        local_latest_date,
+                    ),
+                )
+            except Exception as exc:
+                return False, {}, str(exc)
+        else:
+            try:
+                _, consistency = await ingester(dates)
+                for date in dates:
+                    checkpoint(
+                        date,
+                        fingerprints,
+                        status,
+                        dates,
+                        upstream_latest_date,
+                        local_latest_date,
+                    )
+            except Exception as exc:
+                return False, {}, str(exc)
+
+        if consistency and not consistency.get("is_consistent", False):
+            return False, consistency, "Neo4j and ChromaDB date coverage is inconsistent"
+        return True, consistency, ""
+
+    if dry_run:
+        # Keep dry runs side-effect free; they are for remote sync planning,
+        # not for bootstrapping the local database.
+        bootstrap_dates = []
+
+    if not dry_run:
+        _write_update_state(
+            UpdateResult(
+                status="bootstrapping" if bootstrap_dates else "syncing",
+                checked_at=checked_at,
+                last_success_at=str(previous.get("last_success_at", "")),
+                local_indexed_at=previous_local_indexed_at,
+                upstream_latest_date=str(previous.get("upstream_latest_date", "")),
+                local_latest_date=str(previous.get("local_latest_date", "")),
+                changed_dates=bootstrap_dates,
+                indexed_fingerprints=indexed_fingerprints,
+            ),
+            state_path,
+        )
+
+    if bootstrap_dates:
+        # A fresh clone already contains public, auditable reports. Index them
+        # before touching the network so an upstream outage cannot leave a new
+        # user with an empty Agent.
+        if not dry_run:
+            bootstrap_ok, bootstrap_consistency, bootstrap_error = await ingest_dates(
+                bootstrap_dates,
+                local_fingerprints,
+                "bootstrapping",
+                local_latest_date=max(local_fingerprints, default=""),
+            )
+            if not bootstrap_ok:
+                result = UpdateResult(
+                    status="failed",
+                    checked_at=checked_at,
+                    last_success_at=str(previous.get("last_success_at", "")),
+                    local_indexed_at=checked_at if checkpointed_dates else previous_local_indexed_at,
+                    upstream_latest_date=str(previous.get("upstream_latest_date", "")),
+                    local_latest_date=max(local_fingerprints, default=""),
+                    changed_dates=bootstrap_dates,
+                    ingested_dates=checkpointed_dates,
+                    indexed_fingerprints=indexed_fingerprints,
+                    consistency=bootstrap_consistency,
+                    error=f"Local corpus bootstrap failed: {bootstrap_error}",
+                )
+                _write_update_state(result, state_path)
+                return result
 
     try:
         sync_result = syncer(
@@ -120,13 +254,20 @@ async def update_corpus(
         sync_result = SyncResult(downloaded=0, failed=[str(exc)])
 
     if sync_result.failed:
+        # A previously indexed corpus is still useful even when this check for
+        # fresh upstream reports fails.  The UI must distinguish that degraded
+        # freshness from an actually unusable first start.
+        local_corpus_available = bool(indexed_fingerprints)
         result = UpdateResult(
-            status="failed",
+            status="degraded" if local_corpus_available else "failed",
             checked_at=checked_at,
             last_success_at=str(previous.get("last_success_at", "")),
+            local_indexed_at=checked_at if checkpointed_dates else previous_local_indexed_at,
             upstream_latest_date=sync_result.upstream_latest_date,
-            local_latest_date=sync_result.local_latest_date,
-            indexed_fingerprints=previous_fingerprints,
+            local_latest_date=sync_result.local_latest_date or max(local_fingerprints, default=""),
+            changed_dates=bootstrap_dates,
+            ingested_dates=checkpointed_dates,
+            indexed_fingerprints=indexed_fingerprints,
             error="; ".join(sync_result.failed),
             dry_run=dry_run,
         )
@@ -141,7 +282,7 @@ async def update_corpus(
     dates_to_ingest = set(sync_result.changed_dates)
     for date in candidate_dates:
         fingerprint = candidate_fingerprints.get(date)
-        if fingerprint and previous_fingerprints.get(date) != fingerprint:
+        if fingerprint and indexed_fingerprints.get(date) != fingerprint:
             dates_to_ingest.add(date)
     # On a fresh install, make the most recent reports queryable first. The
     # full corpus is still indexed, but current-trend questions do not wait
@@ -153,6 +294,7 @@ async def update_corpus(
             status="dry_run",
             checked_at=checked_at,
             last_success_at=str(previous.get("last_success_at", "")),
+            local_indexed_at=previous_local_indexed_at,
             upstream_latest_date=sync_result.upstream_latest_date,
             local_latest_date=sync_result.local_latest_date,
             changed_dates=dates_to_ingest,
@@ -160,82 +302,33 @@ async def update_corpus(
             dry_run=True,
         )
 
-    indexed_fingerprints = dict(previous_fingerprints)
-    checkpointed_dates: list[str] = []
-
-    def checkpoint(date: str) -> None:
-        """Persist each successful date so an interrupted first run can resume."""
-        if date not in checkpointed_dates:
-            checkpointed_dates.append(date)
-        fingerprint = candidate_fingerprints.get(date)
-        if fingerprint:
-            indexed_fingerprints[date] = fingerprint
-        _write_update_state(
-            UpdateResult(
-                status="syncing",
-                checked_at=checked_at,
-                last_success_at=str(previous.get("last_success_at", "")),
-                upstream_latest_date=sync_result.upstream_latest_date,
-                local_latest_date=sync_result.local_latest_date,
-                changed_dates=dates_to_ingest,
-                ingested_dates=checkpointed_dates,
-                indexed_fingerprints=indexed_fingerprints,
-            ),
-            state_path,
-        )
-
     if not dates_to_ingest:
         result = UpdateResult(
             status="unchanged",
             checked_at=checked_at,
             last_success_at=checked_at,
+            local_indexed_at=previous_local_indexed_at,
             upstream_latest_date=sync_result.upstream_latest_date,
             local_latest_date=sync_result.local_latest_date,
-            indexed_fingerprints=previous_fingerprints,
+            indexed_fingerprints=indexed_fingerprints,
         )
         _write_update_state(result, state_path)
         return result
 
-    if ingester is None:
-        from rag.ingest import run_ingestion
-
-        try:
-            _, consistency = await run_ingestion(
-                dates_to_ingest,
-                on_date_ingested=checkpoint,
-            )
-        except Exception as exc:
-            consistency = {}
-            status = "failed"
-            error = str(exc)
-        else:
-            consistent = not consistency or consistency.get("is_consistent", False)
-            status = "updated" if consistent else "failed"
-            error = "" if consistent else "Neo4j and ChromaDB date coverage is inconsistent"
-    else:
-        try:
-            _, consistency = await ingester(dates_to_ingest)
-            for date in dates_to_ingest:
-                checkpoint(date)
-        except Exception as exc:
-            consistency = {}
-            status = "failed"
-            error = str(exc)
-        else:
-            consistent = not consistency or consistency.get("is_consistent", False)
-            status = "updated" if consistent else "failed"
-            error = "" if consistent else "Neo4j and ChromaDB date coverage is inconsistent"
-
-    if status == "updated":
-        for date in dates_to_ingest:
-            fingerprint = candidate_fingerprints.get(date)
-            if fingerprint:
-                indexed_fingerprints[date] = fingerprint
+    update_ok, consistency, error = await ingest_dates(
+        dates_to_ingest,
+        candidate_fingerprints,
+        "syncing",
+        sync_result.upstream_latest_date,
+        sync_result.local_latest_date,
+    )
+    status = "updated" if update_ok else "failed"
 
     result = UpdateResult(
         status=status,
         checked_at=checked_at,
         last_success_at=checked_at if status == "updated" else str(previous.get("last_success_at", "")),
+        local_indexed_at=checked_at if status == "updated" else previous_local_indexed_at,
         upstream_latest_date=sync_result.upstream_latest_date,
         local_latest_date=sync_result.local_latest_date,
         changed_dates=dates_to_ingest,

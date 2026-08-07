@@ -40,6 +40,8 @@ def test_dashboard_explains_corpus_freshness_without_hiding_sync_failure():
     assert 'id="systemCorpusSync"' in source
     assert 'id="systemCorpusSyncTime"' in source
     assert "更新失败（使用旧数据）" in source
+    assert "正在建立本地索引" in source
+    assert "上游同步失败（本地语料可用）" in source
 
 
 def test_dashboard_revalidates_dynamic_corpus_files_instead_of_using_stale_cache():

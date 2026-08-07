@@ -866,8 +866,12 @@
           <span class="system-item-value" id="systemCorpusSync">-</span>
         </div>
         <div class="system-item">
-          <span class="system-item-label">上次成功同步</span>
+          <span class="system-item-label">上游最近成功同步</span>
           <span class="system-item-value" id="systemCorpusSyncTime">-</span>
+        </div>
+        <div class="system-item">
+          <span class="system-item-label">本地索引完成</span>
+          <span class="system-item-value" id="systemCorpusIndexedTime">-</span>
         </div>
         <div class="system-item">
           <span class="system-item-label">搜索Provider</span>
@@ -1713,12 +1717,20 @@ async function loadSystemStatus() {
 
     const corpusUpdate = systemData.corpus_update || {};
     const corpusStatusLabels = {
-      updated: '已更新', unchanged: '已是最新', failed: '更新失败（使用旧数据）', dry_run: '仅检查'
+      bootstrapping: '正在建立本地索引',
+      updated: '已更新',
+      unchanged: '已是最新',
+      degraded: '上游同步失败（本地语料可用）',
+      failed: '更新失败（使用旧数据）',
+      dry_run: '仅检查'
     };
     document.getElementById('systemCorpusSync').textContent =
       corpusStatusLabels[corpusUpdate.status] || '尚未检查';
     document.getElementById('systemCorpusSyncTime').textContent = corpusUpdate.last_success_at
       ? new Date(corpusUpdate.last_success_at).toLocaleString('zh-CN', { hour12: false })
+      : '暂无记录';
+    document.getElementById('systemCorpusIndexedTime').textContent = corpusUpdate.local_indexed_at
+      ? new Date(corpusUpdate.local_indexed_at).toLocaleString('zh-CN', { hour12: false })
       : '暂无记录';
 
     document.getElementById('systemSearch').textContent =
