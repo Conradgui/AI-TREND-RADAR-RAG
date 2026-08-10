@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-05T03:20:50.760Z",
+  "generated": "2026-08-10T03:12:32.337Z",
   "topics": [
     {
       "date": "2026-07-22",
@@ -98,6 +98,27 @@
       "score": 100,
       "category": "标杆企业动向、商业格局与投融资",
       "source": "Anthropic (Claude)"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Improving Gpt 5 6 Sol In Chatgpt",
+      "score": 98,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "OpenAI"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "How The World Is Putting Chatgpt To Work",
+      "score": 98,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "OpenAI"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Openai And Apa Partner To Advance Responsible Ai",
+      "score": 98,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "OpenAI"
     },
     {
       "date": "2026-08-05",
@@ -1318,6 +1339,13 @@
       "source": "Google DeepMind"
     },
     {
+      "date": "2026-08-07",
+      "title": "Improving Fable 5 Safeguards",
+      "score": 93,
+      "category": "模型与技术突破",
+      "source": "Anthropic (Claude)"
+    },
+    {
       "date": "2026-08-05",
       "title": "Tino Cuellar joins Anthropic as Chief Global Affairs Officer",
       "score": 93,
@@ -1927,6 +1955,20 @@
       "source": "OpenAI"
     },
     {
+      "date": "2026-08-08",
+      "title": "A moral Turing test: How belief and source shape detection of and agreement with LLM judgments — Google DeepMind",
+      "score": 89,
+      "category": "模型与技术突破",
+      "source": "Google DeepMind"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "AI model achieves breakthrough in forecasting cyclones — Google DeepMind",
+      "score": 89,
+      "category": "模型与技术突破",
+      "source": "Google DeepMind"
+    },
+    {
       "date": "2026-08-01",
       "title": "Gemini Robotics 2 brings whole body intelligence to robots — Google DeepMind",
       "score": 89,
@@ -2121,6 +2163,13 @@
       "score": 89,
       "category": "标杆企业动向、商业格局与投融资",
       "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Muse Code",
+      "score": 88,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Product Hunt"
     },
     {
       "date": "2026-08-05",
@@ -2319,6 +2368,13 @@
       "source": "Hacker News"
     },
     {
+      "date": "2026-08-09",
+      "title": "Timeline of the OpenAI accidental attack against Hugging Face",
+      "score": 86,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
       "date": "2026-06-18",
       "title": "Leaked financial docs show OpenAI is losing billions of dollars a year",
       "score": 86,
@@ -2450,6 +2506,97 @@
       "score": 81,
       "category": "模型与技术突破",
       "source": "Anthropic (Claude)"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "The GTM Co-Founder",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Coldtea.ai",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Soloop",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Nitro 4.0",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Rindler",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Cloudflare OS",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Superlog Responder",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Wispr Flow Notetaker",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "AdAnt AI",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Cloudflare Wallets",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Hey Noah",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Driven",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Atlaso",
+      "score": 80,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
     },
     {
       "date": "2026-08-05",
@@ -4118,6 +4265,20 @@
       "source": "GitHub Search:llm"
     },
     {
+      "date": "2026-08-10",
+      "title": "How I use LLMs to learn complex topics",
+      "score": 79,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "AI Spend Console by Rippling",
+      "score": 79,
+      "category": "企业落地与行业应用",
+      "source": "Product Hunt"
+    },
+    {
       "date": "2026-08-04",
       "title": "LLMs reward expertise",
       "score": 79,
@@ -4657,6 +4818,13 @@
       "source": "Anthropic (Claude)"
     },
     {
+      "date": "2026-08-07",
+      "title": "Almost no skill required to cook a steak",
+      "score": 77,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
       "date": "2026-07-25",
       "title": "Wispro",
       "score": 77,
@@ -4774,6 +4942,13 @@
       "score": 77,
       "category": "政策监管、社会影响与 AI 安全",
       "source": "Anthropic (Claude)"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Annotate",
+      "score": 76,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
     },
     {
       "date": "2026-08-04",
@@ -5166,6 +5341,48 @@
       "score": 75,
       "category": "AI 产品与用户入口",
       "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "open-webui/open-webui",
+      "score": 74,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "open-webui/open-webui",
+      "score": 74,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "open-webui/open-webui",
+      "score": 74,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "open-webui/open-webui",
+      "score": 74,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "microsoft/ML-For-Beginners",
+      "score": 74,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:ml"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "I’m leaving OpenAI to build telepathy",
+      "score": 74,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
     },
     {
       "date": "2026-08-05",
@@ -7345,6 +7562,20 @@
       "source": "GitHub Search:rag"
     },
     {
+      "date": "2026-08-10",
+      "title": "Hexis",
+      "score": 73,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Kiro Crew",
+      "score": 73,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
       "date": "2026-08-03",
       "title": "TerminalWidget",
       "score": 73,
@@ -7777,6 +8008,34 @@
       "score": 73,
       "category": "模型与技术突破",
       "source": "Anthropic (Claude)"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "70% of AI revenue comes from OpenAI and Anthropic [video]",
+      "score": 72,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "ngrok AI Gateway",
+      "score": 72,
+      "category": "模型与技术突破",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "npm i -g hotcell",
+      "score": 72,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Vibe Buddy",
+      "score": 72,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
     },
     {
       "date": "2026-08-05",
@@ -9977,6 +10236,48 @@
       "source": "GitHub Search:ai-agent"
     },
     {
+      "date": "2026-08-10",
+      "title": "langchain4j/langchain4j",
+      "score": 71,
+      "category": "企业落地与行业应用",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Progress AI Observability",
+      "score": 71,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "langchain4j/langchain4j",
+      "score": 71,
+      "category": "企业落地与行业应用",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "langchain4j/langchain4j",
+      "score": 71,
+      "category": "企业落地与行业应用",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Show HN: I spent 2 years designing a mechanical Magic Keyboard",
+      "score": 71,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "langchain4j/langchain4j",
+      "score": 71,
+      "category": "企业落地与行业应用",
+      "source": "GitHub Search:vector-db"
+    },
+    {
       "date": "2026-08-03",
       "title": "AgentMicro",
       "score": 71,
@@ -10570,6 +10871,27 @@
       "score": 71,
       "category": "模型与技术突破",
       "source": "GitHub Search:llm-model"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Basedash Subscriptions",
+      "score": 70,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "open-webui/open-webui",
+      "score": 70,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "microsoft/ML-For-Beginners",
+      "score": 70,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "GitHub Search:ml"
     },
     {
       "date": "2026-08-05",
@@ -11468,6 +11790,34 @@
       "source": "GitHub Search:rag"
     },
     {
+      "date": "2026-08-10",
+      "title": "Toolport",
+      "score": 69,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "CopilotKit Channels SDK",
+      "score": 69,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Keystroke",
+      "score": 69,
+      "category": "企业落地与行业应用",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "microsoft/Mage-VL",
+      "score": 69,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
       "date": "2026-08-05",
       "title": "Snapdown",
       "score": 69,
@@ -12089,6 +12439,370 @@
       "score": 69,
       "category": "AI 产品与用户入口",
       "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "ZhuLinsen/daily_stock_analysis",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Significant-Gravitas/AutoGPT",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Graphify-Labs/graphify",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "thedotmack/claude-mem",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "infiniflow/ragflow",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "headroomlabs-ai/headroom",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "santifer/career-ops",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "CherryHQ/cherry-studio",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "ultralytics/ultralytics",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ml"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "BrowserOS neo",
+      "score": 68,
+      "category": "政策监管、社会影响与 AI 安全",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Crew",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Significant-Gravitas/AutoGPT",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Graphify-Labs/graphify",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "thedotmack/claude-mem",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "infiniflow/ragflow",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "headroomlabs-ai/headroom",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "santifer/career-ops",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "ultralytics/ultralytics",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ml"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Significant-Gravitas/AutoGPT",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "ultralytics/ultralytics",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ml"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Graphify-Labs/graphify",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "DietrichGebert/ponytail",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "JuliusBrussee/caveman",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Mintplex-Labs/anything-llm",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "thedotmack/claude-mem",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "infiniflow/ragflow",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "headroomlabs-ai/headroom",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "santifer/career-ops",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "ZhuLinsen/daily_stock_analysis",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "BackEngine MCP",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Significant-Gravitas/AutoGPT",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Graphify-Labs/graphify",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "ultralytics/ultralytics",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ml"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "infiniflow/ragflow",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "headroomlabs-ai/headroom",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Mintplex-Labs/anything-llm",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Panniantong/Agent-Reach",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Microsoft filings suggest \"around 70%\" of its AI revenue is on OpenAI",
+      "score": 68,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "ZhuLinsen/daily_stock_analysis",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "meilisearch/meilisearch",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Capacity Desktop",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Panniantong/Agent-Reach",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "santifer/career-ops",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "ZhuLinsen/daily_stock_analysis",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Graphify-Labs/graphify",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "thedotmack/claude-mem",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "infiniflow/ragflow",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "headroomlabs-ai/headroom",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Mintplex-Labs/anything-llm",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "meilisearch/meilisearch",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "ultralytics/ultralytics",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ml"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Significant-Gravitas/AutoGPT",
+      "score": 68,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:llm"
     },
     {
       "date": "2026-08-05",
@@ -16354,6 +17068,181 @@
       "source": "Product Hunt"
     },
     {
+      "date": "2026-08-10",
+      "title": "milvus-io/milvus",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "qdrant/qdrant",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "hugohe3/ppt-master",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "CopilotKit/CopilotKit",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "esengine/DeepSeek-Reasonix",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Kitesurf",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "milvus-io/milvus",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "qdrant/qdrant",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "CherryHQ/cherry-studio",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "hugohe3/ppt-master",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "CopilotKit/CopilotKit",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "esengine/DeepSeek-Reasonix",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "iOfficeAI/AionUi",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Brandfetch MCP",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Website to Markdown API",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "milvus-io/milvus",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "qdrant/qdrant",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "langchain4j/langchain4j",
+      "score": 67,
+      "category": "企业落地与行业应用",
+      "source": "GitHub Search:vector-db"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "CherryHQ/cherry-studio",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "esengine/DeepSeek-Reasonix",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "milvus-io/milvus",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:rag"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "CherryHQ/cherry-studio",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "hugohe3/ppt-master",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "esengine/DeepSeek-Reasonix",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "CherryHQ/cherry-studio",
+      "score": 67,
+      "category": "AI 产品与用户入口",
+      "source": "GitHub Search:ai-agent"
+    },
+    {
       "date": "2026-08-05",
       "title": "milvus-io/milvus",
       "score": 67,
@@ -18209,6 +19098,27 @@
       "source": "Product Hunt"
     },
     {
+      "date": "2026-08-07",
+      "title": "Dover MCP",
+      "score": 66,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "VIDEO AI ME",
+      "score": 66,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Iowa-led states ask OpenAI to keep their bots on a leash",
+      "score": 66,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
       "date": "2026-08-04",
       "title": "UniwebPay Skill",
       "score": 66,
@@ -19098,6 +20008,20 @@
       "source": "GitHub Search:llm-model"
     },
     {
+      "date": "2026-08-09",
+      "title": "Merge",
+      "score": 65,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "microsoft/Mage-VL",
+      "score": 65,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
       "date": "2026-08-05",
       "title": "mpai",
       "score": 65,
@@ -19677,6 +20601,188 @@
       "score": 65,
       "category": "AI 产品与用户入口",
       "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "MiniMaxAI/MiniMax-H3",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Comfy-Org/MiniMax-H3",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Comfy-Org/MiniMax-H3",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "realrebelai/MiniMax-H3_GGUFs",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "HAR",
+      "score": 64,
+      "category": "企业落地与行业应用",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "LiquidAI/LFM2.5-2.6B",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "realrebelai/MiniMax-H3_GGUFs",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Anthropic CEO reportedly worried new hires only care about money",
+      "score": 64,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "MiniMaxAI/MiniMax-H3",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "LiquidAI/LFM2.5-2.6B",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "inclusionAI/Ling-3.0-flash",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "LiquidAI/LFM2.5-2.6B-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Abiray/Minimax-H3-nvfp4-INT4-INT8-Convrot",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "EschaLabs/Qwen3.6-35B-A3B-Escha-W2",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "GrowthBook 5.0",
+      "score": 64,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "MiniMaxAI/MiniMax-H3",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Comfy-Org/MiniMax-H3",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "LiquidAI/LFM2.5-2.6B",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "realrebelai/MiniMax-H3_GGUFs",
+      "score": 64,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
     },
     {
       "date": "2026-08-05",
@@ -21058,6 +22164,48 @@
       "source": "Hugging Face"
     },
     {
+      "date": "2026-08-10",
+      "title": "An OpenAI Strategist Says AI Labs Should Rival Government Power",
+      "score": 63,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Responding to the next frontier of critical cyber capabilities",
+      "score": 63,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "SpeakoFlow",
+      "score": 63,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Glasp MCP Connector",
+      "score": 63,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Launch HN: HyperProbe (YC S26) – Agents that do read-only debugging in prod",
+      "score": 63,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "space ocr",
+      "score": 63,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
       "date": "2026-07-31",
       "title": "The AI Aesthetic",
       "score": 63,
@@ -21343,6 +22491,20 @@
       "score": 63,
       "category": "AI 产品与用户入口",
       "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Born Against, or why hobby programming communities are against LLM usage",
+      "score": 62,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Microsoft's AI Sales Mostly Come from OpenAI, Disclosures Show",
+      "score": 62,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
     },
     {
       "date": "2026-08-05",
@@ -21674,6 +22836,55 @@
       "source": "Product Hunt"
     },
     {
+      "date": "2026-08-10",
+      "title": "Israeli startup was linked to rogue AI hacks at OpenAI, Anthropic and Meta",
+      "score": 61,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Ticketdesk AI",
+      "score": 61,
+      "category": "企业落地与行业应用",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "UCP Radar",
+      "score": 61,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Anthropic AI created fake profiles and impersonated people in attempted hack",
+      "score": 61,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "OpenAI says my prepaid credits were consumed, refuses to show any record",
+      "score": 61,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Domo",
+      "score": 61,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "OpenAI Just Solved a Problem Open Since 1999. It Still Can't Ask Its Own Question.",
+      "score": 61,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Dev.to"
+    },
+    {
       "date": "2026-08-04",
       "title": "AI Pricing This Week: DeepSeek Gets Cheaper, Claude Sonnet 5 Gets Pricier",
       "score": 61,
@@ -21910,6 +23121,118 @@
       "score": 61,
       "category": "标杆企业动向、商业格局与投融资",
       "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "realrebelai/MiniMax-H3_GGUFs",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Build a Dart ADK Agent and MCP Server",
+      "score": 60,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "LiquidAI/LFM2.5-2.6B",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "MiniMaxAI/MiniMax-H3",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "inclusionAI/Ling-3.0-flash",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "LiquidAI/LFM2.5-2.6B-GGUF",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Abiray/Minimax-H3-nvfp4-INT4-INT8-Convrot",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Federal Communications Commission scraps limit on broadcast TV ownership",
+      "score": 60,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Publishing an Electron AI App to the Microsoft Store: Everything I Got Wrong",
+      "score": 60,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "Comfy-Org/MiniMax-H3",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "mistralai/Shieldstral-1.0-3B",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "realrebelai/MiniMax-H3_GGUFs",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
+      "score": 60,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
     },
     {
       "date": "2026-08-05",
@@ -23310,6 +24633,76 @@
       "score": 60,
       "category": "标杆企业动向、商业格局与投融资",
       "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Self-hosting a lite agent backend on one TPU: Gemma 4 E2B + vLLM on a v5e-1",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "larryvrh/MiniMax-H3-Turbo-Lora",
+      "score": 59,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "microsoft/Mage-VL",
+      "score": 59,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Stop Prompting Like It's 2024",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "我用AI写了半年代码——回头看，这5个能力正在退化",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "我用AI写了半年代码——回头看，这5个能力正在退化",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "OpenAI's latest math breakthroughs commit research misconduct, experts say",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "OpenAI and four rivals just agreed on one standard for AI agents",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "The OpenAI–Hugging Face Incident [video]",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "我用AI写了半年代码——回头看，这5个能力正在退化",
+      "score": 59,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "掘金"
     },
     {
       "date": "2026-08-05",
@@ -25286,6 +26679,48 @@
       "source": "Hugging Face"
     },
     {
+      "date": "2026-08-10",
+      "title": "Muse Code Sends Codex and Claude Instructions to Meta by Default",
+      "score": 58,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Anthropic is turning Claude Code's auto mode on by default",
+      "score": 58,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "I'm leaving OpenAI to build Jurassic Park",
+      "score": 58,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "I'm leaving OpenAI to build Jurassic Park",
+      "score": 58,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+      "score": 58,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+      "score": 58,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
       "date": "2026-08-05",
       "title": "OpenAI pays $3.2M in US probe over hiring foreign workers",
       "score": 58,
@@ -26154,6 +27589,55 @@
       "source": "掘金"
     },
     {
+      "date": "2026-08-10",
+      "title": "larryvrh/MiniMax-H3-Turbo-Lora",
+      "score": 57,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Anthropic Economic Index",
+      "score": 57,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Google DeepMind enters a new era as co-founder Demis Hassabis shifts AI role",
+      "score": 57,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "What Happened: OpenAI and HuggingFace",
+      "score": 57,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Teaching Nemotron Greek: Mining a Corpus, Adapting Retrieval, and Grounding Generation for Modern Greek across Specialist Domains",
+      "score": 57,
+      "category": "模型与技术突破",
+      "source": "ArXiv"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "SparseDitto: Customizing GPU Kernels for Different Sparsity Patterns with LLM-Based Agentic System",
+      "score": 57,
+      "category": "模型与技术突破",
+      "source": "ArXiv"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "Stochastic Emulation using Generalized Stratified Sampling for Performance-Based Risk Optimization of Structures",
+      "score": 57,
+      "category": "政策监管、社会影响与 AI 安全",
+      "source": "ArXiv"
+    },
+    {
       "date": "2026-08-05",
       "title": "PRISM: Powerful Time Series to Image (TS2I) Representations for Multivariate Anomaly Detection",
       "score": 57,
@@ -26931,6 +28415,20 @@
       "source": "掘金"
     },
     {
+      "date": "2026-08-10",
+      "title": "nvidia/NVIDIA-NemotronLabs-VoiceChat-11B",
+      "score": 56,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Building an Autonomous Robotic Vacuum from Scratch: A ROS 2 Sim-to-Real Engineering Log",
+      "score": 56,
+      "category": "AI 产品与用户入口",
+      "source": "Dev.to"
+    },
+    {
       "date": "2026-08-05",
       "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
       "score": 56,
@@ -27251,6 +28749,41 @@
       "score": 56,
       "category": "企业落地与行业应用",
       "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Message your other Claude Code sessions",
+      "score": 55,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "This Mine Predicts Major Wars. It's Opening Again",
+      "score": 55,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Resourced Authority A Mechanism-Design Model for Participatory Governance of Deployed AI Agents",
+      "score": 55,
+      "category": "政策监管、社会影响与 AI 安全",
+      "source": "ArXiv"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "Improving the Realism of Synthetic Clinical Benchmarks Under Utility Constraints",
+      "score": 55,
+      "category": "政策监管、社会影响与 AI 安全",
+      "source": "ArXiv"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "larryvrh/MiniMax-H3-Turbo-Lora",
+      "score": 55,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
     },
     {
       "date": "2026-08-05",
@@ -27713,6 +29246,97 @@
       "score": 55,
       "category": "企业落地与行业应用",
       "source": "掘金"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "LiquidAI/LFM2.5-2.6B",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "deepgrove/maple-preview",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "inclusionAI/Ling-3.0-flash",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "lightx2v/Minimax-h3-Turbo",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "MiniMaxAI/MiniMax-H3",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "deepgrove/maple-preview",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "inclusionAI/Ling-3.0-flash",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "mistralai/Shieldstral-1.0-3B",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "The Claudyssey: A line-for-line translation of Homer's Odyssey by Claude Fable 5",
+      "score": 54,
+      "category": "AI 产品与用户入口",
+      "source": "Hacker News"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "thinkingmachines/Inkling-Small",
+      "score": 54,
+      "category": "模型与技术突破",
+      "source": "Hugging Face"
     },
     {
       "date": "2026-08-05",
@@ -28730,6 +30354,125 @@
       "source": "Hugging Face"
     },
     {
+      "date": "2026-08-10",
+      "title": "Pocket Fit",
+      "score": 53,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "蚂蚁集团开源Avernet：破解多智能体“找不到、对不齐”协作难题",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "平台工程成熟度已成为企业人工智能应用能否成功的关键差异化因素",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "蚂蚁集团开源Avernet：破解多智能体“找不到、对不齐”协作难题",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "平台工程成熟度已成为企业人工智能应用能否成功的关键差异化因素",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "刚刚，哈萨比斯卸任谷歌 DeepMind CEO，27年老将Jeff Dean离职创业",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "蚂蚁集团开源Avernet：破解多智能体“找不到、对不齐”协作难题",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "平台工程成熟度已成为企业人工智能应用能否成功的关键差异化因素",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "刚刚，哈萨比斯卸任谷歌 DeepMind CEO，27年老将Jeff Dean离职创业",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "平台工程成熟度已成为企业人工智能应用能否成功的关键差异化因素",
+      "score": 53,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "刚刚，哈萨比斯卸任谷歌 DeepMind CEO，27年老将Jeff Dean离职创业",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "苹果指控 OpenAI挖人、拿零件、偷文件，OpenAI 晒聊天记录全面反击！马斯克：别信 OpenAI",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "刚刚，哈萨比斯卸任谷歌 DeepMind CEO，27年老将Jeff Dean离职创业",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "苹果指控 OpenAI挖人、拿零件、偷文件，OpenAI 晒聊天记录全面反击！马斯克：别信 OpenAI",
+      "score": 53,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "InfoQ 中国"
+    },
+    {
       "date": "2026-08-04",
       "title": "Apoointly",
       "score": 53,
@@ -29486,6 +31229,34 @@
       "source": "InfoQ 中国"
     },
     {
+      "date": "2026-08-10",
+      "title": "Otiumz",
+      "score": 52,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Rendemo",
+      "score": 52,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "Who Named This ReAct? I'd Like to Speak to the Manager.",
+      "score": 52,
+      "category": "AI 产品与用户入口",
+      "source": "Dev.to"
+    },
+    {
+      "date": "2026-08-06",
+      "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
+      "score": 52,
+      "category": "标杆企业动向、商业格局与投融资",
+      "source": "开源中国"
+    },
+    {
       "date": "2026-08-04",
       "title": "Dex by Exmergo",
       "score": 52,
@@ -29827,6 +31598,76 @@
       "score": 52,
       "category": "AI 产品与用户入口",
       "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Arbyn",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "2026 上半年，前端圈已经炸了五次",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "TrainZilla",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "Notewarp",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "Product Hunt"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "智能互动 Agent 在快手商业场景的落地实践｜AICon深圳",
+      "score": 51,
+      "category": "企业落地与行业应用",
+      "source": "InfoQ 中国"
+    },
+    {
+      "date": "2026-08-10",
+      "title": "shadcn/ui 默认改用 Base UI，Radix 被放弃了吗？",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "2026 上半年，前端圈已经炸了五次",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-09",
+      "title": "shadcn/ui 默认改用 Base UI，Radix 被放弃了吗？",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-08",
+      "title": "2026 上半年，前端圈已经炸了五次",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "掘金"
+    },
+    {
+      "date": "2026-08-07",
+      "title": "2026 上半年，前端圈已经炸了五次",
+      "score": 51,
+      "category": "AI 产品与用户入口",
+      "source": "掘金"
     },
     {
       "date": "2026-08-05",
@@ -30495,6 +32336,21 @@
     }
   ],
   "excerpts": {
+    "2026-08-10": {
+      "ai-topic-radar": "# AI 热点选题池 2026-08-10\n\n> 生成时间: 2026-08-10 02:23 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题\n\n## 今日 Top 深挖选题\n\n| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [The GTM Co-Founder](https://www.producthunt.com/r/VPBAUGHOUKAU4E?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29) | Open-source GTM skills for technical founders | AI 产品与用户入口 | The GTM Co-Founder 为什么值得关注？（用户入口、使用场景与产品体验） | 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 来源：Product Hunt<br>热度信号：404 / 18<br>发布时间：2026-08-08<br>关键词：Op"
+    },
+    "2026-08-09": {
+      "ai-topic-radar": "# AI 热点选题池 2026-08-09\n\n> 生成时间: 2026-08-09 02:18 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题\n\n## 今日 Top 深挖选题\n\n| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 86 | 深挖 | [Timeline of the OpenAI accidental attack against Hugging Face](https://simonwillison.net/2026/Aug/7/openai-timeline/) | HN discussion by 882542F3884314B | 标杆企业动向、商业格局与投融资 | Timeline of the OpenAI accidental attack against Hugging Face 为什么值得关注？（大厂动作、商业化路径与竞争格局） | 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。 | 来源：Hacker News<br>热度信号：347 / 353<br>发布时间：2026-08-08<br>关键词：community, discussion"
+    },
+    "2026-08-08": {
+      "ai-topic-radar": "# AI 热点选题池 2026-08-08\n\n> 生成时间: 2026-08-08 02:06 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题\n\n## 今日 Top 深挖选题\n\n| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 89 | 深挖 | [A moral Turing test: How belief and source shape detection of and agreement with LLM judgments — Google DeepMind](https://deepmind.google/research/publications/118955/) | August 5, 2026 A moral Turing test: How belief and source shape detection of and agreement with LLM judgments View publication Download Share Copied Abstract As large language models (LLMs) are increasingly integrated in"
+    },
+    "2026-08-07": {
+      "ai-topic-radar": "# AI 热点选题池 2026-08-07\n\n> 生成时间: 2026-08-07 03:10 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题\n\n## 今日 Top 深挖选题\n\n| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 98 | 深挖 | [Improving Gpt 5 6 Sol In Chatgpt](https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/) |  | 标杆企业动向、商业格局与投融资 | Improving Gpt 5 6 Sol In Chatgpt 为什么值得关注？（大厂动作、商业化路径与竞争格局） | 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 | 来源：OpenAI<br>发布时间：2026-08-07<br>关键词：openai, index |\n| 98 | 深挖 | [How The World Is Putting Chatgpt To Work](https://openai.com/index/how-the-world-is-putting-chatgpt-to-wo"
+    },
+    "2026-08-06": {
+      "ai-topic-radar": "# AI 热点选题池 2026-08-06\n\n> 生成时间: 2026-08-06 03:23 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题\n\n## 今日 Top 深挖选题\n\n| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 80 | 深挖 | [Hey Noah](https://www.producthunt.com/r/XG4DNYGMW6GCPP?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29) | A proactive AI executive assistant for founders | AI 产品与用户入口 | Hey Noah 为什么值得关注？（用户入口、使用场景与产品体验） | 值得优先深挖：适合从用户入口、使用场景和产品体验角度切入，来源：Product Hunt。 | 来源：Product Hunt<br>热度信号：573 / 95<br>发布时间：2026-08-04<br>关键词：Productivity, Calend"
+    },
     "2026-08-05": {
       "ai-topic-radar": "# AI 热点选题池 2026-08-05\n\n> 生成时间: 2026-08-05 03:20 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题\n\n## 今日 Top 深挖选题\n\n| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 98 | 深挖 | [Apple Is Getting This Wrong](https://openai.com/index/apple-is-getting-this-wrong/) |  | 标杆企业动向、商业格局与投融资 | Apple Is Getting This Wrong 为什么值得关注？（大厂动作、商业化路径与竞争格局） | 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 | 来源：OpenAI<br>发布时间：2026-08-04<br>关键词：openai, index |\n| 98 | 深挖 | [Introducing The Openai Economic Research Exchange](https://openai.com/index/introducing-the-openai-economic-research-exc"
     },

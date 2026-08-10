@@ -1,0 +1,3 @@
+[submodule ".claude/skills/project-verifier-skill"]
+	path = .claude/skills/project-verifier-skill
+	url = https://github.com/Conradgui/project-verifier-skill.git

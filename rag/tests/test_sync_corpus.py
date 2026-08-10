@@ -5,18 +5,41 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+from datetime import date
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 from rag.sync_corpus import (
+    SyncResult,
+    build_sync_diagnostics,
     build_sync_plan,
     fetch_url,
     normalize_base_url,
     sync_corpus,
+    validate_sync_payload,
 )
 
 
 class SyncCorpusTests(unittest.TestCase):
+    def test_sync_diagnostics_marks_stale_upstream_without_failing_the_sync(self):
+        result = SyncResult(
+            downloaded=4,
+            failed=[],
+            upstream_latest_date="2026-08-05",
+            local_latest_date="2026-08-05",
+        )
+
+        diagnostics = build_sync_diagnostics(
+            result,
+            today=date(2026, 8, 10),
+            warning_days=3,
+        )
+
+        self.assertEqual(diagnostics["freshness"], "stale")
+        self.assertEqual(diagnostics["upstream_age_days"], 5)
+        self.assertTrue(diagnostics["freshness_warning"])
+        self.assertEqual(diagnostics["failed_count"], 0)
+
     @patch("rag.sync_corpus.time.sleep")
     @patch("rag.sync_corpus.urlopen")
     def test_fetch_url_retries_transient_network_failures(self, mock_urlopen, _sleep):
@@ -26,6 +49,18 @@ class SyncCorpusTests(unittest.TestCase):
 
         self.assertEqual(fetch_url("https://example.com/report"), b"ok")
         self.assertEqual(mock_urlopen.call_count, 2)
+
+    @patch("rag.sync_corpus.MAX_FILE_BYTES", 4)
+    @patch("rag.sync_corpus.urlopen")
+    def test_fetch_url_stops_reading_after_the_size_limit(self, mock_urlopen):
+        response = MagicMock()
+        response.__enter__.return_value.read.return_value = b"12345"
+        mock_urlopen.return_value = response
+
+        with self.assertRaisesRegex(ValueError, "response exceeds 4 bytes"):
+            fetch_url("https://example.com/oversized")
+
+        response.__enter__.return_value.read.assert_called_once_with(5)
 
     def test_normalize_base_url_removes_trailing_slash(self):
         self.assertEqual(
@@ -47,11 +82,51 @@ class SyncCorpusTests(unittest.TestCase):
             [item.relative_path for item in plan],
             [
                 "manifest.json",
+                "feed.xml",
                 "digests/search-index.json",
                 "digests/2026-06-21/ai-topic-radar.md",
                 "digests/2026-06-21/topic-pool.json",
             ],
         )
+
+    def test_build_sync_plan_downloads_rollups_for_browsing_without_extra_topic_pool(self):
+        manifest = {
+            "dates": [
+                {
+                    "date": "2026-08-09",
+                    "reports": ["ai-topic-radar", "ai-weekly", "ai-monthly-en"],
+                }
+            ]
+        }
+
+        plan = build_sync_plan(manifest, days=1)
+
+        self.assertEqual(
+            [item.relative_path for item in plan],
+            [
+                "manifest.json",
+                "feed.xml",
+                "digests/search-index.json",
+                "digests/2026-08-09/ai-topic-radar.md",
+                "digests/2026-08-09/ai-weekly.md",
+                "digests/2026-08-09/ai-monthly-en.md",
+                "digests/2026-08-09/topic-pool.json",
+            ],
+        )
+
+    def test_build_sync_plan_rejects_manifest_path_traversal(self):
+        manifest = {
+            "dates": [
+                {"date": "../../outside", "reports": ["ai-topic-radar"]},
+            ]
+        }
+
+        with self.assertRaisesRegex(ValueError, "invalid corpus date"):
+            build_sync_plan(manifest, days=1)
+
+    def test_validate_sync_payload_rejects_oversized_files(self):
+        with self.assertRaisesRegex(ValueError, "payload exceeds 4 bytes"):
+            validate_sync_payload("digests/search-index.json", b"12345", max_file_bytes=4)
 
     def test_sync_corpus_writes_files_from_fetcher(self):
         manifest = {
@@ -60,6 +135,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-06-21/ai-topic-radar.md": "# Report",
             "https://example.com/radar/digests/2026-06-21/topic-pool.json": '{"candidates":[]}',
@@ -76,7 +152,11 @@ class SyncCorpusTests(unittest.TestCase):
                 fetcher=fetcher,
             )
 
-            self.assertEqual(result.downloaded, 4)
+            self.assertEqual(result.downloaded, 5)
+            self.assertEqual(
+                (Path(tmp) / "feed.xml").read_text(encoding="utf-8"),
+                "<rss><channel /></rss>",
+            )
             self.assertEqual(result.failed, [])
             self.assertEqual(result.synced_dates, ["2026-06-21"])
             self.assertRegex(result.date_fingerprints["2026-06-21"], r"^[0-9a-f]{64}$")
@@ -101,6 +181,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
         }
         for date in remote_dates:
@@ -134,6 +215,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-08-05/ai-topic-radar.md": "# New report",
         }
@@ -172,6 +254,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(remote_manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-08-05/ai-topic-radar.md": "# New report",
             "https://example.com/radar/digests/2026-08-05/topic-pool.json": '{"candidates":[]}',
@@ -212,6 +295,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-08-05/ai-topic-radar.md": "# Changed report",
             "https://example.com/radar/digests/2026-08-05/topic-pool.json": '{"candidates":[]}',
@@ -247,6 +331,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-08-05/ai-topic-radar.md": "# New report",
             "https://example.com/radar/digests/2026-08-05/topic-pool.json": '{"candidates":[]}',
@@ -276,6 +361,7 @@ class SyncCorpusTests(unittest.TestCase):
         }
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
             "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-08-05/ai-topic-radar.md": "# New report",
             "https://example.com/radar/digests/2026-08-05/topic-pool.json": "not-json",
@@ -300,6 +386,102 @@ class SyncCorpusTests(unittest.TestCase):
             self.assertEqual(len(result.failed), 1)
             self.assertIn("topic-pool.json", result.failed[0])
             self.assertEqual(existing.read_text(encoding="utf-8"), "# Last known good report")
+
+    def test_sync_does_not_replace_a_nonempty_local_summary_with_an_empty_upstream_summary(self):
+        date = "2026-08-05"
+        article_url = "https://openai.com/index/example/"
+        manifest = {
+            "generated": "2026-08-05T03:20:50.526Z",
+            "dates": [{"date": date, "reports": ["ai-topic-radar"]}],
+        }
+        remote_markdown = (
+            "| 分数 | 动作 | 题目 | 摘要 | 分类 |\n"
+            "| ---: | --- | --- | --- | --- |\n"
+            f"| 98 | 深挖 | [Updated title]({article_url}) |  | 分类 |\n"
+        )
+        remote_pool = {
+            "candidates": [{"title": "Updated title", "url": article_url, "summary": ""}],
+        }
+        payloads = {
+            "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
+            "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
+            f"https://example.com/radar/digests/{date}/ai-topic-radar.md": remote_markdown,
+            f"https://example.com/radar/digests/{date}/topic-pool.json": json.dumps(remote_pool),
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output_root = Path(tmp)
+            date_root = output_root / "digests" / date
+            date_root.mkdir(parents=True)
+            (date_root / "ai-topic-radar.md").write_text(
+                remote_markdown.replace(" |  | 分类 |", " | Existing official summary. | 分类 |"),
+                encoding="utf-8",
+            )
+            (date_root / "topic-pool.json").write_text(
+                json.dumps({
+                    "candidates": [
+                        {"title": "Old title", "url": article_url, "summary": "Existing official summary."}
+                    ]
+                }),
+                encoding="utf-8",
+            )
+
+            sync_corpus(
+                base_url="https://example.com/radar",
+                output_root=output_root,
+                days=1,
+                fetcher=lambda url: payloads[url].encode("utf-8"),
+            )
+
+            saved_pool = json.loads((date_root / "topic-pool.json").read_text(encoding="utf-8"))
+            saved_markdown = (date_root / "ai-topic-radar.md").read_text(encoding="utf-8")
+
+        self.assertEqual(saved_pool["candidates"][0]["title"], "Updated title")
+        self.assertEqual(saved_pool["candidates"][0]["summary"], "Existing official summary.")
+        self.assertIn("[Updated title]", saved_markdown)
+        self.assertIn("| Existing official summary. | 分类 |", saved_markdown)
+
+    def test_rollup_only_change_does_not_mark_daily_retrieval_for_reingestion(self):
+        date_value = "2026-08-10"
+        manifest = {
+            "generated": "2026-08-10T00:17:00Z",
+            "dates": [
+                {
+                    "date": date_value,
+                    "reports": ["ai-topic-radar", "ai-weekly"],
+                }
+            ],
+        }
+        payloads = {
+            "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
+            "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
+            f"https://example.com/radar/digests/{date_value}/ai-topic-radar.md": "# Daily",
+            f"https://example.com/radar/digests/{date_value}/ai-weekly.md": "# Updated weekly",
+            f"https://example.com/radar/digests/{date_value}/topic-pool.json": '{"candidates":[]}',
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dated = root / "digests" / date_value
+            dated.mkdir(parents=True)
+            (dated / "ai-topic-radar.md").write_text("# Daily", encoding="utf-8")
+            (dated / "ai-weekly.md").write_text("# Old weekly", encoding="utf-8")
+            (dated / "topic-pool.json").write_text(
+                '{"candidates":[]}', encoding="utf-8"
+            )
+
+            result = sync_corpus(
+                base_url="https://example.com/radar",
+                output_root=root,
+                days=1,
+                fetcher=lambda url: payloads[url].encode("utf-8"),
+                dry_run=True,
+            )
+
+        self.assertIn(f"digests/{date_value}/ai-weekly.md", result.changed_files)
+        self.assertEqual(result.changed_dates, [])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,210 @@
+name: Corpus Producer (self-managed)
+
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: LLM provider used to generate the daily corpus
+        required: true
+        default: deepseek
+        type: choice
+        options:
+          - deepseek
+          - anthropic
+          - openai
+          - openrouter
+          - github-models
+      publish:
+        description: Commit the generated corpus to the default branch
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+  models: read
+
+concurrency:
+  group: ${{ inputs.publish && 'corpus-publish' || format('corpus-preview-{0}', github.run_id) }}
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    name: Generate and validate corpus
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout selected revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+      - name: Setup Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Preflight provider and publish boundary
+        env:
+          SELECTED_PROVIDER: ${{ inputs.provider }}
+          PUBLISH_REQUESTED: ${{ inputs.publish }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          case "$SELECTED_PROVIDER" in
+            deepseek) required_secret="DEEPSEEK_API_KEY" ;;
+            anthropic) required_secret="ANTHROPIC_API_KEY" ;;
+            openai) required_secret="OPENAI_API_KEY" ;;
+            openrouter) required_secret="OPENROUTER_API_KEY" ;;
+            github-models) required_secret="GITHUB_TOKEN" ;;
+            *) echo "::error title=Invalid provider::Unsupported provider: $SELECTED_PROVIDER"; exit 1 ;;
+          esac
+
+          if [[ -z "${!required_secret:-}" ]]; then
+            echo "::error title=Missing required secret::Configure $required_secret for provider $SELECTED_PROVIDER"
+            exit 1
+          fi
+
+          runtime_provider="$SELECTED_PROVIDER"
+          case "$SELECTED_PROVIDER" in
+            github-models) runtime_provider="github-copilot" ;;
+          esac
+          echo "RUNTIME_PROVIDER=$runtime_provider" >> "$GITHUB_ENV"
+
+          if [[ "$PUBLISH_REQUESTED" == "true" && "$GITHUB_REF_NAME" != "$DEFAULT_BRANCH" ]]; then
+            echo "::error title=Unsafe publish branch::Publishing is allowed only from $DEFAULT_BRANCH"
+            exit 1
+          fi
+
+          echo "Provider preflight passed for $SELECTED_PROVIDER; secret values were not printed."
+
+      - name: Generate daily corpus
+        env:
+          LLM_PROVIDER: ${{ env.RUNTIME_PROVIDER }}
+          REPORT_LANGS: zh
+          SAVE_SOURCE_REPORTS: "0"
+          GITHUB_TOKEN: ${{ secrets.AI_RADAR_GITHUB_TOKEN || secrets.GITHUB_TOKEN }}
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          PRODUCTHUNT_TOKEN: ${{ secrets.PRODUCTHUNT_TOKEN }}
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          DIGEST_REPO: ${{ github.repository }}
+        run: pnpm digest
+
+      - name: Build auditable corpus contract
+        run: python -m rag.corpus_contract --source-mode self_managed
+
+      - name: Record source revision
+        run: git rev-parse HEAD > corpus-base-revision.txt
+
+      - name: Validate generated files
+        run: |
+          test -s manifest.json
+          test -s feed.xml
+          test -s corpus-manifest.json
+          test -d digests
+          git diff --check -- digests/ manifest.json feed.xml corpus-manifest.json
+
+      - name: Upload generated corpus
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: self-managed-corpus-${{ github.run_id }}
+          path: |
+            digests/
+            manifest.json
+            feed.xml
+            corpus-manifest.json
+            corpus-base-revision.txt
+          if-no-files-found: error
+          retention-days: 3
+
+      - name: Write producer summary
+        if: ${{ always() }}
+        run: |
+          {
+            echo "## Self-managed corpus producer"
+            echo "- Provider: \`${{ inputs.provider }}\`"
+            echo "- Publish requested: \`${{ inputs.publish }}\`"
+            echo "- Product Hunt: ${{ secrets.PRODUCTHUNT_TOKEN != '' && 'enabled' || 'skipped (optional secret missing)' }}"
+            echo "- Gitee: ${{ secrets.GITEE_TOKEN != '' && 'enabled' || 'skipped (optional secret missing)' }}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  publish:
+    name: Publish self-managed corpus
+    needs: produce
+    if: ${{ inputs.publish == true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout latest default branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Download generated corpus
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: self-managed-corpus-${{ github.run_id }}
+          path: .
+
+      - name: Reject stale producer snapshot
+        run: |
+          expected_revision=$(cat corpus-base-revision.txt)
+          current_revision=$(git rev-parse HEAD)
+          if [[ "$expected_revision" != "$current_revision" ]]; then
+            echo "::error title=Stale producer snapshot::Default branch changed during generation; rerun the producer."
+            exit 1
+          fi
+
+      - name: Setup Python for contract verification
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Rebuild corpus contract before commit
+        run: python -m rag.corpus_contract --source-mode self_managed
+
+      - name: Commit generated corpus
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add digests/ manifest.json feed.xml corpus-manifest.json
+          if git diff --cached --quiet; then
+            echo "Generated corpus contains no changes" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "corpus: publish self-managed ${DATE}"
+            git push
+            echo "Published self-managed corpus for ${DATE}" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
+  deploy-pages:
+    name: Deploy published corpus to Pages
+    needs: publish
+    if: ${{ always() && needs.publish.result == 'success' }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml

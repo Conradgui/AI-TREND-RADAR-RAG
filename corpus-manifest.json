@@ -1,0 +1,1130 @@
+{
+  "schema_version": 1,
+  "source_mode": "hosted",
+  "generated_at": "2026-08-10T03:12:32.100Z",
+  "files": [
+    {
+      "path": "manifest.json",
+      "sha256": "c9ef9490ccc88cdb5cacc6a5e6c53c95fb392e4fca065e126c2db411148d42cc",
+      "size": 6400,
+      "content_type": "application/json",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "feed.xml",
+      "sha256": "1cbfea424c56fb1c8d86a2aa9f3d88efbf95efab2d0432f69b3c033967690c76",
+      "size": 1519537,
+      "content_type": "application/xml",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/search-index.json",
+      "sha256": "5a58abf9188993495d2a228add8ae16bffcc7a636fb998d5afb47cc8c829d5eb",
+      "size": 985559,
+      "content_type": "application/json",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-agents-en.md",
+      "sha256": "8cbdf1d8e7e5ca003461b29749fefabb598f5d561d9250177776ff5402825d52",
+      "size": 11221,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-agents.md",
+      "sha256": "1a12d82efa18191b59fe5aa36d9e5f341c8c06e63b3dfe64c8d54850c4957058",
+      "size": 10544,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-arxiv-en.md",
+      "sha256": "d283597e98635f0462bea5c9f70d3bdd948b0c15e28056602ca6e040cc396c78",
+      "size": 9720,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-arxiv.md",
+      "sha256": "db2c9d8722ca43ac54688e923b80417bb3c613257a2402d65f0851aa493c0de8",
+      "size": 9427,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-cli-en.md",
+      "sha256": "31d6090f5da273839683b0c2d3e51638100fdcd2c00074d6851703db4cabe454",
+      "size": 10529,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-cli.md",
+      "sha256": "649b195bdcb3f3dea47afa67b5fc63e1624bb04b326a3b21be634d349484a8fe",
+      "size": 12652,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-community-en.md",
+      "sha256": "8d9f89d761aee024002b6e3de67f80af679f2033f0b1ab606f0bf2af1e18cbb7",
+      "size": 8041,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-community.md",
+      "sha256": "eb13f4527c54f728b604f25ab637e78af544c6f5a509159c67b4504e4adadad5",
+      "size": 7727,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-hf-en.md",
+      "sha256": "9851dea71f5091cafdb78a8510156c4eb4fffbcf56f4d052bf1594cbff57ff27",
+      "size": 8321,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-hf.md",
+      "sha256": "d889f4fde082c41c131e7fc4138439fa71801742ddfe508c5d3c2b852c450112",
+      "size": 9964,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-hn-en.md",
+      "sha256": "a7e0e49beea81800c97850bfb4fdd24303d1b29b5977a0b7a4d13b7d4d6cfdb2",
+      "size": 7981,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-hn.md",
+      "sha256": "0396a2337f5c38decb6af3167599eabd9d220e6588be153e4d80722c408a0c6f",
+      "size": 8436,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-topic-radar.html",
+      "sha256": "253630aa2dc9804dcef1231ea46ca60c01569d8d960ead575e338acbc9101938",
+      "size": 53268,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-topic-radar.md",
+      "sha256": "05c7dbb389a7fa405a2e5666ba017fb93cbf10d9d0671ffa832828263e4c207a",
+      "size": 19468,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-20/ai-trending-en.md",
+      "sha256": "367f4db39e7b6e21caa313ef68458e39833d6eb5cfbf2a67447e61a3e399b9ef",
+      "size": 8652,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-trending.md",
+      "sha256": "e1e2252c831e5cf14068ed2ba2d0ecbbfa345db5eb132fecbb97dfd71a9e7586",
+      "size": 10142,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-web-en.md",
+      "sha256": "73cabbe051273de67f85a597ed4a995e833787a0a29a6b9890341d617f798f6c",
+      "size": 16234,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/ai-web.md",
+      "sha256": "da54379cc640b0acddc65f8573f320aeff72d22786e0698e8230304a207fad6c",
+      "size": 21095,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-20/topic-pool.json",
+      "sha256": "1bd31acfb2e8a4447092b3889668490b651a1721b2430b9f36cdaaaa887dc40f",
+      "size": 50370,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-21/ai-topic-radar.html",
+      "sha256": "3c6a288eb0498a0429799e6b2030bf64f805d48c8a0b111cc136279e0c0ead22",
+      "size": 61314,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-21/ai-topic-radar.md",
+      "sha256": "6bd49c1916cc9b982786360be1b43be8b3402e7ef7ff3d7aaabde858d57808b7",
+      "size": 27468,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-21/topic-pool.json",
+      "sha256": "210eb76b7c7667e083e83808beca25c0b801cce7f207ffbc7623c351cd2998d4",
+      "size": 66178,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-22/ai-topic-radar.html",
+      "sha256": "44dfb2d6ce35844025ba8ecb3b970577b022881d98ce2bb5fecda628776095e6",
+      "size": 57333,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-22/ai-topic-radar.md",
+      "sha256": "5c9442a9ba5c9f2dab720e2ed83a89329f0a33d33b5a24d5dfdab23d67e260e3",
+      "size": 25597,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-22/topic-pool.json",
+      "sha256": "d8b4b0d536a0412577f376c77d9be25a7f2ed1e225600ae1d2d0d98f7cf315d7",
+      "size": 66156,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-23/ai-topic-radar.html",
+      "sha256": "bb9db036ea26233648e1cec21c6dc563d0ef1350b3a8604a09572b8a3f28f687",
+      "size": 62216,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-23/ai-topic-radar.md",
+      "sha256": "87fd55ee88752ca9ccab1c6747ab24c6a7221358835ade899abcce25df7d7f97",
+      "size": 29288,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-23/topic-pool.json",
+      "sha256": "dfa250602637191db95c9c3d248858b8cdacf1819310a976ca889ffdd428c22f",
+      "size": 67525,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-24/ai-topic-radar.html",
+      "sha256": "c7eb2f8254b60d02ef963577901b328d8e5d128e41da991daf31477e9c400e3a",
+      "size": 58654,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-24/ai-topic-radar.md",
+      "sha256": "1ea6fb43d08e34a003ccacad25c1d665e355dbf4057a13f7e6082472ef83cb09",
+      "size": 26655,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-24/topic-pool.json",
+      "sha256": "4aa63d610855707fe6d3938f24dc665c61166d304c9f9eaecc3b3b224f5118c8",
+      "size": 66475,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-25/ai-topic-radar.html",
+      "sha256": "7f342e61ef5b068d95a3cac75e9b9e13f02bf226aa9c2d6f7a877a3360286612",
+      "size": 57735,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-25/ai-topic-radar.md",
+      "sha256": "7b3e22970f2d48ae6b374e3b823dc6d2125cf1728a6bea1bc4aa91dd5040e8c0",
+      "size": 25848,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-25/ai-weekly-en.md",
+      "sha256": "e0f39eb29965d6471804ec01f2f05124351fa61965144d08915086ff34bac0eb",
+      "size": 10016,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-25/ai-weekly.md",
+      "sha256": "cd1510a79a85c55da64cf443e63926eeb6f8b59366ad5c0b4ef073efa4cbf5d9",
+      "size": 8894,
+      "content_type": "text/markdown",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-25/topic-pool.json",
+      "sha256": "ee3b8a0b61690e89118160d4756d5e7c8db0cd9b8c767649d2a3794fcbf58f77",
+      "size": 65883,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-26/ai-topic-radar.html",
+      "sha256": "b1b24ef2a64d239629d58bc2220553a03e5ff841ce70d5aaa12b1c39dda0113b",
+      "size": 62571,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-26/ai-topic-radar.md",
+      "sha256": "dc4159c72322b6b3219f99a934175ff1bdb814c08c16e23f7b54353b7e49565c",
+      "size": 29595,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-26/topic-pool.json",
+      "sha256": "1fbfaba1cbb5c392465a92670c308cf84c6a68771a58d3c9e571e684d2081f06",
+      "size": 67532,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-27/ai-topic-radar.html",
+      "sha256": "63a9933cd54bab6fc64c465827859fcedf34ccf337727dbdd257296eeebeba3b",
+      "size": 63141,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-27/ai-topic-radar.md",
+      "sha256": "4529e704252a5dac1057e12b3a202c544f0022f40c9c7a7f11e90e88f4c0dbb9",
+      "size": 31166,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-27/topic-pool.json",
+      "sha256": "43d6c8e2a1513bfce99f24b7fdbe272ce833b09f135eff3678c0e25067acd34b",
+      "size": 68343,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-28/ai-topic-radar.html",
+      "sha256": "c67729dd6ec01440a627445cfbd238c0e9a6df23ee1a13220b0225aeda908a4b",
+      "size": 68435,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-28/ai-topic-radar.md",
+      "sha256": "caa6276184c61e2b97ab63e66385f8b8e3258f237004e1dbb9d33a6bdf44f72b",
+      "size": 33513,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-28/topic-pool.json",
+      "sha256": "628f1aba3e752d77603119b6022e72ddc710004b203c139c15b024aaed148340",
+      "size": 68690,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-29/ai-topic-radar.html",
+      "sha256": "ab941519dccea4ad1be27c6a770a9eb4eb6b946a3e90a441b50a1b3f40b859d4",
+      "size": 82370,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-29/ai-topic-radar.md",
+      "sha256": "bc52b4071b998cf5b5c75da79feb8d8396f0fba9159e6f3486ec4eda9e691550",
+      "size": 44072,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-29/topic-pool.json",
+      "sha256": "d1980d4c689566510f3dfed96ae29b1d9a99d30f889b1b49ec0dee7c57cf48da",
+      "size": 72357,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-30/ai-topic-radar.html",
+      "sha256": "337658179e560e8ca80c6564d8b952178182cb60c109ea4a64ed67029b2036cc",
+      "size": 56889,
+      "content_type": "text/html",
+      "retrieval_eligible": false
+    },
+    {
+      "path": "digests/2026-05-30/ai-topic-radar.md",
+      "sha256": "0de3b2e7dc3ce3554f12139f6fa0b743d48c9cbab2848798a958a67f9ee0dd15",
+      "size": 24650,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-05-30/topic-pool.json",
+      "sha256": "cf023865454ed0e3552bf4ac98a8c25793c9e2c0b2bfa9421be39d79dbc4b9d5",
+      "size": 65504,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-19/ai-topic-radar.md",
+      "sha256": "7385b2c477747f556e4d88e8e3cc9899e2fd6f7beeecc3962b2a84d243fd73ea",
+      "size": 49759,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-19/topic-pool.json",
+      "sha256": "f1b30ea72a9f20b300bf723828f219d961fb0932b483021e0e995268d45f1305",
+      "size": 84048,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-20/ai-topic-radar.md",
+      "sha256": "7d51dfdbfe7555abb6f05540fcabf947178caa0fc7ab7e2f7e011a16c85934e7",
+      "size": 33935,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-20/topic-pool.json",
+      "sha256": "506100a35f1060fd927b5b791479d6e74ec123d04ab86e0851b1995d892d2788",
+      "size": 67199,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-21/ai-topic-radar.md",
+      "sha256": "1b578805bc3cb84595b17c0250bac5ec47a874f477007cf26580e342c4e5c1e3",
+      "size": 32083,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-21/topic-pool.json",
+      "sha256": "775e4f9c3d63da4e02363f639ff3fbe309b6050d3e552bbc187e5681ab6fe5c4",
+      "size": 68368,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-22/ai-topic-radar.md",
+      "sha256": "9538cdf3c9f29ac3f5ffa26cdc30639646203ded1bbad647c62a894969c0206d",
+      "size": 33504,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-22/topic-pool.json",
+      "sha256": "357065c660a9305d89adfbb7ef908484a128e21e732a8882e06fb334663c45f9",
+      "size": 72068,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-23/ai-topic-radar.md",
+      "sha256": "fd4c55cf4a79f1906c61761ed4751cfcd90bea04d96ae75f972bbb0e05e50054",
+      "size": 42001,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-23/topic-pool.json",
+      "sha256": "c426c841ef697f37f73aa39b03fde0e601d7937ef8288d076e91d3981e1174f1",
+      "size": 75287,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-24/ai-topic-radar.md",
+      "sha256": "01f0b66e854450d89d9b914742f2e2eb77eef1a78d429681106e690f24318519",
+      "size": 38791,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-24/topic-pool.json",
+      "sha256": "8c2eecb93ca23582888a4117d1cbf92cdb6189a845c1551661d5bcfb3cdfe091",
+      "size": 71448,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-25/ai-topic-radar.md",
+      "sha256": "d4e191295c329d4f1393fc4fcee457ffe4afe5de73eca0e35b7a6e523bcd0678",
+      "size": 45522,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-25/topic-pool.json",
+      "sha256": "3ab3ff4ae8efbb9c5d78f905d59c5a53c3cd2b7312c087e38f9dcf8728752481",
+      "size": 76336,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-26/ai-topic-radar.md",
+      "sha256": "10e6eaa0303fad88967c9a256c22104534926d4c27f1cf58931eb6d7ad8e7945",
+      "size": 66605,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-26/topic-pool.json",
+      "sha256": "b03907e9b3797b027ffc910086f14df1ad4a4903b461e7f68894ae3653bbd76b",
+      "size": 89665,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-27/ai-topic-radar.md",
+      "sha256": "2ebd1e8f16221f7c36b5c6a8e48cc72f10d6c1a870463667912df85cdbf1a5c1",
+      "size": 72513,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-27/topic-pool.json",
+      "sha256": "9afb629bb113dd5570888c301b68248bcd8957c92a63755ad69ca3bbd9aabe67",
+      "size": 96449,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-28/ai-topic-radar.md",
+      "sha256": "9b73d3120096f292226252de070284213d172048459ec0d74edc9ff08c3ebe28",
+      "size": 32659,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-28/topic-pool.json",
+      "sha256": "3149c8cd5563e38d0fba2b579b1bf29098b6365f43f97ec2da9dec2a2918416e",
+      "size": 50377,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-29/ai-topic-radar.md",
+      "sha256": "9d251572042254cb51d6a6795592437a488ae61cb2fefef673b68de452420895",
+      "size": 32206,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-29/topic-pool.json",
+      "sha256": "12aba77f2091370d80f324e4bd8f28e701c48b1014ea3933dabf6ec0b5acd6ef",
+      "size": 65011,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-30/ai-topic-radar.md",
+      "sha256": "24f005f86311d8b5a6fbc7402c5056f8bcabb6b8669fb71c0bdb7281a9001e74",
+      "size": 48752,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-06-30/topic-pool.json",
+      "sha256": "f98292639cb690b4f9946755d3b691b612ab2b41de12dc11998b43ce74803eb3",
+      "size": 79982,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-01/ai-topic-radar.md",
+      "sha256": "8d3d36e528dae00a4a0beb7dd4fec633133c80898c32b9c57133852bdca02c7e",
+      "size": 58322,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-01/topic-pool.json",
+      "sha256": "0528eac3eb30ddef465d758d2e5b79088734883427ada0f85a474408e5808670",
+      "size": 81964,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-02/ai-topic-radar.md",
+      "sha256": "f29df9659c6bd8400ca35ec969939c48af301d81d6af212c833bfbe08cb7ede2",
+      "size": 58539,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-02/topic-pool.json",
+      "sha256": "a126cc7527f7f07dc15dd1c5d6c7a8760b12e2dcb27595ea560379f3d9e7b344",
+      "size": 84257,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-03/ai-topic-radar.md",
+      "sha256": "f33e4071bb7c1746f3b2216f54aea8bfb1681d78ab400710ac9b3e6807c8716f",
+      "size": 55304,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-03/topic-pool.json",
+      "sha256": "5aa3c77c3c1a740b8f73d15217d192e3b47e2e3d3288c11f8f6bcfda6c990323",
+      "size": 79813,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-04/ai-topic-radar.md",
+      "sha256": "f5d64d71882c83caec78e8970781840a9f8af08eafc4dd29fd48974403b60624",
+      "size": 63272,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-04/topic-pool.json",
+      "sha256": "9085bf4ea1bf3ec45cce0ff6790ac1136d85f898ab636455de950512d1917a5a",
+      "size": 95644,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-05/ai-topic-radar.md",
+      "sha256": "3bffcb1d9c09a2c2c1d0e9e8025296c745ca1782fc841dff05e980fbd2a06a7b",
+      "size": 32790,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-05/topic-pool.json",
+      "sha256": "209f6a37962a17339477050bd914002c0e1d7f39fc979ddc57b492496ab2d0db",
+      "size": 67616,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-06/ai-topic-radar.md",
+      "sha256": "88b92a90630db858c30426f7a2a74648fed3d3831d551c987a791db572b987cc",
+      "size": 35035,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-06/topic-pool.json",
+      "sha256": "8eab4a2a967fc49a3a95b660c0f5b8350bc9a73a3e09399fe504b3cc11d6e90a",
+      "size": 68029,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-07/ai-topic-radar.md",
+      "sha256": "38e718dc2774674130f49ed4fb65997b534ec2ef55d2ee85d18852c2f9c3c35b",
+      "size": 67971,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-07/topic-pool.json",
+      "sha256": "e1c0bbb2ed16f45e6b644510aedc842afe9265d5383a2ba6c45c157155e23ebd",
+      "size": 101579,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-08/ai-topic-radar.md",
+      "sha256": "0a216f7a9694ad4ed6b8208465faa17eb4e32af0c6373807c963be49d9a1fe71",
+      "size": 73548,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-08/topic-pool.json",
+      "sha256": "0641c26cab1d1f31f5e1ffd7855e38e4acf66c05fd75529fd45d3996b09622b5",
+      "size": 101470,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-09/ai-topic-radar.md",
+      "sha256": "d49ceded68763cad2e64f30f687542b58f10276b1408eabbb29a1a8ae36ad546",
+      "size": 74405,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-09/topic-pool.json",
+      "sha256": "cda4cad006100cf238b979705b8c6f805041f0febc89a9b00307713c52363023",
+      "size": 96275,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-10/ai-topic-radar.md",
+      "sha256": "7a1bee2712c7d2d44cad01417280bff7d596aeb8937daa4d54d78bccfa79513b",
+      "size": 58903,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-10/topic-pool.json",
+      "sha256": "d868e840c410347b731a25840bb1c554fa031162148f440c86721514ce9658bd",
+      "size": 89555,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-11/ai-topic-radar.md",
+      "sha256": "8fb730d6ac2f9f49166bafd9ac59878941c8f821eb65b5544d2dc2c6f1021ff1",
+      "size": 39608,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-11/topic-pool.json",
+      "sha256": "0d1b51bd03052bbc124a8ee17dd4142fe64cd183907810c32795d6db19c877d6",
+      "size": 73511,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-12/ai-topic-radar.md",
+      "sha256": "be570e794d0011c38b30601e30b83ded420671eea699dab570fd653a9aedcfa7",
+      "size": 35068,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-12/topic-pool.json",
+      "sha256": "e75625dcdce10043a36e4a1087843012b330204de40d40c6316ccc2ffb6e5ca7",
+      "size": 69378,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-13/ai-topic-radar.md",
+      "sha256": "1cf39cf8ca1163439979f651139128770aed6363c1e73dd152207082493a273b",
+      "size": 41030,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-13/topic-pool.json",
+      "sha256": "497f9d849fd7b31572de7e009467541eb5eb680113f84514ff1a2f9a250151dc",
+      "size": 68956,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-14/ai-topic-radar.md",
+      "sha256": "3e7da8104f7ef7e89941b7815edd570be7f43d11cc29733f6821064c050cbd7f",
+      "size": 71718,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-14/topic-pool.json",
+      "sha256": "1eaa872994df884e930c264e46cf9111b73e0e945aee9bb5f791fd2e46a70bad",
+      "size": 101601,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-15/ai-topic-radar.md",
+      "sha256": "2482b501f82a39bc79c988370ccf32369ee0a7a946ced848446ead0917d3acf7",
+      "size": 52543,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-15/topic-pool.json",
+      "sha256": "55a7183a221a8be2a7395c7995b0cdbc2449f6d4dc6e1cfd3b560e81750f27f5",
+      "size": 80086,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-16/ai-topic-radar.md",
+      "sha256": "a67d29720a478d527d78d7bccd3a310a1df7b1a3e0619f8939c44ba54dac291e",
+      "size": 56282,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-16/topic-pool.json",
+      "sha256": "7a95135fc3ad06be235f98e2be7e5f8f1993f8dde34497cb6bbe1f5aa8a8c023",
+      "size": 83876,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-17/ai-topic-radar.md",
+      "sha256": "99c9340259c4729a0787fc5bfa727b48e9f7e91b7cdb12d8c14976a6623407a5",
+      "size": 46273,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-17/topic-pool.json",
+      "sha256": "89322b973be3a20991876f11d06f9203fd499ae7d4c6e491cc0f06ecd77ea5d0",
+      "size": 74623,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-18/ai-topic-radar.md",
+      "sha256": "d1bc68adda3569db8da38cd02d460a98525576d3e18909d8aa9706683dd64c9b",
+      "size": 38081,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-18/topic-pool.json",
+      "sha256": "e1a581afe39e4b8e574d40639709bb8e8459a1dbd0b6025f6d01ea5d776b4791",
+      "size": 69795,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-19/ai-topic-radar.md",
+      "sha256": "536b4db4beae6ec74c0947f8f086fc85f46490a43fd84aba548125872f97fc98",
+      "size": 34266,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-19/topic-pool.json",
+      "sha256": "caec218ef820a890cba6b7f1dd2919797322ab79ec43b011cf5e5d6192041f40",
+      "size": 68613,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-20/ai-topic-radar.md",
+      "sha256": "8eae7a76bb603b19ecdda3389dceb5502734f95c39d9550feebafd6f0e00f926",
+      "size": 37233,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-20/topic-pool.json",
+      "sha256": "a602b2980722ef8df8102cffa418855db1dfb8a9ee99dc6452ed24fd0c3d9ddf",
+      "size": 69065,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-21/ai-topic-radar.md",
+      "sha256": "a2dec5d4deade4c8ed7d0ac1542d2009a2b7ea5ec4acb8861a942211793e9a95",
+      "size": 40518,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-21/topic-pool.json",
+      "sha256": "09e991041edde64d5a6f88254474d34a10d6ab63e1cafbe91ab6a74dcc95e0f5",
+      "size": 75850,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-22/ai-topic-radar.md",
+      "sha256": "eaeb3763b7928379248309c9e60b467e325df37fb22446f271c107b9ae3118fa",
+      "size": 69920,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-22/topic-pool.json",
+      "sha256": "b0273949c63c7e99ff6d3a8f1fe6996456c778c1c34062dface464e1f7d74667",
+      "size": 95203,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-23/ai-topic-radar.md",
+      "sha256": "46762a83d1dc18aeffce52d162c8d01d917f4a0dfac2c86e41afb2fdbcb12fbf",
+      "size": 46617,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-23/topic-pool.json",
+      "sha256": "9773b720836610bcf01feb298eeb46647f43734a3aadcd60f5c558da7ceb9f03",
+      "size": 77577,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-24/ai-topic-radar.md",
+      "sha256": "afaf5a87b9adaf1411253cf8804625e3455259b86b1dba794915dd63b7f87a25",
+      "size": 55910,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-24/topic-pool.json",
+      "sha256": "fc50c021f4eef5816a34019682d375783447a06177025163e599d9e16be7bcf9",
+      "size": 84413,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-25/ai-topic-radar.md",
+      "sha256": "794d8a512ec0a39cc7b7695f325b886c8084606146424da3c38656745ef2c363",
+      "size": 46944,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-25/topic-pool.json",
+      "sha256": "50b0a38782cabcbd08de5be69a10419b4689955d7cec1929a780dfad2ca9116e",
+      "size": 75467,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-26/ai-topic-radar.md",
+      "sha256": "377275022e997cad25ebdead542739c82328a9412de9b831e8f533c30d75ad71",
+      "size": 33500,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-26/topic-pool.json",
+      "sha256": "8c406ae0fb848be29675e6bf97f7c6aec387ec86672e4ce5e1b9cd5bcd3739a6",
+      "size": 67003,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-27/ai-topic-radar.md",
+      "sha256": "f0cf3a58eded200c1c321cc5759c929f462dca47d350758ed3de667df2fd60a6",
+      "size": 33190,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-27/topic-pool.json",
+      "sha256": "5a5687eda107bf095bce4263e1df9637e194a7d2a9dfdf91f0bd820ff6a919a1",
+      "size": 67610,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-28/ai-topic-radar.md",
+      "sha256": "889df78330eabd5be7bdcdfab07b42f73646d4ba35bd3215f81ff714cce8cfa6",
+      "size": 43977,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-28/topic-pool.json",
+      "sha256": "099f54f6d62676162315ad9f157bd1c281a304658f672785fc19593c485f5fde",
+      "size": 80376,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-29/ai-topic-radar.md",
+      "sha256": "12946162c5434e7af5044fe80a52cf393ece74d6e31f3c245ca33fc57bbbc3b8",
+      "size": 43908,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-29/topic-pool.json",
+      "sha256": "89aec49d2d9860c063477ecd5490ed87c501f7a27ad2f4ef1c86333935a16452",
+      "size": 75456,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-30/ai-topic-radar.md",
+      "sha256": "5d240c4fef3588c37a009d3b0a4b125691016ebf4e46b18713ff7ffac0006c5b",
+      "size": 44107,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-30/topic-pool.json",
+      "sha256": "430039f6f24c296fa5e2d35fa9714a91291322f8ee93b4f733a428c966ebb8c6",
+      "size": 78868,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-31/ai-topic-radar.md",
+      "sha256": "50f264bc5e71f09ed056436c8d3905e1f6c068c4fb17199e008488cf5e93b84e",
+      "size": 51806,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-07-31/topic-pool.json",
+      "sha256": "1000f23e2a20197626ff4622672abb722c0601c987ffe9470051ae0cb17f93d8",
+      "size": 80603,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-01/ai-topic-radar.md",
+      "sha256": "edd26d39d6562ccac45a3c0c463929d67850f8954715416062585b7a0d2f1301",
+      "size": 38426,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-01/topic-pool.json",
+      "sha256": "f558f35b9a97c7ce77eb9b3788f72486ce37b162ae32a3da48269c2111b62a83",
+      "size": 72732,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-02/ai-topic-radar.md",
+      "sha256": "1a1e5986a0ef7b32054eec5e34729943554108ebe7a112e840571efd2d9247af",
+      "size": 33957,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-02/topic-pool.json",
+      "sha256": "6e532d4c5d006d7b6e15924c879675e88c5e7d76c455266a07ccdf134b8aff48",
+      "size": 69316,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-03/ai-topic-radar.md",
+      "sha256": "1341f7280ba15731c73688747a29001012e772682f45ca5ce6ec9e4b4c40e3b3",
+      "size": 35738,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-03/topic-pool.json",
+      "sha256": "2a06e1f36977e889944f668794553b52309fad6ab6b881fe82e5c25be8be90f8",
+      "size": 68353,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-04/ai-topic-radar.md",
+      "sha256": "3438a483cfd588985a075dd59c718b5515827928ec039a3c600effe36d301593",
+      "size": 46820,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-04/topic-pool.json",
+      "sha256": "69013dfb6a4704a72338ec14642943276bf14bfeff9c5df43d976eaa01885348",
+      "size": 75670,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-05/ai-topic-radar.md",
+      "sha256": "01e2a290f38500456040edcaed7b9fc0325f684ef2822919ded7c94b946ebd4d",
+      "size": 43932,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-05/topic-pool.json",
+      "sha256": "dcb9552ef9deefc16f43522e1e3123ca66217e0aef9db6826f1db6a16df1f064",
+      "size": 79708,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-06/ai-topic-radar.md",
+      "sha256": "e35d58ab1396e544555dfd77dd1c5fadbafadf5267707f839f5a525021c56c9c",
+      "size": 33950,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-06/topic-pool.json",
+      "sha256": "fc686f3f39f246ce9a3b0f6db2e7c9a48192ba9972cae53119cd807ab5332c60",
+      "size": 69293,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-07/ai-topic-radar.md",
+      "sha256": "9ecee3c9c8c85c94e1363d331a85ca5ebfe3b96ca51d016b35d675c65555a116",
+      "size": 41016,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-07/topic-pool.json",
+      "sha256": "15494e2dacfcc9457391e0369a1c43a29f47ed9cd1629092130e20f123b823df",
+      "size": 74157,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-08/ai-topic-radar.md",
+      "sha256": "949f04cd861e43aeb098dfe713f4b561123fb82dcb5727c6aecd8e2cbe3f981f",
+      "size": 42563,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-08/topic-pool.json",
+      "sha256": "ac0b71873a0e4d56686db8bbc1cbbe1a8cc68f1008483236375487979a8d7e95",
+      "size": 72053,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-09/ai-topic-radar.md",
+      "sha256": "9d5db47c3b8abd322c19979b8d887fa436f13a85a3d97518ca51e47a86ee5a05",
+      "size": 35620,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-09/topic-pool.json",
+      "sha256": "7f58d71fb624153de5417498dc801362bb5d133e8000b1aba2ffefc8b7cafd9e",
+      "size": 67095,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-10/ai-topic-radar.md",
+      "sha256": "42cfed996b61650c4acc3146ade4748a42badc50c0aef0b55ad359a7a221fc89",
+      "size": 33293,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-10/topic-pool.json",
+      "sha256": "3a49d8f6605e15ae1f1da96a4da27c183bd1bb9b935b40398d941bf7e8d329bd",
+      "size": 67433,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    }
+  ],
+  "tombstones": [],
+  "corpus_revision": "d0615bade31433c66f079ff10f274e7d9fc6cf0a42a7f35d8ddf34afad69b6dc",
+  "complete": true
+}

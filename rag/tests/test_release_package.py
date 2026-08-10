@@ -1,5 +1,7 @@
 """Public release-package contracts for a clone-and-run local deployment."""
 
+import subprocess
+import tempfile
 from pathlib import Path
 
 
@@ -79,3 +81,43 @@ def test_release_assets_state_the_project_license_and_security_boundary():
     assert "MIT License" in license_text
     assert "Copyright (c) 2026 Conradgui" in license_text
     assert "密钥" in security_text
+
+
+def test_project_verifier_gitlink_has_reproducible_submodule_metadata():
+    source = (PROJECT_ROOT / ".gitmodules").read_text(encoding="utf-8")
+
+    assert 'path = .claude/skills/project-verifier-skill' in source
+    assert 'url = https://github.com/Conradgui/project-verifier-skill.git' in source
+
+
+def test_pages_builder_copies_only_public_digest_artifacts():
+    with tempfile.TemporaryDirectory() as tmp:
+        site_root = Path(tmp) / "site"
+        subprocess.run(
+            ["bash", "scripts/build-pages-site.sh", str(site_root)],
+            cwd=PROJECT_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+        published = {
+            path.relative_to(site_root).as_posix()
+            for path in site_root.rglob("*")
+            if path.is_file()
+        }
+
+    assert "digests/search-index.json" in published
+    assert "digests/web-state.json" not in published
+    assert not any(path.endswith(".DS_Store") for path in published)
+    assert not any(path.startswith(".git/") for path in published)
+
+
+def test_pages_builder_requires_auditable_contract_and_search_index():
+    source = (PROJECT_ROOT / "scripts" / "build-pages-site.sh").read_text(
+        encoding="utf-8"
+    )
+
+    assert "index.html manifest.json feed.xml corpus-manifest.json" in source
+    assert 'Required public file is missing or empty: digests/search-index.json' in source
+    assert "python -m rag.corpus_contract --check-existing" in source
