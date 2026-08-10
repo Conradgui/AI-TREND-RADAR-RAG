@@ -107,3 +107,12 @@
 ## Gate 决策
 
 Stage 1 的代码、合同、文档和本地真实上游验证已通过独立监管，满足本地代码 Gate。下一步需要 Conrad 明确决定何时把经过审查的工作流进入默认分支；在此之前可以继续 Stage 2 的本地开发，但不能声称每日云端自动化已生效。
+
+## Draft PR 云端 CI 复核
+
+- Stage 1 checkpoint `b3d9ca1` 已推送到 `claude/rag-transformation-checkpoints`，并创建 Draft PR #1；未合并或直接修改 `main`。
+- PR CI run `31363767006` 在安装 actionlint 阶段失败，后续 lint/test 均被跳过；这不是产品测试失败。
+- 真实根因有两项：release asset 架构名误写为 `linux_x86_64`（官方为 `linux_amd64`），且 SHA-256 误用了 `darwin_arm64` 归档。
+- 新增 workflow 合同回归断言后先得到 1 个失败、9 个通过；修复资源名与 SHA 后得到 10/10 通过。
+- 从 actionlint 官方 GitHub Release 下载 `actionlint_1.7.12_linux_amd64.tar.gz` 后，本地实测 SHA-256 为 `8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`，与 workflow 固定值一致。
+- 该失败说明原本“固定版本 + checksum”的方向正确，但本地 Gate 缺少对远端 asset 名称与平台 checksum 配对的直接断言；现已补齐。

@@ -37,6 +37,12 @@ def test_ci_installs_rag_test_dependencies_before_running_p0_suite():
     for required in ("pytest", "pytest-asyncio", "httpx", "PyYAML"):
         assert required in dev_requirements
     assert "ACTIONLINT_VERSION=1.7.12" in source
+    assert "actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz" in source
+    assert (
+        "ACTIONLINT_SHA256="
+        "8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+        in source
+    )
     assert "sha256sum --check" in source
     assert "actionlint .github/workflows/*.yml" in source
 
