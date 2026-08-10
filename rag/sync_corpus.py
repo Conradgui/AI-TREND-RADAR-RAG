@@ -310,7 +310,8 @@ def _preserve_nonempty_local_summaries(
                 continue
             summary = overrides.get(match.group(1))
             if summary:
-                parts[4] = f" {summary.replace('|', r'\|')} "
+                escaped_summary = summary.replace("|", r"\|")
+                parts[4] = f" {escaped_summary} "
                 lines[index] = "|".join(parts)
                 changed = True
         if changed:

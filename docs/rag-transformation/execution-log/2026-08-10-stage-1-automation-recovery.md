@@ -116,3 +116,7 @@ Stage 1 的代码、合同、文档和本地真实上游验证已通过独立监
 - 新增 workflow 合同回归断言后先得到 1 个失败、9 个通过；修复资源名与 SHA 后得到 10/10 通过。
 - 从 actionlint 官方 GitHub Release 下载 `actionlint_1.7.12_linux_amd64.tar.gz` 后，本地实测 SHA-256 为 `8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8`，与 workflow 固定值一致。
 - 该失败说明原本“固定版本 + checksum”的方向正确，但本地 Gate 缺少对远端 asset 名称与平台 checksum 配对的直接断言；现已补齐。
+- 修复 actionlint 后，PR CI run `31364395731` 已通过 actionlint、lint、format、typecheck 与 224 个 Vitest，但在 RAG P0 导入 `rag.sync_corpus` 时失败。
+- 第二次失败根因是 Python 版本兼容性：`summary.replace('|', r'\|')` 被直接写在 f-string 表达式内；本机 Python 3.12 可解析，但 CI 的 Python 3.11 明确报 `f-string expression part cannot include a backslash`。
+- 已用本机真实 Python 3.11 先复现红灯，再把转义计算移到 f-string 外；随后 Python 3.11 编译通过、17/17 同步测试通过、21/21 发布契约通过，完整 `pnpm rag:check:p0` 重新达到 242 unittest + 36 pytest 全绿。
+- 该问题暴露出本地默认解释器高于项目 CI 最低版本时的兼容性盲区；后续发布 Gate 必须保留 Python 3.11 云端检查，不能仅依赖开发机高版本解释器。
