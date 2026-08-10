@@ -1,0 +1,832 @@
+{
+  "corpus": {
+    "documents": 3550,
+    "uniqueContentIds": 1642,
+    "indexJsonBytes": 7225432,
+    "chineseTitleDocs": 289,
+    "nonemptyEntities": 0,
+    "nonemptyAliases": 0
+  },
+  "versions": {
+    "flexsearch": "0.8.212",
+    "minisearch": "7.2.0",
+    "node": "v22.17.1"
+  },
+  "testSet": {
+    "total": 74,
+    "byGroup": {
+      "exact-title": 50,
+      "entity-literal": 6,
+      "cjk-short": 8,
+      "typo": 6,
+      "hard-negative": 4
+    },
+    "exactTitles": [
+      "'The Worst It's Ever Been': Why Meta's AI Reorg Backfired Spectacularly",
+      "Agentcard for companies",
+      "AngelSlim/Hy3-GGUF",
+      "Anthropic runs like Wile E. Coyote into the brick wall of consciousness research",
+      "Ask HN: Anthropic banned me from using Claude Code and I don't know what to do",
+      "Breeding Healthier Honeybees With AlphaFold — Google DeepMind",
+      "Claude Fable 5 Promotional Access",
+      "Ctruh Studio",
+      "Early Users of Anthropic Mythos Still Have Access After US Order",
+      "Gemini Omni Flash",
+      "Grok by SpaceXAI for Word",
+      "I built mission control for my AI coding agents",
+      "Introducing Sonnet 4.6",
+      "Launch HN: Hoplite (YC S26) – Effortlessly deploy cloud coding agents",
+      "memvid/memvid",
+      "moonshotai/Kimi-K2.7-Code",
+      "oceanbase/oceanbase",
+      "OpenAI unveils its first custom chip, built by Broadcom",
+      "Pinery Prose",
+      "Reid Hoffman says SpaceX 'not an AI company', xAI 'complete train wreck'",
+      "shareAI-lab/learn-claude-code",
+      "Stop Pasting Your Database Schema Into Every AI Prompt",
+      "The GTM Co-Founder",
+      "Trump's Anthropic restrictions may be illegal",
+      "Website to Markdown API",
+      "“德睿智药”完成5200万美元B轮融资",
+      "2026 上半年，前端圈已经炸了五次",
+      "36氪首发｜红杉中国、Brizan Ventures领投，AI厨房机器人品牌「栗上LISSOME」完成数千万元A轮融资",
+      "8点1氪丨SK海力士CEO称史上最大存储短缺将在明年到来；苹果起诉OpenAI窃取商业机密‌；赛力斯预计上半年净亏损15亿元-18亿元",
+      "成立9个月，在手订单4.4亿，「谱星航天」连续完成两轮数亿元融资｜36氪首发",
+      "东山精密涨停背后：36氪企业全情报捕捉市场机会",
+      "谷歌发布A2UI v0.9：可移植、框架无关的生成式UI",
+      "开发者的 AI 助手升级了：Android Studio 支持多个 Agent 同时处理任务",
+      "氪星晚报｜证监会同意宇树科技科创板IPO注册；Meta“带崩”科技股？业内人士：算力过剩系误读",
+      "没写一行代码！我用 ChatGPT 5.6 (Sol) 做了一个智慧充电站 3D 大屏",
+      "穆迪警告AI投资狂潮冲击科技巨头财务稳健性 微软、甲骨文等公司自由现金流承压",
+      "苹果在重磅诉讼中起诉OpenAI窃取商业机密‌",
+      "前端转型全栈（Java后端）的快速上手指引",
+      "如何以前端视角（非0基础）学 Java ？",
+      "微软、Meta 同日交财报：小扎把现金流烧到只剩7.84亿美元，纳德拉靠 Azure 赚疯了",
+      "翁荔被爆重返OpenAI！两天前因身体原因从Thinking Machines Lab离职",
+      "我用AI写了半年代码——回头看，这5个能力正在退化",
+      "一折买 Miu Miu，谁在做奢侈品牌的\"拼多多\"？｜商业Friday",
+      "专升本前端毕业 1 年，从初创到大厂，我的开源项目上了 github trending，顺便聊聊做开源的收获",
+      "AI浪潮中，如何定义自己的“确定性”之旅？",
+      "ChatGPT 市场份额首次跌破 50%",
+      "Fable 5 访问权限再延一周，但Anthropic 的“黑心账本”越来越藏不住了",
+      "Google 想为 AI Agent 打造下一个 Kubernetes",
+      "Node.js 还能再战十年？给你一个不换引擎的理由",
+      "Rspack 2.1 发布：React Compiler 提速 10 倍！"
+    ]
+  },
+  "build": {
+    "flexMs": [
+      335.6630410000007,
+      356.0780420000001,
+      1559.3595000000005,
+      397.2616249999992,
+      389.4060410000002
+    ],
+    "miniMs": [
+      1506.1136670000005,
+      2128.586624999999,
+      1974.9806250000001,
+      1399.070291,
+      1243.689625000001
+    ],
+    "flexMedianMs": 389.4060410000002,
+    "miniMedianMs": 1506.1136670000005
+  },
+  "query": {
+    "flex": {
+      "n": 1480,
+      "medianMs": 0.10941599999932805,
+      "p95Ms": 0.7024590000000899,
+      "meanMs": 0.19388305608108322
+    },
+    "mini": {
+      "n": 1480,
+      "medianMs": 0.5896670000001905,
+      "p95Ms": 3.792250000002241,
+      "meanMs": 1.0520457094594557
+    }
+  },
+  "metrics": {
+    "flex": {
+      "exact-title": {
+        "n": 50,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 1,
+        "mrr": 1,
+        "offGoldTop10": 21,
+        "hardNegativeQueriesWithHits": null
+      },
+      "entity-literal": {
+        "n": 6,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 0.05569022480787187,
+        "mrr": 1,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": null
+      },
+      "cjk-short": {
+        "n": 8,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 0.5917681175034116,
+        "mrr": 1,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": null
+      },
+      "typo": {
+        "n": 6,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 0.33148387560152265,
+        "mrr": 1,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": null
+      },
+      "hard-negative": {
+        "n": 4,
+        "hit1": null,
+        "hit3": null,
+        "recall10": null,
+        "mrr": null,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": 0
+      }
+    },
+    "mini": {
+      "exact-title": {
+        "n": 50,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 1,
+        "mrr": 1,
+        "offGoldTop10": 8,
+        "hardNegativeQueriesWithHits": null
+      },
+      "entity-literal": {
+        "n": 6,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 0.05569022480787187,
+        "mrr": 1,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": null
+      },
+      "cjk-short": {
+        "n": 8,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 0.5917681175034116,
+        "mrr": 1,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": null
+      },
+      "typo": {
+        "n": 6,
+        "hit1": 1,
+        "hit3": 1,
+        "recall10": 0.33148387560152265,
+        "mrr": 1,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": null
+      },
+      "hard-negative": {
+        "n": 4,
+        "hit1": null,
+        "hit3": null,
+        "recall10": null,
+        "mrr": null,
+        "offGoldTop10": 0,
+        "hardNegativeQueriesWithHits": 0
+      }
+    }
+  },
+  "serialized": {
+    "flex": {
+      "bytes": 26794633,
+      "gzipBytes": 7546663,
+      "chunks": 4,
+      "loadMs": 203.7639999999992,
+      "smoke": [
+        "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+        "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+        "Openai And Apa Partner To Advance Responsible Ai"
+      ]
+    },
+    "mini": {
+      "bytes": 5234307,
+      "gzipBytes": 770380,
+      "loadMs": 672.8379170000007,
+      "smoke": [
+        "Introducing Openai Presence",
+        "The OpenAI Bubble",
+        "How Openai Uses Codex"
+      ]
+    }
+  },
+  "bundles": {
+    "flexBundle": {
+      "bytes": 51186,
+      "gzipBytes": 17683
+    },
+    "flexCompact": {
+      "bytes": 28337,
+      "gzipBytes": 10751
+    },
+    "miniUMD": {
+      "bytes": 86348,
+      "gzipBytes": 18715
+    },
+    "miniES": {
+      "bytes": 78014,
+      "gzipBytes": 18281
+    }
+  },
+  "rawSpecial": {
+    "OpenAI": {
+      "flex": [
+        "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+        "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+        "Openai And Apa Partner To Advance Responsible Ai",
+        "OpenAI and four rivals just agreed on one standard for AI agents",
+        "OpenAI's latest math breakthroughs commit research misconduct, experts say"
+      ],
+      "mini": [
+        "Introducing Openai Presence",
+        "The OpenAI Bubble",
+        "How Openai Uses Codex",
+        "Openai Frontier Governance Framework",
+        "How OpenAI Kills Oracle"
+      ]
+    },
+    "Open AI": {
+      "flex": [
+        "Anthropic CEO: Open-Source AI is getting dangerous (2023)",
+        "Show HN: OpenKnowledge – open source AI-first alternative to Obsidian/Notion",
+        "OpenAI and Anthropic unite against open-weight AI risks to their bottom line",
+        "LM Studio Bionic: the AI agent for open models",
+        "Anthropic cuts API costs with Opus 5 as rivals unite to defend open weights"
+      ],
+      "mini": [
+        "LM Studio Bionic: the AI agent for open models",
+        "Anthropic CEO: Open-Source AI is getting dangerous (2023)",
+        "Show HN: OpenKnowledge – open source AI-first alternative to Obsidian/Notion",
+        "OpenAI and Anthropic unite against open-weight AI risks to their bottom line",
+        "open-webui/open-webui"
+      ]
+    },
+    "Claude": {
+      "flex": [
+        "Claude Code usage tracking by LangWatch",
+        "Claude: Elevated errors across all models – Resolved",
+        "Claude Opus 5",
+        "Claude shared chats and Artifacts may have ended up on Google",
+        "Claude Cookbook"
+      ],
+      "mini": [
+        "Claude Cookbook",
+        "Claude Overlay",
+        "Teaching Claude why",
+        "Claude Opus 5",
+        "Unabyss for Claude"
+      ]
+    },
+    "Anthropic": {
+      "flex": [
+        "Anthropic is turning Claude Code's auto mode on by default",
+        "Anthropic Economic Index",
+        "Anthropic CEO reportedly worried new hires only care about money",
+        "Anthropic AI created fake profiles and impersonated people in attempted hack",
+        "Anthropic launched an AI-run vending machine, stores and cafes within a year"
+      ],
+      "mini": [
+        "Anthropic acquires Stainless",
+        "Anthropic Sydney office",
+        "Anthropic Economic Index",
+        "Introducing Anthropic Interviewer",
+        "Anthropic opens Seoul office"
+      ]
+    },
+    "智能体": {
+      "flex": [
+        "破局智能体 “进化难”：阿里云 AgentLoop 深度解析全栈观测与自动化评估体系",
+        "蚂蚁集团开源Avernet：破解多智能体“找不到、对不齐”协作难题",
+        "腾讯云智能体硬件生态提速，首款接入WorkBuddy AI记忆眼镜发布",
+        "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+        "Pinecone 推出 Nexus 引擎：为 AI 智能体整合业务上下文并生成结构化数据"
+      ],
+      "mini": [
+        "从 Copilot 到 Autopilot：微软发布常驻型企业智能体 Scout",
+        "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+        "腾讯云智能体硬件生态提速，首款接入WorkBuddy AI记忆眼镜发布",
+        "Anthropic 负责人：HTML 比 MD 更利于人类跟进智能体协作流程",
+        "Chrome 推出 WebMCP 标准提案（Origin Trial）：为智能体提供原生 Web 操作能力"
+      ]
+    },
+    "模型": {
+      "flex": [
+        "Comfy-Org/MiniMax-H3",
+        "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
+        "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+        "realrebelai/MiniMax-H3_GGUFs",
+        "larryvrh/MiniMax-H3-Turbo-Lora"
+      ],
+      "mini": [
+        "Anthropic acquires Stainless",
+        "Updating Model Spec With Teen Protections",
+        "Introducing Claude for Small Business",
+        "An update on our election safeguards",
+        "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute"
+      ]
+    },
+    "opneai": {
+      "flex": [
+        "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+        "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+        "Openai And Apa Partner To Advance Responsible Ai",
+        "OpenAI and four rivals just agreed on one standard for AI agents",
+        "OpenAI's latest math breakthroughs commit research misconduct, experts say"
+      ],
+      "mini": [
+        "Introducing Openai Presence",
+        "The OpenAI Bubble",
+        "How Openai Uses Codex",
+        "Openai Frontier Governance Framework",
+        "How OpenAI Kills Oracle"
+      ]
+    },
+    "anthorpic": {
+      "flex": [
+        "Anthropic is turning Claude Code's auto mode on by default",
+        "Anthropic Economic Index",
+        "Anthropic CEO reportedly worried new hires only care about money",
+        "Anthropic AI created fake profiles and impersonated people in attempted hack",
+        "Anthropic launched an AI-run vending machine, stores and cafes within a year"
+      ],
+      "mini": [
+        "Anthropic acquires Stainless",
+        "Anthropic Sydney office",
+        "Anthropic Economic Index",
+        "Introducing Anthropic Interviewer",
+        "Anthropic opens Seoul office"
+      ]
+    },
+    "cluade": {
+      "flex": [
+        "Claude Code usage tracking by LangWatch",
+        "Claude: Elevated errors across all models – Resolved",
+        "Claude Opus 5",
+        "Claude shared chats and Artifacts may have ended up on Google",
+        "Claude Cookbook"
+      ],
+      "mini": [
+        "Claude Cookbook",
+        "Claude Overlay",
+        "Teaching Claude why",
+        "Claude Opus 5",
+        "Unabyss for Claude"
+      ]
+    }
+  },
+  "audited": {
+    "OpenAI": {
+      "goldSize": 240,
+      "goldRule": "indexed fields contain openai",
+      "flex": [
+        {
+          "title": "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+          "ok": true
+        },
+        {
+          "title": "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+          "ok": true
+        },
+        {
+          "title": "Openai And Apa Partner To Advance Responsible Ai",
+          "ok": true
+        },
+        {
+          "title": "OpenAI and four rivals just agreed on one standard for AI agents",
+          "ok": true
+        },
+        {
+          "title": "OpenAI's latest math breakthroughs commit research misconduct, experts say",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Introducing Openai Presence",
+          "ok": true
+        },
+        {
+          "title": "The OpenAI Bubble",
+          "ok": true
+        },
+        {
+          "title": "How Openai Uses Codex",
+          "ok": true
+        },
+        {
+          "title": "Openai Frontier Governance Framework",
+          "ok": true
+        },
+        {
+          "title": "How OpenAI Kills Oracle",
+          "ok": true
+        }
+      ]
+    },
+    "Open AI": {
+      "goldSize": 240,
+      "goldRule": "indexed fields contain openai",
+      "flex": [
+        {
+          "title": "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+          "ok": true
+        },
+        {
+          "title": "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+          "ok": true
+        },
+        {
+          "title": "Openai And Apa Partner To Advance Responsible Ai",
+          "ok": true
+        },
+        {
+          "title": "OpenAI and four rivals just agreed on one standard for AI agents",
+          "ok": true
+        },
+        {
+          "title": "OpenAI's latest math breakthroughs commit research misconduct, experts say",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Introducing Openai Presence",
+          "ok": true
+        },
+        {
+          "title": "The OpenAI Bubble",
+          "ok": true
+        },
+        {
+          "title": "How Openai Uses Codex",
+          "ok": true
+        },
+        {
+          "title": "Openai Frontier Governance Framework",
+          "ok": true
+        },
+        {
+          "title": "How OpenAI Kills Oracle",
+          "ok": true
+        }
+      ]
+    },
+    "Claude": {
+      "goldSize": 238,
+      "goldRule": "indexed fields contain claude",
+      "flex": [
+        {
+          "title": "Claude Code usage tracking by LangWatch",
+          "ok": true
+        },
+        {
+          "title": "Claude: Elevated errors across all models – Resolved",
+          "ok": true
+        },
+        {
+          "title": "Claude Opus 5",
+          "ok": true
+        },
+        {
+          "title": "Claude shared chats and Artifacts may have ended up on Google",
+          "ok": true
+        },
+        {
+          "title": "Claude Cookbook",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Claude Cookbook",
+          "ok": true
+        },
+        {
+          "title": "Claude Overlay",
+          "ok": true
+        },
+        {
+          "title": "Teaching Claude why",
+          "ok": true
+        },
+        {
+          "title": "Claude Opus 5",
+          "ok": true
+        },
+        {
+          "title": "Unabyss for Claude",
+          "ok": true
+        }
+      ]
+    },
+    "Anthropic": {
+      "goldSize": 208,
+      "goldRule": "indexed fields contain anthropic",
+      "flex": [
+        {
+          "title": "Anthropic is turning Claude Code's auto mode on by default",
+          "ok": true
+        },
+        {
+          "title": "Anthropic Economic Index",
+          "ok": true
+        },
+        {
+          "title": "Anthropic CEO reportedly worried new hires only care about money",
+          "ok": true
+        },
+        {
+          "title": "Anthropic AI created fake profiles and impersonated people in attempted hack",
+          "ok": true
+        },
+        {
+          "title": "Anthropic launched an AI-run vending machine, stores and cafes within a year",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Anthropic acquires Stainless",
+          "ok": true
+        },
+        {
+          "title": "Anthropic Sydney office",
+          "ok": true
+        },
+        {
+          "title": "Anthropic Economic Index",
+          "ok": true
+        },
+        {
+          "title": "Introducing Anthropic Interviewer",
+          "ok": true
+        },
+        {
+          "title": "Anthropic opens Seoul office",
+          "ok": true
+        }
+      ]
+    },
+    "智能体": {
+      "goldSize": 17,
+      "goldRule": "indexed fields contain 智能体",
+      "flex": [
+        {
+          "title": "破局智能体 “进化难”：阿里云 AgentLoop 深度解析全栈观测与自动化评估体系",
+          "ok": true
+        },
+        {
+          "title": "蚂蚁集团开源Avernet：破解多智能体“找不到、对不齐”协作难题",
+          "ok": true
+        },
+        {
+          "title": "腾讯云智能体硬件生态提速，首款接入WorkBuddy AI记忆眼镜发布",
+          "ok": true
+        },
+        {
+          "title": "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+          "ok": true
+        },
+        {
+          "title": "Pinecone 推出 Nexus 引擎：为 AI 智能体整合业务上下文并生成结构化数据",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "从 Copilot 到 Autopilot：微软发布常驻型企业智能体 Scout",
+          "ok": true
+        },
+        {
+          "title": "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+          "ok": true
+        },
+        {
+          "title": "腾讯云智能体硬件生态提速，首款接入WorkBuddy AI记忆眼镜发布",
+          "ok": true
+        },
+        {
+          "title": "Anthropic 负责人：HTML 比 MD 更利于人类跟进智能体协作流程",
+          "ok": true
+        },
+        {
+          "title": "Chrome 推出 WebMCP 标准提案（Origin Trial）：为智能体提供原生 Web 操作能力",
+          "ok": true
+        }
+      ]
+    },
+    "模型": {
+      "goldSize": 234,
+      "goldRule": "indexed fields contain 模型",
+      "flex": [
+        {
+          "title": "Comfy-Org/MiniMax-H3",
+          "ok": true
+        },
+        {
+          "title": "DavidAU/Qwen3.6-27B-Fable-Fusion-711-Uncensored-Heretic-NM-DAU-NEO-MAX-MTP-GGUF",
+          "ok": true
+        },
+        {
+          "title": "LuffyTheFox/Qwen3.6-35B-A3B-Uncensored-Genesis-Hermes-V7-GGUF",
+          "ok": true
+        },
+        {
+          "title": "realrebelai/MiniMax-H3_GGUFs",
+          "ok": true
+        },
+        {
+          "title": "larryvrh/MiniMax-H3-Turbo-Lora",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Anthropic acquires Stainless",
+          "ok": true
+        },
+        {
+          "title": "Updating Model Spec With Teen Protections",
+          "ok": true
+        },
+        {
+          "title": "Introducing Claude for Small Business",
+          "ok": true
+        },
+        {
+          "title": "An update on our election safeguards",
+          "ok": true
+        },
+        {
+          "title": "Anthropic and Amazon expand collaboration for up to 5 gigawatts of new compute",
+          "ok": true
+        }
+      ]
+    },
+    "opneai": {
+      "goldSize": 240,
+      "goldRule": "indexed fields contain openai",
+      "flex": [
+        {
+          "title": "OpenAI Didn't Notice Its AI Agents Using a Message Board to Plan Hacking Spree",
+          "ok": true
+        },
+        {
+          "title": "OpenAI's New Device Will Be Hockey Puck-Sized and Cost over $300",
+          "ok": true
+        },
+        {
+          "title": "Openai And Apa Partner To Advance Responsible Ai",
+          "ok": true
+        },
+        {
+          "title": "OpenAI and four rivals just agreed on one standard for AI agents",
+          "ok": true
+        },
+        {
+          "title": "OpenAI's latest math breakthroughs commit research misconduct, experts say",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Introducing Openai Presence",
+          "ok": true
+        },
+        {
+          "title": "The OpenAI Bubble",
+          "ok": true
+        },
+        {
+          "title": "How Openai Uses Codex",
+          "ok": true
+        },
+        {
+          "title": "Openai Frontier Governance Framework",
+          "ok": true
+        },
+        {
+          "title": "How OpenAI Kills Oracle",
+          "ok": true
+        }
+      ]
+    },
+    "anthorpic": {
+      "goldSize": 208,
+      "goldRule": "indexed fields contain anthropic",
+      "flex": [
+        {
+          "title": "Anthropic is turning Claude Code's auto mode on by default",
+          "ok": true
+        },
+        {
+          "title": "Anthropic Economic Index",
+          "ok": true
+        },
+        {
+          "title": "Anthropic CEO reportedly worried new hires only care about money",
+          "ok": true
+        },
+        {
+          "title": "Anthropic AI created fake profiles and impersonated people in attempted hack",
+          "ok": true
+        },
+        {
+          "title": "Anthropic launched an AI-run vending machine, stores and cafes within a year",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Anthropic acquires Stainless",
+          "ok": true
+        },
+        {
+          "title": "Anthropic Sydney office",
+          "ok": true
+        },
+        {
+          "title": "Anthropic Economic Index",
+          "ok": true
+        },
+        {
+          "title": "Introducing Anthropic Interviewer",
+          "ok": true
+        },
+        {
+          "title": "Anthropic opens Seoul office",
+          "ok": true
+        }
+      ]
+    },
+    "cluade": {
+      "goldSize": 238,
+      "goldRule": "indexed fields contain claude",
+      "flex": [
+        {
+          "title": "Claude Code usage tracking by LangWatch",
+          "ok": true
+        },
+        {
+          "title": "Claude: Elevated errors across all models – Resolved",
+          "ok": true
+        },
+        {
+          "title": "Claude Opus 5",
+          "ok": true
+        },
+        {
+          "title": "Claude shared chats and Artifacts may have ended up on Google",
+          "ok": true
+        },
+        {
+          "title": "Claude Cookbook",
+          "ok": true
+        }
+      ],
+      "mini": [
+        {
+          "title": "Claude Cookbook",
+          "ok": true
+        },
+        {
+          "title": "Claude Overlay",
+          "ok": true
+        },
+        {
+          "title": "Teaching Claude why",
+          "ok": true
+        },
+        {
+          "title": "Claude Opus 5",
+          "ok": true
+        },
+        {
+          "title": "Unabyss for Claude",
+          "ok": true
+        }
+      ]
+    },
+    "量子香蕉协议": {
+      "goldSize": 0,
+      "goldRule": "no corpus literal / expected empty",
+      "flex": [],
+      "mini": []
+    }
+  }
+}

@@ -12,7 +12,7 @@ DEEPSEEK_API_KEY=你的真实密钥
 NEO4J_PASSWORD=由配置向导生成的本地密码
 ```
 
-支持 `deepseek`、`anthropic`、`openai`。切换 Provider 后执行 `docker compose up -d --build` 让应用重新读取环境变量。
+支持 `deepseek`、`anthropic`、`openai`。切换 Provider 后双击 `update.command` / `update.bat`（或执行 `docker compose up -d --build`）让应用重新读取环境变量。
 
 ## 联网搜索
 
@@ -37,3 +37,13 @@ BRAVE_SEARCH_API_KEY=
 4. 不要直接把 Docker 端口暴露到公网。
 
 具体安全提醒请看根目录 [`SECURITY.md`](../SECURITY.md)。
+
+## GitHub Actions 与新闻源配置
+
+本地 `.env` 只控制本机 Docker 和 Agent，不会自动上传到 GitHub。GitHub Actions 的密钥必须在仓库 `Settings → Secrets and variables → Actions` 单独配置。
+
+- 默认托管同步不需要任何 Secret；可用 Repository Variable `UPSTREAM_CORPUS_URL` 覆盖公开语料地址。
+- 自维护模式按 Provider 配置 `DEEPSEEK_API_KEY`、`ANTHROPIC_API_KEY`、`OPENAI_API_KEY` 或 `OPENROUTER_API_KEY` 中的一项。
+- `PRODUCTHUNT_TOKEN`、`GITEE_TOKEN`、`AI_RADAR_GITHUB_TOKEN` 都是可选来源增强项，缺失时跳过对应来源。
+
+完整操作步骤、权限边界和故障定位见[GitHub 自动化与语料模式](github-automation.zh.md)。

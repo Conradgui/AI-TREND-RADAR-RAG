@@ -12,6 +12,8 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { extractFromHtml } from "@extractus/article-extractor";
+import { extractFromXml } from "@extractus/feed-extractor";
 import { sleep } from "./date.ts";
 
 // ---------------------------------------------------------------------------
@@ -22,6 +24,9 @@ export interface WebPageItem {
   url: string;
   title: string;
   lastmod: string;
+  /** Short source-grounded description for report display. */
+  summary: string;
+  /** Longer article text for analysis and RAG ingestion. */
   content: string;
   site: "anthropic" | "openai" | "deepmind";
   category: string;
@@ -54,6 +59,8 @@ export interface WebFetchResult {
 
 interface SiteConfig {
   name: string;
+  /** Standard first-party feeds used for discovery and concise descriptions. */
+  feedUrls?: string[];
   /** For single sitemaps: URL to fetch */
   sitemapUrl: string;
   /** For single sitemaps: only keep URLs starting with these path prefixes */
@@ -62,9 +69,8 @@ interface SiteConfig {
   subSitemapNames?: string[];
   /** URL template for sub-sitemaps; {name} is replaced with each sub-sitemap name */
   subSitemapTemplate?: string;
-  /** Skip fetching article pages; derive title from URL slug instead. Use when the
-   *  site blocks bot requests (e.g. Cloudflare WAF on datacenter IPs). */
-  metadataOnly?: boolean;
+  /** Whether article pages are expected to be reachable from CI. */
+  fetchArticlePages?: boolean;
 }
 
 const SITE_CONFIGS: Record<"anthropic" | "openai" | "deepmind", SiteConfig> = {
@@ -75,6 +81,7 @@ const SITE_CONFIGS: Record<"anthropic" | "openai" | "deepmind", SiteConfig> = {
   },
   openai: {
     name: "OpenAI",
+    feedUrls: ["https://openai.com/news/rss.xml"],
     sitemapUrl: "https://openai.com/sitemap.xml",
     subSitemapNames: [
       "research",
@@ -88,7 +95,7 @@ const SITE_CONFIGS: Record<"anthropic" | "openai" | "deepmind", SiteConfig> = {
       "product",
     ],
     subSitemapTemplate: "https://openai.com/sitemap.xml/{name}/",
-    metadataOnly: true,
+    fetchArticlePages: false,
   },
   deepmind: {
     name: "Google DeepMind",
@@ -126,6 +133,55 @@ async function httpGet(url: string): Promise<string> {
   } finally {
     clearTimeout(timer);
   }
+}
+
+export type WebTextFetcher = (url: string) => Promise<string>;
+
+interface FeedItem {
+  url: string;
+  title: string;
+  summary: string;
+  published: string;
+}
+
+function normalizeUrl(url: string): string {
+  try {
+    const parsed = new URL(url);
+    parsed.hash = "";
+    parsed.search = "";
+    if (!parsed.pathname.endsWith("/")) parsed.pathname += "/";
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
+function seenAt(seenUrls: Record<string, string>, normalizedUrl: string): string | undefined {
+  const legacyUrl = normalizedUrl.endsWith("/") ? normalizedUrl.slice(0, -1) : `${normalizedUrl}/`;
+  return seenUrls[normalizedUrl] ?? seenUrls[legacyUrl];
+}
+
+async function fetchFeedItems(cfg: SiteConfig, getText: WebTextFetcher): Promise<Map<string, FeedItem>> {
+  const items = new Map<string, FeedItem>();
+  for (const feedUrl of cfg.feedUrls ?? []) {
+    try {
+      const xml = await getText(feedUrl);
+      const feed = extractFromXml(xml, { descriptionMaxLen: 0 });
+      for (const entry of feed.entries ?? []) {
+        if (!entry.link) continue;
+        const url = normalizeUrl(entry.link);
+        items.set(url, {
+          url,
+          title: entry.title?.trim() ?? "",
+          summary: entry.description?.trim() ?? "",
+          published: entry.published ?? "",
+        });
+      }
+    } catch (err) {
+      console.error(`  [web/feed] Failed to read ${feedUrl}: ${err}`);
+    }
+  }
+  return items;
 }
 
 // ---------------------------------------------------------------------------
@@ -208,6 +264,7 @@ export function titleFromUrl(url: string): string {
 
 async function discoverUrls(
   site: "anthropic" | "openai" | "deepmind",
+  getText: WebTextFetcher,
 ): Promise<Array<{ loc: string; lastmod?: string }>> {
   const cfg = SITE_CONFIGS[site];
   const results: Array<{ loc: string; lastmod?: string }> = [];
@@ -217,7 +274,7 @@ async function discoverUrls(
     for (const name of cfg.subSitemapNames) {
       const subUrl = cfg.subSitemapTemplate.replace("{name}", name);
       try {
-        const xml = await httpGet(subUrl);
+        const xml = await getText(subUrl);
         results.push(...parseSitemapUrls(xml));
         await sleep(100);
       } catch (err) {
@@ -226,7 +283,7 @@ async function discoverUrls(
     }
   } else {
     // Single sitemap
-    const xml = await httpGet(cfg.sitemapUrl);
+    const xml = await getText(cfg.sitemapUrl);
     const all = isSitemapIndex(xml)
       ? [] // unexpected; skip rather than recurse
       : parseSitemapUrls(xml);
@@ -280,13 +337,24 @@ export function saveWebState(state: WebState): void {
 export async function fetchSiteContent(
   site: "anthropic" | "openai" | "deepmind",
   state: WebState,
+  getText: WebTextFetcher = httpGet,
 ): Promise<WebFetchResult> {
   const cfg = SITE_CONFIGS[site];
   const siteState = state[site];
   const isFirstRun = Object.keys(siteState.seenUrls).length === 0;
 
   console.log(`  [web/${site}] Discovering URLs from sitemap...`);
-  const allDiscovered = await discoverUrls(site);
+  const feedItems = await fetchFeedItems(cfg, getText);
+  const sitemapItems = await discoverUrls(site, getText);
+  const discoveredByUrl = new Map(
+    sitemapItems.map((item) => [normalizeUrl(item.loc), { ...item, loc: normalizeUrl(item.loc) }]),
+  );
+  for (const item of feedItems.values()) {
+    if (!discoveredByUrl.has(item.url)) {
+      discoveredByUrl.set(item.url, { loc: item.url, lastmod: item.published });
+    }
+  }
+  const allDiscovered = [...discoveredByUrl.values()];
   console.log(`  [web/${site}] Discovered ${allDiscovered.length} URLs`);
 
   // Newest first
@@ -297,14 +365,14 @@ export async function fetchSiteContent(
     return b.lastmod.localeCompare(a.lastmod);
   });
 
-  // New = not seen before, OR (for non-metadataOnly sites) lastmod is newer.
-  // For metadataOnly sites (e.g. OpenAI), lastmod reflects sitemap generation
+  // New = not seen before, OR (for sites with reachable pages) lastmod is newer.
+  // For metadata-only sites (e.g. OpenAI), lastmod reflects sitemap generation
   // time rather than content publication — ignore lastmod changes to avoid
   // flagging hundreds of unchanged URLs as "new" on every run.
   const newUrls = allDiscovered.filter(({ loc, lastmod }) => {
-    const prev = siteState.seenUrls[loc];
+    const prev = seenAt(siteState.seenUrls, loc);
     if (!prev) return true;
-    if (!cfg.metadataOnly && lastmod && lastmod > prev) return true;
+    if (cfg.fetchArticlePages !== false && lastmod && lastmod > prev) return true;
     return false;
   });
 
@@ -316,15 +384,17 @@ export async function fetchSiteContent(
       `${newUrls.length} new URLs, fetching content for ${toFetch.length}`,
   );
 
-  // Build items — either from full page fetches or from sitemap metadata only
+  // Build items from first-party feed metadata and, where reachable, article pages.
   const items: WebPageItem[] = [];
-  if (cfg.metadataOnly) {
+  if (cfg.fetchArticlePages === false) {
     for (const { loc, lastmod } of toFetch) {
+      const feedItem = feedItems.get(normalizeUrl(loc));
       items.push({
         url: loc,
-        title: titleFromUrl(loc),
-        lastmod: lastmod ?? "",
-        content: "",
+        title: feedItem?.title || titleFromUrl(loc),
+        lastmod: feedItem?.published || lastmod || "",
+        summary: feedItem?.summary ?? "",
+        content: feedItem?.summary ?? "",
         site,
         category: urlCategory(loc),
       });
@@ -333,12 +403,18 @@ export async function fetchSiteContent(
     // Fetch page content sequentially with a polite delay
     for (const { loc, lastmod } of toFetch) {
       try {
-        const html = await httpGet(loc);
+        const html = await getText(loc);
+        const article = await extractFromHtml(html, loc, {
+          descriptionLengthThreshold: 1,
+          contentLengthThreshold: 1,
+        });
+        const content = article?.content ? extractText(article.content) : extractText(html);
         items.push({
           url: loc,
-          title: extractTitle(html),
+          title: article?.title?.trim() || extractTitle(html) || titleFromUrl(loc),
           lastmod: lastmod ?? "",
-          content: extractText(html),
+          summary: article?.description?.trim() ?? "",
+          content,
           site,
           category: urlCategory(loc),
         });
@@ -352,6 +428,8 @@ export async function fetchSiteContent(
   // Mark ALL discovered URLs as seen (not just fetched ones)
   // This ensures future runs are truly incremental
   for (const { loc, lastmod } of allDiscovered) {
+    const legacyUrl = loc.endsWith("/") ? loc.slice(0, -1) : `${loc}/`;
+    if (legacyUrl !== loc) delete siteState.seenUrls[legacyUrl];
     siteState.seenUrls[loc] = lastmod ?? "seen";
   }
   siteState.lastChecked = new Date().toISOString();

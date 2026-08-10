@@ -1,0 +1,175 @@
+{
+  "dataset_id": "retrieval-quality-2026-08-07-v1",
+  "label_tier": "silver",
+  "label_provenance": "AI pre-labelled from the frozen local corpus and current Chroma metadata; URL-level judgments require human review before promotion to gold.",
+  "needs_human_review": true,
+  "snapshot": {
+    "latest_corpus_date": "2026-08-07",
+    "chroma_chunks_observed": 6285,
+    "notes": "Weekly and monthly rollups are browse-only and excluded from retrieval relevance labels."
+  },
+  "metric_policy": {
+    "k": 10,
+    "accuracy_definition": "query success: answerable query has at least one relevant result; unanswerable query returns none",
+    "precision_definition": "relevant unique results divided by k",
+    "recall_definition": "retrieved relevant identities divided by all labelled relevant identities",
+    "duplicate_policy": "canonical URL first; fallback to normalized date|source|title"
+  },
+  "queries": [
+    {
+      "id": "RQ01",
+      "query": "最近有什么热门趋势？",
+      "kind": "broad_recent_trend",
+      "answerable": true,
+      "rationale": "用户截图中的原始退化问题；相关集定义为 2026-08-01 至 2026-08-07 评分不低于 89 且人工判断属于 AI 主题的去重候选。",
+      "relevant": [
+        {"url": "https://openai.com/index/building-abundant-intelligence/", "grade": 3},
+        {"url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/", "grade": 2},
+        {"url": "https://openai.com/index/ten-advances-in-mathematics/", "grade": 3},
+        {"url": "https://www.anthropic.com/news/claude-for-nonprofits", "grade": 3},
+        {"url": "https://openai.com/index/continuous-voice-interaction-with-gpt-live/", "grade": 3},
+        {"url": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals", "grade": 2},
+        {"url": "https://openai.com/index/apple-is-getting-this-wrong/", "grade": 3},
+        {"url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/", "grade": 3},
+        {"url": "https://openai.com/index/learn-teach-chatgpt-work-codex/", "grade": 3},
+        {"url": "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/", "grade": 3},
+        {"url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/", "grade": 3},
+        {"url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/", "grade": 3},
+        {"url": "https://www.anthropic.com/news/tino-cuellar", "grade": 2},
+        {"url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards", "grade": 2},
+        {"url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/", "grade": 2}
+      ]
+    },
+    {
+      "id": "RQ02",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "kind": "company_recent",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://openai.com/index/apple-is-getting-this-wrong/", "grade": 3},
+        {"url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/", "grade": 3},
+        {"url": "https://openai.com/index/learn-teach-chatgpt-work-codex/", "grade": 3},
+        {"url": "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/", "grade": 3},
+        {"url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/", "grade": 3},
+        {"url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/", "grade": 3},
+        {"url": "https://techcrunch.com/2026/08/04/apple-says-more-ex-employees-may-have-taken-confidential-data-to-openai/", "grade": 2},
+        {"url": "https://naomibashkansky.com/blog/telepathy/", "grade": 1}
+      ]
+    },
+    {
+      "id": "RQ03",
+      "query": "Anthropic 和 Claude 最近有什么重要动态？",
+      "kind": "company_recent",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://www.anthropic.com/news/claude-for-nonprofits", "grade": 3},
+        {"url": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals", "grade": 2},
+        {"url": "https://www.anthropic.com/news/tino-cuellar", "grade": 3},
+        {"url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards", "grade": 3},
+        {"url": "https://www.bbc.co.uk/news/articles/c1w1lvn7d9go", "grade": 1},
+        {"url": "https://www.anthropic.com/news/cognizant-anthropic", "grade": 2},
+        {"url": "https://www.anthropic.com/research/discovering-cryptographic-weaknesses", "grade": 2},
+        {"url": "https://www.anthropic.com/news/position-open-weights-models", "grade": 2}
+      ]
+    },
+    {
+      "id": "RQ04",
+      "query": "最近 RAG 和向量数据库有哪些值得关注的开源项目？",
+      "kind": "topic_recent",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://github.com/infiniflow/ragflow", "grade": 3},
+        {"url": "https://github.com/headroomlabs-ai/headroom", "grade": 2},
+        {"url": "https://github.com/Graphify-Labs/graphify", "grade": 2},
+        {"url": "https://github.com/pathwaycom/llm-app", "grade": 2},
+        {"url": "https://github.com/langchain4j/langchain4j", "grade": 2},
+        {"url": "https://github.com/Mintplex-Labs/anything-llm", "grade": 2},
+        {"url": "https://github.com/milvus-io/milvus", "grade": 2},
+        {"url": "https://github.com/qdrant/qdrant", "grade": 2},
+        {"url": "https://github.com/meilisearch/meilisearch", "grade": 1}
+      ]
+    },
+    {
+      "id": "RQ05",
+      "query": "最近 Product Hunt 上有哪些 MCP 产品？",
+      "kind": "source_and_topic",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://www.producthunt.com/r/C6WAGOOHUENQ5Y?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29", "grade": 3},
+        {"url": "https://www.producthunt.com/r/VQHGFGCW4YDSCL?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29", "grade": 3},
+        {"url": "https://www.producthunt.com/r/KKH5WDVKOVKGDG?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29", "grade": 3}
+      ]
+    },
+    {
+      "id": "RQ06",
+      "query": "最近有哪些 AI Agent 开源项目值得关注？",
+      "kind": "topic_recent",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://github.com/CherryHQ/cherry-studio", "grade": 2},
+        {"url": "https://github.com/Panniantong/Agent-Reach", "grade": 2},
+        {"url": "https://github.com/Significant-Gravitas/AutoGPT", "grade": 2},
+        {"url": "https://github.com/esengine/DeepSeek-Reasonix", "grade": 2},
+        {"url": "https://github.com/hugohe3/ppt-master", "grade": 1},
+        {"url": "https://www.hyperprobe.co", "grade": 2}
+      ]
+    },
+    {
+      "id": "RQ07",
+      "query": "Apple Is Getting This Wrong 讲了什么？",
+      "kind": "exact_title",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://openai.com/index/apple-is-getting-this-wrong/", "grade": 3},
+        {"url": "https://techcrunch.com/2026/08/04/apple-says-more-ex-employees-may-have-taken-confidential-data-to-openai/", "grade": 1}
+      ]
+    },
+    {
+      "id": "RQ08",
+      "query": "OpenAI Economic Research Exchange 是什么？",
+      "kind": "exact_title",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/", "grade": 3}
+      ]
+    },
+    {
+      "id": "RQ09",
+      "query": "Anthropic 的 Fable 5 safeguards 有什么更新？",
+      "kind": "exact_title",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards", "grade": 3}
+      ]
+    },
+    {
+      "id": "RQ10",
+      "query": "OpenAI 与 Apple 的争议最近有什么进展？",
+      "kind": "event_cluster",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://openai.com/index/apple-is-getting-this-wrong/", "grade": 3},
+        {"url": "https://techcrunch.com/2026/08/04/apple-says-more-ex-employees-may-have-taken-confidential-data-to-openai/", "grade": 2},
+        {"url": "https://www.infoq.cn/article/rvVpcZspLiqGpPQq6HPw", "grade": 1},
+        {"url": "https://www.ft.com/content/1b8c9d52-88a9-426b-ba47-f1811f859166", "grade": 1},
+        {"url": "https://www.nytimes.com/2026/07/10/technology/apple-openai-lawsuit.html", "grade": 1}
+      ]
+    },
+    {
+      "id": "RQ11",
+      "query": "Google DeepMind 最近在气旋预测上有什么突破？",
+      "kind": "exact_event",
+      "answerable": true,
+      "relevant": [
+        {"url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/", "grade": 3}
+      ]
+    },
+    {
+      "id": "RQ12",
+      "query": "Quantum Banana GPT-99 在 2026 年 8 月发布了哪些功能？",
+      "kind": "unanswerable_control",
+      "answerable": false,
+      "relevant": []
+    }
+  ]
+}

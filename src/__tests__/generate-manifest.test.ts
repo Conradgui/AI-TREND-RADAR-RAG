@@ -1,5 +1,19 @@
-import { describe, it, expect } from "vitest";
-import { toRfc822, escapeXml, getReportFiles } from "../generate-manifest.ts";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { afterEach, describe, it, expect } from "vitest";
+import {
+  toRfc822,
+  escapeXml,
+  generateSearchIndex,
+  getReportFiles,
+} from "../generate-manifest.ts";
+
+const tempRoots: string[] = [];
+
+afterEach(() => {
+  for (const root of tempRoots.splice(0)) fs.rmSync(root, { recursive: true, force: true });
+});
 
 // ---------------------------------------------------------------------------
 // toRfc822
@@ -77,5 +91,72 @@ describe("getReportFiles", () => {
     const reports = getReportFiles(["zh", "en"], true);
     expect(reports).toContain("ai-cli-en");
     expect(reports).toContain("ai-weekly-en");
+  });
+});
+
+describe("generateSearchIndex", () => {
+  it("builds versioned item documents from candidates and excludes rollups", () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "search-index-"));
+    tempRoots.push(root);
+    const digestsDir = path.join(root, "digests");
+    const dateDir = path.join(digestsDir, "2026-08-05");
+    fs.mkdirSync(dateDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(dateDir, "topic-pool.json"),
+      JSON.stringify({
+        candidates: [
+          {
+            title: "OpenAI update",
+            summary: "Official summary",
+            source: "OpenAI",
+            url: "https://openai.com/index/update/",
+            score: 98,
+          },
+        ],
+      }),
+    );
+
+    const outputPath = path.join(digestsDir, "search-index.json");
+    const artifact = generateSearchIndex(
+      [
+        {
+          date: "2026-08-05",
+          reports: ["ai-topic-radar", "ai-weekly", "ai-monthly"],
+        },
+      ],
+      { digestsDir, outputPath, generated: "2026-08-05T00:00:00.000Z" },
+    );
+
+    expect(artifact).toMatchObject({
+      schema_version: 1,
+      id_scheme: "sd-v1",
+      source_candidate_count: 1,
+      document_count: 1,
+    });
+    expect(artifact.documents[0]).toMatchObject({
+      title: "OpenAI update",
+      report_id: "ai-topic-radar",
+      report_type: "daily",
+    });
+    expect(JSON.parse(fs.readFileSync(outputPath, "utf8"))).toEqual(artifact);
+  });
+
+  it("fails the build when a source candidate cannot be represented", () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "search-index-gap-"));
+    tempRoots.push(root);
+    const digestsDir = path.join(root, "digests");
+    const dateDir = path.join(digestsDir, "2026-08-05");
+    fs.mkdirSync(dateDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(dateDir, "topic-pool.json"),
+      JSON.stringify({ candidates: [{ source: "Missing title" }] }),
+    );
+
+    expect(() =>
+      generateSearchIndex(
+        [{ date: "2026-08-05", reports: ["ai-topic-radar"] }],
+        { digestsDir, outputPath: path.join(digestsDir, "search-index.json") },
+      ),
+    ).toThrow(/coverage mismatch/);
   });
 });

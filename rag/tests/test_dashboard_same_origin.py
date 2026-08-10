@@ -67,6 +67,29 @@ def test_dashboard_uses_real_chat_progress_stream_with_safe_fallback():
     assert "fetch(CHAT_API_URL" in source
 
 
+def test_dashboard_distinguishes_static_mode_from_a_recoverable_agent_connection_failure():
+    """The browser can retry a service, but never starts Docker itself."""
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "function appendAgentConnectionRecovery" in source
+    assert "agent-retry-service" in source
+    assert "function retryAgentServiceConnection" in source
+    assert "function openLocalRagService" in source
+    assert "http://127.0.0.1:8001/" in source
+
+
+def test_system_panel_can_attach_a_static_report_view_to_an_already_running_rag_service():
+    """Connecting means navigation to the same-origin service, not restarting Docker."""
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert 'id="systemConnectionAction"' in source
+    assert "function connectToLocalRag" in source
+    assert "target.hash = window.location.hash;" in source
+    assert "function configureSystemConnectionAction" in source
+    assert "连接运行中的 RAG" in source
+    assert "重新检测服务" in source
+
+
 def test_dashboard_does_not_fake_agent_progress_with_fixed_timers():
     source = DASHBOARD.read_text(encoding="utf-8")
 

@@ -120,3 +120,4 @@ Stage 1 的代码、合同、文档和本地真实上游验证已通过独立监
 - 第二次失败根因是 Python 版本兼容性：`summary.replace('|', r'\|')` 被直接写在 f-string 表达式内；本机 Python 3.12 可解析，但 CI 的 Python 3.11 明确报 `f-string expression part cannot include a backslash`。
 - 已用本机真实 Python 3.11 先复现红灯，再把转义计算移到 f-string 外；随后 Python 3.11 编译通过、17/17 同步测试通过、21/21 发布契约通过，完整 `pnpm rag:check:p0` 重新达到 242 unittest + 36 pytest 全绿。
 - 该问题暴露出本地默认解释器高于项目 CI 最低版本时的兼容性盲区；后续发布 Gate 必须保留 Python 3.11 云端检查，不能仅依赖开发机高版本解释器。
+- 修复提交 `d58e078` 推送后，push CI run `31364937388` 与 Draft PR CI run `31364941030` 均以 `success` 完成；Stage 1 已满足“本地 P0 + 云端 PR Gate”双重通过。

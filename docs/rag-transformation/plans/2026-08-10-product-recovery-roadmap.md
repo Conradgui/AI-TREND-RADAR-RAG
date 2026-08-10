@@ -83,7 +83,7 @@ UI 风格调研和 Grill 可提前进行，但生产实现要等 Search Document
 
 ## Stage 2 — 共享 Search Document、条目搜索与深链（P0/P1）
 
-预计：2–3 天。
+预计：2–3 天；状态：**Gate 2 通过，待 Claude 分支 checkpoint**。
 
 ### 2A. 先写合同和失败测试
 
@@ -122,9 +122,10 @@ UI 风格调研和 Grill 可提前进行，但生产实现要等 Search Document
 
 ### Gate 2
 
-- 搜索不再显示“匹配 N 天”作为最终结果。
-- 精确标题/明确别名 Hit@1 目标 ≥ 95%；deep-link correctness = 100%。
-- 模糊搜索阈值必须由专项集决定，不凭视觉体验拍脑袋。
+- [x] 搜索不再显示“匹配 N 天”作为最终结果。
+- [x] 专项代理集精确标题/实体字面词/中文短词/测试 typo Hit@1 = 100%；deep-link E2E 4/4。别名字段当前为空，因此不虚构别名通过率。
+- [x] 模糊搜索阈值由专项 bake-off 决定，不凭视觉体验拍脑袋。
+- [x] 独立 Standards/Spec 复审均 APPROVE，P0=0、P1=0。
 
 ## Stage 3 — RAG 稳定性与检索质量（P0/P1）
 

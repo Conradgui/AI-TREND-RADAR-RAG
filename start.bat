@@ -9,18 +9,41 @@ if not exist ".env" (
 )
 
 docker info >nul 2>&1
-if errorlevel 1 (
-  echo Docker Desktop 尚未运行。请启动 Docker Desktop 后重试。
-  pause
-  exit /b 1
-)
+if not errorlevel 1 goto docker_ready
+
+if exist "C:\Program Files\Docker\Docker\Docker Desktop.exe" start "" "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+echo 正在等待 Docker Desktop 就绪...
+set /a docker_counter=0
+:wait_for_docker
+docker info >nul 2>&1
+if not errorlevel 1 goto docker_ready
+timeout /t 1 /nobreak >nul
+set /a docker_counter+=1
+if %docker_counter% lss 120 goto wait_for_docker
+echo Docker Desktop 未能在 120 秒内就绪。请确认它已安装并完成启动。
+pause
+exit /b 1
+
+:docker_ready
 
 set RAG_PORT=8001
 for /f "tokens=1,* delims==" %%A in ('findstr /b /c:"RAG_PORT=" .env') do set RAG_PORT=%%B
 
-echo 正在启动 AI Trend Radar RAG（首次启动会下载镜像并预热检索模型）...
+docker compose images -q app | findstr . >nul
+if errorlevel 1 goto first_build
+
+echo 正在恢复 AI Trend Radar RAG 服务（复用已有镜像与数据）...
+docker compose up -d --no-build
+set compose_exit=%ERRORLEVEL%
+goto compose_started
+
+:first_build
+echo 首次启动：正在构建 AI Trend Radar RAG 镜像（不会删除已有数据卷）...
 docker compose up -d --build
-if errorlevel 1 (
+set compose_exit=%ERRORLEVEL%
+
+:compose_started
+if not "%compose_exit%"=="0" (
   echo 启动失败。请检查 Docker Desktop 状态和上方错误信息。
   pause
   exit /b 1

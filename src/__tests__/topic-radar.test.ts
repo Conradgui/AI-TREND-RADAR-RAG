@@ -84,6 +84,25 @@ describe("buildTopicRadar", () => {
     expect(result.warnings.join("\n")).toContain("Product Hunt");
   });
 
+  it("reports official items that still have no source-grounded summary", () => {
+    const input = baseInput();
+    input.webResults[0]!.newItems = [
+      {
+        url: "https://openai.com/index/missing-summary",
+        title: "Missing summary",
+        lastmod: "2026-05-20",
+        summary: "",
+        content: "",
+        site: "openai",
+        category: "company",
+      },
+    ];
+
+    const result = buildTopicRadar(input);
+
+    expect(result.warnings.join("\n")).toContain("1 条官方内容缺少可展示摘要");
+  });
+
   it("renders a decision-first markdown report", () => {
     const input = baseInput();
     input.webResults[0]!.newItems = [
@@ -91,7 +110,8 @@ describe("buildTopicRadar", () => {
         url: "https://openai.com/index/new-model",
         title: "New multimodal model launch",
         lastmod: "2026-05-20",
-        content: "OpenAI launches a new multimodal model with product availability and enterprise pricing.",
+        summary: "Official concise model launch description.",
+        content: "Long article body for analysis that must not appear in the summary column.",
         site: "openai",
         category: "product",
       },
@@ -105,8 +125,9 @@ describe("buildTopicRadar", () => {
     expect(markdown).toContain("## 数据源状态与修复提示");
     expect(markdown).toContain("| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |");
     expect(markdown).toContain("New multimodal model launch");
-    expect(markdown).toContain(
-      "OpenAI launches a new multimodal model with product availability and enterprise pricing.",
+    expect(markdown).toContain("Official concise model launch description.");
+    expect(markdown).not.toContain(
+      "Long article body for analysis that must not appear in the summary column.",
     );
     expect(markdown).toContain("New multimodal model launch 为什么值得关注？（");
   });
@@ -118,7 +139,8 @@ describe("buildTopicRadar", () => {
         url: "https://openai.com/index/new-model",
         title: "New multimodal model launch",
         lastmod: "2026-05-20",
-        content: "OpenAI launches a new multimodal model with product availability and enterprise pricing.",
+        summary: "Official concise model launch description.",
+        content: "Long article body for analysis that must not appear in the summary card.",
         site: "openai",
         category: "product",
       },

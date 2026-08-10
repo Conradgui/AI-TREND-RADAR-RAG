@@ -76,11 +76,14 @@ AGENT_BUDGET = {
     "max_tool_calls": 5,       # 最大工具调用次数（对应 recursion_limit = max_tool_calls * 2 + 1）
     "max_web_searches": 2,     # 最大网络搜索次数（仅用于 trace 记录，外部搜索在 agent 之外控制）
     "max_deep_fetches": 1,     # 最大深度抓取次数（仅用于 trace 记录）
-    "timeout_seconds": 45,     # 简单内部问答的 Agent 调用超时（秒）
+    "timeout_seconds": 75,     # 简单内部问答的 Agent 调用超时（秒）
 }
 
-MULTI_TOOL_AGENT_TIMEOUT_SECONDS = 75
-WEB_SEARCH_AGENT_TIMEOUT_SECONDS = 90
+# DeepSeek multi-step calls are materially slower than a one-pass completion.
+# These remain hard ceilings: increasing them should make a legitimate complex
+# answer finish, not turn a provider or retrieval outage into infinite waiting.
+MULTI_TOOL_AGENT_TIMEOUT_SECONDS = 150
+WEB_SEARCH_AGENT_TIMEOUT_SECONDS = 180
 DIRECT_COMPOSER_TASK_MODES = frozenset({"general", "explain"})
 RECENT_TREND_ANSWER_EVIDENCE_BUDGET = 6
 

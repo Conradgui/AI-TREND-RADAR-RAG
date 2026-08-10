@@ -25,6 +25,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "pnpm exec playwright test",
     "prepare": "husky",
     "setup:rag": "pip install -r rag/requirements.txt && docker compose up -d",
     "digest:rag": "pnpm start && pnpm manifest && python -m rag.ingest",
@@ -60,13 +61,17 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
+    "@extractus/article-extractor": "^9.0.0",
+    "@extractus/feed-extractor": "^8.0.3",
     "dotenv": "^17.3.1",
     "js-yaml": "^4.1.1",
     "marked": "^17.0.4",
+    "minisearch": "7.2.0",
     "openai": "^6.27.0"
   },
   "devDependencies": {
     "@eslint/js": "^9",
+    "@playwright/test": "^1.62.1",
     "@types/js-yaml": "^4.0.9",
     "@types/marked": "^6.0.0",
     "@types/node": "^25.3.5",

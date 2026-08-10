@@ -21,15 +21,38 @@ def test_dashboard_keeps_long_report_tables_scannable():
 
     assert 'id="readingDensity"' in source
     assert "table-scroll" in source
-    assert "data-summary-cell" in source
     assert "decorateReportTables" in source
-    assert "摘要" in source
 
 
-def test_dashboard_search_normalizes_spacing_and_filters_to_matching_reports():
+def test_dashboard_keeps_report_summaries_as_original_markdown_content():
+    """The dashboard must not replace report summaries with synthetic controls."""
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "展开摘要" not in source
+    assert "收起摘要" not in source
+    assert "summary-cell-content" not in source
+    assert "summary-toggle" not in source
+    assert "headerIsSummary" not in source
+    assert "summaryHasHiddenContent" not in source
+
+
+def test_dashboard_search_normalizes_spacing_and_returns_specific_items():
     source = DASHBOARD.read_text(encoding="utf-8")
 
     assert "function normalizeSearchText" in source
     assert "normalizeSearchText(query)" in source
-    assert "grp.hidden = !matched" in source
-    assert "month.hidden" in source
+    assert 'digests/search-index.json' in source
+    assert 'id="searchResults"' in source
+    assert "item.occurrence_id" in source
+    assert "openItemDetail(item)" in source
+    assert "grp.hidden = !matched" not in source
+
+
+def test_dashboard_item_routes_restore_specific_details_without_guessing_report_anchors():
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "marker === 'item'" in source
+    assert "async function applyRoute" in source
+    assert "searchDocumentsById.get(route.occurrenceId)" in source
+    assert "item.report_target" in source
+    assert "生产端尚未提供对应锚点" in source

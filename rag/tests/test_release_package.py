@@ -48,12 +48,18 @@ def test_example_environment_is_safe_and_ready_for_the_setup_wizard():
     assert "RAG_API_KEY=" in source
 
 
-def test_one_click_launchers_delegate_to_compose_instead_of_installing_python():
+def test_daily_launchers_reuse_existing_images_and_keep_rebuild_explicit():
     for launcher in ("start.command", "start.bat"):
         source = (PROJECT_ROOT / launcher).read_text(encoding="utf-8")
-        assert "docker compose up -d --build" in source
+        assert "docker compose up -d --no-build" in source
+        assert "docker compose images -q app" in source
         assert "pip install" not in source
     assert "python -m venv" not in source
+
+    for updater in ("update.command", "update.bat"):
+        source = (PROJECT_ROOT / updater).read_text(encoding="utf-8")
+        assert "docker compose up -d --build" in source
+        assert "down -v" not in source
 
     assert "start.command" in (PROJECT_ROOT / "setup.command").read_text(encoding="utf-8")
     assert "setup-windows.ps1" in (PROJECT_ROOT / "setup.bat").read_text(encoding="utf-8")
@@ -108,6 +114,8 @@ def test_pages_builder_copies_only_public_digest_artifacts():
         }
 
     assert "digests/search-index.json" in published
+    assert "assets/vendor/minisearch/minisearch-7.2.0.umd.js" in published
+    assert "assets/vendor/minisearch/LICENSE.txt" in published
     assert "digests/web-state.json" not in published
     assert not any(path.endswith(".DS_Store") for path in published)
     assert not any(path.startswith(".git/") for path in published)
@@ -119,5 +127,7 @@ def test_pages_builder_requires_auditable_contract_and_search_index():
     )
 
     assert "index.html manifest.json feed.xml corpus-manifest.json" in source
+    assert 'for file in minisearch-7.2.0.umd.js LICENSE.txt' in source
+    assert 'cp "$vendor_root/minisearch-7.2.0.umd.js"' in source
     assert 'Required public file is missing or empty: digests/search-index.json' in source
     assert "python -m rag.corpus_contract --check-existing" in source

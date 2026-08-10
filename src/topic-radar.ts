@@ -392,7 +392,7 @@ function collectRawTopics(input: TopicRadarInput): RawTopic[] {
         url: item.url,
         source: result.siteName,
         sourceType: "official",
-        summary: item.content,
+        summary: item.summary,
         publishedAt: item.lastmod,
         heatSignals: [],
         tags: [item.site, item.category],
@@ -487,6 +487,15 @@ function collectWarnings(input: TopicRadarInput): string[] {
     warnings.push("Hugging Face 获取失败；可检查 huggingface.co API 是否可访问。");
   if (!input.webResults.some((result) => result.newItems.length > 0)) {
     warnings.push("官方内容源今日没有检测到新内容；首次运行后这是正常情况。");
+  }
+  const missingOfficialSummaries = input.webResults.reduce(
+    (count, result) => count + result.newItems.filter((item) => !item.summary.trim()).length,
+    0,
+  );
+  if (missingOfficialSummaries > 0) {
+    warnings.push(
+      `${missingOfficialSummaries} 条官方内容缺少可展示摘要；请检查 Feed 覆盖或网页提取结果，禁止根据标题编造摘要。`,
+    );
   }
   if (input.chinaSourcesData) {
     const cn = input.chinaSourcesData;

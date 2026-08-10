@@ -25,6 +25,17 @@ if [[ -f "$project_root/.nojekyll" ]]; then
   cp "$project_root/.nojekyll" "$site_root/.nojekyll"
 fi
 
+vendor_root="$project_root/assets/vendor/minisearch"
+for file in minisearch-7.2.0.umd.js LICENSE.txt; do
+  if [[ ! -s "$vendor_root/$file" ]]; then
+    echo "[pages] Required public file is missing or empty: assets/vendor/minisearch/$file" >&2
+    exit 1
+  fi
+done
+mkdir -p "$site_root/assets/vendor/minisearch"
+cp "$vendor_root/minisearch-7.2.0.umd.js" "$site_root/assets/vendor/minisearch/minisearch-7.2.0.umd.js"
+cp "$vendor_root/LICENSE.txt" "$site_root/assets/vendor/minisearch/LICENSE.txt"
+
 mkdir -p "$site_root/digests"
 if [[ ! -s "$project_root/digests/search-index.json" ]]; then
   echo "[pages] Required public file is missing or empty: digests/search-index.json" >&2

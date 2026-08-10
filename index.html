@@ -9,6 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="AI Topic Radar RSS" href="./feed.xml">
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.5/lib/marked.umd.js" integrity="sha384-ZD0fTOwPMHi7zM6WTVIWJR21I07lq0ccnqz3J6WMvQKG9thh4y7TA1QE6PJu0Af8" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.11/dist/purify.min.js" integrity="sha384-o44XUELLEnv/iSlA1NWxBweqbD4TSR0qgq2VzVsxtkHS989JJjGKSE9vkfo5MN4K" crossorigin="anonymous"></script>
+  <script src="./assets/vendor/minisearch/minisearch-7.2.0.umd.js"></script>
   <style>
     :root {
       --bg:         #0B0D14;
@@ -123,6 +124,31 @@
       min-height: 14px; margin-top: 4px;
       font-size: 9px; letter-spacing: 0.04em; color: var(--dim);
     }
+    .search-filters {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 6px;
+    }
+    .search-filters select {
+      min-width: 0; height: 25px; padding: 0 5px;
+      border: 1px solid var(--border); border-radius: 4px;
+      background: var(--bg); color: var(--muted); font: inherit; font-size: 9px;
+    }
+    #searchResults {
+      margin-top: 7px; border-top: 1px solid var(--border); padding-top: 6px;
+      max-height: 48vh; overflow-y: auto;
+    }
+    #searchResults[hidden] { display: none; }
+    .search-result {
+      display: block; width: 100%; padding: 8px; margin-bottom: 5px;
+      border: 1px solid var(--border); border-radius: 5px;
+      background: var(--bg); color: var(--text); text-align: left;
+      font: inherit; cursor: pointer;
+    }
+    .search-result:hover, .search-result:focus-visible {
+      border-color: var(--accent); background: var(--accent-bg); outline: none;
+    }
+    .search-result-title { font-size: 10px; line-height: 1.45; color: var(--link); }
+    .search-result-meta { margin-top: 4px; font-size: 8px; line-height: 1.4; color: var(--dim); }
+    .search-empty { padding: 8px 2px; font-size: 9px; color: var(--dim); }
     /* ── Month group ── */
     .month-hdr {
       display: flex; align-items: center; justify-content: space-between;
@@ -234,11 +260,6 @@
     .md th { background: var(--code-bg); border: 1px solid var(--border); padding: var(--table-cell-padding); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
     .md td { border: 1px solid var(--border); padding: var(--table-cell-padding); vertical-align: top; line-height: var(--table-line-height); }
     .md tr:nth-child(even) td { background: var(--bg-hover); }
-    .md td[data-summary-cell="true"] { min-width: 260px; }
-    .summary-cell-content { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
-    .summary-cell-content.expanded { display: block; overflow: visible; }
-    .summary-toggle { display: inline-flex; margin-top: 6px; padding: 0; border: 0; color: var(--link); background: transparent; font: inherit; font-size: 10px; cursor: pointer; }
-    .summary-toggle:hover { color: var(--accent); }
     .reading-controls { margin: 2px 14px 12px; padding: 10px 10px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); }
     .reading-controls label { display: flex; justify-content: space-between; gap: 8px; font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
     .reading-controls input { width: 100%; margin: 9px 0 5px; accent-color: var(--accent); }
@@ -255,6 +276,21 @@
     .md details[open] summary::before { content: '▼'; }
     .md summary:hover { color: var(--text); }
     .md details > *:not(summary) { padding: 12px 14px; }
+
+    .item-detail { max-width: 820px; margin: 0 auto; }
+    .item-detail-kicker { color: var(--accent); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+    .item-detail h1 { margin: 10px 0 12px; font: 600 28px/1.3 'Source Serif 4', serif; }
+    .item-detail-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+    .item-detail-meta span { padding: 4px 8px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 10px; }
+    .item-detail-section { margin: 20px 0; padding-top: 16px; border-top: 1px solid var(--border); }
+    .item-detail-section h2 { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
+    .item-detail-section p, .item-detail-section li { font: 15px/1.75 'Source Serif 4', serif; }
+    .item-detail-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .item-detail-actions button, .item-detail-actions a {
+      padding: 7px 11px; border: 1px solid var(--border); border-radius: 5px;
+      background: var(--bg); color: var(--link); font: inherit; font-size: 10px; cursor: pointer; text-decoration: none;
+    }
+    .item-detail-actions .primary { border-color: var(--accent); background: var(--accent-bg); color: var(--accent); }
 
     /* ── Chat Panel ── */
     #chatPanel {
@@ -423,6 +459,18 @@
     }
     #chatWebSearchToggle:disabled { cursor: not-allowed; opacity: 0.45; }
     #chatWebSearchStatus { color: var(--dim); font-size: 10px; text-align: right; }
+    .chat-connection-recovery {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 10px; line-height: 1.45;
+    }
+    .agent-retry-service {
+      flex-shrink: 0; padding: 5px 9px; border: 1px solid var(--accent);
+      border-radius: 5px; background: var(--accent-bg); color: var(--accent);
+      font: inherit; font-weight: 700; cursor: pointer;
+    }
+    .agent-retry-service:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+    .agent-retry-service:disabled { cursor: wait; opacity: 0.65; }
     .chat-input-row { display: flex; align-items: center; gap: 8px; width: 100%; }
     #chatInput {
       flex: 1; height: 36px; padding: 0 12px;
@@ -533,6 +581,20 @@
     .system-item-hint {
       margin: -3px 0 6px; color: var(--muted); font-size: 10px; line-height: 1.45;
     }
+    .system-connection-action {
+      margin: 8px 0 14px; padding: 12px;
+      border: 1px solid var(--border); border-left: 3px solid var(--accent);
+      border-radius: 6px; background: var(--bg);
+    }
+    .system-connection-action[hidden] { display: none; }
+    .system-connection-copy { margin: 0 0 10px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .system-connect-btn {
+      width: 100%; padding: 7px 10px; border: 1px solid var(--accent);
+      border-radius: 5px; background: var(--accent-bg); color: var(--accent);
+      font: inherit; font-size: 11px; font-weight: 700; cursor: pointer;
+    }
+    .system-connect-btn:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
+    .system-connect-btn:disabled { cursor: wait; opacity: 0.65; }
     .system-item-value.connected {
       color: #4caf50;
     }
@@ -763,8 +825,23 @@
       </div>
       <div class="side-label">REPORTS</div>
       <div class="search-wrap">
-        <input id="searchInput" type="search" placeholder="搜索全文，如 Claude">
+        <input id="searchInput" type="search" aria-label="搜索报告条目" placeholder="搜索具体条目，如 Open AI">
         <div id="searchStatus"></div>
+        <div class="search-filters" aria-label="搜索筛选">
+          <select id="searchPeriod" aria-label="时间范围">
+            <option value="all">全部时间</option>
+            <option value="7">近 7 天</option>
+            <option value="30">近 30 天</option>
+            <option value="90">近 90 天</option>
+          </select>
+          <select id="searchSource" aria-label="来源">
+            <option value="">全部来源</option>
+          </select>
+          <select id="searchCategory" aria-label="分类">
+            <option value="">全部分类</option>
+          </select>
+        </div>
+        <div id="searchResults" hidden aria-live="polite"></div>
       </div>
       <div class="reading-controls">
         <label for="readingDensity"><span>表格阅读密度</span><span id="readingDensityLabel">标准</span></label>
@@ -830,6 +907,10 @@
         <div class="system-item">
           <span class="system-item-label">服务状态</span>
           <span class="system-item-value" id="systemStatus">-</span>
+        </div>
+        <div class="system-connection-action" id="systemConnectionAction" hidden>
+          <p class="system-connection-copy" id="systemConnectionCopy"></p>
+          <button class="system-connect-btn" id="systemConnectBtn" type="button" onclick="handleSystemConnectionAction()"></button>
         </div>
         <div class="system-item">
           <span class="system-item-label">LLM Provider</span>
@@ -923,6 +1004,15 @@
 const LOCAL_API_BASE = window.location.origin;
 const LOCAL_RAG_HOSTS = new Set(['localhost', '127.0.0.1', '0.0.0.0']);
 const IS_LOCAL_RAG = LOCAL_RAG_HOSTS.has(window.location.hostname);
+const DEFAULT_LOCAL_RAG_URL = 'http://127.0.0.1:8001/';
+
+function connectToLocalRag() {
+  const target = new URL(DEFAULT_LOCAL_RAG_URL);
+  // Keep the report the user was reading while switching from the static file
+  // to the same UI served by the already-running RAG backend.
+  target.hash = window.location.hash;
+  window.location.assign(target.toString());
+}
 
 function getLocalApiUrl(path) {
   if (!IS_LOCAL_RAG) return null;
@@ -1034,14 +1124,23 @@ themeBtn.onclick = () => applyTheme(theme === 'dark' ? 'light' : 'dark');
 
 // ── Routing ──
 function getHash() {
-  const [date, report] = location.hash.slice(1).split('/');
-  return /^\d{4}-\d{2}-\d{2}$/.test(date) && report ? { date, report } : null;
+  const parts = location.hash.slice(1).split('/');
+  const [date, report, marker, occurrenceId] = parts;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '') || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(report || '')) return null;
+  if (parts.length === 2) return { date, report, occurrenceId: null };
+  if (parts.length === 4 && marker === 'item' && /^[a-f0-9]{32}$/.test(occurrenceId || '')) {
+    return { date, report, occurrenceId };
+  }
+  return null;
 }
 
 // ── State ──
 let currentKey = null;
-let searchIndex = null;
+let searchDocuments = [];
+let searchDocumentsById = new Map();
+let itemSearchIndex = null;
 let searchReady = false;
+let searchInitPromise = null;
 let searchQuery = '';
 let searchDebounce = null;
 
@@ -1123,6 +1222,10 @@ function initReadingDensity() {
 
 const searchInput = document.getElementById('searchInput');
 const searchStatus = document.getElementById('searchStatus');
+const searchResults = document.getElementById('searchResults');
+const searchPeriod = document.getElementById('searchPeriod');
+const searchSource = document.getElementById('searchSource');
+const searchCategory = document.getElementById('searchCategory');
 
 function setSearchStatus(text) {
   searchStatus.textContent = text || '';
@@ -1135,93 +1238,376 @@ function normalizeSearchText(value) {
     .replace(/[\s\-_.·•,，、/\\:：;；'"“”‘’()（）\[\]【】]+/g, '');
 }
 
-function applyDateSearch(query) {
-  const rawNeedle = query.trim().toLocaleLowerCase('zh-CN');
-  const normalizedNeedle = normalizeSearchText(query);
-  let hits = 0;
+const QUERY_ALIASES = new Map([
+  ['openai', { label: 'OpenAI', terms: ['openai'] }],
+  ['claude', { label: 'Claude', terms: ['claude'] }],
+  ['anthropic', { label: 'Anthropic', terms: ['anthropic'] }],
+]);
 
-  document.querySelectorAll('.date-group').forEach((grp) => {
-    const hdr = grp.querySelector('.date-hdr');
-    if (!hdr) return;
-
-    if (!rawNeedle || !searchIndex) {
-      hdr.classList.remove('search-hit');
-      grp.hidden = false;
-      return;
+function tokenizeSearchText(value) {
+  const normalized = String(value || '').normalize('NFKC').toLocaleLowerCase('zh-CN');
+  const tokens = normalized.match(/[\p{L}\p{N}]+/gu) || [];
+  const output = [];
+  for (const token of tokens) {
+    if (!/[\p{Script=Han}]/u.test(token)) {
+      output.push(token);
+      continue;
     }
-
-    const entry = searchIndex.get(grp.dataset.date) || { raw: '', normalized: '' };
-    const matched = entry.raw.includes(rawNeedle)
-      || (normalizedNeedle.length >= 4 && entry.normalized.includes(normalizedNeedle));
-    hdr.classList.toggle('search-hit', matched);
-    grp.hidden = !matched;
-    if (matched) grp.classList.add('open');
-    if (matched) hits += 1;
-  });
-
-  document.querySelectorAll('.month-group').forEach((month) => {
-    const hasVisibleDate = [...month.querySelectorAll('.date-group')].some((group) => !group.hidden);
-    month.hidden = Boolean(rawNeedle) && !hasVisibleDate;
-    if (rawNeedle && hasVisibleDate) month.classList.add('open');
-  });
-
-  if (!rawNeedle) {
-    setSearchStatus('');
-  } else if (!searchReady) {
-    setSearchStatus('正在建立索引…');
-  } else if (!hits) {
-    setSearchStatus(`未找到“${query.trim()}”`);
-  } else {
-    setSearchStatus(`匹配 ${hits} 天，已聚焦结果`);
+    const characters = [...token];
+    output.push(...characters);
+    for (let index = 0; index < characters.length - 1; index += 1) {
+      output.push(characters[index] + characters[index + 1]);
+    }
   }
+  return [...new Set(output)];
 }
 
-async function buildSearchIndex(dates) {
-  const index = new Map();
-  await Promise.all(
-    dates.map(async ({ date, reports }) => {
-      const chunks = await Promise.all(
-        reports.map(async (report) => {
-          try {
-            const res = await fetch(`./digests/${date}/${report}.md`, { cache: 'no-cache' });
-            if (!res.ok) return '';
-            return await res.text();
-          } catch {
-            return '';
-          }
-        })
-      );
-      const joined = chunks.join('\n');
-      index.set(date, {
-        raw: joined.toLocaleLowerCase('zh-CN'),
-        normalized: normalizeSearchText(joined),
-      });
-    })
-  );
+function buildItemSearchIndex(documents) {
+  if (typeof MiniSearch !== 'function') return null;
+  const index = new MiniSearch({
+    idField: 'occurrence_id',
+    fields: ['title', 'summary', 'source', 'category', 'tags_text', 'recommended_topic', 'reason', 'angle'],
+    storeFields: ['occurrence_id'],
+    tokenize: tokenizeSearchText,
+    processTerm: (term) => term,
+  });
+  index.addAll(documents.map((item) => ({
+    occurrence_id: item.occurrence_id,
+    title: item.title || '',
+    summary: item.summary || '',
+    source: item.source || '',
+    category: item.category || '',
+    tags_text: [...(item.tags || []), ...(item.aliases || [])].join(' '),
+    recommended_topic: item.display_fields?.recommended_topic || '',
+    reason: item.display_fields?.reason || '',
+    angle: item.display_fields?.angle || '',
+  })));
   return index;
 }
 
-function initSearch(dates) {
-  searchReady = false;
-  setSearchStatus('索引准备中…');
+function editDistance(a, b) {
+  const previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= a.length; i += 1) {
+    let diagonal = previous[0];
+    previous[0] = i;
+    for (let j = 1; j <= b.length; j += 1) {
+      const above = previous[j];
+      previous[j] = Math.min(previous[j] + 1, previous[j - 1] + 1, diagonal + (a[i - 1] === b[j - 1] ? 0 : 1));
+      diagonal = above;
+    }
+  }
+  return previous[b.length];
+}
 
-  buildSearchIndex(dates).then((index) => {
-    searchIndex = index;
-    searchReady = true;
-    applyDateSearch(searchQuery);
-    if (!searchQuery.trim()) setSearchStatus('');
+function queryPlan(query) {
+  const normalized = normalizeSearchText(query);
+  const alias = QUERY_ALIASES.get(normalized);
+  return {
+    normalized,
+    terms: alias?.terms || [String(query || '').normalize('NFKC').toLocaleLowerCase('zh-CN').trim()],
+    explanation: alias?.label || '',
+  };
+}
+
+function documentSearchText(document) {
+  const display = document.display_fields || {};
+  return normalizeSearchText([
+    document.title,
+    document.summary,
+    document.source,
+    document.category,
+    document.action,
+    ...(document.tags || []),
+    ...(document.aliases || []),
+    display.recommended_topic,
+    display.reason,
+    display.angle,
+  ].join(' '));
+}
+
+function scoreDocument(document, plan) {
+  const title = normalizeSearchText(document.title);
+  const source = normalizeSearchText(document.source);
+  const tags = normalizeSearchText((document.tags || []).join(' '));
+  const haystack = document._searchText || (document._searchText = documentSearchText(document));
+  let score = 0;
+  let matched = false;
+
+  for (const rawTerm of plan.terms) {
+    const term = normalizeSearchText(rawTerm);
+    if (!term) continue;
+    if (title === term) { score += 1200; matched = true; }
+    else if (title.startsWith(term)) { score += 850; matched = true; }
+    else if (title.includes(term)) { score += 650; matched = true; }
+    if (source.includes(term)) { score += 420; matched = true; }
+    if (tags.includes(term)) { score += 320; matched = true; }
+    if (haystack.includes(term)) { score += 160; matched = true; }
+
+    if (!matched && term.length >= 5 && term.length <= 24) {
+      const threshold = Math.max(1, Math.floor(term.length * 0.2));
+      const tokens = String(document.title || '').toLocaleLowerCase('zh-CN').split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      if (tokens.some((token) => Math.abs(token.length - term.length) <= threshold && editDistance(token, term) <= threshold)) {
+        score += 180;
+        matched = true;
+      }
+    }
+  }
+  return matched ? score + Number(document.score || 0) / 100 : 0;
+}
+
+function latestCorpusDate() {
+  return searchDocuments[0]?.date || '';
+}
+
+function passesSearchFilters(document) {
+  if (searchSource.value && document.source !== searchSource.value) return false;
+  if (searchCategory.value && document.category !== searchCategory.value) return false;
+  const days = Number(searchPeriod.value);
+  if (Number.isFinite(days) && days > 0) {
+    const latest = new Date(`${latestCorpusDate()}T00:00:00Z`);
+    const floor = new Date(latest.getTime() - (days - 1) * 86400000).toISOString().slice(0, 10);
+    if (document.date < floor) return false;
+  }
+  return true;
+}
+
+function searchWithMiniSearch(plan) {
+  if (!itemSearchIndex || !plan.normalized) return [];
+  const query = plan.terms.join(' ');
+  const options = {
+    boost: { title: 5, source: 2, tags_text: 2 },
+    combineWith: 'AND',
+    prefix: (term) => term.length >= 3,
+  };
+  let matches = itemSearchIndex.search(query, options);
+  const latinTerms = plan.terms.filter((term) => /^[a-z0-9]+$/.test(term) && term.length >= 5);
+  if (!matches.length && latinTerms.length === plan.terms.length) {
+    for (let index = 0; index < query.length - 1 && !matches.length; index += 1) {
+      const characters = [...query];
+      [characters[index], characters[index + 1]] = [characters[index + 1], characters[index]];
+      matches = itemSearchIndex.search(characters.join(''), options);
+    }
+  }
+  if (!matches.length && latinTerms.length === plan.terms.length) {
+    matches = itemSearchIndex.search(query, { ...options, fuzzy: 0.2, prefix: false });
+  }
+  return matches
+    .map((match) => ({ document: searchDocumentsById.get(match.id), score: match.score }))
+    .filter((entry) => entry.document && passesSearchFilters(entry.document))
+    .sort((a, b) => {
+      const aExact = normalizeSearchText(a.document.title) === plan.normalized ? 1 : 0;
+      const bExact = normalizeSearchText(b.document.title) === plan.normalized ? 1 : 0;
+      return bExact - aExact || b.score - a.score || b.document.date.localeCompare(a.document.date);
+    })
+    .map((entry) => entry.document);
+}
+
+function renderSearchResults(results) {
+  searchResults.textContent = '';
+  searchResults.hidden = !searchQuery.trim();
+  if (!searchQuery.trim()) return;
+  if (!results.length) {
+    const empty = document.createElement('div');
+    empty.className = 'search-empty';
+    empty.textContent = '没有找到匹配条目。可尝试公司名、产品名或标题关键词。';
+    searchResults.appendChild(empty);
+    return;
+  }
+  for (const item of results.slice(0, 30)) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'search-result';
+    button.dataset.occurrenceId = item.occurrence_id;
+    const title = document.createElement('div');
+    title.className = 'search-result-title';
+    title.textContent = item.title;
+    const meta = document.createElement('div');
+    meta.className = 'search-result-meta';
+    meta.textContent = `${item.date} · ${item.source || '未知来源'} · ${item.category || '未分类'}`;
+    button.append(title, meta);
+    button.addEventListener('click', () => openItemDetail(item));
+    searchResults.appendChild(button);
+  }
+}
+
+function deduplicateSearchResults(results) {
+  const seen = new Set();
+  return results.filter((item) => {
+    const key = item.content_id || item.occurrence_id;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
   });
+}
+
+function applyItemSearch(query) {
+  searchQuery = query;
+  const plan = queryPlan(query);
+  if (!query.trim()) {
+    setSearchStatus('');
+    renderSearchResults([]);
+    return;
+  }
+  if (!searchReady) {
+    setSearchStatus('正在加载条目索引…');
+    void initSearch().then((available) => {
+      if (available) applyItemSearch(searchQuery);
+    });
+    return;
+  }
+  const rankedResults = itemSearchIndex
+    ? searchWithMiniSearch(plan)
+    : searchDocuments
+      .filter(passesSearchFilters)
+      .map((document) => ({ document, score: scoreDocument(document, plan) }))
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score || b.document.date.localeCompare(a.document.date))
+      .map((entry) => entry.document);
+  const results = deduplicateSearchResults(rankedResults);
+  const explanation = plan.explanation ? `已识别为 ${plan.explanation}；` : '';
+  setSearchStatus(results.length ? `${explanation}找到 ${results.length} 个条目` : `未找到“${query.trim()}”`);
+  renderSearchResults(results);
+}
+
+function populateSearchFilters() {
+  const sources = [...new Set(searchDocuments.map((item) => item.source).filter(Boolean))].sort();
+  const categories = [...new Set(searchDocuments.map((item) => item.category).filter(Boolean))].sort();
+  for (const value of sources) searchSource.add(new Option(value, value));
+  for (const value of categories) searchCategory.add(new Option(value, value));
+}
+
+function initSearch() {
+  if (searchInitPromise) return searchInitPromise;
+  searchInitPromise = (async () => {
+    searchReady = false;
+    setSearchStatus('条目索引准备中…');
+    try {
+      const response = await fetch('./digests/search-index.json', { cache: 'no-cache' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const artifact = await response.json();
+      if (artifact.schema_version !== 1 || artifact.id_scheme !== 'sd-v1' || !Array.isArray(artifact.documents)) {
+        throw new Error('不支持的条目索引版本');
+      }
+      searchDocuments = artifact.documents;
+      searchDocumentsById = new Map(searchDocuments.map((item) => [item.occurrence_id, item]));
+      itemSearchIndex = buildItemSearchIndex(searchDocuments);
+      populateSearchFilters();
+      searchReady = true;
+      applyItemSearch(searchQuery);
+      if (!searchQuery.trim()) setSearchStatus('');
+      return true;
+    } catch (error) {
+      searchReady = false;
+      setSearchStatus(`条目索引不可用：${error.message}`);
+      return false;
+    }
+  })();
+  return searchInitPromise;
 }
 
 searchInput.addEventListener('input', () => {
   searchQuery = searchInput.value;
   clearTimeout(searchDebounce);
-  searchDebounce = setTimeout(() => applyDateSearch(searchQuery), 120);
+  searchDebounce = setTimeout(() => applyItemSearch(searchQuery), 120);
+});
+[searchPeriod, searchSource, searchCategory].forEach((control) => {
+  control.addEventListener('change', () => applyItemSearch(searchQuery));
 });
 
-function headerIsSummary(header) {
-  const label = normalizeSearchText(header?.textContent || '');
-  return label.includes('摘要') || label.includes('summary') || label.includes('概述');
+function appendDetailSection(root, heading, value) {
+  if (!value || (Array.isArray(value) && value.length === 0)) return;
+  const section = document.createElement('section');
+  section.className = 'item-detail-section';
+  const title = document.createElement('h2');
+  title.textContent = heading;
+  section.appendChild(title);
+  if (Array.isArray(value)) {
+    const list = document.createElement('ul');
+    for (const item of value) {
+      const row = document.createElement('li');
+      row.textContent = item;
+      list.appendChild(row);
+    }
+    section.appendChild(list);
+  } else {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = value;
+    section.appendChild(paragraph);
+  }
+  root.appendChild(section);
+}
+
+async function openReportTarget(item) {
+  const target = item.report_target;
+  if (!target) return;
+  await loadReport(item.date, target.report_id);
+  const anchor = document.getElementById(target.anchor_id);
+  if (!anchor) {
+    setSearchStatus('日报定位不可用：生产端尚未提供对应锚点');
+    return;
+  }
+  anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  anchor.classList.add('search-hit');
+}
+
+function openItemDetail(item, push = true) {
+  if (!item) return;
+  const key = `${item.date}/${item.report_id}/item/${item.occurrence_id}`;
+  currentKey = key;
+  if (push) history.pushState(null, '', `#${key}`);
+  document.getElementById('sidebar').classList.remove('open');
+
+  const root = document.createElement('article');
+  root.className = 'item-detail fade';
+  root.id = item.item_anchor;
+  const kicker = document.createElement('div');
+  kicker.className = 'item-detail-kicker';
+  kicker.textContent = 'AI Trend Radar · 条目详情';
+  const heading = document.createElement('h1');
+  heading.textContent = item.title;
+  const meta = document.createElement('div');
+  meta.className = 'item-detail-meta';
+  for (const value of [item.date, item.source, item.category, item.action, `${item.score || 0} 分`].filter(Boolean)) {
+    const badge = document.createElement('span');
+    badge.textContent = value;
+    meta.appendChild(badge);
+  }
+  root.append(kicker, heading, meta);
+
+  appendDetailSection(root, '摘要', item.summary);
+  appendDetailSection(root, '推荐选题', item.display_fields?.recommended_topic);
+  appendDetailSection(root, '推荐理由', item.display_fields?.reason);
+  appendDetailSection(root, '分析角度', item.display_fields?.angle);
+  appendDetailSection(root, '证据', item.display_fields?.evidence || []);
+
+  const actions = document.createElement('div');
+  actions.className = 'item-detail-actions';
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.textContent = '← 返回当日日报';
+  back.addEventListener('click', () => loadReport(item.date, item.report_id));
+  actions.appendChild(back);
+  if (item.report_target) {
+    const locate = document.createElement('button');
+    locate.type = 'button';
+    locate.textContent = '在日报中定位';
+    locate.addEventListener('click', () => openReportTarget(item));
+    actions.appendChild(locate);
+  }
+  if (item.external_url) {
+    const external = document.createElement('a');
+    external.className = 'primary';
+    external.href = item.external_url;
+    external.target = '_blank';
+    external.rel = 'noopener noreferrer';
+    external.textContent = '查看原始来源 ↗';
+    actions.appendChild(external);
+  }
+  root.appendChild(actions);
+  const content = document.getElementById('content');
+  content.textContent = '';
+  content.appendChild(root);
+  document.getElementById('cwrap').scrollTop = 0;
 }
 
 function decorateReportTables() {
@@ -1232,41 +1618,6 @@ function decorateReportTables() {
       table.parentNode.insertBefore(wrapper, table);
       wrapper.appendChild(table);
     }
-
-    const headers = [...table.querySelectorAll('thead th')];
-    const summaryIndexes = headers
-      .map((header, index) => (headerIsSummary(header) ? index : -1))
-      .filter((index) => index >= 0);
-    if (!summaryIndexes.length) return;
-
-    table.querySelectorAll('tbody tr').forEach((row) => {
-      summaryIndexes.forEach((index) => {
-        const cell = row.children[index];
-        if (!cell || cell.dataset.summaryCell === 'true') return;
-        cell.dataset.summaryCell = 'true';
-
-        const content = document.createElement('div');
-        content.className = 'summary-cell-content';
-        while (cell.firstChild) content.appendChild(cell.firstChild);
-        cell.appendChild(content);
-
-        const toggle = document.createElement('button');
-        toggle.type = 'button';
-        toggle.className = 'summary-toggle';
-        toggle.textContent = '展开摘要';
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.addEventListener('click', () => {
-          const expanded = content.classList.toggle('expanded');
-          toggle.textContent = expanded ? '收起摘要' : '展开摘要';
-          toggle.setAttribute('aria-expanded', String(expanded));
-        });
-        cell.appendChild(toggle);
-
-        requestAnimationFrame(() => {
-          if (content.scrollHeight <= content.clientHeight + 1) toggle.hidden = true;
-        });
-      });
-    });
   });
 }
 
@@ -1443,9 +1794,28 @@ function buildNav(dates) {
   });
 }
 
-window.addEventListener('popstate', () => {
-  const h = getHash();
-  if (h) loadReport(h.date, h.report, false);
+async function applyRoute(route, push = false) {
+  if (!route) return false;
+  if (!route.occurrenceId) {
+    await loadReport(route.date, route.report, push);
+    return true;
+  }
+
+  const indexAvailable = await initSearch();
+  const item = indexAvailable ? searchDocumentsById.get(route.occurrenceId) : null;
+  if (!item || item.date !== route.date || item.report_id !== route.report) {
+    setSearchStatus('具体条目不存在或索引已更新，已返回对应日报');
+    history.replaceState(null, '', `#${route.date}/${route.report}`);
+    await loadReport(route.date, route.report, push);
+    return false;
+  }
+  openItemDetail(item, push);
+  return true;
+}
+
+window.addEventListener('popstate', async () => {
+  const route = getHash();
+  if (route) await applyRoute(route, false);
 });
 
 // ── Init ──
@@ -1460,12 +1830,11 @@ initReadingDensity();
     if (!dates?.length) throw new Error('manifest is empty');
 
     buildNav(dates);
-    initSearch(dates);
 
     const hash = getHash();
     const first = dates[0];
     if (hash && dates.find(d => d.date === hash.date && d.reports.includes(hash.report))) {
-      loadReport(hash.date, hash.report, false);
+      await applyRoute(hash, false);
     } else if (first?.reports?.length) {
       const r0 = first.reports[0];
       history.replaceState(null, '', `#${first.date}/${r0}`);
@@ -1497,17 +1866,18 @@ function toggleBriefs() {
 
 async function loadBriefs() {
   const content = document.getElementById('briefsContent');
+  if (!IS_LOCAL_RAG) {
+    content.innerHTML = '';
+    const message = document.createElement('div');
+    message.className = 'briefs-empty';
+    message.textContent = '⚠️ 当前是静态浏览模式。请双击 start.command 启动本地服务，再在 127.0.0.1:8001 打开页面。';
+    content.appendChild(message);
+    return;
+  }
+
   content.innerHTML = '<div class="briefs-loading">正在加载...</div>';
 
   try {
-    const isLocal = window.location.hostname === 'localhost' ||
-                    window.location.hostname === '127.0.0.1' ||
-                    window.location.hostname === '0.0.0.0';
-
-    if (!isLocal) {
-      content.innerHTML = '<div class="briefs-empty">⚠️ Briefs功能需要本地RAG服务支持</div>';
-      return;
-    }
 
     const res = await fetch(requireLocalApiUrl('/briefs'));
     if (!res.ok) throw new Error('Failed to fetch briefs');
@@ -1647,6 +2017,41 @@ async function loadBriefContent(brief) {
 let systemOpen = false;
 let systemData = null;
 
+function configureSystemConnectionAction(mode) {
+  const action = document.getElementById('systemConnectionAction');
+  const copy = document.getElementById('systemConnectionCopy');
+  const button = document.getElementById('systemConnectBtn');
+  if (!action || !copy || !button) return;
+
+  if (mode === 'hidden') {
+    action.hidden = true;
+    return;
+  }
+
+  action.hidden = false;
+  button.disabled = false;
+  if (mode === 'connect') {
+    copy.textContent = '检测到当前是静态报告页。如果 Docker 与 RAG 已在运行，可直接连接，无需关闭或重启。';
+    button.textContent = '连接运行中的 RAG';
+  } else {
+    copy.textContent = '页面地址正确，但刚才未取得服务状态。Docker 已运行时可直接重试。';
+    button.textContent = '重新检测服务';
+  }
+}
+
+async function handleSystemConnectionAction() {
+  if (!IS_LOCAL_RAG) {
+    connectToLocalRag();
+    return;
+  }
+
+  const button = document.getElementById('systemConnectBtn');
+  button.disabled = true;
+  button.textContent = '正在检测…';
+  systemData = null;
+  await loadSystemStatus();
+}
+
 function toggleSystem() {
   systemOpen = !systemOpen;
   document.getElementById('systemPanel').classList.toggle('open', systemOpen);
@@ -1661,13 +2066,10 @@ function toggleSystem() {
 
 async function loadSystemStatus() {
   try {
-    const isLocal = window.location.hostname === 'localhost' ||
-                    window.location.hostname === '127.0.0.1' ||
-                    window.location.hostname === '0.0.0.0';
-
-    if (!isLocal) {
+    if (!IS_LOCAL_RAG) {
       // 静态模式
       document.getElementById('systemStatus').innerHTML = '<span class="system-status-dot orange"></span>静态模式';
+      configureSystemConnectionAction('connect');
       document.getElementById('systemProvider').textContent = 'N/A';
       document.getElementById('systemRetriever').textContent = 'N/A';
       document.getElementById('systemNeo4j').innerHTML = '<span class="system-status-dot orange"></span>N/A';
@@ -1675,6 +2077,7 @@ async function loadSystemStatus() {
       document.getElementById('systemCorpus').textContent = 'N/A';
       document.getElementById('systemCorpusSync').textContent = 'N/A';
       document.getElementById('systemCorpusSyncTime').textContent = 'N/A';
+      document.getElementById('systemCorpusIndexedTime').textContent = 'N/A';
       document.getElementById('systemSearch').textContent = 'N/A';
       document.getElementById('systemDeepFetch').textContent = 'N/A';
       document.getElementById('systemVersion').textContent = 'N/A';
@@ -1685,6 +2088,7 @@ async function loadSystemStatus() {
     if (!res.ok) throw new Error('Failed to fetch status');
 
     systemData = await res.json();
+    configureSystemConnectionAction('hidden');
 
     // 更新UI - 使用textContent防止XSS
     const statusEl = document.getElementById('systemStatus');
@@ -1769,6 +2173,7 @@ async function loadSystemStatus() {
     statusDot.className = 'system-status-dot red';
     statusEl.appendChild(statusDot);
     statusEl.appendChild(document.createTextNode('连接失败'));
+    configureSystemConnectionAction('retry');
   }
 }
 
@@ -1898,6 +2303,58 @@ async function refreshChatWebSearchCapability() {
   }
   await loadSystemStatus();
   syncChatWebSearchControl();
+}
+
+function latestAssistantChatMessage() {
+  const messages = document.querySelectorAll('#chatMessages .chat-msg.assistant');
+  return messages[messages.length - 1] || null;
+}
+
+function openLocalRagService() {
+  // Fixed local URL only: the page never executes a shell command or receives
+  // a command/URL from report content.
+  connectToLocalRag();
+}
+
+async function retryAgentServiceConnection(button) {
+  button.disabled = true;
+  button.textContent = '正在检测…';
+  try {
+    const response = await fetch(requireLocalApiUrl('/health'), { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    await refreshChatWebSearchCapability();
+    button.textContent = '服务已恢复';
+    appendChatMessage('assistant', '✅ 已重新连接本地 RAG 服务。现在可以重新发送问题。', []);
+  } catch (error) {
+    button.disabled = false;
+    button.textContent = '重新检测服务';
+  }
+}
+
+function appendAgentConnectionRecovery(content, mode) {
+  appendChatMessage('assistant', content, []);
+  const message = latestAssistantChatMessage();
+  if (!message) return;
+
+  const recovery = document.createElement('div');
+  recovery.className = 'chat-connection-recovery';
+  const hint = document.createElement('span');
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'agent-retry-service';
+
+  if (mode === 'static') {
+    hint.textContent = '启动脚本完成后，请从本地服务页使用 Agent。';
+    button.textContent = '打开本地服务页';
+    button.addEventListener('click', openLocalRagService);
+  } else {
+    hint.textContent = 'Docker 已在运行时，可重新检测后端服务。';
+    button.textContent = '重新检测服务';
+    button.addEventListener('click', () => retryAgentServiceConnection(button));
+  }
+
+  recovery.append(hint, button);
+  message.appendChild(recovery);
 }
 
 function toggleChatWebSearchMode() {
@@ -2332,7 +2789,7 @@ async function sendChatMessage() {
 3. 在本地服务地址打开页面
 
 当前您仍可浏览报告和使用其他功能。`;
-    appendChatMessage('assistant', errorMsg, []);
+    appendAgentConnectionRecovery(errorMsg, 'static');
     chatHistory.pop();
     activeChatController = null;
     input.disabled = false;
@@ -2373,7 +2830,7 @@ async function sendChatMessage() {
     } else {
       errorMsg = `请求失败：${e.message}`;
     }
-    appendChatMessage('assistant', errorMsg, []);
+    appendAgentConnectionRecovery(errorMsg, 'retry');
     // Remove the failed user message from history
     chatHistory.pop();
   } finally {

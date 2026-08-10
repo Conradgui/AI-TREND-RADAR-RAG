@@ -6,7 +6,7 @@
     <description>AI 热点选题监控 · Daily AI topic radar</description>
     <language>zh-CN</language>
     <atom:link href="https://conradgui.github.io/AI-TREND-RADAR/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 10 Aug 2026 03:12:32 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 08:16:35 +0000</lastBuildDate>
     <item>
       <title>AI 热点选题池 2026-08-10</title>
       <link>https://conradgui.github.io/AI-TREND-RADAR/digests/2026-08-10/ai-topic-radar.html</link>
@@ -3365,7 +3365,7 @@
       <link>https://conradgui.github.io/AI-TREND-RADAR/digests/2026-08-05/ai-topic-radar.html</link>
       <guid isPermaLink="true">https://conradgui.github.io/AI-TREND-RADAR/digests/2026-08-05/ai-topic-radar.html</guid>
       <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
-      <description>AI 热点选题池 2026-08-05 生成时间: 2026-08-05 03:20 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题 今日 Top 深挖选题 分数 动作 题目 摘要 分类 推荐选题 推荐理由 证据 98 深挖 Apple Is Getting This Wrong 标杆企业动向、商业格局与投融资 Apple Is Getting This Wrong 为什么值得关注？（大厂动作、商业化路径与竞争格局） 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 来源：OpenAI发布时间：2026-08-04关键词：openai, index 98 深挖 Introducing The Openai Economic Research Exchange 标杆企业动向、商业格局与投融资 Introducing The Openai Economic Research Exchange 为什么值得关注？（大厂动作、商业化路径与竞争格局） 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 来源：Open...</description>
+      <description>AI 热点选题池 2026-08-05 生成时间: 2026-08-05 03:20 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题 今日 Top 深挖选题 分数 动作 题目 摘要 分类 推荐选题 推荐理由 证据 98 深挖 Apple Is Getting This Wrong OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened. 标杆企业动向、商业格局与投融资 Apple Is Getting This Wrong 为什么值得关注？（大厂动作、商业化路径与竞争格局） 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 来源：OpenAI发布时间：2026-08-04关键词：openai, index 98 深挖 Introducing The Openai Economic Research Exchange OpenAI launch...</description>
       <content:encoded><![CDATA[<h1>AI 热点选题池 2026-08-05</h1>
 <blockquote>
 <p>生成时间: 2026-08-05 03:20 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题</p>
@@ -3388,7 +3388,7 @@
 <td align="right">98</td>
 <td>深挖</td>
 <td><a href="https://openai.com/index/apple-is-getting-this-wrong/">Apple Is Getting This Wrong</a></td>
-<td></td>
+<td>OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.</td>
 <td>标杆企业动向、商业格局与投融资</td>
 <td>Apple Is Getting This Wrong 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。</td>
@@ -3398,7 +3398,7 @@
 <td align="right">98</td>
 <td>深挖</td>
 <td><a href="https://openai.com/index/introducing-the-openai-economic-research-exchange/">Introducing The Openai Economic Research Exchange</a></td>
-<td></td>
+<td>OpenAI launches the Economic Research Exchange to study AI’s impact on jobs, productivity, and the economy. Applications are now open for selected research projects.</td>
 <td>标杆企业动向、商业格局与投融资</td>
 <td>Introducing The Openai Economic Research Exchange 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。</td>
@@ -3408,7 +3408,7 @@
 <td align="right">98</td>
 <td>深挖</td>
 <td><a href="https://openai.com/index/learn-teach-chatgpt-work-codex/">Learn Teach Chatgpt Work Codex</a></td>
-<td></td>
+<td>Explore new education plugins for ChatGPT Work and Codex that help K–12 teachers, college educators, and students learn, teach, research, and build.</td>
 <td>标杆企业动向、商业格局与投融资</td>
 <td>Learn Teach Chatgpt Work Codex 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。</td>
@@ -3849,7 +3849,7 @@
 <td align="right">98</td>
 <td>深挖</td>
 <td><a href="https://openai.com/index/apple-is-getting-this-wrong/">Apple Is Getting This Wrong</a></td>
-<td></td>
+<td>OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.</td>
 <td>标杆企业动向、商业格局与投融资</td>
 <td>Apple Is Getting This Wrong 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。</td>
@@ -3859,7 +3859,7 @@
 <td align="right">98</td>
 <td>深挖</td>
 <td><a href="https://openai.com/index/introducing-the-openai-economic-research-exchange/">Introducing The Openai Economic Research Exchange</a></td>
-<td></td>
+<td>OpenAI launches the Economic Research Exchange to study AI’s impact on jobs, productivity, and the economy. Applications are now open for selected research projects.</td>
 <td>标杆企业动向、商业格局与投融资</td>
 <td>Introducing The Openai Economic Research Exchange 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。</td>
@@ -3869,7 +3869,7 @@
 <td align="right">98</td>
 <td>深挖</td>
 <td><a href="https://openai.com/index/learn-teach-chatgpt-work-codex/">Learn Teach Chatgpt Work Codex</a></td>
-<td></td>
+<td>Explore new education plugins for ChatGPT Work and Codex that help K–12 teachers, college educators, and students learn, teach, research, and build.</td>
 <td>标杆企业动向、商业格局与投融资</td>
 <td>Learn Teach Chatgpt Work Codex 为什么值得关注？（大厂动作、商业化路径与竞争格局）</td>
 <td>值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。</td>

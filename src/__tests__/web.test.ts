@@ -7,6 +7,7 @@ import {
   urlCategory,
   titleFromUrl,
   emptyState,
+  fetchSiteContent,
 } from "../web.ts";
 
 // ---------------------------------------------------------------------------
@@ -201,5 +202,121 @@ describe("emptyState", () => {
     expect(a).not.toBe(b);
     a.anthropic.lastChecked = "modified";
     expect(b.anthropic.lastChecked).toBe("");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Official feed + sitemap collection
+// ---------------------------------------------------------------------------
+
+describe("fetchSiteContent", () => {
+  it("uses the official feed description as the display summary", async () => {
+    const articleUrl = "https://openai.com/index/apple-is-getting-this-wrong/";
+    const exchangeUrl = "https://openai.com/index/introducing-the-openai-economic-research-exchange/";
+    const educationUrl = "https://openai.com/index/learn-teach-chatgpt-work-codex/";
+    const feed = `
+      <rss version="2.0"><channel>
+        <item>
+          <title>Apple is getting this wrong</title>
+          <link>${articleUrl}</link>
+          <description>OpenAI addresses Apple's baseless lawsuit and explains why competition benefits developers and users.</description>
+          <pubDate>Tue, 04 Aug 2026 12:00:00 GMT</pubDate>
+        </item>
+        <item>
+          <title>Introducing the OpenAI Economic Research Exchange</title>
+          <link>${exchangeUrl}</link>
+          <description>OpenAI launches an exchange to study AI's impact on jobs, productivity, and the economy.</description>
+          <pubDate>Mon, 08 Jun 2026 12:00:00 GMT</pubDate>
+        </item>
+        <item>
+          <title>New ways to learn and teach with ChatGPT Work and Codex</title>
+          <link>${educationUrl}</link>
+          <description>Official education plugins help teachers and students learn, research, and build.</description>
+          <pubDate>Tue, 04 Aug 2026 11:00:00 GMT</pubDate>
+        </item>
+      </channel></rss>`;
+    const sitemap = `
+      <urlset>
+        <url><loc>${articleUrl}</loc><lastmod>2026-08-04</lastmod></url>
+        <url><loc>${exchangeUrl}</loc><lastmod>2026-08-04</lastmod></url>
+        <url><loc>${educationUrl}</loc><lastmod>2026-08-04</lastmod></url>
+      </urlset>`;
+    const fakeHttpGet = async (url: string): Promise<string> => {
+      if (url === "https://openai.com/news/rss.xml") return feed;
+      if (url.endsWith("/company/")) return sitemap;
+      if (url.includes("/sitemap.xml/")) return "<urlset></urlset>";
+      throw new Error(`Unexpected URL: ${url}`);
+    };
+
+    const result = await fetchSiteContent("openai", emptyState(), fakeHttpGet);
+
+    expect(result.newItems).toHaveLength(3);
+    expect(result.newItems).toContainEqual(
+      expect.objectContaining({
+        url: articleUrl,
+        title: "Apple is getting this wrong",
+        summary:
+          "OpenAI addresses Apple's baseless lawsuit and explains why competition benefits developers and users.",
+      }),
+    );
+    expect(result.newItems).toContainEqual(
+      expect.objectContaining({
+        url: exchangeUrl,
+        summary: "OpenAI launches an exchange to study AI's impact on jobs, productivity, and the economy.",
+      }),
+    );
+    expect(result.newItems).toContainEqual(
+      expect.objectContaining({
+        url: educationUrl,
+        summary: "Official education plugins help teachers and students learn, research, and build.",
+      }),
+    );
+  });
+
+  it("keeps the page description separate from the longer article content", async () => {
+    const articleUrl = "https://www.anthropic.com/news/example-release";
+    const sitemap = `<urlset><url><loc>${articleUrl}</loc><lastmod>2026-08-06</lastmod></url></urlset>`;
+    const html = `<!doctype html><html><head>
+      <title>Example release</title>
+      <meta name="description" content="A concise official description for report readers.">
+    </head><body><article>
+      <h1>Example release</h1>
+      <p>This is the substantially longer article body used for analysis and RAG ingestion.</p>
+      <p>It must not be substituted for the concise display summary.</p>
+    </article></body></html>`;
+    const fakeHttpGet = async (url: string): Promise<string> => {
+      if (url === "https://www.anthropic.com/sitemap.xml") return sitemap;
+      if (url === `${articleUrl}/` || url === articleUrl) return html;
+      throw new Error(`Unexpected URL: ${url}`);
+    };
+
+    const result = await fetchSiteContent("anthropic", emptyState(), fakeHttpGet);
+    const item = result.newItems[0]!;
+
+    expect(item.summary).toBe("A concise official description for report readers.");
+    expect(item.content).toContain("substantially longer article body");
+    expect(item.content).not.toBe(item.summary);
+  });
+
+  it("recognizes legacy seen URLs that do not have a trailing slash", async () => {
+    const articleUrl = "https://www.anthropic.com/news/already-seen";
+    const sitemap = `<urlset><url><loc>${articleUrl}</loc><lastmod>2026-08-06</lastmod></url></urlset>`;
+    const state = emptyState();
+    state.anthropic.lastChecked = "2026-08-06T12:00:00.000Z";
+    state.anthropic.seenUrls[articleUrl] = "2026-08-06";
+    const requestedUrls: string[] = [];
+    const fakeHttpGet = async (url: string): Promise<string> => {
+      requestedUrls.push(url);
+      if (url === "https://www.anthropic.com/sitemap.xml") return sitemap;
+      throw new Error(`Article page should not be fetched again: ${url}`);
+    };
+
+    const result = await fetchSiteContent("anthropic", state, fakeHttpGet);
+
+    expect(result.isFirstRun).toBe(false);
+    expect(result.newItems).toEqual([]);
+    expect(requestedUrls).toEqual(["https://www.anthropic.com/sitemap.xml"]);
+    expect(state.anthropic.seenUrls[articleUrl]).toBeUndefined();
+    expect(state.anthropic.seenUrls[`${articleUrl}/`]).toBe("2026-08-06");
   });
 });

@@ -12,8 +12,8 @@ if [ ! -f .env ]; then
   exit 1
 fi
 
-if ! docker info >/dev/null 2>&1; then
-  echo "Docker Desktop 尚未运行。请启动 Docker Desktop 后重试。"
+source "${SCRIPT_DIR}/scripts/docker-desktop.sh"
+if ! ensure_docker_ready; then
   read -r -p "按回车键退出..."
   exit 1
 fi
@@ -24,8 +24,13 @@ if [[ ! "$RAG_PORT" =~ ^[0-9]+$ ]]; then
 fi
 RAG_URL="http://127.0.0.1:${RAG_PORT}"
 
-echo "正在启动 AI Trend Radar RAG（首次启动会下载镜像并预热检索模型）..."
-docker compose up -d --build
+if docker compose images -q app | grep -q .; then
+  echo "正在恢复 AI Trend Radar RAG 服务（复用已有镜像与数据）..."
+  docker compose up -d --no-build
+else
+  echo "首次启动：正在构建 AI Trend Radar RAG 镜像（不会删除已有数据卷）..."
+  docker compose up -d --build
+fi
 
 echo "等待服务就绪（首次索引会在后台补全）..."
 for attempt in {1..180}; do

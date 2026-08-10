@@ -63,7 +63,9 @@ APP_VERSION = "0.2.0"
 # 滑动窗口速率限制器 — 按客户端 IP 限制 /chat 端点请求频率
 RATE_LIMIT_MAX_REQUESTS = 10      # 窗口内最大请求数
 RATE_LIMIT_WINDOW_SECONDS = 60    # 滑动窗口时长（秒）
-CHAT_REQUEST_TIMEOUT_SECONDS = 105  # 高于最长 90 秒 Agent 预算，仍保留整体硬上限
+# Must remain above the longest Agent path so the UI receives the more useful
+# Agent-level timeout diagnosis instead of a generic HTTP 504.
+CHAT_REQUEST_TIMEOUT_SECONDS = 195
 RAG_CONFIG_LOCK = asyncio.Lock()
 
 
@@ -644,7 +646,7 @@ async def chat(req: ChatRequest, rag: RagState = Depends(_get_rag_state)):
 
     try:
         # C-6 修复：用 asyncio.wait_for 包裹整个请求链路，设置整体超时
-        # 总超时（105s）高于最长 90 秒 Agent 预算，确保内部阶段先给出可诊断反馈。
+        # 总超时（195s）高于最长 180 秒 Agent 预算，确保内部阶段先给出可诊断反馈。
         response = await asyncio.wait_for(
             build_chat_response(
                 rag.agent,

@@ -241,6 +241,7 @@ describe("buildWebReportPrompt", () => {
             url: "https://anthropic.com/news/test",
             title: "Test",
             lastmod: "2026-03-09",
+            summary: "Official concise summary",
             content: "Content",
             site: "anthropic",
             category: "news",

@@ -6,8 +6,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-if ! docker info >/dev/null 2>&1; then
-  echo "Docker Desktop 尚未运行。请先启动 Docker Desktop，再重新双击本文件。"
+source "${SCRIPT_DIR}/scripts/docker-desktop.sh"
+if ! ensure_docker_ready; then
   read -r -p "按回车键退出..."
   exit 1
 fi

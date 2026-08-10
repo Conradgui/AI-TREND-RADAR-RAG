@@ -3,6 +3,13 @@ import path from "path";
 import { marked } from "marked";
 import { REPORT_LABELS } from "./i18n.ts";
 import { getReportLangs, shouldSaveSourceReports } from "./options.ts";
+import {
+  SEARCH_DOCUMENT_ID_SCHEME,
+  SEARCH_DOCUMENT_SCHEMA_VERSION,
+  buildSearchDocuments,
+  type SearchDocument,
+  type SearchDocumentDiagnostic,
+} from "./search-document.ts";
 
 const DIGESTS_DIR = "digests";
 const MANIFEST_PATH = "manifest.json";
@@ -44,7 +51,7 @@ export function getReportFiles(
 
 const MAX_FEED_ITEMS = 30;
 
-interface DateEntry {
+export interface DateEntry {
   date: string;
   reports: string[];
 }
@@ -186,70 +193,92 @@ async function main(): Promise<void> {
   generateSearchIndex(entries);
 }
 
-function generateSearchIndex(entries: DateEntry[]): void {
-  interface SearchTopic {
-    date: string;
-    title: string;
-    score: number;
-    category: string;
-    source: string;
-  }
+/** Public versioned artifact consumed by the dashboard's item search. */
+export interface SearchIndexArtifact {
+  schema_version: typeof SEARCH_DOCUMENT_SCHEMA_VERSION;
+  id_scheme: typeof SEARCH_DOCUMENT_ID_SCHEME;
+  generated: string;
+  source_candidate_count: number;
+  document_count: number;
+  duplicate_record_count: number;
+  diagnostics: SearchDocumentDiagnostic[];
+  documents: SearchDocument[];
+}
 
-  const topics: SearchTopic[] = [];
-  const excerpts: Record<string, Record<string, string>> = {};
+/** Test and build overrides for deterministic search-index generation. */
+export interface GenerateSearchIndexOptions {
+  digestsDir?: string;
+  outputPath?: string;
+  generated?: string;
+}
+
+/** Generate and persist a coverage-audited daily item index. */
+export function generateSearchIndex(
+  entries: DateEntry[],
+  options: GenerateSearchIndexOptions = {},
+): SearchIndexArtifact {
+  const digestsDir = options.digestsDir ?? DIGESTS_DIR;
+  const outputPath = options.outputPath ?? SEARCH_INDEX_PATH;
+  const documents: SearchDocument[] = [];
+  const diagnostics: SearchDocumentDiagnostic[] = [];
+  let sourceCandidateCount = 0;
 
   for (const { date, reports } of entries) {
-    const dateDir = path.join(DIGESTS_DIR, date);
+    if (!reports.includes("ai-topic-radar")) continue;
+    const poolPath = path.join(digestsDir, date, "topic-pool.json");
+    if (!fs.existsSync(poolPath)) continue;
 
-    // Load topic-pool.json if available
-    const poolPath = path.join(dateDir, "topic-pool.json");
-    if (fs.existsSync(poolPath)) {
-      try {
-        const pool = JSON.parse(fs.readFileSync(poolPath, "utf-8"));
-        if (Array.isArray(pool.topics)) {
-          for (const t of pool.topics) {
-            topics.push({
-              date,
-              title: t.topic ?? t.title ?? "",
-              score: t.score ?? 0,
-              category: t.category ?? "",
-              source: (t.evidence?.[0] ?? "").slice(0, 80),
-            });
-          }
-        }
-      } catch {
-        // skip corrupt pool files
-      }
+    let pool: { candidates?: unknown[] };
+    try {
+      pool = JSON.parse(fs.readFileSync(poolPath, "utf-8")) as {
+        candidates?: unknown[];
+      };
+    } catch {
+      diagnostics.push({ date, field: "topic-pool.json", category: "invalid_json" });
+      continue;
     }
-
-    // Load report excerpts (first 600 chars of each report)
-    excerpts[date] = {};
-    for (const report of reports) {
-      // Only index primary (non-English) reports to keep size down
-      if (report.endsWith("-en")) continue;
-      const reportPath = path.join(dateDir, `${report}.md`);
-      if (fs.existsSync(reportPath)) {
-        try {
-          const content = fs.readFileSync(reportPath, "utf-8");
-          excerpts[date][report] = content.slice(0, 600);
-        } catch {
-          // skip unreadable reports
-        }
-      }
-    }
+    const result = buildSearchDocuments({
+      date,
+      reportId: "ai-topic-radar",
+      reportType: "daily",
+      candidates: Array.isArray(pool.candidates) ? pool.candidates : [],
+    });
+    documents.push(...result.documents);
+    diagnostics.push(...result.diagnostics);
+    sourceCandidateCount += result.sourceCandidateCount;
   }
 
-  // Sort topics by score descending
-  topics.sort((a, b) => b.score - a.score);
-
-  const searchIndex = {
-    generated: new Date().toISOString(),
-    topics,
-    excerpts,
+  documents.sort(
+    (a, b) =>
+      b.date.localeCompare(a.date) ||
+      b.score - a.score ||
+      a.normalized_title.localeCompare(b.normalized_title),
+  );
+  const representedCandidateCount = documents.reduce(
+    (sum, item) => sum + item.duplicate_count,
+    0,
+  );
+  if (representedCandidateCount !== sourceCandidateCount) {
+    throw new Error(
+      `Search document coverage mismatch: represented ${representedCandidateCount} of ${sourceCandidateCount} candidates`,
+    );
+  }
+  const artifact: SearchIndexArtifact = {
+    schema_version: SEARCH_DOCUMENT_SCHEMA_VERSION,
+    id_scheme: SEARCH_DOCUMENT_ID_SCHEME,
+    generated: options.generated ?? new Date().toISOString(),
+    source_candidate_count: sourceCandidateCount,
+    document_count: documents.length,
+    duplicate_record_count: sourceCandidateCount - documents.length,
+    diagnostics,
+    documents,
   };
 
-  fs.writeFileSync(SEARCH_INDEX_PATH, JSON.stringify(searchIndex, null, 2) + "\n");
-  console.log(`search-index.json updated: ${topics.length} topics across ${entries.length} dates`);
+  fs.writeFileSync(outputPath, JSON.stringify(artifact, null, 2) + "\n");
+  console.log(
+    `search-index.json updated: ${documents.length} documents from ${sourceCandidateCount} candidates across ${entries.length} dates`,
+  );
+  return artifact;
 }
 
 // Run only when executed directly (not imported for testing)
