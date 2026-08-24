@@ -114,7 +114,10 @@ def summarize_brief_inputs(
         "evidence_types": dict(sorted(Counter(c.get("evidence_type", "unknown") for c in citations).items())),
         "citation_ids": [_citation_ref(c) for c in citations],
         "graph_counts": {
-            "topic_count": int(graph_evidence.get("topic_count") or 0),
+            "content_count": int(graph_evidence.get("content_count") or 0),
+            "observation_count": int(graph_evidence.get("observation_count") or 0),
+            "repeated_content_count": int(graph_evidence.get("repeated_content_count") or 0),
+            "previous_link_count": int(graph_evidence.get("previous_link_count") or 0),
             "date_count": int(graph_evidence.get("date_count") or 0),
             "source_count": int(graph_evidence.get("source_count") or 0),
         },
@@ -258,7 +261,10 @@ def _graph_summary_lines(graph_evidence: dict | None) -> list[str]:
     lines = [
         (
             f"- Entity: {graph_evidence.get('entity_label') or graph_evidence.get('entity_id') or 'unknown'}; "
-            f"topics: {graph_evidence.get('topic_count', 0)}; "
+            f"stable contents: {graph_evidence.get('content_count', 0)}; "
+            f"observations: {graph_evidence.get('observation_count', 0)}; "
+            f"repeated contents: {graph_evidence.get('repeated_content_count', 0)}; "
+            f"timeline links: {graph_evidence.get('previous_link_count', 0)}; "
             f"dates: {graph_evidence.get('date_count', 0)}; "
             f"sources: {graph_evidence.get('source_count', 0)}."
         ),
@@ -270,7 +276,7 @@ def _graph_summary_lines(graph_evidence: dict | None) -> list[str]:
         for path in paths[:8]:
             lines.append(
                 f"  - {path.get('entity', graph_evidence.get('entity_label', ''))} -> "
-                f"{path.get('topic', '')} -> {path.get('date', '')} -> {path.get('source') or 'unknown source'}"
+                f"{path.get('title', '')} -> {path.get('date', '')} -> {path.get('source') or 'unknown source'}"
             )
     else:
         lines.append("- No sample paths returned.")

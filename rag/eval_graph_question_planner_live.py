@@ -52,8 +52,10 @@ async def build_live_graph_question_planner_snapshot(question: str) -> dict:
 
 def _failed_live_checks(evidence: dict, citation: dict) -> list[str]:
     failed = []
-    if evidence.get("topic_count", 0) < 2:
-        failed.append("insufficient_topics")
+    if evidence.get("content_count", 0) < 2:
+        failed.append("insufficient_contents")
+    if evidence.get("repeated_content_count", 0) < 1:
+        failed.append("insufficient_repeated_contents")
     if evidence.get("date_count", 0) < 2:
         failed.append("insufficient_dates")
     if evidence.get("source_count", 0) < 1:

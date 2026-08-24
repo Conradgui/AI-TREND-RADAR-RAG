@@ -2,12 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, it, expect } from "vitest";
-import {
-  toRfc822,
-  escapeXml,
-  generateSearchIndex,
-  getReportFiles,
-} from "../generate-manifest.ts";
+import { toRfc822, escapeXml, generateSearchIndex, getReportFiles } from "../generate-manifest.ts";
 
 const tempRoots: string[] = [];
 
@@ -128,8 +123,8 @@ describe("generateSearchIndex", () => {
     );
 
     expect(artifact).toMatchObject({
-      schema_version: 1,
-      id_scheme: "sd-v1",
+      schema_version: 2,
+      id_scheme: "atr-v1",
       source_candidate_count: 1,
       document_count: 1,
     });
@@ -153,10 +148,45 @@ describe("generateSearchIndex", () => {
     );
 
     expect(() =>
-      generateSearchIndex(
-        [{ date: "2026-08-05", reports: ["ai-topic-radar"] }],
-        { digestsDir, outputPath: path.join(digestsDir, "search-index.json") },
-      ),
+      generateSearchIndex([{ date: "2026-08-05", reports: ["ai-topic-radar"] }], {
+        digestsDir,
+        outputPath: path.join(digestsDir, "search-index.json"),
+      }),
     ).toThrow(/coverage mismatch/);
+  });
+
+  it.each([
+    ["missing candidates", {}],
+    ["non-array candidates", { candidates: "invalid" }],
+  ])("fails closed for a structurally invalid topic pool: %s", (_label, pool) => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "search-index-invalid-pool-"));
+    tempRoots.push(root);
+    const digestsDir = path.join(root, "digests");
+    const dateDir = path.join(digestsDir, "2026-08-05");
+    fs.mkdirSync(dateDir, { recursive: true });
+    fs.writeFileSync(path.join(dateDir, "topic-pool.json"), JSON.stringify(pool));
+
+    expect(() =>
+      generateSearchIndex([{ date: "2026-08-05", reports: ["ai-topic-radar"] }], {
+        digestsDir,
+        outputPath: path.join(digestsDir, "search-index.json"),
+      }),
+    ).toThrow(/invalid topic pool structure/i);
+  });
+
+  it("fails closed for invalid topic pool JSON", () => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), "search-index-invalid-json-"));
+    tempRoots.push(root);
+    const digestsDir = path.join(root, "digests");
+    const dateDir = path.join(digestsDir, "2026-08-05");
+    fs.mkdirSync(dateDir, { recursive: true });
+    fs.writeFileSync(path.join(dateDir, "topic-pool.json"), "{not-json");
+
+    expect(() =>
+      generateSearchIndex([{ date: "2026-08-05", reports: ["ai-topic-radar"] }], {
+        digestsDir,
+        outputPath: path.join(digestsDir, "search-index.json"),
+      }),
+    ).toThrow(/invalid topic pool json/i);
   });
 });

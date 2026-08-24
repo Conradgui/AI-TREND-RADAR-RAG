@@ -71,9 +71,10 @@ def test_corpus_sync_is_the_only_scheduled_corpus_owner():
     assert "contents: read" in sync
     assert "contents: write" in sync
     assert "cancel-in-progress: false" in sync
-    install = 'python -m pip install "pytest>=8,<9"'
+    install = 'python -m pip install "pytest>=8,<9" "PyYAML>=6,<7"'
     assert install in sync
     assert sync.index(install) < sync.index("python -m pytest")
+    assert "requirements-dev.txt" not in sync
     assert "--result-json sync-diagnostics.json" in sync
     assert "sync-validation.log" in sync
     assert "actions/upload-artifact@" in sync
@@ -83,6 +84,119 @@ def test_corpus_sync_is_the_only_scheduled_corpus_owner():
         source = _workflow(legacy)
         assert "workflow_dispatch:" in source
         assert "schedule:" not in source
+
+
+def test_hosted_publish_installs_dependencies_and_gates_commit_artifacts():
+    """Hosted publishing must normalize and contract-check before it can commit."""
+    source = _workflow("rag-corpus-sync.yml")
+    workflow = _workflow_data("rag-corpus-sync.yml")
+    package = json.loads((PROJECT_ROOT / "package.json").read_text(encoding="utf-8"))
+
+    validate_steps = workflow["jobs"]["validate"]["steps"]
+    validate_install_index = next(
+        index
+        for index, step in enumerate(validate_steps)
+        if step.get("run") == 'python -m pip install "pytest>=8,<9" "PyYAML>=6,<7"'
+    )
+    verify_index = next(
+        index
+        for index, step in enumerate(validate_steps)
+        if "python -m pytest -q rag/tests/test_workflow_contracts.py" in step.get("run", "")
+    )
+    assert validate_install_index < verify_index
+
+    publish_steps = workflow["jobs"]["publish"]["steps"]
+    step_names = [step.get("name", "") for step in publish_steps]
+    setup_pnpm_index = step_names.index("Setup pnpm")
+    setup_node_index = step_names.index("Setup Node.js")
+    install_index = step_names.index("Install dependencies")
+    pull_index = next(
+        index
+        for index, step in enumerate(publish_steps)
+        if "python -m rag.sync_corpus" in step.get("run", "")
+    )
+    manifest_index = next(
+        index
+        for index, step in enumerate(publish_steps)
+        if step.get("run") == "pnpm manifest"
+    )
+    contract_index = next(
+        index
+        for index, step in enumerate(publish_steps)
+        if step.get("run") == "python -m rag.corpus_contract --source-mode hosted"
+    )
+    commit_index = next(
+        index
+        for index, step in enumerate(publish_steps)
+        if "git add" in step.get("run", "")
+    )
+
+    assert setup_pnpm_index < setup_node_index < install_index < pull_index
+    assert pull_index < manifest_index < contract_index < commit_index
+    assert "pnpm install --frozen-lockfile" in publish_steps[install_index]["run"]
+    assert publish_steps[setup_node_index]["with"] == {
+        "node-version": "22",
+        "cache": "pnpm",
+    }
+    assert package["packageManager"] == "pnpm@9.15.9"
+    assert "pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86" in source
+    assert "actions/setup-node@820762786026740c76f36085b0efc47a31fe5020" in source
+    assert "digests/" in publish_steps[commit_index]["run"]
+    assert "manifest.json" in publish_steps[commit_index]["run"]
+    assert "feed.xml" in publish_steps[commit_index]["run"]
+    assert "corpus-manifest.json" in publish_steps[commit_index]["run"]
+
+
+def test_hosted_sync_does_not_claim_or_attempt_local_rag_ingestion():
+    """Hosted Actions publish public artifacts only; local vector/graph stores stay out of scope."""
+    source = _workflow("rag-corpus-sync.yml").lower()
+
+    for forbidden in ("docker", "chroma", "neo4j", "rag.ingest", "rag:ingest"):
+        assert forbidden not in source
+    assert "--source-mode hosted" in source
+    assert "--source-mode self_managed" not in source
+
+
+def test_hosted_publish_uses_auditable_pr_instead_of_pushing_default_branch():
+    """Corpus updates must merge through one dedicated bot PR before Pages deploys."""
+    source = _workflow("rag-corpus-sync.yml")
+    workflow = _workflow_data("rag-corpus-sync.yml")
+    publish = workflow["jobs"]["publish"]
+    publish_steps = publish["steps"]
+
+    assert workflow["env"]["CORPUS_UPDATE_BRANCH"] == "automation/corpus-sync"
+    assert publish["permissions"] == {"contents": "write", "pull-requests": "write"}
+    assert "git push\n" not in source
+    assert 'HEAD:"$CORPUS_UPDATE_BRANCH"' in source
+    assert "gh pr create" in source
+    assert "gh pr merge" in source
+    assert "--match-head-commit" in source
+    assert 'test "$pr_state" = "MERGED"' in source
+    assert publish["outputs"]["merged"] == "${{ steps.pr_delivery.outputs.merged }}"
+
+    commit_index = next(
+        index for index, step in enumerate(publish_steps) if step.get("id") == "corpus_commit"
+    )
+    push_index = next(
+        index
+        for index, step in enumerate(publish_steps)
+        if step.get("name") == "Push dedicated corpus branch"
+    )
+    merge_index = next(
+        index
+        for index, step in enumerate(publish_steps)
+        if step.get("name") == "Create and merge corpus pull request"
+    )
+    assert commit_index < push_index < merge_index
+    assert publish_steps[push_index]["if"] == "steps.corpus_commit.outputs.changed == 'true'"
+    assert publish_steps[merge_index]["if"] == "steps.corpus_commit.outputs.changed == 'true'"
+    assert publish_steps[merge_index]["id"] == "pr_delivery"
+
+    deploy = workflow["jobs"]["deploy-pages"]
+    assert deploy["if"] == (
+        "${{ needs.publish.result == 'success' && "
+        "needs.publish.outputs.merged == 'true' }}"
+    )
 
 
 def test_pages_deploys_only_after_successful_corpus_sync():

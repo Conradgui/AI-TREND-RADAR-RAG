@@ -1,6 +1,6 @@
 """Tests for hybrid retriever — RRF scoring and error handling."""
 
-from rag.retriever.hybrid import RetrievedChunk
+from rag.retriever.hybrid import HybridRetriever, RetrievedChunk
 
 
 def test_rrf_scoring_merges_results():
@@ -39,3 +39,50 @@ def test_rrf_score_range():
     K = 60
     assert 1.0 / (K + 1) < 0.02
     assert 1.0 / (K + 10) < 0.02
+
+
+def test_rrf_fusion_replaces_incomparable_channel_raw_scores():
+    vector = RetrievedChunk(
+        text="OpenAI vector evidence",
+        source="vector",
+        score=0.91,
+        metadata={"citation_id": "same-item"},
+    )
+    graph = RetrievedChunk(
+        text="OpenAI graph evidence",
+        source="graph",
+        score=98,
+        metadata={"citation_id": "same-item"},
+    )
+
+    fused = HybridRetriever._fuse_rrf([vector], [graph], rrf_k=60)
+
+    assert len(fused) == 1
+    assert fused[0].score == (1 / 61) + (1 / 61)
+    assert fused[0].score != 0.91
+    assert fused[0].score != 98
+
+
+def test_exact_lexical_metadata_survives_vector_duplicate_and_boosts_score():
+    vector = RetrievedChunk(
+        text="vector text",
+        source="vector",
+        score=0.9,
+        metadata={"citation_id": "same-item", "title": "Title"},
+    )
+    lexical = RetrievedChunk(
+        text="lexical text",
+        source="lexical",
+        score=0,
+        metadata={
+            "citation_id": "same-item",
+            "lexical_match_type": "exact_title",
+            "local_url": "#date/report/item/id",
+        },
+    )
+
+    fused = HybridRetriever._fuse_rrf([vector], [lexical], rrf_k=60)
+
+    assert fused[0].metadata["lexical_match_type"] == "exact_title"
+    assert fused[0].metadata["local_url"] == "#date/report/item/id"
+    assert fused[0].score == (1 / 61) * 3

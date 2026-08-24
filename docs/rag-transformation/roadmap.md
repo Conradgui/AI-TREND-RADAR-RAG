@@ -341,7 +341,35 @@ Do not add web search or public UI integration before the internal corpus is fre
 
 ## Progress Snapshot
 
-Last updated: 2026-06-24
+Last updated: 2026-08-12
+
+> 2026-08 校准：下方保留的 6 月切片是历史证据，不再代表当前 Gate。当前主线已从旧的 Trend Brief Batch 前进到 Canonical Daily Observation、任务级 Retrieval Gateway、时间语义、条目级 Web UI、Observation Graph 与任务 Prompt/证据闭环。
+
+### 2026-08 Canonical Observation 主线
+
+| 阶段 | 当前状态 | 已证明的用户/产品行为 | 未宣称 |
+|---|---|---|---|
+| Stage 1 原子语料与 ATR 身份 | `Locally Verified` | 每条日报信息拥有稳定 ATR 身份并进入 Observation 图谱 | 所有未来来源永远无异常 |
+| Stage 2 查询视图与产品流 | `Live Smoke Verified` | exact navigation、trend discovery、索引 generation 与运行隔离可用 | 连续多日无人值守稳定性 |
+| Stage 3 结构化证据与任务评估 | `Live Smoke Verified` | Gateway 控制任务检索，结构化实体过滤生效 | 全任务族高 Precision/Recall/F1 |
+| Stage 4–6 时间语义 | `Live Smoke Verified` | publication/report/observed/ingested 时间边界接入，正式 generation 一致 | 历史网页发布日期 100% 可核验 |
+| Stage 7/10 Web UI 用户流 | `Live Smoke Verified` | 时间、来源、分类组合筛选，精确条目跳转，前进/后退恢复 | 搜索结果分页与索引失败页内重试 |
+| Stage 8 Observation Graph | `Locally Verified` | Content、Observation、Category、Source 与时间链可查询 | 自动因果推断 |
+| Stage 9 Prompt 与关系证据 | `Live Smoke Verified` | exact item 零模型导航；多实体使用成对 graph relation；共现不冒充因果 | 三实体以上的大规模关系评估 |
+
+### 当前 Gate
+
+当前模块：**任务级检索与回答质量评估闭环**。功能 Canary 已通过；语义质量 Gate 因人工相关性标签缺失保持打开。
+
+下一瓶颈不是继续增加路由或 Prompt，而是用固定、人工可解释的任务集分别证明：
+
+1. item navigation 的 exact accuracy 与零模型执行；
+2. trend discovery 的覆盖、多样性和新鲜度；
+3. timeline / relation 的图证据正确性；
+4. claim verification 的 supported / contradicted / insufficient 判定；
+5. 真实 Agent 延迟和失败率。
+
+在这些指标通过固定 Gate 前，不宣称整体检索质量或开源发布质量已经最终完成。
 
 ### Completed
 
@@ -613,11 +641,9 @@ Last updated: 2026-06-24
   - Current source relevance matrix for `trend-brief-rag-source-quality-2026-06-25.md`: 1 direct support, 1 partial support, 1 weak context, 0 irrelevant context.
   - Status: source relevance gate `CI Ready`; saved artifact relevance inspection `Locally Verified`.
 
-### Current Gate
+### 历史 2026-06 Gate（已被 2026-08 主线取代）
 
-Current module: P2 Trend Brief Batch Evidence Integration.
-
-Next bottleneck: evidence quality.
+当时模块：P2 Trend Brief Batch Evidence Integration。该记录只作为演进证据保留。
 
 Decision rule:
 

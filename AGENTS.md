@@ -52,6 +52,40 @@ Use Loop V2.2:
 
 Do not turn tests, evidence polishing, or benchmark tuning into the main work unless the roadmap says evidence quality is the current bottleneck.
 
+## Model Routing And Token Budget
+
+For complex work, use the installed `sol-advisor` workflow. Keep one controller and
+the minimum useful number of leaf workers:
+
+- **Sol / High** owns requirement interpretation, architecture, `done_when`, task
+  packets, Stage Gate decisions, integration, and final acceptance.
+- **Luna / Max** is the default implementation lane only for bounded work with an
+  explicit write scope, settled interfaces, a named verification command, and an
+  independently checkable result.
+- **Terra / High** is an escalation lane for cross-module work, long-context
+  investigation, shared-interface judgment, ambiguous debugging, or high-risk changes.
+- Trivial, tightly isolated work stays in the current task. Do not create an agent when
+  delegation overhead is likely to exceed the work.
+
+Before delegation, the controller must provide: objective, in-scope files, exclusions,
+acceptance criteria, verification evidence, and stop conditions. Workers are leaf nodes:
+they do not create agents, rewrite the architecture, expand scope, commit, push, deploy,
+or perform destructive operations.
+
+Default orchestration budget:
+
+1. one implementation worker at a time unless write scopes are provably disjoint;
+2. at most one focused correction by the original worker;
+3. use a fresh Sol reviewer only at a real Stage Gate or for high-consequence changes;
+4. never duplicate the same investigation in both controller and worker contexts;
+5. verify the actual child model and reasoning effort when runtime metadata is available;
+6. if a custom role silently inherits the parent model, stop using that route and fall
+   back to an explicit model override or a user-visible separate task.
+
+The goal is not maximum agent count. It is to spend expensive reasoning only where it
+changes a product or architecture decision, while moving clear execution to a cheaper
+model without weakening evidence or ownership.
+
 ## Decision Rules
 
 Conrad is a non-coding learner aiming at AIPM capability. Explain key architecture, framework, API, and data-structure decisions in Chinese before or alongside implementation.
@@ -116,7 +150,7 @@ Update full docs at module or stage gates. During active implementation, prefer 
 Default checkpoint branch:
 
 ```text
-codex/rag-transformation-checkpoints
+claude/rag-transformation-checkpoints
 ```
 
 Before checkpoint:

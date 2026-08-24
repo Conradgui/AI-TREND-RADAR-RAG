@@ -26,7 +26,13 @@ class QueryPlanBenchmarkTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in rows], ["Q1", "Q4"])
         self.assertEqual(rows[0]["planned_intent"], "recent_trend")
         self.assertEqual(rows[1]["planned_intent"], "source_specific_discovery")
-        self.assertEqual(rows[1]["metadata_filter"]["$and"][1]["date"]["$in"][0], "2026-06-15")
+        clauses = rows[1]["metadata_filter"]["$and"]
+        date_clause = next(
+            clause["effective_date"]
+            for clause in clauses
+            if "effective_date" in clause
+        )
+        self.assertEqual(date_clause["$in"][0], "2026-06-15")
 
     def test_summarize_snapshot_counts_filters_and_web_need(self):
         rows = [

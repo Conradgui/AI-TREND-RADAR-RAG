@@ -33,6 +33,7 @@ interface RawTopic {
   sourceType: "github" | "community" | "product" | "research" | "model" | "official";
   summary: string;
   publishedAt?: string;
+  sourceUpdatedAt?: string;
   heatSignals: number[];
   tags: string[];
 }
@@ -58,6 +59,8 @@ export interface TopicCandidate {
   evidence: string[];
   breakdown: TopicScoreBreakdown;
   tags: string[];
+  publishedAt?: string;
+  sourceUpdatedAt?: string;
 }
 
 export interface TopicRadarInput {
@@ -179,8 +182,9 @@ function heatScore(topic: RawTopic): number {
 }
 
 function freshnessScore(topic: RawTopic, now: Date): number {
-  if (!topic.publishedAt) return 12;
-  const time = new Date(topic.publishedAt).getTime();
+  const sourceDate = topic.publishedAt ?? topic.sourceUpdatedAt;
+  if (!sourceDate) return 12;
+  const time = new Date(sourceDate).getTime();
   if (Number.isNaN(time)) return 12;
   const days = (now.getTime() - time) / (24 * 60 * 60 * 1000);
   if (days <= 1) return 20;
@@ -280,6 +284,7 @@ function evidenceFor(topic: RawTopic): string[] {
   const evidence = [`来源：${topic.source}`];
   if (topic.heatSignals.length > 0) evidence.push(`热度信号：${topic.heatSignals.join(" / ")}`);
   if (topic.publishedAt) evidence.push(`发布时间：${topic.publishedAt.slice(0, 10)}`);
+  if (topic.sourceUpdatedAt) evidence.push(`更新时间：${topic.sourceUpdatedAt.slice(0, 10)}`);
   if (topic.tags.length > 0) evidence.push(`关键词：${topic.tags.slice(0, 5).join(", ")}`);
   return evidence;
 }
@@ -308,6 +313,8 @@ function scoreTopic(topic: RawTopic, now: Date): TopicCandidate {
     evidence,
     breakdown,
     tags: topic.tags,
+    publishedAt: topic.publishedAt,
+    sourceUpdatedAt: topic.sourceUpdatedAt,
   };
 }
 
@@ -332,7 +339,7 @@ function collectRawTopics(input: TopicRadarInput): RawTopic[] {
       source: `GitHub Search:${repo.searchQuery}`,
       sourceType: "github",
       summary: repo.description ?? "",
-      publishedAt: repo.pushedAt,
+      sourceUpdatedAt: repo.pushedAt,
       heatSignals: [repo.stargazersCount],
       tags: [repo.language ?? "", repo.searchQuery].filter(Boolean),
     });
@@ -380,7 +387,7 @@ function collectRawTopics(input: TopicRadarInput): RawTopic[] {
       source: "Hugging Face",
       sourceType: "model",
       summary: `${model.pipelineTag} model by ${model.author}`,
-      publishedAt: model.lastModified,
+      sourceUpdatedAt: model.lastModified,
       heatSignals: [model.likes, model.downloads],
       tags: [model.pipelineTag, ...model.tags].filter(Boolean),
     });
@@ -393,7 +400,8 @@ function collectRawTopics(input: TopicRadarInput): RawTopic[] {
         source: result.siteName,
         sourceType: "official",
         summary: item.summary,
-        publishedAt: item.lastmod,
+        publishedAt: item.publishedAt,
+        sourceUpdatedAt: item.updatedAt || item.lastmod,
         heatSignals: [],
         tags: [item.site, item.category],
       });
@@ -434,7 +442,7 @@ function collectRawTopics(input: TopicRadarInput): RawTopic[] {
         source: "Gitee",
         sourceType: "github",
         summary: project.description,
-        publishedAt: project.updatedAt,
+        sourceUpdatedAt: project.updatedAt,
         heatSignals: [project.stars, project.forks],
         tags: ["gitee", project.language].filter(Boolean),
       });

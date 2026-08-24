@@ -55,3 +55,27 @@ class Neo4jDriver:
                 await result.consume()
 
             await session.execute_write(run_write)
+
+    async def execute_write_transaction(self, work):
+        """Run a multi-statement async callback in one Neo4j transaction."""
+        async with self.driver.session() as session:
+            async def run_write(tx):
+                return await work(_TransactionDriver(tx))
+
+            return await session.execute_write(run_write)
+
+
+class _TransactionDriver:
+    """KnowledgeGraphBuilder-compatible writer bound to one open transaction."""
+
+    def __init__(self, transaction):
+        self._transaction = transaction
+
+    async def execute_write(self, cypher: str, timeout: float = DEFAULT_QUERY_TIMEOUT_S, **params):
+        result = await self._transaction.run(cypher, parameters=params, timeout=timeout)
+        await result.consume()
+
+    async def execute_query(self, cypher: str, timeout: float = DEFAULT_QUERY_TIMEOUT_S, **params):
+        """Read through the same open transaction used by the date rebuild."""
+        result = await self._transaction.run(cypher, parameters=params, timeout=timeout)
+        return [record.data() async for record in result]

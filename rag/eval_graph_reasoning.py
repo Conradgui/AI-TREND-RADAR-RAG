@@ -40,7 +40,8 @@ def score_graph_reasoning_rows(observations: list[dict], seeds: list[dict]) -> l
             "question": seed.get("question", ""),
             "passed": not failed_checks,
             "failed_checks": failed_checks,
-            "topic_count": observation.get("topic_count", 0),
+            "content_count": observation.get("content_count", 0),
+            "repeated_content_count": observation.get("repeated_content_count", 0),
             "date_count": observation.get("date_count", 0),
             "source_count": observation.get("source_count", 0),
             "sample_paths": observation.get("sample_paths", []),
@@ -80,49 +81,36 @@ async def build_graph_reasoning_observations(seeds: list[dict]) -> list[dict]:
 
 
 async def _observe_seed(driver: Neo4jDriver, seed: dict) -> dict:
+    from rag.graph_question_planning import GraphQuestionPlan
+    from rag.graph_reasoning_service import build_graph_reasoning_evidence
+
     entity_id = seed.get("entity_id", "")
-    rows = await driver.execute_query(
-        "MATCH (e:Entity {id: $entity_id})-[:MENTIONS]->(t:Topic) "
-        "OPTIONAL MATCH (t)-[:APPEARED_ON]->(d:DailyDigest) "
-        "OPTIONAL MATCH (t)-[:DISCOVERED_VIA]->(s:Source) "
-        "RETURN e.name AS entity, "
-        "count(DISTINCT t) AS topic_count, "
-        "count(DISTINCT d.date) AS date_count, "
-        "count(DISTINCT s.id) AS source_count, "
-        "collect(DISTINCT {entity: e.name, topic: t.name, date: d.date, source: s.id})[0..8] AS sample_paths",
-        entity_id=entity_id,
+    plan = GraphQuestionPlan(
+        original_question=seed.get("question", ""), entity_id=entity_id,
+        entity_label=seed.get("entity_label") or entity_id,
+        question_type="observation_relationship", required_paths=seed.get("required_paths", []),
     )
-    row = rows[0] if rows else {}
-    return {
-        "id": seed.get("id"),
-        "entity_id": entity_id,
-        "entity": row.get("entity", ""),
-        "topic_count": row.get("topic_count", 0),
-        "date_count": row.get("date_count", 0),
-        "source_count": row.get("source_count", 0),
-        "sample_paths": [
-            path for path in row.get("sample_paths", [])
-            if path.get("topic") and path.get("date")
-        ],
-    }
+    return {"id": seed.get("id"), **await build_graph_reasoning_evidence(driver, plan)}
 
 
 def _failed_checks(observation: dict, seed: dict) -> list[str]:
     failed = []
-    if observation.get("topic_count", 0) < seed.get("min_topics", 0):
-        failed.append("insufficient_topics")
+    if observation.get("content_count", 0) < seed.get("min_contents", 0):
+        failed.append("insufficient_contents")
+    if observation.get("repeated_content_count", 0) < seed.get("min_repeated_contents", 0):
+        failed.append("insufficient_repeated_contents")
     if observation.get("date_count", 0) < seed.get("min_dates", 0):
         failed.append("insufficient_dates")
     if observation.get("source_count", 0) < seed.get("min_sources", 0):
         failed.append("insufficient_sources")
 
     required_paths = set(seed.get("required_paths") or [])
-    if "entity_topic_date" in required_paths and observation.get("date_count", 0) <= 0:
-        failed.append("missing_entity_topic_date_path")
-    if "entity_topic_source" in required_paths and observation.get("source_count", 0) <= 0:
-        failed.append("missing_entity_topic_source_path")
-    if "entity_multiple_topics" in required_paths and observation.get("topic_count", 0) < 2:
-        failed.append("missing_entity_multiple_topics_path")
+    if "entity_observation_date" in required_paths and observation.get("date_count", 0) <= 0:
+        failed.append("missing_entity_observation_date_path")
+    if "entity_observation_source" in required_paths and observation.get("source_count", 0) <= 0:
+        failed.append("missing_entity_observation_source_path")
+    if "entity_repeated_content" in required_paths and observation.get("repeated_content_count", 0) <= 0:
+        failed.append("missing_entity_repeated_content_path")
     return sorted(set(failed))
 
 
@@ -133,7 +121,8 @@ def _missing_observation(seed: dict) -> dict:
         "question": seed.get("question", ""),
         "passed": False,
         "failed_checks": ["missing_observation"],
-        "topic_count": 0,
+        "content_count": 0,
+        "repeated_content_count": 0,
         "date_count": 0,
         "source_count": 0,
         "sample_paths": [],

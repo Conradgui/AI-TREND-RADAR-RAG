@@ -21,6 +21,25 @@ class VectorStore:
         """Add document chunks with metadata. Chunks are auto-embedded by ChromaDB."""
         self.collection.add(documents=chunks, metadatas=metadatas, ids=ids)
 
+    def export_records(self) -> dict:
+        """Export records with embeddings for a no-recompute generation migration."""
+        return self.collection.get(include=["documents", "metadatas", "embeddings"])
+
+    def add_preembedded(
+        self,
+        chunks: list[str],
+        metadatas: list[dict],
+        ids: list[str],
+        embeddings: list,
+    ) -> None:
+        """Add already-computed embeddings to a new generation."""
+        self.collection.add(
+            documents=chunks,
+            metadatas=metadatas,
+            ids=ids,
+            embeddings=embeddings,
+        )
+
     def search(self, query: str, k: int = 5, where: dict | None = None) -> list[dict]:
         """Semantic search. Returns list of {text, metadata, distance}."""
         results = self.collection.query(query_texts=[query], n_results=k, where=where)
@@ -40,6 +59,12 @@ class VectorStore:
     def count(self) -> int:
         """Return total number of chunks in the collection."""
         return self.collection.count()
+
+    def close(self) -> None:
+        """Release this embedded Chroma system when the runtime generation retires."""
+        close = getattr(self.client, "close", None)
+        if callable(close):
+            close()
 
     def delete_by_date(self, date: str) -> None:
         """Delete all chunks for a specific date (for re-ingestion)."""

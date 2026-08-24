@@ -1,6 +1,6 @@
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const REPORT_RE = /^[a-z0-9][a-z0-9-]{0,63}$/;
-const OCCURRENCE_RE = /^[a-f0-9]{32}$/;
+const OCCURRENCE_RE = /^(?:ATR-\d{8}-[A-F0-9]{6}|[a-f0-9]{32})$/;
 
 /** Parsed dashboard route for either a report or one stable item occurrence. */
 export interface ReportRoute {
@@ -16,12 +16,7 @@ export function parseReportRoute(hash: string): ReportRoute | null {
   if (!date || !report || !DATE_RE.test(date) || !REPORT_RE.test(report)) return null;
 
   if (segments.length === 2) return { date, report, occurrenceId: null };
-  if (
-    segments.length === 4 &&
-    marker === "item" &&
-    occurrenceId &&
-    OCCURRENCE_RE.test(occurrenceId)
-  ) {
+  if (segments.length === 4 && marker === "item" && occurrenceId && OCCURRENCE_RE.test(occurrenceId)) {
     return { date, report, occurrenceId };
   }
   return null;

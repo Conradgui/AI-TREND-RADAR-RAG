@@ -103,6 +103,28 @@ describe("buildTopicRadar", () => {
     expect(result.warnings.join("\n")).toContain("1 条官方内容缺少可展示摘要");
   });
 
+  it("does not relabel sitemap or repository update times as publication dates", () => {
+    const input = baseInput();
+    input.webResults[0]!.newItems = [
+      {
+        url: "https://openai.com/index/updated-page",
+        title: "Updated official page",
+        lastmod: "2026-05-20",
+        updatedAt: "2026-05-20",
+        summary: "An official page updated today.",
+        content: "An official page updated today.",
+        site: "openai",
+        category: "company",
+      },
+    ];
+
+    const candidate = buildTopicRadar(input).candidates[0]!;
+    expect(candidate.publishedAt).toBeUndefined();
+    expect(candidate.sourceUpdatedAt).toBe("2026-05-20");
+    expect(candidate.evidence).toContain("更新时间：2026-05-20");
+    expect(candidate.evidence.some((line) => line.startsWith("发布时间："))).toBe(false);
+  });
+
   it("renders a decision-first markdown report", () => {
     const input = baseInput();
     input.webResults[0]!.newItems = [

@@ -29,8 +29,10 @@ from rag.external_source_admission import (
     review_external_candidates,
 )
 from rag.metrics import metrics_collector
+from rag.prompt_registry import compile_task_prompt, extract_claim_verification_result
 from rag.query_understanding import analyze_query
-from rag.retrieval_planning import build_metadata_filter, load_latest_corpus_date
+from rag.retrieval_gateway import ResearchRequest, task_family_for_plan
+from rag.retrieval_planning import build_metadata_filter, load_latest_corpus_date, source_diversity_cap
 from rag.search_provider_adapters import SearchRequest, build_tavily_request_for_task
 from rag.source_review import build_source_review, format_source_review_for_prompt
 from rag.tool_routing import build_tool_route, format_tool_route_for_prompt, infer_search_task_type
@@ -208,11 +210,50 @@ def _format_citation_for_prompt(index: int, citation: dict) -> str:
             f"摘录: {excerpt}"
             f"{deep_fetch_line}"
         )
+    publication_date = citation.get("publication_date")
+    publication_source = citation.get("publication_date_source")
+    if publication_date and publication_source == "legacy_evidence":
+        time_line = (
+            f"历史记录日期: {publication_date}（旧语料字段，未独立核验） | 收录日期: "
+            f"{citation.get('report_date') or citation.get('date', '')}"
+        )
+    elif publication_date:
+        time_line = (
+            f"发布日期: {publication_date} | 收录日期: "
+            f"{citation.get('report_date') or citation.get('date', '')}"
+        )
+    else:
+        time_line = (
+            f"发布日期: 未知 | 收录日期: {citation.get('report_date') or citation.get('date', '')} | "
+            "时间依据: 日报收录日期降级"
+        )
+    tier_line = (
+        " | 新闻分层: 历史背景（不得列入近期主榜）"
+        if citation.get("news_tier") == "background"
+        else ""
+    )
     return (
-        f"[{citation.get('evidence_id', f'E{index}')}] 类型: 内部语料 | 日期: {citation.get('date', '')} | 来源: {citation.get('source', '')} | "
-        f"标题: {citation.get('title', '')} | citation_id: {citation.get('citation_id', '')}\n"
+        f"[{citation.get('evidence_id', f'E{index}')}] 类型: 内部语料 | {time_line}{tier_line} | 来源: {citation.get('source', '')} | "
+        f"标题: {citation.get('title', '')} | citation_id: {citation.get('citation_id', '')} | "
+        f"本地跳转: {citation.get('local_url', '')}\n"
         f"摘录: {excerpt}"
     )
+
+
+def _append_historical_background(answer: str, citations: list[dict]) -> str:
+    background = [
+        citation for citation in citations
+        if citation.get("news_tier") == "background"
+    ]
+    if not background:
+        return answer
+    lines = [answer.rstrip(), "", "## 历史背景（不计入近期主榜）"]
+    for citation in background:
+        lines.append(
+            f"- {citation.get('title', '未命名事件')} "
+            f"[{citation.get('evidence_id', '')}]"
+        )
+    return "\n".join(lines)
 
 
 def _build_marker_repair_messages(
@@ -223,8 +264,14 @@ def _build_marker_repair_messages(
     invalid_answer: str,
     validation: dict,
     minimum_evidence_markers: int,
+    required_evidence_ids: set[str] | None = None,
 ) -> list[dict]:
     """Build a bounded retry that repairs evidence markers without adding facts."""
+    required_ids = sorted(required_evidence_ids or set())
+    required_instruction = (
+        f"关系/时间线结论必须使用这些图谱证据：{', '.join(f'[{item}]' for item in required_ids)}。"
+        if required_ids else ""
+    )
     repair_prompt = (
         PROMPT_INJECTION_DEFENSE
         + "\n\n"
@@ -237,6 +284,7 @@ def _build_marker_repair_messages(
         )
         + "\n\n你正在修复一份回答的证据覆盖。不要调用工具，不要新增证据账本之外的事实。"
         + f"请至少覆盖 {minimum_evidence_markers} 条不同 [E#]；可以补充由上方证据直接支持的结论。"
+        + required_instruction
         + "只保留能由上方 [E#] 直接支持的核心结论，并为每条结论附上有效 [E#]。"
         + "若无法支持，删除该结论。只输出修复后的回答正文。"
     )
@@ -261,10 +309,42 @@ def _minimum_evidence_marker_count(query_plan, citations: list[dict]) -> int:
     return min(1, len(citations))
 
 
+def _required_evidence_ids(task_family: str, citations: list[dict]) -> set[str]:
+    """Return evidence IDs that define a task's minimum truthful contract."""
+    if task_family not in {"timeline", "relation_exploration"}:
+        return set()
+    required_content_type = (
+        "graph_relation"
+        if task_family == "relation_exploration"
+        and any(citation.get("content_type") == "graph_relation" for citation in citations)
+        else "graph_reasoning"
+    )
+    return {
+        str(citation.get("evidence_id"))
+        for citation in citations
+        if citation.get("content_type") == required_content_type
+        and citation.get("evidence_id")
+    }
+
+
 def _apply_answer_evidence_budget(citations: list[dict], query_plan) -> list[dict]:
     """Keep broad retrieval separate from the smaller context used to write an answer."""
     if getattr(query_plan, "intent", "") == "recent_trend":
-        return citations[:RECENT_TREND_ANSWER_EVIDENCE_BUDGET]
+        budget = RECENT_TREND_ANSWER_EVIDENCE_BUDGET
+        required_graph = [
+            citation for citation in citations
+            if citation.get("content_type") in {"graph_reasoning", "graph_relation"}
+        ]
+        if required_graph and (
+            getattr(query_plan, "task_mode", "general") == "timeline"
+            or getattr(query_plan, "graph_requirement", "disabled") == "required"
+        ):
+            ordinary = [
+                citation for citation in citations
+                if citation.get("content_type") not in {"graph_reasoning", "graph_relation"}
+            ]
+            return [*ordinary[:max(0, budget - len(required_graph))], *required_graph[:budget]]
+        return citations[:budget]
     return citations
 
 
@@ -404,6 +484,90 @@ def _execution_counts(result: dict, counter: AgentExecutionCounter) -> tuple[int
     )
 
 
+def _build_navigation_response(
+    citations: list[dict],
+    *,
+    query_understanding: dict,
+    start_time: float,
+    retrieval_ms: float,
+) -> dict:
+    """Return an exact item match without paying for or risking an LLM rewrite."""
+    ledger = EvidenceLedger()
+    ledger.admit(citations[:1])
+    citation = ledger.records[0]
+    title = str(citation.get("title") or "已匹配条目").strip()
+    source = str(citation.get("source") or "未知来源").strip()
+    report_date = str(citation.get("report_date") or citation.get("date") or "未知日期").strip()
+    occurrence_id = str(
+        citation.get("occurrence_id") or citation.get("citation_id") or ""
+    ).strip()
+    local_url = str(citation.get("local_url") or "").strip()
+    title_link = f"[{title}]({local_url})" if local_url.startswith("#") else title
+    answer = (
+        f"已找到最佳匹配条目：{title_link}。[E1]\n\n"
+        f"- 收录日期：{report_date}\n"
+        f"- 来源：{source}\n"
+        f"- 条目编号：{occurrence_id}"
+    )
+    marker_validation = validate_evidence_markers(answer, ledger.records)
+    presentation = build_evidence_presentation(
+        answer,
+        ledger.records,
+        internal_retrieval_status="ready",
+    )
+    query_understanding["answer_policy"] = {
+        "mode": "deterministic_navigation",
+        "disclosure": "精确匹配条目，直接返回站内入口。",
+    }
+    query_understanding["tool_routing"] = {
+        "status": "not_required",
+        "steps": [],
+    }
+    query_understanding["source_review"] = build_source_review(ledger.records)
+    tool_trace = {
+        "execution_path": "deterministic_navigation",
+        "evidence_pool_count": len(ledger.records),
+        "tools_used": [],
+        "evidence_sources": ["internal"],
+        "total_calls": 0,
+        "summary": "精确命中条目，未调用模型或工具",
+        "execution_counts": {
+            "model_turns": 0,
+            "agent_tool_calls": 0,
+            "planned_steps": 0,
+        },
+        "timings": _timing_trace(
+            start_time,
+            retrieval_ms=retrieval_ms,
+            agent_ms=0.0,
+            repair_ms=0.0,
+        ),
+    }
+    return {
+        "answer": answer,
+        "display_answer": presentation["display_answer"],
+        "citations": presentation["citations"],
+        "evidence_display_map": presentation["evidence_display_map"],
+        "search_references": [],
+        "source_summary": presentation["source_summary"],
+        "claim_evidence": marker_validation["claim_evidence"],
+        "claim_verification": None,
+        "evidence_integrity": {
+            "valid": marker_validation["is_valid"],
+            "repair_attempted": False,
+            "unknown_evidence_ids": marker_validation["unknown_evidence_ids"],
+            "missing_evidence_markers": marker_validation["missing_evidence_markers"],
+            "minimum_evidence_markers": 1,
+            "used_evidence_markers": len(marker_validation["marker_ids"]),
+            "coverage_sufficient": bool(marker_validation["marker_ids"]),
+            "required_evidence_ids": ["E1"],
+            "missing_required_evidence_ids": [],
+        },
+        "query_understanding": query_understanding,
+        "tool_trace": tool_trace,
+    }
+
+
 async def build_chat_response(
     agent,
     retriever,
@@ -417,6 +581,8 @@ async def build_chat_response(
     external_deep_fetcher=None,
     answer_composer=None,
     progress_callback=None,
+    retrieval_gateway=None,
+    query_contract_resolver=None,
 ) -> dict:
     """Build a grounded chat response with retrieval-derived citations.
 
@@ -453,10 +619,90 @@ async def build_chat_response(
             if context_parts:
                 enhanced_message = f"[上下文: {'; '.join(context_parts)}] {message}"
 
-        query_plan = analyze_query(enhanced_message)
         corpus_date = latest_corpus_date or load_latest_corpus_date()
+        route_contract = None
+        route_contract_trace = {"status": "disabled"}
+        if query_contract_resolver is not None:
+            try:
+                resolved = query_contract_resolver(message, context or {})
+                if inspect.isawaitable(resolved):
+                    resolved = await resolved
+                route_envelope, route_metadata = resolved
+                if (
+                    route_envelope.get("status") == "resolved"
+                    and isinstance(route_envelope.get("contract"), dict)
+                ):
+                    route_contract = route_envelope["contract"]
+                    route_contract_trace = {
+                        "status": "resolved",
+                        "schema_version": route_contract.get("schema_version"),
+                        "primary_task_family": route_contract.get("primary_task_family"),
+                        "attempts": route_metadata.get("attempts"),
+                    }
+                else:
+                    route_contract_trace = {
+                        "status": str(route_envelope.get("status") or "unresolved"),
+                        "reasons": list(route_envelope.get("reasons") or []),
+                    }
+            except Exception as exc:
+                logger.warning("Ordered query understanding failed; using explicit legacy fallback: %s", exc)
+                route_contract_trace = {
+                    "status": "legacy_fallback",
+                    "error_type": type(exc).__name__,
+                }
+        if route_contract_trace.get("status") == "clarification_required":
+            reasons = list(route_contract_trace.get("reasons") or [])
+            answer = "我还不能确定你指的是哪一个对象，请补充具体名称、标题或 ATR 编号后再试。"
+            _record_metrics(
+                query_length=len(message),
+                citations=[],
+                tool_calls_count=0,
+                has_results=False,
+                start_time=start_time,
+            )
+            return {
+                "answer": answer,
+                "display_answer": "❓ 需要补充信息\n\n" + answer,
+                "citations": [],
+                "query_understanding": {
+                    "ordered_route_contract": route_contract_trace,
+                    "context": context or {},
+                },
+                "tool_trace": {
+                    "execution_path": "clarification_required",
+                    "reasons": reasons,
+                    "execution_counts": {"model_turns": 1, "tool_calls": 0},
+                    "timings": _timing_trace(
+                        start_time,
+                        retrieval_ms=0.0,
+                        agent_ms=0.0,
+                        repair_ms=0.0,
+                    ),
+                },
+            }
+        gateway_bundle = None
+        if retrieval_gateway is not None:
+            gateway_bundle = await retrieval_gateway.retrieve(
+                ResearchRequest(
+                    question=enhanced_message,
+                    latest_corpus_date=corpus_date,
+                    route_contract=route_contract,
+                )
+            )
+            query_plan = gateway_bundle.analysis or analyze_query(enhanced_message)
+        else:
+            query_plan = analyze_query(enhanced_message)
         metadata_filter = build_metadata_filter(query_plan, corpus_date)
-        query_understanding = query_plan.to_dict()
+        query_understanding = (
+            dict(gateway_bundle.query_plan)
+            if gateway_bundle is not None and gateway_bundle.query_plan
+            else query_plan.to_dict()
+        )
+        if gateway_bundle is not None:
+            query_understanding["task_family"] = gateway_bundle.task_family
+            query_understanding["retrieval_gateway"] = gateway_bundle.trace
+        else:
+            query_understanding["task_family"] = task_family_for_plan(query_plan)
         query_understanding["web_search_mode"] = {
             "requested_mode": web_search_mode,
             "effective_mode": web_search_mode,
@@ -465,6 +711,7 @@ async def build_chat_response(
         query_understanding["latest_corpus_date"] = corpus_date
         query_understanding["metadata_filter"] = metadata_filter
         query_understanding["context"] = context or {}
+        query_understanding["ordered_route_contract"] = route_contract_trace
         await _emit_progress(
             progress_callback,
             "understanding",
@@ -498,28 +745,77 @@ async def build_chat_response(
             },
         )
         retrieval_started_at = time.perf_counter()
-        retrieval_outcome = (
-            await retrieve_citations_with_status(
-                retriever,
-                query_plan.retrieval_query,
-                k=query_plan.top_k,
-                where=metadata_filter,
-                prefer_recent=(
-                    query_plan.time_window.get("label") == "recent_corpus_first"
-                ),
-                latest_date=corpus_date,
+        if gateway_bundle is not None:
+            citations = gateway_bundle.records
+            if gateway_bundle.background_records:
+                citations = [
+                    *citations,
+                    *[
+                        {**record, "news_tier": "background"}
+                        for record in gateway_bundle.background_records
+                    ],
+                ]
+            retrieval_status = gateway_bundle.status
+            retrieval_error_code = gateway_bundle.error_code
+            retrieval_ms = gateway_bundle.elapsed_ms
+        else:
+            retrieval_outcome = (
+                await retrieve_citations_with_status(
+                    retriever,
+                    query_plan.retrieval_query,
+                    k=query_plan.top_k,
+                    where=metadata_filter,
+                    prefer_recent=(
+                        query_plan.time_window.get("label") == "recent_corpus_first"
+                    ),
+                    latest_date=corpus_date,
+                    graph_requirement=query_plan.graph_requirement,
+                    source_cap=source_diversity_cap(query_plan),
+                )
+                if retriever
+                else None
             )
-            if retriever
-            else None
-        )
-        citations = retrieval_outcome.citations if retrieval_outcome else []
-        retrieval_status = retrieval_outcome.status if retrieval_outcome else "error"
-        retrieval_ms = (
-            retrieval_outcome.elapsed_ms
-            if retrieval_outcome
-            else (time.perf_counter() - retrieval_started_at) * 1000
-        )
+            citations = retrieval_outcome.citations if retrieval_outcome else []
+            retrieval_status = retrieval_outcome.status if retrieval_outcome else "error"
+            retrieval_error_code = retrieval_outcome.error_code if retrieval_outcome else "retriever_unavailable"
+            retrieval_ms = (
+                retrieval_outcome.elapsed_ms
+                if retrieval_outcome
+                else (time.perf_counter() - retrieval_started_at) * 1000
+            )
         retrieved_candidate_count = len(citations)
+        query_understanding["internal_retrieval"] = {
+            "status": retrieval_status,
+            "error_code": retrieval_error_code,
+            "elapsed_ms": round(retrieval_ms, 2),
+        }
+        if (
+            gateway_bundle is not None
+            and gateway_bundle.task_family == "item_navigation"
+            and retrieval_status == "ready"
+            and citations
+        ):
+            await _emit_progress(
+                progress_callback,
+                "evidence_ready",
+                {"admitted_count": 1, "execution_path": "deterministic_navigation"},
+            )
+            response = _build_navigation_response(
+                citations,
+                query_understanding=query_understanding,
+                start_time=start_time,
+                retrieval_ms=retrieval_ms,
+            )
+            _record_metrics(
+                query_length=len(message),
+                citations=response["citations"],
+                tool_calls_count=0,
+                has_results=True,
+                start_time=start_time,
+                model_calls_count=0,
+                retrieval_ms=retrieval_ms,
+            )
+            return response
         configured_providers = (
             configured_search_providers
             if configured_search_providers is not None
@@ -532,12 +828,8 @@ async def build_chat_response(
             retrieval_status=retrieval_status,
             citations=citations,
             capability_available=external_search_registry is not None and bool(configured_providers),
+            contract_web_permission=(route_contract or {}).get("web_permission"),
         )
-        query_understanding["internal_retrieval"] = {
-            "status": retrieval_status,
-            "error_code": retrieval_outcome.error_code if retrieval_outcome else "retriever_unavailable",
-            "elapsed_ms": round(retrieval_ms, 2),
-        }
         query_understanding["web_search_decision"] = web_decision.to_dict()
         query_understanding["web_search_mode"] = {
             "requested_mode": web_decision.requested_mode,
@@ -559,6 +851,22 @@ async def build_chat_response(
                 "requested_mode": web_decision.requested_mode,
             },
         )
+
+        if retrieval_status == "partial_error" and query_plan.graph_requirement == "required":
+            return {
+                "status": "partial_error",
+                "error_code": "required_graph_unavailable",
+                "answer": (
+                    "关系分析暂时不可用：文本检索找到了一些线索，但 Neo4j 图通道当前不可用。"
+                    "为避免把零散文本误写成跨日关系或趋势结论，本轮不生成关系性强结论，请稍后重试。"
+                ),
+                "display_answer": (
+                    "⚠️ 关系分析暂时不可用\n\n"
+                    "已找到有限文本线索，但图通道不可用，因此本轮不会输出跨日关联或趋势强结论。"
+                ),
+                "citations": citations,
+                "query_understanding": query_understanding,
+            }
 
         if retrieval_status in {"error", "timeout"} and not web_decision.should_search:
             status_text = "超时" if retrieval_status == "timeout" else "暂时不可用"
@@ -743,7 +1051,11 @@ async def build_chat_response(
         ledger = EvidenceLedger()
         citations = ledger.admit(citations)
         minimum_evidence_markers = _minimum_evidence_marker_count(query_plan, citations)
-        retrieval_ms = (time.perf_counter() - retrieval_started_at) * 1000
+        observed_retrieval_ms = (time.perf_counter() - retrieval_started_at) * 1000
+        # Gateway measures its own complete retrieval path.  Preserve that
+        # value while still including any downstream external retrieval work
+        # performed by this orchestrator.
+        retrieval_ms = max(retrieval_ms, observed_retrieval_ms)
         source_review = build_source_review(citations)
         query_understanding["answer_policy"] = answer_policy
         query_understanding["tool_routing"] = tool_route
@@ -766,9 +1078,9 @@ async def build_chat_response(
                 ),
                 "date_range": sorted(
                     {
-                        citation.get("date") or citation.get("retrieved_at")
+                        citation.get("effective_date") or citation.get("date") or citation.get("retrieved_at")
                         for citation in citations
-                        if citation.get("date") or citation.get("retrieved_at")
+                        if citation.get("effective_date") or citation.get("date") or citation.get("retrieved_at")
                     }
                 ),
                 "retrieval_ms": round(retrieval_ms, 2),
@@ -787,6 +1099,11 @@ async def build_chat_response(
             tool_route,
             source_review,
             minimum_evidence_markers,
+        )
+        system_prompt += "\n\n" + compile_task_prompt(
+            query_understanding.get("task_family") or "evidence_research",
+            len(citations),
+            prompt_contract_id=(route_contract or {}).get("prompt_contract_id"),
         )
 
         use_direct_composer = _should_use_direct_composer(
@@ -917,9 +1234,23 @@ async def build_chat_response(
         source_review = build_source_review(citations)
         query_understanding["source_review"] = source_review
         answer = apply_answer_policy(_extract_ai_answer(result), answer_policy)
+        claim_verification = None
+        if query_understanding.get("task_family") == "claim_verification":
+            answer, claim_verification = extract_claim_verification_result(
+                answer,
+                {str(record.get("evidence_id") or "") for record in citations},
+            )
         marker_validation = validate_evidence_markers(answer, citations)
+        required_evidence_ids = _required_evidence_ids(
+            query_understanding.get("task_family") or "evidence_research",
+            citations,
+        )
+        missing_required_evidence_ids = sorted(
+            required_evidence_ids - set(marker_validation.get("marker_ids", []))
+        )
         coverage_sufficient = (
             len(marker_validation.get("marker_ids", [])) >= minimum_evidence_markers
+            and not missing_required_evidence_ids
         )
         evidence_integrity = {
             "valid": marker_validation["is_valid"] and coverage_sufficient,
@@ -929,6 +1260,8 @@ async def build_chat_response(
             "minimum_evidence_markers": minimum_evidence_markers,
             "used_evidence_markers": len(marker_validation.get("marker_ids", [])),
             "coverage_sufficient": coverage_sufficient,
+            "required_evidence_ids": sorted(required_evidence_ids),
+            "missing_required_evidence_ids": missing_required_evidence_ids,
         }
 
         if not evidence_integrity["valid"]:
@@ -942,6 +1275,7 @@ async def build_chat_response(
                 answer,
                 marker_validation,
                 minimum_evidence_markers,
+                required_evidence_ids,
             )
             try:
                 repaired_result = await _invoke_agent_with_ledger(
@@ -960,6 +1294,11 @@ async def build_chat_response(
                 source_review = build_source_review(citations)
                 query_understanding["source_review"] = source_review
                 answer = apply_answer_policy(_extract_ai_answer(repaired_result), answer_policy)
+                if query_understanding.get("task_family") == "claim_verification":
+                    answer, claim_verification = extract_claim_verification_result(
+                        answer,
+                        {str(record.get("evidence_id") or "") for record in citations},
+                    )
                 marker_validation = validate_evidence_markers(answer, citations)
             except Exception as repair_error:
                 logger.warning("Evidence marker repair failed: %s", repair_error)
@@ -975,6 +1314,9 @@ async def build_chat_response(
 
             coverage_sufficient = (
                 len(marker_validation.get("marker_ids", [])) >= minimum_evidence_markers
+                and required_evidence_ids.issubset(
+                    set(marker_validation.get("marker_ids", []))
+                )
             )
             evidence_integrity.update(
                 {
@@ -983,6 +1325,9 @@ async def build_chat_response(
                     "missing_evidence_markers": marker_validation["missing_evidence_markers"],
                     "used_evidence_markers": len(marker_validation.get("marker_ids", [])),
                     "coverage_sufficient": coverage_sufficient,
+                    "missing_required_evidence_ids": sorted(
+                        required_evidence_ids - set(marker_validation.get("marker_ids", []))
+                    ),
                 }
             )
 
@@ -993,6 +1338,8 @@ async def build_chat_response(
             answer = _evidence_integrity_fallback(answer_policy)
             claim_evidence = []
             citations = []
+
+        answer = _append_historical_background(answer, citations)
 
         source_review = build_source_review(citations)
         query_understanding["source_review"] = source_review
@@ -1070,6 +1417,7 @@ async def build_chat_response(
             "search_references": presentation["search_references"],
             "source_summary": presentation["source_summary"],
             "claim_evidence": claim_evidence,
+            "claim_verification": claim_verification,
             "evidence_integrity": evidence_integrity,
             "query_understanding": query_understanding,
             "tool_trace": tool_trace,

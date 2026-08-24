@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-08-10T08:16:35.697Z",
+  "generated_at": "2026-08-24T08:57:37.403Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "e3b98fa0c1e2b7270e7ca3071c409ab75b0d079f84027774c7201c38deb83500",
+      "sha256": "bde83eedc76f589d7f2d5561ed1e91aecbc3aada65e7b1bc39a38c084208c781",
       "size": 6036,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "3b1cbce9156221d5fd8d0943e8b35458deb9ccc8b820f38d49d4b44868949382",
+      "sha256": "c988a63b39302005e239ce0eb24ad0780260f5e34ea5d9b399f87c800be9c42c",
       "size": 1520275,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "6eae2b8d1177b98442e6ee3a0632d359ae4ddc6ed3319aa00769c1a340838eed",
-      "size": 7225432,
+      "sha256": "fbada10c9a7193eff828aa8794572c87bb5fe16dea2d85a303638b858718b207",
+      "size": 8826627,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1125,6 +1125,6 @@
     }
   ],
   "tombstones": [],
-  "corpus_revision": "1bbc3d98270bb5e4ffcbdde29debc049ced125575c5082e01208be9aeef1fcca",
+  "corpus_revision": "7a7d319130d2d20d723e00e01adc4a77348185128d7e67ccf1c800f5070b17c5",
   "complete": true
 }

@@ -4,12 +4,15 @@ import unittest
 from unittest.mock import patch
 
 from rag.ingest import (
+    build_runtime_search_documents,
     build_report_chunk_metadata,
     build_topic_candidate_chunks,
+    build_search_document_lookup,
     chunk_text,
     infer_source_family,
     ingest_vector_chunks_for_date,
     ingest_all_vector_chunks,
+    migrate_atomic_vector_chunks,
     select_ingestion_dates,
     normalize_topic_pool,
 )
@@ -108,8 +111,368 @@ class TopicPoolNormalizationTests(unittest.TestCase):
         self.assertEqual(normalize_topic_pool(None, "2026-06-19"), {"candidates": []})
         self.assertEqual(normalize_topic_pool({"candidates": "bad"}, "2026-06-19"), {"candidates": []})
 
+    def test_runtime_projection_decodes_html_entities_at_the_input_boundary(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            date_dir = Path(temp_dir) / "2026-08-11"
+            date_dir.mkdir()
+            (date_dir / "topic-pool.json").write_text(
+                json.dumps({"candidates": [{
+                    "title": "Claude&#x27;s roadmap",
+                    "summary": "Research &amp; product",
+                    "source": "Anthropic",
+                }]}),
+                encoding="utf-8",
+            )
+
+            document = build_runtime_search_documents(temp_dir)[0]
+
+        self.assertEqual(document["title"], "Claude's roadmap")
+        self.assertEqual(document["summary"], "Research & product")
+
+    def test_runtime_projection_preserves_distinct_time_semantics(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            date_dir = Path(temp_dir) / "2026-08-11"
+            date_dir.mkdir()
+            (date_dir / "topic-pool.json").write_text(
+                json.dumps({"candidates": [{
+                    "title": "Old article discovered today",
+                    "source": "Official",
+                    "publishedAt": "2022-02-11T09:30:00Z",
+                }]}),
+                encoding="utf-8",
+            )
+
+            document = build_runtime_search_documents(temp_dir)[0]
+
+        self.assertEqual(document["report_date"], "2026-08-11")
+        self.assertEqual(document["publication_date"], "2022-02-11")
+        self.assertEqual(document["publication_date_source"], "upstream_declared")
+        self.assertEqual(document["observed_at"], "2026-08-11")
+        self.assertIsNone(document["ingested_at"])
+        self.assertEqual(document["effective_date"], "2022-02-11")
+        self.assertEqual(document["effective_date_basis"], "publication_date")
+
 
 class CitationReadyIngestionTests(unittest.TestCase):
+    def test_temporal_activation_gate_rejects_unproven_legacy_publication(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "GitHub Search:rag",
+            "publication_date": "2026-08-11",
+            "publication_date_source": "legacy_evidence",
+            "effective_date_basis": "publication_date",
+        }])
+
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["legacy_promoted_to_publication"], 1)
+        self.assertEqual(report["update_only_promoted_to_publication"], 1)
+
+    def test_temporal_activation_gate_accepts_separated_update_and_report_dates(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "GitHub Search:rag",
+            "report_date": "2026-08-12",
+            "publication_date": None,
+            "publication_date_source": "unknown",
+            "source_updated_at": "2026-08-11",
+            "effective_date": "2026-08-12",
+            "effective_date_basis": "report_date_fallback",
+        }])
+
+        self.assertTrue(report["passed"])
+
+    def test_temporal_activation_gate_rejects_unauthorized_legacy_contract_source(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "OpenAI",
+            "publication_date": "2026-08-11",
+            "publication_date_source": "legacy_adapter_contract",
+            "source_updated_at": None,
+            "effective_date": "2026-08-11",
+            "effective_date_basis": "publication_date",
+        }])
+
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["unauthorized_legacy_publication_source"], 1)
+
+    def test_temporal_activation_gate_rejects_invalid_dates_and_inconsistent_roles(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "Hacker News",
+            "publication_date": "+058568-10",
+            "publication_date_source": "legacy_adapter_contract",
+            "source_updated_at": "not-a-date",
+            "effective_date": "2026-08-12",
+            "effective_date_basis": "report_date_fallback",
+        }])
+
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["invalid_publication_date"], 1)
+        self.assertEqual(report["invalid_source_updated_at"], 1)
+        self.assertEqual(report["inconsistent_temporal_roles"], 1)
+
+    def test_temporal_activation_gate_rejects_publication_without_provenance(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "Hacker News",
+            "publication_date": "2026-08-11",
+            "publication_date_source": "unknown",
+            "source_updated_at": None,
+            "effective_date": "2026-08-11",
+            "effective_date_basis": "publication_date",
+        }])
+
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["inconsistent_temporal_roles"], 1)
+
+    def test_temporal_activation_gate_rejects_invalid_report_date(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "OpenAI",
+            "report_date": "+058568-10",
+            "publication_date": None,
+            "publication_date_source": "unknown",
+            "source_updated_at": None,
+            "effective_date": "+058568-10",
+            "effective_date_basis": "report_date_fallback",
+        }])
+
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["invalid_report_date"], 1)
+
+    def test_temporal_activation_gate_rejects_fallback_effective_date_mismatch(self):
+        from rag.temporal_semantics import audit_temporal_documents
+
+        report = audit_temporal_documents([{
+            "source": "OpenAI",
+            "report_date": "2026-08-12",
+            "publication_date": None,
+            "publication_date_source": "unknown",
+            "source_updated_at": None,
+            "effective_date": "2020-01-01",
+            "effective_date_basis": "report_date_fallback",
+        }])
+
+        self.assertFalse(report["passed"])
+        self.assertEqual(report["inconsistent_temporal_roles"], 1)
+
+    def test_runtime_projection_recovers_legacy_publication_event_semantics(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            date_dir = Path(temp_dir) / "2026-08-12"
+            date_dir.mkdir()
+            (date_dir / "topic-pool.json").write_text(
+                json.dumps({"candidates": [{
+                    "title": "A published Hacker News item",
+                    "source": "Hacker News",
+                    "evidence": ["发布时间：2026-08-11"],
+                }]}),
+                encoding="utf-8",
+            )
+
+            document = build_runtime_search_documents(temp_dir)[0]
+
+        self.assertEqual(document["publication_date"], "2026-08-11")
+        self.assertEqual(document["publication_date_source"], "legacy_adapter_contract")
+        self.assertIsNone(document["source_updated_at"])
+        self.assertEqual(document["effective_date_basis"], "publication_date")
+
+    def test_runtime_projection_keeps_legacy_official_sitemap_date_unverified(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            date_dir = Path(temp_dir) / "2026-08-12"
+            date_dir.mkdir()
+            (date_dir / "topic-pool.json").write_text(
+                json.dumps({"candidates": [{
+                    "title": "An official site item",
+                    "source": "OpenAI",
+                    "evidence": ["发布时间：2026-08-11"],
+                }]}),
+                encoding="utf-8",
+            )
+
+            document = build_runtime_search_documents(temp_dir)[0]
+
+        self.assertIsNone(document["publication_date"])
+        self.assertEqual(document["publication_date_source"], "unknown")
+        self.assertIsNone(document["source_updated_at"])
+
+    def test_fast_migration_reuses_candidate_embedding_and_drops_report_chunk(self):
+        import numpy as np
+
+        class Source:
+            def export_records(self):
+                return {
+                    "documents": ["candidate", "report"],
+                    "metadatas": [
+                        {"content_type": "topic_candidate", "date": "2026-08-05", "title": "OpenAI Research", "source": "OpenAI"},
+                        {"content_type": "report_chunk", "date": "2026-08-05", "title": "ai-topic-radar"},
+                    ],
+                    "embeddings": np.array([[0.1, 0.2], [0.3, 0.4]]),
+                }
+
+        class Target:
+            def __init__(self):
+                self.added = []
+
+            def add_preembedded(self, chunks, metadatas, ids, embeddings):
+                self.added.append((chunks, metadatas, ids, embeddings))
+
+        target = Target()
+        count = migrate_atomic_vector_chunks(
+            Source(),
+            target,
+            [{
+                "date": "2026-08-05",
+                "title": "OpenAI Research",
+                "source": "OpenAI",
+                "occurrence_id": "ATR-20260805-A1B2C3",
+                "daily_item_id": "ATR-20260805-A1B2C3",
+                "content_id": "content-openai",
+                "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-A1B2C3",
+                "report_date": "2026-08-05",
+                "publication_date": "2022-02-11",
+                "publication_date_source": "upstream_declared",
+                "observed_at": "2026-08-05",
+                "effective_date": "2022-02-11",
+                "effective_date_basis": "publication_date",
+            }],
+        )
+
+        self.assertEqual(count, 1)
+        self.assertEqual(target.added[0][2], ["ATR-20260805-A1B2C3"])
+        self.assertEqual(target.added[0][3], [[0.1, 0.2]])
+        migrated_metadata = target.added[0][1][0]
+        self.assertEqual(migrated_metadata["report_date"], "2026-08-05")
+        self.assertEqual(migrated_metadata["publication_date"], "2022-02-11")
+        self.assertEqual(migrated_metadata["effective_date"], "2022-02-11")
+
+    def test_fast_migration_reports_coverage_before_publication(self):
+        import numpy as np
+
+        class Source:
+            def export_records(self):
+                return {
+                    "documents": ["mapped", "unmapped", "report"],
+                    "metadatas": [
+                        {"content_type": "topic_candidate", "date": "2026-08-05", "title": "OpenAI Research", "source": "OpenAI"},
+                        {"content_type": "topic_candidate", "date": "2026-08-04", "title": "Legacy only", "source": "Legacy"},
+                        {"content_type": "report_chunk", "date": "2026-08-05", "title": "daily"},
+                    ],
+                    "embeddings": np.array([[0.1, 0.2], [0.3, 0.4], [0.5, 0.6]]),
+                }
+
+        class Target:
+            def add_preembedded(self, *args): pass
+            def add_chunks(self, *args): pass
+
+        report = {}
+        count = migrate_atomic_vector_chunks(
+            Source(),
+            Target(),
+            [{
+                "date": "2026-08-05",
+                "title": "OpenAI Research",
+                "source": "OpenAI",
+                "occurrence_id": "ATR-20260805-A1B2C3",
+                "daily_item_id": "ATR-20260805-A1B2C3",
+                "content_id": "content-openai",
+                "entities": ["OpenAI"],
+            }],
+            report_sink=report,
+        )
+
+        self.assertEqual(count, 1)
+        self.assertEqual(report["source_record_count"], 3)
+        self.assertEqual(report["source_atomic_count"], 2)
+        self.assertEqual(report["reused_embedding_count"], 1)
+        self.assertEqual(report["unmapped_source_atomic_count"], 1)
+        self.assertEqual(report["target_document_count"], 1)
+        self.assertEqual(report["output_record_count"], 1)
+        self.assertEqual(report["atr_id_coverage"], 1.0)
+        self.assertEqual(report["entity_id_coverage"], 1.0)
+        self.assertEqual(report["per_date_output_counts"], {"2026-08-05": 1})
+        self.assertEqual(report["unmapped_source_records"][0]["title"], "Legacy only")
+
+    def test_fast_migration_does_not_count_empty_target_as_written(self):
+        import numpy as np
+
+        class Source:
+            def export_records(self):
+                return {"documents": [], "metadatas": [], "embeddings": np.array([])}
+
+        class Target:
+            def add_preembedded(self, *args): pass
+            def add_chunks(self, *args): raise AssertionError("empty document must not be embedded")
+
+        report = {}
+        count = migrate_atomic_vector_chunks(
+            Source(),
+            Target(),
+            [{"date": "2026-08-05", "occurrence_id": "ATR-20260805-EMPTY1"}],
+            report_sink=report,
+        )
+
+        self.assertEqual(count, 0)
+        self.assertEqual(report["target_document_count"], 1)
+        self.assertEqual(report["output_record_count"], 0)
+
+    def test_fast_migration_stops_before_full_reembedding_when_nothing_can_be_reused(self):
+        import numpy as np
+
+        class Source:
+            def export_records(self):
+                return {
+                    "documents": ["unmappable candidate"],
+                    "metadatas": [{
+                        "content_type": "topic_candidate",
+                        "date": "2026-08-05",
+                        "title": "Legacy title",
+                        "source": "Legacy source",
+                    }],
+                    "embeddings": np.array([[0.1, 0.2]]),
+                }
+
+        class Target:
+            def add_preembedded(self, *args, **kwargs):
+                raise AssertionError("no reused embedding should be written")
+
+            def add_chunks(self, *args, **kwargs):
+                raise AssertionError("full re-embedding must not start silently")
+
+        with self.assertRaisesRegex(RuntimeError, "could not be mapped"):
+            migrate_atomic_vector_chunks(
+                Source(),
+                Target(),
+                [{
+                    "date": "2026-08-05",
+                    "title": "New title",
+                    "source": "New source",
+                    "occurrence_id": "ATR-20260805-A1B2C3",
+                    "daily_item_id": "ATR-20260805-A1B2C3",
+                }],
+            )
+
     def test_infer_source_family_normalizes_github_variants(self):
         self.assertEqual(infer_source_family("GitHub Search:rag"), "GitHub")
         self.assertEqual(infer_source_family("GitHub Trending"), "GitHub")
@@ -150,6 +513,11 @@ class CitationReadyIngestionTests(unittest.TestCase):
         chunks, metadatas, ids = build_topic_candidate_chunks(topic_pool, "2026-06-21")
 
         self.assertEqual(ids, ["2026-06-21/topic-pool/0"])
+        self.assertEqual(metadatas[0]["report_date"], "2026-06-21")
+        self.assertEqual(metadatas[0]["publication_date"], "2026-06-19")
+        self.assertEqual(metadatas[0]["publication_date_source"], "legacy_adapter_contract")
+        self.assertEqual(metadatas[0]["effective_date"], "2026-06-19")
+        self.assertEqual(metadatas[0]["effective_date_basis"], "publication_date")
         self.assertIn("Claude Code Artifacts", chunks[0])
         self.assertIn("值得优先深挖", chunks[0])
         self.assertEqual(metadatas[0]["content_type"], "topic_candidate")
@@ -169,7 +537,61 @@ class CitationReadyIngestionTests(unittest.TestCase):
         self.assertEqual(metadatas, [])
         self.assertEqual(ids, [])
 
-    def test_ingest_vector_chunks_for_date_replaces_existing_date_chunks(self):
+    def test_build_topic_candidate_chunks_carries_canonical_entity_ids(self):
+        topic_pool = {
+            "candidates": [{
+                "title": "Economic Research Exchange",
+                "summary": "A new research collaboration.",
+                "source": "OpenAI",
+                "entities": ["Open AI"],
+            }]
+        }
+
+        _chunks, metadatas, _ids = build_topic_candidate_chunks(topic_pool, "2026-08-05")
+
+        assert metadatas[0]["entity_ids"] == "openai"
+
+    def test_search_document_identity_replaces_array_index_citation(self):
+        topic_pool = {
+            "candidates": [
+                {
+                    "title": "Open AI Economic Research Exchange",
+                    "summary": "Official research exchange",
+                    "url": "https://openai.com/index/economic-research-exchange/",
+                    "source": "OpenAI",
+                }
+            ]
+        }
+        lookup = build_search_document_lookup(
+            [
+                {
+                    "date": "2026-08-05",
+                    "title": "Open AI Economic Research Exchange",
+                    "source": "OpenAI",
+                    "external_url": "https://openai.com/index/economic-research-exchange/",
+                    "content_id": "content-stable",
+                    "occurrence_id": "occurrence-stable",
+                    "local_url": "#2026-08-05/ai-topic-radar/item/occurrence-stable",
+                }
+            ]
+        )
+
+        _chunks, metadatas, ids = build_topic_candidate_chunks(
+            topic_pool,
+            "2026-08-05",
+            search_document_lookup=lookup,
+        )
+
+        self.assertEqual(ids, ["occurrence-stable"])
+        self.assertEqual(metadatas[0]["citation_id"], "occurrence-stable")
+        self.assertEqual(metadatas[0]["content_id"], "content-stable")
+        self.assertEqual(metadatas[0]["occurrence_id"], "occurrence-stable")
+        self.assertEqual(
+            metadatas[0]["local_url"],
+            "#2026-08-05/ai-topic-radar/item/occurrence-stable",
+        )
+
+    def test_ingest_vector_chunks_for_date_indexes_atomic_items_without_markdown_duplicates(self):
         class FakeVectorStore:
             def __init__(self):
                 self.deleted_dates = []
@@ -198,10 +620,9 @@ class CitationReadyIngestionTests(unittest.TestCase):
         chunk_count = ingest_vector_chunks_for_date(store, "2026-06-21", topic_pool, reports)
 
         self.assertEqual(store.deleted_dates, ["2026-06-21"])
-        self.assertEqual(chunk_count, 2)
-        self.assertEqual(len(store.added), 2)
-        self.assertEqual(store.added[0][2], ["2026-06-21/ai-topic-radar/0"])
-        self.assertEqual(store.added[1][2], ["2026-06-21/topic-pool/0"])
+        self.assertEqual(chunk_count, 1)
+        self.assertEqual(len(store.added), 1)
+        self.assertEqual(store.added[0][2], ["2026-06-21/topic-pool/0"])
 
     def test_ingest_all_vector_chunks_does_not_require_neo4j(self):
         import json
@@ -237,8 +658,9 @@ class CitationReadyIngestionTests(unittest.TestCase):
             store = FakeVectorStore()
             count = ingest_all_vector_chunks(store, digests_dir=tmp)
 
-            self.assertEqual(count, 2)
+            self.assertEqual(count, 1)
             self.assertEqual(store.deleted_dates, ["2026-06-21"])
+            self.assertTrue((Path(tmp) / "search-index.json").exists())
 
 
 if __name__ == "__main__":

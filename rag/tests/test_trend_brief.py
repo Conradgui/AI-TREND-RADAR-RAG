@@ -38,12 +38,15 @@ SAMPLE_CITATIONS = [
 SAMPLE_GRAPH_EVIDENCE = {
     "entity_id": "rag",
     "entity_label": "RAG",
-    "topic_count": 5,
+    "content_count": 5,
+    "observation_count": 8,
+    "repeated_content_count": 2,
+    "previous_link_count": 3,
     "date_count": 2,
     "source_count": 3,
     "sample_paths": [
-        {"entity": "RAG", "topic": "Graph RAG workflow", "date": "2026-06-21", "source": "Product Hunt"},
-        {"entity": "RAG", "topic": "Agentic RAG eval", "date": "2026-06-20", "source": "GitHub"},
+        {"entity": "RAG", "title": "Graph RAG workflow", "date": "2026-06-21", "source": "Product Hunt"},
+        {"entity": "RAG", "title": "Agentic RAG eval", "date": "2026-06-20", "source": "GitHub"},
     ],
 }
 
@@ -65,7 +68,14 @@ class TrendBriefTests(unittest.TestCase):
 
         self.assertEqual(summary["topic"], "RAG")
         self.assertEqual(summary["citation_count"], 2)
-        self.assertEqual(summary["graph_counts"], {"topic_count": 5, "date_count": 2, "source_count": 3})
+        self.assertEqual(summary["graph_counts"], {
+            "content_count": 5,
+            "observation_count": 8,
+            "repeated_content_count": 2,
+            "previous_link_count": 3,
+            "date_count": 2,
+            "source_count": 3,
+        })
         self.assertEqual(summary["policy_mode"], "internal_grounded")
         self.assertEqual(summary["artifact_quality_status"], "internal_only")
         self.assertEqual(summary["source_relevance"]["relevance_status"], "internal_only")
@@ -105,7 +115,8 @@ class TrendBriefTests(unittest.TestCase):
         appendix = json.loads(match.group(1))
         self.assertEqual(appendix["topic"], "RAG")
         self.assertEqual(appendix["citation_count"], 2)
-        self.assertEqual(appendix["graph_counts"]["topic_count"], 5)
+        self.assertEqual(appendix["graph_counts"]["content_count"], 5)
+        self.assertNotIn("topic_count", appendix["graph_counts"])
         self.assertEqual(appendix["batch_evidence"]["attempted"], False)
 
         inspection = inspect_trend_brief_artifact(markdown)

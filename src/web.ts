@@ -24,6 +24,10 @@ export interface WebPageItem {
   url: string;
   title: string;
   lastmod: string;
+  /** First-party feed publication time when the source exposes one. */
+  publishedAt?: string;
+  /** Sitemap or page update time; never treated as publication time. */
+  updatedAt?: string;
   /** Short source-grounded description for report display. */
   summary: string;
   /** Longer article text for analysis and RAG ingestion. */
@@ -393,6 +397,8 @@ export async function fetchSiteContent(
         url: loc,
         title: feedItem?.title || titleFromUrl(loc),
         lastmod: feedItem?.published || lastmod || "",
+        publishedAt: feedItem?.published || undefined,
+        updatedAt: lastmod || undefined,
         summary: feedItem?.summary ?? "",
         content: feedItem?.summary ?? "",
         site,
@@ -402,6 +408,7 @@ export async function fetchSiteContent(
   } else {
     // Fetch page content sequentially with a polite delay
     for (const { loc, lastmod } of toFetch) {
+      const feedItem = feedItems.get(normalizeUrl(loc));
       try {
         const html = await getText(loc);
         const article = await extractFromHtml(html, loc, {
@@ -413,6 +420,8 @@ export async function fetchSiteContent(
           url: loc,
           title: article?.title?.trim() || extractTitle(html) || titleFromUrl(loc),
           lastmod: lastmod ?? "",
+          publishedAt: feedItem?.published || undefined,
+          updatedAt: lastmod || undefined,
           summary: article?.description?.trim() ?? "",
           content,
           site,

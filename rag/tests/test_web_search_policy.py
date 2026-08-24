@@ -45,6 +45,22 @@ def test_explicit_internal_only_text_overrides_always_mode():
     assert decision.intent_constraint == "internal_only"
 
 
+def test_route_contract_forbidden_web_overrides_always_mode():
+    decision = decide_web_search(
+        _plan("请总结内部库中的动态"),
+        requested_mode="always",
+        retrieval_status="ready",
+        citations=[{"date": "2026-08-06"}],
+        capability_available=True,
+        contract_web_permission="forbidden",
+        today="2026-08-06",
+    )
+
+    assert decision.should_search is False
+    assert decision.effective_mode == "never"
+    assert decision.reason == "route_contract_forbidden"
+
+
 def test_auto_mode_uses_web_when_internal_search_is_empty():
     decision = decide_web_search(
         _plan(),

@@ -20,6 +20,8 @@ def test_compose_declares_the_complete_local_product_stack():
     # The current Graph RAG queries use Cypher directly.  Do not make first
     # startup depend on downloading an unused Neo4j plugin.
     assert "graph-data-science" not in source
+    assert "OMP_NUM_THREADS" in source
+    assert source.count("cpus:") >= 2
 
 
 def test_docker_build_keeps_local_secrets_and_development_artifacts_out():

@@ -29,7 +29,11 @@ def build_metadata_filter(plan, latest_corpus_date: str | None = None) -> dict |
     if source_filter:
         clauses.append(source_filter)
 
-    date_filter = _build_date_filter(getattr(plan, "time_window", {}), latest_corpus_date)
+    date_filter = _build_date_filter(
+        getattr(plan, "time_window", {}),
+        latest_corpus_date,
+        getattr(plan, "temporal_intent", "effective"),
+    )
     if date_filter:
         clauses.append(date_filter)
 
@@ -40,13 +44,27 @@ def build_metadata_filter(plan, latest_corpus_date: str | None = None) -> dict |
     return {"$and": clauses}
 
 
-def _build_content_type_filter(plan) -> dict | None:
-    """Route broad trend discovery to structured candidates, not report boilerplate."""
+def source_diversity_cap(plan) -> int | None:
+    """Diversify only broad discovery; focused entity/source questions need recall."""
+    if getattr(plan, "intent", "") != "recent_trend":
+        return None
     has_focus = any(
         getattr(plan, field, [])
         for field in ("topics", "entities", "sources")
     )
-    if getattr(plan, "intent", "") == "recent_trend" and not has_focus:
+    return None if has_focus else 2
+
+
+def _build_content_type_filter(plan) -> dict | None:
+    """Route broad trend discovery to structured candidates, not report boilerplate."""
+    intent = getattr(plan, "intent", "")
+    question = getattr(plan, "original_question", "")
+    discovery_markers = ("值得关注", "有哪些项目", "哪些项目", "选题")
+    if intent in {
+        "recent_trend", "important_news", "product_update", "source_specific_discovery"
+    }:
+        return {"content_type": "topic_candidate"}
+    if any(marker in question for marker in discovery_markers):
         return {"content_type": "topic_candidate"}
     return None
 
@@ -92,7 +110,27 @@ def _build_source_filter(sources: list[str]) -> dict | None:
     return {"$or": clauses}
 
 
-def _build_date_filter(time_window: dict, latest_corpus_date: str | None) -> dict | None:
+def _build_date_filter(
+    time_window: dict,
+    latest_corpus_date: str | None,
+    temporal_intent: str = "effective",
+) -> dict | None:
+    field = {
+        "publication": "publication_date",
+        "source_update": "source_updated_at",
+        "report": "report_date",
+        "effective": "effective_date",
+    }.get(temporal_intent, "effective_date")
+
+    if time_window.get("mode") == "absolute_range":
+        start = time_window.get("start")
+        end = time_window.get("end")
+        if start and end:
+            return {"$and": [
+                {field: {"$gte": start}},
+                {field: {"$lte": end}},
+            ]}
+
     if not latest_corpus_date:
         return None
 
@@ -106,7 +144,7 @@ def _build_date_filter(time_window: dict, latest_corpus_date: str | None) -> dic
         (start + timedelta(days=offset)).isoformat()
         for offset in range(days)
     ]
-    return {"date": {"$in": values}}
+    return {field: {"$in": values}}
 
 
 def _unique(items: list[str]) -> list[str]:

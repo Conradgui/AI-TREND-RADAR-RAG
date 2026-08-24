@@ -49,6 +49,7 @@ def decide_web_search(
     retrieval_status: str,
     citations: list[dict],
     capability_available: bool,
+    contract_web_permission: str | None = None,
     today: str | None = None,
 ) -> WebSearchDecision:
     """Resolve capability, user constraint, retrieval state, and freshness."""
@@ -81,11 +82,17 @@ def decide_web_search(
 
     if not capability_available:
         return decision("never", False, "capability_unavailable")
+    if contract_web_permission == "forbidden":
+        return decision("never", False, "route_contract_forbidden")
     if intent_constraint == "internal_only":
         return decision("never", False, "internal_only_constraint")
     if requested == "never":
         return decision("never", False, "request_mode_never")
-    if requested == "always" or any(phrase.casefold() in lowered for phrase in _EXPLICIT_WEB_PHRASES):
+    if (
+        contract_web_permission == "explicit"
+        or requested == "always"
+        or any(phrase.casefold() in lowered for phrase in _EXPLICIT_WEB_PHRASES)
+    ):
         return decision("always", True, "user_forced")
     if retrieval_status in {"error", "timeout"}:
         return decision("auto", False, f"internal_{retrieval_status}")

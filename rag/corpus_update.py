@@ -244,7 +244,8 @@ async def update_corpus(
                 return result
 
     try:
-        sync_result = syncer(
+        sync_result = await asyncio.to_thread(
+            syncer,
             base_url=base_url,
             output_root=output_root,
             days=days,
@@ -274,6 +275,18 @@ async def update_corpus(
         if not dry_run:
             _write_update_state(result, state_path)
         return result
+
+    if not dry_run:
+        # The upstream owns raw reports; this product owns the searchable ATR
+        # projection. Rebuild it after every successful sync before deciding
+        # whether ingestion is needed.
+        from rag.ingest import load_search_documents
+
+        await asyncio.to_thread(
+            load_search_documents,
+            output_root / "digests" / "search-index.json",
+            str(output_root / "digests"),
+        )
 
     candidate_dates = sync_result.available_dates or sync_result.synced_dates
     candidate_fingerprints = (
@@ -349,6 +362,36 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--state-path", type=Path, default=DEFAULT_STATE_PATH)
     args = parser.parse_args()
+
+    from rag.runtime_admin_client import request_local_service
+
+    uses_local_paths = (
+        args.output_root.resolve() == PROJECT_ROOT.resolve()
+        and args.state_path.resolve() == DEFAULT_STATE_PATH.resolve()
+    )
+    if uses_local_paths:
+        forwarded = request_local_service(
+            "/corpus/update",
+            payload={
+                "base_url": args.base_url,
+                "days": args.days,
+                "dry_run": args.dry_run,
+            },
+        )
+        if forwarded is not None:
+            print(json.dumps(summarize_update_state(forwarded), ensure_ascii=False, indent=2))
+            if forwarded.get("status") == "failed":
+                raise SystemExit(1)
+            return
+
+
+        from rag.config import INDEX_GENERATIONS_DIR
+
+        if (Path(INDEX_GENERATIONS_DIR) / "active-generation.json").exists():
+            raise SystemExit(
+                "[corpus-update] Managed index exists but the RAG service is offline. "
+                "Start the service first so updates use the single-writer generation path."
+            )
 
     result = asyncio.run(
         update_corpus(

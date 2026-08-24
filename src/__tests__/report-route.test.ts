@@ -11,7 +11,7 @@ describe("report route", () => {
   });
 
   it("parses stable item detail routes", () => {
-    const occurrenceId = "a".repeat(32);
+    const occurrenceId = "ATR-20260805-A1B2C3";
     expect(parseReportRoute(`#2026-08-05/ai-topic-radar/item/${occurrenceId}`)).toEqual({
       date: "2026-08-05",
       report: "ai-topic-radar",
@@ -26,12 +26,20 @@ describe("report route", () => {
   });
 
   it("formats routes without encoding path separators into one segment", () => {
+    const occurrenceId = "ATR-20260805-B2C3D4";
     expect(
       formatReportRoute({
         date: "2026-08-05",
         report: "ai-topic-radar",
-        occurrenceId: "b".repeat(32),
+        occurrenceId,
       }),
-    ).toBe(`#2026-08-05/ai-topic-radar/item/${"b".repeat(32)}`);
+    ).toBe(`#2026-08-05/ai-topic-radar/item/${occurrenceId}`);
+  });
+
+  it("keeps legacy 32-character occurrence routes readable during migration", () => {
+    const occurrenceId = "a".repeat(32);
+    expect(parseReportRoute(`#2026-08-05/ai-topic-radar/item/${occurrenceId}`)?.occurrenceId).toBe(
+      occurrenceId,
+    );
   });
 });

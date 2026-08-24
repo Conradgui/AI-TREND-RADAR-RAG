@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 
+from rag.entity_identity import canonical_entity_ids
 from rag.query_understanding import QueryPlan, analyze_query
 
 
@@ -27,6 +28,10 @@ GRAPH_RELATIONSHIP_TERMS = (
     "趋势",
     "覆盖",
     "共现",
+    "历程",
+    "演进",
+    "变化",
+    "时间线",
 )
 
 
@@ -50,31 +55,48 @@ def build_graph_question_plan(
     question: str,
     query_plan: QueryPlan | None = None,
 ) -> GraphQuestionPlan | None:
-    """Return a graph plan when the question asks for relationship evidence."""
+    """Compatibility helper returning the first planned entity."""
+    plans = build_graph_question_plans(question, query_plan=query_plan)
+    return plans[0] if plans else None
+
+
+def build_graph_question_plans(
+    question: str,
+    query_plan: QueryPlan | None = None,
+) -> list[GraphQuestionPlan]:
+    """Return one graph plan per requested entity, preserving user order.
+
+    The singular helper remains the compatibility interface for briefs and
+    evaluations. Chat relationship tasks use this plural form so a comparison
+    such as ``OpenAI 与 Apple`` cannot silently collapse to the first entity.
+    """
     normalized = question.strip()
-    if not normalized:
-        return None
+    if not normalized or not _asks_for_graph_relationships(normalized):
+        return []
 
     query_plan = query_plan or analyze_query(normalized)
-    entity_id = _infer_entity_id(normalized, query_plan)
-    if not entity_id:
-        return None
-
-    if not _asks_for_graph_relationships(normalized):
-        return None
+    entity_ids = canonical_entity_ids(getattr(query_plan, "entities", []))
+    if not entity_ids:
+        inferred = _infer_entity_id(normalized, query_plan)
+        entity_ids = [inferred] if inferred else []
+    if not entity_ids:
+        return []
 
     required_paths = _infer_required_paths(normalized)
-    return GraphQuestionPlan(
-        original_question=normalized,
-        entity_id=entity_id,
-        entity_label=_entity_label(entity_id),
-        question_type="entity_topic_date_source_relationship",
-        required_paths=required_paths,
-        routing_notes=[
-            "Question asks for entity/topic/date/source relationship coverage.",
-            "Use graph evidence before answer synthesis.",
-        ],
-    )
+    return [
+        GraphQuestionPlan(
+            original_question=normalized,
+            entity_id=entity_id,
+            entity_label=_entity_label(entity_id),
+            question_type="entity_observation_relationship",
+            required_paths=required_paths,
+            routing_notes=[
+                "Question asks for entity/observation/date/source relationship coverage.",
+                "Use graph evidence before answer synthesis.",
+            ],
+        )
+        for entity_id in entity_ids
+    ]
 
 
 def is_graph_relationship_question(question: str, query_plan: QueryPlan | None = None) -> bool:
@@ -104,12 +126,12 @@ def _infer_required_paths(question: str) -> list[str]:
     lowered = question.casefold()
     paths = []
     if any(term in lowered for term in ("日期", "跨", "反复", "多次", "出现", "趋势", "覆盖")):
-        paths.append("entity_topic_date")
-        paths.append("entity_multiple_topics")
+        paths.append("entity_observation_date")
+        paths.append("entity_repeated_content")
     if "来源" in lowered:
-        paths.append("entity_topic_source")
+        paths.append("entity_observation_source")
     if not paths:
-        paths = ["entity_topic_date", "entity_topic_source", "entity_multiple_topics"]
+        paths = ["entity_observation_date", "entity_observation_source", "entity_repeated_content"]
     return _unique(paths)
 
 
@@ -118,6 +140,10 @@ def _entity_label(entity_id: str) -> str:
         "rag": "RAG",
         "openai": "OpenAI",
         "ai-agent": "AI Agent",
+        "anthropic": "Anthropic",
+        "apple": "Apple",
+        "google": "Google",
+        "google-deepmind": "Google DeepMind",
     }
     return labels.get(entity_id, entity_id)
 

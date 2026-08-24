@@ -7,12 +7,12 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 def test_container_entrypoint_runs_the_single_incremental_update_interface():
-    """The image owns one non-blocking, truthful incremental update path."""
+    """The server process owns updates so no second process opens embedded Chroma."""
     entrypoint = (PROJECT_ROOT / "scripts" / "docker-entrypoint.sh").read_text(encoding="utf-8")
 
-    assert "rag.corpus_update --days" in entrypoint
-    assert ") &" in entrypoint
     assert "exec python -m rag.server" in entrypoint
+    assert "rag.corpus_update" not in entrypoint
+    assert ") &" not in entrypoint
     assert "scripts/sync-from-github.sh" not in entrypoint
 
 

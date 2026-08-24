@@ -39,6 +39,22 @@ def test_chat_response_preserves_claim_and_evidence_integrity_fields():
     assert payload["evidence_integrity"]["valid"] is True
 
 
+def test_chat_response_preserves_claim_verification_contract():
+    response = ChatResponse(
+        answer="证据不足",
+        claim_verification={
+            "valid": True,
+            "verdict": "insufficient",
+            "evidence_ids": ["E1"],
+            "missing_criteria": ["财务结果"],
+        },
+    )
+
+    payload = response.model_dump()
+
+    assert payload["claim_verification"]["verdict"] == "insufficient"
+
+
 def test_chat_response_exposes_display_contract_without_replacing_canonical_answer():
     response = ChatResponse(
         answer="内部事实 [E1]，外部补充 [E2]。",
@@ -58,6 +74,19 @@ def test_chat_response_exposes_display_contract_without_replacing_canonical_answ
     assert "[W1 🌐]" in payload["display_answer"]
     assert payload["evidence_display_map"] == {"E1": "I1", "E2": "W1"}
     assert payload["search_references"] == []
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("path", ["/chat", "/chat/stream"])
+async def test_chat_endpoints_require_configured_api_key(monkeypatch, path):
+    """Public model-consuming endpoints must enforce the configured key."""
+    monkeypatch.setattr(server, "API_KEY", "release-secret")
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post(path, json={"message": "最近趋势"})
+
+    assert response.status_code == 401
 
 
 @pytest.mark.asyncio
@@ -91,6 +120,40 @@ async def test_chat_endpoint_forwards_request_scoped_web_search_mode(monkeypatch
 
 
 @pytest.mark.asyncio
+async def test_chat_endpoint_forwards_the_runtime_gateway(monkeypatch):
+    captured = {}
+    gateway = object()
+    resolver = object()
+
+    async def fake_build_chat_response(agent, retriever, message, history, **kwargs):
+        captured.update(kwargs)
+        return {"answer": "ok"}
+
+    monkeypatch.setattr(server, "build_chat_response", fake_build_chat_response)
+    server.app.state.rag = server.RagState(
+        vector_store=object(),
+        neo4j_driver=None,
+        chat_retriever=object(),
+        agent=object(),
+        answer_composer=object(),
+        external_search_registry=None,
+        external_deep_fetcher=None,
+        retrieval_gateway=gateway,
+        query_contract_resolver=resolver,
+        latest_corpus_date="2026-08-21",
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post("/chat", json={"message": "最近有什么热门趋势？"})
+
+    assert response.status_code == 200
+    assert captured["retrieval_gateway"] is gateway
+    assert captured["query_contract_resolver"] is resolver
+    assert captured["latest_corpus_date"] == "2026-08-21"
+
+
+@pytest.mark.asyncio
 async def test_web_search_cannot_be_enabled_without_a_configured_provider(monkeypatch):
     monkeypatch.setattr(server, "get_configured_search_providers", lambda: set())
     server.app.state.rag = server.RagState(
@@ -110,3 +173,50 @@ async def test_web_search_cannot_be_enabled_without_a_configured_provider(monkey
     assert response.status_code == 409
     assert response.json()["detail"].startswith("No web search provider")
     assert server.app.state.rag.external_search_registry is None
+
+
+@pytest.mark.asyncio
+async def test_retriever_mode_swap_rebuilds_agent_tools(monkeypatch):
+    old_agent = object()
+    rebuilt_agent = object()
+    vector_store = object()
+    neo4j_driver = object()
+    monkeypatch.setattr(server, "create_agent", lambda driver, retriever: rebuilt_agent)
+    server.app.state.rag = server.RagState(
+        vector_store=vector_store,
+        neo4j_driver=neo4j_driver,
+        chat_retriever=object(),
+        agent=old_agent,
+        answer_composer=object(),
+        external_search_registry=None,
+        external_deep_fetcher=None,
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post("/config/retriever-mode?mode=hybrid")
+
+    assert response.status_code == 200
+    assert server.app.state.rag.agent is rebuilt_agent
+    assert server.app.state.rag.chat_retriever is not None
+
+
+@pytest.mark.asyncio
+async def test_vector_only_mode_uses_direct_composer_instead_of_stale_agent():
+    composer = object()
+    server.app.state.rag = server.RagState(
+        vector_store=object(),
+        neo4j_driver=object(),
+        chat_retriever=object(),
+        agent=object(),
+        answer_composer=composer,
+        external_search_registry=None,
+        external_deep_fetcher=None,
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post("/config/retriever-mode?mode=vector-only")
+
+    assert response.status_code == 200
+    assert server.app.state.rag.agent is composer

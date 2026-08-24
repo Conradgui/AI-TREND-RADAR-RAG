@@ -1,20 +1,33 @@
 import { createHash } from "node:crypto";
+import {
+  buildTemporalMetadata,
+  type EffectiveDateBasis,
+  type PublicationDateSource,
+} from "./temporal-semantics.ts";
 
-export const SEARCH_DOCUMENT_SCHEMA_VERSION = 1 as const;
-export const SEARCH_DOCUMENT_ID_SCHEME = "sd-v1" as const;
+export const SEARCH_DOCUMENT_SCHEMA_VERSION = 2 as const;
+export const SEARCH_DOCUMENT_ID_SCHEME = "atr-v1" as const;
 
-const TRACKING_PARAMS = new Set([
-  "fbclid",
-  "gclid",
-  "dclid",
-  "msclkid",
-  "mc_cid",
-  "mc_eid",
-  "ref_src",
-]);
+const TRACKING_PARAMS = new Set(["fbclid", "gclid", "dclid", "msclkid", "mc_cid", "mc_eid", "ref_src"]);
 const CREDENTIAL_PARAM_RE =
   /(?:^|[_-])(?:api[_-]?key|access[_-]?token|auth|authorization|credential|password|secret|signature)(?:$|[_-])/i;
 const ANCHOR_RE = /^[A-Za-z][A-Za-z0-9:._-]{0,127}$/;
+
+/** Decode the standard entities that may survive upstream article extraction. */
+function decodeDisplayText(value: unknown): string {
+  return String(value ?? "")
+    .replace(/&#(\d+);/g, (_match, digits: string) => String.fromCodePoint(Number(digits)))
+    .replace(/&#x([\da-f]+);/gi, (_match, digits: string) =>
+      String.fromCodePoint(Number.parseInt(digits, 16)),
+    )
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'")
+    .replace(/&#39;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&");
+}
 
 /** Input boundary for projecting one dated candidate pool into searchable items. */
 export interface CandidatePoolInput {
@@ -43,9 +56,18 @@ export interface SearchDocument {
   schema_version: typeof SEARCH_DOCUMENT_SCHEMA_VERSION;
   id_scheme: typeof SEARCH_DOCUMENT_ID_SCHEME;
   content_id: string;
+  daily_item_id: string;
   occurrence_id: string;
   item_anchor: string;
   date: string;
+  report_date: string;
+  publication_date: string | null;
+  publication_date_source: PublicationDateSource;
+  source_updated_at: string | null;
+  observed_at: string;
+  ingested_at: string | null;
+  effective_date: string;
+  effective_date_basis: EffectiveDateBasis;
   report_id: string;
   report_type: "daily";
   result_type: "item";
@@ -113,6 +135,14 @@ function digest(value: string): string {
   return createHash("sha256").update(value).digest("hex").slice(0, 32);
 }
 
+function dailyItemId(date: string, identity: string): string {
+  return `ATR-${date.replaceAll("-", "")}-${digest(identity).slice(0, 6).toUpperCase()}`;
+}
+
+function legacyOccurrenceId(date: string, reportId: string, candidateIdentity: string): string {
+  return digest(`sd-v1|${date}|${reportId}|${candidateIdentity}`);
+}
+
 function stableStringify(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
   if (value && typeof value === "object") {
@@ -136,9 +166,7 @@ function stringArray(value: unknown): string[] {
 
 function removeCdata(value: string): string {
   const trimmed = value.trim();
-  return trimmed.startsWith("<![CDATA[") && trimmed.endsWith("]]>")
-    ? trimmed.slice(9, -3).trim()
-    : trimmed;
+  return trimmed.startsWith("<![CDATA[") && trimmed.endsWith("]]>") ? trimmed.slice(9, -3).trim() : trimmed;
 }
 
 function hasCredentialParam(params: URLSearchParams): boolean {
@@ -180,7 +208,10 @@ export function canonicalizeExternalUrl(raw: unknown): {
       }
     }
     url.hostname = url.hostname.toLowerCase();
-    if ((url.protocol === "https:" && url.port === "443") || (url.protocol === "http:" && url.port === "80")) {
+    if (
+      (url.protocol === "https:" && url.port === "443") ||
+      (url.protocol === "http:" && url.port === "80")
+    ) {
       url.port = "";
     }
     return { url: url.toString(), error: null };
@@ -197,10 +228,7 @@ function upstreamItemId(candidate: CandidateRecord): string {
   return "";
 }
 
-function parseReportTarget(
-  candidate: CandidateRecord,
-  reportId: string,
-): SearchDocumentReportTarget | null {
+function parseReportTarget(candidate: CandidateRecord, reportId: string): SearchDocumentReportTarget | null {
   const raw = candidate.report_target ?? candidate.reportTarget;
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
   const target = raw as Record<string, unknown>;
@@ -223,7 +251,7 @@ function prepareCandidates(input: CandidatePoolInput): {
       continue;
     }
     const candidate = raw as CandidateRecord;
-    const title = stringValue(candidate.title ?? candidate.topic).trim();
+    const title = decodeDisplayText(candidate.title ?? candidate.topic).trim();
     if (!title) {
       diagnostics.push({ date: input.date, field: "title", category: "missing_title" });
       continue;
@@ -236,8 +264,8 @@ function prepareCandidates(input: CandidatePoolInput): {
 
   const prepared = [...exactGroups.entries()].map(([exactKey, group]) => {
     const candidate = group.candidate;
-    const title = stringValue(candidate.title ?? candidate.topic).trim();
-    const source = stringValue(candidate.source).trim();
+    const title = decodeDisplayText(candidate.title ?? candidate.topic).trim();
+    const source = decodeDisplayText(candidate.source).trim();
     const normalizedSource = normalizeSearchText(source) || "unknown-source";
     const canonical = canonicalizeExternalUrl(candidate.url);
     if (canonical.error) {
@@ -293,34 +321,41 @@ export function buildSearchDocuments(input: CandidatePoolInput): SearchDocumentB
 
   const documents = [...semanticGroups.entries()].map(([candidateIdentity, variants]) => {
     if (variants.length !== 1) {
-      throw new Error(
-        `Ambiguous candidate identity on ${input.date}: ${digest(candidateIdentity)}`,
-      );
+      throw new Error(`Ambiguous candidate identity on ${input.date}: ${digest(candidateIdentity)}`);
     }
     const item = variants[0]!;
     const candidate = item.candidate;
     const hasTitleVariants = (titlesByBase.get(item.baseIdentity)?.size ?? 0) > 1;
     const identityQuality: "stable" | "degraded" =
       !item.upstreamId && (!item.canonicalUrl || hasTitleVariants) ? "degraded" : "stable";
-    const occurrenceId = digest(
+    const occurrenceId = dailyItemId(
+      input.date,
       `${SEARCH_DOCUMENT_ID_SCHEME}|${input.date}|${input.reportId}|${candidateIdentity}`,
     );
     const contentId = digest(
       `${SEARCH_DOCUMENT_ID_SCHEME}|content|${
         item.upstreamId
           ? `upstream:${item.normalizedSource}:${item.upstreamId}`
-          : item.canonicalUrl ?? `${item.normalizedSource}|${item.normalizedTitle}`
+          : (item.canonicalUrl ?? `${item.normalizedSource}|${item.normalizedTitle}`)
       }`,
     );
     const displayFields: SearchDocumentDisplayFields = {
-      recommended_topic: stringValue(candidate.recommendedTopic ?? candidate.recommended_topic),
-      reason: stringValue(candidate.reason),
-      angle: stringValue(candidate.angle),
-      evidence: stringArray(candidate.evidence),
+      recommended_topic: decodeDisplayText(candidate.recommendedTopic ?? candidate.recommended_topic),
+      reason: decodeDisplayText(candidate.reason),
+      angle: decodeDisplayText(candidate.angle),
+      evidence: stringArray(candidate.evidence).map(decodeDisplayText),
     };
+    const temporal = buildTemporalMetadata(candidate, input.date);
+    if (temporal.diagnostic) {
+      diagnostics.push({
+        date: input.date,
+        field: "publication_date",
+        category: temporal.diagnostic,
+      });
+    }
     const contentPayload = {
       title: item.title,
-      summary: stringValue(candidate.summary),
+      summary: decodeDisplayText(candidate.summary),
       source: item.source,
       category: stringValue(candidate.category),
       score: typeof candidate.score === "number" ? candidate.score : 0,
@@ -330,6 +365,7 @@ export function buildSearchDocuments(input: CandidatePoolInput): SearchDocumentB
       entities: stringArray(candidate.entities),
       aliases: stringArray(candidate.aliases),
       external_url: item.canonicalUrl,
+      publication_date: temporal.publication_date,
     };
     const contentFingerprint = digest(stableStringify(contentPayload));
     const reportTarget = parseReportTarget(candidate, input.reportId);
@@ -339,9 +375,18 @@ export function buildSearchDocuments(input: CandidatePoolInput): SearchDocumentB
       schema_version: SEARCH_DOCUMENT_SCHEMA_VERSION,
       id_scheme: SEARCH_DOCUMENT_ID_SCHEME,
       content_id: contentId,
+      daily_item_id: occurrenceId,
       occurrence_id: occurrenceId,
       item_anchor: `item-${occurrenceId}`,
       date: input.date,
+      report_date: temporal.report_date,
+      publication_date: temporal.publication_date,
+      publication_date_source: temporal.publication_date_source,
+      source_updated_at: temporal.source_updated_at,
+      observed_at: temporal.observed_at,
+      ingested_at: temporal.ingested_at,
+      effective_date: temporal.effective_date,
+      effective_date_basis: temporal.effective_date_basis,
       report_id: input.reportId,
       report_type: "daily" as const,
       result_type: "item" as const,
@@ -365,7 +410,7 @@ export function buildSearchDocuments(input: CandidatePoolInput): SearchDocumentB
       ),
       duplicate_count: duplicateCount,
       identity_quality: identityQuality,
-      legacy_ids: [],
+      legacy_ids: [legacyOccurrenceId(input.date, input.reportId, candidateIdentity)],
     } satisfies SearchDocument;
   });
 

@@ -255,6 +255,8 @@ describe("fetchSiteContent", () => {
       expect.objectContaining({
         url: articleUrl,
         title: "Apple is getting this wrong",
+        publishedAt: "2026-08-04T12:00:00.000Z",
+        updatedAt: "2026-08-04",
         summary:
           "OpenAI addresses Apple's baseless lawsuit and explains why competition benefits developers and users.",
       }),
@@ -294,6 +296,8 @@ describe("fetchSiteContent", () => {
     const item = result.newItems[0]!;
 
     expect(item.summary).toBe("A concise official description for report readers.");
+    expect(item.publishedAt).toBeUndefined();
+    expect(item.updatedAt).toBe("2026-08-06");
     expect(item.content).toContain("substantially longer article body");
     expect(item.content).not.toBe(item.summary);
   });

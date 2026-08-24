@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📡 AI Topic Radar</title>
+  <title>📡 AI Trend Radar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-  <link rel="alternate" type="application/rss+xml" title="AI Topic Radar RSS" href="./feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="AI Trend Radar RSS" href="./feed.xml">
   <script src="https://cdn.jsdelivr.net/npm/marked@18.0.5/lib/marked.umd.js" integrity="sha384-ZD0fTOwPMHi7zM6WTVIWJR21I07lq0ccnqz3J6WMvQKG9thh4y7TA1QE6PJu0Af8" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.11/dist/purify.min.js" integrity="sha384-o44XUELLEnv/iSlA1NWxBweqbD4TSR0qgq2VzVsxtkHS989JJjGKSE9vkfo5MN4K" crossorigin="anonymous"></script>
   <script src="./assets/vendor/minisearch/minisearch-7.2.0.umd.js"></script>
@@ -132,6 +132,16 @@
       border: 1px solid var(--border); border-radius: 4px;
       background: var(--bg); color: var(--muted); font: inherit; font-size: 9px;
     }
+    #clearSearchFilters {
+      height: 25px; padding: 0 7px;
+      border: 1px solid var(--border); border-radius: 4px;
+      background: transparent; color: var(--muted); font: inherit; font-size: 9px;
+      cursor: pointer;
+    }
+    #clearSearchFilters:hover:not(:disabled), #clearSearchFilters:focus-visible {
+      border-color: var(--accent); color: var(--accent); outline: none;
+    }
+    #clearSearchFilters:disabled { opacity: 0.38; cursor: default; }
     #searchResults {
       margin-top: 7px; border-top: 1px solid var(--border); padding-top: 6px;
       max-height: 48vh; overflow-y: auto;
@@ -795,7 +805,7 @@
   <div id="hdr">
     <div class="brand">
       <span class="brand-icon">📡</span>
-      <span>AI Topic <em>Radar</em></span>
+      <span>AI Trend <em>Radar</em></span>
     </div>
     <div class="hdr-right">
       <div class="signal"></div>
@@ -828,18 +838,19 @@
         <input id="searchInput" type="search" aria-label="搜索报告条目" placeholder="搜索具体条目，如 Open AI">
         <div id="searchStatus"></div>
         <div class="search-filters" aria-label="搜索筛选">
-          <select id="searchPeriod" aria-label="时间范围">
+          <select id="searchPeriod" aria-label="时间范围" disabled>
             <option value="all">全部时间</option>
             <option value="7">近 7 天</option>
             <option value="30">近 30 天</option>
             <option value="90">近 90 天</option>
           </select>
-          <select id="searchSource" aria-label="来源">
+          <select id="searchSource" aria-label="来源" disabled>
             <option value="">全部来源</option>
           </select>
-          <select id="searchCategory" aria-label="分类">
+          <select id="searchCategory" aria-label="分类" disabled>
             <option value="">全部分类</option>
           </select>
+          <button id="clearSearchFilters" type="button" aria-label="清除所有筛选" title="恢复全部时间、来源和分类" disabled>清除筛选</button>
         </div>
         <div id="searchResults" hidden aria-live="polite"></div>
       </div>
@@ -872,7 +883,7 @@
     <div id="chatMessages">
       <div class="chat-welcome">
         <div class="icon">🤖</div>
-        <p>你好！我是 AI Topic Radar 的智能助手，<br>可以帮你分析 AI 趋势和选题建议。</p>
+        <p>你好！我是 AI Trend Radar 的智能助手，<br>可以帮你分析 AI 趋势和选题建议。</p>
         <div class="suggestions">
           <div class="chat-suggestion" onclick="sendSuggestion(this)">最近有什么热门趋势？</div>
           <div class="chat-suggestion" onclick="sendSuggestion(this)">推荐值得深挖的选题</div>
@@ -933,6 +944,10 @@
         <div class="system-item">
           <span class="system-item-label">ChromaDB</span>
           <span class="system-item-value" id="systemChroma">-</span>
+        </div>
+        <div class="system-connection-action" id="databaseReconnectAction" hidden>
+          <p class="system-connection-copy" id="databaseReconnectCopy">数据库容器已经启动但连接中断时，可直接恢复连接；不会重建镜像、索引或数据卷。</p>
+          <button class="system-connect-btn" id="databaseReconnectBtn" type="button" onclick="reconnectDatabases()">重新连接数据库</button>
         </div>
       </div>
 
@@ -1128,7 +1143,7 @@ function getHash() {
   const [date, report, marker, occurrenceId] = parts;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '') || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(report || '')) return null;
   if (parts.length === 2) return { date, report, occurrenceId: null };
-  if (parts.length === 4 && marker === 'item' && /^[a-f0-9]{32}$/.test(occurrenceId || '')) {
+  if (parts.length === 4 && marker === 'item' && /^(?:ATR-\d{8}-[A-F0-9]{6}|[a-f0-9]{32})$/.test(occurrenceId || '')) {
     return { date, report, occurrenceId };
   }
   return null;
@@ -1226,9 +1241,22 @@ const searchResults = document.getElementById('searchResults');
 const searchPeriod = document.getElementById('searchPeriod');
 const searchSource = document.getElementById('searchSource');
 const searchCategory = document.getElementById('searchCategory');
+const clearSearchFilters = document.getElementById('clearSearchFilters');
 
 function setSearchStatus(text) {
   searchStatus.textContent = text || '';
+}
+
+function setSearchFiltersReady(ready) {
+  for (const control of [searchPeriod, searchSource, searchCategory]) {
+    control.disabled = !ready;
+  }
+  updateClearSearchFiltersState();
+}
+
+function updateClearSearchFiltersState() {
+  const hasSelection = searchPeriod.value !== 'all' || searchSource.value || searchCategory.value;
+  clearSearchFilters.disabled = !searchReady || !hasSelection;
 }
 
 function normalizeSearchText(value) {
@@ -1356,7 +1384,10 @@ function scoreDocument(document, plan) {
 }
 
 function latestCorpusDate() {
-  return searchDocuments[0]?.date || '';
+  return searchDocuments.reduce(
+    (latest, document) => document.date > latest ? document.date : latest,
+    '',
+  );
 }
 
 function passesSearchFilters(document) {
@@ -1402,10 +1433,10 @@ function searchWithMiniSearch(plan) {
     .map((entry) => entry.document);
 }
 
-function renderSearchResults(results) {
+function renderSearchResults(results, filterBrowse = false) {
   searchResults.textContent = '';
-  searchResults.hidden = !searchQuery.trim();
-  if (!searchQuery.trim()) return;
+  searchResults.hidden = !searchQuery.trim() && !filterBrowse;
+  if (searchResults.hidden) return;
   if (!results.length) {
     const empty = document.createElement('div');
     empty.className = 'search-empty';
@@ -1440,10 +1471,10 @@ function deduplicateSearchResults(results) {
   });
 }
 
-function applyItemSearch(query) {
+function applyItemSearch(query, filterBrowse = false) {
   searchQuery = query;
   const plan = queryPlan(query);
-  if (!query.trim()) {
+  if (!query.trim() && !filterBrowse) {
     setSearchStatus('');
     renderSearchResults([]);
     return;
@@ -1451,22 +1482,29 @@ function applyItemSearch(query) {
   if (!searchReady) {
     setSearchStatus('正在加载条目索引…');
     void initSearch().then((available) => {
-      if (available) applyItemSearch(searchQuery);
+      if (available) applyItemSearch(searchQuery, filterBrowse);
     });
     return;
   }
-  const rankedResults = itemSearchIndex
-    ? searchWithMiniSearch(plan)
-    : searchDocuments
+  const rankedResults = !query.trim()
+    ? searchDocuments
       .filter(passesSearchFilters)
-      .map((document) => ({ document, score: scoreDocument(document, plan) }))
-      .filter((entry) => entry.score > 0)
-      .sort((a, b) => b.score - a.score || b.document.date.localeCompare(a.document.date))
-      .map((entry) => entry.document);
+      .sort((a, b) => b.date.localeCompare(a.date) || Number(b.score || 0) - Number(a.score || 0))
+    : itemSearchIndex
+      ? searchWithMiniSearch(plan)
+      : searchDocuments
+        .filter(passesSearchFilters)
+        .map((document) => ({ document, score: scoreDocument(document, plan) }))
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score || b.document.date.localeCompare(a.document.date))
+        .map((entry) => entry.document);
   const results = deduplicateSearchResults(rankedResults);
   const explanation = plan.explanation ? `已识别为 ${plan.explanation}；` : '';
-  setSearchStatus(results.length ? `${explanation}找到 ${results.length} 个条目` : `未找到“${query.trim()}”`);
-  renderSearchResults(results);
+  const successMessage = query.trim()
+    ? `${explanation}找到 ${results.length} 个条目`
+    : `筛选到 ${results.length} 个条目${results.length > 30 ? '（显示前 30 条）' : ''}`;
+  setSearchStatus(results.length ? successMessage : (query.trim() ? `未找到“${query.trim()}”` : '没有符合筛选条件的条目'));
+  renderSearchResults(results, filterBrowse);
 }
 
 function populateSearchFilters() {
@@ -1480,24 +1518,31 @@ function initSearch() {
   if (searchInitPromise) return searchInitPromise;
   searchInitPromise = (async () => {
     searchReady = false;
+    setSearchFiltersReady(false);
     setSearchStatus('条目索引准备中…');
     try {
-      const response = await fetch('./digests/search-index.json', { cache: 'no-cache' });
+      const response = await fetch('./digests/search-index.json', { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const artifact = await response.json();
-      if (artifact.schema_version !== 1 || artifact.id_scheme !== 'sd-v1' || !Array.isArray(artifact.documents)) {
+      if (artifact.schema_version !== 2 || artifact.id_scheme !== 'atr-v1' || !Array.isArray(artifact.documents)) {
         throw new Error('不支持的条目索引版本');
       }
       searchDocuments = artifact.documents;
-      searchDocumentsById = new Map(searchDocuments.map((item) => [item.occurrence_id, item]));
+      searchDocumentsById = new Map();
+      for (const item of searchDocuments) {
+        searchDocumentsById.set(item.occurrence_id, item);
+        for (const legacyId of item.legacy_ids || []) searchDocumentsById.set(legacyId, item);
+      }
       itemSearchIndex = buildItemSearchIndex(searchDocuments);
       populateSearchFilters();
       searchReady = true;
+      setSearchFiltersReady(true);
       applyItemSearch(searchQuery);
       if (!searchQuery.trim()) setSearchStatus('');
       return true;
     } catch (error) {
       searchReady = false;
+      setSearchFiltersReady(false);
       setSearchStatus(`条目索引不可用：${error.message}`);
       return false;
     }
@@ -1511,7 +1556,17 @@ searchInput.addEventListener('input', () => {
   searchDebounce = setTimeout(() => applyItemSearch(searchQuery), 120);
 });
 [searchPeriod, searchSource, searchCategory].forEach((control) => {
-  control.addEventListener('change', () => applyItemSearch(searchQuery));
+  control.addEventListener('change', () => {
+    updateClearSearchFiltersState();
+    applyItemSearch(searchQuery, true);
+  });
+});
+clearSearchFilters.addEventListener('click', () => {
+  searchPeriod.value = 'all';
+  searchSource.value = '';
+  searchCategory.value = '';
+  updateClearSearchFiltersState();
+  applyItemSearch(searchQuery, true);
 });
 
 function appendDetailSection(root, heading, value) {
@@ -1666,9 +1721,14 @@ async function loadReport(date, report, push = true) {
     const res = await fetch(`./digests/${date}/${report}.md`, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const raw = await res.text();
+    // The user may have navigated to another report or an item detail while
+    // this request was in flight. Never let a stale response replace the
+    // content selected by the newer route.
+    if (currentKey !== key) return;
     const safe = renderMarkdown(raw);
     setContent(`<div class="md fade">${safe}</div>`);
   } catch (e) {
+    if (currentKey !== key) return;
     // 使用textContent防止XSS
     const msgDiv = document.createElement('div');
     msgDiv.className = 'msg';
@@ -1821,6 +1881,8 @@ window.addEventListener('popstate', async () => {
 // ── Init ──
 initSidebarResize();
 initReadingDensity();
+searchPeriod.value = 'all';
+void initSearch();
 
 (async () => {
   try {
@@ -1833,7 +1895,8 @@ initReadingDensity();
 
     const hash = getHash();
     const first = dates[0];
-    if (hash && dates.find(d => d.date === hash.date && d.reports.includes(hash.report))) {
+    const reportExists = hash && dates.find(d => d.date === hash.date && d.reports.includes(hash.report));
+    if (hash?.occurrenceId || reportExists) {
       await applyRoute(hash, false);
     } else if (first?.reports?.length) {
       const r0 = first.reports[0];
@@ -2052,6 +2115,28 @@ async function handleSystemConnectionAction() {
   await loadSystemStatus();
 }
 
+async function reconnectDatabases() {
+  if (!IS_LOCAL_RAG) return;
+  const button = document.getElementById('databaseReconnectBtn');
+  const copy = document.getElementById('databaseReconnectCopy');
+  button.disabled = true;
+  button.textContent = '正在连接…';
+  try {
+    const response = await fetch(requireLocalApiUrl('/runtime/reconnect-databases'), {
+      method: 'POST'
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    copy.textContent = '数据库连接已恢复，现有索引与数据保持不变。';
+    button.textContent = '已连接';
+    systemData = null;
+    await loadSystemStatus();
+  } catch (error) {
+    copy.textContent = '数据库尚未就绪。请先双击 start.command 启动已有服务，再重试连接。';
+    button.disabled = false;
+    button.textContent = '重新连接数据库';
+  }
+}
+
 function toggleSystem() {
   systemOpen = !systemOpen;
   document.getElementById('systemPanel').classList.toggle('open', systemOpen);
@@ -2112,6 +2197,8 @@ async function loadSystemStatus() {
     neo4jDot.className = `system-status-dot ${systemData.neo4j_connected ? 'green' : 'red'}`;
     neo4jEl.appendChild(neo4jDot);
     neo4jEl.appendChild(document.createTextNode(systemData.neo4j_connected ? '已连接' : '未连接'));
+    const reconnectAction = document.getElementById('databaseReconnectAction');
+    reconnectAction.hidden = Boolean(systemData.neo4j_connected);
 
     document.getElementById('systemChroma').textContent =
       `${systemData.chromadb_chunks || 0} chunks`;
@@ -2121,6 +2208,7 @@ async function loadSystemStatus() {
 
     const corpusUpdate = systemData.corpus_update || {};
     const corpusStatusLabels = {
+      frozen: '固定语料（自动更新已暂停）',
       bootstrapping: '正在建立本地索引',
       updated: '已更新',
       unchanged: '已是最新',

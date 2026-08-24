@@ -8,6 +8,8 @@ test-results/
 playwright-report/
 social/
 .venv/
+.codex/
+.test-deps/
 __pycache__/
 .pytest_cache/
 data/private/

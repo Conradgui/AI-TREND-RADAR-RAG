@@ -71,3 +71,39 @@ async def test_chat_stream_exposes_ordered_ndjson_without_breaking_chat_contract
         "citations",
         "done",
     ]
+
+
+@pytest.mark.asyncio
+async def test_chat_stream_forwards_the_runtime_gateway(monkeypatch):
+    captured = {}
+    gateway = object()
+    resolver = object()
+
+    async def fake_build_chat_response(agent, retriever, message, history, **kwargs):
+        captured.update(kwargs)
+        progress = kwargs["progress_callback"]
+        await progress("understanding", {"task_mode": "general"})
+        return {"answer": "ok"}
+
+    monkeypatch.setattr(server, "build_chat_response", fake_build_chat_response)
+    server.app.state.rag = server.RagState(
+        vector_store=object(),
+        neo4j_driver=None,
+        chat_retriever=object(),
+        agent=object(),
+        answer_composer=object(),
+        external_search_registry=None,
+        external_deep_fetcher=None,
+        retrieval_gateway=gateway,
+        query_contract_resolver=resolver,
+        latest_corpus_date="2026-08-21",
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post("/chat/stream", json={"message": "最近有什么热门趋势？"})
+
+    assert response.status_code == 200
+    assert captured["retrieval_gateway"] is gateway
+    assert captured["query_contract_resolver"] is resolver
+    assert captured["latest_corpus_date"] == "2026-08-21"

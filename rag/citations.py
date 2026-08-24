@@ -18,6 +18,11 @@ class RetrievalOutcome:
     citations: list[dict]
     error_code: str = ""
     elapsed_ms: float = 0.0
+    channel_status: dict[str, str] = None
+
+    def __post_init__(self):
+        if self.channel_status is None:
+            object.__setattr__(self, "channel_status", {})
 
 
 def _chunk_metadata(chunk) -> dict:
@@ -42,7 +47,12 @@ def _semantic_citation_key(metadata: dict) -> str:
     return re.sub(r"\s+", " ", raw.casefold()).strip()
 
 
-def build_citations(chunks: list, max_citations: int = 15, excerpt_chars: int = 240) -> list[dict]:
+def build_citations(
+    chunks: list,
+    max_citations: int = 15,
+    excerpt_chars: int = 240,
+    source_cap: int | None = None,
+) -> list[dict]:
     """Build citations from retrieved chunks without asking the LLM to invent them."""
     citations = []
     seen = set()
@@ -63,7 +73,7 @@ def build_citations(chunks: list, max_citations: int = 15, excerpt_chars: int = 
 
         # 多样性检查：限制单一来源的引用数量
         source = metadata.get("source", "unknown")
-        if source_counts.get(source, 0) >= 2:  # 每个来源最多2个引用
+        if source_cap is not None and source_counts.get(source, 0) >= source_cap:
             continue
 
         excerpt = metadata.get("evidence") or _chunk_text(chunk)
@@ -76,7 +86,28 @@ def build_citations(chunks: list, max_citations: int = 15, excerpt_chars: int = 
             "excerpt": _clean_excerpt(excerpt, excerpt_chars),
         }
 
-        for optional_field in ("url", "score", "category", "entities"):
+        for optional_field in (
+            "report_date",
+            "publication_date",
+            "publication_date_source",
+            "source_updated_at",
+            "observed_at",
+            "ingested_at",
+            "effective_date",
+            "effective_date_basis",
+            "url",
+            "local_url",
+            "content_id",
+            "occurrence_id",
+            "score",
+            "category",
+            "entities",
+            "entity_ids",
+            "fusion_score",
+            "vector_similarity",
+            "lexical_match_type",
+            "lexical_score",
+        ):
             value = metadata.get(optional_field)
             if value not in (None, ""):
                 citation[optional_field] = value
@@ -98,6 +129,8 @@ async def retrieve_citations(
     *,
     prefer_recent: bool = False,
     latest_date: str | None = None,
+    graph_requirement: str = "optional",
+    source_cap: int | None = None,
 ) -> list[dict]:
     """Backward-compatible citation-only retrieval interface."""
     outcome = await retrieve_citations_with_status(
@@ -107,6 +140,8 @@ async def retrieve_citations(
         where=where,
         prefer_recent=prefer_recent,
         latest_date=latest_date,
+        graph_requirement=graph_requirement,
+        source_cap=source_cap,
     )
     return outcome.citations
 
@@ -119,6 +154,8 @@ async def retrieve_citations_with_status(
     *,
     prefer_recent: bool = False,
     latest_date: str | None = None,
+    graph_requirement: str = "optional",
+    source_cap: int | None = None,
 ) -> RetrievalOutcome:
     """Retrieve citations without confusing empty results with system failure.
 
@@ -129,7 +166,30 @@ async def retrieve_citations_with_status(
     started_at = time.perf_counter()
     try:
         candidate_k = min(max(k * 3, k), 30) if prefer_recent else k
-        chunks = await retriever.search(question, k=candidate_k, where=where)
+        if hasattr(retriever, "search_with_status"):
+            search_outcome = await retriever.search_with_status(
+                question,
+                k=candidate_k,
+                where=where,
+                graph_requirement=graph_requirement,
+            )
+            chunks = search_outcome.chunks
+            channel_status = {
+                name: outcome.status
+                for name, outcome in search_outcome.channels.items()
+            }
+            if search_outcome.status in {"error", "timeout"}:
+                return RetrievalOutcome(
+                    status=search_outcome.status,
+                    citations=[],
+                    error_code=search_outcome.error_code,
+                    elapsed_ms=(time.perf_counter() - started_at) * 1000,
+                    channel_status=channel_status,
+                )
+        else:
+            search_outcome = None
+            channel_status = {}
+            chunks = await retriever.search(question, k=candidate_k, where=where)
     except asyncio.TimeoutError:
         return RetrievalOutcome(
             status="timeout",
@@ -146,11 +206,17 @@ async def retrieve_citations_with_status(
         )
     if prefer_recent:
         chunks = _rerank_recent_chunks(chunks, latest_date)
-    citations = build_citations(chunks, max_citations=k)
+    citations = build_citations(chunks, max_citations=k, source_cap=source_cap)
     return RetrievalOutcome(
-        status="ready" if citations else "empty",
+        status=(
+            search_outcome.status
+            if search_outcome is not None and search_outcome.status in {"degraded", "partial_error"}
+            else "ready" if citations else "empty"
+        ),
         citations=citations,
+        error_code=search_outcome.error_code if search_outcome is not None else "",
         elapsed_ms=(time.perf_counter() - started_at) * 1000,
+        channel_status=channel_status,
     )
 
 
@@ -161,7 +227,8 @@ def _rerank_recent_chunks(chunks: list, latest_date: str | None) -> list:
 
     dated_chunks = []
     for chunk in chunks:
-        value = _chunk_metadata(chunk).get("date")
+        metadata = _chunk_metadata(chunk)
+        value = metadata.get("effective_date") or metadata.get("date")
         try:
             parsed = date.fromisoformat(str(value))
         except (TypeError, ValueError):

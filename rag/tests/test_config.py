@@ -1,6 +1,10 @@
 """Tests for config and graphrag modules."""
 
-from rag.config import NEO4J_URI, is_configured
+from rag.config import (
+    NEO4J_URI,
+    is_configured,
+    is_startup_corpus_update_enabled,
+)
 
 
 def test_neo4j_defaults():
@@ -14,6 +18,19 @@ def test_is_configured_reflects_env(monkeypatch):
     config.ANTHROPIC_API_KEY = "sk-test"
     assert config.is_configured() is True
     config.ANTHROPIC_API_KEY = old
+
+
+def test_startup_corpus_update_is_frozen_by_default() -> None:
+    assert is_startup_corpus_update_enabled({}) is False
+
+
+def test_startup_corpus_update_requires_explicit_opt_in() -> None:
+    assert is_startup_corpus_update_enabled(
+        {"RAG_STARTUP_CORPUS_UPDATE_ENABLED": "true"}
+    ) is True
+    assert is_startup_corpus_update_enabled(
+        {"RAG_STARTUP_CORPUS_UPDATE_ENABLED": "false"}
+    ) is False
 
 
 def test_schema_queries_not_empty():

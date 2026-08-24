@@ -68,7 +68,7 @@ class SyncCorpusTests(unittest.TestCase):
             "https://example.com/project",
         )
 
-    def test_build_sync_plan_includes_manifest_search_index_reports_and_topic_pools(self):
+    def test_build_sync_plan_keeps_search_projection_local(self):
         manifest = {
             "dates": [
                 {"date": "2026-06-21", "reports": ["ai-topic-radar"]},
@@ -83,7 +83,6 @@ class SyncCorpusTests(unittest.TestCase):
             [
                 "manifest.json",
                 "feed.xml",
-                "digests/search-index.json",
                 "digests/2026-06-21/ai-topic-radar.md",
                 "digests/2026-06-21/topic-pool.json",
             ],
@@ -106,7 +105,6 @@ class SyncCorpusTests(unittest.TestCase):
             [
                 "manifest.json",
                 "feed.xml",
-                "digests/search-index.json",
                 "digests/2026-08-09/ai-topic-radar.md",
                 "digests/2026-08-09/ai-weekly.md",
                 "digests/2026-08-09/ai-monthly-en.md",
@@ -136,7 +134,6 @@ class SyncCorpusTests(unittest.TestCase):
         payloads = {
             "https://example.com/radar/manifest.json": json.dumps(manifest),
             "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
-            "https://example.com/radar/digests/search-index.json": '{"topics":[]}',
             "https://example.com/radar/digests/2026-06-21/ai-topic-radar.md": "# Report",
             "https://example.com/radar/digests/2026-06-21/topic-pool.json": '{"candidates":[]}',
         }
@@ -152,7 +149,7 @@ class SyncCorpusTests(unittest.TestCase):
                 fetcher=fetcher,
             )
 
-            self.assertEqual(result.downloaded, 5)
+            self.assertEqual(result.downloaded, 4)
             self.assertEqual(
                 (Path(tmp) / "feed.xml").read_text(encoding="utf-8"),
                 "<rss><channel /></rss>",

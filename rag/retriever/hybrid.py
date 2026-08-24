@@ -3,9 +3,12 @@ Uses Reciprocal Rank Fusion (RRF) to merge results from both sources."""
 
 from __future__ import annotations
 
+import asyncio
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING
+
+from rag.retriever.lexical_store import metadata_matches_filter
 
 if TYPE_CHECKING:
     from rag.graphrag.driver import Neo4jDriver
@@ -18,6 +21,33 @@ class RetrievedChunk:
     source: str  # "vector" or "graph"
     score: float
     metadata: dict = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class ChannelOutcome:
+    """One retrieval channel result without confusing failure with no matches."""
+
+    status: str
+    chunks: list[RetrievedChunk] = field(default_factory=list)
+    error_code: str = ""
+
+
+@dataclass(frozen=True)
+class HybridSearchOutcome:
+    """Merged retrieval result plus auditable per-channel health."""
+
+    status: str
+    chunks: list[RetrievedChunk] = field(default_factory=list)
+    channels: dict[str, ChannelOutcome] = field(default_factory=dict)
+    error_code: str = ""
+
+
+class RetrievalFailure(RuntimeError):
+    """Raised by the legacy list-only interface when retrieval is unusable."""
+
+    def __init__(self, error_code: str):
+        super().__init__(error_code or "retrieval_failed")
+        self.error_code = error_code or "retrieval_failed"
 
 
 # 来源质量权重
@@ -48,9 +78,16 @@ SOURCE_QUALITY_MAP = {
 class HybridRetriever:
     """Combines Neo4j graph traversal with ChromaDB vector similarity using RRF."""
 
-    def __init__(self, vector_store: VectorStore, neo4j_driver: Neo4jDriver, rrf_k: int = 60):
+    def __init__(
+        self,
+        vector_store: VectorStore,
+        neo4j_driver: Neo4jDriver,
+        lexical_store=None,
+        rrf_k: int = 60,
+    ):
         self.vector = vector_store
         self.neo4j = neo4j_driver
+        self.lexical = lexical_store
         self.rrf_k = rrf_k
 
     @staticmethod
@@ -69,33 +106,106 @@ class HybridRetriever:
         source = str(meta.get("source", "")).strip().lower()
         return f"{title}|{date}|{source}"
 
-    async def search(self, query: str, k: int = 5, where: dict | None = None) -> list[RetrievedChunk]:
-        """Hybrid search: vector + graph, merge via Reciprocal Rank Fusion."""
-        vector_results = self._safe_vector_search(query, k, where=where)
-        graph_results = await self._safe_graph_search(query, k)
+    @classmethod
+    def _fuse_rrf(
+        cls,
+        *result_lists: list[RetrievedChunk],
+        rrf_k: int,
+    ) -> list[RetrievedChunk]:
+        """Fuse channel ranks and replace incomparable channel raw scores."""
+        fused: dict[str, dict] = {}
+        for results in result_lists:
+            for rank, chunk in enumerate(results):
+                key = cls._dedup_key(chunk)
+                if key not in fused:
+                    fused[key] = {"chunk": chunk, "score": 0.0}
+                else:
+                    fused[key]["chunk"].metadata.update(
+                        {key: value for key, value in chunk.metadata.items() if value not in (None, "")}
+                    )
+                fused[key]["score"] += 1.0 / (rrf_k + rank + 1)
+
+        ranked = sorted(fused.values(), key=lambda item: item["score"], reverse=True)
+        for item in ranked:
+            item["chunk"].score = item["score"]
+            if item["chunk"].metadata.get("lexical_match_type") == "exact_title":
+                item["chunk"].score += 1.0 / (rrf_k + 1)
+            item["chunk"].metadata["fusion_score"] = item["chunk"].score
+        ranked.sort(key=lambda item: item["chunk"].score, reverse=True)
+        return [item["chunk"] for item in ranked]
+
+    async def search(
+        self,
+        query: str,
+        k: int = 5,
+        where: dict | None = None,
+        graph_requirement: str = "optional",
+    ) -> list[RetrievedChunk]:
+        """Backward-compatible list interface that never masks an unusable search."""
+        outcome = await self.search_with_status(
+            query,
+            k=k,
+            where=where,
+            graph_requirement=graph_requirement,
+        )
+        if outcome.status in {"error", "timeout", "partial_error"} or (outcome.status == "degraded" and not outcome.chunks):
+            raise RetrievalFailure(outcome.error_code)
+        return outcome.chunks
+
+    async def search_with_status(
+        self,
+        query: str,
+        k: int = 5,
+        where: dict | None = None,
+        graph_requirement: str = "optional",
+    ) -> HybridSearchOutcome:
+        """Hybrid search with channel-level success, empty, error and timeout states."""
+        vector = self._vector_search_outcome(query, k, where=where)
+        lexical = self._lexical_search_outcome(query, k, where=where)
+        graph = (
+            ChannelOutcome(status="disabled")
+            if graph_requirement == "disabled"
+            else await self._graph_search_outcome(query, k, where=where)
+        )
+        channels = {"lexical": lexical, "vector": vector, "graph": graph}
+        lexical_results = lexical.chunks
+        vector_results = vector.chunks
+        graph_results = graph.chunks
 
         # Reciprocal Rank Fusion — G-3 修复：用 citation_id 或 title+date+source 作去重 key，
         # 替代原来的全文字符串，使语义近似但文本不完全相同的条目能正确合并
-        fused: dict[str, dict] = {}
-        for rank, r in enumerate(vector_results):
-            key = self._dedup_key(r)
-            if key not in fused:
-                fused[key] = {"chunk": r, "score": 0.0}
-            fused[key]["score"] += 1.0 / (self.rrf_k + rank + 1)
-
-        for rank, r in enumerate(graph_results):
-            key = self._dedup_key(r)
-            if key not in fused:
-                fused[key] = {"chunk": r, "score": 0.0}
-            fused[key]["score"] += 1.0 / (self.rrf_k + rank + 1)
-
-        ranked = sorted(fused.values(), key=lambda x: x["score"], reverse=True)
-        results = [item["chunk"] for item in ranked[:k]]
+        results = self._fuse_rrf(
+            vector_results,
+            lexical_results,
+            graph_results,
+            rrf_k=self.rrf_k,
+        )[:k]
 
         # 应用确定性重排
         results = self._apply_deterministic_reranking(results, query)
 
-        return results
+        failed = [outcome for outcome in channels.values() if outcome.status in {"error", "timeout"}]
+        operational = [outcome for outcome in channels.values() if outcome.status in {"success", "empty"}]
+        error_code = ",".join(
+            outcome.error_code for outcome in failed if outcome.error_code
+        )
+        graph_failed = graph.status in {"error", "timeout"}
+        if graph_requirement == "required" and graph_failed:
+            status = "partial_error"
+            error_code = "required_graph_unavailable"
+        elif failed and not operational:
+            status = "timeout" if all(outcome.status == "timeout" for outcome in failed) else "error"
+            error_code = "all_channels_failed"
+        elif failed:
+            status = "degraded"
+        else:
+            status = "ready" if results else "empty"
+        return HybridSearchOutcome(
+            status=status,
+            chunks=results,
+            channels=channels,
+            error_code=error_code,
+        )
 
     def _apply_deterministic_reranking(self, chunks: list[RetrievedChunk], query: str) -> list[RetrievedChunk]:
         """应用确定性重排策略"""
@@ -106,7 +216,9 @@ class HybridRetriever:
             quality_weight = SOURCE_QUALITY_WEIGHTS.get(quality_tier, 0.4)
 
             # 计算新鲜度分数
-            freshness_score = self._calculate_freshness_score(chunk.metadata.get("date", ""))
+            freshness_score = self._calculate_freshness_score(
+                chunk.metadata.get("effective_date") or chunk.metadata.get("date", "")
+            )
 
             # 计算相关性分数（基于文本匹配）
             relevance_score = self._calculate_relevance_score(chunk.text, query)
@@ -155,10 +267,10 @@ class HybridRetriever:
         matches = query_words.intersection(text_words)
         return len(matches) / len(query_words)
 
-    def _safe_vector_search(self, query: str, k: int, where: dict | None = None) -> list[RetrievedChunk]:
+    def _vector_search_outcome(self, query: str, k: int, where: dict | None = None) -> ChannelOutcome:
         try:
             hits = self.vector.search(query, k=k, where=where)
-            return [
+            chunks = [
                 RetrievedChunk(
                     text=hit["text"],
                     source="vector",
@@ -167,29 +279,71 @@ class HybridRetriever:
                 )
                 for hit in hits
             ]
+            for chunk in chunks:
+                chunk.metadata["vector_similarity"] = chunk.score
+            return ChannelOutcome(status="success" if chunks else "empty", chunks=chunks)
+        except asyncio.TimeoutError:
+            return ChannelOutcome(status="timeout", error_code="vector_timeout")
         except Exception as e:
             print(f"[hybrid] vector search failed: {e}")
-            return []
+            return ChannelOutcome(status="error", error_code=type(e).__name__)
 
-    async def _safe_graph_search(self, query: str, k: int) -> list[RetrievedChunk]:
+    def _lexical_search_outcome(self, query: str, k: int, where: dict | None = None) -> ChannelOutcome:
+        if self.lexical is None:
+            return ChannelOutcome(status="disabled")
         try:
-            # 修复 G-1：在全文索引后立即截断节点数量，避免 MATCH 展开导致中间结果爆炸
-            # 1. 全文索引返回节点 → 2. 按 score 排序并 LIMIT 截断 → 3. 再展开路径 → 4. 最终 LIMIT
+            hits = self.lexical.search(query, k=k, where=where)
+            chunks = [
+                RetrievedChunk(
+                    text=hit["text"],
+                    source="lexical",
+                    score=0.0,
+                    metadata={
+                        **hit["metadata"],
+                        "lexical_match_type": hit.get("match_type", "lexical"),
+                        "lexical_score": hit.get("lexical_score", 0.0),
+                    },
+                )
+                for hit in hits
+            ]
+            return ChannelOutcome(status="success" if chunks else "empty", chunks=chunks)
+        except asyncio.TimeoutError:
+            return ChannelOutcome(status="timeout", error_code="lexical_timeout")
+        except Exception as exc:
+            return ChannelOutcome(status="error", error_code=type(exc).__name__)
+
+    async def _graph_search_outcome(
+        self,
+        query: str,
+        k: int,
+        where: dict | None = None,
+    ) -> ChannelOutcome:
+        try:
+            # 先截断实体候选，再展开到原子 Observation，避免旧 Topic 聚合节点
+            # 丢失 ATR 身份、日期和可跳转地址。
+            candidate_k = min(k * 3, 30) if where else k
             hits = await self.neo4j.execute_query(
                 "CALL db.index.fulltext.queryNodes('entity_search', $query) "
                 "YIELD node, score "
-                # 步骤 1-2：先按相关性分数截断全文索引节点，限制后续展开的基数
                 "WITH node, score ORDER BY score DESC LIMIT $k "
-                "MATCH (node)-[:MENTIONS]->(t:Topic)-[r:APPEARED_ON]->(d:DailyDigest) "
-                "RETURN t.name AS topic, t.category AS category, t.totalScore AS totalScore, "
-                "t.url AS topicUrl, t.source AS topicSource, t.summary AS topicSummary, "
-                "r.url AS occurrenceUrl, r.source AS occurrenceSource, r.summary AS occurrenceSummary, "
-                "r.reason AS occurrenceReason, r.evidence AS occurrenceEvidence, d.date AS date "
-                "ORDER BY score DESC LIMIT $k",
+                "MATCH (node)-[:MENTIONS]->(o:Observation)-[:INSTANCE_OF]->(t:Topic) "
+                "MATCH (o)-[:OBSERVED_ON]->(d:DailyDigest) "
+                "RETURN o.id AS occurrenceId, t.name AS topic, "
+                "coalesce(o.category, t.category) AS category, o.score AS totalScore, "
+                "o.url AS occurrenceUrl, o.localUrl AS localUrl, "
+                "o.source AS occurrenceSource, o.summary AS occurrenceSummary, "
+                "o.reason AS occurrenceReason, o.evidence AS occurrenceEvidence, d.date AS date, "
+                "o.reportDate AS reportDate, o.publicationDate AS publicationDate, "
+                "o.publicationDateSource AS publicationDateSource, o.observedAt AS observedAt, "
+                "o.sourceUpdatedAt AS sourceUpdatedAt, "
+                "o.ingestedAt AS ingestedAt, o.effectiveDate AS effectiveDate, "
+                "o.effectiveDateBasis AS effectiveDateBasis, "
+                "score AS entityMatchScore "
+                "ORDER BY entityMatchScore DESC, totalScore DESC LIMIT $k",
                 query=query,
-                k=k,
+                k=candidate_k,
             )
-            return [
+            chunks = [
                 RetrievedChunk(
                     text=_graph_hit_text(h),
                     source="graph",
@@ -197,10 +351,15 @@ class HybridRetriever:
                     metadata=_graph_hit_metadata(h),
                 )
                 for h in hits
+                if metadata_matches_filter(_graph_hit_metadata(h), where)
             ]
+            chunks = chunks[:k]
+            return ChannelOutcome(status="success" if chunks else "empty", chunks=chunks)
+        except asyncio.TimeoutError:
+            return ChannelOutcome(status="timeout", error_code="graph_timeout")
         except Exception as e:
             print(f"[hybrid] graph search failed: {e}")
-            return []
+            return ChannelOutcome(status="error", error_code=type(e).__name__)
 
 
 def _graph_hit_text(hit: dict) -> str:
@@ -230,13 +389,23 @@ def _graph_hit_metadata(hit: dict) -> dict:
     else:
         evidence_excerpt = str(evidence or "")
     return {
-        "content_type": "graph_topic",
+        "content_type": "daily_observation",
         "date": date,
+        "report_date": hit.get("reportDate") or date,
+        "publication_date": hit.get("publicationDate") or "",
+        "publication_date_source": hit.get("publicationDateSource") or "unknown",
+        "source_updated_at": hit.get("sourceUpdatedAt") or "",
+        "observed_at": hit.get("observedAt") or date,
+        "ingested_at": hit.get("ingestedAt") or "",
+        "effective_date": hit.get("effectiveDate") or date,
+        "effective_date_basis": hit.get("effectiveDateBasis") or "report_date_fallback",
         "source": source,
         "title": title,
-        "url": hit.get("occurrenceUrl") or hit.get("topicUrl") or "",
-        "citation_id": f"{date}/graph-topic/{str(title).lower().strip()}",
-        "excerpt": evidence_excerpt or hit.get("occurrenceSummary") or hit.get("topicSummary") or "",
+        "url": hit.get("occurrenceUrl") or "",
+        "local_url": hit.get("localUrl") or "",
+        "citation_id": hit.get("occurrenceId") or f"{date}/observation/{str(title).lower().strip()}",
+        "occurrence_id": hit.get("occurrenceId") or "",
+        "excerpt": evidence_excerpt or hit.get("occurrenceSummary") or "",
         "category": hit.get("category", ""),
         "score": hit.get("totalScore", 0),
     }

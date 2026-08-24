@@ -1,5 +1,7 @@
 # Keep weekly and monthly rollups out of retrieval
 
+The report-level daily retrieval clause in this ADR is superseded by ADR-0003; the decision to keep weekly and monthly rollups browse-only remains accepted.
+
 Weekly and monthly reports are derived selections and trend summaries built from daily reports, so users should be able to browse them but the RAG pipeline must not vectorize or graph-index them. Daily `ai-topic-radar` reports remain the report-level retrieval corpus; this avoids overweighting the same facts through repeated daily, weekly, and monthly summaries while GraphRAG derives cross-day trends from linked daily evidence.
 
 ## Consequences

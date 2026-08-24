@@ -119,7 +119,6 @@ def build_sync_plan(
     items = [
         SyncItem("manifest.json"),
         SyncItem("feed.xml"),
-        SyncItem("digests/search-index.json"),
     ]
 
     dates = manifest.get("dates") or []

@@ -17,6 +17,7 @@ permissions:
 
 env:
   UPSTREAM_CORPUS_URL: ${{ vars.UPSTREAM_CORPUS_URL || 'https://conradgui.github.io/AI-TREND-RADAR' }}
+  CORPUS_UPDATE_BRANCH: automation/corpus-sync
 
 jobs:
   validate:
@@ -35,8 +36,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install workflow test dependency
-        run: python -m pip install "pytest>=8,<9"
+      - name: Install workflow contract dependencies
+        run: python -m pip install "pytest>=8,<9" "PyYAML>=6,<7"
 
       - name: Verify sync and workflow contracts
         run: python -m unittest rag.tests.test_sync_corpus && python -m pytest -q rag/tests/test_workflow_contracts.py
@@ -80,6 +81,9 @@ jobs:
     timeout-minutes: 10
     permissions:
       contents: write
+      pull-requests: write
+    outputs:
+      merged: ${{ steps.pr_delivery.outputs.merged }}
     concurrency:
       group: corpus-publish
       cancel-in-progress: false
@@ -91,32 +95,96 @@ jobs:
           ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
 
+      - name: Prepare dedicated corpus branch
+        run: git switch -C "$CORPUS_UPDATE_BRANCH"
+
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.11"
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Pull the latest validated corpus
         run: python -m rag.sync_corpus --base-url "$UPSTREAM_CORPUS_URL" --days 30
 
+      - name: Normalize corpus and rebuild search index
+        run: pnpm manifest
+
+      - name: Rebuild corpus contract before commit
+        run: python -m rag.corpus_contract --source-mode hosted
+
       - name: Commit auditable corpus artifacts
+        id: corpus_commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add digests/ manifest.json feed.xml corpus-manifest.json
           if git diff --cached --quiet; then
             echo "Corpus already up to date" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             DATE=$(date -u +%Y-%m-%d)
             git commit -m "corpus: sync upstream through ${DATE}"
-            git push
-            echo "Published corpus update through ${DATE}" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "validated_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            echo "Prepared corpus update through ${DATE}" | tee -a "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Push dedicated corpus branch
+        if: steps.corpus_commit.outputs.changed == 'true'
+        run: git push --force-with-lease origin HEAD:"$CORPUS_UPDATE_BRANCH"
+
+      - name: Create and merge corpus pull request
+        id: pr_delivery
+        if: steps.corpus_commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          VALIDATED_SHA: ${{ steps.corpus_commit.outputs.validated_sha }}
+        run: |
+          pr_number=$(gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --head "$CORPUS_UPDATE_BRANCH" \
+            --base "$DEFAULT_BRANCH" \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -z "$pr_number" ]; then
+            pr_url=$(gh pr create \
+              --repo "$GITHUB_REPOSITORY" \
+              --head "$CORPUS_UPDATE_BRANCH" \
+              --base "$DEFAULT_BRANCH" \
+              --title "corpus: automated hosted update" \
+              --body "Automated hosted corpus update. Sync, ATR identity, search-index coverage, and corpus-contract gates passed before this PR was created.")
+            pr_number=$(gh pr view "$pr_url" --repo "$GITHUB_REPOSITORY" --json number --jq '.number')
+          fi
+
+          gh pr merge "$pr_number" \
+            --repo "$GITHUB_REPOSITORY" \
+            --squash \
+            --delete-branch \
+            --match-head-commit "$VALIDATED_SHA"
+          pr_state=$(gh pr view "$pr_number" --repo "$GITHUB_REPOSITORY" --json state --jq '.state')
+          test "$pr_state" = "MERGED"
+          echo "merged=true" >> "$GITHUB_OUTPUT"
+          echo "Merged corpus PR #${pr_number}" | tee -a "$GITHUB_STEP_SUMMARY"
 
   deploy-pages:
     name: Deploy published corpus to Pages
     needs: publish
-    if: ${{ always() && needs.publish.result == 'success' }}
+    if: ${{ needs.publish.result == 'success' && needs.publish.outputs.merged == 'true' }}
     permissions:
       contents: read
       pages: write

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { pathToFileURL } from "node:url";
 import { marked } from "marked";
 import { REPORT_LABELS } from "./i18n.ts";
 import { getReportLangs, shouldSaveSourceReports } from "./options.ts";
@@ -228,20 +229,25 @@ export function generateSearchIndex(
     const poolPath = path.join(digestsDir, date, "topic-pool.json");
     if (!fs.existsSync(poolPath)) continue;
 
-    let pool: { candidates?: unknown[] };
+    let pool: unknown;
     try {
-      pool = JSON.parse(fs.readFileSync(poolPath, "utf-8")) as {
-        candidates?: unknown[];
-      };
+      pool = JSON.parse(fs.readFileSync(poolPath, "utf-8")) as unknown;
     } catch {
-      diagnostics.push({ date, field: "topic-pool.json", category: "invalid_json" });
-      continue;
+      throw new Error(`Invalid topic pool JSON for ${date}`);
     }
+    if (
+      pool === null ||
+      typeof pool !== "object" ||
+      !Array.isArray((pool as { candidates?: unknown }).candidates)
+    ) {
+      throw new Error(`Invalid topic pool structure for ${date}: candidates must be an array`);
+    }
+    const candidates = (pool as { candidates: unknown[] }).candidates;
     const result = buildSearchDocuments({
       date,
       reportId: "ai-topic-radar",
       reportType: "daily",
-      candidates: Array.isArray(pool.candidates) ? pool.candidates : [],
+      candidates,
     });
     documents.push(...result.documents);
     diagnostics.push(...result.diagnostics);
@@ -254,10 +260,7 @@ export function generateSearchIndex(
       b.score - a.score ||
       a.normalized_title.localeCompare(b.normalized_title),
   );
-  const representedCandidateCount = documents.reduce(
-    (sum, item) => sum + item.duplicate_count,
-    0,
-  );
+  const representedCandidateCount = documents.reduce((sum, item) => sum + item.duplicate_count, 0);
   if (representedCandidateCount !== sourceCandidateCount) {
     throw new Error(
       `Search document coverage mismatch: represented ${representedCandidateCount} of ${sourceCandidateCount} candidates`,
@@ -283,8 +286,7 @@ export function generateSearchIndex(
 
 // Run only when executed directly (not imported for testing)
 const isDirectRun =
-  process.argv[1] &&
-  (process.argv[1].endsWith("generate-manifest.ts") || process.argv[1].endsWith("generate-manifest.js"));
+  Boolean(process.argv[1]) && import.meta.url === pathToFileURL(path.resolve(process.argv[1]!)).href;
 if (isDirectRun) {
   main().catch((err) => {
     console.error(err);

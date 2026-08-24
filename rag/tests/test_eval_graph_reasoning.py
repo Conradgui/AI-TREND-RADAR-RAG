@@ -14,7 +14,8 @@ class GraphReasoningEvalTests(unittest.TestCase):
             {
                 "id": "G1",
                 "entity_id": "rag",
-                "topic_count": 6,
+                "content_count": 6,
+                "repeated_content_count": 2,
                 "date_count": 5,
                 "source_count": 2,
                 "sample_paths": [
@@ -26,10 +27,11 @@ class GraphReasoningEvalTests(unittest.TestCase):
             {
                 "id": "G1",
                 "entity_id": "rag",
-                "min_topics": 5,
+                "min_contents": 5,
+                "min_repeated_contents": 1,
                 "min_dates": 3,
                 "min_sources": 1,
-                "required_paths": ["entity_topic_date", "entity_topic_source"],
+                "required_paths": ["entity_observation_date", "entity_observation_source"],
             }
         ]
 
@@ -43,7 +45,8 @@ class GraphReasoningEvalTests(unittest.TestCase):
             {
                 "id": "G2",
                 "entity_id": "openai",
-                "topic_count": 8,
+                "content_count": 8,
+                "repeated_content_count": 2,
                 "date_count": 4,
                 "source_count": 0,
                 "sample_paths": [],
@@ -53,17 +56,18 @@ class GraphReasoningEvalTests(unittest.TestCase):
             {
                 "id": "G2",
                 "entity_id": "openai",
-                "min_topics": 5,
+                "min_contents": 5,
+                "min_repeated_contents": 1,
                 "min_dates": 3,
                 "min_sources": 1,
-                "required_paths": ["entity_topic_source"],
+                "required_paths": ["entity_observation_source"],
             }
         ]
 
         scored = score_graph_reasoning_rows(observations, seeds)
 
         self.assertFalse(scored[0]["passed"])
-        self.assertIn("missing_entity_topic_source_path", scored[0]["failed_checks"])
+        self.assertIn("missing_entity_observation_source_path", scored[0]["failed_checks"])
 
     def test_summary_counts_failures(self):
         scored = [

@@ -48,6 +48,39 @@ def test_dashboard_search_normalizes_spacing_and_returns_specific_items():
     assert "grp.hidden = !matched" not in source
 
 
+def test_dashboard_accepts_the_product_owned_atr_v1_search_index():
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "artifact.schema_version !== 2" in source
+    assert "artifact.id_scheme !== 'atr-v1'" in source
+    assert "artifact.id_scheme !== 'sd-v1'" not in source
+
+
+def test_dashboard_initializes_filter_options_before_the_user_types():
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "void initSearch();" in source
+
+
+def test_dashboard_does_not_reuse_a_stale_versioned_search_index():
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "fetch('./digests/search-index.json', { cache: 'no-store' })" in source
+
+
+def test_dashboard_filters_can_browse_without_a_keyword():
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "applyItemSearch(searchQuery, true)" in source
+    assert "filterBrowse" in source
+
+
+def test_dashboard_time_filter_uses_the_actual_latest_document_date():
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert "document.date > latest ? document.date : latest" in source
+
+
 def test_dashboard_item_routes_restore_specific_details_without_guessing_report_anchors():
     source = DASHBOARD.read_text(encoding="utf-8")
 

@@ -32,6 +32,11 @@ class CitationTests(unittest.TestCase):
                     "score": 80,
                     "category": "AI 产品与用户入口",
                     "evidence": "来源：Product Hunt\n发布时间：2026-06-19",
+                    "report_date": "2026-06-21",
+                    "publication_date": "2026-06-19",
+                    "publication_date_source": "legacy_evidence",
+                    "effective_date": "2026-06-19",
+                    "effective_date_basis": "publication_date",
                 },
             )
         ]
@@ -51,6 +56,11 @@ class CitationTests(unittest.TestCase):
                     "url": "https://example.com/claude-code-artifacts",
                     "score": 80,
                     "category": "AI 产品与用户入口",
+                    "report_date": "2026-06-21",
+                    "publication_date": "2026-06-19",
+                    "publication_date_source": "legacy_evidence",
+                    "effective_date": "2026-06-19",
+                    "effective_date_basis": "publication_date",
                 }
             ],
         )
@@ -122,6 +132,23 @@ class CitationTests(unittest.TestCase):
 
         self.assertEqual(len(citations), 1)
         self.assertEqual(citations[0]["citation_id"], "2026-06-19/topic-pool/19")
+
+    def test_source_cap_is_explicit_not_global(self):
+        chunks = [
+            FakeChunk(
+                text=f"Evidence {index}",
+                metadata={
+                    "date": "2026-08-05",
+                    "source": "OpenAI",
+                    "title": f"Release {index}",
+                    "citation_id": f"release-{index}",
+                },
+            )
+            for index in range(3)
+        ]
+
+        self.assertEqual(len(build_citations(chunks)), 3)
+        self.assertEqual(len(build_citations(chunks, source_cap=2)), 2)
 
     def test_evidence_insufficient_answer_names_current_boundary(self):
         answer = evidence_insufficient_answer("最近 RAG 有什么新动向？")
@@ -211,7 +238,8 @@ class RetrieveCitationTests(unittest.IsolatedAsyncioTestCase):
                     FakeChunk(
                         text="Older but top-ranked evidence",
                         metadata={
-                            "date": "2026-07-23",
+                            "date": "2026-08-05",
+                            "effective_date": "2023-07-23",
                             "source": "Source A",
                             "title": "Older trend",
                             "citation_id": "2026-07-23/topic-pool/0",
@@ -220,7 +248,8 @@ class RetrieveCitationTests(unittest.IsolatedAsyncioTestCase):
                     FakeChunk(
                         text="Fresh evidence from the latest corpus date",
                         metadata={
-                            "date": "2026-08-05",
+                            "date": "2026-08-04",
+                            "effective_date": "2026-08-04",
                             "source": "Source B",
                             "title": "Fresh trend",
                             "citation_id": "2026-08-05/topic-pool/0",
@@ -238,7 +267,8 @@ class RetrieveCitationTests(unittest.IsolatedAsyncioTestCase):
         )
 
         self.assertEqual(retriever.k, 30)
-        self.assertEqual(citations[0]["date"], "2026-08-05")
+        self.assertEqual(citations[0]["date"], "2026-08-04")
+        self.assertEqual(citations[0]["effective_date"], "2026-08-04")
         self.assertEqual(citations[0]["title"], "Fresh trend")
 
 

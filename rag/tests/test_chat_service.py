@@ -5,10 +5,104 @@ import unittest
 from dataclasses import dataclass, field
 from datetime import date
 
-from rag.chat_service import _external_search_cache, build_chat_response
+from rag.chat_service import (
+    _apply_answer_evidence_budget,
+    _external_search_cache,
+    _format_citation_for_prompt,
+    build_chat_response,
+)
+from rag.query_understanding import analyze_query
+from rag.retrieval_gateway import EvidenceBundle
+from rag.retriever.hybrid import ChannelOutcome, HybridSearchOutcome, RetrievedChunk
 
 
 TODAY = date.today().isoformat()
+
+
+def test_internal_evidence_prompt_preserves_local_navigation_url():
+    rendered = _format_citation_for_prompt(
+        1,
+        {
+            "date": "2026-08-11",
+            "source": "OpenAI",
+            "title": "Example",
+            "citation_id": "ATR-20260811-A1B2C3",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-A1B2C3",
+            "excerpt": "Evidence",
+        },
+    )
+
+    assert "#2026-08-11/ai-topic-radar/item/ATR-20260811-A1B2C3" in rendered
+
+
+def test_internal_evidence_prompt_distinguishes_publication_and_collection_dates():
+    rendered = _format_citation_for_prompt(
+        1,
+        {
+            "date": "2026-08-11",
+            "report_date": "2026-08-11",
+            "publication_date": "2022-02-11",
+            "publication_date_source": "upstream_declared",
+            "source": "Official",
+            "title": "Old article",
+            "citation_id": "ATR-20260811-OLD001",
+            "excerpt": "Evidence",
+        },
+    )
+
+    assert "发布日期: 2022-02-11" in rendered
+    assert "收录日期: 2026-08-11" in rendered
+
+
+def test_internal_evidence_prompt_does_not_overclaim_legacy_date_as_verified_publication():
+    rendered = _format_citation_for_prompt(
+        1,
+        {
+            "report_date": "2026-08-11",
+            "publication_date": "2022-02-11",
+            "publication_date_source": "legacy_evidence",
+            "source": "Official",
+            "title": "Historical item",
+            "citation_id": "ATR-20260811-LEG001",
+            "excerpt": "Evidence",
+        },
+    )
+
+    assert "历史记录日期: 2022-02-11（旧语料字段，未独立核验）" in rendered
+    assert "发布日期: 2022-02-11" not in rendered
+
+
+def test_internal_evidence_prompt_labels_report_date_fallback():
+    rendered = _format_citation_for_prompt(
+        1,
+        {
+            "date": "2026-08-11",
+            "report_date": "2026-08-11",
+            "source": "Official",
+            "title": "Unknown publication date",
+            "citation_id": "ATR-20260811-UNK001",
+            "excerpt": "Evidence",
+        },
+    )
+
+    assert "发布日期: 未知" in rendered
+    assert "时间依据: 日报收录日期降级" in rendered
+
+
+def test_timeline_answer_budget_never_drops_graph_reasoning_evidence():
+    plan = analyze_query("OpenAI 的发展历程和变化是什么？")
+    citations = [
+        {"citation_id": f"text-{index}", "content_type": "topic_candidate"}
+        for index in range(12)
+    ] + [{
+        "citation_id": "graph-reasoning/openai",
+        "content_type": "graph_reasoning",
+    }]
+
+    selected = _apply_answer_evidence_budget(citations, plan)
+
+    assert len(selected) == 6
+    assert selected[-1]["citation_id"] == "graph-reasoning/openai"
 
 
 @dataclass
@@ -86,10 +180,144 @@ class FakeExternalRegistryByProvider:
         return self.results[request.provider]
 
 
+class FakeGateway:
+    def __init__(self):
+        self.requests = []
+
+    async def retrieve(self, request):
+        self.requests.append(request)
+        plan = analyze_query(request.question)
+        return EvidenceBundle(
+            status="ready",
+            task_family="trend_discovery",
+            records=[
+                {
+                    "evidence_type": "internal",
+                    "date": "2026-08-05",
+                    "source": "OpenAI",
+                    "title": "Structured trend",
+                    "citation_id": "occ-structured-trend",
+                    "excerpt": "A structured trend candidate.",
+                }
+            ],
+            analysis=plan,
+            query_plan=plan.to_dict(),
+            trace={"path": "trend_discovery", "candidate_count": 12},
+            elapsed_ms=123.0,
+        )
+
+
+class FakeGraphGateway:
+    async def retrieve(self, request):
+        plan = analyze_query(request.question)
+        return EvidenceBundle(
+            status="ready",
+            task_family="relation_exploration",
+            records=[
+                {
+                    "evidence_type": "internal",
+                    "date": "2026-08-05",
+                    "source": "OpenAI",
+                    "title": "OpenAI responds to Apple",
+                    "citation_id": "ATR-20260805-ABC123",
+                    "excerpt": "OpenAI responded to an Apple dispute.",
+                },
+                {
+                    "evidence_type": "internal",
+                    "content_type": "graph_reasoning",
+                    "date": "2026-08-05",
+                    "source": "Neo4j graph",
+                    "title": "OpenAI graph relationship evidence",
+                    "citation_id": "graph-reasoning/openai",
+                    "excerpt": "OpenAI 在图谱中跨多个日期出现。",
+                },
+            ],
+            analysis=plan,
+            query_plan=plan.to_dict(),
+            trace={"path": "evidence_search", "graph_evidence": {"status": "ready"}},
+        )
+
+
+class FakeImportantNewsGateway:
+    async def retrieve(self, request):
+        plan = analyze_query(request.question)
+        return EvidenceBundle(
+            status="ready",
+            task_family="trend_discovery",
+            records=[{
+                "evidence_type": "internal",
+                "date": "2026-08-12",
+                "source": "OpenAI",
+                "title": "Recent major event",
+                "citation_id": "recent-event",
+                "excerpt": "A recent important event.",
+            }],
+            background_records=[{
+                "evidence_type": "internal",
+                "date": "2026-07-20",
+                "source": "OpenAI",
+                "title": "Older major dispute",
+                "citation_id": "older-dispute",
+                "excerpt": "An important but older dispute.",
+            }],
+            analysis=plan,
+            query_plan=plan.to_dict(),
+            trace={"path": "trend_discovery"},
+        )
+
+
+class FakeNavigationGateway:
+    async def retrieve(self, request):
+        plan = analyze_query(request.question)
+        return EvidenceBundle(
+            status="ready",
+            task_family="item_navigation",
+            records=[
+                {
+                    "evidence_type": "internal",
+                    "content_type": "topic_candidate",
+                    "date": "2026-08-05",
+                    "report_date": "2026-08-05",
+                    "source": "OpenAI",
+                    "title": "Introducing The OpenAI Economic Research Exchange",
+                    "citation_id": "ATR-20260805-99E550",
+                    "occurrence_id": "ATR-20260805-99E550",
+                    "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-99E550",
+                    "excerpt": "OpenAI introduced an economic research exchange.",
+                }
+            ],
+            analysis=plan,
+            query_plan=plan.to_dict(),
+            trace={"path": "navigator", "candidate_count": 1},
+            elapsed_ms=4.0,
+        )
+
+
 class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         # 外部搜索缓存属于进程状态；每个测试必须从独立状态开始。
         _external_search_cache.clear()
+
+    async def test_exact_item_navigation_returns_without_any_model_call(self):
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "ATR-20260805-99E550",
+            [],
+            answer_composer=ExplodingAgent(),
+            retrieval_gateway=FakeNavigationGateway(),
+        )
+
+        self.assertEqual(response["query_understanding"]["task_family"], "item_navigation")
+        self.assertEqual(response["tool_trace"]["execution_path"], "deterministic_navigation")
+        self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 0)
+        self.assertIn(
+            "#2026-08-05/ai-topic-radar/item/ATR-20260805-99E550",
+            response["answer"],
+        )
+        self.assertEqual(response["citations"][0]["evidence_id"], "E1")
+        self.assertEqual(response["citations"][0]["display_label"], "I1")
+        self.assertTrue(response["evidence_integrity"]["valid"])
 
     async def test_build_chat_response_emits_truthful_progress_in_execution_order(self):
         composer = FakeAgent()
@@ -127,6 +355,182 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertFalse(events[2]["data"]["will_search_web"])
         self.assertEqual(events[3]["data"]["admitted_count"], 1)
         self.assertEqual(events[4]["data"]["execution_path"], "direct_composer")
+
+    async def test_gateway_controls_initial_evidence_path_and_exposes_trace(self):
+        gateway = FakeGateway()
+        composer = FakeAgent()
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "最近有什么热门趋势？",
+            [],
+            latest_corpus_date="2026-08-05",
+            answer_composer=composer,
+            retrieval_gateway=gateway,
+        )
+
+        self.assertEqual(len(gateway.requests), 1)
+        self.assertEqual(response["query_understanding"]["task_family"], "trend_discovery")
+        self.assertEqual(
+            response["query_understanding"]["retrieval_gateway"]["path"],
+            "trend_discovery",
+        )
+        self.assertEqual(response["citations"][0]["citation_id"], "occ-structured-trend")
+        self.assertEqual(response["tool_trace"]["timings"]["retrieval_ms"], 123.0)
+
+    async def test_resolved_route_contract_is_forwarded_to_gateway_once(self):
+        gateway = FakeGateway()
+        calls = []
+        contract = {
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "trend_discovery",
+        }
+
+        async def resolve_query_contract(message, context):
+            calls.append((message, context))
+            return {"status": "resolved", "contract": contract}, {"attempts": 1}
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "最近有什么热门趋势？",
+            [],
+            context={"date": "2026-08-05"},
+            latest_corpus_date="2026-08-05",
+            answer_composer=FakeAgent(),
+            retrieval_gateway=gateway,
+            query_contract_resolver=resolve_query_contract,
+        )
+
+        self.assertEqual(calls, [("最近有什么热门趋势？", {"date": "2026-08-05"})])
+        self.assertIs(gateway.requests[0].route_contract, contract)
+        self.assertEqual(
+            response["query_understanding"]["ordered_route_contract"]["status"],
+            "resolved",
+        )
+
+    async def test_route_contract_failure_is_an_explicit_legacy_fallback(self):
+        gateway = FakeGateway()
+
+        async def fail_query_contract(_message, _context):
+            raise RuntimeError("provider unavailable")
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "最近有什么热门趋势？",
+            [],
+            latest_corpus_date="2026-08-05",
+            answer_composer=FakeAgent(),
+            retrieval_gateway=gateway,
+            query_contract_resolver=fail_query_contract,
+        )
+
+        self.assertIsNone(gateway.requests[0].route_contract)
+        self.assertEqual(
+            response["query_understanding"]["ordered_route_contract"]["status"],
+            "legacy_fallback",
+        )
+        self.assertEqual(
+            response["query_understanding"]["ordered_route_contract"]["error_type"],
+            "RuntimeError",
+        )
+
+    async def test_route_contract_clarification_stops_before_retrieval(self):
+        class ExplodingGateway:
+            async def retrieve(self, _request):
+                raise AssertionError("clarification must stop before retrieval")
+
+        async def require_clarification(_message, _context):
+            return {
+                "status": "clarification_required",
+                "contract": None,
+                "reasons": ["unresolved references: 它"],
+            }, {"attempts": 1}
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "请解释它为什么重要。",
+            [],
+            answer_composer=ExplodingAgent(),
+            retrieval_gateway=ExplodingGateway(),
+            query_contract_resolver=require_clarification,
+        )
+
+        self.assertIn("请补充", response["answer"])
+        self.assertEqual(response["citations"], [])
+        self.assertEqual(
+            response["query_understanding"]["ordered_route_contract"]["status"],
+            "clarification_required",
+        )
+
+    async def test_important_news_answer_always_separates_historical_background(self):
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "OpenAI 最近有哪些重要动态？",
+            [],
+            latest_corpus_date="2026-08-12",
+            answer_composer=FakeAgent(),
+            retrieval_gateway=FakeImportantNewsGateway(),
+        )
+
+        self.assertIn("## 历史背景（不计入近期主榜）", response["answer"])
+        self.assertIn("Older major dispute", response["answer"])
+        self.assertIn("[E2]", response["answer"])
+        self.assertNotIn("Older major dispute", response["answer"].split("## 历史背景")[0])
+
+    async def test_graph_gateway_evidence_is_admitted_and_compiled_into_task_prompt(self):
+        composer = FakeAgent()
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "OpenAI 是否跨多个日期反复出现？",
+            [],
+            answer_composer=composer,
+            retrieval_gateway=FakeGraphGateway(),
+        )
+
+        prompt = composer.payload["messages"][0]["content"]
+        self.assertIn("任务：解释关系", prompt)
+        self.assertIn("graph-reasoning/openai", prompt)
+        self.assertIn("Neo4j graph", prompt)
+        self.assertEqual(
+            [citation["citation_id"] for citation in response["citations"]],
+            ["ATR-20260805-ABC123", "graph-reasoning/openai"],
+        )
+        self.assertEqual(
+            [citation["evidence_id"] for citation in response["citations"]],
+            ["E1", "E2"],
+        )
+
+    async def test_relation_answer_repairs_when_it_omits_required_graph_evidence(self):
+        composer = SequenceAgent([
+            "OpenAI 与 Apple 有关联。[E1]",
+            "文本提供事件线索。[E1] 图谱显示跨日关系。[E2]",
+        ])
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "OpenAI 是否跨多个日期反复出现？",
+            [],
+            answer_composer=composer,
+            retrieval_gateway=FakeGraphGateway(),
+        )
+
+        self.assertEqual(len(composer.calls), 2)
+        self.assertTrue(response["evidence_integrity"]["repair_attempted"])
+        self.assertTrue(response["evidence_integrity"]["valid"])
+        self.assertEqual(response["evidence_integrity"]["required_evidence_ids"], ["E2"])
+        self.assertEqual(response["evidence_integrity"]["missing_required_evidence_ids"], [])
+        self.assertEqual(
+            [citation["citation_id"] for citation in response["citations"]],
+            ["ATR-20260805-ABC123", "graph-reasoning/openai"],
+        )
 
     async def test_build_chat_response_returns_agent_answer_with_citations(self):
         agent = FakeAgent()
@@ -180,6 +584,34 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             response["tool_trace"]["execution_counts"],
             {"model_turns": 1, "agent_tool_calls": 0, "planned_steps": 1},
         )
+
+    async def test_claim_verification_returns_validated_machine_contract_without_exposing_marker(self):
+        agent = SequenceAgent([
+            "现有证据不足以证明该主张。[E1]\n"
+            '<!--claim-result:{"verdict":"insufficient","rationale":"缺少商业结果",'
+            '"evidence_ids":["E1"],"missing_criteria":["财务结果"],'
+            '"direct_refutation":false}-->'
+        ])
+        retriever = FakeRetriever([FakeChunk(
+            text="OpenAI announced a research exchange.",
+            metadata={
+                "date": "2026-08-05",
+                "source": "OpenAI",
+                "title": "Research Exchange",
+                "citation_id": "ATR-20260805-CLAIM1",
+            },
+        )])
+
+        response = await build_chat_response(
+            agent,
+            retriever,
+            "请验证 OpenAI 已经取得商业成功的真实性和来源",
+            [],
+        )
+
+        self.assertNotIn("claim-result", response["answer"])
+        self.assertTrue(response["claim_verification"]["valid"])
+        self.assertEqual(response["claim_verification"]["verdict"], "insufficient")
 
     async def test_simple_internal_question_uses_direct_composer_without_agent_tools(self):
         composer = FakeAgent()
@@ -386,6 +818,48 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response["citations"], [])
         self.assertEqual(response["query_understanding"]["original_question"], "不存在的话题")
 
+    async def test_required_graph_failure_blocks_relational_claims(self):
+        agent = ExplodingAgent()
+
+        class PartialRetriever:
+            async def search_with_status(self, query, k=5, where=None, graph_requirement="optional"):
+                self.graph_requirement = graph_requirement
+                chunk = RetrievedChunk(
+                    text="OpenAI and Apple text clue",
+                    source="vector",
+                    score=0.8,
+                    metadata={
+                        "date": "2026-08-05",
+                        "source": "OpenAI",
+                        "title": "Apple Is Getting This Wrong",
+                        "citation_id": "clue-1",
+                    },
+                )
+                return HybridSearchOutcome(
+                    status="partial_error",
+                    chunks=[chunk],
+                    channels={
+                        "vector": ChannelOutcome(status="success", chunks=[chunk]),
+                        "graph": ChannelOutcome(status="error", error_code="RuntimeError"),
+                    },
+                    error_code="required_graph_unavailable",
+                )
+
+        retriever = PartialRetriever()
+        response = await build_chat_response(
+            agent,
+            retriever,
+            "请分析 OpenAI 与 Apple 最近一个月的跨日关联和趋势变化",
+            [],
+            latest_corpus_date="2026-08-05",
+        )
+
+        self.assertEqual(retriever.graph_requirement, "required")
+        self.assertEqual(response["status"], "partial_error")
+        self.assertEqual(response["error_code"], "required_graph_unavailable")
+        self.assertIn("不生成关系性强结论", response["answer"])
+        self.assertEqual(len(response["citations"]), 1)
+
     async def test_empty_internal_results_can_fall_back_to_web_in_always_mode(self):
         agent = FakeAgent()
         retriever = FakeRetriever([])
@@ -497,9 +971,10 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             retriever.where,
             {
                 "$and": [
+                    {"content_type": "topic_candidate"},
                     {"source_family": "GitHub"},
                     {
-                        "date": {
+                        "effective_date": {
                             "$in": [
                                 "2026-06-15",
                                 "2026-06-16",

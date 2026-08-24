@@ -53,3 +53,18 @@ class EvidenceLedgerTests(unittest.TestCase):
         self.assertEqual(unknown["unknown_evidence_ids"], ["E99"])
         self.assertFalse(missing["is_valid"])
         self.assertTrue(missing["missing_evidence_markers"])
+
+    def test_graph_reasoning_evidence_gets_a_request_local_marker(self):
+        ledger = EvidenceLedger()
+
+        admitted = ledger.admit([{
+            "evidence_type": "internal",
+            "content_type": "graph_reasoning",
+            "source": "Neo4j graph",
+            "title": "OpenAI graph relationship evidence",
+            "citation_id": "graph-reasoning/openai",
+            "excerpt": "OpenAI 跨多个日期出现。",
+        }])
+
+        self.assertEqual(admitted[0]["evidence_id"], "E1")
+        self.assertTrue(validate_evidence_markers("OpenAI 跨日出现。[E1]", admitted)["is_valid"])

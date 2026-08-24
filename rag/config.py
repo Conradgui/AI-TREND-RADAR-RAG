@@ -32,11 +32,15 @@ NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "password")
 # Paths
 DIGESTS_DIR = str(_PROJECT_ROOT / "digests")
 CHROMA_DIR = str(Path(__file__).parent / "data" / "chroma")
+INDEX_GENERATIONS_DIR = str(Path(__file__).parent / "data" / "index-generations")
 
 # Server
 RAG_HOST = os.getenv("RAG_HOST", "0.0.0.0")
 RAG_PORT = int(os.getenv("RAG_PORT", "8001"))
 RAG_ENABLE_DEEP_FETCH = os.getenv("RAG_ENABLE_DEEP_FETCH", "false")
+RAG_STARTUP_CORPUS_UPDATE_ENABLED = os.getenv(
+    "RAG_STARTUP_CORPUS_UPDATE_ENABLED", "false"
+)
 
 # Optional external search providers
 BRAVE_SEARCH_API_KEY = os.getenv("BRAVE_SEARCH_API_KEY", "")
@@ -83,4 +87,18 @@ def is_deep_fetch_enabled(env: dict | None = None) -> bool:
     """Return whether live URL deep fetch is explicitly enabled."""
     source = env or os.environ
     value = source.get("RAG_ENABLE_DEEP_FETCH", RAG_ENABLE_DEEP_FETCH)
+    return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def is_startup_corpus_update_enabled(env: dict | None = None) -> bool:
+    """Return whether startup may sync and ingest upstream corpus changes.
+
+    The default is frozen so development and evaluation cannot silently change
+    their corpus. Managed deployments must opt in explicitly.
+    """
+    source = os.environ if env is None else env
+    value = source.get(
+        "RAG_STARTUP_CORPUS_UPDATE_ENABLED",
+        RAG_STARTUP_CORPUS_UPDATE_ENABLED if env is None else "false",
+    )
     return str(value or "").strip().lower() in {"1", "true", "yes", "on"}

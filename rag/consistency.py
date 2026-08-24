@@ -35,6 +35,8 @@ class ConsistencyReport:
     missing_in_neo4j: list[str]   # 在 ChromaDB 中有但 Neo4j 中缺失的日期
     is_consistent: bool
     checked_at: str
+    status: str = "ready"
+    error_code: str = ""
 
     def to_dict(self) -> dict:
         return {
@@ -44,19 +46,17 @@ class ConsistencyReport:
             "missing_in_neo4j": self.missing_in_neo4j,
             "is_consistent": self.is_consistent,
             "checked_at": self.checked_at,
+            "status": self.status,
+            "error_code": self.error_code,
         }
 
 
 async def get_neo4j_dates(driver: "Neo4jDriver") -> list[str]:
     """从 Neo4j 获取所有已 ingest 的日期列表。"""
-    try:
-        rows = await driver.execute_query(
-            "MATCH (d:DailyDigest) RETURN d.date AS date ORDER BY d.date"
-        )
-        return [r["date"] for r in rows]
-    except Exception as e:
-        logger.error("Failed to query Neo4j dates: %s", e)
-        return []
+    rows = await driver.execute_query(
+        "MATCH (d:DailyDigest) RETURN d.date AS date ORDER BY d.date"
+    )
+    return [r["date"] for r in rows]
 
 
 def get_chroma_dates(vector_store: "VectorStore") -> list[str]:
@@ -65,22 +65,43 @@ def get_chroma_dates(vector_store: "VectorStore") -> list[str]:
     注意：ChromaDB 没有原生的 distinct values 查询，
     所以通过 get_all 获取所有 metadata 再提取 date 字段。
     """
-    try:
-        # 使用 where 过滤获取所有有 date 字段的记录
-        # ChromaDB 的 get 方法支持 include 参数控制返回内容
-        results = vector_store.collection.get(
-            include=["metadatas"],
-        )
-        if not results or not results.get("metadatas"):
-            return []
-        dates = set()
-        for meta in results["metadatas"]:
-            if meta and meta.get("date"):
-                dates.add(meta["date"])
-        return sorted(dates)
-    except Exception as e:
-        logger.error("Failed to query ChromaDB dates: %s", e)
+    # 使用 where 过滤获取所有有 date 字段的记录
+    # ChromaDB 的 get 方法支持 include 参数控制返回内容
+    results = vector_store.collection.get(
+        include=["metadatas"],
+    )
+    if not results or not results.get("metadatas"):
         return []
+    dates = set()
+    for meta in results["metadatas"]:
+        if meta and meta.get("date"):
+            dates.add(meta["date"])
+    return sorted(dates)
+
+
+async def _read_backend_dates(driver, vector_store) -> tuple[list[str], list[str], str]:
+    """Read both backends and return a fail-closed error code when either is unavailable."""
+    failures = []
+    try:
+        neo4j_dates = await get_neo4j_dates(driver)
+    except Exception as exc:
+        logger.error("Failed to query Neo4j dates: %s", exc)
+        neo4j_dates = []
+        failures.append("neo4j")
+    try:
+        chroma_dates = get_chroma_dates(vector_store)
+    except Exception as exc:
+        logger.error("Failed to query ChromaDB dates: %s", exc)
+        chroma_dates = []
+        failures.append("chroma")
+
+    if len(failures) > 1:
+        error_code = "multiple_backends_unavailable"
+    elif failures:
+        error_code = f"{failures[0]}_unavailable"
+    else:
+        error_code = ""
+    return neo4j_dates, chroma_dates, error_code
 
 
 async def check_consistency(
@@ -94,8 +115,7 @@ async def check_consistency(
     2. 计算差集，找出不一致的日期
     3. 根据差集大小判断是否一致
     """
-    neo4j_dates = await get_neo4j_dates(driver)
-    chroma_dates = get_chroma_dates(vector_store)
+    neo4j_dates, chroma_dates, error_code = await _read_backend_dates(driver, vector_store)
 
     neo4j_set = set(neo4j_dates)
     chroma_set = set(chroma_dates)
@@ -104,7 +124,7 @@ async def check_consistency(
     missing_in_neo4j = sorted(chroma_set - neo4j_set)
 
     # 判断一致性：只要任一方向有缺失日期，就标记为不一致
-    is_consistent = len(missing_in_chroma) == 0 and len(missing_in_neo4j) == 0
+    is_consistent = not error_code and len(missing_in_chroma) == 0 and len(missing_in_neo4j) == 0
 
     report = ConsistencyReport(
         neo4j_dates=neo4j_dates,
@@ -115,6 +135,8 @@ async def check_consistency(
         missing_in_neo4j=missing_in_neo4j,
         is_consistent=is_consistent,
         checked_at=datetime.now().isoformat(),
+        status="error" if error_code else "ready",
+        error_code=error_code,
     )
 
     if not is_consistent:
@@ -133,8 +155,7 @@ async def post_ingestion_verify(
     ingested_dates: list[str],
 ) -> ConsistencyReport:
     """Ingestion 后的快速校验：只检查本次 ingest 的日期是否在两边都存在。"""
-    neo4j_dates = await get_neo4j_dates(driver)
-    chroma_dates = get_chroma_dates(vector_store)
+    neo4j_dates, chroma_dates, error_code = await _read_backend_dates(driver, vector_store)
 
     neo4j_set = set(neo4j_dates)
     chroma_set = set(chroma_dates)
@@ -144,7 +165,7 @@ async def post_ingestion_verify(
     missing_in_chroma = sorted(ingested_set - chroma_set)
     missing_in_neo4j = sorted(ingested_set - neo4j_set)
 
-    is_consistent = len(missing_in_chroma) == 0 and len(missing_in_neo4j) == 0
+    is_consistent = not error_code and len(missing_in_chroma) == 0 and len(missing_in_neo4j) == 0
 
     report = ConsistencyReport(
         neo4j_dates=neo4j_dates,
@@ -155,6 +176,8 @@ async def post_ingestion_verify(
         missing_in_neo4j=missing_in_neo4j,
         is_consistent=is_consistent,
         checked_at=datetime.now().isoformat(),
+        status="error" if error_code else "ready",
+        error_code=error_code,
     )
 
     if is_consistent:
