@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-08-24T08:57:37.403Z",
+  "generated_at": "2026-08-24T09:14:45.070Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "bde83eedc76f589d7f2d5561ed1e91aecbc3aada65e7b1bc39a38c084208c781",
-      "size": 6036,
+      "sha256": "82fab5a6b93768d05d80c8e66b0a7d6326c39c39399932113fe3db88bc086e3b",
+      "size": 7338,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "c988a63b39302005e239ce0eb24ad0780260f5e34ea5d9b399f87c800be9c42c",
-      "size": 1520275,
+      "sha256": "86e2b6a6176898a3a50d71295eef948801589a1e52981a1cae2aba9ffa7d4a71",
+      "size": 1396790,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "fbada10c9a7193eff828aa8794572c87bb5fe16dea2d85a303638b858718b207",
-      "size": 8826627,
+      "sha256": "5379801f1e8cc233701dac8645db2fa20a6f4688531dc1259d6a5f561fca73b9",
+      "size": 10623415,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1122,9 +1122,205 @@
       "size": 67433,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-11/ai-topic-radar.md",
+      "sha256": "8a42653507262e393912e0158d72f49172a47430ddc5c2e25d62201b03bd0ed7",
+      "size": 47163,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-11/topic-pool.json",
+      "sha256": "bb06ed59bf0742ef659436fdfa336823558ef72012e34418ade3bfc956239f8b",
+      "size": 78681,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-12/ai-topic-radar.md",
+      "sha256": "7ccc790307bfacc91e715119183c9e1b550343e52104f1ceffd0d22359e36c18",
+      "size": 40112,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-12/topic-pool.json",
+      "sha256": "664c86fb0578eb88783ac0b2d1fb46c693cf326c2de7274c80e3d31aa83dc74a",
+      "size": 72037,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-13/ai-topic-radar.md",
+      "sha256": "0103f9a138e744fecf7945e43d3bc8bf1e2ecfc6a0c7858f9e5123f9413e4a20",
+      "size": 53294,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-13/topic-pool.json",
+      "sha256": "378a18c56a5e280d2677b695dd4d4db108090265e6fa08ab2ef286ed5790493b",
+      "size": 77955,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-14/ai-topic-radar.md",
+      "sha256": "129c9314f83cc0910983a13e8c8b05217824f3e9d28d8897c55025d4245473b4",
+      "size": 46241,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-14/topic-pool.json",
+      "sha256": "bbb0fa81e1137781c2a7a70c4d71b6f09aec652f56e4bb084a915d2cc57a89ea",
+      "size": 76464,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-15/ai-topic-radar.md",
+      "sha256": "959e5d8906b85ba244774ce762c14bdce60a20d437c5a3d7b8507364e997757d",
+      "size": 42243,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-15/topic-pool.json",
+      "sha256": "bf77998d4052108e2efd4dab9c179605fed0c8d6014ae3a57a138bb13572bf00",
+      "size": 69327,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-16/ai-topic-radar.md",
+      "sha256": "ea34eef64baf2f34795cf5fd4b5596ec0d2e1aa984c2f66725148a8b53b284e0",
+      "size": 39185,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-16/topic-pool.json",
+      "sha256": "611204154ef9706fe644be371e198ad7d4154cf9e7bec997f7e372fd79be5766",
+      "size": 66960,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-17/ai-topic-radar.md",
+      "sha256": "4fb1d6a4ac0b9dfce54f2a428b31a205149b6585ae7d70ccfc5e39b85a411542",
+      "size": 30118,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-17/topic-pool.json",
+      "sha256": "17a90347120e7d4e0b6ff61bcd9a10cea3e27347c1db72566cb7d6e96321949a",
+      "size": 62933,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-18/ai-topic-radar.md",
+      "sha256": "72dd6e4602f923694152ed2971289d01adff04741a721affd2622d3651553dda",
+      "size": 32940,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-18/topic-pool.json",
+      "sha256": "a4ea8a7e4bdc7f25f82b584998df99221ebcc6c8be7afc85ee7f27593993f08c",
+      "size": 63995,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-19/ai-topic-radar.md",
+      "sha256": "be61b7d074b2156fd8b68d4fd818a80ead2c92d1b873ba8bcf41def219d4cf3f",
+      "size": 39614,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-19/topic-pool.json",
+      "sha256": "9232ce3e38af55d0ac775b854712b7e5895076598c92305954bf535ea9719a51",
+      "size": 69001,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-20/ai-topic-radar.md",
+      "sha256": "f3a723e8d3d6a835c6da7e6d46cadc34033b0400ef25127ca243bdd6ab7bf409",
+      "size": 34884,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-20/topic-pool.json",
+      "sha256": "3db34f8d9ccfc88323ee2473e2dfb86f49d7a4d0b98853ed63171e84762187e8",
+      "size": 68090,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-21/ai-topic-radar.md",
+      "sha256": "46e2963bd4d8fb08757e3c4b7b3df76f5b6557f12b55ad4c067144c8b07e9bd7",
+      "size": 38332,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-21/topic-pool.json",
+      "sha256": "6d5cf1428be3744068fd090b362aaf42cea840a5ad7bb96c03e1c5beba473d58",
+      "size": 68406,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-22/ai-topic-radar.md",
+      "sha256": "3fef3b47f2d134a79c163814475c35c460de4475f504d6980fcdb105e0064660",
+      "size": 41057,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-22/topic-pool.json",
+      "sha256": "4bae8d6ddf250c2f7554629cd345e169a8f877ba5634645b81f0b30661c3465e",
+      "size": 71963,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-23/ai-topic-radar.md",
+      "sha256": "44e9d5baf523b1d2d809373677bb25ed8fdfff948ed1778cd7c59b9b8f51b545",
+      "size": 33400,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-23/topic-pool.json",
+      "sha256": "6dc42f83c7c5f8d4bcd3e865509e53295b82bfd8045b96194841f2db23c46a8f",
+      "size": 67296,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-24/ai-topic-radar.md",
+      "sha256": "ec04c1d424e8807cb14e52906feb81171679d904ac3e9fe27603a74d57f18908",
+      "size": 33706,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-24/topic-pool.json",
+      "sha256": "0c1f942753cae03837e3d71440b7bdf065b506383b3c704593ec29d6342798fc",
+      "size": 65331,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "7a7d319130d2d20d723e00e01adc4a77348185128d7e67ccf1c800f5070b17c5",
+  "corpus_revision": "3f4fb24426ac72ca7bc017a43488cff578845a35b278d82820807243d0dd9a66",
   "complete": true
 }
