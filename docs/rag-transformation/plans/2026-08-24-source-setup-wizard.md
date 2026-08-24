@@ -18,7 +18,7 @@
 - [x] 在 System 面板增加“配置自动语料”入口和分步向导。
 - [x] 只把非敏感选择保存到 `localStorage`，不新增后端写接口。
 - [x] 运行定向 E2E、前端检查和项目测试。
-- [ ] 通过后提交到 `main` 并核验 GitHub Actions。
+- [x] 通过后提交到 `main` 并核验 GitHub Actions。
 
 ## 验证记录
 
@@ -27,6 +27,7 @@
 - TypeScript / ESLint / Prettier：通过。
 - Node 单元测试：17 个文件、270 个用例通过。
 - 真实视觉验收：深色主题 System 面板中无溢出，模式、来源、输出和安全提示可见。
+- 发布提交：`c6e0531`，GitHub Actions [CI #32726271524](https://github.com/Conradgui/AI-TREND-RADAR-RAG/actions/runs/32726271524) 全部通过。
 
 ## 不在本阶段做
 
