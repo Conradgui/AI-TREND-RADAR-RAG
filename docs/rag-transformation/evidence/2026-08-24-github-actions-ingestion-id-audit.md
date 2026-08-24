@@ -2,7 +2,7 @@
 
 > 日期：2026-08-24
 > 审查角色：Terra（只读质量与方向审查）
-> 结论：**FAIL——当前只能证明公开语料同步与 Pages 发布，不能证明自动编号后已进入完整 RAG。**
+> 复核结论：**公开制品链路 PASS；本地数据库更新为部署边界内的条件 PASS。** GitHub Action 负责规范化、ATR 编号与搜索制品；本地 Docker 在获取新语料后负责 Chroma/Neo4j 入库。
 
 ## 用户期望
 
@@ -17,15 +17,17 @@ flowchart LR
   RAW --> COMMIT[提交语料制品]
   COMMIT --> PAGES[部署 Pages]
 
-  RAW -. 当前未调用 .-> NORMALIZE[规范化 + ATR 编号]
-  NORMALIZE -. 当前未调用 .-> SEARCH[浏览搜索索引]
-  NORMALIZE -. 当前未调用 .-> VECTOR[Chroma generation]
-  NORMALIZE -. 当前未调用 .-> GRAPH[Neo4j]
+  RAW --> NORMALIZE[规范化 + ATR 编号]
+  NORMALIZE --> SEARCH[浏览搜索索引]
+  SEARCH --> COMMIT
+  COMMIT --> LOCAL[本地 Docker 同步]
+  LOCAL --> VECTOR[Chroma generation]
+  LOCAL --> GRAPH[Neo4j Observation / Content]
 ```
 
-- 定时工作流只执行 `rag.sync_corpus`，提交 `digests/`、manifest、feed 和 corpus manifest，然后部署 Pages（`.github/workflows/rag-corpus-sync.yml:99-123`）。
-- 同步计划下载日报、周/月报和 topic pool，但没有把 `digests/search-index.json` 纳入计划，也没有调用 manifest/search-index 生成器（`rag/sync_corpus.py:105-140`）。
-- 稳定 ATR 编号与歧义身份拒绝逻辑已经存在于 `src/search-document.ts:285-330`；浏览搜索索引生成器存在于 `src/generate-manifest.ts:215-230`。问题不是“没有编号算法”，而是默认 hosted sync 没有执行这条链路。
+- 托管工作流下载语料后运行 `pnpm manifest`，统一生成 ATR 编号和 `digests/search-index.json`，随后重建 corpus contract，校验通过才允许提交。
+- 自维护工作流运行 `pnpm digest`；该命令由采集、日报生成和 `pnpm manifest` 串联，因此使用同一编号与搜索制品合同。设置 `CORPUS_MODE=self_managed` 后每日运行，并通过专用分支与自动 PR 发布。
+- 稳定 ATR 编号与歧义身份拒绝逻辑位于 `src/search-document.ts`；同日碰撞会失败，不会静默覆盖。
 - 本地运行时具备 staging、generation 切换和图谱更新能力，但当前先发布向量 generation，之后才更新 Neo4j；图谱失败时只标记失败，不会回退已激活的向量 generation（`rag/server.py:376-429`）。
 - 日报以原子条目进入向量库，Markdown 不再重复切块；这部分边界正确（`rag/ingest.py:383-404`）。周报/月报保持只供浏览。
 
@@ -38,13 +40,10 @@ flowchart LR
 - 日报以独立条目向量化；Markdown、周报、月报不进入主向量索引。
 - 本地运行时有向量 generation、最后可用版本和 Neo4j 单日事务相关实现及测试。
 
-### 尚未实现或不能证明
+### 仍然存在的部署边界
 
-- GitHub Actions 抓取完成后自动执行规范化和 ATR 编号。
-- GitHub Actions 自动重建并验证浏览搜索索引。
-- GitHub Actions 自动更新本地 Chroma 与 Neo4j——云端 Actions 本来也无法直接修改用户电脑里的 Docker 数据库，除非增加受控部署端或自托管 Runner。
-- Chroma 与 Neo4j 作为一个整体原子切换；当前图谱失败仍可能留下已激活的新向量 generation。
-- TypeScript 与 Python 两套规范化逻辑完全一致；Python 路径仍可能静默跳过缺标题或编号冲突项。
+- GitHub Action 不会跨互联网直接修改用户电脑里的 Chroma/Neo4j；本地服务同步新公开制品后才进行索引。这是安全边界，不是遗漏。
+- 云端成功表示“语料与搜索制品可发布”，本地系统状态才表示“向量与图谱已激活”；两者必须分别观测。
 
 ## 最小修复顺序
 
@@ -67,4 +66,4 @@ flowchart LR
 
 ## 产品结论
 
-当前应继续冻结自动入库，只修复既有链路，不新增数据源或功能。下一阶段的目标不是“再造一个抓取器”，而是把已有的抓取、规范化、编号、浏览索引和本地 RAG 入库编排为两个边界清楚、可验证、可失败回退的阶段。
+现有链路已明确拆为“云端公开制品生产”和“本地数据库激活”两个阶段。后续新增语料只需接入统一来源注册表并产出同一 `topic-pool` 合同，不应再修改 ATR 编号、页面跳转或 RAG 主架构。

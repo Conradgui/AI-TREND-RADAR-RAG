@@ -9,7 +9,7 @@
 | 模式 | 适合谁 | 数据从哪里来 | 必需 Secrets | 默认状态 |
 | --- | --- | --- | --- | --- |
 | 托管语料同步 | 想开箱即用的用户 | 已发布的 AI Trend Radar Pages | 无 | 每日自动运行 |
-| 自维护数据源 | 希望控制来源、规则和模型的维护者 | 本仓库内置采集与日报生成代码 | 一个 LLM Provider Key | 仅手动运行 |
+| 自维护数据源 | 希望控制来源、规则和模型的维护者 | 本仓库内置采集与日报生成代码 | 一个 LLM Provider Key | 显式启用后每日运行 |
 
 无论使用哪种模式，进入检索库的只有原始日报制品 `ai-topic-radar.md` 和 `topic-pool.json`。周报、月报属于二次归纳，只在页面供浏览，不参与向量化或图谱化，避免重复摘要挤占原始证据。
 
@@ -42,7 +42,14 @@
 
 ## 高级模式：自维护数据源
 
-工作流：`Corpus Producer (self-managed)`（`.github/workflows/corpus-producer-self-managed.yml`）。它当前是**手动工作流**，用于先验证用户自己的来源和模型配置，不会偷偷产生费用。
+工作流：`Corpus Producer (self-managed)`（`.github/workflows/corpus-producer-self-managed.yml`）。它默认只允许手动预览；只有用户显式设置仓库 Variable 后才会每天运行，不会因为仅添加了 Secret 就偷偷产生费用。
+
+先在 `Settings → Secrets and variables → Actions → Variables` 配置：
+
+| Variable | 值 | 用途 |
+| --- | --- | --- |
+| `CORPUS_MODE` | `self_managed` | 停用默认托管定时任务，启用自维护每日任务 |
+| `SELF_MANAGED_LLM_PROVIDER` | `deepseek` / `anthropic` / `openai` / `openrouter` / `github-models` | 定时任务使用的模型 Provider |
 
 在 `Settings → Secrets and variables → Actions → Secrets` 中，按选用 Provider 配置一个必需密钥：
 
@@ -59,15 +66,33 @@
 | Secret | 是否必需 | 缺失时行为 |
 | --- | --- | --- |
 | `AI_RADAR_GITHUB_TOKEN` | 否 | 降级使用仓库 `GITHUB_TOKEN`，公开仓库检索额度较低 |
-| `PRODUCTHUNT_TOKEN` | 否 | 跳过 Product Hunt 来源 |
-| `GITEE_TOKEN` | 否 | 跳过 Gitee 来源 |
+| `PRODUCTHUNT_TOKEN` | 否 | `auto` 模式跳过 Product Hunt；`enabled` 模式会在抓取前明确报错 |
+| `GITEE_TOKEN` | 否 | 未配置时仍匿名抓取；配置后使用更稳定的 API 配额 |
+
+### 逐个控制信息来源
+
+编辑根目录 `config.yml` 的 `sources` 区块。所有现有非 GitHub 连接器都使用同一套三态规则：
+
+- `auto`：满足运行条件时抓取；缺少可选凭证时明确跳过；
+- `enabled`：用户要求必须抓取；缺少必要凭证时在调用模型前失败；
+- `disabled`：完全不调用该连接器。
+
+可配置来源包括 Anthropic、OpenAI、Google DeepMind、GitHub Trending、Hacker News、Product Hunt、arXiv、Hugging Face、DEV Community、Lobsters、36Kr、InfoQ 中国、Gitee、开源中国和掘金。修改后可先运行：
+
+```bash
+pnpm sources:check
+```
+
+它只显示来源状态和缺失的 Secret **名称**，不会打印 Secret 值。GitHub Action 也会在生成日报前运行同一检查。
 
 操作路径：
 
 1. 打开 `Actions → Corpus Producer (self-managed) → Run workflow`；
 2. 选择 Provider，第一次保持 `publish=false`；
 3. 下载运行产生的短期 Artifact，检查日报和 `corpus-manifest.json`；
-4. 验证满意后，从默认分支运行并设置 `publish=true`。
+4. 验证满意后，从默认分支运行并设置 `publish=true`；
+5. 最后设置 `CORPUS_MODE=self_managed` 和 `SELF_MANAGED_LLM_PROVIDER`，从下一次计划任务开始自动生产；
+6. 每次自动更新先通过来源、ATR 编号、搜索索引和 corpus contract 校验，再由专用分支创建并自动合并 PR；失败不会覆盖当前语料。
 
 当前不在本地 Web UI 中收集 GitHub Secrets。原因不是“做不到界面”，而是浏览器若要改仓库 Secrets，必须额外获得 GitHub 写权限和安全保存令牌，这会显著扩大权限边界。现阶段用 GitHub Actions 原生表单更安全，也更容易审计；未来若引入 GitHub App/OAuth，再评估统一 GUI。
 

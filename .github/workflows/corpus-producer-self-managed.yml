@@ -1,6 +1,9 @@
 name: Corpus Producer (self-managed)
 
 on:
+  schedule:
+    # Runs only when repository variable CORPUS_MODE is explicitly self_managed.
+    - cron: "43 0 * * *"
   workflow_dispatch:
     inputs:
       provider:
@@ -25,12 +28,16 @@ permissions:
   models: read
 
 concurrency:
-  group: ${{ inputs.publish && 'corpus-publish' || format('corpus-preview-{0}', github.run_id) }}
+  group: ${{ (github.event_name == 'schedule' || inputs.publish) && 'corpus-publish' || format('corpus-preview-{0}', github.run_id) }}
   cancel-in-progress: false
+
+env:
+  SELF_MANAGED_UPDATE_BRANCH: automation/self-managed-corpus
 
 jobs:
   produce:
     name: Generate and validate corpus
+    if: github.event_name == 'workflow_dispatch' || vars.CORPUS_MODE == 'self_managed'
     runs-on: ubuntu-latest
     timeout-minutes: 40
 
@@ -57,8 +64,8 @@ jobs:
 
       - name: Preflight provider and publish boundary
         env:
-          SELECTED_PROVIDER: ${{ inputs.provider }}
-          PUBLISH_REQUESTED: ${{ inputs.publish }}
+          SELECTED_PROVIDER: ${{ inputs.provider || vars.SELF_MANAGED_LLM_PROVIDER || 'deepseek' }}
+          PUBLISH_REQUESTED: ${{ github.event_name == 'schedule' || inputs.publish }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -107,7 +114,9 @@ jobs:
           PRODUCTHUNT_TOKEN: ${{ secrets.PRODUCTHUNT_TOKEN }}
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
           DIGEST_REPO: ${{ github.repository }}
-        run: pnpm digest
+        run: |
+          pnpm sources:check
+          pnpm digest
 
       - name: Build auditable corpus contract
         run: python -m rag.corpus_contract --source-mode self_managed
@@ -141,8 +150,8 @@ jobs:
         run: |
           {
             echo "## Self-managed corpus producer"
-            echo "- Provider: \`${{ inputs.provider }}\`"
-            echo "- Publish requested: \`${{ inputs.publish }}\`"
+            echo "- Provider: \`${{ inputs.provider || vars.SELF_MANAGED_LLM_PROVIDER || 'deepseek' }}\`"
+            echo "- Publish requested: \`${{ github.event_name == 'schedule' || inputs.publish }}\`"
             echo "- Product Hunt: ${{ secrets.PRODUCTHUNT_TOKEN != '' && 'enabled' || 'skipped (optional secret missing)' }}"
             echo "- Gitee: ${{ secrets.GITEE_TOKEN != '' && 'enabled' || 'skipped (optional secret missing)' }}"
           } >> "$GITHUB_STEP_SUMMARY"
@@ -150,11 +159,14 @@ jobs:
   publish:
     name: Publish self-managed corpus
     needs: produce
-    if: ${{ inputs.publish == true }}
+    if: needs.produce.result == 'success' && (github.event_name == 'schedule' || inputs.publish == true)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: write
+      pull-requests: write
+    outputs:
+      merged: ${{ steps.pr_delivery.outputs.merged }}
     steps:
       - name: Checkout latest default branch
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -167,6 +179,9 @@ jobs:
         with:
           name: self-managed-corpus-${{ github.run_id }}
           path: .
+
+      - name: Prepare dedicated corpus branch
+        run: git switch -C "$SELF_MANAGED_UPDATE_BRANCH"
 
       - name: Reject stale producer snapshot
         run: |
@@ -186,23 +201,66 @@ jobs:
         run: python -m rag.corpus_contract --source-mode self_managed
 
       - name: Commit generated corpus
+        id: corpus_commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add digests/ manifest.json feed.xml corpus-manifest.json
           if git diff --cached --quiet; then
             echo "Generated corpus contains no changes" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             DATE=$(date -u +%Y-%m-%d)
             git commit -m "corpus: publish self-managed ${DATE}"
-            git push
-            echo "Published self-managed corpus for ${DATE}" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "validated_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            echo "Prepared self-managed corpus for ${DATE}" | tee -a "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Push dedicated corpus branch
+        if: steps.corpus_commit.outputs.changed == 'true'
+        run: git push --force-with-lease origin HEAD:"$SELF_MANAGED_UPDATE_BRANCH"
+
+      - name: Create and merge corpus pull request
+        id: pr_delivery
+        if: steps.corpus_commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          VALIDATED_SHA: ${{ steps.corpus_commit.outputs.validated_sha }}
+        run: |
+          pr_number=$(gh pr list \
+            --repo "$GITHUB_REPOSITORY" \
+            --head "$SELF_MANAGED_UPDATE_BRANCH" \
+            --base "$DEFAULT_BRANCH" \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -z "$pr_number" ]; then
+            pr_url=$(gh pr create \
+              --repo "$GITHUB_REPOSITORY" \
+              --head "$SELF_MANAGED_UPDATE_BRANCH" \
+              --base "$DEFAULT_BRANCH" \
+              --title "corpus: automated self-managed update" \
+              --body "Automated self-managed corpus update. Source preflight, ATR identity, search-index coverage, and corpus-contract gates passed before this PR was created.")
+            pr_number=$(gh pr view "$pr_url" --repo "$GITHUB_REPOSITORY" --json number --jq '.number')
+          fi
+
+          gh pr merge "$pr_number" \
+            --repo "$GITHUB_REPOSITORY" \
+            --squash \
+            --delete-branch \
+            --match-head-commit "$VALIDATED_SHA"
+          pr_state=$(gh pr view "$pr_number" --repo "$GITHUB_REPOSITORY" --json state --jq '.state')
+          test "$pr_state" = "MERGED"
+          echo "merged=true" >> "$GITHUB_OUTPUT"
+          echo "Merged self-managed corpus PR #${pr_number}" | tee -a "$GITHUB_STEP_SUMMARY"
 
   deploy-pages:
     name: Deploy published corpus to Pages
     needs: publish
-    if: ${{ always() && needs.publish.result == 'success' }}
+    if: ${{ needs.publish.result == 'success' && needs.publish.outputs.merged == 'true' }}
     permissions:
       contents: read
       pages: write

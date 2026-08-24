@@ -7,6 +7,7 @@ import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
 import type { RepoConfig } from "./github.ts";
+import { SOURCE_CATALOG, type SourceId, type SourceMode, type SourceModes } from "./source-config.ts";
 
 // ---------------------------------------------------------------------------
 // Schema types
@@ -24,6 +25,7 @@ interface RawConfig {
   skills_repo?: string;
   openclaw?: RawRepoEntry;
   openclaw_peers?: RawRepoEntry[];
+  sources?: Record<string, unknown>;
 }
 
 export interface RadarConfig {
@@ -31,6 +33,7 @@ export interface RadarConfig {
   skillsRepo: string;
   openclaw: RepoConfig;
   openclawPeers: RepoConfig[];
+  sourceModes: SourceModes;
 }
 
 // ---------------------------------------------------------------------------
@@ -80,6 +83,20 @@ export function toRepoConfig(e: RawRepoEntry): RepoConfig {
   return { id: e.id, repo: e.repo, name: e.name, ...(e.paginated ? { paginated: true } : {}) };
 }
 
+function parseSourceModes(rawSources: Record<string, unknown> | undefined): SourceModes {
+  const modes: SourceModes = {};
+  for (const [id, value] of Object.entries(rawSources ?? {})) {
+    if (!(id in SOURCE_CATALOG)) {
+      throw new Error(`Unknown source id: ${id}`);
+    }
+    if (value !== "auto" && value !== "enabled" && value !== "disabled") {
+      throw new Error(`Invalid source mode for ${id}: ${String(value)}`);
+    }
+    modes[id as SourceId] = value as SourceMode;
+  }
+  return modes;
+}
+
 export function loadConfig(configPath = "config.yml"): RadarConfig {
   const resolved = path.resolve(configPath);
 
@@ -90,6 +107,7 @@ export function loadConfig(configPath = "config.yml"): RadarConfig {
       skillsRepo: DEFAULT_SKILLS_REPO,
       openclaw: DEFAULT_OPENCLAW,
       openclawPeers: DEFAULT_OPENCLAW_PEERS,
+      sourceModes: {},
     };
   }
 
@@ -112,10 +130,12 @@ export function loadConfig(configPath = "config.yml"): RadarConfig {
       ? raw.openclaw_peers.map(toRepoConfig)
       : DEFAULT_OPENCLAW_PEERS;
 
+  const sourceModes = parseSourceModes(raw?.sources);
+
   console.log(
     `[config] Loaded from ${configPath}: ` +
       `${cliRepos.length} CLI repos, ${openclawPeers.length} OpenClaw peers`,
   );
 
-  return { cliRepos, skillsRepo, openclaw, openclawPeers };
+  return { cliRepos, skillsRepo, openclaw, openclawPeers, sourceModes };
 }

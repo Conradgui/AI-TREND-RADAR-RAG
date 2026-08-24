@@ -22,6 +22,7 @@ env:
 jobs:
   validate:
     name: Validate hosted corpus
+    if: github.event_name == 'workflow_dispatch' || vars.CORPUS_MODE != 'self_managed'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 

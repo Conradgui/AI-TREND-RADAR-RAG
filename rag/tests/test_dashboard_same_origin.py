@@ -2,6 +2,10 @@
 
 from pathlib import Path
 
+import pytest
+
+import rag.server as server
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DASHBOARD = PROJECT_ROOT / "index.html"
@@ -50,6 +54,14 @@ def test_dashboard_revalidates_dynamic_corpus_files_instead_of_using_stale_cache
 
     assert "fetch('./manifest.json', { cache: 'no-store' })" in source
     assert "fetch(`./digests/${date}/${report}.md`, { cache: 'no-cache' })" in source
+
+
+@pytest.mark.asyncio
+async def test_dashboard_html_is_revalidated_after_frontend_releases():
+    """Opening the same localhost URL must not pin an obsolete dashboard shell."""
+    response = await server.index()
+
+    assert response.headers["cache-control"] == "no-cache, no-store, must-revalidate"
 
 
 def test_dashboard_uses_real_chat_progress_stream_with_safe_fallback():

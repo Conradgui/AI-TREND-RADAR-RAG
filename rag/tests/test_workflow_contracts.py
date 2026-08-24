@@ -220,12 +220,17 @@ def test_pages_deploys_only_after_successful_corpus_sync():
         assert "uses: ./.github/workflows/deploy-pages.yml" in caller_source
 
 
-def test_self_managed_producer_is_manual_and_secret_preflighted():
+def test_self_managed_producer_is_mode_gated_and_secret_preflighted():
     source = _workflow("corpus-producer-self-managed.yml")
     workflow = _workflow_data("corpus-producer-self-managed.yml")
 
     assert "workflow_dispatch:" in source
-    assert "schedule:" not in source
+    assert "schedule:" in source
+    assert "CORPUS_MODE" in source
+    assert "SELF_MANAGED_LLM_PROVIDER" in source
+    assert workflow["jobs"]["produce"]["if"] == (
+        "github.event_name == 'workflow_dispatch' || vars.CORPUS_MODE == 'self_managed'"
+    )
     assert "type: choice" in source
     assert "DEEPSEEK_API_KEY" in source
     assert "ANTHROPIC_API_KEY" in source
@@ -249,6 +254,46 @@ def test_self_managed_producer_is_manual_and_secret_preflighted():
     assert step_names.index("Download generated corpus") < step_names.index(
         "Rebuild corpus contract before commit"
     ) < step_names.index("Commit generated corpus")
+
+
+def test_scheduled_corpus_modes_are_mutually_exclusive_and_self_managed_uses_pr_delivery():
+    hosted = _workflow_data("rag-corpus-sync.yml")
+    self_managed = _workflow_data("corpus-producer-self-managed.yml")
+    source = _workflow("corpus-producer-self-managed.yml")
+
+    assert hosted["jobs"]["validate"]["if"] == (
+        "github.event_name == 'workflow_dispatch' || vars.CORPUS_MODE != 'self_managed'"
+    )
+    assert self_managed["jobs"]["publish"]["if"] == (
+        "needs.produce.result == 'success' && "
+        "(github.event_name == 'schedule' || inputs.publish == true)"
+    )
+    assert self_managed["jobs"]["publish"]["permissions"] == {
+        "contents": "write",
+        "pull-requests": "write",
+    }
+    assert "git push\n" not in source
+    assert "gh pr create" in source
+    assert "gh pr merge" in source
+    assert "--match-head-commit" in source
+    assert self_managed["jobs"]["publish"]["outputs"]["merged"] == (
+        "${{ steps.pr_delivery.outputs.merged }}"
+    )
+    assert self_managed["jobs"]["deploy-pages"]["if"] == (
+        "${{ needs.publish.result == 'success' && needs.publish.outputs.merged == 'true' }}"
+    )
+
+
+def test_self_managed_producer_checks_source_configuration_before_generation():
+    """Source typos or missing required credentials must fail before paid generation."""
+    workflow = _workflow_data("corpus-producer-self-managed.yml")
+    steps = workflow["jobs"]["produce"]["steps"]
+    generate = next(step for step in steps if step.get("name") == "Generate daily corpus")
+    commands = generate["run"]
+
+    assert "PRODUCTHUNT_TOKEN" in generate["env"]
+    assert "pnpm sources:check" in commands
+    assert commands.index("pnpm sources:check") < commands.index("pnpm digest")
 
 
 def test_all_corpus_publishers_share_one_non_cancelling_concurrency_group():

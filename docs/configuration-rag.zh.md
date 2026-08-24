@@ -44,6 +44,8 @@ BRAVE_SEARCH_API_KEY=
 
 - 默认托管同步不需要任何 Secret；可用 Repository Variable `UPSTREAM_CORPUS_URL` 覆盖公开语料地址。
 - 自维护模式按 Provider 配置 `DEEPSEEK_API_KEY`、`ANTHROPIC_API_KEY`、`OPENAI_API_KEY` 或 `OPENROUTER_API_KEY` 中的一项。
-- `PRODUCTHUNT_TOKEN`、`GITEE_TOKEN`、`AI_RADAR_GITHUB_TOKEN` 都是可选来源增强项，缺失时跳过对应来源。
+- `PRODUCTHUNT_TOKEN`、`GITEE_TOKEN`、`AI_RADAR_GITHUB_TOKEN` 都是可选来源增强项。Product Hunt 在 `auto` 模式缺 Token 时跳过；Gitee 可匿名运行，Token 用于提高稳定性。
+- 每个现有新闻连接器都可在根目录 `config.yml → sources` 中设置为 `auto`、`enabled` 或 `disabled`；运行 `pnpm sources:check` 可在产生模型费用前检查配置。
+- 要让自维护抓取每日自动运行，再添加 Repository Variables：`CORPUS_MODE=self_managed` 与 `SELF_MANAGED_LLM_PROVIDER=<provider>`。不设置时默认继续使用无新闻源 Secret 的托管同步。
 
 完整操作步骤、权限边界和故障定位见[GitHub 自动化与语料模式](github-automation.zh.md)。

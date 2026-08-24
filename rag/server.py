@@ -682,12 +682,13 @@ CHAT_HTML = Path(__file__).parent / "web" / "chat.html"
 @app.get("/", response_class=HTMLResponse)
 async def index():
     """服务仪表盘首页"""
+    headers = {"Cache-Control": "no-cache, no-store, must-revalidate"}
     if not DASHBOARD_HTML.exists():
         # 降级到chat.html
         if CHAT_HTML.exists():
-            return FileResponse(str(CHAT_HTML), media_type="text/html")
+            return FileResponse(str(CHAT_HTML), media_type="text/html", headers=headers)
         raise HTTPException(status_code=500, detail="Dashboard UI not found")
-    return FileResponse(str(DASHBOARD_HTML), media_type="text/html")
+    return FileResponse(str(DASHBOARD_HTML), media_type="text/html", headers=headers)
 
 
 @app.get("/chat", response_class=HTMLResponse)

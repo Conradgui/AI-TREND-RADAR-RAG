@@ -2,6 +2,28 @@
 # Edit this file to customize which repositories are tracked.
 # Changes take effect on the next workflow run.
 
+# ── Source controls ──────────────────────────────────────────────────────────
+# auto: run when requirements are available; otherwise report a clear skip.
+# enabled: require the source to run; missing credentials fail preflight.
+# disabled: never call the connector.
+
+sources:
+  anthropic: auto
+  openai: auto
+  deepmind: auto
+  github_trending: auto
+  hacker_news: auto
+  product_hunt: auto
+  arxiv: auto
+  hugging_face: auto
+  devto: auto
+  lobsters: auto
+  kr36: auto
+  infoq_cn: auto
+  gitee: auto
+  oschina: auto
+  juejin: auto
+
 # ── AI CLI tools ──────────────────────────────────────────────────────────────
 # Tracked for per-tool digests and cross-tool comparison.
 # Each entry requires: id (filename slug), repo (owner/repo), name (display name).

@@ -56,6 +56,33 @@ skills_repo: custom/skills
     expect(config.skillsRepo).toBe("custom/skills");
   });
 
+  it("loads source modes from the same product configuration", () => {
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue(`
+sources:
+  hacker_news: disabled
+  product_hunt: enabled
+`);
+
+    const config = loadConfig("test.yml");
+
+    expect(config.sourceModes).toEqual({ hacker_news: "disabled", product_hunt: "enabled" });
+  });
+
+  it("rejects an unknown source mode instead of silently running the wrong pipeline", () => {
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue("sources:\n  product_hunt: sometimes\n");
+
+    expect(() => loadConfig("test.yml")).toThrow("Invalid source mode");
+  });
+
+  it("rejects an unknown source id instead of silently ignoring a typo", () => {
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue("sources:\n  hacker_newz: enabled\n");
+
+    expect(() => loadConfig("test.yml")).toThrow("Unknown source id: hacker_newz");
+  });
+
   it("falls back to defaults for empty cli_repos", () => {
     vi.spyOn(fs, "existsSync").mockReturnValue(true);
     vi.spyOn(fs, "readFileSync").mockReturnValue("cli_repos: []");

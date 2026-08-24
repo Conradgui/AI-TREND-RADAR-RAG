@@ -49,8 +49,18 @@ import { fetchArxivData, type ArxivData } from "./arxiv.ts";
 import { fetchHfData, type HfData } from "./hf.ts";
 import { fetchDevtoData, type DevtoData } from "./devto.ts";
 import { fetchLobstersData, type LobstersData } from "./lobsters.ts";
-import { fetchChinaSourcesData, type ChinaSourcesData } from "./china-sources.ts";
+import type { ChinaSourcesData } from "./china-sources.ts";
+import { fetchKr36Data, type Kr36Data } from "./kr36.ts";
+import { fetchInfoqCnData, type InfoqCnData } from "./infoq-cn.ts";
+import { fetchGiteeData, type GiteeData } from "./gitee.ts";
+import { fetchOschinaData, type OschinaData } from "./oschina.ts";
+import { fetchJuejinData, type JuejinData } from "./juejin.ts";
 import { loadConfig } from "./config.ts";
+import {
+  assertSourceConfigurationReady,
+  resolveSourceConfiguration,
+  runConfiguredSource,
+} from "./source-config.ts";
 import { toCstDateStr, toUtcStr } from "./date.ts";
 import { type Lang, MSG, ISSUE_LABELS, CLI_ISSUE_TITLE, OPENCLAW_ISSUE_TITLE } from "./i18n.ts";
 import { buildTopicRadar, saveTopicRadar } from "./topic-radar.ts";
@@ -65,7 +75,10 @@ const {
   skillsRepo: CLAUDE_SKILLS_REPO,
   openclaw: OPENCLAW,
   openclawPeers: OPENCLAW_PEERS,
+  sourceModes: SOURCE_MODES,
 } = loadConfig();
+
+const SOURCE_STATES = resolveSourceConfiguration(SOURCE_MODES);
 
 // ---------------------------------------------------------------------------
 // Phase 1: Fetch
@@ -134,51 +147,139 @@ async function fetchAllData(
         return { prs: [] as GitHubItem[], issues: [] as GitHubItem[] };
       }),
     Promise.all([
-      fetchSiteContent("anthropic", webState).catch((err): WebFetchResult => {
-        console.error(`  [web/anthropic] fetch failed: ${err}`);
-        return {
+      runConfiguredSource(
+        SOURCE_STATES.anthropic,
+        () =>
+          fetchSiteContent("anthropic", webState).catch((err): WebFetchResult => {
+            console.error(`  [web/anthropic] fetch failed: ${err}`);
+            return {
+              site: "anthropic",
+              siteName: "Anthropic (Claude)",
+              isFirstRun: false,
+              newItems: [],
+              totalDiscovered: 0,
+            };
+          }),
+        {
           site: "anthropic",
           siteName: "Anthropic (Claude)",
           isFirstRun: false,
           newItems: [],
           totalDiscovered: 0,
-        };
-      }),
-      fetchSiteContent("openai", webState).catch((err): WebFetchResult => {
-        console.error(`  [web/openai] fetch failed: ${err}`);
-        return { site: "openai", siteName: "OpenAI", isFirstRun: false, newItems: [], totalDiscovered: 0 };
-      }),
-      fetchSiteContent("deepmind", webState).catch((err): WebFetchResult => {
-        console.error(`  [web/deepmind] fetch failed: ${err}`);
-        return {
+        },
+      ),
+      runConfiguredSource(
+        SOURCE_STATES.openai,
+        () =>
+          fetchSiteContent("openai", webState).catch((err): WebFetchResult => {
+            console.error(`  [web/openai] fetch failed: ${err}`);
+            return {
+              site: "openai",
+              siteName: "OpenAI",
+              isFirstRun: false,
+              newItems: [],
+              totalDiscovered: 0,
+            };
+          }),
+        { site: "openai", siteName: "OpenAI", isFirstRun: false, newItems: [], totalDiscovered: 0 },
+      ),
+      runConfiguredSource(
+        SOURCE_STATES.deepmind,
+        () =>
+          fetchSiteContent("deepmind", webState).catch((err): WebFetchResult => {
+            console.error(`  [web/deepmind] fetch failed: ${err}`);
+            return {
+              site: "deepmind",
+              siteName: "Google DeepMind",
+              isFirstRun: false,
+              newItems: [],
+              totalDiscovered: 0,
+            };
+          }),
+        {
           site: "deepmind",
           siteName: "Google DeepMind",
           isFirstRun: false,
           newItems: [],
           totalDiscovered: 0,
-        };
-      }),
+        },
+      ),
     ]),
-    fetchTrendingData().catch(
-      (): TrendingData => ({
-        trendingRepos: [],
-        searchRepos: [],
-        trendingFetchSuccess: false,
-      }),
+    runConfiguredSource(
+      SOURCE_STATES.github_trending,
+      () =>
+        fetchTrendingData().catch(
+          (): TrendingData => ({
+            trendingRepos: [],
+            searchRepos: [],
+            trendingFetchSuccess: false,
+          }),
+        ),
+      { trendingRepos: [], searchRepos: [], trendingFetchSuccess: false },
     ),
-    fetchHnData().catch((): HnData => ({ stories: [], fetchSuccess: false })),
-    fetchPhData().catch((): PhData => ({ products: [], fetchSuccess: false })),
-    fetchArxivData().catch((): ArxivData => ({ papers: [], fetchSuccess: false })),
-    fetchHfData().catch((): HfData => ({ models: [], fetchSuccess: false })),
-    fetchDevtoData().catch((): DevtoData => ({ articles: [], fetchSuccess: false })),
-    fetchLobstersData().catch((): LobstersData => ({ stories: [], fetchSuccess: false })),
-    fetchChinaSourcesData().catch(
-      (): ChinaSourcesData => ({
-        kr36: { articles: [], fetchSuccess: false },
-        infoqCn: { articles: [], fetchSuccess: false },
-        gitee: { projects: [], fetchSuccess: false },
-        oschina: { news: [], fetchSuccess: false },
-        juejin: { articles: [], fetchSuccess: false },
+    runConfiguredSource(
+      SOURCE_STATES.hacker_news,
+      () => fetchHnData().catch((): HnData => ({ stories: [], fetchSuccess: false })),
+      { stories: [], fetchSuccess: false },
+    ),
+    runConfiguredSource(
+      SOURCE_STATES.product_hunt,
+      () => fetchPhData().catch((): PhData => ({ products: [], fetchSuccess: false })),
+      { products: [], fetchSuccess: false },
+    ),
+    runConfiguredSource(
+      SOURCE_STATES.arxiv,
+      () => fetchArxivData().catch((): ArxivData => ({ papers: [], fetchSuccess: false })),
+      { papers: [], fetchSuccess: false },
+    ),
+    runConfiguredSource(
+      SOURCE_STATES.hugging_face,
+      () => fetchHfData().catch((): HfData => ({ models: [], fetchSuccess: false })),
+      { models: [], fetchSuccess: false },
+    ),
+    runConfiguredSource(
+      SOURCE_STATES.devto,
+      () => fetchDevtoData().catch((): DevtoData => ({ articles: [], fetchSuccess: false })),
+      { articles: [], fetchSuccess: false },
+    ),
+    runConfiguredSource(
+      SOURCE_STATES.lobsters,
+      () => fetchLobstersData().catch((): LobstersData => ({ stories: [], fetchSuccess: false })),
+      { stories: [], fetchSuccess: false },
+    ),
+    Promise.all([
+      runConfiguredSource(
+        SOURCE_STATES.kr36,
+        () => fetchKr36Data().catch((): Kr36Data => ({ articles: [], fetchSuccess: false })),
+        { articles: [], fetchSuccess: false },
+      ),
+      runConfiguredSource(
+        SOURCE_STATES.infoq_cn,
+        () => fetchInfoqCnData().catch((): InfoqCnData => ({ articles: [], fetchSuccess: false })),
+        { articles: [], fetchSuccess: false },
+      ),
+      runConfiguredSource(
+        SOURCE_STATES.gitee,
+        () => fetchGiteeData().catch((): GiteeData => ({ projects: [], fetchSuccess: false })),
+        { projects: [], fetchSuccess: false },
+      ),
+      runConfiguredSource(
+        SOURCE_STATES.oschina,
+        () => fetchOschinaData().catch((): OschinaData => ({ news: [], fetchSuccess: false })),
+        { news: [], fetchSuccess: false },
+      ),
+      runConfiguredSource(
+        SOURCE_STATES.juejin,
+        () => fetchJuejinData().catch((): JuejinData => ({ articles: [], fetchSuccess: false })),
+        { articles: [], fetchSuccess: false },
+      ),
+    ]).then(
+      ([kr36, infoqCn, gitee, oschina, juejin]): ChinaSourcesData => ({
+        kr36,
+        infoqCn,
+        gitee,
+        oschina,
+        juejin,
       }),
     ),
   ]);
@@ -304,6 +405,7 @@ async function generateSummaries(
 // ---------------------------------------------------------------------------
 
 async function main(): Promise<void> {
+  assertSourceConfigurationReady(SOURCE_STATES);
   const now = new Date();
   const since = new Date(now.getTime() - 24 * 60 * 60 * 1000);
   const dateStr = toCstDateStr(now);

@@ -96,7 +96,7 @@ docker compose config --quiet
 
 ## GitHub 自动化的发布边界
 
-仓库默认启用 `RAG Corpus Sync`：它每天从公开 Pages 拉取新日报及可浏览的周/月报，并把通过校验的语料变化提交回本仓库；此模式不需要任何新闻源或模型密钥。高级维护者可手动运行 `Corpus Producer (self-managed)`，按所选 Provider 配置 Secret 后生成自己的日报。
+仓库默认启用 `RAG Corpus Sync`：它每天从公开 Pages 拉取新日报及可浏览的周/月报，并把通过校验的语料变化提交回本仓库；此模式不需要任何新闻源或模型密钥。高级维护者可先手动预览 `Corpus Producer (self-managed)`，验证后设置 `CORPUS_MODE=self_managed`，让自己的来源每日自动生成、校验并通过专用 PR 发布日报。
 
 新工作流尚未进入默认分支时，通常不会出现在 Actions 手动入口，也不会替代默认分支的长期自动化。推荐顺序是：功能分支完成测试与干净克隆验收 → 代码审查 → 合并到默认分支 → 每日同步与 Pages 发布生效。
 
