@@ -137,6 +137,18 @@ def test_system_panel_explains_web_capability_is_not_forced_search():
     assert "web_search_capability" in source
 
 
+def test_source_setup_wizard_generates_configuration_without_collecting_secrets():
+    """The browser may name required Secrets but must never collect their values."""
+    source = DASHBOARD.read_text(encoding="utf-8")
+
+    assert 'aria-label="自动语料配置向导"' in source
+    assert "不会读取或保存 Secret" in source
+    assert "配置尚未修改 GitHub" in source
+    assert 'type="password"' not in source
+    assert "settings/variables/actions" in source
+    assert "settings/secrets/actions" in source
+
+
 def test_stream_and_legacy_share_one_immutable_chat_payload():
     source = DASHBOARD.read_text(encoding="utf-8")
 

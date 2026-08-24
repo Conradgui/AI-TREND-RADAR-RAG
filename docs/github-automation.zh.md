@@ -94,7 +94,9 @@ pnpm sources:check
 5. 最后设置 `CORPUS_MODE=self_managed` 和 `SELF_MANAGED_LLM_PROVIDER`，从下一次计划任务开始自动生产；
 6. 每次自动更新先通过来源、ATR 编号、搜索索引和 corpus contract 校验，再由专用分支创建并自动合并 PR；失败不会覆盖当前语料。
 
-当前不在本地 Web UI 中收集 GitHub Secrets。原因不是“做不到界面”，而是浏览器若要改仓库 Secrets，必须额外获得 GitHub 写权限和安全保存令牌，这会显著扩大权限边界。现阶段用 GitHub Actions 原生表单更安全，也更容易审计；未来若引入 GitHub App/OAuth，再评估统一 GUI。
+Web UI 的 `SYSTEM → 自动语料 → 配置自动语料` 提供安全配置向导：它可以选择托管/自维护模式、Provider 和 15 个来源的三态策略，并生成 Variables、`config.yml` 片段与所需 Secret **名称**。用户填写 `owner/repo` 后，向导会生成对应 Fork 的 Variables/Secrets 设置链接。
+
+向导不会收集 Secret 值，也不会直接修改 GitHub。浏览器若要写仓库 Secrets，必须额外获得 GitHub 写权限和安全保存令牌，这会显著扩大权限边界；因此当前仍由用户在 GitHub 原生设置页完成最终写入，页面会明确标示“配置尚未修改 GitHub”。未来若引入 GitHub App/OAuth，再单独评估自动写入能力。
 
 ## 本地 Docker 与云端自动化的关系
 

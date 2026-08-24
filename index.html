@@ -605,6 +605,81 @@
     }
     .system-connect-btn:hover:not(:disabled) { background: var(--accent); color: var(--bg); }
     .system-connect-btn:disabled { cursor: wait; opacity: 0.65; }
+    .source-setup-entry {
+      margin-top: 10px; padding: 12px;
+      border: 1px solid var(--border); border-radius: 7px;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--accent-bg) 160%);
+    }
+    .source-setup-entry strong { display: block; margin-bottom: 5px; color: var(--text); font-size: 12px; }
+    .source-setup-entry p { margin: 0 0 10px; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .source-setup[hidden], .source-setup-fields[hidden], .source-hosted-summary[hidden] { display: none; }
+    .source-setup {
+      margin-top: 12px; padding: 13px;
+      border: 1px solid var(--accent); border-radius: 7px;
+      background: var(--bg);
+    }
+    .source-setup-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .source-setup-kicker { color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: 0.12em; }
+    .source-setup h3 { margin: 3px 0 5px; color: var(--text); font-size: 14px; }
+    .source-setup-intro, .source-setup-note { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.55; }
+    .source-setup-dismiss {
+      border: none; background: none; color: var(--muted); cursor: pointer; font: inherit; font-size: 16px;
+    }
+    .source-mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 13px 0; }
+    .source-mode-card {
+      display: block; min-height: 76px; padding: 10px;
+      border: 1px solid var(--border); border-radius: 6px; cursor: pointer;
+      background: var(--bg-side); transition: border-color 0.15s, background 0.15s;
+    }
+    .source-mode-card:has(input:checked) { border-color: var(--accent); background: var(--accent-bg); }
+    .source-mode-card input { margin: 0 5px 0 0; accent-color: var(--accent); }
+    .source-mode-card b { color: var(--text); font-size: 11px; }
+    .source-mode-card small { display: block; margin-top: 7px; color: var(--muted); font-size: 9px; line-height: 1.4; }
+    .source-hosted-summary {
+      padding: 11px; border-left: 3px solid #4caf50; background: var(--bg-side);
+      color: var(--muted); font-size: 10px; line-height: 1.55;
+    }
+    .source-setup-field { display: grid; gap: 5px; margin: 10px 0; }
+    .source-setup-field > label, .source-group-title { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 0.06em; }
+    .source-setup-field input, .source-setup-field select, .source-row select {
+      min-height: 32px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 5px;
+      background: var(--bg-side); color: var(--text); font: inherit; font-size: 10px;
+    }
+    .source-setup-field input:focus, .source-setup-field select:focus, .source-row select:focus {
+      outline: 1px solid var(--accent); border-color: var(--accent);
+    }
+    .source-repo-error { min-height: 14px; color: #f44336; font-size: 9px; }
+    .source-group { margin-top: 13px; }
+    .source-group-title { padding-bottom: 5px; border-bottom: 1px solid var(--border); }
+    .source-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 0; }
+    .source-row label { color: var(--text); font-size: 10px; }
+    .source-row select { min-height: 28px; width: 94px; }
+    .source-output { margin-top: 13px; }
+    .source-output-label { display: flex; align-items: center; justify-content: space-between; margin: 9px 0 5px; }
+    .source-output-label span { color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: 0.06em; }
+    .source-copy-btn {
+      padding: 3px 7px; border: 1px solid var(--border); border-radius: 4px;
+      background: var(--bg-side); color: var(--muted); font: inherit; font-size: 9px; cursor: pointer;
+    }
+    .source-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .source-output pre {
+      margin: 0; padding: 9px; overflow-x: auto; white-space: pre-wrap;
+      border: 1px solid var(--border); border-radius: 5px;
+      background: var(--code-bg); color: var(--text); font-size: 9px; line-height: 1.55;
+    }
+    .source-secret-list { margin: 0; padding: 9px 9px 9px 25px; border: 1px solid var(--border); border-radius: 5px; }
+    .source-secret-list li { margin: 3px 0; color: var(--text); font-size: 9px; }
+    .source-github-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 11px; }
+    .source-github-actions a {
+      padding: 7px; border: 1px solid var(--accent); border-radius: 5px;
+      color: var(--accent); text-align: center; text-decoration: none; font-size: 9px; font-weight: 700;
+    }
+    .source-github-actions a:hover { background: var(--accent); color: var(--bg); }
+    .source-github-actions a[aria-disabled="true"] { opacity: 0.4; pointer-events: none; }
+    .source-setup-warning {
+      margin-top: 11px; padding: 8px; border-left: 3px solid var(--accent);
+      background: var(--accent-bg); color: var(--muted); font-size: 9px; line-height: 1.5;
+    }
     .system-item-value.connected {
       color: #4caf50;
     }
@@ -986,6 +1061,70 @@
             <button class="system-toggle-btn" id="deepFetchToggle" onclick="toggleDeepFetch()">-</button>
           </span>
         </div>
+        <div class="source-setup-entry">
+          <strong>自动语料</strong>
+          <p>选择零配置托管语料，或为自己的仓库生成自维护配置。</p>
+          <button class="system-connect-btn" id="sourceSetupOpen" type="button" onclick="openSourceSetup()">配置自动语料</button>
+        </div>
+        <section id="sourceSetup" class="source-setup" role="region" aria-label="自动语料配置向导" hidden>
+          <div class="source-setup-head">
+            <div>
+              <div class="source-setup-kicker">SETUP / DATA PIPELINE</div>
+              <h3>自动语料配置向导</h3>
+              <p class="source-setup-intro">这里只生成配置，不会读取或保存 Secret，也不会在后台修改仓库。</p>
+            </div>
+            <button class="source-setup-dismiss" type="button" onclick="closeSourceSetup()" aria-label="关闭自动语料配置向导">×</button>
+          </div>
+
+          <div class="source-mode-grid">
+            <label class="source-mode-card">
+              <span><input id="sourceModeHosted" type="radio" name="sourceMode" value="hosted" checked onchange="updateSourceSetup()"><b>托管语料</b></span>
+              <small>直接同步项目维护者发布的日报，适合第一次部署。</small>
+            </label>
+            <label class="source-mode-card">
+              <span><input id="sourceModeManaged" type="radio" name="sourceMode" value="self_managed" onchange="updateSourceSetup()"><b>自维护语料</b></span>
+              <small>自己选择来源和模型，GitHub Actions 每日生产语料。</small>
+            </label>
+          </div>
+
+          <div id="sourceHostedSummary" class="source-hosted-summary" data-testid="hosted-mode-summary">
+            推荐默认方案：无需新闻源或模型密钥，部署后即可同步经过校验的公开语料。
+          </div>
+
+          <div id="sourceManagedFields" class="source-setup-fields" data-testid="self-managed-fields" hidden>
+            <div class="source-setup-field">
+              <label for="sourceRepo">GitHub 仓库</label>
+              <input id="sourceRepo" type="text" value="Conradgui/AI-TREND-RADAR-RAG" placeholder="owner/repo" autocomplete="off" oninput="updateSourceSetup()">
+              <div id="sourceRepoError" class="source-repo-error" aria-live="polite"></div>
+            </div>
+            <div class="source-setup-field">
+              <label for="sourceProvider">模型 Provider</label>
+              <select id="sourceProvider" onchange="updateSourceSetup()">
+                <option value="deepseek">DeepSeek</option>
+                <option value="anthropic">Anthropic</option>
+                <option value="openai">OpenAI</option>
+                <option value="openrouter">OpenRouter</option>
+                <option value="github-models">GitHub Models</option>
+              </select>
+            </div>
+            <div id="sourceControlRows"></div>
+
+            <div class="source-output">
+              <div class="source-output-label"><span>仓库 Variables</span><button class="source-copy-btn" type="button" onclick="copySourceOutput('sourceVariablesOutput', this)">复制</button></div>
+              <pre id="sourceVariablesOutput" data-testid="source-variables-output"></pre>
+              <div class="source-output-label"><span>config.yml / sources</span><button class="source-copy-btn" type="button" onclick="copySourceOutput('sourceYamlOutput', this)">复制</button></div>
+              <pre id="sourceYamlOutput" data-testid="source-yaml-output"></pre>
+              <div class="source-output-label"><span>需要在 GitHub 配置的 Secret 名称</span></div>
+              <ul id="sourceRequiredSecrets" class="source-secret-list" data-testid="required-secrets"></ul>
+            </div>
+
+            <div class="source-github-actions">
+              <a id="sourceVariablesLink" href="https://github.com/Conradgui/AI-TREND-RADAR-RAG/settings/variables/actions" target="_blank" rel="noopener noreferrer">打开 Variables 设置</a>
+              <a id="sourceSecretsLink" href="https://github.com/Conradgui/AI-TREND-RADAR-RAG/settings/secrets/actions" target="_blank" rel="noopener noreferrer">打开 Secrets 设置</a>
+            </div>
+            <div class="source-setup-warning">配置尚未修改 GitHub。请复制上述内容并在 GitHub 完成设置；浏览器不会接触你的密钥值。</div>
+          </div>
+        </section>
       </div>
 
       <div class="system-section">
@@ -2076,6 +2215,180 @@ async function loadBriefContent(brief) {
 }
 
 // ── System Panel ──
+
+const SOURCE_SETUP_STORAGE_KEY = 'ai-trend-radar.source-setup.v1';
+const SOURCE_SETUP_CATALOG = [
+  { group: '官方与模型实验室', sources: [
+    ['anthropic', 'Anthropic'], ['openai', 'OpenAI'], ['deepmind', 'Google DeepMind']
+  ]},
+  { group: '开发者与研究社区', sources: [
+    ['github_trending', 'GitHub Trending'], ['hacker_news', 'Hacker News'],
+    ['product_hunt', 'Product Hunt'], ['arxiv', 'arXiv'], ['hugging_face', 'Hugging Face'],
+    ['devto', 'DEV Community'], ['lobsters', 'Lobsters']
+  ]},
+  { group: '中文技术社区', sources: [
+    ['kr36', '36Kr'], ['infoq_cn', 'InfoQ 中国'], ['gitee', 'Gitee'],
+    ['oschina', '开源中国'], ['juejin', '掘金']
+  ]}
+];
+const SOURCE_PROVIDER_SECRETS = {
+  deepseek: 'DEEPSEEK_API_KEY',
+  anthropic: 'ANTHROPIC_API_KEY',
+  openai: 'OPENAI_API_KEY',
+  openrouter: 'OPENROUTER_API_KEY',
+  'github-models': 'GITHUB_TOKEN（Actions 自动提供）'
+};
+let sourceSetupInitialized = false;
+let sourceSetupModes = Object.fromEntries(
+  SOURCE_SETUP_CATALOG.flatMap((group) => group.sources.map(([id]) => [id, 'auto']))
+);
+
+function loadSourceSetupPreferences() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SOURCE_SETUP_STORAGE_KEY) || '{}');
+    const knownIds = new Set(Object.keys(sourceSetupModes));
+    for (const [id, mode] of Object.entries(saved.sources || {})) {
+      if (knownIds.has(id) && ['auto', 'enabled', 'disabled'].includes(mode)) sourceSetupModes[id] = mode;
+    }
+    if (saved.mode === 'self_managed') document.getElementById('sourceModeManaged').checked = true;
+    if (typeof saved.repo === 'string') document.getElementById('sourceRepo').value = saved.repo;
+    if (saved.provider && SOURCE_PROVIDER_SECRETS[saved.provider]) {
+      document.getElementById('sourceProvider').value = saved.provider;
+    }
+  } catch (error) {
+    console.warn('Ignored invalid local source setup preferences', error);
+  }
+}
+
+function renderSourceSetupControls() {
+  const container = document.getElementById('sourceControlRows');
+  container.replaceChildren();
+  for (const group of SOURCE_SETUP_CATALOG) {
+    const section = document.createElement('div');
+    section.className = 'source-group';
+    const title = document.createElement('div');
+    title.className = 'source-group-title';
+    title.textContent = group.group;
+    section.appendChild(title);
+
+    for (const [id, name] of group.sources) {
+      const row = document.createElement('div');
+      row.className = 'source-row';
+      const label = document.createElement('label');
+      label.htmlFor = `source-mode-${id}`;
+      label.textContent = name;
+      const select = document.createElement('select');
+      select.id = `source-mode-${id}`;
+      select.dataset.sourceId = id;
+      select.append(new Option('自动', 'auto'), new Option('必须启用', 'enabled'), new Option('关闭', 'disabled'));
+      select.value = sourceSetupModes[id];
+      select.addEventListener('change', () => {
+        sourceSetupModes[id] = select.value;
+        updateSourceSetup();
+      });
+      row.append(label, select);
+      section.appendChild(row);
+    }
+    container.appendChild(section);
+  }
+}
+
+function initializeSourceSetup() {
+  if (sourceSetupInitialized) return;
+  sourceSetupInitialized = true;
+  loadSourceSetupPreferences();
+  renderSourceSetupControls();
+  updateSourceSetup();
+}
+
+function openSourceSetup() {
+  initializeSourceSetup();
+  const wizard = document.getElementById('sourceSetup');
+  wizard.hidden = false;
+  wizard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function closeSourceSetup() {
+  document.getElementById('sourceSetup').hidden = true;
+}
+
+function sourceRepositoryPath() {
+  const value = document.getElementById('sourceRepo').value.trim();
+  return /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(value) ? value : null;
+}
+
+function updateSourceSetupLinks(repository) {
+  const links = [
+    ['sourceVariablesLink', 'variables'],
+    ['sourceSecretsLink', 'secrets']
+  ];
+  for (const [id, type] of links) {
+    const link = document.getElementById(id);
+    if (repository) {
+      link.href = `https://github.com/${repository}/settings/${type}/actions`;
+      link.removeAttribute('aria-disabled');
+    } else {
+      link.removeAttribute('href');
+      link.setAttribute('aria-disabled', 'true');
+    }
+  }
+}
+
+function updateSourceSetup() {
+  if (!sourceSetupInitialized) return;
+  const mode = document.querySelector('input[name="sourceMode"]:checked')?.value || 'hosted';
+  const selfManaged = mode === 'self_managed';
+  document.getElementById('sourceHostedSummary').hidden = selfManaged;
+  document.getElementById('sourceManagedFields').hidden = !selfManaged;
+
+  const repo = document.getElementById('sourceRepo').value.trim();
+  const validRepo = sourceRepositoryPath();
+  document.getElementById('sourceRepoError').textContent = repo && !validRepo
+    ? '请使用 owner/repo 格式，例如 your-name/AI-TREND-RADAR-RAG'
+    : '';
+  updateSourceSetupLinks(validRepo);
+
+  const provider = document.getElementById('sourceProvider').value;
+  document.getElementById('sourceVariablesOutput').textContent =
+    `CORPUS_MODE=${mode}\nSELF_MANAGED_LLM_PROVIDER=${provider}`;
+  document.getElementById('sourceYamlOutput').textContent = [
+    'sources:',
+    ...Object.entries(sourceSetupModes).map(([id, value]) => `  ${id}: ${value}`)
+  ].join('\n');
+
+  const secretNames = [SOURCE_PROVIDER_SECRETS[provider]];
+  if (sourceSetupModes.product_hunt === 'enabled') secretNames.push('PRODUCTHUNT_TOKEN');
+  const secretList = document.getElementById('sourceRequiredSecrets');
+  secretList.replaceChildren(...secretNames.map((name) => {
+    const item = document.createElement('li');
+    item.textContent = name;
+    return item;
+  }));
+
+  try {
+    localStorage.setItem(SOURCE_SETUP_STORAGE_KEY, JSON.stringify({
+      mode,
+      repo,
+      provider,
+      sources: sourceSetupModes
+    }));
+  } catch (error) {
+    console.warn('Could not persist source setup preferences', error);
+  }
+}
+
+async function copySourceOutput(id, button) {
+  const text = document.getElementById(id).textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    const original = button.textContent;
+    button.textContent = '已复制';
+    setTimeout(() => { button.textContent = original; }, 1200);
+  } catch (error) {
+    console.warn('Clipboard unavailable', error);
+    button.textContent = '请手动复制';
+  }
+}
 
 let systemOpen = false;
 let systemData = null;
