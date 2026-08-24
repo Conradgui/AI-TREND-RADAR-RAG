@@ -1,0 +1,27 @@
+{
+  "schema_version": "atr.blind-coverage/1.0",
+  "dataset_id": "ordered-query-frame-v3-2-new-blind-2026-08-21",
+  "evidence_boundary": "Sealed design metadata. The prediction runner must never read this file.",
+  "contrast_pairs": [
+    {
+      "kind": "b-c",
+      "case_ids": ["v32-new-blind-005", "v32-new-blind-009"]
+    },
+    {
+      "kind": "d-e",
+      "case_ids": ["v32-new-blind-013", "v32-new-blind-018"]
+    },
+    {
+      "kind": "a-e",
+      "case_ids": ["v32-new-blind-002", "v32-new-blind-017"]
+    },
+    {
+      "kind": "timeline-longitudinal",
+      "case_ids": ["v32-new-blind-009", "v32-new-blind-010"]
+    },
+    {
+      "kind": "resolved-clarification",
+      "case_ids": ["v32-new-blind-015", "v32-new-blind-016"]
+    }
+  ]
+}

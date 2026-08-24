@@ -1,0 +1,141 @@
+{
+  "experiment_id": "ordered-query-frame-v3-2-visible-calibration-2026-08-21-score",
+  "evidence_boundary": "Already-unsealed calibration score; not blind, production, or generalization evidence.",
+  "metrics": {
+    "ordered_deliveries_accuracy": 85.7,
+    "primary_route_accuracy": 100.0,
+    "primary_route_accuracy_by_family": {
+      "item_navigation": 100.0,
+      "trend_discovery": 100.0,
+      "temporal_relation_exploration": 100.0,
+      "claim_verification": 0.0,
+      "evidence_research": 0.0
+    },
+    "web_permission_accuracy": 100.0,
+    "protected_span_micro_precision": 59.1,
+    "protected_span_micro_recall": 72.2,
+    "protected_span_micro_f1": 65.0,
+    "clarification_precision": 100.0,
+    "clarification_recall": 100.0,
+    "frame_route_legal_rate": 100.0,
+    "complete_projection_accuracy": 14.3,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds": 2.141,
+    "max_latency_seconds": 2.599,
+    "total_tokens": 16534
+  },
+  "gate": {
+    "passed": false,
+    "checks": {
+      "ordered_deliveries_at_least_85": true,
+      "primary_route_at_least_85": true,
+      "every_covered_family_at_least_80": true,
+      "web_permission_100": true,
+      "protected_f1_at_least_85": false,
+      "clarification_precision_at_least_80": true,
+      "clarification_recall_at_least_80": true,
+      "frame_route_legal_100": true,
+      "complete_projection_at_least_85": false,
+      "single_attempt_all_cases": true,
+      "mean_latency_at_most_8": true,
+      "max_latency_at_most_12": true
+    }
+  },
+  "cases": [
+    {
+      "case_id": "new-blind-003",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "new-blind-005",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "new-blind-006",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "new-blind-008",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": false,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "new-blind-010",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "new-blind-012",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "new-blind-018",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    }
+  ],
+  "freeze_manifest_sha256": "2ac76053dcf8caa3e99fcaa61cb309bd963f166fc5afeae34943535dd7c6113b",
+  "gate_thresholds": {
+    "ordered_deliveries_exact_min": "6/7",
+    "primary_route_resolved": "5/5",
+    "web_permission": "7/7",
+    "clarification_precision": 100,
+    "clarification_recall": 100,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds_max": 8,
+    "max_latency_seconds_max": 12
+  }
+}

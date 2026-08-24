@@ -1,0 +1,36 @@
+{
+  "schema_version": "atr.eval-freeze/1.4",
+  "experiment_id": "ordered-query-frame-v3-4-new-blind-2026-08-21",
+  "evidence_boundary": "Unseen double-annotation Blind for Ordered Query Frame v3.4; not retrieval, GraphRAG, answer-quality, production, or release evidence.",
+  "case_order": ["v34-new-blind-001", "v34-new-blind-002", "v34-new-blind-003", "v34-new-blind-004", "v34-new-blind-005", "v34-new-blind-006", "v34-new-blind-007", "v34-new-blind-008", "v34-new-blind-009", "v34-new-blind-010", "v34-new-blind-011", "v34-new-blind-012", "v34-new-blind-013", "v34-new-blind-014", "v34-new-blind-015"],
+  "query_sha256": "1a5bf3c45245e6fc3245a7404a7e7314829e56046b143ce6969b2d4efcee172d",
+  "gold_sha256": "e86552a7d4c82979785d17961b7834ea8682d161262ea55176840e7cec47ae44",
+  "prompt_sha256": "6aea7f1ba9ba389fc48201905a639fb9953b36bb3ce52a61fa95b433f436a322",
+  "provider_schema_sha256": "e56ab74c250e299dd153222ed6ad617eacd6c4693061791987d75e1257ef9422",
+  "runtime": {"model": "deepseek-v4-flash", "base_url": "https://api.deepseek.com", "temperature": 0, "max_tokens": 900, "timeout_seconds": 20, "thinking": "disabled", "max_retries": 0, "attempts_per_case": 1},
+  "prediction_freeze_manifest_sha256": "a246b28e405461d3ac2f27aaa5808fc00503776b10bb465d970791fe0ee89b35",
+  "annotation_artifacts": [
+    {"path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-4-new-blind-annotation-a-2026-08-21.json", "sha256": "bc793f5e1be416a64778b90837559ee6d09ef3446ce373adb52a74a6001b8788"},
+    {"path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-4-new-blind-annotation-b-2026-08-21.json", "sha256": "2a302d92c71bd8fc93fa126cde6098706634f9bff2f829d6c0aeb13ba9d8b0d7"},
+    {"path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-4-new-blind-gold-2026-08-21.json", "sha256": "64a438dfa4c7f01378fc1f359203f950f229fdd9333d98ce94d5b5040c1b5564"},
+    {"path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-4-new-blind-coverage-2026-08-21.json", "sha256": "97a41d45e14aa37df7614bf78c8ab1340e4254ec34b55d2c30a57f8ce170b4ca"}
+  ],
+  "runner_artifacts": [
+    {"path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json", "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"},
+    {"path": "docs/rag-transformation/specs/route-contract-v2.schema.json", "sha256": "edd202a28d1dccace40f561f0105b17ef76856318324da28cd998598c365dca6"},
+    {"path": "rag/config.py", "sha256": "56c9be21706901ccea4a9cbf17f3a2059d1d2d683c4d628c4b8405e2656f6966"},
+    {"path": "rag/ordered_frame_client_v3.py", "sha256": "fc730cc7512ebf47a2c7eab09e00385ed86bf63e4a2ebe77773f2792209e40c6"},
+    {"path": "rag/ordered_semantic_frame_v3.py", "sha256": "fa256e9201866e66364bd1ec023e950df262975425985494ba0ab4deea9f274b"},
+    {"path": "rag/query_understanding_v2.py", "sha256": "2f4dcc01f55a8b1263a74282305e584649a03eb098ae96a3ff518a2b4962ef51"},
+    {"path": "rag/route_contract_validation.py", "sha256": "f09029f67bc3192bb576e0aafa8b25389bc6d095b90f162751d11375b180be89"},
+    {"path": "rag/run_ordered_frame_v3_calibration.py", "sha256": "76798200121764527556bb2ace164222acd58dacba12c4c1847d4c129ac60d4d"}
+  ],
+  "scoring_artifacts": [
+    {"path": "docs/rag-transformation/specs/route-contract-v2.schema.json", "sha256": "edd202a28d1dccace40f561f0105b17ef76856318324da28cd998598c365dca6"},
+    {"path": "rag/build_ordered_frame_v3_4_blind_assets.py", "sha256": "4ec455fd1dcbf959986569990d7409d7dde8d1302c5b167752ec5d011fbb6c80"},
+    {"path": "rag/score_ordered_frame_v3_3_visible.py", "sha256": "cb3917fac17ff62276232f24044839e6804df3cd4585429eb4fecd26f6e72b72"},
+    {"path": "rag/score_ordered_frame_v3_4_blind.py", "sha256": "7e81ece6b4ca076288c71a703ceb8a27c7ab1a6e66ca86b9b36d2cd4262112a2"}
+  ],
+  "runtime_budget": {"planned_cases": 15, "max_provider_calls": 15, "attempts_per_case": 1, "max_retries": 0},
+  "stop_conditions": ["artifact_hash_drift", "annotation_agreement_gate_failure", "runner_reads_sealed_labels", "provider_or_network_error", "more_than_one_attempt_for_any_case", "invalid_or_incomplete_prediction"]
+}

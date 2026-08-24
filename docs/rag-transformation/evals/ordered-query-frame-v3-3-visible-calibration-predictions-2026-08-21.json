@@ -1,0 +1,34 @@
+{
+  "experiment_id": "ordered-query-frame-v3-3-visible-calibration-2026-08-21",
+  "evidence_boundary": "Visible calibration only; it cannot support a Blind or generalization claim.",
+  "query_dataset_id": "ordered-query-frame-v3-3-visible-calibration-2026-08-21",
+  "query_sha256": "18297361b36ae9d49635b1ed6328f5536000f4e490d415c62941bc6a9a32420b",
+  "model": "deepseek-v4-flash",
+  "planned": 6,
+  "executed": 1,
+  "cases": [
+    {
+      "case_id": "v33-visible-009",
+      "query": "按发生顺序梳理苍穹编排器从首次发布到商业版上线的关键里程碑，并定位《苍穹编排器发布说明》。",
+      "frame": null,
+      "envelope": null,
+      "metadata": {
+        "attempts": 1,
+        "model": "deepseek-v4-flash"
+      },
+      "latency_seconds": 0.349,
+      "error": "APIConnectionError: Connection error."
+    }
+  ],
+  "freeze_manifest_sha256": "3dd4e5b5cc18a46c43542b09df5adf1b5d6ea7c46705a8f00b6de3c79b57151c",
+  "frozen_runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "schema_version": "atr.visible-contract-eval/3.3",
+  "metrics": {
+    "case_count": 6,
+    "product_complete_count": 6,
+    "delivery_sequence_exact": 100.0,
+    "status_and_contract_shape": 100.0,
+    "web_permission_contract": 100.0,
+    "contract_critical_terms": 100.0,
+    "l3_legal": 100.0,
+    "l3_projection_consistent": 100.0,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds": 1.972,
+    "max_latency_seconds": 2.836
+  },
+  "gate": {
+    "passed": true,
+    "checks": {
+      "all_cases_product_complete": true,
+      "delivery_sequence_100": true,
+      "status_and_contract_shape_100": true,
+      "web_permission_100": true,
+      "contract_critical_terms_100": true,
+      "l3_legal_100": true,
+      "l3_projection_consistent_100": true,
+      "single_attempt_all_cases": true,
+      "mean_latency_at_most_8": true,
+      "max_latency_at_most_12": true
+    }
+  },
+  "cases": [
+    {
+      "case_id": "v33-visible-009",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "delivery_sequence_exact": true,
+        "status_and_contract_shape": true,
+        "main_task_family_contract": true,
+        "main_output_contract": true,
+        "supporting_task_families_contract": true,
+        "supporting_navigation_contract": true,
+        "web_permission_contract": true,
+        "contract_critical_terms": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "《苍穹编排器发布说明》",
+          "match": "exact",
+          "observed_values": [
+            "《苍穹编排器发布说明》",
+            "商业版上线",
+            "苍穹编排器",
+            "苍穹编排器发布说明",
+            "首次发布"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "raw_frame_protected_exact_span": {
+          "precision": 50.0,
+          "recall": 100.0,
+          "f1": 66.7
+        }
+      }
+    },
+    {
+      "case_id": "v33-visible-011",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "delivery_sequence_exact": true,
+        "status_and_contract_shape": true,
+        "main_task_family_contract": true,
+        "main_output_contract": true,
+        "supporting_task_families_contract": true,
+        "supporting_navigation_contract": true,
+        "web_permission_contract": true,
+        "contract_critical_terms": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "2026 年 3 月",
+          "match": "exact",
+          "observed_values": [
+            "2026 年 3 月",
+            "2026 年 7 月",
+            "不要联网",
+            "部署策略",
+            "青岚索引"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "2026 年 7 月",
+          "match": "exact",
+          "observed_values": [
+            "2026 年 3 月",
+            "2026 年 7 月",
+            "不要联网",
+            "部署策略",
+            "青岚索引"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "不要联网",
+          "match": "exact",
+          "observed_values": [
+            "2026 年 3 月",
+            "2026 年 7 月",
+            "不要联网",
+            "部署策略",
+            "青岚索引"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "raw_frame_protected_exact_span": {
+          "precision": 75.0,
+          "recall": 75.0,
+          "f1": 75.0
+        }
+      }
+    },
+    {
+      "case_id": "v33-visible-012",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "delivery_sequence_exact": true,
+        "status_and_contract_shape": true,
+        "main_task_family_contract": true,
+        "main_output_contract": true,
+        "supporting_task_families_contract": true,
+        "supporting_navigation_contract": true,
+        "web_permission_contract": true,
+        "contract_critical_terms": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "赤潮芯片",
+          "match": "exact",
+          "observed_values": [
+            "北岸实验室",
+            "极昼云平台",
+            "赤潮芯片"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "极昼云平台",
+          "match": "exact",
+          "observed_values": [
+            "北岸实验室",
+            "极昼云平台",
+            "赤潮芯片"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "北岸实验室",
+          "match": "exact",
+          "observed_values": [
+            "北岸实验室",
+            "极昼云平台",
+            "赤潮芯片"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "raw_frame_protected_exact_span": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v33-visible-015",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "delivery_sequence_exact": true,
+        "status_and_contract_shape": true,
+        "main_task_family_contract": true,
+        "main_output_contract": true,
+        "supporting_task_families_contract": true,
+        "supporting_navigation_contract": true,
+        "web_permission_contract": true,
+        "contract_critical_terms": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "claims",
+          "literal": "北辰 API 已把推理成本降低 40%",
+          "match": "exact",
+          "observed_values": [
+            "北辰 API 已把推理成本降低 40%"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "raw_frame_protected_exact_span": {
+          "precision": 100.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "v33-visible-016",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "delivery_sequence_exact": true,
+        "status_and_contract_shape": true,
+        "main_task_family_contract": true,
+        "main_output_contract": true,
+        "supporting_task_families_contract": true,
+        "supporting_navigation_contract": true,
+        "web_permission_contract": true,
+        "contract_critical_terms": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [],
+      "diagnostics": {
+        "raw_frame_protected_exact_span": {
+          "precision": 100.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "v33-visible-018",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "delivery_sequence_exact": true,
+        "status_and_contract_shape": true,
+        "main_task_family_contract": true,
+        "main_output_contract": true,
+        "supporting_task_families_contract": true,
+        "supporting_navigation_contract": true,
+        "web_permission_contract": true,
+        "contract_critical_terms": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "40%",
+          "match": "substring",
+          "observed_values": [
+            "中小团队",
+            "北辰 API",
+            "推理成本降低 40%",
+            "请联网分析"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "北辰 API",
+          "match": "exact",
+          "observed_values": [
+            "中小团队",
+            "北辰 API",
+            "推理成本降低 40%",
+            "请联网分析"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "中小团队",
+          "match": "exact",
+          "observed_values": [
+            "中小团队",
+            "北辰 API",
+            "推理成本降低 40%",
+            "请联网分析"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "raw_frame_protected_exact_span": {
+          "precision": 66.7,
+          "recall": 66.7,
+          "f1": 66.7
+        }
+      }
+    }
+  ]
+}

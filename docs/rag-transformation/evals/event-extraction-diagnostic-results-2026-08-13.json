@@ -1,0 +1,353 @@
+{
+  "contract_version": "event-contract-v2",
+  "semantic_extraction_fields": [
+    "content_kind",
+    "source_role",
+    "event_type",
+    "subject_entity_ids",
+    "mentioned_entity_ids"
+  ],
+  "source_fact_checks": [
+    "publication_date",
+    "temporal_confidence"
+  ],
+  "quality_metrics": {
+    "non_news_false_admission_count": 2,
+    "non_news_record_count": 12,
+    "non_news_false_admission_rate": 0.1667
+  },
+  "record_count": 12,
+  "exact_record_count": 0,
+  "exact_record_rate": 0.0,
+  "fields": {
+    "content_kind": {
+      "correct": 5,
+      "total": 12,
+      "accuracy": 0.4167,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-0FD7E8",
+          "expected": "unknown",
+          "observed": "news",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": "unknown",
+          "observed": "news",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": "research",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-221E77",
+          "expected": "tutorial",
+          "observed": "developer_content",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-881C4D",
+          "expected": "unknown",
+          "observed": "product_listing",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-8F47AB",
+          "expected": "unknown",
+          "observed": "product_listing",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-DE5F60",
+          "expected": "unknown",
+          "observed": "product_listing",
+          "passed": false
+        }
+      ]
+    },
+    "source_role": {
+      "correct": 8,
+      "total": 12,
+      "accuracy": 0.6667,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-881C4D",
+          "expected": "unknown",
+          "observed": "third_party",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-8F47AB",
+          "expected": "first_party",
+          "observed": "third_party",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-DE5F60",
+          "expected": "first_party",
+          "observed": "third_party",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-C85097",
+          "expected": "unknown",
+          "observed": "third_party",
+          "passed": false
+        }
+      ]
+    },
+    "event_type": {
+      "correct": 3,
+      "total": 12,
+      "accuracy": 0.25,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-92C80A",
+          "expected": "leadership",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-7618A0",
+          "expected": "litigation",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": "research_release",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-221E77",
+          "expected": "unknown",
+          "observed": "documentation_or_tutorial",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-8AD0A9",
+          "expected": "unknown",
+          "observed": "documentation_or_tutorial",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-881C4D",
+          "expected": "unknown",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-8F47AB",
+          "expected": "unknown",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-DE5F60",
+          "expected": "compatibility",
+          "observed": "model_release",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-C85097",
+          "expected": "unknown",
+          "observed": "other",
+          "passed": false
+        }
+      ]
+    },
+    "subject_entity_ids": {
+      "correct": 5,
+      "total": 12,
+      "accuracy": 0.4167,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-0FD7E8",
+          "expected": [
+            "american-psychological-association",
+            "openai"
+          ],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": [
+            "anthropic-fable-5"
+          ],
+          "observed": [
+            "anthropic"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-28980E",
+          "expected": [
+            "google-deepmind-weathernext"
+          ],
+          "observed": [
+            "google-deepmind"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-92C80A",
+          "expected": [
+            "demis-hassabis",
+            "jeff-dean"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-7618A0",
+          "expected": [
+            "apple",
+            "openai"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": [
+            "perforce-2026-platform-engineering-report"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-DE5F60",
+          "expected": [
+            "unsloth-deepseek-v4-flash-0731-gguf"
+          ],
+          "observed": [
+            "deepseek-v4-flash-0731-gguf"
+          ],
+          "passed": false
+        }
+      ]
+    },
+    "mentioned_entity_ids": {
+      "correct": 3,
+      "total": 12,
+      "accuracy": 0.25,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": [
+            "anthropic",
+            "anthropic-opus-5"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-28980E",
+          "expected": [
+            "cira",
+            "google-deepmind",
+            "google-research",
+            "national-hurricane-center",
+            "nature",
+            "uk-met-office"
+          ],
+          "observed": [
+            "google"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-92C80A",
+          "expected": [
+            "google",
+            "google-deepmind"
+          ],
+          "observed": [
+            "google-deepmind"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-7618A0",
+          "expected": [
+            "elon-musk"
+          ],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": [
+            "perforce-software"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-221E77",
+          "expected": [
+            "electron",
+            "microsoft-store",
+            "windows"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-8AD0A9",
+          "expected": [
+            "anthropic",
+            "javascript"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-8F47AB",
+          "expected": [
+            "java",
+            "jvm",
+            "mcp",
+            "quarkus",
+            "spring-boot"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260807-DE5F60",
+          "expected": [
+            "deepseek-v4-flash-0731",
+            "gguf",
+            "unsloth"
+          ],
+          "observed": [],
+          "passed": false
+        }
+      ]
+    },
+    "publication_date": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0,
+      "errors": []
+    },
+    "temporal_confidence": {
+      "correct": 12,
+      "total": 12,
+      "accuracy": 1.0,
+      "errors": []
+    }
+  },
+  "extractor_sha256": "e69c012d8a64777680573fe04f618607ce5fe2b1fb4de366b533f2c27bbe1399"
+}

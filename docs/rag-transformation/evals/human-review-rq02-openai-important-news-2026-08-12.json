@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "query_id": "RQ02",
+  "query": "OpenAI 最近有哪些重要动态？",
+  "review_status": "human_review_partial",
+  "review_scope": "current_gateway_top5_only",
+  "review_provenance": "Conrad human judgment in product calibration session on 2026-08-12",
+  "intent_definition": {
+    "task_family": "trend_discovery",
+    "requested_object": "recent_important_news",
+    "newsworthiness_dimensions": [
+      "recency",
+      "event_nature",
+      "impact_breadth",
+      "impact_depth",
+      "public_attention",
+      "major_company_competition"
+    ],
+    "admission_rule": "候选必须首先是近期发生的新闻事件；进入候选集后，再按影响范围、影响深度、热度和巨头竞争看点重排。",
+    "default_exclusions": [
+      "普通价格细节",
+      "普通行为机制调整",
+      "普通产品配置调整"
+    ],
+    "promotion_exceptions": "如果价格、机制或配置调整代表重大产品架构或产品决策变化，或者影响已经广泛扩散并形成较高讨论度，则可升级为重要新闻。",
+    "background_policy": "重要但已经较旧的事件不进入近期重要动态主榜，可作为历史背景展示。"
+  },
+  "labels": [
+    {
+      "rank": 1,
+      "citation_id": "ATR-20260811-7794E9",
+      "title": "Premium Seats Chatgpt Business",
+      "label": "exclude",
+      "news_relevance": 0,
+      "importance": 0,
+      "reason": "更接近价格、席位或机制调整，影响面较小，当前证据不足以证明属于重大产品决策或已形成广泛影响。"
+    },
+    {
+      "rank": 2,
+      "citation_id": "ATR-20260807-7618A0",
+      "title": "苹果指控 OpenAI挖人、拿零件、偷文件，OpenAI 晒聊天记录全面反击！马斯克：别信 OpenAI",
+      "label": "background",
+      "news_relevance": 1,
+      "importance": 2,
+      "reason": "事件本身具有重要性和巨头竞争看点，但相对当前查询时间已经偏旧，不应占据近期动态主榜高位。"
+    },
+    {
+      "rank": 3,
+      "citation_id": "ATR-20260807-0FD7E8",
+      "title": "Openai And Apa Partner To Advance Responsible Ai",
+      "label": "main_candidate",
+      "news_relevance": 2,
+      "importance": null,
+      "reason": "属于近期新闻事件和重要候选；与其余主榜候选的相对排序尚未人工确认。"
+    },
+    {
+      "rank": 4,
+      "citation_id": "ATR-20260802-8133E7",
+      "title": "Ten Advances In Mathematics",
+      "label": "main_candidate",
+      "news_relevance": 2,
+      "importance": null,
+      "reason": "属于近期新闻事件和重要候选；与其余主榜候选的相对排序尚未人工确认。"
+    },
+    {
+      "rank": 5,
+      "citation_id": "ATR-20260812-2A01C3",
+      "title": "OpenAI’s head of ethics leaves less than a year after joining",
+      "label": "main_candidate",
+      "news_relevance": 2,
+      "importance": null,
+      "reason": "属于近期新闻事件和重要候选；与其余主榜候选的相对排序尚未人工确认。"
+    }
+  ],
+  "observed_metrics": {
+    "precision_at_1_for_recent_important_news": 0.0,
+    "strict_main_candidate_precision_at_5": 0.6,
+    "topic_or_background_relevance_at_5": 0.8,
+    "recall": null,
+    "f1": null,
+    "ndcg": null,
+    "limitations": [
+      "只审阅了当前 Top 5，未穷举语料库中的全部相关事件，因此不能计算 Recall 或 F1。",
+      "三个主榜候选尚未完成人工相对排序，因此不能报告最终 NDCG。",
+      "两个主榜候选在规范化语料中缺少摘要，不能仅凭标题可靠判断重要性顺序。"
+    ]
+  },
+  "architecture_finding": {
+    "expected_task_family": "trend_discovery",
+    "observed_gateway_task_family": "evidence_research",
+    "impact": "当前路径偏向实体相关证据召回，没有执行新闻准入、时效判断和重要性重排。",
+    "next_validation": "先在固定 Top 5 上实现任务路由修正和轻量新闻重排，要求排除第 1 条、第 2 条降为背景、主榜仅保留第 3/4/5 条；小样通过后再扩大测试集。"
+  }
+}

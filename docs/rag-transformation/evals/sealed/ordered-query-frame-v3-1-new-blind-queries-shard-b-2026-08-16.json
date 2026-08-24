@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "new-blind-011",
+    "query": "请联网梳理从2021年到2024年，Aurora Mesh Protocol与Kestrel Ledger之间的合作如何演变，并按时间线说明关键转折。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-012",
+    "query": "请梳理“这个合作”在2022年至2025年的演变；如果需要，可以联网查找资料。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-013",
+    "query": "请联网核验这条说法是否准确：“Solara Bioworks在2023年让全部临床试验转向无纸化”，并进一步研究促成或限制这一变化的证据。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-014",
+    "query": "不要联网。请核验“Vela Transit在2024年已经实现全线零排放”这条说法，并给出判断依据。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-015",
+    "query": "请判断“Cinderpeak Observatory的开放数据在2020年后仍保持每周更新”是否属实；只有公开证据不足时才联网查找。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-016",
+    "query": "禁止联网。请核验“Maris Seed Bank在2022年保存了全部已知盐沼植物种子”这一主张，并说明结论。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-017",
+    "query": "请联网深入研究Nereid Cooling Grid的液冷架构、部署约束与维护成本，并整理成研究报告。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-018",
+    "query": "请解释“这项技术”的主要证据、适用边界和已知争议；必要时可以联网，但我没有说明具体是哪项技术。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-019",
+    "query": "请研究Orchid Relay与Pineglass Relay在低带宽环境下的设计差异和适用场景；必要时联网，并核验“Pineglass Relay的延迟始终低于Orchid Relay”这一说法。",
+    "public_context": []
+  },
+  {
+    "case_id": "new-blind-020",
+    "query": "不要联网。请解释Tamarind Archive采用分层校验的原理、收益与局限。",
+    "public_context": []
+  }
+]

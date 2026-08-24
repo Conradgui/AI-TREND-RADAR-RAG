@@ -1,0 +1,59 @@
+{
+  "dataset_id": "gateway-canary-2026-08-05",
+  "label_tier": "canary-functional-contract",
+  "needs_human_relevance_review": true,
+  "purpose": "在把 Retrieval Gateway 接入 API 和 Web UI 前，以实际本地 2026-08-05 索引验证核心用户路径没有功能回退。它不生成 Precision/Recall/F1，也不替代人工相关性判断。",
+  "target_snapshot": {
+    "latest_corpus_date": "2026-08-05"
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "query": "最近有什么热门趋势？",
+      "expected_task_family": "trend_discovery",
+      "limit": 5,
+      "min_records": 3,
+      "min_unique_sources": 2,
+      "max_per_source": 2,
+      "require_unique_citation_ids": true,
+      "no_empty_regression": true,
+      "evidence_basis": "泛趋势提问应产生由日语料记录组成、可追溯且多样的趋势候选，而不是把整句拿去语义相似度检索。"
+    },
+    {
+      "id": "C02",
+      "query": "Apple Is Getting This Wrong",
+      "expected_task_family": "item_navigation",
+      "limit": 5,
+      "expected_citation_id": "30e52f96d337d8dc2c30327f22a8225c",
+      "requires_local_url": true,
+      "evidence_basis": "2026-08-05 本地 Daily Corpus 中的稳定 occurrence_id。"
+    },
+    {
+      "id": "C03",
+      "query": "Introducing The Openai Economic Research Exchange",
+      "expected_task_family": "item_navigation",
+      "limit": 5,
+      "expected_citation_id": "6e87c64142e471682323d2c22f7ce5c4",
+      "requires_local_url": true,
+      "evidence_basis": "2026-08-05 本地 Daily Corpus 中的稳定 occurrence_id；用于防止实体识别覆盖精确标题导航。"
+    },
+    {
+      "id": "C04",
+      "query": "AgentSky",
+      "expected_task_family": "item_navigation",
+      "limit": 5,
+      "expected_citation_id": "d08fdb9ad93d0f3feb4816d217b7792b",
+      "requires_local_url": true,
+      "evidence_basis": "2026-08-05 本地 Daily Corpus 中的稳定 occurrence_id。"
+    },
+    {
+      "id": "C05",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "expected_task_family": "evidence_research",
+      "limit": 5,
+      "min_records": 1,
+      "no_empty_regression": true,
+      "evidence_basis": "当前阶段尚未建立经人工标注的宽泛实体趋势相关性集合；先防止 Gateway 接入导致原有可用证据变为空。"
+    }
+  ]
+}

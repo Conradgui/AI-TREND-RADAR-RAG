@@ -1,7 +1,7 @@
 # Stage 2：Search Document、条目搜索与稳定深链实施计划
 
-日期：2026-08-10  
-状态：Gate Review 通过，待 Claude 分支 checkpoint  
+日期：2026-08-10
+状态：Gate Review 通过，待 Claude 分支 checkpoint
 分支：`claude/rag-transformation-checkpoints`
 
 ## 1. 目标与证据起点

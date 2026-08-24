@@ -1,0 +1,2299 @@
+{
+  "score_id": "route-contract-v2-challenge-baseline-score-2026-08-13",
+  "dataset_id": "route-contract-v2-challenge-2026-08-13",
+  "baseline_id": "route-contract-v2-challenge-pre-fix-baseline-2026-08-13",
+  "evaluation_role": "independent_challenge_agent",
+  "evaluation_status": "baseline_scored_after_gold_unseal",
+  "baseline_prediction_file_modified": false,
+  "scored_at": "2026-08-13T06:11:15.164128+00:00",
+  "hashes_verified": {
+    "query_file": {
+      "expected": "b77eb76612c9b64327644d27fe6af81bc837a6900732833fb62ad5e68ab398c2",
+      "actual": "b77eb76612c9b64327644d27fe6af81bc837a6900732833fb62ad5e68ab398c2",
+      "verified": true
+    },
+    "baseline_file": {
+      "expected": "c459e1f202e6cc3fec39ba67936227c302833b2424ed41160d6ed4c71b240175",
+      "actual": "c459e1f202e6cc3fec39ba67936227c302833b2424ed41160d6ed4c71b240175",
+      "verified": true
+    },
+    "sealed_gold_file": {
+      "expected_at_sealing": "0eebbb96d2979b2f40f0116591b96f6606a885b0186b6fb6f15881043fd4df6c",
+      "actual": "0eebbb96d2979b2f40f0116591b96f6606a885b0186b6fb6f15881043fd4df6c",
+      "verified": true
+    },
+    "understander_snapshot": {
+      "expected_frozen": "cf3624c392bcc287484c1ab74d6b611e49399e431fc96eb2e530f8fa2f6598dc",
+      "declared_in_baseline": "cf3624c392bcc287484c1ab74d6b611e49399e431fc96eb2e530f8fa2f6598dc",
+      "baseline_metadata_verified": true,
+      "current_worktree_actual": "c56dfd658f81abf7756773f684f0f5d4486150adc0e8045c586ad4f3fcc413d5",
+      "current_worktree_matches_frozen": false,
+      "note": "冻结 baseline 内声明的 understander hash 与协议值一致；评分时当前工作树源码已变化，因此无法从当前文件重现该源码快照，但这不改变已冻结 baseline 预测。"
+    },
+    "baseline_integrity_verified": true,
+    "all_current_files_match_frozen_hashes": false
+  },
+  "scoring_policy": {
+    "set_fields": "intent_signals、supporting_task_families、protected_terms 均按集合比较；顺序不影响结果。",
+    "protected_term_normalization": "Unicode NFKC + casefold + 合并空白 + 去除 token 两端引号；随后按独立 token 精确集合比较。整句包含、子串包含和把完整 query 当 token 均不算匹配。",
+    "ambiguity_detection": "actual ambiguities 非空视为检测到歧义。",
+    "full_contract_projection_fields": [
+      "original_query",
+      "intent_signals",
+      "primary_task_family",
+      "supporting_task_families",
+      "answer_mode",
+      "web_permission",
+      "protected_terms",
+      "ambiguity_detection"
+    ]
+  },
+  "total": 50,
+  "route_accuracy": {
+    "overall": {
+      "correct": 20,
+      "total": 50,
+      "accuracy": 0.4
+    },
+    "per_route": {
+      "item_navigation": {
+        "correct": 7,
+        "total": 10,
+        "accuracy": 0.7
+      },
+      "trend_discovery": {
+        "correct": 0,
+        "total": 10,
+        "accuracy": 0.0
+      },
+      "temporal_relation_exploration": {
+        "correct": 0,
+        "total": 10,
+        "accuracy": 0.0
+      },
+      "claim_verification": {
+        "correct": 3,
+        "total": 10,
+        "accuracy": 0.3
+      },
+      "evidence_research": {
+        "correct": 10,
+        "total": 10,
+        "accuracy": 1.0
+      }
+    },
+    "confusion_matrix": {
+      "row_is_expected_column_is_actual": true,
+      "labels": [
+        "item_navigation",
+        "trend_discovery",
+        "temporal_relation_exploration",
+        "claim_verification",
+        "evidence_research"
+      ],
+      "matrix": {
+        "item_navigation": {
+          "item_navigation": 7,
+          "trend_discovery": 0,
+          "temporal_relation_exploration": 0,
+          "claim_verification": 0,
+          "evidence_research": 3
+        },
+        "trend_discovery": {
+          "item_navigation": 1,
+          "trend_discovery": 0,
+          "temporal_relation_exploration": 0,
+          "claim_verification": 0,
+          "evidence_research": 9
+        },
+        "temporal_relation_exploration": {
+          "item_navigation": 0,
+          "trend_discovery": 0,
+          "temporal_relation_exploration": 0,
+          "claim_verification": 0,
+          "evidence_research": 10
+        },
+        "claim_verification": {
+          "item_navigation": 0,
+          "trend_discovery": 0,
+          "temporal_relation_exploration": 0,
+          "claim_verification": 3,
+          "evidence_research": 7
+        },
+        "evidence_research": {
+          "item_navigation": 0,
+          "trend_discovery": 0,
+          "temporal_relation_exploration": 0,
+          "claim_verification": 0,
+          "evidence_research": 10
+        }
+      }
+    }
+  },
+  "answer_mode_accuracy": {
+    "correct": 14,
+    "total": 50,
+    "accuracy": 0.28
+  },
+  "supporting_route_exact_match": {
+    "correct": 46,
+    "total": 50,
+    "accuracy": 0.92
+  },
+  "intent_signal_set_metrics": {
+    "micro": {
+      "tp": 17,
+      "fp": 2,
+      "fn": 75,
+      "precision": 0.8947368421052632,
+      "recall": 0.18478260869565216,
+      "f1": 0.3063063063063063
+    },
+    "macro": {
+      "precision": 0.34,
+      "recall": 0.2366666666666667,
+      "f1": 0.27
+    }
+  },
+  "web_permission_accuracy": {
+    "correct": 44,
+    "total": 50,
+    "accuracy": 0.88
+  },
+  "protected_term_set_metrics": {
+    "micro": {
+      "tp": 6,
+      "fp": 44,
+      "fn": 108,
+      "precision": 0.12,
+      "recall": 0.05263157894736842,
+      "f1": 0.07317073170731707
+    },
+    "macro": {
+      "precision": 0.12,
+      "recall": 0.09333333333333334,
+      "f1": 0.1
+    }
+  },
+  "ambiguity_expected_detection": {
+    "expected_positive": 6,
+    "true_positive": 0,
+    "false_negative": 6,
+    "false_positive": 0,
+    "recall": 0.0
+  },
+  "full_contract_projection_exact_match": {
+    "correct": 4,
+    "total": 50,
+    "accuracy": 0.08
+  },
+  "root_cause_clusters": [
+    {
+      "cluster_id": "A_ACTION_WORD_AND_LOCATABLE_OBJECT_BOUNDARY",
+      "label": "A 动作词与可定位对象边界误判",
+      "case_ids": [
+        "RCV2-CH-007",
+        "RCV2-CH-027",
+        "RCV2-CH-032",
+        "RCV2-CH-047"
+      ],
+      "count": 4,
+      "evidence": "定位任务需要 ATR、完整标题、上下文条目或日期+来源+标题片段；“找到”本身既可能服务导航，也可能服务动态发现或研究。"
+    },
+    {
+      "cluster_id": "BC_RECENCY_VS_EVOLUTION_SYNONYMS",
+      "label": "B/C 近期动态与演变结构同义表达未覆盖",
+      "case_ids": [
+        "RCV2-CH-002",
+        "RCV2-CH-003",
+        "RCV2-CH-006",
+        "RCV2-CH-010",
+        "RCV2-CH-012",
+        "RCV2-CH-013",
+        "RCV2-CH-016",
+        "RCV2-CH-018",
+        "RCV2-CH-022",
+        "RCV2-CH-023",
+        "RCV2-CH-026",
+        "RCV2-CH-030",
+        "RCV2-CH-032",
+        "RCV2-CH-033",
+        "RCV2-CH-036",
+        "RCV2-CH-038",
+        "RCV2-CH-042",
+        "RCV2-CH-043",
+        "RCV2-CH-046",
+        "RCV2-CH-048"
+      ],
+      "count": 20,
+      "evidence": "B 与 C 共 20 条主标签均未正确识别；口语时窗、路线、格局、转折、迁移和关系表达大量回退到 evidence_research。"
+    },
+    {
+      "cluster_id": "DE_VERIFIABILITY_VS_VALUE_JUDGMENT",
+      "label": "D/E 可判真主张与价值判断边界",
+      "case_ids": [
+        "RCV2-CH-004",
+        "RCV2-CH-009",
+        "RCV2-CH-024",
+        "RCV2-CH-029",
+        "RCV2-CH-034",
+        "RCV2-CH-044",
+        "RCV2-CH-049"
+      ],
+      "count": 7,
+      "evidence": "E 的价值判断和开放研究全部命中，但 7 条 D 被回退为 E，说明明确发布、收购、覆盖、金额和否定主张的可证伪性识别不足。"
+    },
+    {
+      "cluster_id": "PROTECTED_TOKEN_FORMAL_PASS",
+      "label": "protected token 形式存在但语义失败",
+      "case_ids": [
+        "RCV2-CH-002",
+        "RCV2-CH-003",
+        "RCV2-CH-004",
+        "RCV2-CH-005",
+        "RCV2-CH-006",
+        "RCV2-CH-007",
+        "RCV2-CH-008",
+        "RCV2-CH-009",
+        "RCV2-CH-010",
+        "RCV2-CH-012",
+        "RCV2-CH-013",
+        "RCV2-CH-014",
+        "RCV2-CH-015",
+        "RCV2-CH-016",
+        "RCV2-CH-017",
+        "RCV2-CH-018",
+        "RCV2-CH-019",
+        "RCV2-CH-020",
+        "RCV2-CH-022",
+        "RCV2-CH-023",
+        "RCV2-CH-024",
+        "RCV2-CH-025",
+        "RCV2-CH-026",
+        "RCV2-CH-027",
+        "RCV2-CH-028",
+        "RCV2-CH-029",
+        "RCV2-CH-030",
+        "RCV2-CH-032",
+        "RCV2-CH-033",
+        "RCV2-CH-034",
+        "RCV2-CH-035",
+        "RCV2-CH-036",
+        "RCV2-CH-038",
+        "RCV2-CH-039",
+        "RCV2-CH-040",
+        "RCV2-CH-042",
+        "RCV2-CH-043",
+        "RCV2-CH-044",
+        "RCV2-CH-045",
+        "RCV2-CH-046",
+        "RCV2-CH-047",
+        "RCV2-CH-048",
+        "RCV2-CH-049",
+        "RCV2-CH-050"
+      ],
+      "count": 44,
+      "evidence": "这些案例把整句 query 当成 protected term；本评分按规范化独立 token 精确集合计算，不给予子串或整句包含通过。"
+    },
+    {
+      "cluster_id": "CONTEXT_AND_AMBIGUITY",
+      "label": "上下文指代、标题片段与实体缺失歧义未暴露",
+      "case_ids": [
+        "RCV2-CH-017",
+        "RCV2-CH-020",
+        "RCV2-CH-024",
+        "RCV2-CH-027",
+        "RCV2-CH-037",
+        "RCV2-CH-047"
+      ],
+      "count": 6,
+      "evidence": "Gold 标记的低置信案例均未输出 ambiguities，ambiguity detection recall 为 0。"
+    },
+    {
+      "cluster_id": "DEFAULT_TO_EVIDENCE_RESEARCH",
+      "label": "未知表达默认回退 evidence_research",
+      "case_ids": [
+        "RCV2-CH-002",
+        "RCV2-CH-003",
+        "RCV2-CH-004",
+        "RCV2-CH-006",
+        "RCV2-CH-007",
+        "RCV2-CH-009",
+        "RCV2-CH-010",
+        "RCV2-CH-012",
+        "RCV2-CH-013",
+        "RCV2-CH-016",
+        "RCV2-CH-018",
+        "RCV2-CH-022",
+        "RCV2-CH-023",
+        "RCV2-CH-024",
+        "RCV2-CH-026",
+        "RCV2-CH-027",
+        "RCV2-CH-029",
+        "RCV2-CH-030",
+        "RCV2-CH-033",
+        "RCV2-CH-034",
+        "RCV2-CH-036",
+        "RCV2-CH-038",
+        "RCV2-CH-042",
+        "RCV2-CH-043",
+        "RCV2-CH-044",
+        "RCV2-CH-046",
+        "RCV2-CH-047",
+        "RCV2-CH-048",
+        "RCV2-CH-049"
+      ],
+      "count": 29,
+      "evidence": "大量 A/B/C/D 错误被统一吸收到 evidence_research，造成表面 E 类高准确但跨类辨别力低。"
+    },
+    {
+      "cluster_id": "INTENT_SIGNAL_UNDER_EXTRACTION",
+      "label": "意图信号严重漏抽取",
+      "case_ids": [
+        "RCV2-CH-002",
+        "RCV2-CH-003",
+        "RCV2-CH-004",
+        "RCV2-CH-005",
+        "RCV2-CH-006",
+        "RCV2-CH-007",
+        "RCV2-CH-008",
+        "RCV2-CH-009",
+        "RCV2-CH-010",
+        "RCV2-CH-011",
+        "RCV2-CH-012",
+        "RCV2-CH-013",
+        "RCV2-CH-014",
+        "RCV2-CH-016",
+        "RCV2-CH-018",
+        "RCV2-CH-020",
+        "RCV2-CH-022",
+        "RCV2-CH-023",
+        "RCV2-CH-024",
+        "RCV2-CH-025",
+        "RCV2-CH-026",
+        "RCV2-CH-027",
+        "RCV2-CH-028",
+        "RCV2-CH-029",
+        "RCV2-CH-030",
+        "RCV2-CH-032",
+        "RCV2-CH-033",
+        "RCV2-CH-034",
+        "RCV2-CH-035",
+        "RCV2-CH-036",
+        "RCV2-CH-037",
+        "RCV2-CH-038",
+        "RCV2-CH-039",
+        "RCV2-CH-040",
+        "RCV2-CH-042",
+        "RCV2-CH-043",
+        "RCV2-CH-044",
+        "RCV2-CH-045",
+        "RCV2-CH-046",
+        "RCV2-CH-047",
+        "RCV2-CH-048",
+        "RCV2-CH-049",
+        "RCV2-CH-050"
+      ],
+      "count": 43,
+      "evidence": "意图集合 precision 较高而 recall 很低，说明主要问题不是乱报信号，而是口语、否定、时间、关系与核验信号未被抽出。"
+    }
+  ],
+  "failed_cases": [
+    {
+      "case_id": "RCV2-CH-002",
+      "query": "Mistral 今天有啥值得看的更新？别把小版本修补也算进去",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Mistral",
+          "今天"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Mistral 今天有啥值得看的更新？别把小版本修补也算进去"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency",
+        "missing_protected_terms:mistral|今天",
+        "unexpected_protected_terms:mistral 今天有啥值得看的更新?别把小版本修补也算进去",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-003",
+      "query": "过去一年开放权重模型形成了哪些技术路线和竞争格局？",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "relation",
+          "trend"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "cross_sectional_trend",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "过去一年",
+          "开放权重模型"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "过去一年开放权重模型形成了哪些技术路线和竞争格局？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:cross_sectional_trend->explanation",
+        "missing_intent_signals:relation,timeline,trend",
+        "missing_protected_terms:开放权重模型|过去一年",
+        "unexpected_protected_terms:过去一年开放权重模型形成了哪些技术路线和竞争格局?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-004",
+      "query": "OpenAI 是否已经在 8 月 12 日正式发布 GPT-6？",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "OpenAI",
+          "8 月 12 日",
+          "GPT-6"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "OpenAI 是否已经在 8 月 12 日正式发布 GPT-6？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:verification",
+        "missing_protected_terms:8 月 12 日|gpt-6|openai",
+        "unexpected_protected_terms:openai 是否已经在 8 月 12 日正式发布 gpt-6?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-005",
+      "query": "日报知识库值得采用 GraphRAG 吗？请结合成本和收益给建议",
+      "expected": {
+        "intent_signals": [
+          "comparison",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "deep_research",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "日报知识库",
+          "GraphRAG"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "日报知识库值得采用 GraphRAG 吗？请结合成本和收益给建议"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "answer_mode_mismatch:deep_research->explanation",
+        "missing_intent_signals:comparison,deep_research",
+        "missing_protected_terms:graphrag|日报知识库",
+        "unexpected_protected_terms:日报知识库值得采用 graphrag 吗?请结合成本和收益给建议",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-006",
+      "query": "帮我找到 Anthropic 这周最重要的几项动态，不是找某一篇文章",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Anthropic",
+          "这周"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "帮我找到 Anthropic 这周最重要的几项动态，不是找某一篇文章"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency",
+        "missing_protected_terms:anthropic|这周",
+        "unexpected_protected_terms:帮我找到 anthropic 这周最重要的几项动态,不是找某一篇文章",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-007",
+      "query": "回到标题为“AI Agents Need a New Control Plane”的那篇原文条目",
+      "expected": {
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "AI Agents Need a New Control Plane"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "回到标题为“AI Agents Need a New Control Plane”的那篇原文条目"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:item_navigation->evidence_research",
+        "answer_mode_mismatch:exact_item->explanation",
+        "missing_intent_signals:navigation",
+        "web_permission_mismatch:forbidden->on_demand",
+        "missing_protected_terms:ai agents need a new control plane",
+        "unexpected_protected_terms:回到标题为“ai agents need a new control plane”的那篇原文条目",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-008",
+      "query": "找出证据，解释 coding agents 为什么可能放大资深开发者的优势",
+      "expected": {
+        "intent_signals": [
+          "explanation",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "coding agents",
+          "资深开发者"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "找出证据，解释 coding agents 为什么可能放大资深开发者的优势"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:deep_research",
+        "missing_protected_terms:coding agents|资深开发者",
+        "unexpected_protected_terms:找出证据,解释 coding agents 为什么可能放大资深开发者的优势",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-009",
+      "query": "听说 Perplexity 已经收购了 Arc，这事到底成立不成立？",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Perplexity",
+          "Arc"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "听说 Perplexity 已经收购了 Arc，这事到底成立不成立？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:verification",
+        "missing_protected_terms:arc|perplexity",
+        "unexpected_protected_terms:听说 perplexity 已经收购了 arc,这事到底成立不成立?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-010",
+      "query": "Apple 与 OpenAI 从合作传闻到近期争议，双方关系是怎么变化的？",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "relation"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "timeline",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Apple",
+          "OpenAI"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Apple 与 OpenAI 从合作传闻到近期争议，双方关系是怎么变化的？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:timeline->explanation",
+        "missing_intent_signals:relation,timeline",
+        "missing_protected_terms:apple|openai",
+        "unexpected_protected_terms:apple 与 openai 从合作传闻到近期争议,双方关系是怎么变化的?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-011",
+      "query": "定位 2026-08-09、来源 Hacker News、标题里有“local models at work”的原条目",
+      "expected": {
+        "intent_signals": [
+          "navigation",
+          "source_specific"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "2026-08-09",
+          "Hacker News",
+          "local models at work"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "local models at work"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 1.0
+      },
+      "failure_reasons": [
+        "answer_mode_mismatch:exact_item->item_disambiguation",
+        "missing_intent_signals:source_specific",
+        "missing_protected_terms:2026-08-09|hacker news"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-012",
+      "query": "联网扫一下过去 72 小时 AI robotics 的大新闻，最多给我五条",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance",
+          "web_requested"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "explicit",
+        "protected_terms": [
+          "72 小时",
+          "AI robotics",
+          "五条"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "explicit",
+        "protected_terms": [
+          "联网扫一下过去 72 小时 AI robotics 的大新闻，最多给我五条"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency,web_requested",
+        "missing_protected_terms:72 小时|ai robotics|五条",
+        "unexpected_protected_terms:联网扫一下过去 72 小时 ai robotics 的大新闻,最多给我五条",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-013",
+      "query": "NVIDIA、CoreWeave 和 OpenAI 在算力供给链里分别扮演什么角色，彼此怎么连接？",
+      "expected": {
+        "intent_signals": [
+          "relation",
+          "explanation"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [
+          "evidence_research"
+        ],
+        "answer_mode": "relation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "NVIDIA",
+          "CoreWeave",
+          "OpenAI"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "NVIDIA、CoreWeave 和 OpenAI 在算力供给链里分别扮演什么角色，彼此怎么连接？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:relation->explanation",
+        "supporting_routes_mismatch",
+        "missing_intent_signals:explanation,relation",
+        "missing_protected_terms:coreweave|nvidia|openai",
+        "unexpected_protected_terms:nvidia、coreweave 和 openai 在算力供给链里分别扮演什么角色,彼此怎么连接?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-014",
+      "query": "RAGFlow 和 LightRAG 更适合什么场景？给我一份有证据的选型比较",
+      "expected": {
+        "intent_signals": [
+          "comparison",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "RAGFlow",
+          "LightRAG"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "RAGFlow 和 LightRAG 更适合什么场景？给我一份有证据的选型比较"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:deep_research",
+        "missing_protected_terms:lightrag|ragflow",
+        "unexpected_protected_terms:ragflow 和 lightrag 更适合什么场景?给我一份有证据的选型比较",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-015",
+      "query": "“Claude Code 已向所有个人免费用户开放”是真的吗？",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Claude Code",
+          "个人免费用户"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "“Claude Code 已向所有个人免费用户开放”是真的吗？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_protected_terms:claude code|个人免费用户",
+        "unexpected_protected_terms:claude code 已向所有个人免费用户开放”是真的吗?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-016",
+      "query": "最近 OpenAI 发生了什么大事？不要价格细节和普通配置调整",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "OpenAI",
+          "最近"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "最近 OpenAI 发生了什么大事？不要价格细节和普通配置调整"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency",
+        "missing_protected_terms:openai|最近",
+        "unexpected_protected_terms:最近 openai 发生了什么大事?不要价格细节和普通配置调整",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-017",
+      "query": "我刚点开的这条新闻不要分析，直接带我回它的原条目",
+      "expected": {
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "这条新闻"
+        ],
+        "ambiguity_expected": true,
+        "acceptable_routes": [
+          "item_navigation"
+        ]
+      },
+      "actual": {
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "我刚点开的这条新闻不要分析，直接带我回它的原条目"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 1.0
+      },
+      "failure_reasons": [
+        "answer_mode_mismatch:item_disambiguation->exact_item",
+        "missing_protected_terms:这条新闻",
+        "unexpected_protected_terms:我刚点开的这条新闻不要分析,直接带我回它的原条目",
+        "whole_query_used_as_protected_term",
+        "expected_ambiguity_not_detected"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-018",
+      "query": "从聊天助手走向 autonomous agents，这条产品路线近 12 个月经历了哪些转折？",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "trend"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "timeline",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "autonomous agents",
+          "12 个月"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "从聊天助手走向 autonomous agents，这条产品路线近 12 个月经历了哪些转折？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:timeline->explanation",
+        "missing_intent_signals:timeline,trend",
+        "missing_protected_terms:12 个月|autonomous agents",
+        "unexpected_protected_terms:从聊天助手走向 autonomous agents,这条产品路线近 12 个月经历了哪些转折?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-019",
+      "query": "xAI 并没有收购一家叫 Hotshot 的公司，对吗？请核实这个否定说法",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "xAI",
+          "Hotshot"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "xAI 并没有收购一家叫 Hotshot 的公司，对吗？请核实这个否定说法"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_protected_terms:hotshot|xai",
+        "unexpected_protected_terms:xai 并没有收购一家叫 hotshot 的公司,对吗?请核实这个否定说法",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-020",
+      "query": "只查 OpenAI 和 Anthropic 官网，比较两家的 enterprise agent 产品路线",
+      "expected": {
+        "intent_signals": [
+          "comparison",
+          "source_specific"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [
+          "temporal_relation_exploration"
+        ],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "OpenAI",
+          "Anthropic",
+          "enterprise agent"
+        ],
+        "ambiguity_expected": true,
+        "acceptable_routes": [
+          "evidence_research",
+          "temporal_relation_exploration"
+        ]
+      },
+      "actual": {
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "只查 OpenAI 和 Anthropic 官网，比较两家的 enterprise agent 产品路线"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "supporting_routes_mismatch",
+        "missing_intent_signals:source_specific",
+        "missing_protected_terms:anthropic|enterprise agent|openai",
+        "unexpected_protected_terms:只查 openai 和 anthropic 官网,比较两家的 enterprise agent 产品路线",
+        "whole_query_used_as_protected_term",
+        "expected_ambiguity_not_detected"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-022",
+      "query": "Google DeepMind 官网最近有哪些影响面比较大的发布？",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance",
+          "source_specific"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Google DeepMind",
+          "官网",
+          "最近"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Google DeepMind 官网最近有哪些影响面比较大的发布？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->comparison",
+        "missing_intent_signals:importance,recency,source_specific",
+        "unexpected_intent_signals:comparison",
+        "missing_protected_terms:google deepmind|官网|最近",
+        "unexpected_protected_terms:google deepmind 官网最近有哪些影响面比较大的发布?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-023",
+      "query": "过去两个季度，OpenAI、Google 和 Anthropic 的 coding agent 竞争格局如何重排？",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "relation",
+          "trend"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "cross_sectional_trend",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "两个季度",
+          "OpenAI",
+          "Google",
+          "Anthropic",
+          "coding agent"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "过去两个季度，OpenAI、Google 和 Anthropic 的 coding agent 竞争格局如何重排？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:cross_sectional_trend->explanation",
+        "missing_intent_signals:relation,timeline,trend",
+        "missing_protected_terms:anthropic|coding agent|google|openai|两个季度",
+        "unexpected_protected_terms:过去两个季度,openai、google 和 anthropic 的 coding agent 竞争格局如何重排?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-024",
+      "query": "有报道说某公司一年亏损 2600 亿元，这个数字能被可靠来源支持吗？",
+      "expected": {
+        "intent_signals": [
+          "verification",
+          "source_specific"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "2600 亿元"
+        ],
+        "ambiguity_expected": true,
+        "acceptable_routes": [
+          "claim_verification"
+        ]
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "有报道说某公司一年亏损 2600 亿元，这个数字能被可靠来源支持吗？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:source_specific,verification",
+        "missing_protected_terms:2600 亿元",
+        "unexpected_protected_terms:有报道说某公司一年亏损 2600 亿元,这个数字能被可靠来源支持吗?",
+        "whole_query_used_as_protected_term",
+        "expected_ambiguity_not_detected"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-025",
+      "query": "为什么 browser-use agents 容易在真实网页上失效？请区分技术原因和产品原因",
+      "expected": {
+        "intent_signals": [
+          "explanation",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "browser-use agents"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "为什么 browser-use agents 容易在真实网页上失效？请区分技术原因和产品原因"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:deep_research",
+        "missing_protected_terms:browser-use agents",
+        "unexpected_protected_terms:为什么 browser-use agents 容易在真实网页上失效?请区分技术原因和产品原因",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-026",
+      "query": "今天 Meta AI 有什么更新？另外标出哪些消息还没被官方确认",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "verification"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [
+          "claim_verification"
+        ],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "今天",
+          "Meta AI"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "今天 Meta AI 有什么更新？另外标出哪些消息还没被官方确认"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "supporting_routes_mismatch",
+        "missing_intent_signals:recency,verification",
+        "missing_protected_terms:meta ai|今天",
+        "unexpected_protected_terms:今天 meta ai 有什么更新?另外标出哪些消息还没被官方确认",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-027",
+      "query": "找 8 月 7 日 Product Hunt 那篇标题以“Voice agents for”开头的原记录",
+      "expected": {
+        "intent_signals": [
+          "navigation",
+          "source_specific"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "8 月 7 日",
+          "Product Hunt",
+          "Voice agents for"
+        ],
+        "ambiguity_expected": true,
+        "acceptable_routes": [
+          "item_navigation"
+        ]
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "找 8 月 7 日 Product Hunt 那篇标题以“Voice agents for”开头的原记录"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:item_navigation->evidence_research",
+        "answer_mode_mismatch:item_disambiguation->explanation",
+        "missing_intent_signals:navigation,source_specific",
+        "web_permission_mismatch:forbidden->on_demand",
+        "missing_protected_terms:8 月 7 日|product hunt|voice agents for",
+        "unexpected_protected_terms:找 8 月 7 日 product hunt 那篇标题以“voice agents for”开头的原记录",
+        "whole_query_used_as_protected_term",
+        "expected_ambiguity_not_detected"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-028",
+      "query": "在内部库里找到证据解释“RAG 正在从检索组件变成 agent workflow”这句话",
+      "expected": {
+        "intent_signals": [
+          "explanation",
+          "source_specific"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "RAG",
+          "agent workflow",
+          "内部库"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "在内部库里找到证据解释“RAG 正在从检索组件变成 agent workflow”这句话"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:source_specific",
+        "web_permission_mismatch:forbidden->on_demand",
+        "missing_protected_terms:agent workflow|rag|内部库",
+        "unexpected_protected_terms:在内部库里找到证据解释“rag 正在从检索组件变成 agent workflow”这句话",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-029",
+      "query": "Ona 到底有没有被 OpenAI 收购？我只要可核验的结论",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Ona",
+          "OpenAI"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Ona 到底有没有被 OpenAI 收购？我只要可核验的结论"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:verification",
+        "missing_protected_terms:ona|openai",
+        "unexpected_protected_terms:ona 到底有没有被 openai 收购?我只要可核验的结论",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-030",
+      "query": "从 2025 Q4 到现在，AI 搜索的商业化路线发生了哪些变化？列关键节点",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "trend"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "timeline",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "2025 Q4",
+          "AI 搜索"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "从 2025 Q4 到现在，AI 搜索的商业化路线发生了哪些变化？列关键节点"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:timeline->explanation",
+        "missing_intent_signals:timeline,trend",
+        "missing_protected_terms:2025 q4|ai 搜索",
+        "unexpected_protected_terms:从 2025 q4 到现在,ai 搜索的商业化路线发生了哪些变化?列关键节点",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-032",
+      "query": "找到 Cursor 最近的重要动态，按新闻价值排，不要因为我说‘找到’就只返回一个链接",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Cursor",
+          "最近"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "找到 Cursor 最近的重要动态，按新闻价值排，不要因为我说‘找到’就只返回一个链接"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 1.0
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->item_navigation",
+        "answer_mode_mismatch:important_news->exact_item",
+        "missing_intent_signals:importance,recency",
+        "unexpected_intent_signals:navigation",
+        "web_permission_mismatch:on_demand->forbidden",
+        "missing_protected_terms:cursor|最近",
+        "unexpected_protected_terms:找到 cursor 最近的重要动态,按新闻价值排,不要因为我说‘找到’就只返回一个链接",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-033",
+      "query": "把 MCP、tool calling、agent runtime 三者的依赖关系和演进顺序讲清楚",
+      "expected": {
+        "intent_signals": [
+          "relation",
+          "timeline",
+          "explanation"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [
+          "evidence_research"
+        ],
+        "answer_mode": "relation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "MCP",
+          "tool calling",
+          "agent runtime"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "把 MCP、tool calling、agent runtime 三者的依赖关系和演进顺序讲清楚"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:relation->explanation",
+        "supporting_routes_mismatch",
+        "missing_intent_signals:explanation,relation,timeline",
+        "missing_protected_terms:agent runtime|mcp|tool calling",
+        "unexpected_protected_terms:把 mcp、tool calling、agent runtime 三者的依赖关系和演进顺序讲清楚",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-034",
+      "query": "请判断这句话是否属实：“欧盟 AI Act 的全部义务已经在 2026-08-01 同时生效”",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "欧盟 AI Act",
+          "2026-08-01"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "请判断这句话是否属实：“欧盟 AI Act 的全部义务已经在 2026-08-01 同时生效”"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:verification",
+        "missing_protected_terms:2026-08-01|欧盟 ai act",
+        "unexpected_protected_terms:请判断这句话是否属实:“欧盟 ai act 的全部义务已经在 2026-08-01 同时生效",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-035",
+      "query": "对于只有几千条日报的团队，是否值得采用向量库加 Neo4j 的双存储？",
+      "expected": {
+        "intent_signals": [
+          "comparison",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "deep_research",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "几千条日报",
+          "Neo4j"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "对于只有几千条日报的团队，是否值得采用向量库加 Neo4j 的双存储？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "answer_mode_mismatch:deep_research->explanation",
+        "missing_intent_signals:comparison,deep_research",
+        "missing_protected_terms:neo4j|几千条日报",
+        "unexpected_protected_terms:对于只有几千条日报的团队,是否值得采用向量库加 neo4j 的双存储?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-036",
+      "query": "本周 AI 基础设施有哪些真正重要的新闻？普通融资传闻先别放进主答案",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "本周",
+          "AI 基础设施"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "本周 AI 基础设施有哪些真正重要的新闻？普通融资传闻先别放进主答案"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency",
+        "missing_protected_terms:ai 基础设施|本周",
+        "unexpected_protected_terms:本周 ai 基础设施有哪些真正重要的新闻?普通融资传闻先别放进主答案",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-037",
+      "query": "跳到 2026-08-06 OpenAI 来源、题目包含“Economic Research”的那一条",
+      "expected": {
+        "intent_signals": [
+          "navigation",
+          "source_specific"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "2026-08-06",
+          "OpenAI",
+          "Economic Research"
+        ],
+        "ambiguity_expected": true,
+        "acceptable_routes": [
+          "item_navigation"
+        ]
+      },
+      "actual": {
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "Economic Research"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 1.0
+      },
+      "failure_reasons": [
+        "answer_mode_mismatch:item_disambiguation->exact_item",
+        "missing_intent_signals:source_specific",
+        "missing_protected_terms:2026-08-06|openai",
+        "expected_ambiguity_not_detected"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-038",
+      "query": "过去一年，small language models 的关注点从端侧部署转向了什么？",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "trend"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "longitudinal_trend",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "过去一年",
+          "small language models"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "过去一年，small language models 的关注点从端侧部署转向了什么？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:longitudinal_trend->explanation",
+        "missing_intent_signals:timeline,trend",
+        "missing_protected_terms:small language models|过去一年",
+        "unexpected_protected_terms:过去一年,small language models 的关注点从端侧部署转向了什么?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-039",
+      "query": "联网去官方公告核验：Microsoft 已停止向 OpenAI 提供新增算力，这个说法是真的吗？",
+      "expected": {
+        "intent_signals": [
+          "verification",
+          "source_specific",
+          "web_requested"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "explicit",
+        "protected_terms": [
+          "Microsoft",
+          "OpenAI",
+          "新增算力"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "explicit",
+        "protected_terms": [
+          "联网去官方公告核验：Microsoft 已停止向 OpenAI 提供新增算力，这个说法是真的吗？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:source_specific,web_requested",
+        "missing_protected_terms:microsoft|openai|新增算力",
+        "unexpected_protected_terms:联网去官方公告核验:microsoft 已停止向 openai 提供新增算力,这个说法是真的吗?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-040",
+      "query": "研究一下 AI coding 对初级工程师就业的影响，分别给支持证据、反例和未知项",
+      "expected": {
+        "intent_signals": [
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "deep_research",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "AI coding",
+          "初级工程师"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "研究一下 AI coding 对初级工程师就业的影响，分别给支持证据、反例和未知项"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "answer_mode_mismatch:deep_research->explanation",
+        "missing_intent_signals:deep_research",
+        "missing_protected_terms:ai coding|初级工程师",
+        "unexpected_protected_terms:研究一下 ai coding 对初级工程师就业的影响,分别给支持证据、反例和未知项",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-042",
+      "query": "What's new with Gemini lately？重点只要会影响用户或行业的大动作",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Gemini",
+          "lately"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "What's new with Gemini lately？重点只要会影响用户或行业的大动作"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency",
+        "missing_protected_terms:gemini|lately",
+        "unexpected_protected_terms:what's new with gemini lately?重点只要会影响用户或行业的大动作",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-043",
+      "query": "结合本地日报，梳理 AI browser agents 半年来的路线迁移与关键参与者关系",
+      "expected": {
+        "intent_signals": [
+          "timeline",
+          "relation",
+          "source_specific"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "timeline",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "本地日报",
+          "AI browser agents",
+          "半年"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "结合本地日报，梳理 AI browser agents 半年来的路线迁移与关键参与者关系"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:timeline->explanation",
+        "missing_intent_signals:relation,source_specific,timeline",
+        "web_permission_mismatch:forbidden->on_demand",
+        "missing_protected_terms:ai browser agents|半年|本地日报",
+        "unexpected_protected_terms:结合本地日报,梳理 ai browser agents 半年来的路线迁移与关键参与者关系",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-044",
+      "query": "Did Apple acquire the AI startup PromptForge for $900M，还是媒体误传？",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Apple",
+          "PromptForge",
+          "$900M"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "Did Apple acquire the AI startup PromptForge for $900M，还是媒体误传？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:verification",
+        "missing_protected_terms:$900m|apple|promptforge",
+        "unexpected_protected_terms:did apple acquire the ai startup promptforge for $900m,还是媒体误传?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-045",
+      "query": "解释为什么 GraphRAG 不一定提升所有问题的效果，并建议哪些 query 才该走图检索",
+      "expected": {
+        "intent_signals": [
+          "explanation",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "GraphRAG",
+          "query"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "解释为什么 GraphRAG 不一定提升所有问题的效果，并建议哪些 query 才该走图检索"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:deep_research",
+        "missing_protected_terms:graphrag|query",
+        "unexpected_protected_terms:解释为什么 graphrag 不一定提升所有问题的效果,并建议哪些 query 才该走图检索",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-046",
+      "query": "别给我一年时间线，只说过去 48 小时 Anthropic 有哪些 headline-level updates",
+      "expected": {
+        "intent_signals": [
+          "recency",
+          "importance"
+        ],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "48 小时",
+          "Anthropic",
+          "headline-level updates"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "别给我一年时间线，只说过去 48 小时 Anthropic 有哪些 headline-level updates"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:trend_discovery->evidence_research",
+        "answer_mode_mismatch:important_news->explanation",
+        "missing_intent_signals:importance,recency",
+        "missing_protected_terms:48 小时|anthropic|headline-level updates",
+        "unexpected_protected_terms:别给我一年时间线,只说过去 48 小时 anthropic 有哪些 headline-level updates",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-047",
+      "query": "8 月 10 日 GitHub 那篇“MCP security...”就是我说的这条，打开对应记录",
+      "expected": {
+        "intent_signals": [
+          "navigation",
+          "source_specific"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "protected_terms": [
+          "8 月 10 日",
+          "GitHub",
+          "MCP security"
+        ],
+        "ambiguity_expected": true,
+        "acceptable_routes": [
+          "item_navigation"
+        ]
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "8 月 10 日 GitHub 那篇“MCP security...”就是我说的这条，打开对应记录"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:item_navigation->evidence_research",
+        "answer_mode_mismatch:item_disambiguation->explanation",
+        "missing_intent_signals:navigation,source_specific",
+        "web_permission_mismatch:forbidden->on_demand",
+        "missing_protected_terms:8 月 10 日|github|mcp security",
+        "unexpected_protected_terms:8 月 10 日 github 那篇“mcp security...”就是我说的这条,打开对应记录",
+        "whole_query_used_as_protected_term",
+        "expected_ambiguity_not_detected"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-048",
+      "query": "OpenAI 与 Microsoft 现在是什么合作结构，这一年有哪些关键变化？",
+      "expected": {
+        "intent_signals": [
+          "relation",
+          "timeline"
+        ],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "relation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "OpenAI",
+          "Microsoft",
+          "这一年"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "OpenAI 与 Microsoft 现在是什么合作结构，这一年有哪些关键变化？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:temporal_relation_exploration->evidence_research",
+        "answer_mode_mismatch:relation->explanation",
+        "missing_intent_signals:relation,timeline",
+        "missing_protected_terms:microsoft|openai|这一年",
+        "unexpected_protected_terms:openai 与 microsoft 现在是什么合作结构,这一年有哪些关键变化?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-049",
+      "query": "截至 2026-08-01，ChatGPT Search 是否已经覆盖所有地区的免费账户？",
+      "expected": {
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "2026-08-01",
+          "ChatGPT Search",
+          "免费账户"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "截至 2026-08-01，ChatGPT Search 是否已经覆盖所有地区的免费账户？"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "route_mismatch:claim_verification->evidence_research",
+        "answer_mode_mismatch:verification_verdict->explanation",
+        "missing_intent_signals:verification",
+        "missing_protected_terms:2026-08-01|chatgpt search|免费账户",
+        "unexpected_protected_terms:截至 2026-08-01,chatgpt search 是否已经覆盖所有地区的免费账户?",
+        "whole_query_used_as_protected_term"
+      ]
+    },
+    {
+      "case_id": "RCV2-CH-050",
+      "query": "站在 AI PM 角度比较 DeepSeek 与 OpenAI 的 API 策略，并给出接入建议和风险",
+      "expected": {
+        "intent_signals": [
+          "comparison",
+          "deep_research"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "AI PM",
+          "DeepSeek",
+          "OpenAI",
+          "API"
+        ],
+        "ambiguity_expected": false
+      },
+      "actual": {
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "protected_terms": [
+          "站在 AI PM 角度比较 DeepSeek 与 OpenAI 的 API 策略，并给出接入建议和风险"
+        ],
+        "ambiguity_detected": false,
+        "ambiguities": [],
+        "route_confidence": 0.9
+      },
+      "failure_reasons": [
+        "missing_intent_signals:deep_research",
+        "missing_protected_terms:ai pm|api|deepseek|openai",
+        "unexpected_protected_terms:站在 ai pm 角度比较 deepseek 与 openai 的 api 策略,并给出接入建议和风险",
+        "whole_query_used_as_protected_term"
+      ]
+    }
+  ]
+}

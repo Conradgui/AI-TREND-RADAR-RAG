@@ -1,0 +1,72 @@
+{
+  "experiment_id": "lean-task-atom-v1-three-case-canary-2026-08-13",
+  "evidence_boundary": "Three-case calibration canary; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "max_tokens": 800,
+  "timeout_seconds": 45,
+  "max_retries": 0,
+  "prompt_sha256": "e3aaa8342dfb5cf2da2f52a7d02d808e6d5473af2475efc1189ced2864da44bd",
+  "total": 3,
+  "schema_semantic_valid": 0,
+  "semantic_and_projection_correct": 0,
+  "mean_latency_seconds": 7.03,
+  "max_latency_seconds": 7.409,
+  "mean_completion_tokens": 0.0,
+  "total_tokens": 0,
+  "gate": {
+    "passed": false,
+    "requirements": "3/3 schema+semantic+projection; mean<=8s; max<=12s; mean completion<=600"
+  },
+  "cases": [
+    {
+      "case_id": "RC2-SG-017",
+      "value": null,
+      "contract": null,
+      "usage": null,
+      "latency_seconds": 7.409,
+      "error": "LeanTaskAtomViolation: schema violation: 'main' is a required property; 'supporting' is a required property; 'references' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting": false,
+        "references": false,
+        "protected_terms": false
+      }
+    },
+    {
+      "case_id": "RC2-SG-020",
+      "value": null,
+      "contract": null,
+      "usage": null,
+      "latency_seconds": 6.787,
+      "error": "LeanTaskAtomViolation: schema violation: 'main' is a required property; 'supporting' is a required property; 'references' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting": false,
+        "references": false,
+        "protected_terms": false
+      }
+    },
+    {
+      "case_id": "RC2-SG-039",
+      "value": null,
+      "contract": null,
+      "usage": null,
+      "latency_seconds": 6.893,
+      "error": "LeanTaskAtomViolation: schema violation: 'main' is a required property; 'supporting' is a required property; 'references' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting": false,
+        "references": false,
+        "protected_terms": false
+      }
+    }
+  ]
+}

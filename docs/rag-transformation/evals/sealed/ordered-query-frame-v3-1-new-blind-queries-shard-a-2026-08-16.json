@@ -1,0 +1,56 @@
+{
+  "schema_version": "atr.ordered-query-frame/3.0",
+  "shard_id": "new-blind-shard-a-2026-08-16",
+  "cases": [
+    {
+      "case_id": "new-blind-001",
+      "query": "请帮我定位 ATR-7742《雾港协议：潮汐引擎》这条记录，只返回对应条目。请联网核对。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-002",
+      "query": "请定位这个条目，并给出它的完整标题；不要联网。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-003",
+      "query": "先找到标题中包含“蓝铜回声”的那条记录，再汇总它在 2026 年 5 月以来的重要动态；必要时可联网。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-004",
+      "query": "请从公开资料中辨认出描述为“由纸鸢实验室维护、面向离线语音压缩”的条目，并说明匹配依据；必要时可联网。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-005",
+      "query": "请联网整理 2026 年 6 月“赤道织网”项目的主要新闻，并按主题聚成趋势簇。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-006",
+      "query": "必要时可联网：先总结 2026 年上半年“砂钟编译器”的关键动态，再梳理这些动态如何逐步改变其开源路线。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-007",
+      "query": "请汇总这项变化最近两个月的主要动态；必要时可联网。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-008",
+      "query": "不要联网。请按主题汇总 2026 年 4 月以来“银杏栈”数据库的社区动态，并指出其中对应的记录。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-009",
+      "query": "请联网梳理“回纹推理器”从 2025 年第四季度到 2026 年第二季度的版本演变时间线。",
+      "public_context": ""
+    },
+    {
+      "case_id": "new-blind-010",
+      "query": "不要联网。请比较 2026 年 3 月和 2026 年 7 月“青隼索引”在数据来源上的变化，并定位完整标题为《青隼索引：边缘检索手册》的记录。",
+      "public_context": ""
+    }
+  ]
+}

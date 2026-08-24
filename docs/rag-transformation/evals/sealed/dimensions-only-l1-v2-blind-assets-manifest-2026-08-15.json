@@ -1,0 +1,26 @@
+{
+  "dataset_id": "dimensions-only-l1-v2-blind-2026-08-15",
+  "query_file": "dimensions-only-l1-v2-blind-queries-2026-08-15.json",
+  "gold_file": "dimensions-only-l1-v2-blind-gold-2026-08-15.json",
+  "sha256": {
+    "dimensions-only-l1-v2-blind-queries-2026-08-15.json": "02b378e306b38caeb73fd981f38fdfdd5f725e1d967cfb7664c514909ce1c4b7",
+    "dimensions-only-l1-v2-blind-gold-2026-08-15.json": "26c7ef79e441789d8c6227ecaf81631d99872b14f7d7d0047d4845f98ba80fb3"
+  },
+  "case_count": 15,
+  "primary_distribution": {
+    "item_navigation": 3,
+    "trend_discovery": 3,
+    "temporal_relation_exploration": 3,
+    "claim_verification": 3,
+    "evidence_research": 3
+  },
+  "isolation": {
+    "created_as_new": true,
+    "authoring_boundary": "仅读取用户明确指定的四份策略、契约、Schema 与标注指南文件。",
+    "forbidden_inputs_read": false,
+    "forbidden_inputs": ["calibration", "canary", "results", "旧 sealed 文件", "对话历史"],
+    "implementation_or_api_used": false,
+    "only_new_files_added": true,
+    "gold_not_in_query_file": true
+  }
+}

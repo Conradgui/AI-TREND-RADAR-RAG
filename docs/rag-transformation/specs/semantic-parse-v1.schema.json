@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-trend-radar.local/schemas/semantic-parse-v1.schema.json",
+  "title": "Semantic Parse v1",
+  "description": "Route-neutral semantic slots extracted from a Query. Route and policy IDs are intentionally forbidden.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "subjects", "claims", "locators", "constraints", "references",
+    "task_atoms", "literal_spans", "confidence", "ambiguities"
+  ],
+  "properties": {
+    "subjects": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "claims": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "locators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "value", "exact"],
+        "properties": {
+          "kind": {"enum": ["atr_id", "full_title", "title_fragment", "date_source_title", "context_item", "spatial_reference"]},
+          "value": {"type": "string", "minLength": 1},
+          "exact": {"type": "boolean"}
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "value", "literal_span"],
+        "properties": {
+          "kind": {"enum": ["time", "source", "count", "comparison", "importance", "output", "web_permission", "other"]},
+          "value": {"type": "string", "minLength": 1},
+          "literal_span": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["literal_span", "status", "resolved_value"],
+        "properties": {
+          "literal_span": {"type": "string", "minLength": 1},
+          "status": {"enum": ["resolved_in_query", "resolved_from_context", "unresolved"]},
+          "resolved_value": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "task_atoms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action", "target", "success_criterion", "delivery_role"],
+        "properties": {
+          "action": {"enum": ["navigate", "discover", "trace", "relate", "verify", "explain", "compare", "recommend", "research"]},
+          "target": {"type": "string", "minLength": 1},
+          "success_criterion": {"type": "string", "minLength": 1},
+          "delivery_role": {"enum": ["main", "supporting", "evidence_step"]}
+        }
+      }
+    },
+    "literal_spans": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "ambiguities": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  }
+}

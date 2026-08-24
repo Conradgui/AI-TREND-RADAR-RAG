@@ -1,0 +1,371 @@
+{
+  "experiment_id": "semantic-parse-v1-diagnostic-calibration-2026-08-13",
+  "evidence_boundary": "12-case diagnostic calibration selected from an unsealed dataset; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "max_tokens": 2400,
+  "timeout_seconds": 45,
+  "max_retries": 0,
+  "hashes": {
+    "queries": "2df401d0e30253eb4f684e34c456bff4bbf01decb479af99110373869b96c2df",
+    "gold": "068c5b9830b488907f12190366c7d767f37acb3061176191d06de3fb20f0dad3",
+    "parse_schema": "f9801e26017312aa86643e1f6309badbe443f1cdb16fa4ac33b684fbe28cca78",
+    "prompt": "bc6746aa0f41e3609d5b4384cf6a0ff91a96352ba7c65790cab7ee39e003e80f"
+  },
+  "total": 3,
+  "parse_schema_semantic_valid": {
+    "correct": 2,
+    "total": 3,
+    "rate": 0.6667
+  },
+  "route": {
+    "correct": 2,
+    "total": 3,
+    "accuracy": 0.6667
+  },
+  "item_navigation": {
+    "correct": 1,
+    "total": 1,
+    "accuracy": 1.0
+  },
+  "old_route_baseline": {
+    "correct": 1,
+    "total": 3,
+    "accuracy": 0.3333,
+    "net_gain_cases": 1
+  },
+  "web_permission_accuracy": 0.6667,
+  "protected_term_micro": {
+    "tp": 3,
+    "fp": 3,
+    "fn": 5,
+    "precision": 0.5,
+    "recall": 0.375,
+    "f1": 0.4286
+  },
+  "ambiguity_detection": {
+    "tp": 0,
+    "fp": 1,
+    "fn": 0,
+    "precision": 0.0,
+    "recall": 1.0,
+    "f1": 0.0
+  },
+  "resolved_reference_accuracy": 0.3333,
+  "latency_seconds": {
+    "mean": 13.501,
+    "p50": 14.458,
+    "p95": 14.458,
+    "max": 18.865
+  },
+  "reliability": {
+    "success": 2,
+    "failure": 1,
+    "success_rate": 0.6667
+  },
+  "tokens": {
+    "prompt": 2494,
+    "completion": 2397,
+    "total": 4891,
+    "cost_estimate_usd": null
+  },
+  "cases": [
+    {
+      "case_id": "RC2-SG-001",
+      "latency_seconds": 7.18,
+      "parse": {
+        "subjects": [
+          "潮汐编译器：把稀疏专家模型搬到端侧"
+        ],
+        "claims": [],
+        "locators": [
+          {
+            "kind": "full_title",
+            "value": "潮汐编译器：把稀疏专家模型搬到端侧",
+            "exact": true
+          }
+        ],
+        "constraints": [],
+        "references": [],
+        "task_atoms": [
+          {
+            "action": "navigate",
+            "target": "潮汐编译器：把稀疏专家模型搬到端侧",
+            "success_criterion": "用户能够打开并查看该条目《潮汐编译器：把稀疏专家模型搬到端侧》",
+            "delivery_role": "main"
+          }
+        ],
+        "literal_spans": [
+          "《潮汐编译器：把稀疏专家模型搬到端侧》"
+        ],
+        "confidence": 1,
+        "ambiguities": []
+      },
+      "contract": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-semantic-7bfabb36e5135dadb38595bad5e5d6ee",
+        "original_query": "打开《潮汐编译器：把稀疏专家模型搬到端侧》。",
+        "protected_terms": [
+          "《潮汐编译器：把稀疏专家模型搬到端侧》"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1,
+        "ambiguities": [],
+        "resolved_references": [],
+        "supporting_contracts": [],
+        "subjects": [
+          "潮汐编译器：把稀疏专家模型搬到端侧"
+        ],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      },
+      "usage": {
+        "model": "deepseek-v4-flash",
+        "prompt_tokens": 1222,
+        "completion_tokens": 510,
+        "total_tokens": 1732,
+        "cost_estimate_usd": null,
+        "cost_note": "Provider price was not frozen in this experiment; tokens are recorded instead of inventing a cost."
+      },
+      "error": null,
+      "checks": {
+        "route_schema_semantic": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-020",
+      "latency_seconds": 18.865,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": true
+    },
+    {
+      "case_id": "RC2-SG-039",
+      "latency_seconds": 14.458,
+      "parse": {
+        "subjects": [
+          "FjordServe",
+          "延迟下降 40%",
+          "ATR-20260702-D6M1QH《FjordServe 公布延迟测试》",
+          "ATR-20260708-W3P9ZA《独立实验室复测 FjordServe》"
+        ],
+        "claims": [
+          "FjordServe 延迟下降 40%",
+          "右边条目否定了左边条目所说的“延迟下降 40%”"
+        ],
+        "locators": [
+          {
+            "kind": "context_item",
+            "value": "ATR-20260702-D6M1QH《FjordServe 公布延迟测试》",
+            "exact": true
+          },
+          {
+            "kind": "context_item",
+            "value": "ATR-20260708-W3P9ZA《独立实验室复测 FjordServe》",
+            "exact": true
+          },
+          {
+            "kind": "full_title",
+            "value": "FjordServe 公布延迟测试",
+            "exact": true
+          },
+          {
+            "kind": "full_title",
+            "value": "独立实验室复测 FjordServe",
+            "exact": true
+          }
+        ],
+        "constraints": [
+          {
+            "kind": "other",
+            "value": "核验对象为“延迟下降 40%”这一具体声明",
+            "literal_span": "延迟下降 40%"
+          },
+          {
+            "kind": "comparison",
+            "value": "判断右边条目是否否定左边条目的声明",
+            "literal_span": "否定了它"
+          }
+        ],
+        "references": [
+          {
+            "literal_span": "左边那条",
+            "status": "resolved_from_context",
+            "resolved_value": "ATR-20260702-D6M1QH《FjordServe 公布延迟测试》"
+          },
+          {
+            "literal_span": "右边那条",
+            "status": "resolved_from_context",
+            "resolved_value": "ATR-20260708-W3P9ZA《独立实验室复测 FjordServe》"
+          },
+          {
+            "literal_span": "它",
+            "status": "resolved_in_query",
+            "resolved_value": "延迟下降 40%"
+          }
+        ],
+        "task_atoms": [
+          {
+            "action": "verify",
+            "target": "左边条目中“延迟下降 40%”的声明",
+            "success_criterion": "确定该声明是否属实，并给出依据",
+            "delivery_role": "main"
+          },
+          {
+            "action": "relate",
+            "target": "右边条目对左边条目“延迟下降 40%”声明的态度",
+            "success_criterion": "判断右边条目是否否定了该声明",
+            "delivery_role": "supporting"
+          }
+        ],
+        "literal_spans": [
+          "延迟下降 40%",
+          "否定了它",
+          "左边那条",
+          "右边那条",
+          "40%"
+        ],
+        "confidence": 0.95,
+        "ambiguities": [
+          "未提供左侧条目中“延迟下降 40%”的具体测量数据或出处，核验需要查阅条目正文",
+          "未提供右侧条目的具体结论内容，判断其是否否定左侧声明需要阅读右侧条目正文"
+        ]
+      },
+      "contract": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-semantic-2f4404ad57df54ba9a4af59c82de1cf8",
+        "original_query": "核验左边那条所说的“延迟下降 40%”，并判断右边那条是否否定了它。",
+        "protected_terms": [
+          "左边那条",
+          "延迟下降 40%",
+          "40%",
+          "右边那条",
+          "否定了它"
+        ],
+        "intent_signals": [
+          "verification",
+          "relation"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [
+          "temporal_relation_exploration"
+        ],
+        "answer_mode": "verification_verdict",
+        "route_confidence": 0.55,
+        "ambiguities": [
+          "未提供左侧条目中“延迟下降 40%”的具体测量数据或出处，核验需要查阅条目正文",
+          "未提供右侧条目的具体结论内容，判断其是否否定左侧声明需要阅读右侧条目正文"
+        ],
+        "resolved_references": [
+          {
+            "reference_type": "item_id",
+            "value": "ATR-20260702-D6M1QH《FJORDSERVE 公布延迟测试》",
+            "origin": "conversation_context"
+          },
+          {
+            "reference_type": "item_id",
+            "value": "ATR-20260708-W3P9ZA《独立实验室复测 FJORDSERVE》",
+            "origin": "conversation_context"
+          }
+        ],
+        "supporting_contracts": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+            "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+            "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+            "output_schema_id": "atr.answer/temporal_relation/1.0",
+            "budget_profile_id": "atr.budget/graph/1.0"
+          }
+        ],
+        "subjects": [
+          "FjordServe",
+          "延迟下降 40%",
+          "ATR-20260702-D6M1QH《FjordServe 公布延迟测试》",
+          "ATR-20260708-W3P9ZA《独立实验室复测 FjordServe》"
+        ],
+        "topics": [],
+        "claims": [
+          "FjordServe 延迟下降 40%",
+          "右边条目否定了左边条目所说的“延迟下降 40%”"
+        ],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+        "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/verification/1.0",
+        "budget_profile_id": "atr.budget/verification/1.0"
+      },
+      "usage": {
+        "model": "deepseek-v4-flash",
+        "prompt_tokens": 1272,
+        "completion_tokens": 1887,
+        "total_tokens": 3159,
+        "cost_estimate_usd": null,
+        "cost_note": "Provider price was not frozen in this experiment; tokens are recorded instead of inventing a cost."
+      },
+      "error": null,
+      "checks": {
+        "route_schema_semantic": false,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    }
+  ]
+}

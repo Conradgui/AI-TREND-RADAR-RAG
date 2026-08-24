@@ -1,0 +1,109 @@
+{
+  "experiment_id": "ordered-query-frame-v3-visible-calibration-2026-08-16",
+  "evidence_boundary": "Already-unsealed calibration; runner did not read Gold. Not blind or production evidence.",
+  "query_dataset_id": "dimensions-only-l1-v2-blind-2026-08-15",
+  "query_sha256": "dc4d6ceb4fffc6f99a3105d25ffcb46558711c4ee7bb2e023f65d3963756c2e1",
+  "model": "deepseek-v4-flash",
+  "planned": 15,
+  "executed": 2,
+  "cases": [
+    {
+      "case_id": "blind-001",
+      "query": "定位 ATR-20260814-A1B2C3，并给我它的标题和原始链接",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "ATR-20260814-A1B2C3",
+              "标题",
+              "原始链接"
+            ],
+            "requested_output_form": "exact_item",
+            "locator_kind": "atr_id"
+          }
+        ],
+        "protected_spans": [
+          "ATR-20260814-A1B2C3"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-3360b079590f5982944a3553d2a16622",
+          "original_query": "定位 ATR-20260814-A1B2C3，并给我它的标题和原始链接",
+          "protected_terms": [
+            "ATR-20260814-A1B2C3"
+          ],
+          "intent_signals": [
+            "navigation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1796,
+        "completion_tokens": 224,
+        "total_tokens": 2020
+      },
+      "latency_seconds": 2.204,
+      "error": null
+    },
+    {
+      "case_id": "blind-002",
+      "query": "我记得标题里有“端侧智能”这几个字，帮我找出对应条目；如果有多个，先列出候选",
+      "frame": null,
+      "envelope": null,
+      "metadata": {
+        "attempts": 1,
+        "model": "deepseek-v4-flash"
+      },
+      "latency_seconds": 1.76,
+      "error": "OrderedFrameExtractionError: ordered frame failed its single attempt: span is not literal Query text: 左边列表中昨天新增的那条"
+    }
+  ],
+  "freeze_manifest_sha256": "9ecf7ec1c12e74ea6d5de5b2687bcd76b7e7edf9974f11d310b5ea791376b81a",
+  "frozen_runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  }
+}

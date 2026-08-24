@@ -1,0 +1,241 @@
+{
+  "experiment_id": "ordered-query-frame-v3-1-visible-calibration-2026-08-16-score",
+  "evidence_boundary": "Already-unsealed calibration score; not blind, production, or generalization evidence.",
+  "metrics": {
+    "ordered_deliveries_accuracy": 73.3,
+    "primary_route_accuracy": 78.6,
+    "primary_route_accuracy_by_family": {
+      "item_navigation": 50.0,
+      "trend_discovery": 100.0,
+      "temporal_relation_exploration": 75.0,
+      "claim_verification": 50.0,
+      "evidence_research": 100.0
+    },
+    "web_permission_accuracy": 78.6,
+    "protected_span_micro_precision": 70.0,
+    "protected_span_micro_recall": 71.8,
+    "protected_span_micro_f1": 70.9,
+    "clarification_precision": 25.0,
+    "clarification_recall": 100.0,
+    "frame_route_legal_rate": 100.0,
+    "complete_projection_accuracy": 40.0,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds": 1.715,
+    "max_latency_seconds": 2.2,
+    "total_tokens": 30563
+  },
+  "gate": {
+    "passed": false,
+    "checks": {
+      "ordered_deliveries_at_least_85": false,
+      "primary_route_at_least_85": false,
+      "every_family_at_least_80": false,
+      "web_permission_100": false,
+      "protected_f1_at_least_85": false,
+      "clarification_precision_at_least_80": false,
+      "clarification_recall_at_least_80": true,
+      "frame_route_legal_100": true,
+      "complete_projection_at_least_85": false,
+      "single_attempt_all_cases": true,
+      "mean_latency_at_most_8": true,
+      "max_latency_at_most_12": true
+    }
+  },
+  "cases": [
+    {
+      "case_id": "blind-001",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "blind-002",
+      "checks": {
+        "status": false,
+        "ordered_deliveries": true,
+        "primary": false,
+        "web_permission": false,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-003",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "blind-004",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": false,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-005",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": false,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-006",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-007",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "blind-008",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "blind-009",
+      "checks": {
+        "status": false,
+        "ordered_deliveries": false,
+        "primary": false,
+        "web_permission": false,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-010",
+      "checks": {
+        "status": false,
+        "ordered_deliveries": true,
+        "primary": false,
+        "web_permission": false,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-011",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-012",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    },
+    {
+      "case_id": "blind-013",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "blind-014",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": true,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": true,
+        "legal": true,
+        "complete_projection": true
+      }
+    },
+    {
+      "case_id": "blind-015",
+      "checks": {
+        "status": true,
+        "ordered_deliveries": false,
+        "primary": true,
+        "web_permission": true,
+        "protected_exact": false,
+        "legal": true,
+        "complete_projection": false
+      }
+    }
+  ],
+  "freeze_manifest_sha256": "9142b3bd95a6de19370d6c7677b5c9d27eb8fdb59a0debac927283f971916866",
+  "gate_thresholds": {
+    "ordered_deliveries_accuracy_min": 85,
+    "primary_route_accuracy_min": 85,
+    "each_primary_family_accuracy_min": 80,
+    "web_permission_accuracy": 100,
+    "protected_span_micro_f1_min": 85,
+    "clarification_precision_min": 80,
+    "clarification_recall_min": 80,
+    "frame_route_legal_rate": 100,
+    "complete_projection_accuracy_min": 85,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds_max": 8,
+    "max_latency_seconds_max": 12
+  }
+}

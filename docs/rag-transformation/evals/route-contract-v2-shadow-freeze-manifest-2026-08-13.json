@@ -1,0 +1,22 @@
+{
+  "freeze_id": "route-contract-v2-shadow-freeze-2026-08-13",
+  "gate_verdict": "APPROVE",
+  "scope": "Shadow Query understanding only; production integration remains forbidden.",
+  "frozen_files": {
+    "rag/query_signal_extraction.py": "1c2d15cb85277651ce6011e984ba28191d4ebd6de6a20b69aea778360a993272",
+    "rag/task_route_resolution.py": "3b537eafc5732e999e1e204e3c31d13b4d21fb86df2db34bc415405104843e7d",
+    "rag/query_understanding_v2.py": "69f7784db9a2a0dd5192373a11b9d0f34febb4173518c763d7f882ace6cce86a",
+    "rag/route_contract_validation.py": "2aa5a3b1e7810708e0386c80aab848ac833e8ae1a9817754a32910161c5160ee",
+    "rag/route_contract_scoring.py": "2c0a7e1fec876a95f3cf1bed93b0cd9752695c33ff1681e38e794d498bd45916",
+    "rag/generate_route_contract_v2_blind_baseline.py": "769e811c923df4c1dd945540eeb7096b6fa1cf5494d554536f02aea032c1b153",
+    "rag/eval_route_contract_v2_predictions.py": "38415914005c4c82882684237b1df09545230463b7cec499e27774a2cb35765e",
+    "docs/rag-transformation/specs/route-contract-v2.schema.json": "164590b0a9118ee364756736bce24b38e4ca5801c55a8eb859d80071278a15f7",
+    "docs/rag-transformation/specs/route-contract-v2-annotation-guide.md": "079a168277d6787de1c7d9f9ede9741c585ffa10aa590340ee49efd373394367"
+  },
+  "calibration_evidence": {
+    "tests": "66 passed, 28 subtests passed",
+    "development_routes": "5/5 per route",
+    "protected_term_micro_f1": 0.9793
+  },
+  "evidence_boundary": "Development and previously unsealed challenge assets are calibration-only. A fresh sealed test is required for generalization evidence."
+}

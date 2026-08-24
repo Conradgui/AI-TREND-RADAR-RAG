@@ -1,0 +1,233 @@
+{
+  "experiment_id": "dimensions-only-l1-v2-three-case-canary-2026-08-15",
+  "evidence_boundary": "Visible three-case calibration canary; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "prompt_sha256": "52645c2637b5dbc46d3f82b93f85097f71a9209bcb5a314f4899083142fbbc29",
+  "total": 3,
+  "complete_projection_correct": 3,
+  "mean_latency_seconds": 1.744,
+  "max_latency_seconds": 2.263,
+  "gate": {
+    "passed": true,
+    "requirements": "3/3 complete projection; mean<=8s; max<=12s"
+  },
+  "cases": [
+    {
+      "case_id": "NSD-003",
+      "query": "汇总近 30 天模型水印的重要动态，并核验其中“所有主流厂商都已默认开启水印”这句话。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-d1bcd1fd674350cbaf333d03b3b3ad72",
+          "original_query": "汇总近 30 天模型水印的重要动态，并核验其中“所有主流厂商都已默认开启水印”这句话。",
+          "protected_terms": [
+            "近 30 天",
+            "模型水印",
+            "所有主流厂商都已默认开启水印"
+          ],
+          "intent_signals": [
+            "recency",
+            "verification",
+            "importance"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [
+            "claim_verification"
+          ],
+          "answer_mode": "important_news",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "claim_verification",
+              "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+              "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+              "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+              "output_schema_id": "atr.answer/verification/1.0",
+              "budget_profile_id": "atr.budget/verification/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [
+            "所有主流厂商都已默认开启水印"
+          ],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "近 30 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1000,
+                "completion_tokens": 196,
+                "total_tokens": 1196
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.263,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-007",
+      "query": "核验左边那条所说的“延迟下降 40%”，并判断右边那条是否否定了它。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-2f4404ad57df54ba9a4af59c82de1cf8",
+          "original_query": "核验左边那条所说的“延迟下降 40%”，并判断右边那条是否否定了它。",
+          "protected_terms": [
+            "左边那条",
+            "延迟下降 40%",
+            "右边那条",
+            "是否否定"
+          ],
+          "intent_signals": [
+            "verification"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [
+            {
+              "reference_type": "item_id",
+              "value": "ATR-20260702-D6M1QH",
+              "origin": "conversation_context"
+            },
+            {
+              "reference_type": "item_id",
+              "value": "ATR-20260708-W3P9ZA",
+              "origin": "conversation_context"
+            }
+          ],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [
+            "延迟下降 40%"
+          ],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1036,
+                "completion_tokens": 191,
+                "total_tokens": 1227
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.684,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-009",
+      "query": "解释这个为什么重要。",
+      "expected_status": "clarification_required",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references require clarification"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 977,
+                "completion_tokens": 174,
+                "total_tokens": 1151
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.284,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    }
+  ]
+}

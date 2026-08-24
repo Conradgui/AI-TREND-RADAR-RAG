@@ -1,0 +1,860 @@
+{
+  "schema_version": "atr.layered-eval/1.0",
+  "metrics": {
+    "delivery_sequence_exact": 85.0,
+    "primary_task_family_accuracy": 95.0,
+    "primary_task_family_accuracy_by_family": {
+      "item_navigation": 100.0,
+      "trend_discovery": 100.0,
+      "temporal_relation_exploration": 75.0,
+      "claim_verification": 100.0,
+      "evidence_research": 100.0
+    },
+    "primary_family_sample_count": {
+      "item_navigation": 4,
+      "trend_discovery": 4,
+      "temporal_relation_exploration": 4,
+      "claim_verification": 4,
+      "evidence_research": 4
+    },
+    "output_form_accuracy": 89.3,
+    "locator_accuracy": 96.4,
+    "web_permission_accuracy": 100.0,
+    "protected_span_char_micro_precision": 98.4,
+    "protected_span_char_micro_recall": 56.2,
+    "protected_span_char_micro_f1": 71.5,
+    "delivery_evidence_char_micro_f1": 96.1,
+    "web_evidence_char_micro_f1": 91.1,
+    "critical_term_char_micro_recall": 95.6,
+    "unresolved_span_char_micro_precision": 100.0,
+    "unresolved_span_char_micro_recall": 79.2,
+    "unresolved_span_char_micro_f1": 88.4,
+    "clarification_precision": 100.0,
+    "clarification_recall": 75.0,
+    "l3_legal_rate": 100.0,
+    "l3_projection_consistency": 100.0,
+    "product_complete": 20.0,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds": 1.836,
+    "max_latency_seconds": 2.384
+  },
+  "gate": {
+    "passed": false,
+    "checks": {
+      "delivery_sequence_at_least_85": true,
+      "primary_task_family_at_least_85": true,
+      "eligible_primary_families_at_least_80": false,
+      "output_form_at_least_85": true,
+      "web_permission_100": true,
+      "protected_char_f1_at_least_85": false,
+      "delivery_evidence_char_f1_at_least_85": true,
+      "web_evidence_char_f1_at_least_85": true,
+      "critical_term_recall_100": false,
+      "unresolved_char_precision_at_least_80": true,
+      "unresolved_char_recall_at_least_80": false,
+      "clarification_precision_at_least_80": true,
+      "clarification_recall_at_least_80": false,
+      "l3_legal_100": true,
+      "l3_projection_consistency_100": true,
+      "product_complete_at_least_80": false,
+      "single_attempt_all_cases": true,
+      "mean_latency_at_most_8": true,
+      "max_latency_at_most_12": true
+    },
+    "eligible_family_checks": {
+      "item_navigation": true,
+      "trend_discovery": true,
+      "temporal_relation_exploration": false,
+      "claim_verification": true,
+      "evidence_research": true
+    }
+  },
+  "cases": [
+    {
+      "case_id": "v32-new-blind-001",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 68.0,
+          "f1": 81.0
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 55.3,
+          "recall": 100.0,
+          "f1": 71.2
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-002",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 50.0,
+          "f1": 66.7
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 76.9,
+          "f1": 87.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 16.7,
+          "recall": 50.0,
+          "f1": 25.0
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-003",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 71.4,
+          "f1": 83.3
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 93.8,
+          "f1": 96.8
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 13.3,
+          "recall": 100.0,
+          "f1": 23.5
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-004",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 52.4,
+          "f1": 68.8
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 90.0,
+          "f1": 94.7
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 7.4,
+          "recall": 100.0,
+          "f1": 13.8
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 93.3,
+          "f1": 96.6
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-005",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 40.9,
+          "f1": 58.1
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 85.0,
+          "f1": 91.9
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 50.0,
+          "recall": 100.0,
+          "f1": 66.7
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-006",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 46.4,
+          "f1": 63.4
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 88.5,
+          "f1": 93.9
+        },
+        "web_evidence": {
+          "precision": 60.0,
+          "recall": 100.0,
+          "f1": 75.0
+        },
+        "critical": {
+          "precision": 50.0,
+          "recall": 100.0,
+          "f1": 66.7
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-007",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 69.2,
+          "f1": 81.8
+        },
+        "delivery_evidence": {
+          "precision": 94.4,
+          "recall": 100.0,
+          "f1": 97.1
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 22.2,
+          "recall": 100.0,
+          "f1": 36.4
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-008",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 63.6,
+          "recall": 43.8,
+          "f1": 51.9
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 94.4,
+          "f1": 97.1
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 66.7,
+          "f1": 80.0
+        },
+        "critical": {
+          "precision": 20.0,
+          "recall": 57.1,
+          "f1": 29.6
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-009",
+      "checks": {
+        "delivery_sequence_exact": false,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 76.7,
+          "f1": 86.8
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 27.5,
+          "recall": 100.0,
+          "f1": 43.1
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-010",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 63.6,
+          "f1": 77.8
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 81.0,
+          "f1": 89.5
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 38.2,
+          "recall": 100.0,
+          "f1": 55.3
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-011",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 56.2,
+          "f1": 72.0
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 48.6,
+          "recall": 100.0,
+          "f1": 65.5
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-012",
+      "checks": {
+        "delivery_sequence_exact": false,
+        "primary_task_family": false,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 66.7,
+          "f1": 80.0
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 20.0,
+          "recall": 100.0,
+          "f1": 33.3
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-013",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 68.2,
+          "f1": 81.1
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 53.6,
+          "f1": 69.8
+        },
+        "web_evidence": {
+          "precision": 60.0,
+          "recall": 100.0,
+          "f1": 75.0
+        },
+        "critical": {
+          "precision": 35.0,
+          "recall": 100.0,
+          "f1": 51.9
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-014",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 81.0,
+          "f1": 89.5
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 22.2,
+          "recall": 100.0,
+          "f1": 36.4
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-015",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 23.8,
+          "recall": 100.0,
+          "f1": 38.5
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-016",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": false,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 0.0,
+          "recall": 100.0,
+          "f1": 0.0
+        },
+        "unresolved": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-017",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 44.4,
+          "f1": 61.5
+        },
+        "delivery_evidence": {
+          "precision": 91.7,
+          "recall": 100.0,
+          "f1": 95.7
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 0.0,
+          "recall": 100.0,
+          "f1": 0.0
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-018",
+      "checks": {
+        "delivery_sequence_exact": false,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 53.1,
+          "f1": 69.4
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 60.0,
+          "recall": 100.0,
+          "f1": 75.0
+        },
+        "critical": {
+          "precision": 28.9,
+          "recall": 100.0,
+          "f1": 44.9
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-019",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 40.7,
+          "f1": 57.9
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 13.9,
+          "recall": 100.0,
+          "f1": 24.4
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    },
+    {
+      "case_id": "v32-new-blind-020",
+      "checks": {
+        "delivery_sequence_exact": true,
+        "primary_task_family": true,
+        "web_permission": true,
+        "envelope_status": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "span_scores": {
+        "protected": {
+          "precision": 100.0,
+          "recall": 53.3,
+          "f1": 69.6
+        },
+        "delivery_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "web_evidence": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        },
+        "critical": {
+          "precision": 0.0,
+          "recall": 100.0,
+          "f1": 0.0
+        },
+        "unresolved": {
+          "precision": 100.0,
+          "recall": 100.0,
+          "f1": 100.0
+        }
+      }
+    }
+  ],
+  "experiment_id": "ordered-query-frame-v3-2-new-blind-2026-08-21",
+  "evidence_boundary": "Sealed blind evaluation; predictions were generated from Query-only input before Gold was unsealed to the scorer.",
+  "freeze_manifest_sha256": "ebe877f6339b5c512ad2108984bdfff0d06e80abd324614a8d64b6458e141f50",
+  "prediction_freeze_manifest_sha256": "4e3c160559b7aa1e28291868b870d405f68f2d212e41a557c2afa8e4ea3ac333",
+  "query_sha256": "66d42d4d43a1fa37a5ea68ca905085c4f524ef11230e01a67d3947dd8a60d432",
+  "gold_sha256": "3d22695b5b57bc87083ecc28ca208f82326677da34a5befffc8e8718ee0ad11f"
+}

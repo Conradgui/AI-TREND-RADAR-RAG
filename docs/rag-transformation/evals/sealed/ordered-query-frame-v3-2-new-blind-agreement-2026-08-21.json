@@ -1,0 +1,205 @@
+{
+  "annotators": [
+    "annotator-a-luna",
+    "annotator-b-sol"
+  ],
+  "case_count": 20,
+  "exact_agreement_pct": {
+    "expected_status": 100.0,
+    "expected_deliveries": 100.0,
+    "expected_delivery_evidence_spans": 40.0,
+    "expected_protected_terms": 55.0,
+    "expected_critical_terms": 0.0,
+    "expected_web_permission": 100.0,
+    "expected_web_evidence_spans": 80.0,
+    "expected_unresolved_reference_spans": 95.0,
+    "primary_family": 100.0
+  },
+  "disagreements": [
+    {
+      "case_id": "v32-new-blind-001",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-001",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-001",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-002",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-002",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-003",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-003",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-003",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-004",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-004",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-004",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-004",
+      "field": "expected_unresolved_reference_spans"
+    },
+    {
+      "case_id": "v32-new-blind-005",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-006",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-006",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-006",
+      "field": "expected_web_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-007",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-007",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-008",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-008",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-008",
+      "field": "expected_web_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-009",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-009",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-009",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-010",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-010",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-011",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-012",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-012",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-013",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-013",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-013",
+      "field": "expected_web_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-014",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-015",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-016",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-017",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-017",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-018",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-018",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-018",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-018",
+      "field": "expected_web_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-019",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-019",
+      "field": "expected_critical_terms"
+    },
+    {
+      "case_id": "v32-new-blind-020",
+      "field": "expected_delivery_evidence_spans"
+    },
+    {
+      "case_id": "v32-new-blind-020",
+      "field": "expected_protected_terms"
+    },
+    {
+      "case_id": "v32-new-blind-020",
+      "field": "expected_critical_terms"
+    }
+  ],
+  "adjudication_ready": true
+}

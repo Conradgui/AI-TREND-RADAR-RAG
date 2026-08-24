@@ -1,0 +1,814 @@
+{
+  "experiment_id": "narrow-query-understanding-v1-three-case-canary-2026-08-13",
+  "evidence_boundary": "Visible three-case calibration canary; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "prompt_sha256": "e98609b5ac2fb07dfe4ea27b96a17d73e5c8595c5e420769bf35a7d3e1a84a06",
+  "total": 12,
+  "complete_projection_correct": 9,
+  "mean_latency_seconds": 3.095,
+  "max_latency_seconds": 7.146,
+  "gate": {
+    "passed": false,
+    "requirements": "12/12 complete projection; mean<=8s; max<=12s"
+  },
+  "cases": [
+    {
+      "case_id": "NSD-001",
+      "query": "找 ATR-20260805-99E550 这条记录。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-f88ca619262c5fddbdac0493dd753f25",
+          "original_query": "找 ATR-20260805-99E550 这条记录。",
+          "protected_terms": [
+            "ATR-20260805-99E550"
+          ],
+          "intent_signals": [
+            "navigation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1252,
+                "completion_tokens": 275,
+                "total_tokens": 1527
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 3.089,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-002",
+      "query": "找到《Apple Is Getting This Wrong》这条新闻，并解释它为什么重要。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-c29fc24cf5eb518d99f806b9ec22426d",
+          "original_query": "找到《Apple Is Getting This Wrong》这条新闻，并解释它为什么重要。",
+          "protected_terms": [
+            "Apple Is Getting This Wrong"
+          ],
+          "intent_signals": [
+            "navigation",
+            "explanation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [
+            "evidence_research"
+          ],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "evidence_research",
+              "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+              "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+              "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+              "output_schema_id": "atr.answer/research/1.0",
+              "budget_profile_id": "atr.budget/research/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1254,
+                "completion_tokens": 273,
+                "total_tokens": 1527
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 4.087,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-003",
+      "query": "汇总近 30 天模型水印的重要动态，并核验其中“所有主流厂商都已默认开启水印”这句话。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-d1bcd1fd674350cbaf333d03b3b3ad72",
+          "original_query": "汇总近 30 天模型水印的重要动态，并核验其中“所有主流厂商都已默认开启水印”这句话。",
+          "protected_terms": [
+            "近 30 天",
+            "模型水印",
+            "所有主流厂商都已默认开启水印"
+          ],
+          "intent_signals": [
+            "recency",
+            "verification",
+            "importance"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [
+            "claim_verification"
+          ],
+          "answer_mode": "important_news",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "claim_verification",
+              "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+              "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+              "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+              "output_schema_id": "atr.answer/verification/1.0",
+              "budget_profile_id": "atr.budget/verification/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [
+            "所有主流厂商都已默认开启水印"
+          ],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "近 30 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1265,
+                "completion_tokens": 296,
+                "total_tokens": 1561
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.795,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-004",
+      "query": "核验“所有主流厂商都已默认开启水印”，并补充近 30 天的重要动态。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-90a4a1c2bcce5ab291df8793103b3ff1",
+          "original_query": "核验“所有主流厂商都已默认开启水印”，并补充近 30 天的重要动态。",
+          "protected_terms": [
+            "所有主流厂商都已默认开启水印",
+            "近 30 天"
+          ],
+          "intent_signals": [
+            "recency",
+            "verification",
+            "importance"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [
+            "trend_discovery"
+          ],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "trend_discovery",
+              "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+              "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+              "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+              "output_schema_id": "atr.answer/trend/1.0",
+              "budget_profile_id": "atr.budget/standard/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [
+            "所有主流厂商都已默认开启水印"
+          ],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "近 30 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1259,
+                "completion_tokens": 281,
+                "total_tokens": 1540
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.254,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-005",
+      "query": "梳理 OpenAI 过去一年 Agent 战略如何演变。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-a65a3c5ab46b5769978ed17ef3e41343",
+          "original_query": "梳理 OpenAI 过去一年 Agent 战略如何演变。",
+          "protected_terms": [
+            "OpenAI",
+            "过去一年",
+            "Agent"
+          ],
+          "intent_signals": [
+            "timeline",
+            "explanation"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "temporal_relation_exploration"
+          ],
+          "answer_mode": "explanation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "temporal_relation_exploration",
+              "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+              "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+              "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+              "output_schema_id": "atr.answer/temporal_relation/1.0",
+              "budget_profile_id": "atr.budget/graph/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去一年"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1248,
+                "completion_tokens": 267,
+                "total_tokens": 1515
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 4.337,
+      "checks": {
+        "status": true,
+        "route": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-006",
+      "query": "比较普通 RAG 和 Graph RAG 分别适合什么场景。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-0dc4fd2c9efc5d11bf6412ff90d219b8",
+          "original_query": "比较普通 RAG 和 Graph RAG 分别适合什么场景。",
+          "protected_terms": [
+            "普通 RAG",
+            "Graph RAG"
+          ],
+          "intent_signals": [
+            "comparison"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1252,
+                "completion_tokens": 272,
+                "total_tokens": 1524
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.931,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-007",
+      "query": "核验左边那条所说的“延迟下降 40%”，并判断右边那条是否否定了它。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "semantic extraction unavailable"
+        ],
+        "diagnostics": {
+          "error_type": "NarrowDecisionExtractionError"
+        }
+      },
+      "latency_seconds": 7.146,
+      "checks": {
+        "status": false,
+        "route": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": false,
+        "web_permission": false
+      }
+    },
+    {
+      "case_id": "NSD-008",
+      "query": "最近有什么热门趋势？",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-cdeb69a147295fb8986abd4abae4631b",
+          "original_query": "最近有什么热门趋势？",
+          "protected_terms": [
+            "最近",
+            "热门趋势"
+          ],
+          "intent_signals": [
+            "recency",
+            "importance"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1242,
+                "completion_tokens": 259,
+                "total_tokens": 1501
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.27,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-009",
+      "query": "解释这个为什么重要。",
+      "expected_status": "clarification_required",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references require clarification"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1242,
+                "completion_tokens": 255,
+                "total_tokens": 1497
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.212,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-010",
+      "query": "帮我看看。",
+      "expected_status": "clarification_required",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "no explicit delivery found"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1240,
+                "completion_tokens": 248,
+                "total_tokens": 1488
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.372,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-011",
+      "query": "先梳理 OpenAI 过去一年战略演变，再补充最近 30 天的重要动态。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-6a527c7d90805996aead9b3d555e4492",
+          "original_query": "先梳理 OpenAI 过去一年战略演变，再补充最近 30 天的重要动态。",
+          "protected_terms": [
+            "OpenAI",
+            "过去一年",
+            "最近 30 天"
+          ],
+          "intent_signals": [
+            "recency",
+            "timeline",
+            "explanation",
+            "importance"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [
+            "trend_discovery"
+          ],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "trend_discovery",
+              "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+              "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+              "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+              "output_schema_id": "atr.answer/trend/1.0",
+              "budget_profile_id": "atr.budget/standard/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去一年"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1256,
+                "completion_tokens": 283,
+                "total_tokens": 1539
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.366,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    },
+    {
+      "case_id": "NSD-012",
+      "query": "这是要找一条记录，还是要解释一个话题？",
+      "expected_status": "clarification_required",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "uncertain semantic decisions require clarification",
+          "no explicit delivery found"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1247,
+                "completion_tokens": 258,
+                "total_tokens": 1505
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.277,
+      "checks": {
+        "status": true,
+        "route": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": true,
+        "references": true,
+        "web_permission": true
+      }
+    }
+  ]
+}

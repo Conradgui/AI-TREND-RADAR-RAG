@@ -1,0 +1,1108 @@
+{
+  "score_id": "route-contract-v2-sealed-generalization-predictions-2026-08-13-score",
+  "dataset_id": "atr-route-contract-v2-sealed-generalization-2026-08-13-one-shot",
+  "prediction_id": "route-contract-v2-sealed-generalization-predictions-2026-08-13",
+  "protocol": "Predictions were frozen before sealed Gold was read by the scoring process.",
+  "hashes": {
+    "prediction_file_sha256": "e6756ec53eb5166ef1aa938368deaa1424c5e3f62f1ec04f43f01c0779a3294c",
+    "sealed_gold_file_sha256": "e0ec1ba04c01fb32e602bd35b968978d6c1376370e2281cf096a2ec273ffdc9d",
+    "schema_file_sha256": "164590b0a9118ee364756736bce24b38e4ca5801c55a8eb859d80071278a15f7"
+  },
+  "total": 50,
+  "route_accuracy": {
+    "overall": {
+      "correct": 30,
+      "total": 50,
+      "accuracy": 0.6
+    },
+    "per_route": {
+      "claim_verification": {
+        "correct": 6,
+        "total": 10,
+        "accuracy": 0.6
+      },
+      "evidence_research": {
+        "correct": 9,
+        "total": 10,
+        "accuracy": 0.9
+      },
+      "item_navigation": {
+        "correct": 2,
+        "total": 10,
+        "accuracy": 0.2
+      },
+      "temporal_relation_exploration": {
+        "correct": 8,
+        "total": 10,
+        "accuracy": 0.8
+      },
+      "trend_discovery": {
+        "correct": 5,
+        "total": 10,
+        "accuracy": 0.5
+      }
+    },
+    "confusion": {
+      "item_navigation": {
+        "evidence_research": 8,
+        "item_navigation": 2
+      },
+      "trend_discovery": {
+        "trend_discovery": 5,
+        "evidence_research": 5
+      },
+      "temporal_relation_exploration": {
+        "temporal_relation_exploration": 8,
+        "evidence_research": 2
+      },
+      "claim_verification": {
+        "evidence_research": 4,
+        "claim_verification": 6
+      },
+      "evidence_research": {
+        "evidence_research": 9,
+        "item_navigation": 1
+      }
+    }
+  },
+  "intent_signal_micro": {
+    "tp": 52,
+    "fp": 4,
+    "fn": 40,
+    "precision": 0.9286,
+    "recall": 0.5652,
+    "f1": 0.7027
+  },
+  "protected_term_micro": {
+    "tp": 44,
+    "fp": 21,
+    "fn": 89,
+    "precision": 0.6769,
+    "recall": 0.3308,
+    "f1": 0.4444
+  },
+  "ambiguity_detection": {
+    "tp": 9,
+    "fp": 13,
+    "fn": 2,
+    "precision": 0.4091,
+    "recall": 0.8182,
+    "f1": 0.5455
+  },
+  "permission_critical_accuracy": {
+    "correct": 9,
+    "total": 9,
+    "accuracy": 1.0
+  },
+  "minimal_pairs": {
+    "pair_count": 6,
+    "all_cases_route_correct": 0.3333
+  },
+  "full_projection_exact": {
+    "correct": 7,
+    "total": 50,
+    "accuracy": 0.14
+  },
+  "cases": [
+    {
+      "case_id": "RC2-SG-001",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-002",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": false,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-003",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-004",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-005",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-006",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-007",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-008",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-009",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-010",
+      "expected_route": "item_navigation",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-011",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-012",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-013",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-014",
+      "expected_route": "trend_discovery",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-015",
+      "expected_route": "trend_discovery",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-016",
+      "expected_route": "trend_discovery",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-017",
+      "expected_route": "trend_discovery",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-018",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-019",
+      "expected_route": "trend_discovery",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-020",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-021",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-022",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-023",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-024",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-025",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-026",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-027",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": false,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-028",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-029",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-030",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-031",
+      "expected_route": "claim_verification",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-032",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-033",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-034",
+      "expected_route": "claim_verification",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-035",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-036",
+      "expected_route": "claim_verification",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-037",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-038",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-039",
+      "expected_route": "claim_verification",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-040",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-041",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-042",
+      "expected_route": "evidence_research",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": true,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-043",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-044",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-045",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-046",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-047",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-048",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-049",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": false
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RC2-SG-050",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "intent_signals": false,
+        "web_permission": true,
+        "protected_terms": false,
+        "ambiguity": true,
+        "resolved_references": true
+      },
+      "full_projection_exact": false,
+      "schema_errors": [],
+      "semantic_error": null
+    }
+  ]
+}

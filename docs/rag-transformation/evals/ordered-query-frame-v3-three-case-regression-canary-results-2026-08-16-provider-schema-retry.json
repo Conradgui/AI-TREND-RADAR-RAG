@@ -1,0 +1,33 @@
+{
+  "experiment_id": "ordered-query-frame-v3-three-case-regression-canary-2026-08-16",
+  "evidence_boundary": "Already-unsealed regression canary; not blind, production, or generalization evidence.",
+  "model": "deepseek-v4-flash",
+  "prompt_sha256": "f0176f7de4c324a2315d297ec8af94882ebc2927d9d74b3c926b5c936ca1780f",
+  "total": 3,
+  "executed": 1,
+  "complete_projection_correct": 0,
+  "mean_latency_seconds": 0.565,
+  "max_latency_seconds": 0.565,
+  "gate": {
+    "passed": false,
+    "requirements": "3/3 complete projection; one attempt each; mean<=8s; max<=12s"
+  },
+  "cases": [
+    {
+      "case_id": "blind-014-regression",
+      "query": "先比较 Atlas 3 与 Atlas 3.2 的能力差异，再定位两条对应记录并给出原始链接",
+      "frame": null,
+      "envelope": null,
+      "metadata": {
+        "attempts": 1,
+        "model": "deepseek-v4-flash"
+      },
+      "latency_seconds": 0.565,
+      "checks": {
+        "single_attempt": true,
+        "complete_contract": false
+      },
+      "error": "BadRequestError: Error code: 400 - {'error': {'message': 'Invalid tool parameters schema : one of `type`, `anyOf`, `$ref` field is required', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}"
+    }
+  ]
+}

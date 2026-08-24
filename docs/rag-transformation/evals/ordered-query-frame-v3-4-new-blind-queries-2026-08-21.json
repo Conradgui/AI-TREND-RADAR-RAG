@@ -1,0 +1,82 @@
+{
+  "schema_version": "atr.blind-query/3.4",
+  "dataset_id": "ordered-query-frame-v3-4-new-blind-2026-08-21",
+  "evidence_boundary": "Query-only unseen evaluation input. Contains no route, delivery, permission, clarification, coverage, or Gold labels.",
+  "cases": [
+    {
+      "case_id": "v34-new-blind-001",
+      "query": "打开 ATR-20260819-R4N8Q2 对应的记录，并简要解释它为什么值得关注。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-002",
+      "query": "不要联网，请定位完整标题《雾港推理栈发布说明》对应的内部日报条目。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-003",
+      "query": "把昨天提到的那个端侧数据库条目找出来。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-004",
+      "query": "请联网查找星槐模型最近两周最重要的新消息，优先列出影响范围大的两条。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-005",
+      "query": "不要联网，只看内部日报，把霜桥代码助手近期变化归纳为几个趋势簇，并按发生顺序补充关键里程碑。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-006",
+      "query": "它最近有哪些真正值得关注的动态？只采用澜序计算官方发布的信息。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-007",
+      "query": "解释钴潮芯片、南弦云和砚舟实验室之间是什么关系，重点区分合作与共同出现。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-008",
+      "query": "禁止联网，对比岚镜索引在 2025 年 11 月和 2026 年 7 月两个时间截面的部署策略。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-009",
+      "query": "请联网分析苔砾编排器从 2023 年到 2026 年在企业采用率上的连续变化，并定位标题中包含“苔砾商业版”的候选条目。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-010",
+      "query": "请联网核验“澄湾 API 已把推理成本降低 35%”是否有可靠证据，并只采用澄湾计算官方材料作为主要来源。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-011",
+      "query": "这个说法是否成立？",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-012",
+      "query": "这个说法是否成立？同时解释支持或反对它的关键证据。",
+      "conversation_context": "上一轮用户提出的说法是：澄湾 API 已把推理成本降低 35%。"
+    },
+    {
+      "case_id": "v34-new-blind-013",
+      "query": "不要联网，比较 ATR-20260807-M3C7V9 和 ATR-20260807-P8L2X6 的目标用户与适用场景，不要扩展成行业研究。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-014",
+      "query": "请联网分析：如果澄湾 API 真能把推理成本降低 35%，这会怎样影响小团队的产品决策？",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v34-new-blind-015",
+      "query": "请联网深度研究镜砂开发平台的商业模式、目标用户和主要风险，并形成可被反驳的结论。",
+      "conversation_context": null
+    }
+  ]
+}

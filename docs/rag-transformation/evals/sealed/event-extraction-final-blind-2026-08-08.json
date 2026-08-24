@@ -1,0 +1,284 @@
+{
+  "dataset_id": "event-extraction-final-blind-2026-08-08",
+  "contract_version": "event-contract-v2",
+  "date": "2026-08-08",
+  "sample_count": 16,
+  "label_scales": {
+    "importance_label": [
+      "high",
+      "medium",
+      "low"
+    ],
+    "expected_tier": [
+      "tier_1",
+      "tier_2",
+      "tier_3"
+    ]
+  },
+  "annotations": [
+    {
+      "daily_item_id": "ATR-20260808-D2356E",
+      "content_kind": "news",
+      "source_role": "first_party",
+      "event_type": "safety_incident",
+      "subject_entity_ids": [
+        "openai"
+      ],
+      "mentioned_entity_ids": [],
+      "publication_date": "2026-08-07",
+      "temporal_confidence": "high",
+      "importance_label": "high",
+      "expected_tier": "tier_1",
+      "reason": "OpenAI 对关键网络能力风险作出正式回应，属于高影响安全事件的一方披露。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-9DA2A2",
+      "content_kind": "news",
+      "source_role": "third_party",
+      "event_type": "product_launch",
+      "subject_entity_ids": [
+        "avernet"
+      ],
+      "mentioned_entity_ids": [
+        "ant-group"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "medium",
+      "expected_tier": "tier_2",
+      "reason": "第三方报道 Avernet 社区版本正式开源上线，事件明确但影响仍需后续采用信号验证。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-1C55F3",
+      "content_kind": "news",
+      "source_role": "third_party",
+      "event_type": "leadership",
+      "subject_entity_ids": [
+        "demis-hassabis",
+        "jeff-dean",
+        "google-deepmind"
+      ],
+      "mentioned_entity_ids": [
+        "google"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "high",
+      "expected_tier": "tier_1",
+      "reason": "报道涉及 Google AI 权力中心的最高层人事变化，若属实将直接影响组织与技术路线。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-3D1EC1",
+      "content_kind": "news",
+      "source_role": "third_party",
+      "event_type": "safety_incident",
+      "subject_entity_ids": [
+        "openai"
+      ],
+      "mentioned_entity_ids": [],
+      "publication_date": "2026-08-07",
+      "temporal_confidence": "high",
+      "importance_label": "high",
+      "expected_tier": "tier_1",
+      "reason": "第三方调查报道 AI 智能体协同策划攻击而未被及时发现，属于直接的高影响安全事件。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-4B770C",
+      "content_kind": "news",
+      "source_role": "third_party",
+      "event_type": "product_launch",
+      "subject_entity_ids": [
+        "openai-device"
+      ],
+      "mentioned_entity_ids": [
+        "openai"
+      ],
+      "publication_date": "2026-08-07",
+      "temporal_confidence": "high",
+      "importance_label": "high",
+      "expected_tier": "tier_1",
+      "reason": "权威商业媒体披露 OpenAI 硬件的形态与价格，虽是发布前报道但产品战略意义较高。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-DC28C8",
+      "content_kind": "research",
+      "source_role": "first_party",
+      "event_type": "research_release",
+      "subject_entity_ids": [
+        "google-deepmind"
+      ],
+      "mentioned_entity_ids": [],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "high",
+      "expected_tier": "tier_1",
+      "reason": "DeepMind 原始研究系统检验人类对 LLM 判断的识别与反 AI 偏差，结论具有安全和产品设计价值。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-65E4C3",
+      "content_kind": "research",
+      "source_role": "first_party",
+      "event_type": "research_release",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [],
+      "publication_date": "2026-08-06",
+      "temporal_confidence": "high",
+      "importance_label": "medium",
+      "expected_tier": "tier_2",
+      "reason": "原始论文提出用资源分配治理已部署智能体的机制设计，方法新颖但现阶段主要是理论贡献。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-1A5552",
+      "content_kind": "research",
+      "source_role": "first_party",
+      "event_type": "research_release",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [
+        "synthea"
+      ],
+      "publication_date": "2026-08-06",
+      "temporal_confidence": "high",
+      "importance_label": "medium",
+      "expected_tier": "tier_2",
+      "reason": "原始论文给出兼顾效用约束的合成临床基准改进方法，对企业评测有价值但领域较专门。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-854779",
+      "content_kind": "tutorial",
+      "source_role": "first_party",
+      "event_type": "documentation_or_tutorial",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [
+        "ros-2",
+        "nvidia"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "low",
+      "expected_tier": "tier_3",
+      "reason": "作者记录 ROS 2 机器人吸尘器从仿真到实机的工程过程，属于实作教程而非行业事件。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-499627",
+      "content_kind": "developer_content",
+      "source_role": "third_party",
+      "event_type": "documentation_or_tutorial",
+      "subject_entity_ids": [
+        "microsoft-aks-llm-routing"
+      ],
+      "mentioned_entity_ids": [
+        "microsoft",
+        "azure-kubernetes-service"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "medium",
+      "expected_tier": "tier_2",
+      "reason": "第三方技术内容介绍 Microsoft 在 AKS 上的三层 LLM 路由架构，具有明确工程价值但不是独立发布事件。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-5F0804",
+      "content_kind": "developer_content",
+      "source_role": "first_party",
+      "event_type": "unknown",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [
+        "anthropic"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "low",
+      "expected_tier": "tier_3",
+      "reason": "个人基于半年 AI 编码体验总结能力退化，属于经验型开发内容，不构成可抽取新闻事件。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-C5BBE7",
+      "content_kind": "product_listing",
+      "source_role": "third_party",
+      "event_type": "unknown",
+      "subject_entity_ids": [
+        "muse-code"
+      ],
+      "mentioned_entity_ids": [
+        "meta"
+      ],
+      "publication_date": "2026-08-06",
+      "temporal_confidence": "high",
+      "importance_label": "low",
+      "expected_tier": "tier_3",
+      "reason": "Product Hunt 条目只给出产品名和一句定位，缺乏可验证的正式发布动作与细节。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-896DFF",
+      "content_kind": "product_listing",
+      "source_role": "first_party",
+      "event_type": "unknown",
+      "subject_entity_ids": [
+        "mage-vl"
+      ],
+      "mentioned_entity_ids": [
+        "microsoft"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "medium",
+      "expected_tier": "tier_2",
+      "reason": "Microsoft 的 Hugging Face 模型仓库是第一方产品资产，但当前记录只有模型类型描述，不能据此断言发布事件。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-AE4530",
+      "content_kind": "product_listing",
+      "source_role": "third_party",
+      "event_type": "compatibility",
+      "subject_entity_ids": [
+        "deepseek-v4-flash-0731-gguf"
+      ],
+      "mentioned_entity_ids": [
+        "deepseek-v4-flash-0731",
+        "unsloth"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "low",
+      "expected_tier": "tier_3",
+      "reason": "第三方 GGUF 打包仓库表达模型格式兼容性，属于模型分发配置而非新模型发布。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-0B0B9C",
+      "content_kind": "product_listing",
+      "source_role": "first_party",
+      "event_type": "unknown",
+      "subject_entity_ids": [
+        "graphify"
+      ],
+      "mentioned_entity_ids": [
+        "claude-code",
+        "cursor",
+        "codex",
+        "gemini-cli"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "low",
+      "expected_tier": "tier_3",
+      "reason": "GitHub 搜索收录的是仓库常规能力说明，未提供新版本、上线或其他时间绑定事件证据。"
+    },
+    {
+      "daily_item_id": "ATR-20260808-7651BB",
+      "content_kind": "product_listing",
+      "source_role": "first_party",
+      "event_type": "unknown",
+      "subject_entity_ids": [
+        "milvus"
+      ],
+      "mentioned_entity_ids": [
+        "milvus-io"
+      ],
+      "publication_date": null,
+      "temporal_confidence": "unknown",
+      "importance_label": "low",
+      "expected_tier": "tier_3",
+      "reason": "稳定项目的普通仓库简介没有版本或动作信息，是用于检验非新闻误入的明确负例。"
+    }
+  ]
+}

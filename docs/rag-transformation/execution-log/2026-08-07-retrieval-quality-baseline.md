@@ -174,4 +174,3 @@
 - 原始基线：`docs/rag-transformation/evals/retrieval-quality-baseline-2026-08-07.json`
 - 评估器：`rag/eval_retrieval_quality.py`
 - 单元测试：`rag/tests/test_eval_retrieval_quality.py`
-

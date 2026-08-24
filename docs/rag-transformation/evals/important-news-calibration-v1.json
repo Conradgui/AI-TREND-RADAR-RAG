@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "important-news-calibration-v1",
+  "label_tier": "product-rule-calibration",
+  "review_status": "human_rule_confirmed_synthetic_examples",
+  "release_gate_eligible": false,
+  "purpose": "验证近期重要新闻路径能区分主榜、历史背景与排除项；不替代真实语料人工相关性评审。",
+  "reference_date": "2026-08-12",
+  "admission_contract": {
+    "main": "近期发生的新闻事件，并具备可观察的重要性信号。",
+    "background": "事件重要但已经超出近期窗口。",
+    "exclude": "不是新闻，或只是普通价格、机制、配置、教程与文档调整；重大架构/决策调整且影响广泛时例外。"
+  },
+  "cases": [
+    {"id": "IN01", "entity": "OpenAI", "date": "2026-08-12", "title": "OpenAI appoints a new research chief", "summary": "A company-wide leadership appointment changes the research organization.", "score": 90, "expected_tier": "main"},
+    {"id": "IN02", "entity": "OpenAI", "date": "2026-08-11", "title": "Premium seats pricing notes", "summary": "Ordinary seat pricing and account configuration details.", "score": 99, "expected_tier": "exclude"},
+    {"id": "IN03", "entity": "OpenAI", "date": "2026-08-12", "title": "OpenAI restructures enterprise pricing architecture", "summary": "A company-wide strategic decision affects all enterprise customers and triggers broad industry debate.", "score": 92, "expected_tier": "main"},
+    {"id": "IN04", "entity": "OpenAI", "date": "2026-07-20", "title": "OpenAI faces a major Apple lawsuit", "summary": "A major lawsuit creates a high-impact dispute between two technology companies.", "score": 98, "expected_tier": "background"},
+    {"id": "IN05", "entity": "Anthropic", "date": "2026-08-10", "title": "Anthropic partners with a global services company", "summary": "Anthropic announces a partnership affecting enterprise AI deployment.", "score": 88, "expected_tier": "main"},
+    {"id": "IN06", "entity": "Anthropic", "date": "2026-08-12", "title": "How to configure Claude settings", "summary": "A tutorial explaining ordinary user preferences and settings.", "score": 95, "expected_tier": "exclude"},
+    {"id": "IN07", "entity": "Anthropic", "date": "2026-08-09", "title": "Anthropic releases new model safeguards", "summary": "Anthropic releases safeguards that affect model deployment and safety policy.", "score": 91, "expected_tier": "main"},
+    {"id": "IN08", "entity": "Anthropic", "date": "2026-07-15", "title": "Anthropic closes a major funding round", "summary": "A major funding event changes the company's competitive position.", "score": 93, "expected_tier": "background"},
+    {"id": "IN09", "entity": "Google", "date": "2026-08-12", "title": "Google launches a new AI research model", "summary": "Google announces a model release with broad research impact.", "score": 90, "expected_tier": "main"},
+    {"id": "IN10", "entity": "Google", "date": "2026-08-12", "title": "Google AI configuration release notes", "summary": "Routine documentation for a configuration option.", "score": 98, "expected_tier": "exclude"},
+    {"id": "IN11", "entity": "Google", "date": "2026-08-08", "title": "Google acquires an AI infrastructure company", "summary": "The acquisition changes Google's AI infrastructure strategy and market position.", "score": 94, "expected_tier": "main"},
+    {"id": "IN12", "entity": "Google", "date": "2026-07-10", "title": "Google and Microsoft enter a major AI dispute", "summary": "A high-impact dispute between two technology giants.", "score": 96, "expected_tier": "background"}
+  ]
+}

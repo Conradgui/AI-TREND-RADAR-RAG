@@ -1,0 +1,525 @@
+{
+  "experiment_id": "ordered-query-frame-v3-3-visible-calibration-2026-08-21",
+  "evidence_boundary": "Visible calibration only; it cannot support a Blind or generalization claim.",
+  "query_dataset_id": "ordered-query-frame-v3-3-visible-calibration-2026-08-21",
+  "query_sha256": "18297361b36ae9d49635b1ed6328f5536000f4e490d415c62941bc6a9a32420b",
+  "model": "deepseek-v4-flash",
+  "planned": 6,
+  "executed": 6,
+  "cases": [
+    {
+      "case_id": "v33-visible-009",
+      "query": "按发生顺序梳理苍穹编排器从首次发布到商业版上线的关键里程碑，并定位《苍穹编排器发布说明》。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "按发生顺序梳理苍穹编排器从首次发布到商业版上线的关键里程碑"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "定位《苍穹编排器发布说明》"
+            ],
+            "requested_output_form": "exact_item",
+            "locator_kind": "full_title"
+          }
+        ],
+        "protected_spans": [
+          "苍穹编排器",
+          "首次发布",
+          "商业版上线",
+          "《苍穹编排器发布说明》"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-19c23dbb87a353c384ada1d4268c9cde",
+          "original_query": "按发生顺序梳理苍穹编排器从首次发布到商业版上线的关键里程碑，并定位《苍穹编排器发布说明》。",
+          "protected_terms": [
+            "苍穹编排器",
+            "首次发布",
+            "商业版上线",
+            "《苍穹编排器发布说明》",
+            "苍穹编排器发布说明"
+          ],
+          "intent_signals": [
+            "timeline",
+            "navigation"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [
+            "item_navigation"
+          ],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "item_navigation",
+              "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+              "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+              "prompt_contract_id": null,
+              "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+              "requested_output_form": "exact_item",
+              "locator_kind": "full_title",
+              "route_confidence": 1.0,
+              "ambiguities": [],
+              "output_schema_id": "atr.answer/navigation/1.0",
+              "budget_profile_id": "atr.budget/deterministic/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "normalized_observable_locators": [
+          "full_title"
+        ],
+        "normalized_web_permission": null,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 2152,
+        "completion_tokens": 279,
+        "total_tokens": 2431
+      },
+      "latency_seconds": 2.836,
+      "error": null
+    },
+    {
+      "case_id": "v33-visible-011",
+      "query": "不要联网，对比青岚索引在 2026 年 3 月和 2026 年 7 月两个时间截面的部署策略。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "对比青岚索引在 2026 年 3 月和 2026 年 7 月两个时间截面的部署策略"
+            ],
+            "requested_output_form": "cross_sectional_trend",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "青岚索引",
+          "2026 年 3 月",
+          "2026 年 7 月",
+          "部署策略"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-964b91e02d2359e0b9ae2666b63047d0",
+          "original_query": "不要联网，对比青岚索引在 2026 年 3 月和 2026 年 7 月两个时间截面的部署策略。",
+          "protected_terms": [
+            "不要联网",
+            "青岚索引",
+            "2026 年 3 月",
+            "2026 年 7 月",
+            "部署策略"
+          ],
+          "intent_signals": [
+            "timeline"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "cross_sectional_trend",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "normalized_observable_locators": [],
+        "normalized_web_permission": null,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 2158,
+        "completion_tokens": 256,
+        "total_tokens": 2414
+      },
+      "latency_seconds": 1.953,
+      "error": null
+    },
+    {
+      "case_id": "v33-visible-012",
+      "query": "解释赤潮芯片、极昼云平台和北岸实验室之间是什么关系，重点区分合作与共同出现。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "赤潮芯片",
+              "极昼云平台",
+              "北岸实验室",
+              "关系",
+              "区分合作与共同出现"
+            ],
+            "requested_output_form": "relation",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "赤潮芯片",
+          "极昼云平台",
+          "北岸实验室"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-1c82d1658cde520cb52b9d2bd0c0c483",
+          "original_query": "解释赤潮芯片、极昼云平台和北岸实验室之间是什么关系，重点区分合作与共同出现。",
+          "protected_terms": [
+            "赤潮芯片",
+            "极昼云平台",
+            "北岸实验室"
+          ],
+          "intent_signals": [
+            "relation"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "relation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "normalized_observable_locators": [],
+        "normalized_web_permission": null,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 2149,
+        "completion_tokens": 231,
+        "total_tokens": 2380
+      },
+      "latency_seconds": 1.612,
+      "error": null
+    },
+    {
+      "case_id": "v33-visible-015",
+      "query": "这个说法是否成立？同时解释支持或反对它的关键证据。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "这个说法是否成立"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "解释支持或反对它的关键证据"
+            ],
+            "requested_output_form": "explanation",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-84fdc0f4e4e55cd5a143694a165a6a61",
+          "original_query": "这个说法是否成立？同时解释支持或反对它的关键证据。",
+          "protected_terms": [],
+          "intent_signals": [
+            "verification",
+            "explanation"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [
+            "evidence_research"
+          ],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "evidence_research",
+              "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+              "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+              "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+              "answer_builder_contract_id": null,
+              "output_schema_id": "atr.answer/research/1.0",
+              "budget_profile_id": "atr.budget/research/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [
+            "北辰 API 已把推理成本降低 40%"
+          ],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [
+          "北辰 API 已把推理成本降低 40%"
+        ],
+        "normalized_observable_locators": [],
+        "normalized_web_permission": null,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 2154,
+        "completion_tokens": 252,
+        "total_tokens": 2406
+      },
+      "latency_seconds": 1.886,
+      "error": null
+    },
+    {
+      "case_id": "v33-visible-016",
+      "query": "这个说法是否成立？",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "这个说法是否成立"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": [
+          "这个说法"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 这个说法"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "normalized_observable_locators": [],
+        "normalized_web_permission": null,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 2130,
+        "completion_tokens": 200,
+        "total_tokens": 2330
+      },
+      "latency_seconds": 1.754,
+      "error": null
+    },
+    {
+      "case_id": "v33-visible-018",
+      "query": "请联网分析：如果北辰 API 真能把推理成本降低 40%，这会怎样影响中小团队的产品决策？",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "如果北辰 API 真能把推理成本降低 40%，这会怎样影响中小团队的产品决策"
+            ],
+            "requested_output_form": "explanation",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "北辰 API",
+          "推理成本降低 40%",
+          "中小团队"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网分析"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-ec89361546cc53dea977d5baf46a8e87",
+          "original_query": "请联网分析：如果北辰 API 真能把推理成本降低 40%，这会怎样影响中小团队的产品决策？",
+          "protected_terms": [
+            "请联网分析",
+            "北辰 API",
+            "推理成本降低 40%",
+            "中小团队"
+          ],
+          "intent_signals": [
+            "explanation",
+            "web_requested"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [],
+          "answer_mode": "explanation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "normalized_observable_locators": [],
+        "normalized_web_permission": null,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 2149,
+        "completion_tokens": 226,
+        "total_tokens": 2375
+      },
+      "latency_seconds": 1.788,
+      "error": null
+    }
+  ],
+  "freeze_manifest_sha256": "3dd4e5b5cc18a46c43542b09df5adf1b5d6ea7c46705a8f00b6de3c79b57151c",
+  "frozen_runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "experiment_id": "narrow-query-understanding-v1-three-case-canary-2026-08-13",
+  "evidence_boundary": "Visible three-case calibration canary; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "prompt_sha256": "e98609b5ac2fb07dfe4ea27b96a17d73e5c8595c5e420769bf35a7d3e1a84a06",
+  "total": 1,
+  "complete_projection_correct": 0,
+  "mean_latency_seconds": 5.366,
+  "max_latency_seconds": 5.366,
+  "gate": {
+    "passed": false,
+    "requirements": "1/1 complete projection; mean<=8s; max<=12s"
+  },
+  "cases": [
+    {
+      "case_id": "NSD-007",
+      "query": "核验左边那条所说的“延迟下降 40%”，并判断右边那条是否否定了它。",
+      "expected_status": "resolved",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "semantic extraction unavailable"
+        ],
+        "diagnostics": {
+          "error_type": "NarrowDecisionExtractionError"
+        }
+      },
+      "latency_seconds": 5.366,
+      "checks": {
+        "status": false,
+        "route": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": false,
+        "web_permission": false
+      }
+    }
+  ]
+}

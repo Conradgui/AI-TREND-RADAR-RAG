@@ -1,0 +1,96 @@
+{
+  "schema_version": "atr.ordered-semantic-frame/3.0-gold",
+  "shard_id": "new-blind-shard-a-2026-08-16",
+  "cases": [
+    {
+      "case_id": "new-blind-001",
+      "expected_status": "resolved",
+      "expected_deliveries": [["item_navigation", "exact_item", "atr_id"]],
+      "expected_protected_terms": ["ATR-7742", "《雾港协议：潮汐引擎》", "对应条目"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "explicit",
+      "label_rationale": "明确要求按 ATR ID 定位单条记录，并要求联网核对；主交付是精确条目。"
+    },
+    {
+      "case_id": "new-blind-002",
+      "expected_status": "clarification",
+      "expected_deliveries": [["item_navigation", "exact_item", "descriptive"]],
+      "expected_protected_terms": ["这个条目", "完整标题", "不要联网"],
+      "expected_unresolved_reference_spans": ["这个条目"],
+      "expected_web_permission": "forbidden",
+      "label_rationale": "用户明确要求定位并返回标题，但“这个条目”没有可执行的唯一指代，因此保留明确交付并请求澄清。"
+    },
+    {
+      "case_id": "new-blind-003",
+      "expected_status": "resolved",
+      "expected_deliveries": [["item_navigation", "item_disambiguation", "title_fragment"], ["trend_discovery", "important_news", "none"]],
+      "expected_protected_terms": ["标题中包含“蓝铜回声”", "2026 年 5 月以来", "重要动态", "必要时可联网"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "label_rationale": "先按标题片段消歧定位，再按时间范围汇总动态；顺序体现先定位后发现趋势。"
+    },
+    {
+      "case_id": "new-blind-004",
+      "expected_status": "resolved",
+      "expected_deliveries": [["item_navigation", "item_disambiguation", "descriptive"]],
+      "expected_protected_terms": ["由纸鸢实验室维护、面向离线语音压缩", "匹配依据", "必要时可联网"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "label_rationale": "描述性线索不足以声明精确 ID，但明确要求辨认条目并解释匹配依据，属于描述性消歧。"
+    },
+    {
+      "case_id": "new-blind-005",
+      "expected_status": "resolved",
+      "expected_deliveries": [["trend_discovery", "trend_clusters", "none"]],
+      "expected_protected_terms": ["2026 年 6 月", "“赤道织网”", "主要新闻", "按主题聚成趋势簇", "请联网"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "explicit",
+      "label_rationale": "明确要求联网搜集指定月份的主要新闻并按主题聚类，属于单一趋势发现交付。"
+    },
+    {
+      "case_id": "new-blind-006",
+      "expected_status": "resolved",
+      "expected_deliveries": [["trend_discovery", "important_news", "none"], ["temporal_relation_exploration", "longitudinal_trend", "none"]],
+      "expected_protected_terms": ["2026 年上半年", "“砂钟编译器”", "关键动态", "如何逐步改变其开源路线", "必要时可联网"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "label_rationale": "先要求动态汇总，再要求解释动态对路线的纵向演变影响；两个不同任务按用户顺序保留。"
+    },
+    {
+      "case_id": "new-blind-007",
+      "expected_status": "clarification",
+      "expected_deliveries": [["trend_discovery", "important_news", "none"]],
+      "expected_protected_terms": ["这项变化", "最近两个月", "主要动态", "必要时可联网"],
+      "expected_unresolved_reference_spans": ["这项变化"],
+      "expected_web_permission": "on_demand",
+      "label_rationale": "明确要求汇总动态，但主题由未绑定的“这项变化”指代，无法确定检索对象，因此进入澄清。"
+    },
+    {
+      "case_id": "new-blind-008",
+      "expected_status": "resolved",
+      "expected_deliveries": [["trend_discovery", "trend_clusters", "none"], ["item_navigation", "item_disambiguation", "descriptive"]],
+      "expected_protected_terms": ["不要联网", "2026 年 4 月以来", "“银杏栈”数据库", "社区动态", "按主题汇总", "对应的记录"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "forbidden",
+      "label_rationale": "先按主题汇总指定对象的社区动态，再定位其对应记录；联网被明确禁止。"
+    },
+    {
+      "case_id": "new-blind-009",
+      "expected_status": "resolved",
+      "expected_deliveries": [["temporal_relation_exploration", "timeline", "none"]],
+      "expected_protected_terms": ["“回纹推理器”", "2025 年第四季度", "2026 年第二季度", "版本演变时间线", "请联网"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "explicit",
+      "label_rationale": "明确要求跨两个季度梳理版本演变的时间线，并明确要求联网。"
+    },
+    {
+      "case_id": "new-blind-010",
+      "expected_status": "resolved",
+      "expected_deliveries": [["temporal_relation_exploration", "comparison", "none"], ["item_navigation", "exact_item", "full_title"]],
+      "expected_protected_terms": ["不要联网", "2026 年 3 月", "2026 年 7 月", "“青隼索引”", "数据来源上的变化", "《青隼索引：边缘检索手册》", "定位完整标题"],
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "forbidden",
+      "label_rationale": "先比较两个时间截面的数据来源变化，再按完整标题定位记录；比较是主交付，定位为 supporting。"
+    }
+  ]
+}

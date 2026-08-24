@@ -1,0 +1,58 @@
+{
+  "dataset_id": "semantic-parse-v1-diagnostic-calibration-2026-08-13",
+  "purpose": "Frozen query-only 12-case diagnostic calibration; not a blind test.",
+  "source_query_sha256": "9f05f0cf80666f3ef95d8bc988e2b580bb16c460f1948552d744e65fdcef3591",
+  "cases": [
+    {
+      "case_id": "RC2-SG-001",
+      "query": "打开《潮汐编译器：把稀疏专家模型搬到端侧》。"
+    },
+    {
+      "case_id": "RC2-SG-004",
+      "query": "找出 2026 年 7 月 18 日发布、来源为 Northstar Compute、标题含“液冷推理舱”的条目。"
+    },
+    {
+      "case_id": "RC2-SG-006",
+      "query": "打开标题里有“月背协议”的那篇。"
+    },
+    {
+      "case_id": "RC2-SG-009",
+      "query": "先打开左边那条，再打开右边那条。",
+      "conversation_context": "当前结果从左到右依次为 ATR-20260214-H3J7KS《微光路由器进入公开测试》和 ATR-20260215-P6W2BX《沉积层向量库发布 2.0》。"
+    },
+    {
+      "case_id": "RC2-SG-014",
+      "query": "不要联网，只用库内资料总结最近两周端侧语音模型的新动向。"
+    },
+    {
+      "case_id": "RC2-SG-017",
+      "query": "以右边那条为起点，找它近三个月的相关重要消息，再看它有没有新的合作方。",
+      "conversation_context": "搜索结果左侧为 ATR-20260420-Q1S8UE《铅笔云完成种子轮》，右侧为 ATR-20260421-Y7K3DG《Virelia Labs 公布光子互连原型》。"
+    },
+    {
+      "case_id": "RC2-SG-020",
+      "query": "汇总近 30 天模型水印的重要动态，并核验其中“所有主流厂商都已默认开启水印”这句话。"
+    },
+    {
+      "case_id": "RC2-SG-026",
+      "query": "把过去 18 个月 AI 编译器的演进分成阶段，并说明每个阶段由哪些事件衔接。"
+    },
+    {
+      "case_id": "RC2-SG-031",
+      "query": "Virelia Labs 的推理芯片已经实现量产吗？"
+    },
+    {
+      "case_id": "RC2-SG-034",
+      "query": "不要联网，判断库内证据能否支持“星槎数据库并未使用向量索引”。"
+    },
+    {
+      "case_id": "RC2-SG-039",
+      "query": "核验左边那条所说的“延迟下降 40%”，并判断右边那条是否否定了它。",
+      "conversation_context": "左侧是 ATR-20260702-D6M1QH《FjordServe 公布延迟测试》，右侧是 ATR-20260708-W3P9ZA《独立实验室复测 FjordServe》。"
+    },
+    {
+      "case_id": "RC2-SG-050",
+      "query": "深度比较 KestrelDB 与 MonoLake 的离线部署方案，并分别核验两家都声称“无需外部遥测”是否有证据支持。"
+    }
+  ]
+}

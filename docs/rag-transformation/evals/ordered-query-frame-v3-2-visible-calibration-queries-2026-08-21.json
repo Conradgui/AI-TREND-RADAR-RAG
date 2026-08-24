@@ -1,0 +1,43 @@
+{
+  "schema_version": "atr.ordered-query-frame/3.0",
+  "dataset_id": "ordered-query-frame-v3-2-visible-calibration-2026-08-21",
+  "evidence_boundary": "Seven already-unsealed calibration cases selected before the v3.2 run. Calibration only; never blind, generalization, or production evidence.",
+  "source_dataset": "ordered-query-frame-v3-1-new-blind-2026-08-16",
+  "cases": [
+    {
+      "case_id": "new-blind-003",
+      "query": "先找到标题中包含“蓝铜回声”的那条记录，再汇总它在 2026 年 5 月以来的重要动态；必要时可联网。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "new-blind-005",
+      "query": "请联网整理 2026 年 6 月“赤道织网”项目的主要新闻，并按主题聚成趋势簇。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "new-blind-006",
+      "query": "必要时可联网：先总结 2026 年上半年“砂钟编译器”的关键动态，再梳理这些动态如何逐步改变其开源路线。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "new-blind-008",
+      "query": "不要联网。请按主题汇总 2026 年 4 月以来“银杏栈”数据库的社区动态，并指出其中对应的记录。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "new-blind-010",
+      "query": "不要联网。请比较 2026 年 3 月和 2026 年 7 月“青隼索引”在数据来源上的变化，并定位完整标题为《青隼索引：边缘检索手册》的记录。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "new-blind-012",
+      "query": "请梳理“这个合作”在2022年至2025年的演变；如果需要，可以联网查找资料。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "new-blind-018",
+      "query": "请解释“这项技术”的主要证据、适用边界和已知争议；必要时可以联网，但我没有说明具体是哪项技术。",
+      "conversation_context": null
+    }
+  ]
+}

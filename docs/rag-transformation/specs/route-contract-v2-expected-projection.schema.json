@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-trend-radar.local/schemas/route-contract-v2-expected-projection.schema.json",
+  "title": "Route Contract v2 development expected projection",
+  "description": "Human-labelled subset of Route Contract v2. Runtime-only and inferred detail fields are intentionally excluded from Gold labels.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "original_query",
+    "intent_signals",
+    "primary_task_family",
+    "supporting_task_families",
+    "answer_mode",
+    "web_permission",
+    "prompt_contract_id",
+    "answer_builder_contract_id",
+    "preserve_tokens"
+  ],
+  "properties": {
+    "original_query": {"type": "string", "minLength": 1},
+    "intent_signals": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "navigation", "recency", "importance", "trend", "timeline", "relation",
+          "verification", "explanation", "comparison", "deep_research",
+          "source_specific", "web_requested"
+        ]
+      }
+    },
+    "primary_task_family": {
+      "enum": [
+        "item_navigation", "trend_discovery", "temporal_relation_exploration",
+        "claim_verification", "evidence_research"
+      ]
+    },
+    "supporting_task_families": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "item_navigation", "trend_discovery", "temporal_relation_exploration",
+          "claim_verification", "evidence_research"
+        ]
+      }
+    },
+    "answer_mode": {
+      "enum": [
+        "exact_item", "item_disambiguation", "important_news", "trend_clusters",
+        "timeline", "relation", "longitudinal_trend", "cross_sectional_trend",
+        "verification_verdict", "explanation", "comparison", "deep_research"
+      ]
+    },
+    "web_permission": {"enum": ["forbidden", "on_demand", "explicit"]},
+    "prompt_contract_id": {"type": ["string", "null"]},
+    "answer_builder_contract_id": {"type": ["string", "null"]},
+    "preserve_tokens": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "dataset_id": "retrieval-quality-2026-08-10-silver-v2",
+  "base_dataset": "retrieval-quality-dataset-2026-08-07.json",
+  "label_tier": "silver",
+  "needs_human_review": true,
+  "review_note": "AI proposed contract repair. Conrad or an independent human reviewer must confirm labels before gold promotion.",
+  "target_snapshot": {
+    "latest_corpus_date": "2026-08-10",
+    "corpus_revision": "1bbc3d98270bb5e4ffcbdde29debc049ced125575c5082e01208be9aeef1fcca"
+  },
+  "metric_policy": {
+    "default_k": 10,
+    "report_metric_ceiling": true,
+    "group_by_kind": false,
+    "group_by_task_family": true,
+    "candidate_cutoffs": [5, 10, 20, 50]
+  },
+  "contract_defaults": {
+    "by_kind": {
+      "exact_title": {
+        "task_family": "item_navigation",
+        "evaluation_contract": "ranked_retrieval",
+        "relevance_set_status": "complete"
+      },
+      "exact_event": {
+        "task_family": "item_navigation",
+        "evaluation_contract": "ranked_retrieval",
+        "relevance_set_status": "complete"
+      },
+      "broad_recent_trend": {
+        "task_family": "trend_discovery",
+        "evaluation_contract": "discovery_ranking",
+        "relevance_set_status": "sampled"
+      },
+      "source_and_topic": {
+        "task_family": "trend_discovery",
+        "evaluation_contract": "discovery_ranking",
+        "relevance_set_status": "sampled"
+      },
+      "company_recent": {
+        "task_family": "evidence_research",
+        "evaluation_contract": "ranked_retrieval",
+        "relevance_set_status": "sampled"
+      },
+      "current_relevance": {
+        "task_family": "evidence_research",
+        "evaluation_contract": "ranked_retrieval",
+        "relevance_set_status": "sampled"
+      },
+      "event_cluster": {
+        "task_family": "relation_exploration",
+        "evaluation_contract": "diagnostic_only",
+        "relevance_set_status": "missing"
+      },
+      "unanswerable_control": {
+        "task_family": "claim_verification",
+        "evaluation_contract": "diagnostic_only",
+        "relevance_set_status": "missing"
+      }
+    },
+    "by_negative_type": {
+      "entity_absent": {
+        "task_family": "claim_verification",
+        "evaluation_contract": "diagnostic_only",
+        "relevance_set_status": "missing"
+      },
+      "evidence_sufficiency": {
+        "task_family": "claim_verification",
+        "evaluation_contract": "diagnostic_only",
+        "relevance_set_status": "missing"
+      },
+      "claim_refutation": {
+        "task_family": "claim_verification",
+        "evaluation_contract": "future_claim_classification",
+        "relevance_set_status": "missing"
+      }
+    }
+  },
+  "query_overrides": {
+    "RQ01": {"time_policy": "strict_recent", "time_window_days": 7, "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ02": {"time_policy": "strict_recent", "time_window_days": 14, "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ03": {"time_policy": "strict_recent", "time_window_days": 14, "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ04": {"query": "当前语料中有哪些 RAG 和向量数据库开源项目值得关注？", "kind": "current_relevance", "time_policy": "not_limited", "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ05": {"time_policy": "strict_recent", "time_window_days": 14, "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ06": {"query": "当前语料中有哪些 AI Agent 开源项目值得关注？", "kind": "current_relevance", "time_policy": "not_limited", "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ07": {"time_policy": "not_limited", "metric_cutoff": 1, "review_status": "ai_proposed"},
+    "RQ08": {"time_policy": "not_limited", "metric_cutoff": 1, "review_status": "ai_proposed"},
+    "RQ09": {"time_policy": "not_limited", "metric_cutoff": 1, "review_status": "ai_proposed"},
+    "RQ10": {"time_policy": "current_relevance", "metric_cutoff": 10, "review_status": "ai_proposed"},
+    "RQ11": {"time_policy": "not_limited", "metric_cutoff": 3, "review_status": "ai_proposed"},
+    "RQ12": {"time_policy": "not_limited", "metric_cutoff": 10, "negative_type": "evidence_sufficiency", "review_status": "ai_proposed"}
+  },
+  "additional_queries": [
+    {"id": "HN01", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "OpenAI 在 2026 年发布的 Quantum Pineapple GPT-99 有哪些功能？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN02", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "Anthropic 的 Claude 12 Atlantis 模型如何控制海底机器人？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN03", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "Google DeepMind 的 WeatherNext Mars 是否已经预测火星沙尘暴？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN04", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Apple 与 OpenAI 是否联合发布了 iPhone Codex Edition？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN05", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "Product Hunt 上的 BananaRAG Enterprise 获得了多少票？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN06", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "GitHub 项目 openai/telepathy-agent 的 star 数是多少？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN07", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Anthropic 是否收购了 Neo4j 并更名为 Claude Graph？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN08", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "OpenAI 的 GPT Live 是否支持量子纠缠通信？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN09", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "DeepSeek-V9 Moonbase 的训练成本是多少？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN10", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "Meta 的 Llama Ocean 8 是否已经开源？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN11", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Microsoft Copilot 是否在 2026 年推出了脑机接口插件？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN12", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "NVIDIA Blackwell Ultra 2 是否内置了 RAG 数据库？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN13", "kind": "unanswerable_control", "negative_type": "entity_absent", "query": "Hugging Face 的 Space Elevator 模型榜单第一名是谁？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN14", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "MCP 3.0 是否已经成为联合国官方智能体协议？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN15", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "GraphRAG 是否在 2026 年取代了所有向量数据库？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN16", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "OpenAI Economic Research Exchange 是否发行了加密货币 OERX？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN17", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Fable 5 safeguards 是否包含无人机武器控制功能？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN18", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Claude Code Artifacts 是否可以直接部署核电站控制系统？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN19", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Apple Is Getting This Wrong 是否宣布苹果退出 AI 市场？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"},
+    {"id": "HN20", "kind": "unanswerable_control", "negative_type": "claim_refutation", "query": "Google DeepMind 的气旋模型是否准确预测了木星风暴？", "answerable": false, "relevant": [], "metric_cutoff": 10, "review_status": "ai_proposed"}
+  ]
+}

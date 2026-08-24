@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "retrieval-quality-gold-candidate-v1",
+  "label_tier": "gold_candidate",
+  "review_status": "human_review_pending",
+  "release_gate_eligible": false,
+  "purpose": "Calibrate the evaluation contract before changing the canonical daily corpus or production index.",
+  "target_snapshot": {
+    "latest_corpus_date": "2026-08-10",
+    "corpus_revision": "1bbc3d98270bb5e4ffcbdde29debc049ced125575c5082e01208be9aeef1fcca"
+  },
+  "product_priority": [
+    "trend_discovery",
+    "item_navigation_guardrail",
+    "evidence_sufficiency_safety"
+  ],
+  "metric_policy": {
+    "aggregate_across_task_families": false,
+    "diagnostics_enter_aggregate": false,
+    "trend_primary_metrics": ["ndcg_at_k", "source_coverage"],
+    "navigation_primary_metrics": ["hit_at_1", "mrr"],
+    "research_primary_metrics": ["recall_at_k", "ndcg_at_k"],
+    "sufficiency_primary_metrics": ["verdict_accuracy"],
+    "deferred_metrics": {
+      "topic_coverage": "Requires independently reviewed trend-cluster labels before scoring."
+    },
+    "default_k": 10
+  },
+  "queries": [
+    {
+      "id": "RQ01",
+      "query": "最近有什么热门趋势？",
+      "task_family": "trend_discovery",
+      "evaluation_contract": "discovery_ranking",
+      "answerable": true,
+      "time_policy": "strict_recent",
+      "time_window_days": 7,
+      "metric_cutoff": 10,
+      "relevance_set_status": "missing_trend_cluster_labels",
+      "review_status": "blocked_pending_independent_cluster_labels",
+      "score_status": "diagnostic_only",
+      "quality_constraints": {
+        "minimum_distinct_sources": 3,
+        "deduplicate_by": "canonical_content"
+      },
+      "trend_clusters": [],
+      "relevant": []
+    },
+    {
+      "id": "RQ02",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "task_family": "trend_discovery",
+      "evaluation_contract": "discovery_ranking",
+      "answerable": true,
+      "time_policy": "strict_recent",
+      "time_window_days": 14,
+      "metric_cutoff": 10,
+      "relevance_set_status": "sampled_pending_human_review",
+      "review_status": "human_review_pending",
+      "quality_constraints": {
+        "preferred_source_tiers": ["official", "reputable_media"],
+        "deduplicate_by": "canonical_content"
+      },
+      "relevant": [
+        {"url": "https://openai.com/index/apple-is-getting-this-wrong/", "grade": 2, "canonical_content_id": "openai-apple-dispute"},
+        {"url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/", "grade": 3},
+        {"url": "https://openai.com/index/learn-teach-chatgpt-work-codex/", "grade": 2},
+        {"url": "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/", "grade": 1},
+        {"url": "https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/", "grade": 1},
+        {"url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/", "grade": 1},
+        {"url": "https://techcrunch.com/2026/08/04/apple-says-more-ex-employees-may-have-taken-confidential-data-to-openai/", "grade": 1, "canonical_content_id": "openai-apple-dispute"},
+        {"url": "https://naomibashkansky.com/blog/telepathy/", "grade": 1}
+      ]
+    },
+    {
+      "id": "RQ03",
+      "query": "Anthropic 和 Claude 最近有什么重要动态？",
+      "task_family": "trend_discovery",
+      "evaluation_contract": "discovery_ranking",
+      "answerable": true,
+      "time_policy": "strict_recent",
+      "time_window_days": 14,
+      "metric_cutoff": 10,
+      "relevance_set_status": "sampled_pending_human_review",
+      "review_status": "human_review_pending",
+      "query_aliases": ["Anthropic", "Claude"],
+      "quality_constraints": {
+        "preferred_source_tiers": ["official", "reputable_media"],
+        "deduplicate_by": "canonical_content"
+      },
+      "relevant": [
+        {"url": "https://www.anthropic.com/news/claude-for-nonprofits", "grade": 3},
+        {"url": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals", "grade": 2},
+        {"url": "https://www.anthropic.com/news/tino-cuellar", "grade": 3},
+        {"url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards", "grade": 3},
+        {"url": "https://www.bbc.co.uk/news/articles/c1w1lvn7d9go", "grade": 1},
+        {"url": "https://www.anthropic.com/news/cognizant-anthropic", "grade": 2},
+        {"url": "https://www.anthropic.com/research/discovering-cryptographic-weaknesses", "grade": 2},
+        {"url": "https://www.anthropic.com/news/position-open-weights-models", "grade": 2}
+      ]
+    },
+    {
+      "id": "RQ05",
+      "query": "最近 Product Hunt 上有哪些 MCP 产品？",
+      "task_family": "trend_discovery",
+      "evaluation_contract": "discovery_ranking",
+      "answerable": true,
+      "time_policy": "strict_recent",
+      "time_window_days": 14,
+      "metric_cutoff": 10,
+      "relevance_set_status": "sampled_pending_human_review",
+      "review_status": "human_review_pending",
+      "required_source": "Product Hunt",
+      "relevant": [
+        {"url": "https://www.producthunt.com/r/C6WAGOOHUENQ5Y", "grade": 3},
+        {"url": "https://www.producthunt.com/r/VQHGFGCW4YDSCL", "grade": 3},
+        {"url": "https://www.producthunt.com/r/KKH5WDVKOVKGDG", "grade": 3}
+      ]
+    },
+    {
+      "id": "RQ07",
+      "query": "Apple Is Getting This Wrong 讲了什么？",
+      "task_family": "item_navigation",
+      "evaluation_contract": "exact_canonical_item",
+      "answerable": true,
+      "time_policy": "not_limited",
+      "hit_cutoff": 1,
+      "evaluation_depth": 10,
+      "relevance_set_status": "complete_pending_human_review",
+      "review_status": "human_review_pending",
+      "relevant": [
+        {"url": "https://openai.com/index/apple-is-getting-this-wrong/", "grade": 3, "evidence_role": "canonical_target"}
+      ]
+    },
+    {
+      "id": "RQ08",
+      "query": "OpenAI Economic Research Exchange 是什么？",
+      "task_family": "item_navigation",
+      "evaluation_contract": "exact_canonical_item",
+      "answerable": true,
+      "time_policy": "not_limited",
+      "hit_cutoff": 1,
+      "evaluation_depth": 10,
+      "relevance_set_status": "complete_pending_human_review",
+      "review_status": "human_review_pending",
+      "relevant": [
+        {"url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/", "grade": 3, "evidence_role": "canonical_target"}
+      ]
+    },
+    {
+      "id": "RQ09",
+      "query": "Anthropic 的 Fable 5 safeguards 有什么更新？",
+      "task_family": "item_navigation",
+      "evaluation_contract": "exact_canonical_item",
+      "answerable": true,
+      "time_policy": "not_limited",
+      "hit_cutoff": 1,
+      "evaluation_depth": 10,
+      "relevance_set_status": "complete_pending_human_review",
+      "review_status": "human_review_pending",
+      "query_aliases": ["Fable 5 safeguards", "Fable 5 biology safeguards"],
+      "relevant": [
+        {"url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards", "grade": 3, "evidence_role": "canonical_target"}
+      ]
+    },
+    {
+      "id": "RQ11",
+      "query": "Google DeepMind 最近在气旋预测上有什么突破？",
+      "task_family": "item_navigation",
+      "evaluation_contract": "exact_canonical_item",
+      "answerable": true,
+      "time_policy": "not_limited",
+      "hit_cutoff": 1,
+      "evaluation_depth": 10,
+      "relevance_set_status": "complete_pending_human_review",
+      "review_status": "human_review_pending",
+      "query_aliases": ["WeatherNext", "气旋预测"],
+      "relevant": [
+        {"url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/", "grade": 3, "evidence_role": "canonical_target"}
+      ]
+    },
+    {
+      "id": "RQ04",
+      "query": "当前语料中有哪些 RAG 和向量数据库开源项目值得关注？",
+      "task_family": "evidence_research",
+      "evaluation_contract": "ranked_retrieval",
+      "answerable": true,
+      "time_policy": "not_limited",
+      "metric_cutoff": 10,
+      "relevance_set_status": "sampled_pending_human_review",
+      "review_status": "human_review_pending",
+      "relevant": [
+        {"url": "https://github.com/infiniflow/ragflow", "grade": 3},
+        {"url": "https://github.com/headroomlabs-ai/headroom", "grade": 1},
+        {"url": "https://github.com/pathwaycom/llm-app", "grade": 2},
+        {"url": "https://github.com/langchain4j/langchain4j", "grade": 1},
+        {"url": "https://github.com/milvus-io/milvus", "grade": 3},
+        {"url": "https://github.com/qdrant/qdrant", "grade": 3},
+        {"url": "https://github.com/meilisearch/meilisearch", "grade": 1}
+      ]
+    },
+    {
+      "id": "RQ06",
+      "query": "当前语料中有哪些 AI Agent 开源项目值得关注？",
+      "task_family": "evidence_research",
+      "evaluation_contract": "ranked_retrieval",
+      "answerable": true,
+      "time_policy": "not_limited",
+      "metric_cutoff": 10,
+      "relevance_set_status": "sampled_pending_human_review",
+      "review_status": "human_review_pending",
+      "relevant": [
+        {"url": "https://github.com/CherryHQ/cherry-studio", "grade": 2},
+        {"url": "https://github.com/Panniantong/Agent-Reach", "grade": 3},
+        {"url": "https://github.com/Significant-Gravitas/AutoGPT", "grade": 2},
+        {"url": "https://github.com/esengine/DeepSeek-Reasonix", "grade": 3}
+      ]
+    },
+    {
+      "id": "HN03",
+      "query": "Google DeepMind 的 WeatherNext Mars 是否已经预测火星沙尘暴？",
+      "task_family": "evidence_sufficiency",
+      "evaluation_contract": "sufficiency_verdict",
+      "answerable": false,
+      "expected_verdict": "insufficient",
+      "metric_cutoff": 10,
+      "relevance_set_status": "near_neighbour_evidence_pending_human_review",
+      "review_status": "human_review_pending",
+      "near_neighbour_evidence": [
+        {"url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/", "relationship": "same_product_family_but_not_target_claim"}
+      ],
+      "forbidden_inference": "Earth cyclone evidence must not be treated as evidence about Mars dust storms.",
+      "relevant": []
+    },
+    {
+      "id": "HN06",
+      "query": "GitHub 项目 openai/telepathy-agent 的 star 数是多少？",
+      "task_family": "evidence_sufficiency",
+      "evaluation_contract": "sufficiency_verdict",
+      "answerable": false,
+      "expected_verdict": "insufficient",
+      "metric_cutoff": 10,
+      "relevance_set_status": "near_neighbour_evidence_pending_human_review",
+      "review_status": "human_review_pending",
+      "near_neighbour_evidence": [
+        {"url": "https://naomibashkansky.com/blog/telepathy/", "relationship": "lexically_similar_but_not_target_repository"}
+      ],
+      "forbidden_inference": "A similarly named article must not be treated as the requested GitHub repository.",
+      "relevant": []
+    }
+  ]
+}

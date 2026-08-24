@@ -1,0 +1,180 @@
+{
+  "experiment": "structured-llm-event-smoke-v1",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "sample_policy": "high_confidence_only",
+  "dataset_sha256": "80da8c0db730be781d3b016d42ecab7e724598cf177637a1a89bb8929490208f",
+  "prompt_sha256": "8b8597428799af959a8cbb6b26fb84361f9bf8c59b60c23f16f4301993868626",
+  "predictions": [
+    {
+      "daily_item_id": "ATR-20260807-6E3EA0",
+      "content_kind": "unknown",
+      "event_type": "unknown",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [],
+      "extraction_status": "extracted",
+      "diagnostics": [],
+      "latency_seconds": 7.499,
+      "error": null
+    },
+    {
+      "daily_item_id": "ATR-20260807-7618A0",
+      "content_kind": "news",
+      "event_type": "litigation",
+      "subject_entity_ids": [
+        "apple",
+        "openai"
+      ],
+      "mentioned_entity_ids": [
+        "elon-musk"
+      ],
+      "extraction_status": "extracted",
+      "diagnostics": [],
+      "latency_seconds": 6.142,
+      "error": null
+    },
+    {
+      "daily_item_id": "ATR-20260807-149D82",
+      "content_kind": "unknown",
+      "event_type": "unknown",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [],
+      "extraction_status": "extracted",
+      "diagnostics": [],
+      "latency_seconds": 6.675,
+      "error": null
+    },
+    {
+      "daily_item_id": "ATR-20260807-8AD0A9",
+      "content_kind": "unknown",
+      "event_type": "unknown",
+      "subject_entity_ids": [],
+      "mentioned_entity_ids": [],
+      "extraction_status": "extracted",
+      "diagnostics": [],
+      "latency_seconds": 6.921,
+      "error": null
+    },
+    {
+      "daily_item_id": "ATR-20260807-8F47AB",
+      "content_kind": "product_listing",
+      "event_type": "unknown",
+      "subject_entity_ids": [
+        "langchain4j"
+      ],
+      "mentioned_entity_ids": [],
+      "extraction_status": "extracted",
+      "diagnostics": [],
+      "latency_seconds": 4.004,
+      "error": null
+    }
+  ],
+  "record_count": 5,
+  "valid_contract_count": 5,
+  "valid_contract_rate": 1.0,
+  "exact_record_count": 1,
+  "exact_record_rate": 0.2,
+  "fields": {
+    "content_kind": {
+      "correct": 2,
+      "total": 5,
+      "accuracy": 0.4,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": "news",
+          "observed": "unknown"
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": "research",
+          "observed": "unknown"
+        },
+        {
+          "daily_item_id": "ATR-20260807-8AD0A9",
+          "expected": "developer_content",
+          "observed": "unknown"
+        }
+      ]
+    },
+    "event_type": {
+      "correct": 3,
+      "total": 5,
+      "accuracy": 0.6,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": "product_launch",
+          "observed": "unknown"
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": "research_release",
+          "observed": "unknown"
+        }
+      ]
+    },
+    "subject_entity_ids": {
+      "correct": 3,
+      "total": 5,
+      "accuracy": 0.6,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": [
+            "anthropic-fable-5"
+          ],
+          "observed": []
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": [
+            "perforce-2026-platform-engineering-report"
+          ],
+          "observed": []
+        }
+      ]
+    },
+    "mentioned_entity_ids": {
+      "correct": 1,
+      "total": 5,
+      "accuracy": 0.2,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260807-6E3EA0",
+          "expected": [
+            "anthropic",
+            "anthropic-opus-5"
+          ],
+          "observed": []
+        },
+        {
+          "daily_item_id": "ATR-20260807-149D82",
+          "expected": [
+            "perforce-software"
+          ],
+          "observed": []
+        },
+        {
+          "daily_item_id": "ATR-20260807-8AD0A9",
+          "expected": [
+            "anthropic",
+            "javascript"
+          ],
+          "observed": []
+        },
+        {
+          "daily_item_id": "ATR-20260807-8F47AB",
+          "expected": [
+            "java",
+            "jvm",
+            "mcp",
+            "quarkus",
+            "spring-boot"
+          ],
+          "observed": []
+        }
+      ]
+    }
+  }
+}

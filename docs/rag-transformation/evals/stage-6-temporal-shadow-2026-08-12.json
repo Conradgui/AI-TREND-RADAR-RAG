@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-12",
+  "document_count": 54,
+  "publication_count": 19,
+  "source_update_count": 27,
+  "unknown_count": 8,
+  "publication_sources": {
+    "Hacker News": 8,
+    "Product Hunt": 10,
+    "ArXiv": 1
+  },
+  "source_update_sources": {
+    "GitHub Search:llm": 3,
+    "GitHub Search:vector-db": 2,
+    "Hugging Face": 11,
+    "GitHub Search:ai-agent": 6,
+    "GitHub Search:rag": 4,
+    "GitHub Search:ml": 1
+  },
+  "audit": {
+    "document_count": 54,
+    "legacy_promoted_to_publication": 0,
+    "update_only_promoted_to_publication": 0,
+    "unauthorized_legacy_publication_source": 0,
+    "invalid_publication_date": 0,
+    "invalid_source_updated_at": 0,
+    "invalid_report_date": 0,
+    "inconsistent_temporal_roles": 0,
+    "passed": true
+  }
+}

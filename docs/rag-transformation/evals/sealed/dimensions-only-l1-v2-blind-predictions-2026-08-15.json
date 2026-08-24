@@ -1,0 +1,836 @@
+{
+  "experiment_id": "dimensions-only-l1-v2-unseen-blind-2026-08-15",
+  "evidence_boundary": "Predictions produced without loading blind labels.",
+  "freeze_id": "dimensions-only-l1-v2-candidate-2026-08-15",
+  "prompt_sha256": "52645c2637b5dbc46d3f82b93f85097f71a9209bcb5a314f4899083142fbbc29",
+  "query_set_sha256": "02b378e306b38caeb73fd981f38fdfdd5f725e1d967cfb7664c514909ce1c4b7",
+  "model": "deepseek-v4-flash",
+  "cases": [
+    {
+      "case_id": "blind-001",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-3360b079590f5982944a3553d2a16622",
+          "original_query": "定位 ATR-20260814-A1B2C3，并给我它的标题和原始链接",
+          "protected_terms": [
+            "ATR-20260814-A1B2C3"
+          ],
+          "intent_signals": [
+            "navigation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 994,
+                "completion_tokens": 183,
+                "total_tokens": 1177
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.953
+    },
+    {
+      "case_id": "blind-002",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-d9f07bae065f5bb5b5b150d4abaf6fb2",
+          "original_query": "我记得标题里有“端侧智能”这几个字，帮我找出对应条目；如果有多个，先列出候选",
+          "protected_terms": [
+            "端侧智能"
+          ],
+          "intent_signals": [
+            "navigation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1010,
+                "completion_tokens": 179,
+                "total_tokens": 1189
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.455
+    },
+    {
+      "case_id": "blind-003",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "semantic extraction unavailable"
+        ],
+        "diagnostics": {
+          "error_type": "KeyError"
+        }
+      },
+      "latency_seconds": 1.463
+    },
+    {
+      "case_id": "blind-004",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-1109c917d622595faa6ccdde408b0aba",
+          "original_query": "最近一周 AI 芯片领域有哪些跨事件趋势？请联网查最新信息",
+          "protected_terms": [
+            "最近一周",
+            "信息"
+          ],
+          "intent_signals": [
+            "recency",
+            "timeline",
+            "web_requested"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [
+            "temporal_relation_exploration"
+          ],
+          "answer_mode": "important_news",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "temporal_relation_exploration",
+              "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+              "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+              "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+              "output_schema_id": "atr.answer/temporal_relation/1.0",
+              "budget_profile_id": "atr.budget/graph/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "最近一周"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 989,
+                "completion_tokens": 180,
+                "total_tokens": 1169
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.575
+    },
+    {
+      "case_id": "blind-005",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-95c92c2291dd5ce5b9717103e38fd8be",
+          "original_query": "只看内部已收录内容，最近 30 天哪些开源模型动态最值得关注？禁止联网",
+          "protected_terms": [
+            "最近 30 天",
+            "哪些开源模型",
+            "禁止联网"
+          ],
+          "intent_signals": [
+            "recency",
+            "importance"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "important_news",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "最近 30 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 994,
+                "completion_tokens": 182,
+                "total_tokens": 1176
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 2.57
+    },
+    {
+      "case_id": "blind-006",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-db2aaf8c54585349bd3ea3c1f0fec0ee",
+          "original_query": "最近有什么值得关注的多模态趋势？先按趋势归纳，再补充其中最重要的一条新闻；不要联网",
+          "protected_terms": [
+            "最近",
+            "有什么值得关注的多模态趋势",
+            "其中最重要的一条",
+            "不要联网"
+          ],
+          "intent_signals": [
+            "recency",
+            "timeline",
+            "explanation",
+            "importance"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [
+            "temporal_relation_exploration"
+          ],
+          "answer_mode": "important_news",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "temporal_relation_exploration",
+              "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+              "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+              "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+              "output_schema_id": "atr.answer/temporal_relation/1.0",
+              "budget_profile_id": "atr.budget/graph/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 995,
+                "completion_tokens": 203,
+                "total_tokens": 1198
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.706
+    },
+    {
+      "case_id": "blind-007",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-eff74ec73ba55d7d988087945e301c21",
+          "original_query": "按时间顺序说明从 Atlas 3 发布到 Atlas 3.2 更新发生了什么，以及两次变化如何关联",
+          "protected_terms": [
+            "Atlas 3 发布",
+            "Atlas 3.2 更新"
+          ],
+          "intent_signals": [
+            "recency",
+            "timeline",
+            "explanation"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [
+            "trend_discovery"
+          ],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "trend_discovery",
+              "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+              "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+              "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+              "output_schema_id": "atr.answer/trend/1.0",
+              "budget_profile_id": "atr.budget/standard/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 998,
+                "completion_tokens": 208,
+                "total_tokens": 1206
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.723
+    },
+    {
+      "case_id": "blind-008",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-6df4d2899923585d8bf528415c7f6497",
+          "original_query": "把过去三个月的浏览器端 AI 助手演变整理成时间线；必要时可以联网核对日期",
+          "protected_terms": [
+            "把",
+            "过去三个月",
+            "的浏览器端 AI 助手",
+            "浏览器端 AI 助手演变"
+          ],
+          "intent_signals": [
+            "recency",
+            "timeline",
+            "web_requested"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [
+            "temporal_relation_exploration"
+          ],
+          "answer_mode": "important_news",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "temporal_relation_exploration",
+              "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+              "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+              "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+              "output_schema_id": "atr.answer/temporal_relation/1.0",
+              "budget_profile_id": "atr.budget/graph/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去三个月"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 993,
+                "completion_tokens": 184,
+                "total_tokens": 1177
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.582
+    },
+    {
+      "case_id": "blind-009",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references require clarification"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1017,
+                "completion_tokens": 208,
+                "total_tokens": 1225
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.386
+    },
+    {
+      "case_id": "blind-010",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references require clarification"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1009,
+                "completion_tokens": 188,
+                "total_tokens": 1197
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.324
+    },
+    {
+      "case_id": "blind-011",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-a3624d9a484f5173bd280c3c78e84fa0",
+          "original_query": "判断“过去 90 天没有新的中文大模型发布”是否为真，可以联网查证",
+          "protected_terms": [
+            "过去 90 天没有新的中文大模型发布",
+            "过去 90 天",
+            "没有新的中文大模型发布"
+          ],
+          "intent_signals": [
+            "recency",
+            "verification",
+            "web_requested"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [
+            "trend_discovery"
+          ],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "trend_discovery",
+              "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+              "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+              "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+              "output_schema_id": "atr.answer/trend/1.0",
+              "budget_profile_id": "atr.budget/standard/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [
+            "过去 90 天没有新的中文大模型发布"
+          ],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去 90 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 994,
+                "completion_tokens": 198,
+                "total_tokens": 1192
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.405
+    },
+    {
+      "case_id": "blind-012",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-9fb562186c47566780245a1e234aeb1a",
+          "original_query": "比较 Graph RAG 和向量 RAG 在多跳关系问答中的适用场景、成本与主要取舍，不需要联网",
+          "protected_terms": [],
+          "intent_signals": [
+            "timeline",
+            "comparison",
+            "relation",
+            "web_requested"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "temporal_relation_exploration"
+          ],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "temporal_relation_exploration",
+              "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+              "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+              "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+              "output_schema_id": "atr.answer/temporal_relation/1.0",
+              "budget_profile_id": "atr.budget/graph/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 998,
+                "completion_tokens": 193,
+                "total_tokens": 1191
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.336
+    },
+    {
+      "case_id": "blind-013",
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-narrow-ac29e8f175235c34b0f219b1c9af5ae3",
+          "original_query": "梳理同一事件从原始来源到转载的传播关系及先后顺序，并说明两者如何关联",
+          "protected_terms": [],
+          "intent_signals": [
+            "timeline",
+            "explanation",
+            "relation"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [
+            "evidence_research"
+          ],
+          "answer_mode": "relation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "evidence_research",
+              "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+              "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+              "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+              "output_schema_id": "atr.answer/research/1.0",
+              "budget_profile_id": "atr.budget/research/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": [],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 993,
+                "completion_tokens": 190,
+                "total_tokens": 1183
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.409
+    },
+    {
+      "case_id": "blind-014",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "semantic extraction unavailable"
+        ],
+        "diagnostics": {
+          "error_type": "KeyError"
+        }
+      },
+      "latency_seconds": 1.482
+    },
+    {
+      "case_id": "blind-015",
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references require clarification"
+        ],
+        "diagnostics": {
+          "model": "deepseek-v4-flash",
+          "attempts": 1,
+          "attempt_details": [
+            {
+              "attempt": 1,
+              "valid": true,
+              "metadata": {
+                "model": "deepseek-v4-flash",
+                "finish_reason": "tool_calls",
+                "prompt_tokens": 1019,
+                "completion_tokens": 186,
+                "total_tokens": 1205
+              }
+            }
+          ]
+        }
+      },
+      "latency_seconds": 1.415
+    }
+  ]
+}

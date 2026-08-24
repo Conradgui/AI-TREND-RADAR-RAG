@@ -1,0 +1,27 @@
+{
+  "protocol_id": "route-contract-v2-sealed-generalization-one-shot-2026-08-13",
+  "freeze_manifest": "docs/rag-transformation/evals/route-contract-v2-shadow-freeze-manifest-2026-08-13.json",
+  "status": "blind_failed_converted_to_calibration",
+  "query_file": {
+    "path": "docs/rag-transformation/evals/route-contract-v2-sealed-generalization-queries-2026-08-13.json",
+    "sha256": "9f05f0cf80666f3ef95d8bc988e2b580bb16c460f1948552d744e65fdcef3591"
+  },
+  "sealed_gold_file": {
+    "path": "docs/rag-transformation/evals/sealed/route-contract-v2-sealed-generalization-gold-2026-08-13.json",
+    "sha256_at_sealing": "e0ec1ba04c01fb32e602bd35b968978d6c1376370e2281cf096a2ec273ffdc9d"
+  },
+  "prediction_file": {
+    "path": "docs/rag-transformation/evals/route-contract-v2-sealed-generalization-predictions-2026-08-13.json",
+    "sha256": "e6756ec53eb5166ef1aa938368deaa1424c5e3f62f1ec04f43f01c0779a3294c"
+  },
+  "scorer": {
+    "path": "rag/eval_route_contract_v2_predictions.py",
+    "sha256": "38415914005c4c82882684237b1df09545230463b7cec499e27774a2cb35765e"
+  },
+  "score_file": {
+    "path": "docs/rag-transformation/evals/route-contract-v2-sealed-generalization-score-2026-08-13.json",
+    "sha256": "28e5f83ff86e68b30a0a88653e0db638652036f85402b51a4c6d7e255a28ed9c"
+  },
+  "gate_result": "FAILED",
+  "discipline": "This dataset is calibration-only after unsealing and must never again be reported as blind or generalization evidence."
+}

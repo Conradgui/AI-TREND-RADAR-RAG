@@ -1,0 +1,23 @@
+{
+  "schema_version": "atr.blind-coverage/3.4",
+  "primary_family_counts": {
+    "claim_verification": 3,
+    "evidence_research": 3,
+    "item_navigation": 3,
+    "temporal_relation_exploration": 3,
+    "trend_discovery": 3
+  },
+  "compound_delivery_count": 4,
+  "clarification_count": 3,
+  "web_permission_counts": {
+    "explicit": 5,
+    "forbidden": 4,
+    "on_demand": 6
+  },
+  "locator_kinds": [
+    "atr_id",
+    "descriptive",
+    "full_title",
+    "title_fragment"
+  ]
+}

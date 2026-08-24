@@ -1,0 +1,26 @@
+{
+  "schema_version": "atr.ordered-query-frame/3.0",
+  "shard_id": "new-blind-1-2026-08-16",
+  "cases": [
+    {"case_id":"new-blind-001","query":"请帮我定位 ATR-7742《雾港协议：潮汐引擎》这条记录，只返回对应条目。请联网核对。","public_context":""},
+    {"case_id":"new-blind-002","query":"请定位这个条目，并给出它的完整标题；不要联网。","public_context":""},
+    {"case_id":"new-blind-003","query":"先找到标题中包含“蓝铜回声”的那条记录，再汇总它在 2026 年 5 月以来的重要动态；必要时可联网。","public_context":""},
+    {"case_id":"new-blind-004","query":"请从公开资料中辨认出描述为“由纸鸢实验室维护、面向离线语音压缩”的条目，并说明匹配依据；必要时可联网。","public_context":""},
+    {"case_id":"new-blind-005","query":"请联网整理 2026 年 6 月“赤道织网”项目的主要新闻，并按主题聚成趋势簇。","public_context":""},
+    {"case_id":"new-blind-006","query":"必要时可联网：先总结 2026 年上半年“砂钟编译器”的关键动态，再梳理这些动态如何逐步改变其开源路线。","public_context":""},
+    {"case_id":"new-blind-007","query":"请汇总这项变化最近两个月的主要动态；必要时可联网。","public_context":""},
+    {"case_id":"new-blind-008","query":"不要联网。请按主题汇总 2026 年 4 月以来“银杏栈”数据库的社区动态，并指出其中对应的记录。","public_context":""},
+    {"case_id":"new-blind-009","query":"请联网梳理“回纹推理器”从 2025 年第四季度到 2026 年第二季度的版本演变时间线。","public_context":""},
+    {"case_id":"new-blind-010","query":"不要联网。请比较 2026 年 3 月和 2026 年 7 月“青隼索引”在数据来源上的变化，并定位完整标题为《青隼索引：边缘检索手册》的记录。","public_context":""},
+    {"case_id":"new-blind-011","query":"请联网梳理从2021年到2024年，Aurora Mesh Protocol与Kestrel Ledger之间的合作如何演变，并按时间线说明关键转折。","public_context":[]},
+    {"case_id":"new-blind-012","query":"请梳理“这个合作”在2022年至2025年的演变；如果需要，可以联网查找资料。","public_context":[]},
+    {"case_id":"new-blind-013","query":"请联网核验这条说法是否准确：“Solara Bioworks在2023年让全部临床试验转向无纸化”，并进一步研究促成或限制这一变化的证据。","public_context":[]},
+    {"case_id":"new-blind-014","query":"不要联网。请核验“Vela Transit在2024年已经实现全线零排放”这条说法，并给出判断依据。","public_context":[]},
+    {"case_id":"new-blind-015","query":"请判断“Cinderpeak Observatory的开放数据在2020年后仍保持每周更新”是否属实；只有公开证据不足时才联网查找。","public_context":[]},
+    {"case_id":"new-blind-016","query":"禁止联网。请核验“Maris Seed Bank在2022年保存了全部已知盐沼植物种子”这一主张，并说明结论。","public_context":[]},
+    {"case_id":"new-blind-017","query":"请联网深入研究Nereid Cooling Grid的液冷架构、部署约束与维护成本，并整理成研究报告。","public_context":[]},
+    {"case_id":"new-blind-018","query":"请解释“这项技术”的主要证据、适用边界和已知争议；必要时可以联网，但我没有说明具体是哪项技术。","public_context":[]},
+    {"case_id":"new-blind-019","query":"请研究Orchid Relay与Pineglass Relay在低带宽环境下的设计差异和适用场景；必要时联网，并核验“Pineglass Relay的延迟始终低于Orchid Relay”这一说法。","public_context":[]},
+    {"case_id":"new-blind-020","query":"不要联网。请解释Tamarind Archive采用分层校验的原理、收益与局限。","public_context":[]}
+  ]
+}

@@ -1,0 +1,590 @@
+{
+  "evaluation_id": "route-contract-v2-shadow-development-2026-08-13",
+  "dataset_id": "route-contract-v2-development-2026-08-13",
+  "evidence_boundary": "Development-set contract matching only; not a blind estimate of production quality. Entity, topic, temporal and source extraction are not labelled or scored.",
+  "total_cases": 25,
+  "fully_passed": 25,
+  "field_accuracy": {
+    "schema_valid": 1.0,
+    "semantic_valid": 1.0,
+    "route": 1.0,
+    "answer_mode": 1.0,
+    "supporting_routes": 1.0,
+    "intent_signals": 1.0,
+    "web_permission": 1.0,
+    "prompt_contract": 1.0,
+    "answer_builder_contract": 1.0,
+    "protected_terms": 1.0
+  },
+  "per_route": {
+    "claim_verification": {
+      "correct": 5,
+      "total": 5,
+      "route_accuracy": 1.0
+    },
+    "evidence_research": {
+      "correct": 5,
+      "total": 5,
+      "route_accuracy": 1.0
+    },
+    "item_navigation": {
+      "correct": 5,
+      "total": 5,
+      "route_accuracy": 1.0
+    },
+    "temporal_relation_exploration": {
+      "correct": 5,
+      "total": 5,
+      "route_accuracy": 1.0
+    },
+    "trend_discovery": {
+      "correct": 5,
+      "total": 5,
+      "route_accuracy": 1.0
+    }
+  },
+  "route_confusion": {
+    "item_navigation": {
+      "item_navigation": 5
+    },
+    "trend_discovery": {
+      "trend_discovery": 5
+    },
+    "temporal_relation_exploration": {
+      "temporal_relation_exploration": 5
+    },
+    "claim_verification": {
+      "claim_verification": 5
+    },
+    "evidence_research": {
+      "evidence_research": 5
+    }
+  },
+  "cases": [
+    {
+      "case_id": "RCV2-A01",
+      "query": "打开 ATR-20260805-99E550",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-A02",
+      "query": "找到 Apple Is Getting This Wrong 这条新闻",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-A03",
+      "query": "跳到 8 月 5 日那条 Open AI 经济研究交流的内容",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-A04",
+      "query": "给我看“The GTM Co-Founder”原条目",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-A05",
+      "query": "定位 2026-08-10 Product Hunt 里的 Agent 条目",
+      "expected_route": "item_navigation",
+      "actual_route": "item_navigation",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-B01",
+      "query": "最近有什么热门趋势？",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-B02",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-B03",
+      "query": "过去 7 天 AI Agent 领域什么最值得关注？",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-B04",
+      "query": "只看 Anthropic 官方最近发布的大动态",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-B05",
+      "query": "请联网找一下今天 AI 编码工具有哪些重要新闻",
+      "expected_route": "trend_discovery",
+      "actual_route": "trend_discovery",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-C01",
+      "query": "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-C02",
+      "query": "OpenAI 和 Anthropic 最近的竞争关系发生了什么变化？",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-C03",
+      "query": "同一条 RAG 新闻入池后热度随日期怎么变化？",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-C04",
+      "query": "比较 OpenAI、Anthropic 和 Google 在 AI Coding 上形成了什么格局",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-C05",
+      "query": "把 Apple 与 OpenAI 争议相关事件按时间梳理，并说明各方关系",
+      "expected_route": "temporal_relation_exploration",
+      "actual_route": "temporal_relation_exploration",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-D01",
+      "query": "‘OpenAI 已经找到稳定的 PMF’这个说法有充分证据吗？",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-D02",
+      "query": "核实这条 Amazon 取消 Sam Altman 传记电影的消息是否有一手来源",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-D03",
+      "query": "Anthropic 调整生物安全回退机制，是否说明它降低了安全标准？",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-D04",
+      "query": "请验证：GraphRAG 一定比普通 RAG 的召回率更高",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-D05",
+      "query": "2026-08-10 那条新闻说 Ona 已被 OpenAI 收购，是真的吗？",
+      "expected_route": "claim_verification",
+      "actual_route": "claim_verification",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-E01",
+      "query": "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-E02",
+      "query": "为什么 Agentic coding 可能让专家回报递增？",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-E03",
+      "query": "比较 Codex 与 Claude Code 面向企业用户的产品价值",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-E04",
+      "query": "深挖 AI 搜索产品的商业化路径，并给出证据和局限",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    },
+    {
+      "case_id": "RCV2-E05",
+      "query": "结合内部语料和官网资料，分析 AI Coding 是否正在拉大新手与专家差距",
+      "expected_route": "evidence_research",
+      "actual_route": "evidence_research",
+      "checks": {
+        "schema_valid": true,
+        "semantic_valid": true,
+        "route": true,
+        "answer_mode": true,
+        "supporting_routes": true,
+        "intent_signals": true,
+        "web_permission": true,
+        "prompt_contract": true,
+        "answer_builder_contract": true,
+        "protected_terms": true
+      },
+      "passed": true,
+      "schema_errors": [],
+      "semantic_error": null
+    }
+  ]
+}

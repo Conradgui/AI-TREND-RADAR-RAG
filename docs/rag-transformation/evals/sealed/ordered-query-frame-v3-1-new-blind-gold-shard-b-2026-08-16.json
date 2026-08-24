@@ -1,0 +1,92 @@
+[
+  {
+    "case_id": "new-blind-011",
+    "expected_status": "resolved",
+    "expected_deliveries": [["temporal_relation_exploration", "timeline", "none"]],
+    "expected_protected_terms": ["Aurora Mesh Protocol", "Kestrel Ledger", "2021年到2024年", "如何演变", "关键转折"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "explicit",
+    "label_rationale": "明确要求联网，并要求梳理两个明确实体在时间范围内的演变与转折；这是单一的时间关系探索交付。"
+  },
+  {
+    "case_id": "new-blind-012",
+    "expected_status": "clarification",
+    "expected_deliveries": [["temporal_relation_exploration", "longitudinal_trend", "none"]],
+    "expected_protected_terms": ["2022年至2025年的演变"],
+    "expected_unresolved_reference_spans": ["这个合作"],
+    "expected_web_permission": "on_demand",
+    "label_rationale": "用户明确要求演变梳理，但“这个合作”没有可执行的唯一指代；应保留明确交付并请求澄清。"
+  },
+  {
+    "case_id": "new-blind-013",
+    "expected_status": "resolved",
+    "expected_deliveries": [["claim_verification", "verification_verdict", "none"], ["evidence_research", "deep_research", "none"]],
+    "expected_protected_terms": ["Solara Bioworks", "2023年", "全部临床试验", "转向无纸化", "促成或限制这一变化的证据"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "explicit",
+    "label_rationale": "先核验带引号的具体主张，再研究其促成或限制因素；两个不同任务按用户顺序形成复合交付。"
+  },
+  {
+    "case_id": "new-blind-014",
+    "expected_status": "resolved",
+    "expected_deliveries": [["claim_verification", "verification_verdict", "none"]],
+    "expected_protected_terms": ["Vela Transit", "2024年", "全线零排放"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "forbidden",
+    "label_rationale": "“核验”直接指定主任务，主张边界明确；“不要联网”明确禁止联网。"
+  },
+  {
+    "case_id": "new-blind-015",
+    "expected_status": "resolved",
+    "expected_deliveries": [["claim_verification", "verification_verdict", "none"]],
+    "expected_protected_terms": ["Cinderpeak Observatory", "2020年后", "每周更新"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "on_demand",
+    "label_rationale": "用户要求判断一条可核验主张，仅在证据不足时允许联网，因此权限为按需。"
+  },
+  {
+    "case_id": "new-blind-016",
+    "expected_status": "resolved",
+    "expected_deliveries": [["claim_verification", "verification_verdict", "none"]],
+    "expected_protected_terms": ["Maris Seed Bank", "2022年", "全部已知盐沼植物种子"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "forbidden",
+    "label_rationale": "“核验”构成单一主张核验任务；“禁止联网”明确给出 forbidden 权限。"
+  },
+  {
+    "case_id": "new-blind-017",
+    "expected_status": "resolved",
+    "expected_deliveries": [["evidence_research", "deep_research", "none"]],
+    "expected_protected_terms": ["Nereid Cooling Grid", "液冷架构", "部署约束", "维护成本", "研究报告"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "explicit",
+    "label_rationale": "明确实体与研究维度齐全，要求深入研究并联网，属于单一 evidence research 交付。"
+  },
+  {
+    "case_id": "new-blind-018",
+    "expected_status": "clarification",
+    "expected_deliveries": [["evidence_research", "explanation", "none"]],
+    "expected_protected_terms": ["主要证据", "适用边界", "已知争议"],
+    "expected_unresolved_reference_spans": ["这项技术"],
+    "expected_web_permission": "on_demand",
+    "label_rationale": "用户明确要求解释证据、边界和争议，但“这项技术”缺少唯一指代；应澄清实体而不丢失 evidence research 交付。"
+  },
+  {
+    "case_id": "new-blind-019",
+    "expected_status": "resolved",
+    "expected_deliveries": [["evidence_research", "comparison", "none"], ["claim_verification", "verification_verdict", "none"]],
+    "expected_protected_terms": ["Orchid Relay", "Pineglass Relay", "低带宽环境", "设计差异", "适用场景", "延迟始终低于"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "on_demand",
+    "label_rationale": "先研究两个明确实体的比较，再核验后置主张；“必要时联网”只授予按需权限。"
+  },
+  {
+    "case_id": "new-blind-020",
+    "expected_status": "resolved",
+    "expected_deliveries": [["evidence_research", "explanation", "none"]],
+    "expected_protected_terms": ["Tamarind Archive", "分层校验", "原理", "收益", "局限"],
+    "expected_unresolved_reference_spans": [],
+    "expected_web_permission": "forbidden",
+    "label_rationale": "用户要求解释一个明确系统的原理、收益与局限；“不要联网”明确禁止联网。"
+  }
+]

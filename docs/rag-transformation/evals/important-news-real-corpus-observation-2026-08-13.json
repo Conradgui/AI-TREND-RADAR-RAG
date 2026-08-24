@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "important-news-real-corpus-observation-2026-08-13",
+  "review_status": "human_review_pending",
+  "release_gate_eligible": false,
+  "source": "digests/search-index.json",
+  "reference_date": "2026-08-12",
+  "window_start": "2026-07-30",
+  "window_end": "2026-08-12",
+  "scope_limit": "Offline structured-store observation. Results are not human-labelled Precision, Recall or F1.",
+  "field_coverage": {
+    "record_count": 620,
+    "canonical_document_entity_ids": 0,
+    "canonical_document_entities": 0,
+    "event_type": 0,
+    "content_kind": 0,
+    "summary": 609,
+    "publication_date": 177,
+    "note": "entity_ids coverage refers to canonical search-index documents. LexicalStore infers entity_ids at index-build time from title/source text, but those inferred IDs do not encode subject versus mention roles."
+  },
+  "entity_candidate_counts": {
+    "OpenAI": {"text_mentions": 74, "official_source": 13},
+    "Anthropic_or_Claude": {"text_mentions": 80, "official_source": 6},
+    "Google": {"text_mentions": 17, "official_source": 7}
+  },
+  "queries": [
+    {
+      "query": "OpenAI 最近有哪些重要动态？",
+      "task_family": "trend_discovery",
+      "main": [
+        {"citation_id": "ATR-20260810-0BB3A7", "title": "70% of AI revenue comes from OpenAI and Anthropic [video]"},
+        {"citation_id": "ATR-20260809-74075F", "title": "Timeline of the OpenAI accidental attack against Hugging Face"},
+        {"citation_id": "ATR-20260810-EC65A1", "title": "An OpenAI Strategist Says AI Labs Should Rival Government Power"},
+        {"citation_id": "ATR-20260810-4154F2", "title": "Israeli startup was linked to rogue AI hacks at OpenAI, Anthropic and Meta"}
+      ],
+      "background": [],
+      "excluded_count": 0,
+      "diagnosis": "观点、视频和安全事件进入主榜，未形成公司重要新闻候选集。"
+    },
+    {
+      "query": "Anthropic 最近有哪些重要动态？",
+      "task_family": "trend_discovery",
+      "main": [
+        {"citation_id": "ATR-20260810-3A40F5", "title": "thedotmack/claude-mem"},
+        {"citation_id": "ATR-20260810-0BB3A7", "title": "70% of AI revenue comes from OpenAI and Anthropic [video]"},
+        {"citation_id": "ATR-20260810-4154F2", "title": "Israeli startup was linked to rogue AI hacks at OpenAI, Anthropic and Meta"},
+        {"citation_id": "ATR-20260810-D233F5", "title": "Muse Code Sends Codex and Claude Instructions to Meta by Default"},
+        {"citation_id": "ATR-20260810-9265F3", "title": "Anthropic is turning Claude Code's auto mode on by default"}
+      ],
+      "background": [],
+      "excluded_count": 0,
+      "diagnosis": "第三方 Claude 工具和兼容性内容被当成 Anthropic 主体事件。"
+    },
+    {
+      "query": "Google 最近有哪些重要动态？",
+      "task_family": "trend_discovery",
+      "main": [
+        {"citation_id": "ATR-20260808-DC28C8", "title": "A moral Turing test: How belief and source shape detection of and agreement with LLM judgments — Google DeepMind"}
+      ],
+      "background": [],
+      "excluded_count": 0,
+      "diagnosis": "仅返回一条，候选生成覆盖不足。"
+    }
+  ],
+  "gate": {
+    "synthetic_rule_consistency": "pass",
+    "real_corpus_semantic_quality": "fail",
+    "next_action": "Build a one-day event-structured shadow corpus before changing production ranking or rebuilding the full index."
+  }
+}

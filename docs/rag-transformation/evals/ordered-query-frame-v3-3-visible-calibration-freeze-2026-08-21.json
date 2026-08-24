@@ -1,0 +1,101 @@
+{
+  "schema_version": "atr.visible-calibration-freeze/3.3",
+  "experiment_id": "ordered-query-frame-v3-3-visible-calibration-2026-08-21",
+  "evidence_boundary": "Visible calibration only; it cannot support a Blind or generalization claim.",
+  "case_order": [
+    "v33-visible-009",
+    "v33-visible-011",
+    "v33-visible-012",
+    "v33-visible-015",
+    "v33-visible-016",
+    "v33-visible-018"
+  ],
+  "query_path": "docs/rag-transformation/evals/ordered-query-frame-v3-3-visible-calibration-queries-2026-08-21.json",
+  "query_sha256": "18297361b36ae9d49635b1ed6328f5536000f4e490d415c62941bc6a9a32420b",
+  "gold_path": "docs/rag-transformation/evals/ordered-query-frame-v3-3-visible-calibration-gold-2026-08-21.json",
+  "gold_sha256": "c2ae16eb20a814bd759b021d6720f0f610f0af95fcca41d25ff35145d76b2468",
+  "prompt_sha256": "6aea7f1ba9ba389fc48201905a639fb9953b36bb3ce52a61fa95b433f436a322",
+  "provider_schema_sha256": "e56ab74c250e299dd153222ed6ad617eacd6c4693061791987d75e1257ef9422",
+  "runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  },
+  "runner_artifacts": [
+    {
+      "path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json",
+      "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"
+    },
+    {
+      "path": "docs/rag-transformation/specs/route-contract-v2.schema.json",
+      "sha256": "9f70ca1a238a8dc747269187a0b710e736170d46309659124d3c436a2c638ec9"
+    },
+    {
+      "path": "rag/config.py",
+      "sha256": "56c9be21706901ccea4a9cbf17f3a2059d1d2d683c4d628c4b8405e2656f6966"
+    },
+    {
+      "path": "rag/ordered_frame_client_v3.py",
+      "sha256": "fc730cc7512ebf47a2c7eab09e00385ed86bf63e4a2ebe77773f2792209e40c6"
+    },
+    {
+      "path": "rag/ordered_semantic_frame_v3.py",
+      "sha256": "41e44513b19597cf46a6e497e03c44d85ee6cc6f1f2c588e82751f749746f2a1"
+    },
+    {
+      "path": "rag/query_signal_extraction.py",
+      "sha256": "1c2d15cb85277651ce6011e984ba28191d4ebd6de6a20b69aea778360a993272"
+    },
+    {
+      "path": "rag/query_understanding_v2.py",
+      "sha256": "ad68202889367f8e07d463547204a8b2e1a48e5c153e4aef9d695ffa247a7f60"
+    },
+    {
+      "path": "rag/route_contract_validation.py",
+      "sha256": "0a926b976c1c9cb0f18ea07791ced0d720ae61ee865a69a787232727b95a8088"
+    },
+    {
+      "path": "rag/run_ordered_frame_v3_calibration.py",
+      "sha256": "a592be1cce10433e2868320a1f0febe5c5518d697a01942bc6efafa181712499"
+    },
+    {
+      "path": "rag/task_route_resolution.py",
+      "sha256": "3b537eafc5732e999e1e204e3c31d13b4d21fb86df2db34bc415405104843e7d"
+    }
+  ],
+  "scoring_artifacts": [
+    {
+      "path": "docs/rag-transformation/specs/route-contract-v2.schema.json",
+      "sha256": "9f70ca1a238a8dc747269187a0b710e736170d46309659124d3c436a2c638ec9"
+    },
+    {
+      "path": "rag/ordered_semantic_frame_v3.py",
+      "sha256": "41e44513b19597cf46a6e497e03c44d85ee6cc6f1f2c588e82751f749746f2a1"
+    },
+    {
+      "path": "rag/route_contract_validation.py",
+      "sha256": "0a926b976c1c9cb0f18ea07791ced0d720ae61ee865a69a787232727b95a8088"
+    },
+    {
+      "path": "rag/score_ordered_frame_v3_3_visible.py",
+      "sha256": "cb3917fac17ff62276232f24044839e6804df3cd4585429eb4fecd26f6e72b72"
+    }
+  ],
+  "runtime_budget": {
+    "planned_cases": 6,
+    "max_provider_calls": 6,
+    "attempts_per_case": 1,
+    "max_retries": 0
+  },
+  "stop_conditions": [
+    "artifact_hash_drift",
+    "provider_or_network_error",
+    "more_than_one_attempt_for_any_case",
+    "invalid_or_incomplete_prediction"
+  ]
+}

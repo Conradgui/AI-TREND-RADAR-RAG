@@ -1,0 +1,1634 @@
+{
+  "experiment_id": "ordered-query-frame-v3-1-new-blind-v2-2026-08-16",
+  "evidence_boundary": "Candidate L1/L2 behavior was frozen before scoring. The DeepSeek runner receives Query-only input and never reads Gold. This v2 experiment changes only runner preflight/report metadata compatibility after the first experiment failed to persist predictions. During pre-freeze contract validation, the orchestrator observed four Gold status rows only to correct an invalid clarification enum; no candidate behavior was changed afterward.",
+  "query_dataset_id": "new-blind-1-2026-08-16",
+  "query_sha256": "8e3bc1f285f1bff9a2a1a1aaaccde74459dba99bc4b639455a1809713ef052c5",
+  "model": "deepseek-v4-flash",
+  "planned": 20,
+  "executed": 20,
+  "cases": [
+    {
+      "case_id": "new-blind-001",
+      "query": "请帮我定位 ATR-7742《雾港协议：潮汐引擎》这条记录，只返回对应条目。请联网核对。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "ATR-7742",
+              "《雾港协议：潮汐引擎》"
+            ],
+            "requested_output_form": "exact_item",
+            "locator_kind": "atr_id"
+          }
+        ],
+        "protected_spans": [
+          "ATR-7742",
+          "《雾港协议：潮汐引擎》"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网核对"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-a32a96ba4613577a91be505568fb6e41",
+          "original_query": "请帮我定位 ATR-7742《雾港协议：潮汐引擎》这条记录，只返回对应条目。请联网核对。",
+          "protected_terms": [
+            "ATR-7742",
+            "《雾港协议：潮汐引擎》",
+            "雾港协议：潮汐引擎",
+            "请联网核对"
+          ],
+          "intent_signals": [
+            "navigation",
+            "web_requested"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1803,
+        "completion_tokens": 228,
+        "total_tokens": 2031
+      },
+      "latency_seconds": 1.963,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-002",
+      "query": "请定位这个条目，并给出它的完整标题；不要联网。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "这个条目"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "descriptive"
+          }
+        ],
+        "protected_spans": [
+          "这个条目"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": [
+          "这个条目"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 这个条目"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1788,
+        "completion_tokens": 201,
+        "total_tokens": 1989
+      },
+      "latency_seconds": 1.706,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-003",
+      "query": "先找到标题中包含“蓝铜回声”的那条记录，再汇总它在 2026 年 5 月以来的重要动态；必要时可联网。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "标题中包含“蓝铜回声”的那条记录"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "title_fragment"
+          },
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "2026 年 5 月以来的重要动态"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "蓝铜回声",
+          "2026 年 5 月以来"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-b7c9f7aad11e5321a0c2c44c74fd8bb0",
+          "original_query": "先找到标题中包含“蓝铜回声”的那条记录，再汇总它在 2026 年 5 月以来的重要动态；必要时可联网。",
+          "protected_terms": [
+            "蓝铜回声",
+            "2026 年 5 月以来",
+            "必要时可联网"
+          ],
+          "intent_signals": [
+            "navigation",
+            "recency"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [
+            "trend_discovery"
+          ],
+          "answer_mode": "item_disambiguation",
+          "route_confidence": 0.65,
+          "ambiguities": [
+            "item locator may match multiple records"
+          ],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "trend_discovery",
+              "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+              "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+              "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+              "answer_builder_contract_id": null,
+              "output_schema_id": "atr.answer/trend/1.0",
+              "budget_profile_id": "atr.budget/standard/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1807,
+        "completion_tokens": 270,
+        "total_tokens": 2077
+      },
+      "latency_seconds": 1.779,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-004",
+      "query": "请从公开资料中辨认出描述为“由纸鸢实验室维护、面向离线语音压缩”的条目，并说明匹配依据；必要时可联网。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "由纸鸢实验室维护、面向离线语音压缩"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "descriptive"
+          }
+        ],
+        "protected_spans": [
+          "纸鸢实验室",
+          "离线语音压缩"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-f88d3f6676b65d759f2d215e089e1b7c",
+          "original_query": "请从公开资料中辨认出描述为“由纸鸢实验室维护、面向离线语音压缩”的条目，并说明匹配依据；必要时可联网。",
+          "protected_terms": [
+            "由纸鸢实验室维护、面向离线语音压缩",
+            "纸鸢实验室",
+            "离线语音压缩",
+            "必要时可联网"
+          ],
+          "intent_signals": [
+            "navigation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "item_disambiguation",
+          "route_confidence": 0.65,
+          "ambiguities": [
+            "item locator may match multiple records"
+          ],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1807,
+        "completion_tokens": 214,
+        "total_tokens": 2021
+      },
+      "latency_seconds": 1.631,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-005",
+      "query": "请联网整理 2026 年 6 月“赤道织网”项目的主要新闻，并按主题聚成趋势簇。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "2026 年 6 月",
+              "赤道织网",
+              "主要新闻",
+              "按主题聚成趋势簇"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2026 年 6 月",
+          "赤道织网"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-e8df7f2fd97e5a29bbada563d5218d3d",
+          "original_query": "请联网整理 2026 年 6 月“赤道织网”项目的主要新闻，并按主题聚成趋势簇。",
+          "protected_terms": [
+            "请联网",
+            "2026 年 6 月",
+            "赤道织网"
+          ],
+          "intent_signals": [
+            "recency",
+            "web_requested"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1803,
+        "completion_tokens": 235,
+        "total_tokens": 2038
+      },
+      "latency_seconds": 1.426,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-006",
+      "query": "必要时可联网：先总结 2026 年上半年“砂钟编译器”的关键动态，再梳理这些动态如何逐步改变其开源路线。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "2026 年上半年",
+              "砂钟编译器",
+              "关键动态"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "这些动态如何逐步改变其开源路线"
+            ],
+            "requested_output_form": "longitudinal_trend",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2026 年上半年",
+          "砂钟编译器",
+          "开源路线"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-4aa9f3bb40325df083c066ef1cc8ebfe",
+          "original_query": "必要时可联网：先总结 2026 年上半年“砂钟编译器”的关键动态，再梳理这些动态如何逐步改变其开源路线。",
+          "protected_terms": [
+            "必要时可联网",
+            "2026 年上半年",
+            "砂钟编译器",
+            "开源路线"
+          ],
+          "intent_signals": [
+            "recency",
+            "timeline"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [
+            "temporal_relation_exploration"
+          ],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "temporal_relation_exploration",
+              "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+              "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+              "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+              "answer_builder_contract_id": null,
+              "output_schema_id": "atr.answer/temporal_relation/1.0",
+              "budget_profile_id": "atr.budget/graph/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1804,
+        "completion_tokens": 273,
+        "total_tokens": 2077
+      },
+      "latency_seconds": 1.635,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-007",
+      "query": "请汇总这项变化最近两个月的主要动态；必要时可联网。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "最近两个月",
+              "主要动态"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "最近两个月"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可联网"
+        ],
+        "unresolved_reference_spans": [
+          "这项变化"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 这项变化"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1787,
+        "completion_tokens": 203,
+        "total_tokens": 1990
+      },
+      "latency_seconds": 1.39,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-008",
+      "query": "不要联网。请按主题汇总 2026 年 4 月以来“银杏栈”数据库的社区动态，并指出其中对应的记录。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "按主题汇总",
+              "社区动态"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2026 年 4 月以来",
+          "银杏栈",
+          "数据库",
+          "社区动态"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-ac0deed3162c508f82905fd74eea140a",
+          "original_query": "不要联网。请按主题汇总 2026 年 4 月以来“银杏栈”数据库的社区动态，并指出其中对应的记录。",
+          "protected_terms": [
+            "不要联网",
+            "2026 年 4 月以来",
+            "银杏栈",
+            "数据库",
+            "社区动态"
+          ],
+          "intent_signals": [
+            "recency"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1805,
+        "completion_tokens": 221,
+        "total_tokens": 2026
+      },
+      "latency_seconds": 1.481,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-009",
+      "query": "请联网梳理“回纹推理器”从 2025 年第四季度到 2026 年第二季度的版本演变时间线。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "版本演变时间线"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "回纹推理器",
+          "2025 年第四季度",
+          "2026 年第二季度"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-1fa19af7a95c50e281c188948c62699f",
+          "original_query": "请联网梳理“回纹推理器”从 2025 年第四季度到 2026 年第二季度的版本演变时间线。",
+          "protected_terms": [
+            "请联网",
+            "回纹推理器",
+            "2025 年第四季度",
+            "2026 年第二季度"
+          ],
+          "intent_signals": [
+            "timeline",
+            "web_requested"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1805,
+        "completion_tokens": 220,
+        "total_tokens": 2025
+      },
+      "latency_seconds": 1.445,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-010",
+      "query": "不要联网。请比较 2026 年 3 月和 2026 年 7 月“青隼索引”在数据来源上的变化，并定位完整标题为《青隼索引：边缘检索手册》的记录。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "比较 2026 年 3 月和 2026 年 7 月“青隼索引”在数据来源上的变化"
+            ],
+            "requested_output_form": "comparison",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "《青隼索引：边缘检索手册》"
+            ],
+            "requested_output_form": "exact_item",
+            "locator_kind": "full_title"
+          }
+        ],
+        "protected_spans": [
+          "2026 年 3 月",
+          "2026 年 7 月",
+          "青隼索引",
+          "数据来源",
+          "《青隼索引：边缘检索手册》"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-48592a75934555a7bd09a70d663720ea",
+          "original_query": "不要联网。请比较 2026 年 3 月和 2026 年 7 月“青隼索引”在数据来源上的变化，并定位完整标题为《青隼索引：边缘检索手册》的记录。",
+          "protected_terms": [
+            "不要联网",
+            "2026 年 3 月",
+            "2026 年 7 月",
+            "青隼索引",
+            "数据来源",
+            "《青隼索引：边缘检索手册》",
+            "青隼索引：边缘检索手册"
+          ],
+          "intent_signals": [
+            "comparison",
+            "navigation"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "item_navigation"
+          ],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "item_navigation",
+              "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+              "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+              "prompt_contract_id": null,
+              "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+              "requested_output_form": "exact_item",
+              "locator_kind": "full_title",
+              "route_confidence": 1.0,
+              "ambiguities": [],
+              "output_schema_id": "atr.answer/navigation/1.0",
+              "budget_profile_id": "atr.budget/deterministic/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1826,
+        "completion_tokens": 310,
+        "total_tokens": 2136
+      },
+      "latency_seconds": 2.004,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-011",
+      "query": "请联网梳理从2021年到2024年，Aurora Mesh Protocol与Kestrel Ledger之间的合作如何演变，并按时间线说明关键转折。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "从2021年到2024年",
+              "Aurora Mesh Protocol",
+              "Kestrel Ledger",
+              "合作如何演变",
+              "按时间线说明关键转折"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2021年",
+          "2024年",
+          "Aurora Mesh Protocol",
+          "Kestrel Ledger"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网梳理"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-5310ea6a43505067893bd14ccea2ed1f",
+          "original_query": "请联网梳理从2021年到2024年，Aurora Mesh Protocol与Kestrel Ledger之间的合作如何演变，并按时间线说明关键转折。",
+          "protected_terms": [
+            "请联网梳理",
+            "2021年",
+            "2024年",
+            "Aurora Mesh Protocol",
+            "Kestrel Ledger"
+          ],
+          "intent_signals": [
+            "timeline",
+            "web_requested"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1808,
+        "completion_tokens": 253,
+        "total_tokens": 2061
+      },
+      "latency_seconds": 1.636,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-012",
+      "query": "请梳理“这个合作”在2022年至2025年的演变；如果需要，可以联网查找资料。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "演变",
+              "2022年至2025年"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2022年至2025年"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "如果需要，可以联网查找资料"
+        ],
+        "unresolved_reference_spans": [
+          "这个合作"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 这个合作"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1796,
+        "completion_tokens": 219,
+        "total_tokens": 2015
+      },
+      "latency_seconds": 1.441,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-013",
+      "query": "请联网核验这条说法是否准确：“Solara Bioworks在2023年让全部临床试验转向无纸化”，并进一步研究促成或限制这一变化的证据。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "Solara Bioworks在2023年让全部临床试验转向无纸化"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "促成或限制这一变化的证据"
+            ],
+            "requested_output_form": "deep_research",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Solara Bioworks",
+          "2023年",
+          "全部临床试验转向无纸化"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网核验"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-57780832815e527c80afb4c402b2cf9e",
+          "original_query": "请联网核验这条说法是否准确：“Solara Bioworks在2023年让全部临床试验转向无纸化”，并进一步研究促成或限制这一变化的证据。",
+          "protected_terms": [
+            "请联网核验",
+            "Solara Bioworks",
+            "Solara Bioworks在2023年让全部临床试验转向无纸化",
+            "2023年",
+            "全部临床试验转向无纸化"
+          ],
+          "intent_signals": [
+            "verification",
+            "deep_research",
+            "web_requested"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [
+            "evidence_research"
+          ],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "evidence_research",
+              "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+              "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+              "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+              "answer_builder_contract_id": null,
+              "output_schema_id": "atr.answer/research/1.0",
+              "budget_profile_id": "atr.budget/research/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1810,
+        "completion_tokens": 275,
+        "total_tokens": 2085
+      },
+      "latency_seconds": 1.763,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-014",
+      "query": "不要联网。请核验“Vela Transit在2024年已经实现全线零排放”这条说法，并给出判断依据。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "Vela Transit在2024年已经实现全线零排放"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Vela Transit",
+          "2024年",
+          "全线零排放"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-af3a5d29d55b50e7ae997b21bdc54232",
+          "original_query": "不要联网。请核验“Vela Transit在2024年已经实现全线零排放”这条说法，并给出判断依据。",
+          "protected_terms": [
+            "不要联网",
+            "Vela Transit",
+            "Vela Transit在2024年已经实现全线零排放",
+            "2024年",
+            "全线零排放"
+          ],
+          "intent_signals": [
+            "verification"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1802,
+        "completion_tokens": 221,
+        "total_tokens": 2023
+      },
+      "latency_seconds": 1.425,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-015",
+      "query": "请判断“Cinderpeak Observatory的开放数据在2020年后仍保持每周更新”是否属实；只有公开证据不足时才联网查找。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "Cinderpeak Observatory的开放数据在2020年后仍保持每周更新"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Cinderpeak Observatory",
+          "2020年后",
+          "每周更新"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "只有公开证据不足时才联网查找"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-8fe8ffeed36459f3b8eb7bc264bfdaaa",
+          "original_query": "请判断“Cinderpeak Observatory的开放数据在2020年后仍保持每周更新”是否属实；只有公开证据不足时才联网查找。",
+          "protected_terms": [
+            "Cinderpeak Observatory",
+            "Cinderpeak Observatory的开放数据在2020年后仍保持每周更新",
+            "2020年后",
+            "每周更新",
+            "只有公开证据不足时才联网查找"
+          ],
+          "intent_signals": [
+            "verification"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1804,
+        "completion_tokens": 230,
+        "total_tokens": 2034
+      },
+      "latency_seconds": 1.503,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-016",
+      "query": "禁止联网。请核验“Maris Seed Bank在2022年保存了全部已知盐沼植物种子”这一主张，并说明结论。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "Maris Seed Bank在2022年保存了全部已知盐沼植物种子"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Maris Seed Bank",
+          "2022",
+          "全部已知盐沼植物种子"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "禁止联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-94de0dd2e65a564bbe0f5a21d4f2e809",
+          "original_query": "禁止联网。请核验“Maris Seed Bank在2022年保存了全部已知盐沼植物种子”这一主张，并说明结论。",
+          "protected_terms": [
+            "禁止联网",
+            "Maris Seed Bank",
+            "Maris Seed Bank在2022年保存了全部已知盐沼植物种子",
+            "2022",
+            "全部已知盐沼植物种子"
+          ],
+          "intent_signals": [
+            "verification"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1805,
+        "completion_tokens": 228,
+        "total_tokens": 2033
+      },
+      "latency_seconds": 1.369,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-017",
+      "query": "请联网深入研究Nereid Cooling Grid的液冷架构、部署约束与维护成本，并整理成研究报告。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "深入研究Nereid Cooling Grid的液冷架构、部署约束与维护成本",
+              "整理成研究报告"
+            ],
+            "requested_output_form": "deep_research",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Nereid Cooling Grid",
+          "液冷架构",
+          "部署约束",
+          "维护成本"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-890e811bc2755e6f90fbbd6dd657294d",
+          "original_query": "请联网深入研究Nereid Cooling Grid的液冷架构、部署约束与维护成本，并整理成研究报告。",
+          "protected_terms": [
+            "请联网",
+            "Nereid Cooling Grid",
+            "液冷架构",
+            "部署约束",
+            "维护成本"
+          ],
+          "intent_signals": [
+            "deep_research",
+            "web_requested"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [],
+          "answer_mode": "deep_research",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1798,
+        "completion_tokens": 232,
+        "total_tokens": 2030
+      },
+      "latency_seconds": 1.731,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-018",
+      "query": "请解释“这项技术”的主要证据、适用边界和已知争议；必要时可以联网，但我没有说明具体是哪项技术。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [],
+        "protected_spans": [
+          "这项技术",
+          "主要证据",
+          "适用边界",
+          "已知争议"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可以联网"
+        ],
+        "unresolved_reference_spans": [
+          "这项技术"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "no unambiguous user delivery was identified"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1801,
+        "completion_tokens": 174,
+        "total_tokens": 1975
+      },
+      "latency_seconds": 1.233,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-019",
+      "query": "请研究Orchid Relay与Pineglass Relay在低带宽环境下的设计差异和适用场景；必要时联网，并核验“Pineglass Relay的延迟始终低于Orchid Relay”这一说法。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "研究Orchid Relay与Pineglass Relay在低带宽环境下的设计差异和适用场景"
+            ],
+            "requested_output_form": "comparison",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "核验“Pineglass Relay的延迟始终低于Orchid Relay”这一说法"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Orchid Relay",
+          "Pineglass Relay",
+          "低带宽环境",
+          "Pineglass Relay的延迟始终低于Orchid Relay"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-5695236eac545778915aa8d61fe11398",
+          "original_query": "请研究Orchid Relay与Pineglass Relay在低带宽环境下的设计差异和适用场景；必要时联网，并核验“Pineglass Relay的延迟始终低于Orchid Relay”这一说法。",
+          "protected_terms": [
+            "Orchid Relay",
+            "Pineglass Relay",
+            "低带宽环境",
+            "必要时联网",
+            "Pineglass Relay的延迟始终低于Orchid Relay"
+          ],
+          "intent_signals": [
+            "comparison",
+            "verification"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "claim_verification"
+          ],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "claim_verification",
+              "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+              "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+              "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+              "answer_builder_contract_id": null,
+              "output_schema_id": "atr.answer/verification/1.0",
+              "budget_profile_id": "atr.budget/verification/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1819,
+        "completion_tokens": 300,
+        "total_tokens": 2119
+      },
+      "latency_seconds": 1.797,
+      "error": null
+    },
+    {
+      "case_id": "new-blind-020",
+      "query": "不要联网。请解释Tamarind Archive采用分层校验的原理、收益与局限。",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "解释Tamarind Archive采用分层校验的原理、收益与局限"
+            ],
+            "requested_output_form": "explanation",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Tamarind Archive",
+          "分层校验"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-cb8eee53997652e58fce9922057266cd",
+          "original_query": "不要联网。请解释Tamarind Archive采用分层校验的原理、收益与局限。",
+          "protected_terms": [
+            "不要联网",
+            "Tamarind Archive",
+            "分层校验"
+          ],
+          "intent_signals": [
+            "explanation"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [],
+          "answer_mode": "explanation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1792,
+        "completion_tokens": 213,
+        "total_tokens": 2005
+      },
+      "latency_seconds": 1.546,
+      "error": null
+    }
+  ],
+  "freeze_manifest_sha256": "cbd3cdcef105426209af93f35a35ba9c7f521b2c06afab37dde8d7a8c5f88d67",
+  "frozen_runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  }
+}

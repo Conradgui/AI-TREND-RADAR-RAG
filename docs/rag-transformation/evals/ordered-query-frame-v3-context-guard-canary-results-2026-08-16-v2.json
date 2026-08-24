@@ -1,0 +1,94 @@
+{
+  "experiment_id": "ordered-query-frame-v3-context-guard-canary-2026-08-16",
+  "evidence_boundary": "One new structural canary after an aborted visible calibration; not blind or production evidence.",
+  "prompt_sha256": "663c0da6a872953ec5d5059d99fcd86e45c7f815c65eed9b08a1301cbe87d8b3",
+  "model": "deepseek-v4-flash",
+  "gate": {
+    "passed": true,
+    "requirements": "one attempt; valid A route; Query-only protected terms; <=12s"
+  },
+  "case": {
+    "query": "查找标题包含“端侧推理框架”的记录；如果有多个匹配项，列出候选",
+    "conversation_context": "用户上一条消息：左侧列表中上周新增的是融资新闻，右侧是评论摘录。",
+    "frame": {
+      "schema_version": "atr.ordered-semantic-frame/3.0",
+      "deliveries": [
+        {
+          "task_family": "item_navigation",
+          "evidence_spans": [
+            "端侧推理框架"
+          ],
+          "requested_output_form": "item_disambiguation",
+          "locator_kind": "title_fragment"
+        }
+      ],
+      "protected_spans": [
+        "端侧推理框架"
+      ],
+      "web_permission": "on_demand",
+      "web_evidence_spans": [],
+      "unresolved_reference_spans": []
+    },
+    "envelope": {
+      "status": "resolved",
+      "contract": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-frame-v3-015eb59446de551eab375ee8d25a6a81",
+        "original_query": "查找标题包含“端侧推理框架”的记录；如果有多个匹配项，列出候选",
+        "protected_terms": [
+          "端侧推理框架"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "route_confidence": 0.65,
+        "ambiguities": [
+          "item locator may match multiple records"
+        ],
+        "resolved_references": [],
+        "supporting_contracts": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      },
+      "reasons": []
+    },
+    "metadata": {
+      "model": "deepseek-v4-flash",
+      "attempts": 1,
+      "dropped_non_query_protected_spans": [],
+      "finish_reason": "tool_calls",
+      "prompt_tokens": 1809,
+      "completion_tokens": 201,
+      "total_tokens": 2010
+    },
+    "latency_seconds": 1.862,
+    "checks": {
+      "single_attempt": true,
+      "resolved": true,
+      "primary": true,
+      "answer_mode": true,
+      "protected_query_only": true,
+      "target_protected": true
+    },
+    "error": null
+  }
+}

@@ -1,0 +1,1151 @@
+{
+  "experiment_id": "ordered-query-frame-v3-1-visible-calibration-2026-08-16",
+  "evidence_boundary": "Already-unsealed calibration; runner did not read Gold. Not blind or production evidence.",
+  "query_dataset_id": "dimensions-only-l1-v2-blind-2026-08-15",
+  "query_sha256": "dc4d6ceb4fffc6f99a3105d25ffcb46558711c4ee7bb2e023f65d3963756c2e1",
+  "model": "deepseek-v4-flash",
+  "planned": 15,
+  "executed": 15,
+  "cases": [
+    {
+      "case_id": "blind-001",
+      "query": "定位 ATR-20260814-A1B2C3，并给我它的标题和原始链接",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "ATR-20260814-A1B2C3",
+              "标题",
+              "原始链接"
+            ],
+            "requested_output_form": "exact_item",
+            "locator_kind": "atr_id"
+          }
+        ],
+        "protected_spans": [
+          "ATR-20260814-A1B2C3"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-3360b079590f5982944a3553d2a16622",
+          "original_query": "定位 ATR-20260814-A1B2C3，并给我它的标题和原始链接",
+          "protected_terms": [
+            "ATR-20260814-A1B2C3"
+          ],
+          "intent_signals": [
+            "navigation"
+          ],
+          "primary_task_family": "item_navigation",
+          "supporting_task_families": [],
+          "answer_mode": "exact_item",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+          "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+          "prompt_contract_id": null,
+          "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+          "output_schema_id": "atr.answer/navigation/1.0",
+          "budget_profile_id": "atr.budget/deterministic/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1796,
+        "completion_tokens": 224,
+        "total_tokens": 2020
+      },
+      "latency_seconds": 2.089,
+      "error": null
+    },
+    {
+      "case_id": "blind-002",
+      "query": "我记得标题里有“端侧智能”这几个字，帮我找出对应条目；如果有多个，先列出候选",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "端侧智能"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "title_fragment"
+          }
+        ],
+        "protected_spans": [
+          "端侧智能"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": [
+          "对应条目"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 对应条目"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1812,
+        "completion_tokens": 197,
+        "total_tokens": 2009
+      },
+      "latency_seconds": 1.495,
+      "error": null
+    },
+    {
+      "case_id": "blind-003",
+      "query": "先解释 ATR-20260810-Z9Y8X7 为什么值得关注，再把它定位出来",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "为什么值得关注"
+            ],
+            "requested_output_form": "explanation",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "ATR-20260810-Z9Y8X7"
+            ],
+            "requested_output_form": "exact_item",
+            "locator_kind": "atr_id"
+          }
+        ],
+        "protected_spans": [
+          "ATR-20260810-Z9Y8X7"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-0a8af499f7af52c0aff8587b3843b622",
+          "original_query": "先解释 ATR-20260810-Z9Y8X7 为什么值得关注，再把它定位出来",
+          "protected_terms": [
+            "ATR-20260810-Z9Y8X7"
+          ],
+          "intent_signals": [
+            "explanation",
+            "navigation"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "item_navigation"
+          ],
+          "answer_mode": "explanation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "item_navigation",
+              "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+              "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+              "prompt_contract_id": null,
+              "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+              "requested_output_form": "exact_item",
+              "locator_kind": "atr_id",
+              "route_confidence": 1.0,
+              "ambiguities": [],
+              "output_schema_id": "atr.answer/navigation/1.0",
+              "budget_profile_id": "atr.budget/deterministic/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1798,
+        "completion_tokens": 256,
+        "total_tokens": 2054
+      },
+      "latency_seconds": 1.722,
+      "error": null
+    },
+    {
+      "case_id": "blind-004",
+      "query": "最近一周 AI 芯片领域有哪些跨事件趋势？请联网查最新信息",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "最近一周",
+              "AI 芯片领域",
+              "跨事件趋势"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "最近一周",
+          "AI 芯片领域",
+          "跨事件趋势"
+        ],
+        "web_permission": "explicit",
+        "web_evidence_spans": [
+          "请联网查最新信息"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-1109c917d622595faa6ccdde408b0aba",
+          "original_query": "最近一周 AI 芯片领域有哪些跨事件趋势？请联网查最新信息",
+          "protected_terms": [
+            "最近一周",
+            "AI 芯片领域",
+            "跨事件趋势",
+            "请联网查最新信息"
+          ],
+          "intent_signals": [
+            "recency",
+            "web_requested"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "最近一周"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "explicit",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1791,
+        "completion_tokens": 224,
+        "total_tokens": 2015
+      },
+      "latency_seconds": 1.52,
+      "error": null
+    },
+    {
+      "case_id": "blind-005",
+      "query": "只看内部已收录内容，最近 30 天哪些开源模型动态最值得关注？禁止联网",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "最近 30 天",
+              "开源模型动态",
+              "最值得关注"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "最近 30 天",
+          "开源模型",
+          "禁止联网"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "禁止联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-95c92c2291dd5ce5b9717103e38fd8be",
+          "original_query": "只看内部已收录内容，最近 30 天哪些开源模型动态最值得关注？禁止联网",
+          "protected_terms": [
+            "最近 30 天",
+            "开源模型",
+            "禁止联网"
+          ],
+          "intent_signals": [
+            "recency"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "最近 30 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1796,
+        "completion_tokens": 223,
+        "total_tokens": 2019
+      },
+      "latency_seconds": 2.2,
+      "error": null
+    },
+    {
+      "case_id": "blind-006",
+      "query": "最近有什么值得关注的多模态趋势？先按趋势归纳，再补充其中最重要的一条新闻；不要联网",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "trend_discovery",
+            "evidence_spans": [
+              "最近有什么值得关注的多模态趋势",
+              "先按趋势归纳",
+              "再补充其中最重要的一条新闻"
+            ],
+            "requested_output_form": "trend_clusters",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "多模态趋势",
+          "最重要的一条新闻"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-db2aaf8c54585349bd3ea3c1f0fec0ee",
+          "original_query": "最近有什么值得关注的多模态趋势？先按趋势归纳，再补充其中最重要的一条新闻；不要联网",
+          "protected_terms": [
+            "多模态趋势",
+            "最重要的一条新闻",
+            "不要联网"
+          ],
+          "intent_signals": [
+            "recency"
+          ],
+          "primary_task_family": "trend_discovery",
+          "supporting_task_families": [],
+          "answer_mode": "trend_clusters",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/trend_discovery/1.0",
+          "retrieval_policy_id": "atr.retrieval/trend_discovery/1.0",
+          "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/trend/1.0",
+          "budget_profile_id": "atr.budget/standard/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1797,
+        "completion_tokens": 224,
+        "total_tokens": 2021
+      },
+      "latency_seconds": 1.53,
+      "error": null
+    },
+    {
+      "case_id": "blind-007",
+      "query": "按时间顺序说明从 Atlas 3 发布到 Atlas 3.2 更新发生了什么，以及两次变化如何关联",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "按时间顺序说明从 Atlas 3 发布到 Atlas 3.2 更新发生了什么",
+              "两次变化如何关联"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Atlas 3",
+          "Atlas 3.2"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-eff74ec73ba55d7d988087945e301c21",
+          "original_query": "按时间顺序说明从 Atlas 3 发布到 Atlas 3.2 更新发生了什么，以及两次变化如何关联",
+          "protected_terms": [
+            "Atlas 3",
+            "Atlas 3.2"
+          ],
+          "intent_signals": [
+            "timeline"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1800,
+        "completion_tokens": 231,
+        "total_tokens": 2031
+      },
+      "latency_seconds": 1.635,
+      "error": null
+    },
+    {
+      "case_id": "blind-008",
+      "query": "把过去三个月的浏览器端 AI 助手演变整理成时间线；必要时可以联网核对日期",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "浏览器端 AI 助手演变",
+              "过去三个月"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "过去三个月",
+          "浏览器端 AI 助手"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可以联网核对日期"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-6df4d2899923585d8bf528415c7f6497",
+          "original_query": "把过去三个月的浏览器端 AI 助手演变整理成时间线；必要时可以联网核对日期",
+          "protected_terms": [
+            "过去三个月",
+            "浏览器端 AI 助手",
+            "必要时可以联网核对日期"
+          ],
+          "intent_signals": [
+            "timeline"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去三个月"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1795,
+        "completion_tokens": 219,
+        "total_tokens": 2014
+      },
+      "latency_seconds": 1.716,
+      "error": null
+    },
+    {
+      "case_id": "blind-009",
+      "query": "先把这项安全机制变化与相关事件的关系讲清楚，再判断下面这句话是否成立：‘它已经阻止了所有提示注入’。联网核验也可以",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "把这项安全机制变化与相关事件的关系讲清楚",
+              "判断下面这句话是否成立",
+              "它已经阻止了所有提示注入"
+            ],
+            "requested_output_form": "explanation",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "它已经阻止了所有提示注入"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "这项安全机制变化",
+          "相关事件",
+          "它已经阻止了所有提示注入"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "联网核验也可以"
+        ],
+        "unresolved_reference_spans": [
+          "这项安全机制变化",
+          "相关事件"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 这项安全机制变化, 相关事件"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1819,
+        "completion_tokens": 295,
+        "total_tokens": 2114
+      },
+      "latency_seconds": 1.882,
+      "error": null
+    },
+    {
+      "case_id": "blind-010",
+      "query": "截至 2026 年 8 月 1 日，这个说法有证据支持吗：‘Nova R2 已经开源且允许商用’？禁止联网",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "截至 2026 年 8 月 1 日",
+              "Nova R2 已经开源且允许商用"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2026 年 8 月 1 日",
+          "Nova R2",
+          "已经开源且允许商用"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "禁止联网"
+        ],
+        "unresolved_reference_spans": [
+          "这个说法"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 这个说法"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1811,
+        "completion_tokens": 250,
+        "total_tokens": 2061
+      },
+      "latency_seconds": 1.611,
+      "error": null
+    },
+    {
+      "case_id": "blind-011",
+      "query": "判断“过去 90 天没有新的中文大模型发布”是否为真，可以联网查证",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "过去 90 天没有新的中文大模型发布"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "过去 90 天",
+          "没有新的中文大模型发布"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "可以联网查证"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-a3624d9a484f5173bd280c3c78e84fa0",
+          "original_query": "判断“过去 90 天没有新的中文大模型发布”是否为真，可以联网查证",
+          "protected_terms": [
+            "过去 90 天",
+            "过去 90 天没有新的中文大模型发布",
+            "没有新的中文大模型发布",
+            "可以联网查证"
+          ],
+          "intent_signals": [
+            "verification"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去 90 天"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1796,
+        "completion_tokens": 223,
+        "total_tokens": 2019
+      },
+      "latency_seconds": 1.52,
+      "error": null
+    },
+    {
+      "case_id": "blind-012",
+      "query": "比较 Graph RAG 和向量 RAG 在多跳关系问答中的适用场景、成本与主要取舍，不需要联网",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "Graph RAG",
+              "向量 RAG",
+              "多跳关系问答",
+              "适用场景",
+              "成本",
+              "主要取舍"
+            ],
+            "requested_output_form": "comparison",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "Graph RAG",
+          "向量 RAG",
+          "多跳关系问答"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "不需要联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-9fb562186c47566780245a1e234aeb1a",
+          "original_query": "比较 Graph RAG 和向量 RAG 在多跳关系问答中的适用场景、成本与主要取舍，不需要联网",
+          "protected_terms": [
+            "Graph RAG",
+            "向量 RAG",
+            "多跳关系问答",
+            "不需要联网"
+          ],
+          "intent_signals": [
+            "comparison"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1800,
+        "completion_tokens": 231,
+        "total_tokens": 2031
+      },
+      "latency_seconds": 1.617,
+      "error": null
+    },
+    {
+      "case_id": "blind-013",
+      "query": "梳理同一事件从原始来源到转载的传播关系及先后顺序，并说明两者如何关联",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "传播关系及先后顺序",
+              "两者如何关联"
+            ],
+            "requested_output_form": "relation",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "原始来源",
+          "转载"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-ac29e8f175235c34b0f219b1c9af5ae3",
+          "original_query": "梳理同一事件从原始来源到转载的传播关系及先后顺序，并说明两者如何关联",
+          "protected_terms": [
+            "原始来源",
+            "转载"
+          ],
+          "intent_signals": [
+            "relation"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "relation",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1795,
+        "completion_tokens": 208,
+        "total_tokens": 2003
+      },
+      "latency_seconds": 1.473,
+      "error": null
+    },
+    {
+      "case_id": "blind-014",
+      "query": "先比较 Atlas 3 与 Atlas 3.2 的能力差异，再定位两条对应记录并给出原始链接",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "比较 Atlas 3 与 Atlas 3.2 的能力差异"
+            ],
+            "requested_output_form": "comparison",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "定位两条对应记录并给出原始链接"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "descriptive"
+          }
+        ],
+        "protected_spans": [
+          "Atlas 3",
+          "Atlas 3.2"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-ffef1edc513c5f538bcb65724b467787",
+          "original_query": "先比较 Atlas 3 与 Atlas 3.2 的能力差异，再定位两条对应记录并给出原始链接",
+          "protected_terms": [
+            "Atlas 3",
+            "Atlas 3.2"
+          ],
+          "intent_signals": [
+            "comparison",
+            "navigation"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "item_navigation"
+          ],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "item_navigation",
+              "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+              "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+              "prompt_contract_id": null,
+              "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+              "requested_output_form": "item_disambiguation",
+              "locator_kind": "descriptive",
+              "route_confidence": 0.65,
+              "ambiguities": [
+                "item locator may match multiple records"
+              ],
+              "output_schema_id": "atr.answer/navigation/1.0",
+              "budget_profile_id": "atr.budget/deterministic/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1800,
+        "completion_tokens": 262,
+        "total_tokens": 2062
+      },
+      "latency_seconds": 1.771,
+      "error": null
+    },
+    {
+      "case_id": "blind-015",
+      "query": "先定位左侧那条关于端侧智能的记录，再解释它与右侧同主题记录的差异；如果无法确定左右指代就先问我",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "左侧那条关于端侧智能的记录"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "descriptive"
+          },
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "解释它与右侧同主题记录的差异"
+            ],
+            "requested_output_form": "explanation",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "左侧",
+          "右侧",
+          "端侧智能",
+          "同主题"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": [
+          "左侧那条关于端侧智能的记录",
+          "右侧同主题记录"
+        ]
+      },
+      "envelope": {
+        "status": "clarification_required",
+        "contract": null,
+        "reasons": [
+          "unresolved references: 左侧那条关于端侧智能的记录, 右侧同主题记录"
+        ]
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "dropped_non_query_protected_spans": [],
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1821,
+        "completion_tokens": 269,
+        "total_tokens": 2090
+      },
+      "latency_seconds": 1.942,
+      "error": null
+    }
+  ],
+  "freeze_manifest_sha256": "9142b3bd95a6de19370d6c7677b5c9d27eb8fdb59a0debac927283f971916866",
+  "frozen_runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  }
+}

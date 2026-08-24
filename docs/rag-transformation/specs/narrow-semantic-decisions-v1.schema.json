@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-trend-radar.local/schemas/narrow-semantic-decisions-v1.schema.json",
+  "title": "Narrow Semantic Decisions v1",
+  "description": "Route-neutral semantic facts. Route and policy fields are forbidden.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dimensions",
+    "protected_spans",
+    "item_locator_precision",
+    "unresolved_reference_spans",
+    "resolved_references"
+  ],
+  "properties": {
+    "schema_version": {"const": "atr.semantic-decisions/1.0"},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_lookup",
+        "recent_update_set",
+        "cross_time_or_entity_structure",
+        "truth_assessable_claim",
+        "explanation_or_comparison"
+      ],
+      "properties": {
+        "item_lookup": {"$ref": "#/$defs/judgment"},
+        "recent_update_set": {"$ref": "#/$defs/judgment"},
+        "cross_time_or_entity_structure": {"$ref": "#/$defs/judgment"},
+        "truth_assessable_claim": {"$ref": "#/$defs/judgment"},
+        "explanation_or_comparison": {"$ref": "#/$defs/judgment"}
+      }
+    },
+    "protected_spans": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "item_locator_precision": {"enum": ["none", "partial", "exact"]},
+    "unresolved_reference_spans": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "resolved_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["literal_span", "item_id"],
+        "properties": {
+          "literal_span": {"type": "string", "minLength": 1},
+          "item_id": {"type": "string", "pattern": "^ATR-\\d{8}-[A-Z0-9]{6}$"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "judgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "evidence_spans"],
+      "properties": {
+        "state": {"enum": ["present", "absent", "uncertain"]},
+        "evidence_spans": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,465 @@
+{
+  "generated_at": "2026-08-10T12:24:46.020760+00:00",
+  "dataset_id": "gateway-canary-2026-08-05",
+  "purpose": "Gateway Canary: functional/no-regression gate before broader integration",
+  "scope_limit": "Vector + lexical index only; does not validate LLM answers, graph retrieval, external search, or human relevance.",
+  "target_snapshot": {
+    "latest_corpus_date": "2026-08-05"
+  },
+  "observed_snapshot": {
+    "vector": {
+      "latest_corpus_date": "2026-08-05",
+      "document_count": 6098,
+      "corpus_revision": ""
+    },
+    "lexical": {
+      "latest_corpus_date": "2026-08-05",
+      "document_count": 3287
+    }
+  },
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "gate_passed": true
+  },
+  "rows": [
+    {
+      "id": "C01",
+      "query": "最近有什么热门趋势？",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "min_records": true,
+        "unique_citation_ids": true,
+        "unique_sources": true,
+        "source_cap": true,
+        "no_empty_regression": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "trend_discovery",
+        "error_code": "",
+        "elapsed_ms": 152.5,
+        "trace": {
+          "path": "trend_discovery",
+          "candidate_count": 100,
+          "deduplicated_candidate_count": 78,
+          "returned_count": 5
+        },
+        "records": [
+          {
+            "citation_id": "6e87c64142e471682323d2c22f7ce5c4",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Introducing The Openai Economic Research Exchange",
+            "local_url": "#2026-08-05/ai-topic-radar/item/6e87c64142e471682323d2c22f7ce5c4",
+            "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/"
+          },
+          {
+            "citation_id": "5f5ec226e826bcbe9a9ac5549a6f82d4",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Learn Teach Chatgpt Work Codex",
+            "local_url": "#2026-08-05/ai-topic-radar/item/5f5ec226e826bcbe9a9ac5549a6f82d4",
+            "url": "https://openai.com/index/learn-teach-chatgpt-work-codex/"
+          },
+          {
+            "citation_id": "9424cb9dcf1f9206993ac6b0418e2dbc",
+            "date": "2026-08-04",
+            "source": "Anthropic (Claude)",
+            "title": "Introducing Claude for Nonprofits",
+            "local_url": "#2026-08-04/ai-topic-radar/item/9424cb9dcf1f9206993ac6b0418e2dbc",
+            "url": "https://www.anthropic.com/news/claude-for-nonprofits"
+          },
+          {
+            "citation_id": "57e302d60a0eb41c0ca71aadc8d4802e",
+            "date": "2026-08-05",
+            "source": "Anthropic (Claude)",
+            "title": "Tino Cuellar joins Anthropic as Chief Global Affairs Officer",
+            "local_url": "#2026-08-05/ai-topic-radar/item/57e302d60a0eb41c0ca71aadc8d4802e",
+            "url": "https://www.anthropic.com/news/tino-cuellar"
+          },
+          {
+            "citation_id": "f61e872e8a15d6959024f0a7ab29e386",
+            "date": "2026-08-05",
+            "source": "Product Hunt",
+            "title": "Airtop for Google Ads Automation",
+            "local_url": "#2026-08-05/ai-topic-radar/item/f61e872e8a15d6959024f0a7ab29e386",
+            "url": "https://www.producthunt.com/r/JGYVC4OPVU532G"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "2026-08-01/topic-pool/6",
+            "date": "2026-08-01",
+            "source": "Product Hunt",
+            "title": "Pally",
+            "local_url": "",
+            "url": "https://www.producthunt.com/r/O2GO374S5UU2NW?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29"
+          },
+          {
+            "citation_id": "2026-08-04/topic-pool/49",
+            "date": "2026-08-04",
+            "source": "InfoQ 中国",
+            "title": "翁荔被爆重返OpenAI！两天前因身体原因从Thinking Machines Lab离职",
+            "local_url": "",
+            "url": "https://www.infoq.cn/article/im3GxWtxYPZpkodNRgVQ"
+          },
+          {
+            "citation_id": "2026-07-30/topic-pool/53",
+            "date": "2026-07-30",
+            "source": "36kr",
+            "title": "让AI先吃，这个国民级健康难题有解了",
+            "local_url": "",
+            "url": "<![CDATA[https://36kr.com/p/3916800672656773?f=rss]]>"
+          },
+          {
+            "citation_id": "2026-08-04/topic-pool/53",
+            "date": "2026-08-04",
+            "source": "InfoQ 中国",
+            "title": "AI浪潮中，如何定义自己的“确定性”之旅？",
+            "local_url": "",
+            "url": "https://www.infoq.cn/article/PVdaiz9gRseK6wx54ajX"
+          },
+          {
+            "citation_id": "2026-08-01/topic-pool/0",
+            "date": "2026-08-01",
+            "source": "OpenAI",
+            "title": "Building Abundant Intelligence",
+            "local_url": "",
+            "url": "https://openai.com/index/building-abundant-intelligence/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "query": "Apple Is Getting This Wrong",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "expected_top_result": true,
+        "stable_local_url": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "item_navigation",
+        "error_code": "",
+        "elapsed_ms": 15.98,
+        "trace": {
+          "path": "navigator",
+          "candidate_count": 2
+        },
+        "records": [
+          {
+            "citation_id": "30e52f96d337d8dc2c30327f22a8225c",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Apple Is Getting This Wrong",
+            "local_url": "#2026-08-05/ai-topic-radar/item/30e52f96d337d8dc2c30327f22a8225c",
+            "url": "https://openai.com/index/apple-is-getting-this-wrong/"
+          },
+          {
+            "citation_id": "b87dff3bb25c73e96f51308bbda2c6e8",
+            "date": "2026-08-05",
+            "source": "开源中国",
+            "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
+            "local_url": "#2026-08-05/ai-topic-radar/item/b87dff3bb25c73e96f51308bbda2c6e8",
+            "url": "https://www.oschina.net/news/487756/apple-is-getting-this-wrong"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 4,
+        "records": [
+          {
+            "citation_id": "30e52f96d337d8dc2c30327f22a8225c",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Apple Is Getting This Wrong",
+            "local_url": "#2026-08-05/ai-topic-radar/item/30e52f96d337d8dc2c30327f22a8225c",
+            "url": "https://openai.com/index/apple-is-getting-this-wrong/"
+          },
+          {
+            "citation_id": "b87dff3bb25c73e96f51308bbda2c6e8",
+            "date": "2026-08-05",
+            "source": "开源中国",
+            "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
+            "local_url": "#2026-08-05/ai-topic-radar/item/b87dff3bb25c73e96f51308bbda2c6e8",
+            "url": "https://www.oschina.net/news/487756/apple-is-getting-this-wrong"
+          },
+          {
+            "citation_id": "2026-07-06/topic-pool/33",
+            "date": "2026-07-06",
+            "source": "Hacker News",
+            "title": "Apple sells me a MacBook to deliver $1700; cancels 5 days later quoting $2000?",
+            "local_url": "",
+            "url": "https://news.ycombinator.com/item?id=48800210"
+          },
+          {
+            "citation_id": "2026-07-26/topic-pool/41",
+            "date": "2026-07-26",
+            "source": "Hacker News",
+            "title": "Apple Is the King of AI and Nobody Knows It",
+            "local_url": "",
+            "url": "https://limitededitionjonathan.substack.com/p/apple-is-the-king-of-ai-and-nobody"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "query": "Introducing The Openai Economic Research Exchange",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "expected_top_result": true,
+        "stable_local_url": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "item_navigation",
+        "error_code": "",
+        "elapsed_ms": 13.53,
+        "trace": {
+          "path": "navigator",
+          "candidate_count": 1
+        },
+        "records": [
+          {
+            "citation_id": "6e87c64142e471682323d2c22f7ce5c4",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Introducing The Openai Economic Research Exchange",
+            "local_url": "#2026-08-05/ai-topic-radar/item/6e87c64142e471682323d2c22f7ce5c4",
+            "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 4,
+        "records": [
+          {
+            "citation_id": "6e87c64142e471682323d2c22f7ce5c4",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Introducing The Openai Economic Research Exchange",
+            "local_url": "#2026-08-05/ai-topic-radar/item/6e87c64142e471682323d2c22f7ce5c4",
+            "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/"
+          },
+          {
+            "citation_id": "2026-07-23/topic-pool/0",
+            "date": "2026-07-23",
+            "source": "OpenAI",
+            "title": "Introducing Openai Presence",
+            "local_url": "",
+            "url": "https://openai.com/index/introducing-openai-presence/"
+          },
+          {
+            "citation_id": "2026-05-29/topic-pool/12",
+            "date": "2026-05-29",
+            "source": "OpenAI",
+            "title": "Openai Frontier Governance Framework",
+            "local_url": "",
+            "url": "https://openai.com/index/openai-frontier-governance-framework/"
+          },
+          {
+            "citation_id": "2026-08-02/topic-pool/29",
+            "date": "2026-08-02",
+            "source": "Dev.to",
+            "title": "OpenAI Pricing Strategy Signal Points to a Broader Price and Intelligence Tradeoff",
+            "local_url": "",
+            "url": "https://dev.to/alifar/openai-pricing-strategy-signal-points-to-a-broader-price-and-intelligence-tradeoff-3i67"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "query": "AgentSky",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "expected_top_result": true,
+        "stable_local_url": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "item_navigation",
+        "error_code": "",
+        "elapsed_ms": 2.38,
+        "trace": {
+          "path": "navigator",
+          "candidate_count": 1
+        },
+        "records": [
+          {
+            "citation_id": "d08fdb9ad93d0f3feb4816d217b7792b",
+            "date": "2026-08-05",
+            "source": "Product Hunt",
+            "title": "AgentSky",
+            "local_url": "#2026-08-05/ai-topic-radar/item/d08fdb9ad93d0f3feb4816d217b7792b",
+            "url": "https://www.producthunt.com/r/VKQBZ233EK3JBM"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "d08fdb9ad93d0f3feb4816d217b7792b",
+            "date": "2026-08-05",
+            "source": "Product Hunt",
+            "title": "AgentSky",
+            "local_url": "#2026-08-05/ai-topic-radar/item/d08fdb9ad93d0f3feb4816d217b7792b",
+            "url": "https://www.producthunt.com/r/VKQBZ233EK3JBM"
+          },
+          {
+            "citation_id": "2026-08-05/topic-pool/6",
+            "date": "2026-08-05",
+            "source": "Product Hunt",
+            "title": "AgentSky",
+            "local_url": "",
+            "url": "https://www.producthunt.com/r/VKQBZ233EK3JBM?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29"
+          },
+          {
+            "citation_id": "2026-07-17/topic-pool/4",
+            "date": "2026-07-17",
+            "source": "Product Hunt",
+            "title": "Agently",
+            "local_url": "",
+            "url": "https://www.producthunt.com/r/WSQCJVSEX7VIBA?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29"
+          },
+          {
+            "citation_id": "2026-07-25/topic-pool/13",
+            "date": "2026-07-25",
+            "source": "Product Hunt",
+            "title": "AgentLoop",
+            "local_url": "",
+            "url": "https://www.producthunt.com/r/56HF5BO4BC6T34?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29"
+          },
+          {
+            "citation_id": "2026-06-24/ai-topic-radar/3",
+            "date": "2026-06-24",
+            "source": "ai-topic-radar",
+            "title": "ai-topic-radar",
+            "local_url": "",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "min_records": true,
+        "no_empty_regression": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "evidence_research",
+        "error_code": "",
+        "elapsed_ms": 331.49,
+        "trace": {
+          "path": "evidence_search",
+          "channel_status": {
+            "lexical": "empty",
+            "vector": "success",
+            "graph": "disabled"
+          }
+        },
+        "records": [
+          {
+            "citation_id": "2026-05-20/topic-pool/13",
+            "date": "2026-05-20",
+            "source": "OpenAI",
+            "title": "Helping People When They Need It Most",
+            "local_url": "",
+            "url": "https://openai.com/index/helping-people-when-they-need-it-most/"
+          },
+          {
+            "citation_id": "2026-07-23/topic-pool/0",
+            "date": "2026-07-23",
+            "source": "OpenAI",
+            "title": "Introducing Openai Presence",
+            "local_url": "",
+            "url": "https://openai.com/index/introducing-openai-presence/"
+          },
+          {
+            "citation_id": "2026-05-20/topic-pool/10",
+            "date": "2026-05-20",
+            "source": "OpenAI",
+            "title": "Engineering",
+            "local_url": "",
+            "url": "https://openai.com/news/engineering/"
+          },
+          {
+            "citation_id": "2026-05-20/ai-agents/1",
+            "date": "2026-05-20",
+            "source": "ai-agents",
+            "title": "ai-agents",
+            "local_url": "",
+            "url": ""
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "2026-08-05/topic-pool/2",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Learn Teach Chatgpt Work Codex",
+            "local_url": "",
+            "url": "https://openai.com/index/learn-teach-chatgpt-work-codex/"
+          },
+          {
+            "citation_id": "2026-08-02/topic-pool/0",
+            "date": "2026-08-02",
+            "source": "OpenAI",
+            "title": "Ten Advances In Mathematics",
+            "local_url": "",
+            "url": "https://openai.com/index/ten-advances-in-mathematics/"
+          },
+          {
+            "citation_id": "2026-08-05/topic-pool/1",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Introducing The Openai Economic Research Exchange",
+            "local_url": "",
+            "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/"
+          },
+          {
+            "citation_id": "2026-08-01/topic-pool/0",
+            "date": "2026-08-01",
+            "source": "OpenAI",
+            "title": "Building Abundant Intelligence",
+            "local_url": "",
+            "url": "https://openai.com/index/building-abundant-intelligence/"
+          },
+          {
+            "citation_id": "2026-08-04/topic-pool/49",
+            "date": "2026-08-04",
+            "source": "InfoQ 中国",
+            "title": "翁荔被爆重返OpenAI！两天前因身体原因从Thinking Machines Lab离职",
+            "local_url": "",
+            "url": "https://www.infoq.cn/article/im3GxWtxYPZpkodNRgVQ"
+          }
+        ]
+      }
+    }
+  ]
+}

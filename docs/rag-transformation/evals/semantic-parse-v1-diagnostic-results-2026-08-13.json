@@ -1,0 +1,303 @@
+{
+  "experiment_id": "semantic-parse-v1-diagnostic-calibration-2026-08-13",
+  "evidence_boundary": "12-case diagnostic calibration selected from an unsealed dataset; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "temperature": 0,
+  "max_tokens": 1200,
+  "timeout_seconds": 45,
+  "max_retries": 0,
+  "hashes": {
+    "queries": "ab69e97de05d81a8a812d515755297355882f44a14c33bdfb5b4444de446b0d2",
+    "gold": "068c5b9830b488907f12190366c7d767f37acb3061176191d06de3fb20f0dad3",
+    "parse_schema": "f9801e26017312aa86643e1f6309badbe443f1cdb16fa4ac33b684fbe28cca78",
+    "prompt": "bc6746aa0f41e3609d5b4384cf6a0ff91a96352ba7c65790cab7ee39e003e80f"
+  },
+  "total": 12,
+  "parse_schema_semantic_valid": {
+    "correct": 0,
+    "total": 12,
+    "rate": 0.0
+  },
+  "route": {
+    "correct": 0,
+    "total": 12,
+    "accuracy": 0.0
+  },
+  "item_navigation": {
+    "correct": 0,
+    "total": 4,
+    "accuracy": 0.0
+  },
+  "old_route_baseline": {
+    "correct": 2,
+    "total": 12,
+    "accuracy": 0.1667,
+    "net_gain_cases": -2
+  },
+  "web_permission_accuracy": 0.0,
+  "protected_term_micro": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 36,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "ambiguity_detection": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 1,
+    "precision": 1.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "resolved_reference_accuracy": 0.0,
+  "latency_seconds": {
+    "mean": 9.915,
+    "p50": 9.688,
+    "p95": 11.259,
+    "max": 11.293
+  },
+  "reliability": {
+    "success": 0,
+    "failure": 12,
+    "success_rate": 0.0
+  },
+  "tokens": {
+    "prompt": 0,
+    "completion": 0,
+    "total": 0,
+    "cost_estimate_usd": null
+  },
+  "cases": [
+    {
+      "case_id": "RC2-SG-001",
+      "latency_seconds": 11.293,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-004",
+      "latency_seconds": 8.922,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-006",
+      "latency_seconds": 9.228,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-009",
+      "latency_seconds": 9.688,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-014",
+      "latency_seconds": 9.25,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-017",
+      "latency_seconds": 8.869,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-020",
+      "latency_seconds": 10.522,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": true
+    },
+    {
+      "case_id": "RC2-SG-026",
+      "latency_seconds": 9.18,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-031",
+      "latency_seconds": 9.753,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "JSONDecodeError: Unterminated string starting at: line 10 column 17 (char 209)",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-034",
+      "latency_seconds": 10.389,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-039",
+      "latency_seconds": 11.259,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": false
+    },
+    {
+      "case_id": "RC2-SG-050",
+      "latency_seconds": 10.625,
+      "parse": null,
+      "contract": null,
+      "usage": null,
+      "error": "SemanticParseViolation: schema violation: 'subjects' is a required property; 'claims' is a required property; 'locators' is a required property; 'references' is a required property; 'task_atoms' is a required property; 'confidence' is a required property; 'ambiguities' is a required property",
+      "checks": {
+        "route_schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting_routes": false,
+        "web_permission": false,
+        "protected_terms": false,
+        "ambiguity": false,
+        "resolved_references": false
+      },
+      "old_route_correct": true
+    }
+  ]
+}

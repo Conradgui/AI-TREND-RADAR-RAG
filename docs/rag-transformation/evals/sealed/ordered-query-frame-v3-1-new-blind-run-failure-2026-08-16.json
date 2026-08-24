@@ -1,0 +1,14 @@
+{
+  "schema_version": "atr.eval-run-failure/1.0",
+  "experiment_id": "ordered-query-frame-v3-1-new-blind-2026-08-16",
+  "status": "harness_failed_after_provider_execution",
+  "freeze_manifest_sha256": "6ec5fe7d03c423812dfb06ee74edc3fccba3de411a28ac908e32929ef7d57337",
+  "planned_calls": 20,
+  "persisted_predictions": 0,
+  "calls_likely_completed": 20,
+  "calls_likely_completed_basis": "The KeyError occurred while assembling the report after run_queries had exited its case loop; no per-case report was persisted, so this remains an inference rather than scored evidence.",
+  "error": "KeyError: dataset_id",
+  "root_cause": "The sealed Query document exposed shard_id while the runner read dataset_id only, and the identifier was accessed after provider calls instead of during preflight.",
+  "evidence_decision": "Invalid experiment. Never score or cite as model-quality evidence. Do not retry under the same experiment_id.",
+  "remediation": "Validate and resolve dataset_id or shard_id before any provider call; freeze a new harness-only experiment version."
+}

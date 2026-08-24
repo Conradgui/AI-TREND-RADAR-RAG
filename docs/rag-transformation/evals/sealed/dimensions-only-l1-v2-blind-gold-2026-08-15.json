@@ -1,0 +1,155 @@
+{
+  "dataset_id": "dimensions-only-l1-v2-blind-2026-08-15",
+  "cases": [
+    {
+      "case_id": "blind-001",
+      "expected_status": "resolved",
+      "expected_primary": "item_navigation",
+      "expected_supporting": [],
+      "expected_answer_mode": "exact_item",
+      "expected_protected_terms": ["ATR-20260814-A1B2C3", "标题", "原始链接"],
+      "expected_references": [{"reference_type": "item_id", "value": "ATR-20260814-A1B2C3", "origin": "conversation_context"}],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-002",
+      "expected_status": "ambiguous",
+      "expected_primary": "item_navigation",
+      "expected_supporting": [],
+      "expected_answer_mode": "item_disambiguation",
+      "expected_protected_terms": ["端侧智能", "左边列表", "昨天新增"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-003",
+      "expected_status": "resolved",
+      "expected_primary": "temporal_relation_exploration",
+      "expected_supporting": ["item_navigation"],
+      "expected_answer_mode": "explanation",
+      "expected_protected_terms": ["ATR-20260810-Z9Y8X7", "为什么值得关注"],
+      "expected_references": [{"reference_type": "item_id", "value": "ATR-20260810-Z9Y8X7", "origin": "conversation_context"}],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-004",
+      "expected_status": "resolved",
+      "expected_primary": "trend_discovery",
+      "expected_supporting": [],
+      "expected_answer_mode": "trend_clusters",
+      "expected_protected_terms": ["最近一周", "AI 芯片", "跨事件趋势", "联网查最新信息"],
+      "expected_references": [],
+      "expected_web_permission": "explicit"
+    },
+    {
+      "case_id": "blind-005",
+      "expected_status": "resolved",
+      "expected_primary": "trend_discovery",
+      "expected_supporting": [],
+      "expected_answer_mode": "important_news",
+      "expected_protected_terms": ["内部已收录内容", "最近 30 天", "开源模型", "禁止联网"],
+      "expected_references": [],
+      "expected_web_permission": "forbidden"
+    },
+    {
+      "case_id": "blind-006",
+      "expected_status": "resolved",
+      "expected_primary": "trend_discovery",
+      "expected_supporting": ["evidence_research"],
+      "expected_answer_mode": "trend_clusters",
+      "expected_protected_terms": ["趋势归纳", "最重要的一条新闻", "多模态", "不要联网"],
+      "expected_references": [],
+      "expected_web_permission": "forbidden"
+    },
+    {
+      "case_id": "blind-007",
+      "expected_status": "resolved",
+      "expected_primary": "temporal_relation_exploration",
+      "expected_supporting": [],
+      "expected_answer_mode": "timeline",
+      "expected_protected_terms": ["按时间顺序", "Atlas 3", "Atlas 3.2", "如何关联"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-008",
+      "expected_status": "resolved",
+      "expected_primary": "temporal_relation_exploration",
+      "expected_supporting": [],
+      "expected_answer_mode": "timeline",
+      "expected_protected_terms": ["过去三个月", "浏览器端 AI 助手", "演变", "核对日期"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-009",
+      "expected_status": "resolved",
+      "expected_primary": "claim_verification",
+      "expected_supporting": ["temporal_relation_exploration"],
+      "expected_answer_mode": "verification_verdict",
+      "expected_protected_terms": ["安全机制变化", "关系", "它", "阻止了所有提示注入", "联网核验"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-010",
+      "expected_status": "resolved",
+      "expected_primary": "claim_verification",
+      "expected_supporting": [],
+      "expected_answer_mode": "verification_verdict",
+      "expected_protected_terms": ["截至 2026 年 8 月 1 日", "Nova R2", "开源", "允许商用", "禁止联网"],
+      "expected_references": [],
+      "expected_web_permission": "forbidden"
+    },
+    {
+      "case_id": "blind-011",
+      "expected_status": "resolved",
+      "expected_primary": "claim_verification",
+      "expected_supporting": [],
+      "expected_answer_mode": "verification_verdict",
+      "expected_protected_terms": ["过去 90 天", "没有新的中文大模型发布", "联网查证"],
+      "expected_references": [],
+      "expected_web_permission": "explicit"
+    },
+    {
+      "case_id": "blind-012",
+      "expected_status": "resolved",
+      "expected_primary": "evidence_research",
+      "expected_supporting": [],
+      "expected_answer_mode": "comparison",
+      "expected_protected_terms": ["Graph RAG", "向量 RAG", "多跳关系问答", "成本", "主要取舍", "不需要联网"],
+      "expected_references": [],
+      "expected_web_permission": "forbidden"
+    },
+    {
+      "case_id": "blind-013",
+      "expected_status": "resolved",
+      "expected_primary": "evidence_research",
+      "expected_supporting": [],
+      "expected_answer_mode": "relation",
+      "expected_protected_terms": ["原始来源", "转载", "传播关系", "先后顺序", "如何关联"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-014",
+      "expected_status": "resolved",
+      "expected_primary": "evidence_research",
+      "expected_supporting": ["item_navigation"],
+      "expected_answer_mode": "comparison",
+      "expected_protected_terms": ["比较", "Atlas 3", "Atlas 3.2", "定位", "原始链接"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    },
+    {
+      "case_id": "blind-015",
+      "expected_status": "resolved",
+      "expected_primary": "item_navigation",
+      "expected_supporting": ["evidence_research"],
+      "expected_answer_mode": "item_disambiguation",
+      "expected_protected_terms": ["左侧", "端侧智能", "右侧", "产品更新", "评论摘录", "先问我"],
+      "expected_references": [],
+      "expected_web_permission": "on_demand"
+    }
+  ]
+}

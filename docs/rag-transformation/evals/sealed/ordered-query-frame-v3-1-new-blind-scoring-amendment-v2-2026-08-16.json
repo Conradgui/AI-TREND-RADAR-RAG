@@ -1,0 +1,37 @@
+{
+  "schema_version": "atr.eval-scoring-amendment/1.0",
+  "experiment_id": "ordered-query-frame-v3-1-new-blind-v2-2026-08-16",
+  "evidence_boundary": "Offline scoring amendment only. It does not alter or rerun the sealed DeepSeek predictions. The sole behavior change resolves the same dataset identifier from dataset_id or shard_id before alignment; metric formulas, Gold, thresholds, L1/L2 candidate behavior, and predictions are unchanged.",
+  "prediction_freeze_manifest_sha256": "cbd3cdcef105426209af93f35a35ba9c7f521b2c06afab37dde8d7a8c5f88d67",
+  "prediction_artifact_sha256": "534e5f1b7d79cdeca3b95bbb917f78b659907cff60bc41199d56ad64aece7399",
+  "query_sha256": "8e3bc1f285f1bff9a2a1a1aaaccde74459dba99bc4b639455a1809713ef052c5",
+  "gold_sha256": "7bae7a7e37d151065154b314f09f260bec512645e35cab4c4c114240938f9f0a",
+  "runner_artifacts": [
+    {"path": "docs/rag-transformation/specs/route-contract-v2.schema.json", "sha256": "9f70ca1a238a8dc747269187a0b710e736170d46309659124d3c436a2c638ec9"},
+    {"path": "rag/ordered_semantic_frame_v3.py", "sha256": "8fb880faa514ea93edcc4198b5990374d54c3fa9f47e943e7b24efe050bffd3f"},
+    {"path": "rag/query_understanding_v2.py", "sha256": "ad68202889367f8e07d463547204a8b2e1a48e5c153e4aef9d695ffa247a7f60"},
+    {"path": "rag/route_contract_validation.py", "sha256": "0a926b976c1c9cb0f18ea07791ced0d720ae61ee865a69a787232727b95a8088"}
+  ],
+  "scoring_artifacts": [
+    {"path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json", "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"},
+    {"path": "rag/score_ordered_frame_v3_layered.py", "sha256": "afca60c6f6504410bb21f64c8fda5680c669b2cb6ac3bc8079808e0d262cc042"}
+  ],
+  "unchanged_gate_thresholds": {
+    "delivery_sequence_exact_min": 85,
+    "primary_task_family_accuracy_min": 85,
+    "eligible_primary_family_accuracy_min": 80,
+    "output_form_accuracy_min": 85,
+    "web_permission_accuracy": 100,
+    "protected_span_char_micro_f1_min": 85,
+    "unresolved_span_char_precision_min": 80,
+    "unresolved_span_char_recall_min": 80,
+    "clarification_precision_min": 80,
+    "clarification_recall_min": 80,
+    "l3_legal_rate": 100,
+    "l3_projection_consistency": 100,
+    "product_complete_min": 80,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds_max": 8,
+    "max_latency_seconds_max": 12
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "contract_version": "event-contract-v2",
+  "semantic_extraction_fields": [
+    "content_kind",
+    "source_role",
+    "event_type",
+    "subject_entity_ids",
+    "mentioned_entity_ids"
+  ],
+  "source_fact_checks": [
+    "publication_date",
+    "temporal_confidence"
+  ],
+  "quality_metrics": {
+    "non_news_false_admission_count": 0,
+    "non_news_record_count": 5,
+    "non_news_false_admission_rate": 0.0
+  },
+  "record_count": 8,
+  "exact_record_count": 1,
+  "exact_record_rate": 0.125,
+  "fields": {
+    "content_kind": {
+      "correct": 5,
+      "total": 8,
+      "accuracy": 0.625,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260804-85AB50",
+          "expected": "news",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-D8E815",
+          "expected": "tutorial",
+          "observed": "developer_content",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-A15FC0",
+          "expected": "news",
+          "observed": "pricing_or_configuration",
+          "passed": false
+        }
+      ]
+    },
+    "source_role": {
+      "correct": 6,
+      "total": 8,
+      "accuracy": 0.75,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260804-D8E815",
+          "expected": "first_party",
+          "observed": "third_party",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-ADC1AB",
+          "expected": "first_party",
+          "observed": "third_party",
+          "passed": false
+        }
+      ]
+    },
+    "event_type": {
+      "correct": 6,
+      "total": 8,
+      "accuracy": 0.75,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260804-85AB50",
+          "expected": "model_release",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-F23B11",
+          "expected": "compatibility",
+          "observed": "model_release",
+          "passed": false
+        }
+      ]
+    },
+    "subject_entity_ids": {
+      "correct": 4,
+      "total": 8,
+      "accuracy": 0.5,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260804-85AB50",
+          "expected": [
+            "google"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-D8E815",
+          "expected": [
+            "google"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-ADC1AB",
+          "expected": [
+            "minimax"
+          ],
+          "observed": [
+            "minimax-h3"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-F23B11",
+          "expected": [
+            "comfy-org"
+          ],
+          "observed": [
+            "minimax-h3"
+          ],
+          "passed": false
+        }
+      ]
+    },
+    "mentioned_entity_ids": {
+      "correct": 1,
+      "total": 8,
+      "accuracy": 0.125,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260804-527D42",
+          "expected": [
+            "hugging-face",
+            "irregular",
+            "openai"
+          ],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-85AB50",
+          "expected": [
+            "gemini",
+            "google-deepmind"
+          ],
+          "observed": [
+            "google",
+            "google-deepmind"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-D8E815",
+          "expected": [
+            "google-cloud"
+          ],
+          "observed": [
+            "google"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-3011B9",
+          "expected": [
+            "anthropic",
+            "claude-code",
+            "codex",
+            "openai"
+          ],
+          "observed": [
+            "anthropic",
+            "claude-code",
+            "codex"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-A15FC0",
+          "expected": [
+            "benevity",
+            "blackbaud",
+            "candid",
+            "givingtuesday"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-ADC1AB",
+          "expected": [
+            "minimax-h3"
+          ],
+          "observed": [
+            "minimax"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260804-F23B11",
+          "expected": [
+            "comfyui",
+            "minimax",
+            "minimax-h3"
+          ],
+          "observed": [
+            "minimax"
+          ],
+          "passed": false
+        }
+      ]
+    },
+    "publication_date": {
+      "correct": 8,
+      "total": 8,
+      "accuracy": 1.0,
+      "errors": []
+    },
+    "temporal_confidence": {
+      "correct": 8,
+      "total": 8,
+      "accuracy": 1.0,
+      "errors": []
+    }
+  },
+  "extractor_sha256": "e69c012d8a64777680573fe04f618607ce5fe2b1fb4de366b533f2c27bbe1399"
+}

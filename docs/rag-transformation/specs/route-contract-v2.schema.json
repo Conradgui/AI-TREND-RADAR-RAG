@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-trend-radar.local/schemas/route-contract-v2.schema.json",
+  "title": "AI Trend Radar Route Contract v2",
+  "description": "One request-scoped contract shared by query rewriting, retrieval, answer construction and rendering.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "original_query",
+    "protected_terms",
+    "intent_signals",
+    "primary_task_family",
+    "supporting_task_families",
+    "answer_mode",
+    "route_confidence",
+    "ambiguities",
+    "delivery_contracts",
+    "resolved_references",
+    "supporting_contracts",
+    "subjects",
+    "topics",
+    "claims",
+    "temporal_constraint",
+    "source_constraint",
+    "web_permission",
+    "rewrite_policy_id",
+    "retrieval_policy_id",
+    "prompt_contract_id",
+    "answer_builder_contract_id",
+    "output_schema_id",
+    "budget_profile_id"
+  ],
+  "properties": {
+    "schema_version": {"const": "atr.route/2.0"},
+    "request_id": {"type": "string", "minLength": 1},
+    "original_query": {"type": "string", "minLength": 1},
+    "protected_terms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "intent_signals": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/intentSignal"}
+    },
+    "primary_task_family": {"$ref": "#/$defs/taskRoute"},
+    "supporting_task_families": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/taskRoute"}
+    },
+    "answer_mode": {"$ref": "#/$defs/answerMode"},
+    "route_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "ambiguities": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "delivery_contracts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_family", "requested_output_form", "locator_kind"],
+        "properties": {
+          "task_family": {"$ref": "#/$defs/taskRoute"},
+          "requested_output_form": {
+            "oneOf": [{"$ref": "#/$defs/answerMode"}, {"type": "null"}]
+          },
+          "locator_kind": {
+            "enum": ["atr_id", "full_title", "title_fragment", "descriptive", "none", null]
+          }
+        }
+      }
+    },
+    "resolved_references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["reference_type", "value", "origin"],
+        "properties": {
+          "reference_type": {"enum": ["item_id"]},
+          "value": {"type": "string", "pattern": "^ATR-\\d{8}-[A-Z0-9]{6}$"},
+          "origin": {"enum": ["conversation_context"]}
+        }
+      }
+    },
+    "supporting_contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["task_family", "rewrite_policy_id", "retrieval_policy_id", "prompt_contract_id", "answer_builder_contract_id", "output_schema_id", "budget_profile_id"],
+        "properties": {
+          "task_family": {"$ref": "#/$defs/taskRoute"},
+          "rewrite_policy_id": {"type": "string"},
+          "retrieval_policy_id": {"type": "string"},
+          "prompt_contract_id": {"type": ["string", "null"]},
+          "answer_builder_contract_id": {"type": ["string", "null"]},
+          "requested_output_form": {"enum": ["exact_item", "item_disambiguation"]},
+          "locator_kind": {"enum": ["atr_id", "full_title", "title_fragment", "descriptive"]},
+          "route_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "ambiguities": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "output_schema_id": {"type": "string"},
+          "budget_profile_id": {"type": "string"}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"task_family": {"const": "item_navigation"}}},
+            "then": {
+              "required": ["requested_output_form", "locator_kind", "route_confidence", "ambiguities"],
+              "properties": {
+                "prompt_contract_id": {"type": "null"},
+                "answer_builder_contract_id": {"const": "atr.answer_builder/item_navigation/1.0"},
+                "output_schema_id": {"const": "atr.answer/navigation/1.0"}
+              }
+            }
+          }
+        ]
+      }
+    },
+    "subjects": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "topics": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "claims": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "temporal_constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "value"],
+      "properties": {
+        "mode": {"enum": ["none", "latest", "relative_window", "absolute_range", "historical"]},
+        "value": {"type": ["string", "null"]},
+        "surface": {"type": "string", "minLength": 1},
+        "start": {"type": "string", "pattern": "^20\\d{2}-\\d{2}-\\d{2}$"},
+        "end": {"type": "string", "pattern": "^20\\d{2}-\\d{2}-\\d{2}$"}
+      }
+    },
+    "source_constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requested_sources", "official_first"],
+      "properties": {
+        "requested_sources": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "official_first": {"type": "boolean"}
+      }
+    },
+    "web_permission": {"enum": ["forbidden", "on_demand", "explicit"]},
+    "rewrite_policy_id": {"type": "string", "pattern": "^atr\\.rewrite/[a-z_]+/1\\.0$"},
+    "retrieval_policy_id": {"type": "string", "pattern": "^atr\\.retrieval/[a-z_]+/1\\.0$"},
+    "prompt_contract_id": {"type": ["string", "null"]},
+    "answer_builder_contract_id": {"type": ["string", "null"]},
+    "output_schema_id": {"type": "string", "pattern": "^atr\\.answer/[a-z_]+/1\\.0$"},
+    "budget_profile_id": {"type": "string", "pattern": "^atr\\.budget/[a-z_]+/1\\.0$"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "temporal_constraint": {
+            "properties": {"mode": {"const": "absolute_range"}}
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "temporal_constraint": {"required": ["surface", "start", "end"]}
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["primary_task_family"],
+        "properties": {"primary_task_family": {"const": "item_navigation"}}
+      },
+      "then": {
+        "properties": {
+          "answer_mode": {"enum": ["exact_item", "item_disambiguation"]},
+          "rewrite_policy_id": {"const": "atr.rewrite/item_navigation/1.0"},
+          "retrieval_policy_id": {"const": "atr.retrieval/item_navigation/1.0"},
+          "prompt_contract_id": {"type": "null"},
+          "answer_builder_contract_id": {"const": "atr.answer_builder/item_navigation/1.0"},
+          "output_schema_id": {"const": "atr.answer/navigation/1.0"},
+          "budget_profile_id": {"const": "atr.budget/deterministic/1.0"}
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["primary_task_family"],
+        "properties": {"primary_task_family": {"const": "trend_discovery"}}
+      },
+      "then": {
+        "properties": {
+          "answer_mode": {"enum": ["important_news", "trend_clusters"]},
+          "rewrite_policy_id": {"const": "atr.rewrite/trend_discovery/1.0"},
+          "retrieval_policy_id": {"const": "atr.retrieval/trend_discovery/1.0"},
+          "prompt_contract_id": {"const": "atr.prompt/trend_discovery/1.0"},
+          "answer_builder_contract_id": {"type": "null"},
+          "output_schema_id": {"const": "atr.answer/trend/1.0"},
+          "budget_profile_id": {"const": "atr.budget/standard/1.0"}
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["primary_task_family"],
+        "properties": {"primary_task_family": {"const": "temporal_relation_exploration"}}
+      },
+      "then": {
+        "properties": {
+          "answer_mode": {"enum": ["timeline", "relation", "longitudinal_trend", "cross_sectional_trend"]},
+          "rewrite_policy_id": {"const": "atr.rewrite/temporal_relation_exploration/1.0"},
+          "retrieval_policy_id": {"const": "atr.retrieval/temporal_relation_exploration/1.0"},
+          "prompt_contract_id": {"const": "atr.prompt/temporal_relation_exploration/1.0"},
+          "answer_builder_contract_id": {"type": "null"},
+          "output_schema_id": {"const": "atr.answer/temporal_relation/1.0"},
+          "budget_profile_id": {"const": "atr.budget/graph/1.0"}
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["primary_task_family"],
+        "properties": {"primary_task_family": {"const": "claim_verification"}}
+      },
+      "then": {
+        "properties": {
+          "answer_mode": {"const": "verification_verdict"},
+          "rewrite_policy_id": {"const": "atr.rewrite/claim_verification/1.0"},
+          "retrieval_policy_id": {"const": "atr.retrieval/claim_verification/1.0"},
+          "prompt_contract_id": {"const": "atr.prompt/claim_verification/1.0"},
+          "answer_builder_contract_id": {"type": "null"},
+          "output_schema_id": {"const": "atr.answer/verification/1.0"},
+          "budget_profile_id": {"const": "atr.budget/verification/1.0"}
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["primary_task_family"],
+        "properties": {"primary_task_family": {"const": "evidence_research"}}
+      },
+      "then": {
+        "properties": {
+          "answer_mode": {"enum": ["explanation", "comparison", "deep_research"]},
+          "rewrite_policy_id": {"const": "atr.rewrite/evidence_research/1.0"},
+          "retrieval_policy_id": {"const": "atr.retrieval/evidence_research/1.0"},
+          "prompt_contract_id": {"const": "atr.prompt/evidence_research/1.0"},
+          "answer_builder_contract_id": {"type": "null"},
+          "output_schema_id": {"const": "atr.answer/research/1.0"},
+          "budget_profile_id": {"const": "atr.budget/research/1.0"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "taskRoute": {
+      "enum": [
+        "item_navigation",
+        "trend_discovery",
+        "temporal_relation_exploration",
+        "claim_verification",
+        "evidence_research"
+      ]
+    },
+    "intentSignal": {
+      "enum": [
+        "navigation",
+        "recency",
+        "importance",
+        "trend",
+        "timeline",
+        "relation",
+        "verification",
+        "explanation",
+        "comparison",
+        "deep_research",
+        "source_specific",
+        "web_requested"
+      ]
+    },
+    "answerMode": {
+      "enum": [
+        "exact_item",
+        "item_disambiguation",
+        "important_news",
+        "trend_clusters",
+        "timeline",
+        "relation",
+        "longitudinal_trend",
+        "cross_sectional_trend",
+        "verification_verdict",
+        "explanation",
+        "comparison",
+        "deep_research"
+      ]
+    }
+  }
+}

@@ -1,0 +1,393 @@
+{
+  "contract_version": "event-contract-v2",
+  "semantic_extraction_fields": [
+    "content_kind",
+    "source_role",
+    "event_type",
+    "subject_entity_ids",
+    "mentioned_entity_ids"
+  ],
+  "source_fact_checks": [
+    "publication_date",
+    "temporal_confidence"
+  ],
+  "quality_metrics": {
+    "non_news_false_admission_count": 0,
+    "non_news_record_count": 12,
+    "non_news_false_admission_rate": 0.0
+  },
+  "record_count": 20,
+  "exact_record_count": 2,
+  "exact_record_rate": 0.1,
+  "fields": {
+    "content_kind": {
+      "correct": 12,
+      "total": 20,
+      "accuracy": 0.6,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260805-21C0FC",
+          "expected": "developer_content",
+          "observed": "research",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-0DFB81",
+          "expected": "news",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-F6AE03",
+          "expected": "news",
+          "observed": "research",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-50B28B",
+          "expected": "tutorial",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-D8027A",
+          "expected": "pricing_or_configuration",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-B7D95B",
+          "expected": "news",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-4BD430",
+          "expected": "news",
+          "observed": "unknown",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-C44644",
+          "expected": "roundup",
+          "observed": "unknown",
+          "passed": false
+        }
+      ]
+    },
+    "source_role": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": null,
+      "errors": []
+    },
+    "event_type": {
+      "correct": 5,
+      "total": 20,
+      "accuracy": 0.25,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260805-21C0FC",
+          "expected": "product_launch",
+          "observed": "research_release",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-AE6EDF",
+          "expected": "leadership",
+          "observed": "litigation",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-0DFB81",
+          "expected": "litigation",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-CF6FD7",
+          "expected": "compatibility",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-5BC1A6",
+          "expected": "unknown",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-229125",
+          "expected": "compatibility",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-453867",
+          "expected": "compatibility",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-F5EB48",
+          "expected": "unknown",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-595BA3",
+          "expected": "compatibility",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-25A146",
+          "expected": "unknown",
+          "observed": "product_launch",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-50B28B",
+          "expected": "documentation_or_tutorial",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-D8027A",
+          "expected": "pricing_or_access",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-B7D95B",
+          "expected": "litigation",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-4BD430",
+          "expected": "litigation",
+          "observed": "other",
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-C44644",
+          "expected": "unknown",
+          "observed": "other",
+          "passed": false
+        }
+      ]
+    },
+    "subject_entity_ids": {
+      "correct": 10,
+      "total": 20,
+      "accuracy": 0.5,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260805-793124",
+          "expected": [
+            "apple",
+            "openai"
+          ],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-0DFB81",
+          "expected": [
+            "apple",
+            "openai"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-229125",
+          "expected": [
+            "graphify-labs"
+          ],
+          "observed": [
+            "graphify"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-F6AE03",
+          "expected": [
+            "openai"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-3D5F31",
+          "expected": [
+            "article-author"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-50B28B",
+          "expected": [
+            "article-author"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-D8027A",
+          "expected": [
+            "openai"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-B7D95B",
+          "expected": [
+            "openai"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-4BD430",
+          "expected": [
+            "apple",
+            "openai"
+          ],
+          "observed": [],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-C44644",
+          "expected": [
+            "36kr"
+          ],
+          "observed": [],
+          "passed": false
+        }
+      ]
+    },
+    "mentioned_entity_ids": {
+      "correct": 10,
+      "total": 20,
+      "accuracy": 0.5,
+      "errors": [
+        {
+          "daily_item_id": "ATR-20260805-793124",
+          "expected": [],
+          "observed": [
+            "apple"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-21C0FC",
+          "expected": [],
+          "observed": [
+            "codex"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-0DFB81",
+          "expected": [],
+          "observed": [
+            "apple",
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-229125",
+          "expected": [
+            "anthropic",
+            "google"
+          ],
+          "observed": [
+            "anthropic",
+            "claude-code",
+            "codex",
+            "google"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-453867",
+          "expected": [
+            "anthropic"
+          ],
+          "observed": [
+            "anthropic",
+            "claude-code"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-595BA3",
+          "expected": [
+            "anthropic",
+            "google"
+          ],
+          "observed": [
+            "anthropic",
+            "claude-code",
+            "codex",
+            "google"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-F6AE03",
+          "expected": [],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-D8027A",
+          "expected": [],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-B7D95B",
+          "expected": [],
+          "observed": [
+            "openai"
+          ],
+          "passed": false
+        },
+        {
+          "daily_item_id": "ATR-20260805-4BD430",
+          "expected": [],
+          "observed": [
+            "apple",
+            "openai"
+          ],
+          "passed": false
+        }
+      ]
+    },
+    "publication_date": {
+      "correct": 20,
+      "total": 20,
+      "accuracy": 1.0,
+      "errors": []
+    },
+    "temporal_confidence": {
+      "correct": 20,
+      "total": 20,
+      "accuracy": 1.0,
+      "errors": []
+    }
+  },
+  "extractor_sha256": "e69c012d8a64777680573fe04f618607ce5fe2b1fb4de366b533f2c27bbe1399"
+}

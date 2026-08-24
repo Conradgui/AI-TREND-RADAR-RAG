@@ -1,0 +1,4577 @@
+{
+  "generated_at": "2026-08-10T11:22:09.028729+00:00",
+  "dataset_id": "retrieval-quality-2026-08-10-silver-v2",
+  "label_tier": "silver",
+  "needs_human_review": true,
+  "retrieval_mode": "vector-only",
+  "target_snapshot": {
+    "latest_corpus_date": "2026-08-10",
+    "corpus_revision": "1bbc3d98270bb5e4ffcbdde29debc049ced125575c5082e01208be9aeef1fcca"
+  },
+  "observed_snapshot": {
+    "latest_corpus_date": "2026-08-05",
+    "document_count": 6098,
+    "corpus_revision": ""
+  },
+  "snapshot_assessment": {
+    "status": "mismatched_directional",
+    "can_run": true,
+    "release_gate_eligible": false,
+    "mismatches": [
+      "latest_corpus_date"
+    ],
+    "target": {
+      "latest_corpus_date": "2026-08-10",
+      "corpus_revision": "1bbc3d98270bb5e4ffcbdde29debc049ced125575c5082e01208be9aeef1fcca"
+    },
+    "observed": {
+      "latest_corpus_date": "2026-08-05",
+      "document_count": 6098,
+      "corpus_revision": ""
+    }
+  },
+  "release_gate_eligible": false,
+  "summary": {
+    "query_count": 32,
+    "scoreable_query_count": 10,
+    "diagnostic_query_count": 22,
+    "not_a_release_gate": true,
+    "scoreable_count": 10,
+    "answerable_count": 10,
+    "unanswerable_count": 0,
+    "query_success_accuracy": 0.5,
+    "correct_rejection_rate": null,
+    "metric_cutoff_total": 66,
+    "macro": {
+      "precision_at_k": 0.26,
+      "recall_at_k": 0.2119,
+      "f1_at_k": 0.2265,
+      "mrr": 0.425,
+      "ndcg_at_k": 0.2928
+    },
+    "micro": {
+      "true_positive": 8,
+      "relevant_total": 54,
+      "precision_at_k": 0.1212,
+      "recall_at_k": 0.1481,
+      "f1_at_k": 0.1333
+    },
+    "by_task_family": {
+      "claim_verification": {
+        "query_count": 21,
+        "scoreable_count": 0,
+        "diagnostic_count": 21,
+        "answerable_count": 0,
+        "unanswerable_count": 0,
+        "query_success_accuracy": 0.0,
+        "correct_rejection_rate": null,
+        "metric_cutoff_total": 0,
+        "macro": {
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "f1_at_k": 0.0,
+          "mrr": 0.0,
+          "ndcg_at_k": 0.0
+        },
+        "micro": {
+          "true_positive": 0,
+          "relevant_total": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "f1_at_k": 0.0
+        }
+      },
+      "evidence_research": {
+        "query_count": 4,
+        "scoreable_count": 4,
+        "diagnostic_count": 0,
+        "answerable_count": 4,
+        "unanswerable_count": 0,
+        "query_success_accuracy": 0.5,
+        "correct_rejection_rate": null,
+        "metric_cutoff_total": 40,
+        "macro": {
+          "precision_at_k": 0.1,
+          "recall_at_k": 0.1215,
+          "f1_at_k": 0.1096,
+          "mrr": 0.5,
+          "ndcg_at_k": 0.187
+        },
+        "micro": {
+          "true_positive": 4,
+          "relevant_total": 31,
+          "precision_at_k": 0.1,
+          "recall_at_k": 0.129,
+          "f1_at_k": 0.1127
+        }
+      },
+      "item_navigation": {
+        "query_count": 4,
+        "scoreable_count": 4,
+        "diagnostic_count": 0,
+        "answerable_count": 4,
+        "unanswerable_count": 0,
+        "query_success_accuracy": 0.5,
+        "correct_rejection_rate": null,
+        "metric_cutoff_total": 6,
+        "macro": {
+          "precision_at_k": 0.5,
+          "recall_at_k": 0.375,
+          "f1_at_k": 0.4167,
+          "mrr": 0.5,
+          "ndcg_at_k": 0.5
+        },
+        "micro": {
+          "true_positive": 2,
+          "relevant_total": 5,
+          "precision_at_k": 0.3333,
+          "recall_at_k": 0.4,
+          "f1_at_k": 0.3636
+        }
+      },
+      "relation_exploration": {
+        "query_count": 1,
+        "scoreable_count": 0,
+        "diagnostic_count": 1,
+        "answerable_count": 0,
+        "unanswerable_count": 0,
+        "query_success_accuracy": 0.0,
+        "correct_rejection_rate": null,
+        "metric_cutoff_total": 0,
+        "macro": {
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "f1_at_k": 0.0,
+          "mrr": 0.0,
+          "ndcg_at_k": 0.0
+        },
+        "micro": {
+          "true_positive": 0,
+          "relevant_total": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "f1_at_k": 0.0
+        }
+      },
+      "trend_discovery": {
+        "query_count": 2,
+        "scoreable_count": 2,
+        "diagnostic_count": 0,
+        "answerable_count": 2,
+        "unanswerable_count": 0,
+        "query_success_accuracy": 0.5,
+        "correct_rejection_rate": null,
+        "metric_cutoff_total": 20,
+        "macro": {
+          "precision_at_k": 0.1,
+          "recall_at_k": 0.0667,
+          "f1_at_k": 0.08,
+          "mrr": 0.125,
+          "ndcg_at_k": 0.09
+        },
+        "micro": {
+          "true_positive": 2,
+          "relevant_total": 18,
+          "precision_at_k": 0.1,
+          "recall_at_k": 0.1111,
+          "f1_at_k": 0.1053
+        }
+      }
+    },
+    "unscored_reason_counts": {
+      "claim_labels_missing": 12,
+      "evidence_sufficiency_gate_missing": 8,
+      "task_contract_not_implemented": 2
+    }
+  },
+  "rows": [
+    {
+      "query_id": "RQ01",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 10,
+      "scored": true,
+      "relevant_total": 15,
+      "true_positive": 2,
+      "false_positive": 8,
+      "false_negative": 13,
+      "query_success": true,
+      "precision_at_k": 0.2,
+      "precision_at_returned": 0.2,
+      "recall_at_k": 0.1333,
+      "f1_at_k": 0.16,
+      "mrr": 0.25,
+      "ndcg_at_k": 0.1799,
+      "matched": [
+        {
+          "rank": 4,
+          "identity": "url:https://openai.com/index/apple-is-getting-this-wrong",
+          "title": "Apple Is Getting This Wrong",
+          "source": "OpenAI"
+        },
+        {
+          "rank": 5,
+          "identity": "url:https://openai.com/index/learn-teach-chatgpt-work-codex",
+          "title": "Learn Teach Chatgpt Work Codex",
+          "source": "OpenAI"
+        }
+      ],
+      "task_family": "trend_discovery",
+      "evaluation_contract": "discovery_ranking",
+      "relevance_set_status": "sampled",
+      "legacy_contract_inferred": false,
+      "query": "最近有什么热门趋势？",
+      "kind": "broad_recent_trend",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 28654.39,
+      "metadata_filter": {
+        "$and": [
+          {
+            "content_type": "topic_candidate"
+          },
+          {
+            "date": {
+              "$in": [
+                "2026-08-04",
+                "2026-08-05",
+                "2026-08-06",
+                "2026-08-07",
+                "2026-08-08",
+                "2026-08-09",
+                "2026-08-10"
+              ]
+            }
+          }
+        ]
+      },
+      "query_plan": {
+        "original_question": "最近有什么热门趋势？",
+        "intent": "recent_trend",
+        "retrieval_query": "最近有什么热门趋势？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 7,
+          "requires_date_filter": true
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "optional"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.6667,
+        "f1_at_k": 0.8
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "36kr",
+          "title": "东山精密涨停背后：36氪企业全情报捕捉市场机会",
+          "citation_id": "2026-08-05/topic-pool/55",
+          "excerpt": "来源：36kr\n发布时间：2026-08-04\n关键词：36kr, 中国AI",
+          "url": "<![CDATA[https://36kr.com/p/3924913931679877?f=rss]]>",
+          "score": 51,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.3237537145614624
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "InfoQ 中国",
+          "title": "翁荔被爆重返OpenAI！两天前因身体原因从Thinking Machines Lab离职",
+          "citation_id": "2026-08-04/topic-pool/49",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058549-03\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/im3GxWtxYPZpkodNRgVQ",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.3743093013763428
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "InfoQ 中国",
+          "title": "AI浪潮中，如何定义自己的“确定性”之旅？",
+          "citation_id": "2026-08-04/topic-pool/53",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058549-04\n关键词：infoq-cn, 企业动态, 服务革新",
+          "url": "https://www.infoq.cn/article/PVdaiz9gRseK6wx54ajX",
+          "score": 51,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.3673274517059326
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Apple Is Getting This Wrong",
+          "citation_id": "2026-08-05/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.3121602535247803
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Learn Teach Chatgpt Work Codex",
+          "citation_id": "2026-08-05/topic-pool/2",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/learn-teach-chatgpt-work-codex/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.30990469455718994
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Dev.to",
+          "title": "OpenAI divise par cinq le prix de Luna, pas ses coûts",
+          "citation_id": "2026-08-05/topic-pool/45",
+          "excerpt": "来源：Dev.to\n热度信号：0 / 0\n发布时间：2026-08-04\n关键词：devto, chatgpt, llm, news, openai",
+          "url": "https://dev.to/thibault_monteiro/openai-divise-par-cinq-le-prix-de-luna-pas-ses-couts-1gkn",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.3072103261947632
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Product Hunt",
+          "title": "Hand Wave",
+          "citation_id": "2026-08-05/topic-pool/12",
+          "excerpt": "来源：Product Hunt\n热度信号：142 / 11\n发布时间：2026-08-03\n关键词：iOS, Artificial Intelligence, Lifestyle",
+          "url": "https://www.producthunt.com/r/T6MK6FCAU4C57U?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 68,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.2759687900543213
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "Product Hunt",
+          "title": "Apoointly",
+          "citation_id": "2026-08-04/topic-pool/47",
+          "excerpt": "来源：Product Hunt\n热度信号：32 / 11\n发布时间：2026-08-02\n关键词：Productivity, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/J2Q2JBOA6KUE43?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 53,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.29500699043273926
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "掘金",
+          "title": "2026 了，前端转 AI 全栈我是这么学的 😍😍😍",
+          "citation_id": "2026-08-04/topic-pool/54",
+          "excerpt": "来源：掘金\n热度信号：97 / 3459\n发布时间：2026-08-04\n关键词：juejin, 前端, 后端, 面试",
+          "url": "https://juejin.cn/post/7667503991685857290",
+          "score": 51,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.013888888888888888,
+          "vector_similarity": 0.2591055631637573
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "掘金",
+          "title": "我用AI写了半年代码——回头看，这5个能力正在退化",
+          "citation_id": "2026-08-05/topic-pool/43",
+          "excerpt": "来源：掘金\n热度信号：18 / 1415\n发布时间：2026-08-05\n关键词：juejin, 前端, AI编程, JavaScript",
+          "url": "https://juejin.cn/post/7668535450420019236",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.013333333333333334,
+          "vector_similarity": 0.25409996509552
+        }
+      ]
+    },
+    {
+      "query_id": "RQ02",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 10,
+      "scored": true,
+      "relevant_total": 8,
+      "true_positive": 3,
+      "false_positive": 7,
+      "false_negative": 5,
+      "query_success": true,
+      "precision_at_k": 0.3,
+      "precision_at_returned": 0.3,
+      "recall_at_k": 0.375,
+      "f1_at_k": 0.3333,
+      "mrr": 1.0,
+      "ndcg_at_k": 0.5624,
+      "matched": [
+        {
+          "rank": 1,
+          "identity": "url:https://openai.com/index/learn-teach-chatgpt-work-codex",
+          "title": "Learn Teach Chatgpt Work Codex",
+          "source": "OpenAI"
+        },
+        {
+          "rank": 2,
+          "identity": "url:https://openai.com/index/introducing-the-openai-economic-research-exchange",
+          "title": "Introducing The Openai Economic Research Exchange",
+          "source": "OpenAI"
+        },
+        {
+          "rank": 7,
+          "identity": "url:https://openai.com/index/apple-is-getting-this-wrong",
+          "title": "Apple Is Getting This Wrong",
+          "source": "OpenAI"
+        }
+      ],
+      "task_family": "evidence_research",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "sampled",
+      "legacy_contract_inferred": false,
+      "query": "OpenAI 最近有哪些重要动态？",
+      "kind": "company_recent",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 19560.87,
+      "metadata_filter": {
+        "$and": [
+          {
+            "content_type": "topic_candidate"
+          },
+          {
+            "date": {
+              "$in": [
+                "2026-07-28",
+                "2026-07-29",
+                "2026-07-30",
+                "2026-07-31",
+                "2026-08-01",
+                "2026-08-02",
+                "2026-08-03",
+                "2026-08-04",
+                "2026-08-05",
+                "2026-08-06",
+                "2026-08-07",
+                "2026-08-08",
+                "2026-08-09",
+                "2026-08-10"
+              ]
+            }
+          }
+        ]
+      },
+      "query_plan": {
+        "original_question": "OpenAI 最近有哪些重要动态？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI 最近有哪些重要动态？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": true
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "optional"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": 0.8,
+        "recall_at_k": 1.0,
+        "f1_at_k": 0.8889
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Learn Teach Chatgpt Work Codex",
+          "citation_id": "2026-08-05/topic-pool/2",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/learn-teach-chatgpt-work-codex/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5803406238555908
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Introducing The Openai Economic Research Exchange",
+          "citation_id": "2026-08-05/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.5680844783782959
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-02",
+          "source": "OpenAI",
+          "title": "Ten Advances In Mathematics",
+          "citation_id": "2026-08-02/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-01\n关键词：openai, index",
+          "url": "https://openai.com/index/ten-advances-in-mathematics/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.6175575256347656
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Dev.to",
+          "title": "OpenAI divise par cinq le prix de Luna, pas ses coûts",
+          "citation_id": "2026-08-05/topic-pool/45",
+          "excerpt": "来源：Dev.to\n热度信号：0 / 0\n发布时间：2026-08-04\n关键词：devto, chatgpt, llm, news, openai",
+          "url": "https://dev.to/thibault_monteiro/openai-divise-par-cinq-le-prix-de-luna-pas-ses-couts-1gkn",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.013888888888888888,
+          "vector_similarity": 0.5244240164756775
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "InfoQ 中国",
+          "title": "翁荔被爆重返OpenAI！两天前因身体原因从Thinking Machines Lab离职",
+          "citation_id": "2026-08-04/topic-pool/49",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058549-03\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/im3GxWtxYPZpkodNRgVQ",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.5373861789703369
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-01",
+          "source": "OpenAI",
+          "title": "Building Abundant Intelligence",
+          "citation_id": "2026-08-01/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-31\n关键词：openai, index",
+          "url": "https://openai.com/index/building-abundant-intelligence/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.6025398373603821
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Apple Is Getting This Wrong",
+          "citation_id": "2026-08-05/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.013513513513513514,
+          "vector_similarity": 0.5132817029953003
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Hacker News",
+          "title": "Settlement with OpenAI for Discriminating Against U.S. Workers",
+          "citation_id": "2026-08-05/topic-pool/40",
+          "excerpt": "来源：Hacker News\n热度信号：28 / 7\n发布时间：2026-08-04\n关键词：community, discussion",
+          "url": "https://www.justice.gov/opa/pr/civil-rights-division-secures-settlement-openai-discriminating-against-us-workers",
+          "score": 59,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.012658227848101266,
+          "vector_similarity": 0.4789860248565674
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-28",
+          "source": "OpenAI",
+          "title": "How Openai Uses Codex",
+          "citation_id": "2026-07-28/topic-pool/5",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-28\n关键词：openai, business",
+          "url": "https://openai.com/business/guides-and-resources/how-openai-uses-codex/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.6036045551300049
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-03",
+          "source": "Product Hunt",
+          "title": "unquestion",
+          "citation_id": "2026-08-03/topic-pool/37",
+          "excerpt": "来源：Product Hunt\n热度信号：32 / 3\n发布时间：2026-08-01\n关键词：Marketing, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/RNZW4NSBZ6SAUE?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 54,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.012048192771084338,
+          "vector_similarity": 0.4569716453552246
+        }
+      ]
+    },
+    {
+      "query_id": "RQ03",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 10,
+      "scored": true,
+      "relevant_total": 8,
+      "true_positive": 0,
+      "false_positive": 10,
+      "false_negative": 8,
+      "query_success": false,
+      "precision_at_k": 0.0,
+      "precision_at_returned": 0.0,
+      "recall_at_k": 0.0,
+      "f1_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "matched": [],
+      "task_family": "evidence_research",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "sampled",
+      "legacy_contract_inferred": false,
+      "query": "Anthropic 和 Claude 最近有什么重要动态？",
+      "kind": "company_recent",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 26747.6,
+      "metadata_filter": {
+        "$and": [
+          {
+            "content_type": "topic_candidate"
+          },
+          {
+            "date": {
+              "$in": [
+                "2026-07-28",
+                "2026-07-29",
+                "2026-07-30",
+                "2026-07-31",
+                "2026-08-01",
+                "2026-08-02",
+                "2026-08-03",
+                "2026-08-04",
+                "2026-08-05",
+                "2026-08-06",
+                "2026-08-07",
+                "2026-08-08",
+                "2026-08-09",
+                "2026-08-10"
+              ]
+            }
+          }
+        ]
+      },
+      "query_plan": {
+        "original_question": "Anthropic 和 Claude 最近有什么重要动态？",
+        "intent": "product_update",
+        "retrieval_query": "Anthropic 和 Claude 最近有什么重要动态？",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": true
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "optional"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": 0.8,
+        "recall_at_k": 1.0,
+        "f1_at_k": 0.8889
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-01",
+          "source": "Hacker News",
+          "title": "Now Anthropic Is Saying Claude Escaped and Hacked Several Companies",
+          "citation_id": "2026-08-01/topic-pool/43",
+          "excerpt": "来源：Hacker News\n热度信号：15 / 4\n发布时间：2026-07-31\n关键词：community, discussion",
+          "url": "https://www.cnn.com/2026/07/30/tech/anthropic-ai-models-break-out-hack",
+          "score": 58,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5030192732810974
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "InfoQ 中国",
+          "title": "微软、Meta 同日交财报：小扎把现金流烧到只剩7.84亿美元，纳德拉靠 Azure 赚疯了",
+          "citation_id": "2026-08-04/topic-pool/48",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058549-03\n关键词：infoq-cn, 微软, 生成式 AI",
+          "url": "https://www.infoq.cn/article/cWloUAofMHCLHpvscihh",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.3750816583633423
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Product Hunt",
+          "title": "claudemon",
+          "citation_id": "2026-08-05/topic-pool/10",
+          "excerpt": "来源：Product Hunt\n热度信号：156 / 16\n发布时间：2026-08-03\n关键词：Developer Tools, Artificial Intelligence, GitHub, Games",
+          "url": "https://www.producthunt.com/r/GHBCQJ4B6XNFDC?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 70,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.0136986301369863,
+          "vector_similarity": 0.36917078495025635
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "InfoQ 中国",
+          "title": "AI浪潮中，如何定义自己的“确定性”之旅？",
+          "citation_id": "2026-08-04/topic-pool/53",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058549-04\n关键词：infoq-cn, 企业动态, 服务革新",
+          "url": "https://www.infoq.cn/article/PVdaiz9gRseK6wx54ajX",
+          "score": 51,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.013888888888888888,
+          "vector_similarity": 0.3693183660507202
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-31",
+          "source": "Product Hunt",
+          "title": "/mission for Claude Code",
+          "citation_id": "2026-07-31/topic-pool/6",
+          "excerpt": "来源：Product Hunt\n热度信号：311 / 37\n发布时间：2026-07-29\n关键词：Productivity, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/P3XBZI4J2DWVBF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.3837611675262451
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-30",
+          "source": "36kr",
+          "title": "让AI先吃，这个国民级健康难题有解了",
+          "citation_id": "2026-07-30/topic-pool/53",
+          "excerpt": "来源：36kr\n发布时间：2026-07-29\n关键词：36kr, 中国AI",
+          "url": "<![CDATA[https://36kr.com/p/3916800672656773?f=rss]]>",
+          "score": 52,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.400376558303833
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "36kr",
+          "title": "东山精密涨停背后：36氪企业全情报捕捉市场机会",
+          "citation_id": "2026-08-05/topic-pool/55",
+          "excerpt": "来源：36kr\n发布时间：2026-08-04\n关键词：36kr, 中国AI",
+          "url": "<![CDATA[https://36kr.com/p/3924913931679877?f=rss]]>",
+          "score": 51,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.012658227848101266,
+          "vector_similarity": 0.35116469860076904
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-29",
+          "source": "Hacker News",
+          "title": "Anthropeum – Where in the world, and when, does this human artifact belong?",
+          "citation_id": "2026-07-29/topic-pool/39",
+          "excerpt": "来源：Hacker News\n热度信号：151 / 46\n发布时间：2026-07-28\n关键词：community, discussion",
+          "url": "https://anthropeum.com/",
+          "score": 62,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.4333566427230835
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "InfoQ 中国",
+          "title": "翁荔被爆重返OpenAI！两天前因身体原因从Thinking Machines Lab离职",
+          "citation_id": "2026-08-04/topic-pool/49",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058549-03\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/im3GxWtxYPZpkodNRgVQ",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01282051282051282,
+          "vector_similarity": 0.3616645336151123
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-01",
+          "source": "Hacker News",
+          "title": "Anthropic's AI Claude escaped testing environment and hacked organizations",
+          "citation_id": "2026-08-01/topic-pool/45",
+          "excerpt": "来源：Hacker News\n热度信号：9 / 1\n发布时间：2026-07-31\n关键词：community, discussion",
+          "url": "https://www.theguardian.com/technology/2026/jul/30/anthropic-ai-claude-hack",
+          "score": 58,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014084507042253521,
+          "vector_similarity": 0.37062788009643555
+        }
+      ]
+    },
+    {
+      "query_id": "RQ04",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 2,
+      "scored": true,
+      "relevant_total": 9,
+      "true_positive": 1,
+      "false_positive": 1,
+      "false_negative": 8,
+      "query_success": true,
+      "precision_at_k": 0.1,
+      "precision_at_returned": 0.5,
+      "recall_at_k": 0.1111,
+      "f1_at_k": 0.1053,
+      "mrr": 1.0,
+      "ndcg_at_k": 0.1856,
+      "matched": [
+        {
+          "rank": 1,
+          "identity": "url:https://github.com/Graphify-Labs/graphify",
+          "title": "Graphify-Labs/graphify",
+          "source": "GitHub Search:rag"
+        }
+      ],
+      "task_family": "evidence_research",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "sampled",
+      "legacy_contract_inferred": false,
+      "query": "当前语料中有哪些 RAG 和向量数据库开源项目值得关注？",
+      "kind": "current_relevance",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 15414.25,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "当前语料中有哪些 RAG 和向量数据库开源项目值得关注？",
+        "intent": "recent_trend",
+        "retrieval_query": "当前语料中有哪些 RAG 和向量数据库开源项目值得关注？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 10,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": 0.9,
+        "recall_at_k": 1.0,
+        "f1_at_k": 0.9474
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-07",
+          "source": "GitHub Search:rag",
+          "title": "Graphify-Labs/graphify",
+          "citation_id": "2026-07-07/topic-pool/27",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：78844\n发布时间：2026-07-06\n关键词：Python, rag",
+          "url": "https://github.com/Graphify-Labs/graphify",
+          "score": 68,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.6092613339424133
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-25",
+          "source": "GitHub Search:vector-db",
+          "title": "NirDiamant/RAG_Techniques",
+          "citation_id": "2026-05-25/topic-pool/39",
+          "excerpt": "来源：GitHub Search:vector-db\n热度信号：27535\n发布时间：2026-05-23\n关键词：Jupyter Notebook, vector-db",
+          "url": "https://github.com/NirDiamant/RAG_Techniques",
+          "score": 70,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.6081236600875854
+        }
+      ]
+    },
+    {
+      "query_id": "RQ05",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 10,
+      "scored": true,
+      "relevant_total": 3,
+      "true_positive": 0,
+      "false_positive": 10,
+      "false_negative": 3,
+      "query_success": false,
+      "precision_at_k": 0.0,
+      "precision_at_returned": 0.0,
+      "recall_at_k": 0.0,
+      "f1_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "matched": [],
+      "task_family": "trend_discovery",
+      "evaluation_contract": "discovery_ranking",
+      "relevance_set_status": "sampled",
+      "legacy_contract_inferred": false,
+      "query": "最近 Product Hunt 上有哪些 MCP 产品？",
+      "kind": "source_and_topic",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 11367.76,
+      "metadata_filter": {
+        "$and": [
+          {
+            "content_type": "topic_candidate"
+          },
+          {
+            "source": "Product Hunt"
+          },
+          {
+            "date": {
+              "$in": [
+                "2026-07-28",
+                "2026-07-29",
+                "2026-07-30",
+                "2026-07-31",
+                "2026-08-01",
+                "2026-08-02",
+                "2026-08-03",
+                "2026-08-04",
+                "2026-08-05",
+                "2026-08-06",
+                "2026-08-07",
+                "2026-08-08",
+                "2026-08-09",
+                "2026-08-10"
+              ]
+            }
+          }
+        ]
+      },
+      "query_plan": {
+        "original_question": "最近 Product Hunt 上有哪些 MCP 产品？",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "最近 Product Hunt 上有哪些 MCP 产品？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [
+          "Product Hunt"
+        ],
+        "time_window": {
+          "label": "recent_corpus_first",
+          "days": 14,
+          "requires_date_filter": true
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": 0.3,
+        "recall_at_k": 1.0,
+        "f1_at_k": 0.4615
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-03",
+          "source": "Product Hunt",
+          "title": "Port22",
+          "citation_id": "2026-08-03/topic-pool/2",
+          "excerpt": "来源：Product Hunt\n热度信号：266 / 32\n发布时间：2026-08-01\n关键词：iOS, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/Z426QGPUISUCBK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.4887402653694153
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-03",
+          "source": "Product Hunt",
+          "title": "unquestion",
+          "citation_id": "2026-08-03/topic-pool/37",
+          "excerpt": "来源：Product Hunt\n热度信号：32 / 3\n发布时间：2026-08-01\n关键词：Marketing, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/RNZW4NSBZ6SAUE?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 54,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.4750669598579407
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "Product Hunt",
+          "title": "Apoointly",
+          "citation_id": "2026-08-04/topic-pool/47",
+          "excerpt": "来源：Product Hunt\n热度信号：32 / 11\n发布时间：2026-08-02\n关键词：Productivity, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/J2Q2JBOA6KUE43?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 53,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.42283451557159424
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-01",
+          "source": "Product Hunt",
+          "title": "Pally",
+          "citation_id": "2026-08-01/topic-pool/6",
+          "excerpt": "来源：Product Hunt\n热度信号：275 / 72\n发布时间：2026-07-30\n关键词：Productivity, Artificial Intelligence, iMessage Apps",
+          "url": "https://www.producthunt.com/r/O2GO374S5UU2NW?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.4905000329017639
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-01",
+          "source": "Product Hunt",
+          "title": "NINA",
+          "citation_id": "2026-08-01/topic-pool/7",
+          "excerpt": "来源：Product Hunt\n热度信号：334 / 72\n发布时间：2026-07-30\n关键词：Customer Success, User Experience, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/NKDYVHNHKYNZ5X?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 79,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.4334981441497803
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Product Hunt",
+          "title": "Qwen3.8-Max",
+          "citation_id": "2026-08-05/topic-pool/9",
+          "excerpt": "来源：Product Hunt\n热度信号：305 / 3\n发布时间：2026-08-03\n关键词：Productivity, API, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/52KS36OISXU6BD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 72,
+          "category": "模型与技术突破",
+          "fusion_score": 0.013157894736842105,
+          "vector_similarity": 0.35329967737197876
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "Product Hunt",
+          "title": "UniwebPay Skill",
+          "citation_id": "2026-08-04/topic-pool/25",
+          "excerpt": "来源：Product Hunt\n热度信号：126 / 8\n发布时间：2026-08-02\n关键词：Fintech, Payments, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/L6WCX6N5NNN56H?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 66,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.013513513513513514,
+          "vector_similarity": 0.37265676259994507
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "Product Hunt",
+          "title": "Bolcho AI",
+          "citation_id": "2026-08-04/topic-pool/27",
+          "excerpt": "来源：Product Hunt\n热度信号：112 / 11\n发布时间：2026-08-02\n关键词：Productivity, Artificial Intelligence, Tech",
+          "url": "https://www.producthunt.com/r/ARDYQ5LAOGAWQM?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 64,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.012987012987012988,
+          "vector_similarity": 0.3518807291984558
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "Product Hunt",
+          "title": "PraiseEngine",
+          "citation_id": "2026-08-04/topic-pool/41",
+          "excerpt": "来源：Product Hunt\n热度信号：39 / 4\n发布时间：2026-08-02\n关键词：Marketing, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/NZ4WMBTRNGZ6NB?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 54,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.01282051282051282,
+          "vector_similarity": 0.34850430488586426
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-31",
+          "source": "Product Hunt",
+          "title": "Bo AI",
+          "citation_id": "2026-07-31/topic-pool/13",
+          "excerpt": "来源：Product Hunt\n热度信号：146 / 14\n发布时间：2026-07-29\n关键词：Productivity, Artificial Intelligence, Virtual Assistants",
+          "url": "https://www.producthunt.com/r/HKCHIY3OYYT4LW?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 68,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.415127694606781
+        }
+      ]
+    },
+    {
+      "query_id": "RQ06",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 7,
+      "scored": true,
+      "relevant_total": 6,
+      "true_positive": 0,
+      "false_positive": 7,
+      "false_negative": 6,
+      "query_success": false,
+      "precision_at_k": 0.0,
+      "precision_at_returned": 0.0,
+      "recall_at_k": 0.0,
+      "f1_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "matched": [],
+      "task_family": "evidence_research",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "sampled",
+      "legacy_contract_inferred": false,
+      "query": "当前语料中有哪些 AI Agent 开源项目值得关注？",
+      "kind": "current_relevance",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 11438.6,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "当前语料中有哪些 AI Agent 开源项目值得关注？",
+        "intent": "recent_trend",
+        "retrieval_query": "当前语料中有哪些 AI Agent 开源项目值得关注？ agentic 智能体 workflow tool use",
+        "top_k": 10,
+        "topics": [
+          "AI Agent"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": 0.6,
+        "recall_at_k": 1.0,
+        "f1_at_k": 0.75
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-31",
+          "source": "Product Hunt",
+          "title": "Task Monki",
+          "citation_id": "2026-07-31/topic-pool/28",
+          "excerpt": "来源：Product Hunt\n热度信号：130 / 15\n发布时间：2026-07-29\n关键词：Task Management, Open Source, Developer Tools, GitHub",
+          "url": "https://www.producthunt.com/r/B5PN6WZY5KMHXV?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 66,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.63905930519104
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-28",
+          "source": "OpenAI",
+          "title": "A Practical Guide To Building Ai Agents",
+          "citation_id": "2026-07-28/topic-pool/3",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-28\n关键词：openai, business",
+          "url": "https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.623326301574707
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "GitHub Search:ai-agent",
+          "title": "CopilotKit/CopilotKit",
+          "citation_id": "2026-05-20/topic-pool/39",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：31553\n发布时间：2026-05-20\n关键词：TypeScript, ai-agent",
+          "url": "https://github.com/CopilotKit/CopilotKit",
+          "score": 74,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.6133307218551636
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-25",
+          "source": "Product Hunt",
+          "title": "AgentLoop",
+          "citation_id": "2026-07-25/topic-pool/13",
+          "excerpt": "来源：Product Hunt\n热度信号：106 / 17\n发布时间：2026-07-23\n关键词：Open Source, Developer Tools, Artificial Intelligence, GitHub, OpenAI Day",
+          "url": "https://www.producthunt.com/r/56HF5BO4BC6T34?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 71,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.6101097464561462
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-25",
+          "source": "GitHub Trending",
+          "title": "earendil-works/pi",
+          "citation_id": "2026-05-25/topic-pool/50",
+          "excerpt": "来源：GitHub Trending\n热度信号：456 / 0\n关键词：TypeScript",
+          "url": "https://github.com/earendil-works/pi",
+          "score": 66,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.6099591851234436
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-01",
+          "source": "Product Hunt",
+          "title": "Agent Mode by Receiptor AI",
+          "citation_id": "2026-07-01/topic-pool/8",
+          "excerpt": "来源：Product Hunt\n热度信号：489 / 98\n发布时间：2026-06-29\n关键词：Fintech, Artificial Intelligence, Accounting",
+          "url": "https://www.producthunt.com/r/DVSAWE2SN72E2P?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 79,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.609247088432312
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-27",
+          "source": "GitHub Search:rag",
+          "title": "FlowiseAI/Flowise",
+          "citation_id": "2026-05-27/topic-pool/37",
+          "excerpt": "来源：GitHub Search:rag\n热度信号：53105\n发布时间：2026-05-26\n关键词：TypeScript, rag",
+          "url": "https://github.com/FlowiseAI/Flowise",
+          "score": 72,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.6076675057411194
+        }
+      ]
+    },
+    {
+      "query_id": "RQ07",
+      "answerable": true,
+      "metric_cutoff": 1,
+      "returned": 1,
+      "scored": true,
+      "relevant_total": 2,
+      "true_positive": 1,
+      "false_positive": 0,
+      "false_negative": 1,
+      "query_success": true,
+      "precision_at_k": 1.0,
+      "precision_at_returned": 1.0,
+      "recall_at_k": 0.5,
+      "f1_at_k": 0.6667,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0,
+      "matched": [
+        {
+          "rank": 1,
+          "identity": "url:https://openai.com/index/apple-is-getting-this-wrong",
+          "title": "Apple Is Getting This Wrong",
+          "source": "OpenAI"
+        }
+      ],
+      "task_family": "item_navigation",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "complete",
+      "legacy_contract_inferred": false,
+      "query": "Apple Is Getting This Wrong 讲了什么？",
+      "kind": "exact_title",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "success",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 16592.27,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Apple Is Getting This Wrong 讲了什么？",
+        "intent": "general_search",
+        "retrieval_query": "Apple Is Getting This Wrong 讲了什么？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 1,
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.5,
+        "f1_at_k": 0.6667
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Apple Is Getting This Wrong",
+          "citation_id": "30e52f96d337d8dc2c30327f22a8225c",
+          "excerpt": "OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.",
+          "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+          "local_url": "#2026-08-05/ai-topic-radar/item/30e52f96d337d8dc2c30327f22a8225c",
+          "content_id": "a17e79c43f5cb6482e63c694076a9deb",
+          "occurrence_id": "30e52f96d337d8dc2c30327f22a8225c",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.03278688524590164,
+          "lexical_match_type": "exact_title",
+          "lexical_score": 0.0
+        }
+      ]
+    },
+    {
+      "query_id": "RQ08",
+      "answerable": true,
+      "metric_cutoff": 1,
+      "returned": 1,
+      "scored": true,
+      "relevant_total": 1,
+      "true_positive": 1,
+      "false_positive": 0,
+      "false_negative": 0,
+      "query_success": true,
+      "precision_at_k": 1.0,
+      "precision_at_returned": 1.0,
+      "recall_at_k": 1.0,
+      "f1_at_k": 1.0,
+      "mrr": 1.0,
+      "ndcg_at_k": 1.0,
+      "matched": [
+        {
+          "rank": 1,
+          "identity": "url:https://openai.com/index/introducing-the-openai-economic-research-exchange",
+          "title": "Introducing The Openai Economic Research Exchange",
+          "source": "OpenAI"
+        }
+      ],
+      "task_family": "item_navigation",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "complete",
+      "legacy_contract_inferred": false,
+      "query": "OpenAI Economic Research Exchange 是什么？",
+      "kind": "exact_title",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 28394.27,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "OpenAI Economic Research Exchange 是什么？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI Economic Research Exchange 是什么？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 1,
+        "precision_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "f1_at_k": 1.0
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Introducing The Openai Economic Research Exchange",
+          "citation_id": "2026-08-05/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.8657012581825256
+        }
+      ]
+    },
+    {
+      "query_id": "RQ09",
+      "answerable": true,
+      "metric_cutoff": 1,
+      "returned": 1,
+      "scored": true,
+      "relevant_total": 1,
+      "true_positive": 0,
+      "false_positive": 1,
+      "false_negative": 1,
+      "query_success": false,
+      "precision_at_k": 0.0,
+      "precision_at_returned": 0.0,
+      "recall_at_k": 0.0,
+      "f1_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "matched": [],
+      "task_family": "item_navigation",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "complete",
+      "legacy_contract_inferred": false,
+      "query": "Anthropic 的 Fable 5 safeguards 有什么更新？",
+      "kind": "exact_title",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 10409.74,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "Anthropic 的 Fable 5 safeguards 有什么更新？",
+        "intent": "product_update",
+        "retrieval_query": "Anthropic 的 Fable 5 safeguards 有什么更新？ Claude",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "optional"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 1,
+        "precision_at_k": 1.0,
+        "recall_at_k": 1.0,
+        "f1_at_k": 1.0
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-02",
+          "source": "InfoQ 中国",
+          "title": "Anthropic 突发 Sonnet 5，但大家更期待 Fable 5 和 Mythos 5 明天解禁",
+          "citation_id": "2026-07-02/topic-pool/55",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058467-10\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/S9zHYQqfFCXt8GoLlM5W",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.6890004873275757
+        }
+      ]
+    },
+    {
+      "query_id": "RQ10",
+      "answerable": true,
+      "metric_cutoff": 10,
+      "returned": 9,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "relation_exploration",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "task_contract_not_implemented",
+      "query": "OpenAI 与 Apple 的争议最近有什么进展？",
+      "kind": "event_cluster",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 41776.56,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "OpenAI 与 Apple 的争议最近有什么进展？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI 与 Apple 的争议最近有什么进展？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "optional"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "task_contract_not_implemented"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Apple Is Getting This Wrong",
+          "citation_id": "2026-08-05/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.6553033590316772
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Helping People When They Need It Most",
+          "citation_id": "2026-05-20/topic-pool/13",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/helping-people-when-they-need-it-most/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.6124350428581238
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Product Releases",
+          "citation_id": "2026-05-20/topic-pool/15",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/product-releases/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5781169533729553
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Engineering",
+          "citation_id": "2026-05-20/topic-pool/10",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/engineering/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.5738146901130676
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-20",
+          "source": "Hacker News",
+          "title": "OpenAI is breaking Silicon Valley unwritten code. That's why Apple is so angry",
+          "citation_id": "2026-07-20/topic-pool/35",
+          "excerpt": "来源：Hacker News\n热度信号：12 / 3\n发布时间：2026-07-19\n关键词：community, discussion",
+          "url": "https://www.businessinsider.com/openai-breaking-silicon-valley-unspoken-rule-apple-talent-2026-7",
+          "score": 58,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.5636727809906006
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-23",
+          "source": "OpenAI",
+          "title": "Introducing Openai Presence",
+          "citation_id": "2026-07-23/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-23\n关键词：openai, index",
+          "url": "https://openai.com/index/introducing-openai-presence/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.5616899728775024
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "开源中国",
+          "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
+          "citation_id": "2026-08-05/topic-pool/48",
+          "excerpt": "来源：开源中国\n发布时间：Wed, 05 Au\n关键词：oschina, 中国AI",
+          "url": "<![CDATA[https://www.oschina.net/news/487756/apple-is-getting-this-wrong]]>",
+          "score": 56,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.558006227016449
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-18",
+          "source": "Hacker News",
+          "title": "Apple targets dozens of OpenAI employees with legal letters",
+          "citation_id": "2026-07-18/topic-pool/1",
+          "excerpt": "来源：Hacker News\n热度信号：379 / 324\n发布时间：2026-07-17\n关键词：community, discussion",
+          "url": "https://www.ft.com/content/1b8c9d52-88a9-426b-ba47-f1811f859166",
+          "score": 87,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.5258206725120544
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-01",
+          "source": "Product Hunt",
+          "title": "Pally",
+          "citation_id": "2026-08-01/topic-pool/6",
+          "excerpt": "来源：Product Hunt\n热度信号：275 / 72\n发布时间：2026-07-30\n关键词：Productivity, Artificial Intelligence, iMessage Apps",
+          "url": "https://www.producthunt.com/r/O2GO374S5UU2NW?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.523367702960968
+        }
+      ]
+    },
+    {
+      "query_id": "RQ11",
+      "answerable": true,
+      "metric_cutoff": 3,
+      "returned": 3,
+      "scored": true,
+      "relevant_total": 1,
+      "true_positive": 0,
+      "false_positive": 3,
+      "false_negative": 1,
+      "query_success": false,
+      "precision_at_k": 0.0,
+      "precision_at_returned": 0.0,
+      "recall_at_k": 0.0,
+      "f1_at_k": 0.0,
+      "mrr": 0.0,
+      "ndcg_at_k": 0.0,
+      "matched": [],
+      "task_family": "item_navigation",
+      "evaluation_contract": "ranked_retrieval",
+      "relevance_set_status": "complete",
+      "legacy_contract_inferred": false,
+      "query": "Google DeepMind 最近在气旋预测上有什么突破？",
+      "kind": "exact_event",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 18770.32,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "Google DeepMind 最近在气旋预测上有什么突破？",
+        "intent": "recent_trend",
+        "retrieval_query": "Google DeepMind 最近在气旋预测上有什么突破？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "Google"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [
+          "Question asks for recent information; retrieval should prefer the freshest local corpus."
+        ],
+        "task_mode": "general",
+        "graph_requirement": "optional"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 3,
+        "precision_at_k": 0.3333,
+        "recall_at_k": 1.0,
+        "f1_at_k": 0.5
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hacker News",
+          "title": "US Scientist John Jumper to Leave Google DeepMind for Anthropic",
+          "citation_id": "2026-06-21/topic-pool/28",
+          "excerpt": "来源：Hacker News\n热度信号：75 / 10\n发布时间：2026-06-20\n关键词：community, discussion",
+          "url": "https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/",
+          "score": 63,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.588408887386322
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-03",
+          "source": "Dev.to",
+          "title": "Google VP of Technology says he’s given up on coding",
+          "citation_id": "2026-07-03/topic-pool/34",
+          "excerpt": "来源：Dev.to\n热度信号：20 / 0\n发布时间：2026-07-02\n关键词：devto, aie, ai, gemini, claude",
+          "url": "https://dev.to/dailycontext/google-vp-of-technology-says-hes-given-up-on-coding-4j6c",
+          "score": 61,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5519459247589111
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-04",
+          "source": "Google DeepMind",
+          "title": "The Podcast: Episode 7: Towards the future — Google DeepMind",
+          "citation_id": "2026-07-04/topic-pool/8",
+          "excerpt": "来源：Google DeepMind\n发布时间：2026-07-03\n关键词：deepmind, blog",
+          "url": "https://deepmind.google/blog/the-podcast-episode-7-towards-the-future/",
+          "score": 96,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5469767451286316
+        }
+      ]
+    },
+    {
+      "query_id": "RQ12",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 5,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "task_contract_not_implemented",
+      "query": "Quantum Banana GPT-99 在 2026 年 8 月发布了哪些功能？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 18366.12,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Quantum Banana GPT-99 在 2026 年 8 月发布了哪些功能？",
+        "intent": "general_search",
+        "retrieval_query": "Quantum Banana GPT-99 在 2026 年 8 月发布了哪些功能？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "not_limited",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "task_contract_not_implemented"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "万亿估值前夜，OpenAI 被曝一年亏约 2600 亿",
+          "citation_id": "2026-06-19/topic-pool/55",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058430-04\n关键词：infoq-cn, OpenAI, 生成式 AI",
+          "url": "https://www.infoq.cn/article/XHlhul82geYax30TcJbP",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.4917851686477661
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "OpenAI",
+          "title": "Gpt 5 6",
+          "citation_id": "2026-07-10/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-10\n关键词：openai, index",
+          "url": "https://openai.com/index/gpt-5-6/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.4772094488143921
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-23",
+          "source": "InfoQ 中国",
+          "title": "2026下半年中美AI创业机会：从技术红利到商业验证｜AICon上海",
+          "citation_id": "2026-06-23/topic-pool/46",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058445-01\n关键词：infoq-cn, 大会快讯",
+          "url": "https://www.infoq.cn/article/gk0VlPy3hufsH4zKTh2X",
+          "score": 55,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.4720422029495239
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-05",
+          "source": "InfoQ 中国",
+          "title": "拒绝天价账单！OpenAI、Anthropic 自研芯片，剑指英伟达“暴利”护城河",
+          "citation_id": "2026-07-05/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058473-04\n关键词：infoq-cn, 芯片&算力",
+          "url": "https://www.infoq.cn/article/MOqFJbvWYlJ9PXcfdfCC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.4485122561454773
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-22",
+          "source": "InfoQ 中国",
+          "title": "Gemini 联合负责人出走 OpenAI：Google 为什么总让 AI 天才感到挫败？",
+          "citation_id": "2026-06-22/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058432-04\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/3hkmF10X9ec1ujwwIjFW",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.43454229831695557
+        }
+      ]
+    },
+    {
+      "query_id": "HN01",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 9,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "OpenAI 在 2026 年发布的 Quantum Pineapple GPT-99 有哪些功能？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 20643.39,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "OpenAI 在 2026 年发布的 Quantum Pineapple GPT-99 有哪些功能？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI 在 2026 年发布的 Quantum Pineapple GPT-99 有哪些功能？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "OpenAI",
+          "title": "Gpt 5 6",
+          "citation_id": "2026-07-10/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-10\n关键词：openai, index",
+          "url": "https://openai.com/index/gpt-5-6/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5919820666313171
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Personal Finance Chatgpt",
+          "citation_id": "2026-05-20/topic-pool/16",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/personal-finance-chatgpt/",
+          "score": 86,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.549578070640564
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Product Releases",
+          "citation_id": "2026-05-20/topic-pool/15",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/product-releases/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5477292537689209
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-16",
+          "source": "OpenAI",
+          "title": "Unlocking Self Improvement Gpt Red",
+          "citation_id": "2026-07-16/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-16\n关键词：openai, index",
+          "url": "https://openai.com/index/unlocking-self-improvement-gpt-red/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5264900326728821
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Chatgpt Study Mode",
+          "citation_id": "2026-05-20/topic-pool/7",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/chatgpt-study-mode/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.5153413414955139
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "InfoQ 中国",
+          "title": "万亿估值前夜，OpenAI 被曝一年亏约 2600 亿",
+          "citation_id": "2026-06-19/topic-pool/55",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058430-04\n关键词：infoq-cn, OpenAI, 生成式 AI",
+          "url": "https://www.infoq.cn/article/XHlhul82geYax30TcJbP",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.5149482488632202
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Engineering",
+          "citation_id": "2026-05-20/topic-pool/10",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/engineering/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.5071014165878296
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "OpenAI",
+          "title": "Chatgpt For Your Most Ambitious Work",
+          "citation_id": "2026-07-10/topic-pool/2",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-10\n关键词：openai, index",
+          "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.5026969313621521
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Building More Helpful Chatgpt Experiences For Everyone",
+          "citation_id": "2026-05-20/topic-pool/11",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/building-more-helpful-chatgpt-experiences-for-everyone/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.48277294635772705
+        }
+      ]
+    },
+    {
+      "query_id": "HN02",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 8,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "Anthropic 的 Claude 12 Atlantis 模型如何控制海底机器人？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 15268.02,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Anthropic 的 Claude 12 Atlantis 模型如何控制海底机器人？",
+        "intent": "general_search",
+        "retrieval_query": "Anthropic 的 Claude 12 Atlantis 模型如何控制海底机器人？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Claude for Creative Work",
+          "citation_id": "2026-05-20/topic-pool/53",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-01\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/claude-for-creative-work",
+          "score": 73,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5669028162956238
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Anthropic Sydney office",
+          "citation_id": "2026-05-20/topic-pool/55",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-04-27\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/theo-hourmouzis-general-manager-australia-new-zealand",
+          "score": 73,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5162362456321716
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Widening the conversation on frontier AI",
+          "citation_id": "2026-05-20/topic-pool/20",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-20\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/widening-conversation-ai",
+          "score": 81,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5070959329605103
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Teaching Claude why",
+          "citation_id": "2026-05-20/topic-pool/19",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-20\n关键词：anthropic, research",
+          "url": "https://www.anthropic.com/research/teaching-claude-why",
+          "score": 81,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.4949967861175537
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-25",
+          "source": "InfoQ 中国",
+          "title": "Anthropic 解释了 Claude 如何构建自己的执行框架",
+          "citation_id": "2026-06-25/topic-pool/52",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058448-06\n关键词：infoq-cn, AI 工程化",
+          "url": "https://www.infoq.cn/article/DYIUw7abCW7ZYI1OER9i",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.49320000410079956
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Anthropic acquires Stainless",
+          "citation_id": "2026-05-20/topic-pool/21",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-19\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+          "score": 81,
+          "category": "模型与技术突破",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.4670611619949341
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Introducing Claude for Small Business",
+          "citation_id": "2026-05-20/topic-pool/34",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-14\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/claude-for-small-business",
+          "score": 78,
+          "category": "模型与技术突破",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.457161545753479
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-05",
+          "source": "InfoQ 中国",
+          "title": "拒绝天价账单！OpenAI、Anthropic 自研芯片，剑指英伟达“暴利”护城河",
+          "citation_id": "2026-07-05/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058473-04\n关键词：infoq-cn, 芯片&算力",
+          "url": "https://www.infoq.cn/article/MOqFJbvWYlJ9PXcfdfCC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.45234358310699463
+        }
+      ]
+    },
+    {
+      "query_id": "HN03",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 4,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "Google DeepMind 的 WeatherNext Mars 是否已经预测火星沙尘暴？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 19236.41,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Google DeepMind 的 WeatherNext Mars 是否已经预测火星沙尘暴？",
+        "intent": "general_search",
+        "retrieval_query": "Google DeepMind 的 WeatherNext Mars 是否已经预测火星沙尘暴？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "Google"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-04",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-07-04/ai-topic-radar/24",
+          "excerpt": "odcasts , Spotify , Deezer or your favourite podcast app by searching for “DeepMind: The Podcast”. Find out more about the themes in this episode: Wired: Inside DeepMind's epic mission to solve science's trickiest problem DeepMind blogs on ",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.506476879119873
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "Lobste.rs",
+          "title": "Google’s exponential path to climate-wrecking digital bloat",
+          "citation_id": "2026-07-10/topic-pool/52",
+          "excerpt": "来源：Lobste.rs\n热度信号：137 / 24\n发布时间：2026-07-07\n关键词：lobsters, ai",
+          "url": "https://ketanjoshi.co/2026/07/01/googles-exponential-path-to-climate-wrecking-digital-bloat/",
+          "score": 58,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.4786669611930847
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hacker News",
+          "title": "US Scientist John Jumper to Leave Google DeepMind for Anthropic",
+          "citation_id": "2026-06-21/topic-pool/28",
+          "excerpt": "来源：Hacker News\n热度信号：75 / 10\n发布时间：2026-06-20\n关键词：community, discussion",
+          "url": "https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/",
+          "score": 63,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.47742724418640137
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "GitHub Search:llm",
+          "title": "Significant-Gravitas/AutoGPT",
+          "citation_id": "2026-05-20/topic-pool/42",
+          "excerpt": "来源：GitHub Search:llm\n热度信号：184426\n发布时间：2026-05-20\n关键词：Python, llm",
+          "url": "https://github.com/Significant-Gravitas/AutoGPT",
+          "score": 74,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.43721872568130493
+        }
+      ]
+    },
+    {
+      "query_id": "HN04",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 10,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Apple 与 OpenAI 是否联合发布了 iPhone Codex Edition？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 21086.71,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "Apple 与 OpenAI 是否联合发布了 iPhone Codex Edition？",
+        "intent": "recent_trend",
+        "retrieval_query": "Apple 与 OpenAI 是否联合发布了 iPhone Codex Edition？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Work With Codex From Anywhere",
+          "citation_id": "2026-05-20/topic-pool/6",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/work-with-codex-from-anywhere/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.635913610458374
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Apple Is Getting This Wrong",
+          "citation_id": "2026-08-05/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.6021444797515869
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-28",
+          "source": "OpenAI",
+          "title": "How Openai Uses Codex",
+          "citation_id": "2026-07-28/topic-pool/5",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-28\n关键词：openai, business",
+          "url": "https://openai.com/business/guides-and-resources/how-openai-uses-codex/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5947504043579102
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-16",
+          "source": "Hacker News",
+          "title": "OpenAI Launches Hardware for Codex",
+          "citation_id": "2026-07-16/topic-pool/31",
+          "excerpt": "来源：Hacker News\n热度信号：6 / 1\n发布时间：2026-07-15\n关键词：community, discussion",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/965901/openai-hardware-codex-micro-launch",
+          "score": 65,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5762476325035095
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Product Releases",
+          "citation_id": "2026-05-20/topic-pool/15",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/product-releases/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.5682476758956909
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-08",
+          "source": "Product Hunt",
+          "title": "CodeMote",
+          "citation_id": "2026-07-08/topic-pool/21",
+          "excerpt": "来源：Product Hunt\n热度信号：155 / 57\n发布时间：2026-07-06\n关键词：iOS, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/ACPBRZ46RAWI7E?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 69,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.5669324398040771
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Dell Codex Enterprise Partnership",
+          "citation_id": "2026-05-20/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/dell-codex-enterprise-partnership/",
+          "score": 90,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.5665063858032227
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-03",
+          "source": "Product Hunt",
+          "title": "Port22",
+          "citation_id": "2026-08-03/topic-pool/2",
+          "excerpt": "来源：Product Hunt\n热度信号：266 / 32\n发布时间：2026-08-01\n关键词：iOS, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/Z426QGPUISUCBK?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.5641384124755859
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-22",
+          "source": "OpenAI",
+          "title": "Samsung Electronics Chatgpt Codex Deployment",
+          "citation_id": "2026-06-22/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-06-22\n关键词：openai, index",
+          "url": "https://openai.com/index/samsung-electronics-chatgpt-codex-deployment/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.5570970177650452
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "开源中国",
+          "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
+          "citation_id": "2026-08-05/topic-pool/48",
+          "excerpt": "来源：开源中国\n发布时间：Wed, 05 Au\n关键词：oschina, 中国AI",
+          "url": "<![CDATA[https://www.oschina.net/news/487756/apple-is-getting-this-wrong]]>",
+          "score": 56,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.5341679453849792
+        }
+      ]
+    },
+    {
+      "query_id": "HN05",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 10,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "Product Hunt 上的 BananaRAG Enterprise 获得了多少票？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 25436.16,
+      "metadata_filter": {
+        "$and": [
+          {
+            "content_type": "topic_candidate"
+          },
+          {
+            "source": "Product Hunt"
+          }
+        ]
+      },
+      "query_plan": {
+        "original_question": "Product Hunt 上的 BananaRAG Enterprise 获得了多少票？",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "Product Hunt 上的 BananaRAG Enterprise 获得了多少票？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 10,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [
+          "Product Hunt"
+        ],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-06",
+          "source": "Product Hunt",
+          "title": "LinkingMem - v0.3.0",
+          "citation_id": "2026-07-06/topic-pool/49",
+          "excerpt": "来源：Product Hunt\n热度信号：11 / 11\n发布时间：2026-07-04\n关键词：Productivity, Open Source, GitHub, Database",
+          "url": "https://www.producthunt.com/r/LII5R3HP2YQHYN?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 51,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5329715013504028
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-02",
+          "source": "Product Hunt",
+          "title": "Cleanlist AI",
+          "citation_id": "2026-08-02/topic-pool/2",
+          "excerpt": "来源：Product Hunt\n热度信号：301 / 29\n发布时间：2026-07-31\n关键词：Sales, SaaS, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/HHVI7RICWYWVFT?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5309298038482666
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-25",
+          "source": "Product Hunt",
+          "title": "Moxie Docs: Knowledgebases",
+          "citation_id": "2026-07-25/topic-pool/7",
+          "excerpt": "来源：Product Hunt\n热度信号：178 / 40\n发布时间：2026-07-23\n关键词：Developer Tools, Artificial Intelligence, GitHub, OpenAI Day",
+          "url": "https://www.producthunt.com/r/UHAW5ZYE4HXGBR?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5199925899505615
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-04",
+          "source": "Product Hunt",
+          "title": "Basedash Actions",
+          "citation_id": "2026-07-04/topic-pool/41",
+          "excerpt": "来源：Product Hunt\n热度信号：116 / 21\n发布时间：2026-07-02\n关键词：Artificial Intelligence, Data & Analytics, Business Intelligence",
+          "url": "https://www.producthunt.com/r/BRWMTFN3UIJ3UZ?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 65,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5058399438858032
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-08",
+          "source": "Product Hunt",
+          "title": "HirePilot",
+          "citation_id": "2026-07-08/topic-pool/41",
+          "excerpt": "来源：Product Hunt\n热度信号：94 / 103\n发布时间：2026-07-06\n关键词：Productivity, Artificial Intelligence, Career",
+          "url": "https://www.producthunt.com/r/W6G5H3YD6OKKYB?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 63,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.5043020844459534
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-29",
+          "source": "Product Hunt",
+          "title": "Webhound",
+          "citation_id": "2026-07-29/topic-pool/6",
+          "excerpt": "来源：Product Hunt\n热度信号：401 / 68\n发布时间：2026-07-27\n关键词：Artificial Intelligence, Search",
+          "url": "https://www.producthunt.com/r/TSDAGJRI6E3MV7?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.49898624420166016
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-28",
+          "source": "Product Hunt",
+          "title": "Atlas",
+          "citation_id": "2026-06-28/topic-pool/3",
+          "excerpt": "来源：Product Hunt\n热度信号：201 / 31\n发布时间：2026-06-26\n关键词：Marketing, Artificial Intelligence, Maker Tools",
+          "url": "https://www.producthunt.com/r/ZOTQUJNUZ5T2VX?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 75,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.4918348789215088
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-27",
+          "source": "Product Hunt",
+          "title": "Polygraph",
+          "citation_id": "2026-06-27/topic-pool/24",
+          "excerpt": "来源：Product Hunt\n热度信号：156 / 28\n发布时间：2026-06-25\n关键词：Developer Tools, Artificial Intelligence, Tech",
+          "url": "https://www.producthunt.com/r/U65YPKSE4GA2EW?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 70,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.48787635564804077
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-26",
+          "source": "Product Hunt",
+          "title": "Reach",
+          "citation_id": "2026-07-26/topic-pool/43",
+          "excerpt": "来源：Product Hunt\n热度信号：51 / 30\n发布时间：2026-07-24\n关键词：SEO, Artificial Intelligence, Search",
+          "url": "https://www.producthunt.com/r/MLOKC3Q2G43JG5?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 56,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.4807804822921753
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-25",
+          "source": "Product Hunt",
+          "title": "Basedash AI Kit",
+          "citation_id": "2026-07-25/topic-pool/11",
+          "excerpt": "来源：Product Hunt\n热度信号：116 / 8\n发布时间：2026-07-23\n关键词：Artificial Intelligence, Data & Analytics, Business Intelligence, OpenAI Day",
+          "url": "https://www.producthunt.com/r/TGECAQN6V64QWD?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 73,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.47191059589385986
+        }
+      ]
+    },
+    {
+      "query_id": "HN06",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 3,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "GitHub 项目 openai/telepathy-agent 的 star 数是多少？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 18293.8,
+      "metadata_filter": {
+        "$and": [
+          {
+            "content_type": "topic_candidate"
+          },
+          {
+            "source_family": "GitHub"
+          }
+        ]
+      },
+      "query_plan": {
+        "original_question": "GitHub 项目 openai/telepathy-agent 的 star 数是多少？",
+        "intent": "source_specific_discovery",
+        "retrieval_query": "GitHub 项目 openai/telepathy-agent 的 star 数是多少？",
+        "top_k": 8,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [
+          "GitHub"
+        ],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-26",
+          "source": "GitHub Search:ai-agent",
+          "title": "Panniantong/Agent-Reach",
+          "citation_id": "2026-07-26/topic-pool/12",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：60849\n发布时间：2026-07-25\n关键词：Python, ai-agent",
+          "url": "https://github.com/Panniantong/Agent-Reach",
+          "score": 68,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.588915228843689
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "GitHub Search:ai-agent",
+          "title": "Gitlawb/openclaude",
+          "citation_id": "2026-05-20/topic-pool/59",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：27315\n发布时间：2026-05-19\n关键词：TypeScript, ai-agent",
+          "url": "https://github.com/Gitlawb/openclaude",
+          "score": 72,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5885023474693298
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-22",
+          "source": "GitHub Search:ai-agent",
+          "title": "iOfficeAI/AionUi",
+          "citation_id": "2026-05-22/topic-pool/13",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：26125\n发布时间：2026-05-22\n关键词：TypeScript, ai-agent",
+          "url": "https://github.com/iOfficeAI/AionUi",
+          "score": 74,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.5553126335144043
+        }
+      ]
+    },
+    {
+      "query_id": "HN07",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 7,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Anthropic 是否收购了 Neo4j 并更名为 Claude Graph？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 17404.0,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Anthropic 是否收购了 Neo4j 并更名为 Claude Graph？",
+        "intent": "general_search",
+        "retrieval_query": "Anthropic 是否收购了 Neo4j 并更名为 Claude Graph？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-25",
+          "source": "InfoQ 中国",
+          "title": "Anthropic 解释了 Claude 如何构建自己的执行框架",
+          "citation_id": "2026-06-25/topic-pool/52",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058448-06\n关键词：infoq-cn, AI 工程化",
+          "url": "https://www.infoq.cn/article/DYIUw7abCW7ZYI1OER9i",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.590017557144165
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Claude for Creative Work",
+          "citation_id": "2026-05-20/topic-pool/53",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-01\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/claude-for-creative-work",
+          "score": 73,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5848701596260071
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Anthropic Sydney office",
+          "citation_id": "2026-05-20/topic-pool/55",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-04-27\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/theo-hourmouzis-general-manager-australia-new-zealand",
+          "score": 73,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.559931755065918
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Donating our open-source alignment tool",
+          "citation_id": "2026-05-20/topic-pool/50",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-07\n关键词：anthropic, research",
+          "url": "https://www.anthropic.com/research/donating-open-source-petri",
+          "score": 73,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.5271846652030945
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Anthropic acquires Stainless",
+          "citation_id": "2026-05-20/topic-pool/21",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-19\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/anthropic-acquires-stainless",
+          "score": 81,
+          "category": "模型与技术突破",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.5224096179008484
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "Anthropic (Claude)",
+          "title": "Widening the conversation on frontier AI",
+          "citation_id": "2026-05-20/topic-pool/20",
+          "excerpt": "来源：Anthropic (Claude)\n发布时间：2026-05-20\n关键词：anthropic, news",
+          "url": "https://www.anthropic.com/news/widening-conversation-ai",
+          "score": 81,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.5032206773757935
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-07-10/ai-topic-radar/3",
+          "excerpt": "Claude could do it faster?\" and give you the chance to talk it through with Claude. Within your dashboard, y | 标杆企业动向、商业格局与投融资 | A new way to reflect on how you use Claude 为什么值得关注？（大厂动作、商业化路径与竞争格局） | 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Anthrop",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.49917900562286377
+        }
+      ]
+    },
+    {
+      "query_id": "HN08",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 8,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "OpenAI 的 GPT Live 是否支持量子纠缠通信？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "success",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 13931.17,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "OpenAI 的 GPT Live 是否支持量子纠缠通信？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI 的 GPT Live 是否支持量子纠缠通信？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-11",
+          "source": "Product Hunt",
+          "title": "GPT-Live",
+          "citation_id": "5cc0aca5b003a83422e29e699e03142a",
+          "excerpt": "Full-duplex voice for ChatGPT",
+          "url": "https://www.producthunt.com/r/NOIPBXLXWJ62AP",
+          "local_url": "#2026-07-11/ai-topic-radar/item/5cc0aca5b003a83422e29e699e03142a",
+          "content_id": "86cfb9160cde153dac356b90f05564df",
+          "occurrence_id": "5cc0aca5b003a83422e29e699e03142a",
+          "score": 76,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.03278688524590164,
+          "lexical_match_type": "exact_title",
+          "lexical_score": 0.0
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-09",
+          "source": "OpenAI",
+          "title": "Introducing Gpt Live",
+          "citation_id": "2026-07-09/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-09\n关键词：openai, index",
+          "url": "https://openai.com/index/introducing-gpt-live/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.7686653137207031
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "OpenAI",
+          "title": "Gpt 5 6",
+          "citation_id": "2026-07-10/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-10\n关键词：openai, index",
+          "url": "https://openai.com/index/gpt-5-6/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.699802815914154
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Chatgpt Study Mode",
+          "citation_id": "2026-05-20/topic-pool/7",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/chatgpt-study-mode/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.6565178036689758
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-29",
+          "source": "Dev.to",
+          "title": "OpenAI Expands GPT-Live ChatGPT Voice to Enterprise Workspaces Worldwide",
+          "citation_id": "2026-07-29/topic-pool/38",
+          "excerpt": "来源：Dev.to\n热度信号：6 / 0\n发布时间：2026-07-28\n关键词：devto, ai, automation, tools, openai",
+          "url": "https://dev.to/alifar/openai-expands-gpt-live-chatgpt-voice-to-enterprise-workspaces-worldwide-1nme",
+          "score": 63,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.6287687420845032
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-28",
+          "source": "OpenAI",
+          "title": "Inside Gpt5 Our Best Model For Work",
+          "citation_id": "2026-07-28/topic-pool/7",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-28\n关键词：openai, business",
+          "url": "https://openai.com/business/guides-and-resources/inside-gpt5-our-best-model-for-work/",
+          "score": 91,
+          "category": "模型与技术突破",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.6118580102920532
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-04",
+          "source": "OpenAI",
+          "title": "Continuous Voice Interaction With Gpt Live",
+          "citation_id": "2026-08-04/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-03\n关键词：openai, index",
+          "url": "https://openai.com/index/continuous-voice-interaction-with-gpt-live/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.6087178587913513
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Building More Helpful Chatgpt Experiences For Everyone",
+          "citation_id": "2026-05-20/topic-pool/11",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/building-more-helpful-chatgpt-experiences-for-everyone/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.599008321762085
+        }
+      ]
+    },
+    {
+      "query_id": "HN09",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 4,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "DeepSeek-V9 Moonbase 的训练成本是多少？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 10038.29,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "DeepSeek-V9 Moonbase 的训练成本是多少？",
+        "intent": "general_search",
+        "retrieval_query": "DeepSeek-V9 Moonbase 的训练成本是多少？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-23",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-23/ai-topic-radar/23",
+          "excerpt": "eepseek-ai/DeepSeek-V4-Pro 为什么值得关注？（模型能力变化与技术路线） | 适合作为观察项：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：Hugging Face。 | 来源：Hugging Face<br>热度信号：5016 / 2421858<br>发布时间：2026-06-22<br>关键词：text-generation, transformers, safetensors, deepseek_v4, text-generatio",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5052188038825989
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-06",
+          "source": "Hacker News",
+          "title": "OpenAI-Compatible DeepSeek API – No Chinese Phone Required",
+          "citation_id": "2026-07-06/topic-pool/29",
+          "excerpt": "来源：Hacker News\n热度信号：4 / 0\n发布时间：2026-07-05\n关键词：community, discussion",
+          "url": "https://api.aifreeaistack.com",
+          "score": 57,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5030175447463989
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "Hugging Face",
+          "title": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+          "citation_id": "2026-08-05/topic-pool/38",
+          "excerpt": "来源：Hugging Face\n热度信号：476 / 111678\n发布时间：2026-08-03\n关键词：gguf, unsloth, deepseek_v4, deepseek, arxiv:2606.19348",
+          "url": "https://huggingface.co/unsloth/DeepSeek-V4-Flash-0731-GGUF",
+          "score": 60,
+          "category": "模型与技术突破",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.433038592338562
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-11",
+          "source": "Hugging Face",
+          "title": "unsloth/DeepSeek-V4-Flash-GGUF",
+          "citation_id": "2026-07-11/topic-pool/33",
+          "excerpt": "来源：Hugging Face\n热度信号：127 / 31895\n发布时间：2026-07-09\n关键词：gguf, deepseek_v4, unsloth, deepseek, arxiv:2606.19348",
+          "url": "https://huggingface.co/unsloth/DeepSeek-V4-Flash-GGUF",
+          "score": 60,
+          "category": "模型与技术突破",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.4263441562652588
+        }
+      ]
+    },
+    {
+      "query_id": "HN10",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 4,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "Meta 的 Llama Ocean 8 是否已经开源？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 8976.43,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Meta 的 Llama Ocean 8 是否已经开源？",
+        "intent": "general_search",
+        "retrieval_query": "Meta 的 Llama Ocean 8 是否已经开源？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-05",
+          "source": "InfoQ 中国",
+          "title": "拒绝天价账单！OpenAI、Anthropic 自研芯片，剑指英伟达“暴利”护城河",
+          "citation_id": "2026-07-05/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058473-04\n关键词：infoq-cn, 芯片&算力",
+          "url": "https://www.infoq.cn/article/MOqFJbvWYlJ9PXcfdfCC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5327872633934021
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "ai-agents",
+          "title": "ai-agents",
+          "citation_id": "2026-05-20/ai-agents/1",
+          "excerpt": "## OpenClaw 项目深度报告\n\n过去24小时无活动。\n\n---",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5144272446632385
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-23",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-23/ai-topic-radar/31",
+          "excerpt": "## 数据源状态与修复提示\n\n暂无失败或跳过的数据源。",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.5040347576141357
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-25",
+          "source": "InfoQ 中国",
+          "title": "2026下半年中美AI创业机会：从技术红利到商业验证｜AICon上海",
+          "citation_id": "2026-06-25/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058445-01\n关键词：infoq-cn, 大会快讯",
+          "url": "https://www.infoq.cn/article/gk0VlPy3hufsH4zKTh2X",
+          "score": 55,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.49847090244293213
+        }
+      ]
+    },
+    {
+      "query_id": "HN11",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 3,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Microsoft Copilot 是否在 2026 年推出了脑机接口插件？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 10974.35,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Microsoft Copilot 是否在 2026 年推出了脑机接口插件？",
+        "intent": "general_search",
+        "retrieval_query": "Microsoft Copilot 是否在 2026 年推出了脑机接口插件？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-10",
+          "source": "OpenAI",
+          "title": "Gpt 5 6 Preferred Model Microsoft 365 Copilot",
+          "citation_id": "2026-07-10/topic-pool/10",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-10\n关键词：openai, index",
+          "url": "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot/",
+          "score": 91,
+          "category": "模型与技术突破",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5929776430130005
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-27",
+          "source": "InfoQ 中国",
+          "title": "从 Copilot 到 Autopilot：微软发布常驻型企业智能体 Scout",
+          "citation_id": "2026-06-27/topic-pool/57",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058454-02\n关键词：infoq-cn, 微软, AI 工程化",
+          "url": "https://www.infoq.cn/article/btKbO3iHbVM3p5WOVtqJ",
+          "score": 56,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5559223294258118
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-27",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-07-27/ai-topic-radar/32",
+          "excerpt": "## 数据源普通状态提示\n\n- 官方内容源今日没有检测到新内容；首次运行后这是正常情况。",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.5489058494567871
+        }
+      ]
+    },
+    {
+      "query_id": "HN12",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 1,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "NVIDIA Blackwell Ultra 2 是否内置了 RAG 数据库？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 18971.77,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "NVIDIA Blackwell Ultra 2 是否内置了 RAG 数据库？",
+        "intent": "general_search",
+        "retrieval_query": "NVIDIA Blackwell Ultra 2 是否内置了 RAG 数据库？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 10,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-27",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-27/ai-topic-radar/13",
+          "excerpt": "raphify) | AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + ",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5911070108413696
+        }
+      ]
+    },
+    {
+      "query_id": "HN13",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 3,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "diagnostic_only",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "evidence_sufficiency_gate_missing",
+      "query": "Hugging Face 的 Space Elevator 模型榜单第一名是谁？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 5160.52,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Hugging Face 的 Space Elevator 模型榜单第一名是谁？",
+        "intent": "general_search",
+        "retrieval_query": "Hugging Face 的 Space Elevator 模型榜单第一名是谁？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "evidence_sufficiency_gate_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-28",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-28/ai-topic-radar/31",
+          "excerpt": "## 数据源修复提示\n\n- Hugging Face 获取失败；可检查 huggingface.co API 是否可访问。\n- Gitee 获取失败；可检查 gitee.com API 是否可访问。",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5499114394187927
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-05",
+          "source": "InfoQ 中国",
+          "title": "拒绝天价账单！OpenAI、Anthropic 自研芯片，剑指英伟达“暴利”护城河",
+          "citation_id": "2026-07-05/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058473-04\n关键词：infoq-cn, 芯片&算力",
+          "url": "https://www.infoq.cn/article/MOqFJbvWYlJ9PXcfdfCC",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.5382587909698486
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "ai-agents",
+          "title": "ai-agents",
+          "citation_id": "2026-05-20/ai-agents/1",
+          "excerpt": "## OpenClaw 项目深度报告\n\n过去24小时无活动。\n\n---",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.49939095973968506
+        }
+      ]
+    },
+    {
+      "query_id": "HN14",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 2,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "MCP 3.0 是否已经成为联合国官方智能体协议？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 2893.48,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "MCP 3.0 是否已经成为联合国官方智能体协议？",
+        "intent": "general_search",
+        "retrieval_query": "MCP 3.0 是否已经成为联合国官方智能体协议？ AI Agent agentic workflow tool use",
+        "top_k": 10,
+        "topics": [
+          "AI Agent"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-23",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-23/ai-topic-radar/27",
+          "excerpt": "Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents | 企业落地与行业应用 | activepieces/activepieces 为什么值得关注？（行业场景、落地成本与业务价值） | 适合进入今日选题池：适合从行业场景、落地成本和业务价值角度切入，来源：GitHub Search:ai-agent。 | 来源：GitHub Search:ai-agent<br>热度信号：22356<br>发布时间：",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.7113586664199829
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-21",
+          "source": "GitHub Search:ai-agent",
+          "title": "activepieces/activepieces",
+          "citation_id": "2026-05-21/topic-pool/30",
+          "excerpt": "来源：GitHub Search:ai-agent\n热度信号：22312\n发布时间：2026-05-21\n关键词：TypeScript, ai-agent",
+          "url": "https://github.com/activepieces/activepieces",
+          "score": 73,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.6863991022109985
+        }
+      ]
+    },
+    {
+      "query_id": "HN15",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 1,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "GraphRAG 是否在 2026 年取代了所有向量数据库？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 622.47,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "GraphRAG 是否在 2026 年取代了所有向量数据库？",
+        "intent": "general_search",
+        "retrieval_query": "GraphRAG 是否在 2026 年取代了所有向量数据库？ retrieval vector database knowledge graph Graph RAG Agentic RAG evaluation",
+        "top_k": 10,
+        "topics": [
+          "RAG"
+        ],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-27",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-27/ai-topic-radar/29",
+          "excerpt": "ub.com/infiniflow/ragflow) | RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs | AI 产品与用户入口 | infiniflow/ragflow 为什么值",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.6861817836761475
+        }
+      ]
+    },
+    {
+      "query_id": "HN16",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 9,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "OpenAI Economic Research Exchange 是否发行了加密货币 OERX？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 1475.0,
+      "metadata_filter": {
+        "content_type": "topic_candidate"
+      },
+      "query_plan": {
+        "original_question": "OpenAI Economic Research Exchange 是否发行了加密货币 OERX？",
+        "intent": "recent_trend",
+        "retrieval_query": "OpenAI Economic Research Exchange 是否发行了加密货币 OERX？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "OpenAI"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Introducing The Openai Economic Research Exchange",
+          "citation_id": "2026-08-05/topic-pool/1",
+          "excerpt": "来源：OpenAI\n发布时间：2026-08-04\n关键词：openai, index",
+          "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.813258171081543
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Personal Finance Chatgpt",
+          "citation_id": "2026-05-20/topic-pool/16",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/personal-finance-chatgpt/",
+          "score": 86,
+          "category": "企业落地与行业应用",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.6533833742141724
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Engineering",
+          "citation_id": "2026-05-20/topic-pool/10",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/engineering/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.6325646638870239
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-29",
+          "source": "OpenAI",
+          "title": "Openai Frontier Governance Framework",
+          "citation_id": "2026-05-29/topic-pool/12",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-29\n关键词：openai, index",
+          "url": "https://openai.com/index/openai-frontier-governance-framework/",
+          "score": 79,
+          "category": "政策监管、社会影响与 AI 安全",
+          "fusion_score": 0.015625,
+          "vector_similarity": 0.6233015060424805
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-23",
+          "source": "OpenAI",
+          "title": "Introducing Openai Presence",
+          "citation_id": "2026-07-23/topic-pool/0",
+          "excerpt": "来源：OpenAI\n发布时间：2026-07-23\n关键词：openai, index",
+          "url": "https://openai.com/index/introducing-openai-presence/",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.6057804226875305
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Helping People When They Need It Most",
+          "citation_id": "2026-05-20/topic-pool/13",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/helping-people-when-they-need-it-most/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.5817918181419373
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Openai Campus Network Student Club Interest Form",
+          "citation_id": "2026-05-20/topic-pool/3",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+          "url": "https://openai.com/index/openai-campus-network-student-club-interest-form/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014705882352941176,
+          "vector_similarity": 0.5785995721817017
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "OpenAI",
+          "title": "Product Releases",
+          "citation_id": "2026-05-20/topic-pool/15",
+          "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, news",
+          "url": "https://openai.com/news/product-releases/",
+          "score": 90,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.5712620615959167
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-24",
+          "source": "Hacker News",
+          "title": "See How Sam Altman's Personal Investments Benefit from Ties to OpenAI",
+          "citation_id": "2026-06-24/topic-pool/45",
+          "excerpt": "来源：Hacker News\n热度信号：3 / 0\n发布时间：2026-06-23\n关键词：community, discussion",
+          "url": "https://www.wsj.com/tech/ai/see-how-sam-altmans-personal-investments-benefit-from-ties-to-openai-9fcb24c9",
+          "score": 57,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.5684229135513306
+        }
+      ]
+    },
+    {
+      "query_id": "HN17",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 6,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Fable 5 safeguards 是否包含无人机武器控制功能？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 451.05,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Fable 5 safeguards 是否包含无人机武器控制功能？",
+        "intent": "general_search",
+        "retrieval_query": "Fable 5 safeguards 是否包含无人机武器控制功能？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-02",
+          "source": "Hacker News",
+          "title": "Fable 5 is Back",
+          "citation_id": "2026-07-02/topic-pool/7",
+          "excerpt": "来源：Hacker News\n热度信号：348 / 329\n发布时间：2026-07-01\n关键词：community, discussion",
+          "url": "https://twitter.com/claudeai/status/2072402636813607381",
+          "score": 78,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.6851471066474915
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-14",
+          "source": "InfoQ 中国",
+          "title": "Fable 5 访问权限再延一周，但Anthropic 的“黑心账本”越来越藏不住了",
+          "citation_id": "2026-07-14/topic-pool/57",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058502-08\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/eRwadJmvQIvuqaDZKBiz",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.6747368574142456
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "Hacker News",
+          "title": "Anthropic confident of re-enabling Mythos, Fable 5 access 'in coming days'",
+          "citation_id": "2026-06-19/topic-pool/46",
+          "excerpt": "来源：Hacker News\n热度信号：8 / 3\n发布时间：2026-06-18\n关键词：community, discussion",
+          "url": "https://news.ycombinator.com/item?id=48589194",
+          "score": 58,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.6506237387657166
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-09",
+          "source": "Hacker News",
+          "title": "The classifiers Anthropic puts in front of Fable are too zealous",
+          "citation_id": "2026-07-09/topic-pool/24",
+          "excerpt": "来源：Hacker News\n热度信号：195 / 183\n发布时间：2026-07-08\n关键词：community, discussion",
+          "url": "https://combine-lab.github.io/blog/2026/07/07/fable-is-not-a-useful-model.html",
+          "score": 73,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.6389865875244141
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-19",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-19/ai-topic-radar/52",
+          "excerpt": "cussion by getbowtied | 标杆企业动向、商业格局与投融资 | Anthropic confident of re-enabling Mythos, Fable 5 access 'in coming days' 为什么值得关注？（大厂动作、商业化路径与竞争格局） | 适合作为观察项：适合从大厂动作、商业化路径和竞争格局角度切入，来源：Hacker News。 | 来源：Hacker News<br>热度信号：8 / 3<br>发布时间：2026-06-1",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.6308170557022095
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-29",
+          "source": "Hacker News",
+          "title": "Anthropic Claude Fable 5, on track to return soon (possibly this week)",
+          "citation_id": "2026-06-29/topic-pool/33",
+          "excerpt": "来源：Hacker News\n热度信号：5 / 0\n发布时间：2026-06-29\n关键词：community, discussion",
+          "url": "https://www.axios.com/2026/06/27/anthropic-fable-5-return-soon",
+          "score": 57,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.6170914173126221
+        }
+      ]
+    },
+    {
+      "query_id": "HN18",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 5,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Claude Code Artifacts 是否可以直接部署核电站控制系统？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "success",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 337.16,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Claude Code Artifacts 是否可以直接部署核电站控制系统？",
+        "intent": "general_search",
+        "retrieval_query": "Claude Code Artifacts 是否可以直接部署核电站控制系统？ Anthropic",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "Claude",
+          "Anthropic"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Claude Code Artifacts",
+          "citation_id": "8d45204515c619efeb58f8cd140207fa",
+          "excerpt": "Preview and share your coding work live as it happens",
+          "url": "https://www.producthunt.com/r/ZKUSXUIDPQQBDF",
+          "local_url": "#2026-06-21/ai-topic-radar/item/8d45204515c619efeb58f8cd140207fa",
+          "content_id": "a2995158be627f1ecedc6da216583160",
+          "occurrence_id": "8d45204515c619efeb58f8cd140207fa",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.03278688524590164,
+          "lexical_match_type": "exact_title",
+          "lexical_score": 0.0
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Product Hunt",
+          "title": "Claude Code Artifacts",
+          "citation_id": "2026-06-21/topic-pool/0",
+          "excerpt": "来源：Product Hunt\n热度信号：451 / 14\n发布时间：2026-06-19\n关键词：Software Engineering, Developer Tools, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/ZKUSXUIDPQQBDF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.8296463489532471
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-15",
+          "source": "InfoQ 中国",
+          "title": "Claude Artifacts 一夜打通“全网公开分享+多人编辑”，AI 交付闭环彻底杀疯了",
+          "citation_id": "2026-07-15/topic-pool/50",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058503-11\n关键词：infoq-cn, 生成式 AI",
+          "url": "https://www.infoq.cn/article/Pqcx0ktTdljvoQ3OMxze",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.016129032258064516,
+          "vector_similarity": 0.71089768409729
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-20",
+          "source": "ai-cli",
+          "title": "ai-cli",
+          "citation_id": "2026-05-20/ai-cli/6",
+          "excerpt": "## 各工具详细报告\n\n<details>\n<summary><strong>Claude Code</strong> — <a href=\"https://github.com/anthropics/claude-code\">anthropics/claude-code</a></summary>",
+          "fusion_score": 0.015384615384615385,
+          "vector_similarity": 0.6977499723434448
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-31",
+          "source": "Product Hunt",
+          "title": "/mission for Claude Code",
+          "citation_id": "2026-07-31/topic-pool/6",
+          "excerpt": "来源：Product Hunt\n热度信号：311 / 37\n发布时间：2026-07-29\n关键词：Productivity, Artificial Intelligence",
+          "url": "https://www.producthunt.com/r/P3XBZI4J2DWVBF?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+AI+Trend+Radar+%28ID%3A+285539%29",
+          "score": 80,
+          "category": "AI 产品与用户入口",
+          "fusion_score": 0.015151515151515152,
+          "vector_similarity": 0.6829725503921509
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-25",
+          "source": "InfoQ 中国",
+          "title": "Anthropic 解释了 Claude 如何构建自己的执行框架",
+          "citation_id": "2026-06-25/topic-pool/52",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058448-06\n关键词：infoq-cn, AI 工程化",
+          "url": "https://www.infoq.cn/article/DYIUw7abCW7ZYI1OER9i",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014925373134328358,
+          "vector_similarity": 0.6826327443122864
+        }
+      ]
+    },
+    {
+      "query_id": "HN19",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 3,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Apple Is Getting This Wrong 是否宣布苹果退出 AI 市场？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "success",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 286.42,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Apple Is Getting This Wrong 是否宣布苹果退出 AI 市场？",
+        "intent": "general_search",
+        "retrieval_query": "Apple Is Getting This Wrong 是否宣布苹果退出 AI 市场？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-08-05",
+          "source": "OpenAI",
+          "title": "Apple Is Getting This Wrong",
+          "citation_id": "30e52f96d337d8dc2c30327f22a8225c",
+          "excerpt": "OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.",
+          "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+          "local_url": "#2026-08-05/ai-topic-radar/item/30e52f96d337d8dc2c30327f22a8225c",
+          "content_id": "a17e79c43f5cb6482e63c694076a9deb",
+          "occurrence_id": "30e52f96d337d8dc2c30327f22a8225c",
+          "score": 98,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.03278688524590164,
+          "lexical_match_type": "exact_title",
+          "lexical_score": 0.0
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-05-26",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-05-26/ai-topic-radar/0",
+          "excerpt": "# AI 热点选题池 2026-05-26\n\n> 生成时间: 2026-05-26 04:17 UTC | 目标: 每日发现值得写、值得测、值得深挖的 AI 选题",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.5133512616157532
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-25",
+          "source": "InfoQ 中国",
+          "title": "开发者的 AI 助手升级了：Android Studio 支持多个 Agent 同时处理任务",
+          "citation_id": "2026-07-25/topic-pool/53",
+          "excerpt": "来源：InfoQ 中国\n发布时间：+058530-08\n关键词：infoq-cn, Google, 工程化",
+          "url": "https://www.infoq.cn/article/j227Ip5mPV4SQFuFX63C",
+          "score": 53,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.015873015873015872,
+          "vector_similarity": 0.5114787817001343
+        }
+      ]
+    },
+    {
+      "query_id": "HN20",
+      "answerable": false,
+      "metric_cutoff": 10,
+      "returned": 3,
+      "scored": false,
+      "query_success": null,
+      "precision_at_k": null,
+      "recall_at_k": null,
+      "f1_at_k": null,
+      "mrr": null,
+      "ndcg_at_k": null,
+      "matched": [],
+      "task_family": "claim_verification",
+      "evaluation_contract": "future_claim_classification",
+      "relevance_set_status": "missing",
+      "legacy_contract_inferred": false,
+      "unscored_reason": "claim_labels_missing",
+      "query": "Google DeepMind 的气旋模型是否准确预测了木星风暴？",
+      "kind": "unanswerable_control",
+      "retrieval_status": "ready",
+      "retrieval_error_code": "",
+      "retrieval_channel_status": {
+        "lexical": "empty",
+        "vector": "success",
+        "graph": "disabled"
+      },
+      "elapsed_ms": 327.49,
+      "metadata_filter": null,
+      "query_plan": {
+        "original_question": "Google DeepMind 的气旋模型是否准确预测了木星风暴？",
+        "intent": "general_search",
+        "retrieval_query": "Google DeepMind 的气旋模型是否准确预测了木星风暴？",
+        "top_k": 10,
+        "topics": [],
+        "entities": [
+          "Google"
+        ],
+        "sources": [],
+        "time_window": {
+          "label": "unspecified",
+          "days": null,
+          "requires_date_filter": false
+        },
+        "answerability_hint": "internal-first",
+        "needs_web_search": false,
+        "routing_notes": [],
+        "task_mode": "general",
+        "graph_requirement": "disabled"
+      },
+      "metric_ceiling": {
+        "metric_cutoff": 10,
+        "precision_at_k": null,
+        "recall_at_k": null,
+        "f1_at_k": null,
+        "scored": false,
+        "unscored_reason": "claim_labels_missing"
+      },
+      "retrieved": [
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-26",
+          "source": "ai-topic-radar",
+          "title": "ai-topic-radar",
+          "citation_id": "2026-06-26/ai-topic-radar/37",
+          "excerpt": "| 分数 | 动作 | 题目 | 摘要 | 分类 | 推荐选题 | 推荐理由 | 证据 |\n| ---: | --- | --- | --- | --- | --- | --- | --- |\n| 89 | 深挖 | [Research — Google DeepMind](https://deepmind.google/research/) | Research We work on some of the most complex and interesting chal",
+          "fusion_score": 0.01639344262295082,
+          "vector_similarity": 0.573401153087616
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-06-21",
+          "source": "Hacker News",
+          "title": "US Scientist John Jumper to Leave Google DeepMind for Anthropic",
+          "citation_id": "2026-06-21/topic-pool/28",
+          "excerpt": "来源：Hacker News\n热度信号：75 / 10\n发布时间：2026-06-20\n关键词：community, discussion",
+          "url": "https://www.reuters.com/technology/us-scientist-john-jumper-leave-google-deepmind-anthropic-2026-06-19/",
+          "score": 63,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014492753623188406,
+          "vector_similarity": 0.5377976894378662
+        },
+        {
+          "evidence_type": "internal",
+          "date": "2026-07-03",
+          "source": "Dev.to",
+          "title": "Google VP of Technology says he’s given up on coding",
+          "citation_id": "2026-07-03/topic-pool/34",
+          "excerpt": "来源：Dev.to\n热度信号：20 / 0\n发布时间：2026-07-02\n关键词：devto, aie, ai, gemini, claude",
+          "url": "https://dev.to/dailycontext/google-vp-of-technology-says-hes-given-up-on-coding-4j6c",
+          "score": 61,
+          "category": "标杆企业动向、商业格局与投融资",
+          "fusion_score": 0.014285714285714285,
+          "vector_similarity": 0.535216748714447
+        }
+      ]
+    }
+  ]
+}

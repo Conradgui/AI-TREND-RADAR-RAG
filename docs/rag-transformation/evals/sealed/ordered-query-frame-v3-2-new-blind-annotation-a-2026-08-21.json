@@ -1,0 +1,384 @@
+{
+  "annotator_id": "annotator-a-luna",
+  "cases": [
+    {
+      "case_id": "v32-new-blind-001",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["item_navigation", "exact_item", "atr_id"],
+        ["evidence_research", "explanation", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["ATR-20260818-Q7M2K9"],
+        ["解释它为什么值得关注"]
+      ],
+      "expected_protected_terms": ["不要联网", "ATR-20260818-Q7M2K9", "值得关注"],
+      "expected_critical_terms": {
+        "atr_id": ["ATR-20260818-Q7M2K9"],
+        "permission": ["不要联网"],
+        "other": ["值得关注"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "forbidden",
+      "expected_web_evidence_spans": ["不要联网"]
+    },
+    {
+      "case_id": "v32-new-blind-002",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["item_navigation", "exact_item", "full_title"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["完整标题《白鹭缓存迁移手册》"]
+      ],
+      "expected_protected_terms": ["不要联网", "内部日报", "《白鹭缓存迁移手册》"],
+      "expected_critical_terms": {
+        "source": ["内部日报"],
+        "permission": ["不要联网"],
+        "other": ["《白鹭缓存迁移手册》"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "forbidden",
+      "expected_web_evidence_spans": ["不要联网"]
+    },
+    {
+      "case_id": "v32-new-blind-003",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["item_navigation", "item_disambiguation", "title_fragment"],
+        ["trend_discovery", "important_news", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["标题里包含“星港推理网关”的候选记录"],
+        ["过去两周围绕它有哪些重要动态"]
+      ],
+      "expected_protected_terms": ["星港推理网关", "过去两周", "重要动态"],
+      "expected_critical_terms": {
+        "date": ["过去两周"],
+        "other": ["星港推理网关"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-004",
+      "expected_status": "clarification_required",
+      "expected_deliveries": [
+        ["item_navigation", "item_disambiguation", "descriptive"],
+        ["evidence_research", "comparison", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["昨天提到的那个向量数据库条目找出来"],
+        ["比较它与传统检索方案的差异"]
+      ],
+      "expected_protected_terms": ["昨天提到的那个向量数据库条目", "传统检索方案"],
+      "expected_critical_terms": {
+        "date": ["昨天"],
+        "other": ["向量数据库", "传统检索方案"]
+      },
+      "expected_unresolved_reference_spans": ["昨天提到的那个向量数据库条目"],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-005",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["trend_discovery", "important_news", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["苍穹编排器最近一周有哪些足够重要的新动态"]
+      ],
+      "expected_protected_terms": ["苍穹编排器", "最近一周", "足够重要", "必要时可以联网补充"],
+      "expected_critical_terms": {
+        "date": ["最近一周"],
+        "permission": ["必要时可以联网补充"],
+        "other": ["苍穹编排器", "足够重要"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": ["必要时可以联网补充"]
+    },
+    {
+      "case_id": "v32-new-blind-006",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["trend_discovery", "trend_clusters", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["2026 年 8 月以来“云槐模型”的信息", "按主题分成几个趋势簇"]
+      ],
+      "expected_protected_terms": ["请联网", "2026 年 8 月以来", "云槐模型", "趋势簇"],
+      "expected_critical_terms": {
+        "date": ["2026 年 8 月以来"],
+        "permission": ["请联网"],
+        "other": ["云槐模型", "按主题"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "explicit",
+      "expected_web_evidence_spans": ["请联网"]
+    },
+    {
+      "case_id": "v32-new-blind-007",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["trend_discovery", "important_news", "none"],
+        ["temporal_relation_exploration", "longitudinal_trend", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["砂砾代码助手在 2026 年上半年的重要新闻"],
+        ["它的开源路线如何持续变化"]
+      ],
+      "expected_protected_terms": ["砂砾代码助手", "2026 年上半年", "重要新闻", "开源路线", "持续变化"],
+      "expected_critical_terms": {
+        "date": ["2026 年上半年"],
+        "other": ["砂砾代码助手", "开源路线"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-008",
+      "expected_status": "clarification_required",
+      "expected_deliveries": [
+        ["trend_discovery", "important_news", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["它最近有哪些重要更新", "影响范围大的新闻"]
+      ],
+      "expected_protected_terms": ["最近", "重要更新", "影响范围大的新闻"],
+      "expected_critical_terms": {
+        "date": ["最近"],
+        "permission": ["请联网"],
+        "other": ["影响范围大的新闻"]
+      },
+      "expected_unresolved_reference_spans": ["它"],
+      "expected_web_permission": "explicit",
+      "expected_web_evidence_spans": ["请联网"]
+    },
+    {
+      "case_id": "v32-new-blind-009",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["temporal_relation_exploration", "timeline", "none"],
+        ["item_navigation", "exact_item", "full_title"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["按发生顺序梳理苍穹编排器从首次发布到商业版上线的关键里程碑"],
+        ["《苍穹编排器发布说明》"]
+      ],
+      "expected_protected_terms": ["苍穹编排器", "从首次发布到商业版上线", "关键里程碑", "《苍穹编排器发布说明》"],
+      "expected_critical_terms": {
+        "date": ["从首次发布到商业版上线"],
+        "other": ["苍穹编排器", "《苍穹编排器发布说明》"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-010",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["temporal_relation_exploration", "longitudinal_trend", "none"],
+        ["trend_discovery", "important_news", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["苍穹编排器从 2023 年到 2026 年在企业采用率上的连续变化"],
+        ["当前最重要的新闻"]
+      ],
+      "expected_protected_terms": ["苍穹编排器", "2023 年到 2026 年", "企业采用率", "连续变化", "当前最重要的新闻"],
+      "expected_critical_terms": {
+        "date": ["2023 年到 2026 年", "当前"],
+        "other": ["苍穹编排器", "企业采用率"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-011",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["temporal_relation_exploration", "cross_sectional_trend", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["对比青岚索引在 2026 年 3 月和 2026 年 7 月两个时间截面的部署策略"]
+      ],
+      "expected_protected_terms": ["不要联网", "青岚索引", "2026 年 3 月", "2026 年 7 月", "两个时间截面", "部署策略"],
+      "expected_critical_terms": {
+        "date": ["2026 年 3 月", "2026 年 7 月"],
+        "permission": ["不要联网"],
+        "other": ["青岚索引", "两个时间截面"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "forbidden",
+      "expected_web_evidence_spans": ["不要联网"]
+    },
+    {
+      "case_id": "v32-new-blind-012",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["temporal_relation_exploration", "relation", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["赤潮芯片、极昼云平台和北岸实验室之间是什么关系", "重点区分合作与共同出现"]
+      ],
+      "expected_protected_terms": ["赤潮芯片", "极昼云平台", "北岸实验室", "合作与共同出现"],
+      "expected_critical_terms": {
+        "other": ["赤潮芯片", "极昼云平台", "北岸实验室", "合作与共同出现"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-013",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["claim_verification", "verification_verdict", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["核验“北辰 API 已把推理成本降低 40%”这个说法是否有可靠证据"]
+      ],
+      "expected_protected_terms": ["请联网", "“北辰 API 已把推理成本降低 40%”", "可靠证据"],
+      "expected_critical_terms": {
+        "amount": ["40%"],
+        "permission": ["请联网"],
+        "other": ["北辰 API", "可靠证据"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "explicit",
+      "expected_web_evidence_spans": ["请联网"]
+    },
+    {
+      "case_id": "v32-new-blind-014",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["claim_verification", "verification_verdict", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["判断“海镜 Agent 已经完全取代人工审核”是否成立"]
+      ],
+      "expected_protected_terms": ["不要联网", "“海镜 Agent 已经完全取代人工审核”"],
+      "expected_critical_terms": {
+        "permission": ["不要联网"],
+        "other": ["完全"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "forbidden",
+      "expected_web_evidence_spans": ["不要联网"]
+    },
+    {
+      "case_id": "v32-new-blind-015",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["claim_verification", "verification_verdict", "none"],
+        ["evidence_research", "explanation", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["这个说法是否成立"],
+        ["解释支持或反对它的关键证据"]
+      ],
+      "expected_protected_terms": ["这个说法", "支持或反对", "关键证据"],
+      "expected_critical_terms": {
+        "other": ["这个说法", "支持或反对"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-016",
+      "expected_status": "clarification_required",
+      "expected_deliveries": [
+        ["claim_verification", "verification_verdict", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["这个说法是否成立"]
+      ],
+      "expected_protected_terms": ["这个说法"],
+      "expected_critical_terms": {
+        "other": ["这个说法"]
+      },
+      "expected_unresolved_reference_spans": ["这个说法"],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-017",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["evidence_research", "explanation", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["解释《白鹭缓存迁移手册》的核心取舍，以及它适合哪些团队"]
+      ],
+      "expected_protected_terms": ["《白鹭缓存迁移手册》", "核心取舍", "适合哪些团队"],
+      "expected_critical_terms": {
+        "other": ["《白鹭缓存迁移手册》", "核心取舍", "适合哪些团队"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-018",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["evidence_research", "explanation", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["如果北辰 API 真能把推理成本降低 40%", "这会怎样影响中小团队的产品决策"]
+      ],
+      "expected_protected_terms": ["请联网", "北辰 API", "真能把推理成本降低 40%", "中小团队", "产品决策"],
+      "expected_critical_terms": {
+        "amount": ["40%"],
+        "permission": ["请联网"],
+        "other": ["北辰 API", "中小团队", "产品决策"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "explicit",
+      "expected_web_evidence_spans": ["请联网"]
+    },
+    {
+      "case_id": "v32-new-blind-019",
+      "expected_status": "resolved",
+      "expected_deliveries": [
+        ["evidence_research", "deep_research", "none"],
+        ["trend_discovery", "important_news", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["深度研究曜石开发平台的商业模式、目标用户和主要风险"],
+        ["最近一个月的重要新闻"]
+      ],
+      "expected_protected_terms": ["曜石开发平台", "商业模式", "目标用户", "主要风险", "最近一个月", "重要新闻"],
+      "expected_critical_terms": {
+        "date": ["最近一个月"],
+        "other": ["曜石开发平台", "商业模式、目标用户和主要风险"]
+      },
+      "expected_unresolved_reference_spans": [],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    },
+    {
+      "case_id": "v32-new-blind-020",
+      "expected_status": "clarification_required",
+      "expected_deliveries": [
+        ["evidence_research", "explanation", "none"]
+      ],
+      "expected_delivery_evidence_spans": [
+        ["解释这项方案为什么更适合初创团队，并给出适用边界"]
+      ],
+      "expected_protected_terms": ["这项方案", "更适合初创团队", "适用边界"],
+      "expected_critical_terms": {
+        "other": ["这项方案", "初创团队", "适用边界"]
+      },
+      "expected_unresolved_reference_spans": ["这项方案"],
+      "expected_web_permission": "on_demand",
+      "expected_web_evidence_spans": []
+    }
+  ]
+}

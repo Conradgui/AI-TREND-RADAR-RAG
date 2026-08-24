@@ -38,4 +38,3 @@
 - Gate 2：确认使用 Repository Variable，而非编辑 workflow 注释。
 - Gate 3：实现双模式 Actions、预检和文档。
 - Gate 4：在干净 clone 中分别验证默认模式与自建模式配置路径。
-

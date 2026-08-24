@@ -1,0 +1,52 @@
+{
+  "dataset_id": "gateway-canary-2026-08-12",
+  "label_tier": "canary-functional-contract",
+  "needs_human_relevance_review": true,
+  "purpose": "验证新原子语料代际的核心用户路径仍可用；不把结果冒充人工相关性指标。",
+  "target_snapshot": {"latest_corpus_date": "2026-08-12"},
+  "cases": [
+    {
+      "id": "C01",
+      "query": "最近有什么热门趋势？",
+      "expected_task_family": "trend_discovery",
+      "limit": 5,
+      "min_records": 3,
+      "min_unique_sources": 2,
+      "max_per_source": 2,
+      "require_unique_citation_ids": true,
+      "no_empty_regression": true
+    },
+    {
+      "id": "C02",
+      "query": "Apple Is Getting This Wrong",
+      "expected_task_family": "item_navigation",
+      "limit": 5,
+      "expected_citation_id": "ATR-20260805-793124",
+      "requires_local_url": true
+    },
+    {
+      "id": "C03",
+      "query": "Introducing The Openai Economic Research Exchange",
+      "expected_task_family": "item_navigation",
+      "limit": 5,
+      "expected_citation_id": "ATR-20260805-99E550",
+      "requires_local_url": true
+    },
+    {
+      "id": "C04",
+      "query": "AgentSky",
+      "expected_task_family": "item_navigation",
+      "limit": 5,
+      "expected_citation_id": "ATR-20260805-AE3D6E",
+      "requires_local_url": true
+    },
+    {
+      "id": "C05",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "expected_task_family": "trend_discovery",
+      "limit": 5,
+      "min_records": 1,
+      "no_empty_regression": true
+    }
+  ]
+}

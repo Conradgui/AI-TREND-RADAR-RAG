@@ -1,0 +1,263 @@
+{
+  "experiment_id": "dimensions-only-l1-v2-unseen-blind-2026-08-15",
+  "evidence_boundary": "Unseen blind score for the frozen candidate; not production approval.",
+  "freeze_id": "dimensions-only-l1-v2-candidate-2026-08-15",
+  "total": 15,
+  "complete_contract_correct": 0,
+  "complete_contract_accuracy": 0.0,
+  "per_primary_family": {
+    "claim_verification": {
+      "correct": 1,
+      "total": 3,
+      "accuracy": 0.3333333333333333
+    },
+    "evidence_research": {
+      "correct": 1,
+      "total": 3,
+      "accuracy": 0.3333333333333333
+    },
+    "item_navigation": {
+      "correct": 1,
+      "total": 3,
+      "accuracy": 0.3333333333333333
+    },
+    "temporal_relation_exploration": {
+      "correct": 1,
+      "total": 3,
+      "accuracy": 0.3333333333333333
+    },
+    "trend_discovery": {
+      "correct": 3,
+      "total": 3,
+      "accuracy": 1.0
+    }
+  },
+  "web_permission_accuracy": 0.42857142857142855,
+  "clarification": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "tp": 0,
+    "fp": 5,
+    "fn": 1
+  },
+  "latency": {
+    "mean_seconds": 1.5856,
+    "max_seconds": 2.57
+  },
+  "gate": {
+    "passed": false,
+    "requirements": "overall>=85%; each primary>=80%; web permission=100%; clarification precision/recall>=80%"
+  },
+  "cases": [
+    {
+      "case_id": "blind-001",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": false,
+        "web_permission": false
+      },
+      "latency_seconds": 1.953
+    },
+    {
+      "case_id": "blind-002",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": false,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": false,
+        "web_permission": false
+      },
+      "latency_seconds": 1.455
+    },
+    {
+      "case_id": "blind-003",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": false,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": false,
+        "web_permission": false
+      },
+      "latency_seconds": 1.463
+    },
+    {
+      "case_id": "blind-004",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      },
+      "latency_seconds": 1.575
+    },
+    {
+      "case_id": "blind-005",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": true,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      },
+      "latency_seconds": 2.57
+    },
+    {
+      "case_id": "blind-006",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      },
+      "latency_seconds": 1.706
+    },
+    {
+      "case_id": "blind-007",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": false,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      },
+      "latency_seconds": 1.723
+    },
+    {
+      "case_id": "blind-008",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": false
+      },
+      "latency_seconds": 1.582
+    },
+    {
+      "case_id": "blind-009",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": false,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": false
+      },
+      "latency_seconds": 1.386
+    },
+    {
+      "case_id": "blind-010",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": false,
+        "primary": false,
+        "supporting": true,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": false
+      },
+      "latency_seconds": 1.324
+    },
+    {
+      "case_id": "blind-011",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": false,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      },
+      "latency_seconds": 1.405
+    },
+    {
+      "case_id": "blind-012",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": true,
+        "supporting": false,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": false
+      },
+      "latency_seconds": 1.336
+    },
+    {
+      "case_id": "blind-013",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": true,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": true,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": true
+      },
+      "latency_seconds": 1.409
+    },
+    {
+      "case_id": "blind-014",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": false,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": false
+      },
+      "latency_seconds": 1.482
+    },
+    {
+      "case_id": "blind-015",
+      "complete_contract_correct": false,
+      "checks": {
+        "status": false,
+        "primary": false,
+        "supporting": false,
+        "answer_mode": false,
+        "protected_terms": false,
+        "references": true,
+        "web_permission": false
+      },
+      "latency_seconds": 1.415
+    }
+  ]
+}

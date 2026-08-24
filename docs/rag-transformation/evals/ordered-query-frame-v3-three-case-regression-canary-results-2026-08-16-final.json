@@ -1,0 +1,315 @@
+{
+  "experiment_id": "ordered-query-frame-v3-three-case-regression-canary-2026-08-16",
+  "evidence_boundary": "Already-unsealed regression canary; not blind, production, or generalization evidence.",
+  "model": "deepseek-v4-flash",
+  "prompt_sha256": "f0176f7de4c324a2315d297ec8af94882ebc2927d9d74b3c926b5c936ca1780f",
+  "total": 3,
+  "executed": 3,
+  "complete_projection_correct": 3,
+  "mean_latency_seconds": 1.913,
+  "max_latency_seconds": 2.438,
+  "gate": {
+    "passed": true,
+    "requirements": "3/3 complete projection; one attempt each; mean<=8s; max<=12s"
+  },
+  "cases": [
+    {
+      "case_id": "blind-014-regression",
+      "query": "先比较 Atlas 3 与 Atlas 3.2 的能力差异，再定位两条对应记录并给出原始链接",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "evidence_research",
+            "evidence_spans": [
+              "比较 Atlas 3 与 Atlas 3.2 的能力差异"
+            ],
+            "requested_output_form": "comparison",
+            "locator_kind": "none"
+          },
+          {
+            "task_family": "item_navigation",
+            "evidence_spans": [
+              "定位两条对应记录并给出原始链接"
+            ],
+            "requested_output_form": "item_disambiguation",
+            "locator_kind": "descriptive"
+          }
+        ],
+        "protected_spans": [
+          "Atlas 3",
+          "Atlas 3.2"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-ffef1edc513c5f538bcb65724b467787",
+          "original_query": "先比较 Atlas 3 与 Atlas 3.2 的能力差异，再定位两条对应记录并给出原始链接",
+          "protected_terms": [
+            "Atlas 3",
+            "Atlas 3.2"
+          ],
+          "intent_signals": [
+            "comparison",
+            "navigation"
+          ],
+          "primary_task_family": "evidence_research",
+          "supporting_task_families": [
+            "item_navigation"
+          ],
+          "answer_mode": "comparison",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [
+            {
+              "task_family": "item_navigation",
+              "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+              "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+              "prompt_contract_id": null,
+              "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+              "requested_output_form": "item_disambiguation",
+              "locator_kind": "descriptive",
+              "route_confidence": 0.65,
+              "ambiguities": [
+                "item locator may match multiple records"
+              ],
+              "output_schema_id": "atr.answer/navigation/1.0",
+              "budget_profile_id": "atr.budget/deterministic/1.0"
+            }
+          ],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "none",
+            "value": null
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+          "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+          "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/research/1.0",
+          "budget_profile_id": "atr.budget/research/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1743,
+        "completion_tokens": 262,
+        "total_tokens": 2005
+      },
+      "latency_seconds": 2.438,
+      "checks": {
+        "single_attempt": true,
+        "resolved": true,
+        "primary": true,
+        "supporting": true,
+        "answer_mode": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "supporting_locator": true,
+        "complete_contract": true
+      },
+      "error": null
+    },
+    {
+      "case_id": "blind-008-regression",
+      "query": "把过去三个月的浏览器端 AI 助手演变整理成时间线；必要时可以联网核对日期",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "temporal_relation_exploration",
+            "evidence_spans": [
+              "过去三个月",
+              "浏览器端 AI 助手",
+              "演变",
+              "时间线"
+            ],
+            "requested_output_form": "timeline",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "过去三个月",
+          "浏览器端 AI 助手"
+        ],
+        "web_permission": "on_demand",
+        "web_evidence_spans": [
+          "必要时可以联网核对日期"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-6df4d2899923585d8bf528415c7f6497",
+          "original_query": "把过去三个月的浏览器端 AI 助手演变整理成时间线；必要时可以联网核对日期",
+          "protected_terms": [
+            "过去三个月",
+            "浏览器端 AI 助手",
+            "必要时可以联网核对日期"
+          ],
+          "intent_signals": [
+            "timeline"
+          ],
+          "primary_task_family": "temporal_relation_exploration",
+          "supporting_task_families": [],
+          "answer_mode": "timeline",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "relative_window",
+            "value": "过去三个月"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "on_demand",
+          "rewrite_policy_id": "atr.rewrite/temporal_relation_exploration/1.0",
+          "retrieval_policy_id": "atr.retrieval/temporal_relation_exploration/1.0",
+          "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/temporal_relation/1.0",
+          "budget_profile_id": "atr.budget/graph/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1738,
+        "completion_tokens": 225,
+        "total_tokens": 1963
+      },
+      "latency_seconds": 1.609,
+      "checks": {
+        "single_attempt": true,
+        "resolved": true,
+        "primary": true,
+        "supporting": true,
+        "answer_mode": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "supporting_locator": true,
+        "complete_contract": true
+      },
+      "error": null
+    },
+    {
+      "case_id": "blind-010-regression",
+      "query": "截至 2026 年 8 月 1 日，这个说法有证据支持吗：‘Nova R2 已经开源且允许商用’？禁止联网",
+      "frame": {
+        "schema_version": "atr.ordered-semantic-frame/3.0",
+        "deliveries": [
+          {
+            "task_family": "claim_verification",
+            "evidence_spans": [
+              "截至 2026 年 8 月 1 日",
+              "Nova R2 已经开源且允许商用"
+            ],
+            "requested_output_form": "verification_verdict",
+            "locator_kind": "none"
+          }
+        ],
+        "protected_spans": [
+          "2026 年 8 月 1 日",
+          "Nova R2",
+          "已经开源且允许商用"
+        ],
+        "web_permission": "forbidden",
+        "web_evidence_spans": [
+          "禁止联网"
+        ],
+        "unresolved_reference_spans": []
+      },
+      "envelope": {
+        "status": "resolved",
+        "contract": {
+          "schema_version": "atr.route/2.0",
+          "request_id": "shadow-frame-v3-d9d0a09c407d5a50aca0121d2ccf280e",
+          "original_query": "截至 2026 年 8 月 1 日，这个说法有证据支持吗：‘Nova R2 已经开源且允许商用’？禁止联网",
+          "protected_terms": [
+            "2026 年 8 月 1 日",
+            "Nova R2",
+            "Nova R2 已经开源且允许商用",
+            "已经开源且允许商用",
+            "禁止联网"
+          ],
+          "intent_signals": [
+            "verification"
+          ],
+          "primary_task_family": "claim_verification",
+          "supporting_task_families": [],
+          "answer_mode": "verification_verdict",
+          "route_confidence": 1.0,
+          "ambiguities": [],
+          "resolved_references": [],
+          "supporting_contracts": [],
+          "subjects": [],
+          "topics": [],
+          "claims": [],
+          "temporal_constraint": {
+            "mode": "absolute_range",
+            "value": "2026 年 8 月 1 日"
+          },
+          "source_constraint": {
+            "requested_sources": [],
+            "official_first": false
+          },
+          "web_permission": "forbidden",
+          "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+          "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+          "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+          "answer_builder_contract_id": null,
+          "output_schema_id": "atr.answer/verification/1.0",
+          "budget_profile_id": "atr.budget/verification/1.0"
+        },
+        "reasons": []
+      },
+      "metadata": {
+        "model": "deepseek-v4-flash",
+        "attempts": 1,
+        "finish_reason": "tool_calls",
+        "prompt_tokens": 1754,
+        "completion_tokens": 247,
+        "total_tokens": 2001
+      },
+      "latency_seconds": 1.691,
+      "checks": {
+        "single_attempt": true,
+        "resolved": true,
+        "primary": true,
+        "supporting": true,
+        "answer_mode": true,
+        "web_permission": true,
+        "protected_terms": true,
+        "supporting_locator": true,
+        "complete_contract": true
+      },
+      "error": null
+    }
+  ]
+}

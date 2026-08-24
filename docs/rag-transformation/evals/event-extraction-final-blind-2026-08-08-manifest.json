@@ -1,0 +1,35 @@
+{
+  "dataset_id": "event-extraction-final-blind-2026-08-08",
+  "date": "2026-08-08",
+  "sample_count": 16,
+  "daily_item_ids": [
+    "ATR-20260808-D2356E",
+    "ATR-20260808-9DA2A2",
+    "ATR-20260808-1C55F3",
+    "ATR-20260808-3D1EC1",
+    "ATR-20260808-4B770C",
+    "ATR-20260808-DC28C8",
+    "ATR-20260808-65E4C3",
+    "ATR-20260808-1A5552",
+    "ATR-20260808-854779",
+    "ATR-20260808-499627",
+    "ATR-20260808-5F0804",
+    "ATR-20260808-C5BBE7",
+    "ATR-20260808-896DFF",
+    "ATR-20260808-AE4530",
+    "ATR-20260808-0B0B9C",
+    "ATR-20260808-7651BB"
+  ],
+  "source_role_counts": {
+    "first_party": 9,
+    "third_party": 7
+  },
+  "content_kind_counts": {
+    "news": 5,
+    "research": 3,
+    "tutorial": 1,
+    "developer_content": 2,
+    "product_listing": 5
+  },
+  "labels_sha256": "4bcd8daed9139424624d053f372faa758f8d412d0b16afe7d1288bea8b843fce"
+}

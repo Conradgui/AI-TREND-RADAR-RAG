@@ -1,8 +1,8 @@
 # Stage 2：Search Document、条目搜索与稳定深链执行记录
 
-日期：2026-08-10  
-分支：`claude/rag-transformation-checkpoints`  
-固定点：`d58e0785945d22dd2416bdbce57786594766a282`  
+日期：2026-08-10
+分支：`claude/rag-transformation-checkpoints`
+固定点：`d58e0785945d22dd2416bdbce57786594766a282`
 状态：Gate Review 通过，待 Claude 分支 checkpoint
 
 ## 1. 完成内容

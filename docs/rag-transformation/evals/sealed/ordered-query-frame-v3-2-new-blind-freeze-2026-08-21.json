@@ -1,0 +1,126 @@
+{
+  "schema_version": "atr.eval-freeze/1.3",
+  "experiment_id": "ordered-query-frame-v3-2-new-blind-2026-08-21",
+  "evidence_boundary": "Unseen double-annotation blind for Ordered Query Frame v3.2; not retrieval, GraphRAG, answer-quality, production, or release evidence.",
+  "case_order": [
+    "v32-new-blind-001",
+    "v32-new-blind-002",
+    "v32-new-blind-003",
+    "v32-new-blind-004",
+    "v32-new-blind-005",
+    "v32-new-blind-006",
+    "v32-new-blind-007",
+    "v32-new-blind-008",
+    "v32-new-blind-009",
+    "v32-new-blind-010",
+    "v32-new-blind-011",
+    "v32-new-blind-012",
+    "v32-new-blind-013",
+    "v32-new-blind-014",
+    "v32-new-blind-015",
+    "v32-new-blind-016",
+    "v32-new-blind-017",
+    "v32-new-blind-018",
+    "v32-new-blind-019",
+    "v32-new-blind-020"
+  ],
+  "query_sha256": "66d42d4d43a1fa37a5ea68ca905085c4f524ef11230e01a67d3947dd8a60d432",
+  "gold_sha256": "3d22695b5b57bc87083ecc28ca208f82326677da34a5befffc8e8718ee0ad11f",
+  "prompt_sha256": "055f6b11616b372ad942a874fca473ddca96ddb74b4474a1228dddc63211b7c0",
+  "provider_schema_sha256": "e56ab74c250e299dd153222ed6ad617eacd6c4693061791987d75e1257ef9422",
+  "runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  },
+  "prediction_freeze_manifest_sha256": "4e3c160559b7aa1e28291868b870d405f68f2d212e41a557c2afa8e4ea3ac333",
+  "annotation_artifacts": [
+    {
+      "path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-2-new-blind-annotation-a-2026-08-21.json",
+      "sha256": "211cb1cd2cfad441a71f6e9e49809ef16c34dfeeb75acb28becd45aabb5b10c5"
+    },
+    {
+      "path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-2-new-blind-annotation-b-2026-08-21.json",
+      "sha256": "63d19759ee1dde95fc6c018eb61a4ed74e17bb745766c6ecbf24667eac7646af"
+    },
+    {
+      "path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-2-new-blind-gold-2026-08-21.json",
+      "sha256": "9f533876d048552e589559a879a42cd94862a2fcaf28437299d8643a075dfa72"
+    },
+    {
+      "path": "docs/rag-transformation/evals/sealed/ordered-query-frame-v3-2-new-blind-coverage-2026-08-21.json",
+      "sha256": "144459bc6c61ec9c4aac04a70433f91e6fb370270c17c9c937003d01d02bb90b"
+    }
+  ],
+  "runner_artifacts": [
+    {
+      "path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json",
+      "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"
+    },
+    {
+      "path": "docs/rag-transformation/specs/route-contract-v2.schema.json",
+      "sha256": "9f70ca1a238a8dc747269187a0b710e736170d46309659124d3c436a2c638ec9"
+    },
+    {
+      "path": "rag/config.py",
+      "sha256": "56c9be21706901ccea4a9cbf17f3a2059d1d2d683c4d628c4b8405e2656f6966"
+    },
+    {
+      "path": "rag/ordered_frame_client_v3.py",
+      "sha256": "888609512a9ec2ceb16c8ceff3c95d70d860cd615bf7cc761af83c1edd95b353"
+    },
+    {
+      "path": "rag/ordered_semantic_frame_v3.py",
+      "sha256": "10c2e1afc5b349e9f9d4e115ededd95d995d2b34338df401dcee7cb17c2e8f5e"
+    },
+    {
+      "path": "rag/query_signal_extraction.py",
+      "sha256": "1c2d15cb85277651ce6011e984ba28191d4ebd6de6a20b69aea778360a993272"
+    },
+    {
+      "path": "rag/query_understanding_v2.py",
+      "sha256": "ad68202889367f8e07d463547204a8b2e1a48e5c153e4aef9d695ffa247a7f60"
+    },
+    {
+      "path": "rag/route_contract_validation.py",
+      "sha256": "0a926b976c1c9cb0f18ea07791ced0d720ae61ee865a69a787232727b95a8088"
+    },
+    {
+      "path": "rag/run_ordered_frame_v3_calibration.py",
+      "sha256": "a592be1cce10433e2868320a1f0febe5c5518d697a01942bc6efafa181712499"
+    },
+    {
+      "path": "rag/task_route_resolution.py",
+      "sha256": "3b537eafc5732e999e1e204e3c31d13b4d21fb86df2db34bc415405104843e7d"
+    }
+  ],
+  "scoring_artifacts": [
+    {
+      "path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json",
+      "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"
+    },
+    {
+      "path": "rag/score_ordered_frame_v3_layered.py",
+      "sha256": "e84260865ca749bb88f6f95083d7839831d3942f8b2c6bc5a4ee8862b436ddcd"
+    }
+  ],
+  "runtime_budget": {
+    "planned_cases": 20,
+    "max_provider_calls": 20,
+    "attempts_per_case": 1,
+    "max_retries": 0
+  },
+  "stop_conditions": [
+    "artifact_hash_drift",
+    "annotation_agreement_gate_failure",
+    "runner_reads_sealed_labels",
+    "provider_or_network_error",
+    "more_than_one_attempt_for_any_case",
+    "invalid_or_incomplete_prediction"
+  ]
+}

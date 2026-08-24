@@ -1,0 +1,40 @@
+{
+  "manifest_id": "narrow-semantic-decisions-v1-shadow-freeze-2026-08-13",
+  "status": "frozen",
+  "stage_gate": "APPROVE",
+  "production_connected": false,
+  "evidence_boundary": "Proves the offline contract architecture and deterministic fixture projection only. Does not prove L0-to-L1 understanding or generalization.",
+  "verification": {
+    "independent_monitor": "114 passed, 28 subtests passed",
+    "git_diff_check": "passed"
+  },
+  "files": [
+    {"path": "docs/rag-transformation/plans/2026-08-13-narrow-semantic-decisions-v1.md", "sha256": "22ac07a2d3aa011faded4ebd6ba826fbbd758c568080086925d455328986ed83"},
+    {"path": "docs/rag-transformation/specs/narrow-semantic-decisions-v1.schema.json", "sha256": "3e3e8d11483ccff4a6770a5b3a71cccdfee8b2398b1268eb8bc2f80105315695"},
+    {"path": "docs/rag-transformation/evals/narrow-semantic-decisions-v1-calibration-2026-08-13.json", "sha256": "c97a43de74fe233a434f209e672e1b0ea13e25a9f4620c37a928c20c64e46603"},
+    {"path": "docs/rag-transformation/execution-log/2026-08-13-narrow-semantic-decisions-v1.md", "sha256": "6ac264e09653b476d06acadbdb5cb7215577d7ce5e46451f027062ccb27a156d"},
+    {"path": "rag/narrow_semantic_decisions_v1.py", "sha256": "994a2ec12b996995351dda67813d69751782a9cb47c5d6bb088b44d7d35ce104"},
+    {"path": "rag/narrow_route_contract_v2.py", "sha256": "c303260b0f09cb0ef76d775e0330149633f3417e7170e891d16a3f53b7291e6b"},
+    {"path": "rag/tests/test_narrow_semantic_decisions_v1.py", "sha256": "02497caa1034e5aa31312014fa985ea9e121aa00756b5656ee4eb740c673ddcf"},
+    {"path": "rag/tests/test_narrow_route_contract_v2.py", "sha256": "a9ef32b0cdce6ac2340df41f5aa0cc8911c407ca502d235feb1c3b4ec5bc1922"}
+  ],
+  "stopped_experiments": [
+    {
+      "name": "lean-task-atom-json-object-canary",
+      "classification": "infra-invalid",
+      "result_sha256": "39ea9170a03b3e07e2726ff049d9c6c5ddd2589ec43975791bf98c2ee749d7b6"
+    },
+    {
+      "name": "lean-task-atom-strict-non-thinking-canary",
+      "classification": "failed-stopped",
+      "result_sha256": "03a256ddce2f439c60d30a082c96a2ed82155948d7688f835d6252799c751b0a"
+    }
+  ],
+  "forbidden_next_without_new_gate": [
+    "model API calls",
+    "dataset expansion",
+    "new blind-test claims",
+    "production query or retrieval integration",
+    "chat or Web UI integration"
+  ]
+}

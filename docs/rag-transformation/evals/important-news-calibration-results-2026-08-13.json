@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-08-12T19:59:50.389876+00:00",
+  "dataset_id": "important-news-calibration-v1",
+  "scope_limit": "Synthetic product-rule calibration; not a corpus Recall/F1 benchmark.",
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "gate_passed": true
+  },
+  "rows": [
+    {
+      "id": "IN01",
+      "entity": "OpenAI",
+      "title": "OpenAI appoints a new research chief",
+      "expected_tier": "main",
+      "observed_tier": "main",
+      "passed": true
+    },
+    {
+      "id": "IN02",
+      "entity": "OpenAI",
+      "title": "Premium seats pricing notes",
+      "expected_tier": "exclude",
+      "observed_tier": "exclude",
+      "passed": true
+    },
+    {
+      "id": "IN03",
+      "entity": "OpenAI",
+      "title": "OpenAI restructures enterprise pricing architecture",
+      "expected_tier": "main",
+      "observed_tier": "main",
+      "passed": true
+    },
+    {
+      "id": "IN04",
+      "entity": "OpenAI",
+      "title": "OpenAI faces a major Apple lawsuit",
+      "expected_tier": "background",
+      "observed_tier": "background",
+      "passed": true
+    },
+    {
+      "id": "IN05",
+      "entity": "Anthropic",
+      "title": "Anthropic partners with a global services company",
+      "expected_tier": "main",
+      "observed_tier": "main",
+      "passed": true
+    },
+    {
+      "id": "IN06",
+      "entity": "Anthropic",
+      "title": "How to configure Claude settings",
+      "expected_tier": "exclude",
+      "observed_tier": "exclude",
+      "passed": true
+    },
+    {
+      "id": "IN07",
+      "entity": "Anthropic",
+      "title": "Anthropic releases new model safeguards",
+      "expected_tier": "main",
+      "observed_tier": "main",
+      "passed": true
+    },
+    {
+      "id": "IN08",
+      "entity": "Anthropic",
+      "title": "Anthropic closes a major funding round",
+      "expected_tier": "background",
+      "observed_tier": "background",
+      "passed": true
+    },
+    {
+      "id": "IN09",
+      "entity": "Google",
+      "title": "Google launches a new AI research model",
+      "expected_tier": "main",
+      "observed_tier": "main",
+      "passed": true
+    },
+    {
+      "id": "IN10",
+      "entity": "Google",
+      "title": "Google AI configuration release notes",
+      "expected_tier": "exclude",
+      "observed_tier": "exclude",
+      "passed": true
+    },
+    {
+      "id": "IN11",
+      "entity": "Google",
+      "title": "Google acquires an AI infrastructure company",
+      "expected_tier": "main",
+      "observed_tier": "main",
+      "passed": true
+    },
+    {
+      "id": "IN12",
+      "entity": "Google",
+      "title": "Google and Microsoft enter a major AI dispute",
+      "expected_tier": "background",
+      "observed_tier": "background",
+      "passed": true
+    }
+  ]
+}

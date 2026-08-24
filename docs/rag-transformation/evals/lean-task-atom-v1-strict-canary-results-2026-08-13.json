@@ -1,0 +1,177 @@
+{
+  "experiment_id": "lean-task-atom-v1-strict-three-case-canary-2026-08-13",
+  "evidence_boundary": "Three-case calibration canary; not blind or production evidence.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "request_mode": "deepseek_beta_strict_function_non_thinking",
+  "thinking": "disabled",
+  "strict_function_call": true,
+  "temperature": 0,
+  "max_tokens": 800,
+  "timeout_seconds": 45,
+  "max_retries": 0,
+  "prompt_sha256": "b6ecf341dba478508c5e9154be7a9ebba7687c8f533e6c482f1eb3f38b719287",
+  "total": 3,
+  "schema_semantic_valid": 1,
+  "semantic_and_projection_correct": 0,
+  "mean_latency_seconds": 2.478,
+  "max_latency_seconds": 2.659,
+  "mean_completion_tokens": 186.33,
+  "total_tokens": 2336,
+  "gate": {
+    "passed": false,
+    "requirements": "3/3 schema+semantic+projection; mean<=8s; max<=12s; mean completion<=600"
+  },
+  "cases": [
+    {
+      "case_id": "RC2-SG-017",
+      "value": null,
+      "contract": null,
+      "usage": {
+        "model": "deepseek-v4-flash",
+        "finish_reason": "tool_calls",
+        "tool_call_count": 1,
+        "prompt_tokens": 907,
+        "completion_tokens": 290,
+        "total_tokens": 1197,
+        "raw_arguments": "{\"main\": {\"action\": \"research\", \"target_span\": \"找它近三个月的相关重要消息\", \"success_criterion\": \"找到该实体近三个月的相关重要消息\"}, \"supporting\": [{\"action\": \"verify\", \"target_span\": \"再看它有没有新的合作方\", \"success_criterion\": \"确认该实体是否有新的合作方\"}], \"references\": [{\"literal_span\": \"右边那条\", \"status\": \"resolved_from_context\", \"resolved_value\": \"ATR-20260421-Y7K3DG《Virelia Labs 公布光子互连原型》\"}, {\"literal_span\": \"它\", \"status\": \"resolved_from_context\", \"resolved_value\": \"ATR-20260421-Y7K3DG《Virelia Labs 公布光子互连原型》\"}], \"confidence\": 0.85, \"ambiguities\": [\"近三个月\"的具体起止日期未明确，需结合当前日期推算\"]}",
+        "cost_estimate_usd": null
+      },
+      "latency_seconds": 2.533,
+      "error": "LeanTaskAtomCallError: tool arguments are not valid JSON",
+      "checks": {
+        "schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting": false,
+        "references": false,
+        "protected_terms": false
+      }
+    },
+    {
+      "case_id": "RC2-SG-020",
+      "value": {
+        "main": {
+          "action": "research",
+          "target_span": "汇总近 30 天模型水印的重要动态",
+          "success_criterion": "汇总近30天内与模型水印相关的重要动态和进展"
+        },
+        "supporting": [
+          {
+            "action": "verify",
+            "target_span": "所有主流厂商都已默认开启水印",
+            "success_criterion": "核验“所有主流厂商都已默认开启水印”这一说法是否属实"
+          }
+        ],
+        "references": [
+          {
+            "literal_span": "所有主流厂商都已默认开启水印",
+            "status": "unresolved",
+            "resolved_value": ""
+          }
+        ],
+        "confidence": 0.8,
+        "ambiguities": [
+          "“近30天”的具体起止日期未明确",
+          "“主流厂商”具体指哪些厂商未明确",
+          "“水印”指文本水印、图像水印还是其他类型未明确"
+        ]
+      },
+      "contract": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-lean-d1bcd1fd674350cbaf333d03b3b3ad72",
+        "original_query": "汇总近 30 天模型水印的重要动态，并核验其中“所有主流厂商都已默认开启水印”这句话。",
+        "protected_terms": [
+          "汇总近 30 天模型水印的重要动态",
+          "所有主流厂商都已默认开启水印"
+        ],
+        "intent_signals": [
+          "deep_research",
+          "verification"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [
+          "claim_verification"
+        ],
+        "answer_mode": "deep_research",
+        "route_confidence": 0.55,
+        "ambiguities": [
+          "“近30天”的具体起止日期未明确",
+          "“主流厂商”具体指哪些厂商未明确",
+          "“水印”指文本水印、图像水印还是其他类型未明确",
+          "unresolved reference"
+        ],
+        "resolved_references": [],
+        "supporting_contracts": [
+          {
+            "task_family": "claim_verification",
+            "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+            "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+            "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+            "output_schema_id": "atr.answer/verification/1.0",
+            "budget_profile_id": "atr.budget/verification/1.0"
+          }
+        ],
+        "subjects": [
+          "汇总近 30 天模型水印的重要动态",
+          "所有主流厂商都已默认开启水印"
+        ],
+        "topics": [],
+        "claims": [
+          "所有主流厂商都已默认开启水印"
+        ],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      },
+      "usage": {
+        "model": "deepseek-v4-flash",
+        "finish_reason": "tool_calls",
+        "tool_call_count": 1,
+        "prompt_tokens": 870,
+        "completion_tokens": 269,
+        "total_tokens": 1139,
+        "raw_arguments": "{\"main\": {\"action\": \"research\", \"target_span\": \"汇总近 30 天模型水印的重要动态\", \"success_criterion\": \"汇总近30天内与模型水印相关的重要动态和进展\"}, \"supporting\": [{\"action\": \"verify\", \"target_span\": \"所有主流厂商都已默认开启水印\", \"success_criterion\": \"核验“所有主流厂商都已默认开启水印”这一说法是否属实\"}], \"references\": [{\"literal_span\": \"所有主流厂商都已默认开启水印\", \"status\": \"unresolved\", \"resolved_value\": \"\"}], \"confidence\": 0.8, \"ambiguities\": [\"“近30天”的具体起止日期未明确\", \"“主流厂商”具体指哪些厂商未明确\", \"“水印”指文本水印、图像水印还是其他类型未明确\"]}",
+        "cost_estimate_usd": null
+      },
+      "latency_seconds": 2.659,
+      "error": null,
+      "checks": {
+        "schema_semantic": true,
+        "route": false,
+        "answer_mode": false,
+        "supporting": true,
+        "references": true,
+        "protected_terms": false
+      }
+    },
+    {
+      "case_id": "RC2-SG-039",
+      "value": null,
+      "contract": null,
+      "usage": {},
+      "latency_seconds": 2.241,
+      "error": "LeanTaskAtomCallError: context reference must resolve to a bare ATR ID",
+      "checks": {
+        "schema_semantic": false,
+        "route": false,
+        "answer_mode": false,
+        "supporting": false,
+        "references": false,
+        "protected_terms": false
+      }
+    }
+  ]
+}

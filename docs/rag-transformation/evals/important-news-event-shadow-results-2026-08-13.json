@@ -1,0 +1,255 @@
+{
+  "generated_at": "2026-08-12T20:54:25.254950+00:00",
+  "dataset_id": "important-news-event-shadow-2026-08-05",
+  "scope_limit": "One-day shadow set for subject-role and content-kind validation. Missing source publication dates prevent a valid background-tier metric.",
+  "frozen_inputs": {
+    "source_sha256": "bd989972de637b4a6eb1015e2a93e8533512d2348ea5207c5fca2351e333f40c",
+    "dataset_sha256": "5459f5ed9981890df8bf756e6c6c24865825cda2ff6379efcb80f506976d5b98",
+    "record_count": 20
+  },
+  "versions": [
+    {
+      "version": "v0_legacy_entity",
+      "rows": [
+        {
+          "query": "OpenAI 最近有哪些重要动态？",
+          "entity": "openai",
+          "observed_main": [
+            "ATR-20260805-99E550",
+            "ATR-20260805-793124",
+            "ATR-20260805-21C0FC",
+            "ATR-20260805-0DFB81",
+            "ATR-20260805-F6AE03",
+            "ATR-20260805-D8027A",
+            "ATR-20260805-50B28B",
+            "ATR-20260805-4BD430",
+            "ATR-20260805-0033F2",
+            "ATR-20260805-B7D95B"
+          ],
+          "expected_main": [
+            "ATR-20260805-0033F2",
+            "ATR-20260805-0DFB81",
+            "ATR-20260805-4BD430",
+            "ATR-20260805-793124",
+            "ATR-20260805-99E550",
+            "ATR-20260805-B7D95B",
+            "ATR-20260805-F6AE03"
+          ],
+          "expected_exclude_in_main": [
+            "ATR-20260805-21C0FC",
+            "ATR-20260805-50B28B",
+            "ATR-20260805-D8027A"
+          ],
+          "unexpected_main": [],
+          "duplicate_event_slots": 3,
+          "low_time_confidence_main": [
+            "ATR-20260805-99E550",
+            "ATR-20260805-793124",
+            "ATR-20260805-21C0FC",
+            "ATR-20260805-F6AE03",
+            "ATR-20260805-D8027A",
+            "ATR-20260805-50B28B",
+            "ATR-20260805-4BD430"
+          ],
+          "metrics": {
+            "true_positive": 7,
+            "false_positive": 3,
+            "false_negative": 0,
+            "precision": 0.7,
+            "recall": 1.0,
+            "f1": 0.8235,
+            "duplicate_event_slots": 3,
+            "low_time_confidence_main_count": 7
+          },
+          "entity_filter_mode": "legacy_entity"
+        },
+        {
+          "query": "Anthropic 最近有哪些重要动态？",
+          "entity": "anthropic",
+          "observed_main": [
+            "ATR-20260805-AE6EDF",
+            "ATR-20260805-595BA3"
+          ],
+          "expected_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "expected_exclude_in_main": [
+            "ATR-20260805-595BA3"
+          ],
+          "unexpected_main": [],
+          "duplicate_event_slots": 0,
+          "low_time_confidence_main": [
+            "ATR-20260805-AE6EDF",
+            "ATR-20260805-595BA3"
+          ],
+          "metrics": {
+            "true_positive": 1,
+            "false_positive": 1,
+            "false_negative": 0,
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1": 0.6667,
+            "duplicate_event_slots": 0,
+            "low_time_confidence_main_count": 2
+          },
+          "entity_filter_mode": "legacy_entity"
+        }
+      ]
+    },
+    {
+      "version": "v1_subject_roles",
+      "rows": [
+        {
+          "query": "OpenAI 最近有哪些重要动态？",
+          "entity": "openai",
+          "observed_main": [
+            "ATR-20260805-99E550",
+            "ATR-20260805-793124",
+            "ATR-20260805-21C0FC",
+            "ATR-20260805-0DFB81",
+            "ATR-20260805-F6AE03",
+            "ATR-20260805-D8027A",
+            "ATR-20260805-4BD430",
+            "ATR-20260805-0033F2",
+            "ATR-20260805-B7D95B"
+          ],
+          "expected_main": [
+            "ATR-20260805-0033F2",
+            "ATR-20260805-0DFB81",
+            "ATR-20260805-4BD430",
+            "ATR-20260805-793124",
+            "ATR-20260805-99E550",
+            "ATR-20260805-B7D95B",
+            "ATR-20260805-F6AE03"
+          ],
+          "expected_exclude_in_main": [
+            "ATR-20260805-21C0FC",
+            "ATR-20260805-D8027A"
+          ],
+          "unexpected_main": [],
+          "duplicate_event_slots": 3,
+          "low_time_confidence_main": [
+            "ATR-20260805-99E550",
+            "ATR-20260805-793124",
+            "ATR-20260805-21C0FC",
+            "ATR-20260805-F6AE03",
+            "ATR-20260805-D8027A",
+            "ATR-20260805-4BD430"
+          ],
+          "metrics": {
+            "true_positive": 7,
+            "false_positive": 2,
+            "false_negative": 0,
+            "precision": 0.7778,
+            "recall": 1.0,
+            "f1": 0.875,
+            "duplicate_event_slots": 3,
+            "low_time_confidence_main_count": 6
+          },
+          "entity_filter_mode": "event_subject"
+        },
+        {
+          "query": "Anthropic 最近有哪些重要动态？",
+          "entity": "anthropic",
+          "observed_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "expected_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "expected_exclude_in_main": [],
+          "unexpected_main": [],
+          "duplicate_event_slots": 0,
+          "low_time_confidence_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "metrics": {
+            "true_positive": 1,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "duplicate_event_slots": 0,
+            "low_time_confidence_main_count": 1
+          },
+          "entity_filter_mode": "event_subject"
+        }
+      ]
+    },
+    {
+      "version": "v2_event_contract",
+      "rows": [
+        {
+          "query": "OpenAI 最近有哪些重要动态？",
+          "entity": "openai",
+          "observed_main": [
+            "ATR-20260805-99E550",
+            "ATR-20260805-793124",
+            "ATR-20260805-0DFB81",
+            "ATR-20260805-F6AE03",
+            "ATR-20260805-4BD430",
+            "ATR-20260805-0033F2",
+            "ATR-20260805-B7D95B"
+          ],
+          "expected_main": [
+            "ATR-20260805-0033F2",
+            "ATR-20260805-0DFB81",
+            "ATR-20260805-4BD430",
+            "ATR-20260805-793124",
+            "ATR-20260805-99E550",
+            "ATR-20260805-B7D95B",
+            "ATR-20260805-F6AE03"
+          ],
+          "expected_exclude_in_main": [],
+          "unexpected_main": [],
+          "duplicate_event_slots": 3,
+          "low_time_confidence_main": [
+            "ATR-20260805-99E550",
+            "ATR-20260805-793124",
+            "ATR-20260805-F6AE03",
+            "ATR-20260805-4BD430"
+          ],
+          "metrics": {
+            "true_positive": 7,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "duplicate_event_slots": 3,
+            "low_time_confidence_main_count": 4
+          },
+          "entity_filter_mode": "event_subject"
+        },
+        {
+          "query": "Anthropic 最近有哪些重要动态？",
+          "entity": "anthropic",
+          "observed_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "expected_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "expected_exclude_in_main": [],
+          "unexpected_main": [],
+          "duplicate_event_slots": 0,
+          "low_time_confidence_main": [
+            "ATR-20260805-AE6EDF"
+          ],
+          "metrics": {
+            "true_positive": 1,
+            "false_positive": 0,
+            "false_negative": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "duplicate_event_slots": 0,
+            "low_time_confidence_main_count": 1
+          },
+          "entity_filter_mode": "event_subject"
+        }
+      ]
+    }
+  ]
+}

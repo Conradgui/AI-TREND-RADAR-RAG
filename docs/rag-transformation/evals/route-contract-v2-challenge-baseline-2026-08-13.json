@@ -1,0 +1,1849 @@
+{
+  "baseline_id": "route-contract-v2-challenge-pre-fix-baseline-2026-08-13",
+  "created_at": "2026-08-13T06:06:43.941807+00:00",
+  "blind_protocol": "Generated from query-only file before the main implementer read sealed Gold.",
+  "query_dataset_id": "route-contract-v2-challenge-2026-08-13",
+  "query_file_sha256": "b77eb76612c9b64327644d27fe6af81bc837a6900732833fb62ad5e68ab398c2",
+  "understander_file_sha256": "cf3624c392bcc287484c1ab74d6b611e49399e431fc96eb2e530f8fa2f6598dc",
+  "total_cases": 50,
+  "predictions": [
+    {
+      "case_id": "RCV2-CH-001",
+      "query": "把 ATR-20260811-4F7K2Q 对应的原始条目打开",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-ccdd2f9a9deb4651bf6214481d24fe62",
+        "original_query": "把 ATR-20260811-4F7K2Q 对应的原始条目打开",
+        "protected_terms": [
+          "ATR-20260811-4F7K2Q"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-002",
+      "query": "Mistral 今天有啥值得看的更新？别把小版本修补也算进去",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-8d24d723c7754e189cfd82eca137f98b",
+        "original_query": "Mistral 今天有啥值得看的更新？别把小版本修补也算进去",
+        "protected_terms": [
+          "Mistral 今天有啥值得看的更新？别把小版本修补也算进去"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-003",
+      "query": "过去一年开放权重模型形成了哪些技术路线和竞争格局？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-2258e5749a2542aba876a72b70155ce6",
+        "original_query": "过去一年开放权重模型形成了哪些技术路线和竞争格局？",
+        "protected_terms": [
+          "过去一年开放权重模型形成了哪些技术路线和竞争格局？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-004",
+      "query": "OpenAI 是否已经在 8 月 12 日正式发布 GPT-6？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-551dc83e30034f4980e5c93992c2fce1",
+        "original_query": "OpenAI 是否已经在 8 月 12 日正式发布 GPT-6？",
+        "protected_terms": [
+          "OpenAI 是否已经在 8 月 12 日正式发布 GPT-6？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-005",
+      "query": "日报知识库值得采用 GraphRAG 吗？请结合成本和收益给建议",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-13df75b9364f4cad881ccb2b3ece484e",
+        "original_query": "日报知识库值得采用 GraphRAG 吗？请结合成本和收益给建议",
+        "protected_terms": [
+          "日报知识库值得采用 GraphRAG 吗？请结合成本和收益给建议"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-006",
+      "query": "帮我找到 Anthropic 这周最重要的几项动态，不是找某一篇文章",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-31724cef0c144f06ad52b48d9c4e392f",
+        "original_query": "帮我找到 Anthropic 这周最重要的几项动态，不是找某一篇文章",
+        "protected_terms": [
+          "帮我找到 Anthropic 这周最重要的几项动态，不是找某一篇文章"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-007",
+      "query": "回到标题为“AI Agents Need a New Control Plane”的那篇原文条目",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-82a1395a2ce64a6b893dd37741570d39",
+        "original_query": "回到标题为“AI Agents Need a New Control Plane”的那篇原文条目",
+        "protected_terms": [
+          "回到标题为“AI Agents Need a New Control Plane”的那篇原文条目"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-008",
+      "query": "找出证据，解释 coding agents 为什么可能放大资深开发者的优势",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-5379f60b60cb4f48ab81f20cc00874e0",
+        "original_query": "找出证据，解释 coding agents 为什么可能放大资深开发者的优势",
+        "protected_terms": [
+          "找出证据，解释 coding agents 为什么可能放大资深开发者的优势"
+        ],
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-009",
+      "query": "听说 Perplexity 已经收购了 Arc，这事到底成立不成立？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-a8efce69a24c49d3a1e195b02fc06d75",
+        "original_query": "听说 Perplexity 已经收购了 Arc，这事到底成立不成立？",
+        "protected_terms": [
+          "听说 Perplexity 已经收购了 Arc，这事到底成立不成立？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-010",
+      "query": "Apple 与 OpenAI 从合作传闻到近期争议，双方关系是怎么变化的？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-f3324dffd34c4a4085419360768276ea",
+        "original_query": "Apple 与 OpenAI 从合作传闻到近期争议，双方关系是怎么变化的？",
+        "protected_terms": [
+          "Apple 与 OpenAI 从合作传闻到近期争议，双方关系是怎么变化的？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-011",
+      "query": "定位 2026-08-09、来源 Hacker News、标题里有“local models at work”的原条目",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-995b769b790c464ebc00d09e2a2efe16",
+        "original_query": "定位 2026-08-09、来源 Hacker News、标题里有“local models at work”的原条目",
+        "protected_terms": [
+          "local models at work"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-012",
+      "query": "联网扫一下过去 72 小时 AI robotics 的大新闻，最多给我五条",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-abc8cfde239647d3ae908553833c7fdb",
+        "original_query": "联网扫一下过去 72 小时 AI robotics 的大新闻，最多给我五条",
+        "protected_terms": [
+          "联网扫一下过去 72 小时 AI robotics 的大新闻，最多给我五条"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "explicit",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-013",
+      "query": "NVIDIA、CoreWeave 和 OpenAI 在算力供给链里分别扮演什么角色，彼此怎么连接？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-36fef65d1542494798b6d8d43f59a793",
+        "original_query": "NVIDIA、CoreWeave 和 OpenAI 在算力供给链里分别扮演什么角色，彼此怎么连接？",
+        "protected_terms": [
+          "NVIDIA、CoreWeave 和 OpenAI 在算力供给链里分别扮演什么角色，彼此怎么连接？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-014",
+      "query": "RAGFlow 和 LightRAG 更适合什么场景？给我一份有证据的选型比较",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-eee4740fe3f842228c34f9f0e604842f",
+        "original_query": "RAGFlow 和 LightRAG 更适合什么场景？给我一份有证据的选型比较",
+        "protected_terms": [
+          "RAGFlow 和 LightRAG 更适合什么场景？给我一份有证据的选型比较"
+        ],
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-015",
+      "query": "“Claude Code 已向所有个人免费用户开放”是真的吗？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-b0caae3f843a4b16b3676f6417cbfa0d",
+        "original_query": "“Claude Code 已向所有个人免费用户开放”是真的吗？",
+        "protected_terms": [
+          "“Claude Code 已向所有个人免费用户开放”是真的吗？"
+        ],
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+        "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/verification/1.0",
+        "budget_profile_id": "atr.budget/verification/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-016",
+      "query": "最近 OpenAI 发生了什么大事？不要价格细节和普通配置调整",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-458d806b1d6f4720be9ec24f1cf39325",
+        "original_query": "最近 OpenAI 发生了什么大事？不要价格细节和普通配置调整",
+        "protected_terms": [
+          "最近 OpenAI 发生了什么大事？不要价格细节和普通配置调整"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-017",
+      "query": "我刚点开的这条新闻不要分析，直接带我回它的原条目",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-91b790ef22ea4564820306827b041fae",
+        "original_query": "我刚点开的这条新闻不要分析，直接带我回它的原条目",
+        "protected_terms": [
+          "我刚点开的这条新闻不要分析，直接带我回它的原条目"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-018",
+      "query": "从聊天助手走向 autonomous agents，这条产品路线近 12 个月经历了哪些转折？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-767932b8618f475383549c430e268a45",
+        "original_query": "从聊天助手走向 autonomous agents，这条产品路线近 12 个月经历了哪些转折？",
+        "protected_terms": [
+          "从聊天助手走向 autonomous agents，这条产品路线近 12 个月经历了哪些转折？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-019",
+      "query": "xAI 并没有收购一家叫 Hotshot 的公司，对吗？请核实这个否定说法",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-4cb513d9cfac4f56b5f95ebcf00cbc7b",
+        "original_query": "xAI 并没有收购一家叫 Hotshot 的公司，对吗？请核实这个否定说法",
+        "protected_terms": [
+          "xAI 并没有收购一家叫 Hotshot 的公司，对吗？请核实这个否定说法"
+        ],
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+        "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/verification/1.0",
+        "budget_profile_id": "atr.budget/verification/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-020",
+      "query": "只查 OpenAI 和 Anthropic 官网，比较两家的 enterprise agent 产品路线",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-b916018cf77f46ecb1094f86cc0b8785",
+        "original_query": "只查 OpenAI 和 Anthropic 官网，比较两家的 enterprise agent 产品路线",
+        "protected_terms": [
+          "只查 OpenAI 和 Anthropic 官网，比较两家的 enterprise agent 产品路线"
+        ],
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-021",
+      "query": "打开“Why MCP Won't Replace APIs (Yet)”这条，不要给我主题综述",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-e0db6432a06d492a8828c6d418221dd6",
+        "original_query": "打开“Why MCP Won't Replace APIs (Yet)”这条，不要给我主题综述",
+        "protected_terms": [
+          "Why MCP Won't Replace APIs (Yet)"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-022",
+      "query": "Google DeepMind 官网最近有哪些影响面比较大的发布？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-ef7ae451cda0416fa51995156b5f5f5c",
+        "original_query": "Google DeepMind 官网最近有哪些影响面比较大的发布？",
+        "protected_terms": [
+          "Google DeepMind 官网最近有哪些影响面比较大的发布？"
+        ],
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-023",
+      "query": "过去两个季度，OpenAI、Google 和 Anthropic 的 coding agent 竞争格局如何重排？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-6ae6cd8f7dd34442bd373e4a7ebc0788",
+        "original_query": "过去两个季度，OpenAI、Google 和 Anthropic 的 coding agent 竞争格局如何重排？",
+        "protected_terms": [
+          "过去两个季度，OpenAI、Google 和 Anthropic 的 coding agent 竞争格局如何重排？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-024",
+      "query": "有报道说某公司一年亏损 2600 亿元，这个数字能被可靠来源支持吗？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-69d00808ab23499fbbb6f4fa3facc477",
+        "original_query": "有报道说某公司一年亏损 2600 亿元，这个数字能被可靠来源支持吗？",
+        "protected_terms": [
+          "有报道说某公司一年亏损 2600 亿元，这个数字能被可靠来源支持吗？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-025",
+      "query": "为什么 browser-use agents 容易在真实网页上失效？请区分技术原因和产品原因",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-40db080cd1c24c37b9fee9469e35cfaa",
+        "original_query": "为什么 browser-use agents 容易在真实网页上失效？请区分技术原因和产品原因",
+        "protected_terms": [
+          "为什么 browser-use agents 容易在真实网页上失效？请区分技术原因和产品原因"
+        ],
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-026",
+      "query": "今天 Meta AI 有什么更新？另外标出哪些消息还没被官方确认",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-2689542b166247f2aed62bc8a6866eea",
+        "original_query": "今天 Meta AI 有什么更新？另外标出哪些消息还没被官方确认",
+        "protected_terms": [
+          "今天 Meta AI 有什么更新？另外标出哪些消息还没被官方确认"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-027",
+      "query": "找 8 月 7 日 Product Hunt 那篇标题以“Voice agents for”开头的原记录",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-ac7b2aba814f4946968c6176a2b89840",
+        "original_query": "找 8 月 7 日 Product Hunt 那篇标题以“Voice agents for”开头的原记录",
+        "protected_terms": [
+          "找 8 月 7 日 Product Hunt 那篇标题以“Voice agents for”开头的原记录"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-028",
+      "query": "在内部库里找到证据解释“RAG 正在从检索组件变成 agent workflow”这句话",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-f065ec97c0654902b321d731f83137ce",
+        "original_query": "在内部库里找到证据解释“RAG 正在从检索组件变成 agent workflow”这句话",
+        "protected_terms": [
+          "在内部库里找到证据解释“RAG 正在从检索组件变成 agent workflow”这句话"
+        ],
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-029",
+      "query": "Ona 到底有没有被 OpenAI 收购？我只要可核验的结论",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-1b0ab374c5a2467a8302450147e51769",
+        "original_query": "Ona 到底有没有被 OpenAI 收购？我只要可核验的结论",
+        "protected_terms": [
+          "Ona 到底有没有被 OpenAI 收购？我只要可核验的结论"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-030",
+      "query": "从 2025 Q4 到现在，AI 搜索的商业化路线发生了哪些变化？列关键节点",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-c4c6e968ff5b4d00887d7c4247e29e54",
+        "original_query": "从 2025 Q4 到现在，AI 搜索的商业化路线发生了哪些变化？列关键节点",
+        "protected_terms": [
+          "从 2025 Q4 到现在，AI 搜索的商业化路线发生了哪些变化？列关键节点"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-031",
+      "query": "show me the item ATR-20260810-Z8N3VC, not a summary",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-7b3733532e30435083c79f91a50919a0",
+        "original_query": "show me the item ATR-20260810-Z8N3VC, not a summary",
+        "protected_terms": [
+          "ATR-20260810-Z8N3VC"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-032",
+      "query": "找到 Cursor 最近的重要动态，按新闻价值排，不要因为我说‘找到’就只返回一个链接",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-1c59ae9f1c574c919431faf0832d13ce",
+        "original_query": "找到 Cursor 最近的重要动态，按新闻价值排，不要因为我说‘找到’就只返回一个链接",
+        "protected_terms": [
+          "找到 Cursor 最近的重要动态，按新闻价值排，不要因为我说‘找到’就只返回一个链接"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-033",
+      "query": "把 MCP、tool calling、agent runtime 三者的依赖关系和演进顺序讲清楚",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-0dff2425008c48e195b97a05f9e3e685",
+        "original_query": "把 MCP、tool calling、agent runtime 三者的依赖关系和演进顺序讲清楚",
+        "protected_terms": [
+          "把 MCP、tool calling、agent runtime 三者的依赖关系和演进顺序讲清楚"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-034",
+      "query": "请判断这句话是否属实：“欧盟 AI Act 的全部义务已经在 2026-08-01 同时生效”",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-d32ba78654794208a483643077a442f3",
+        "original_query": "请判断这句话是否属实：“欧盟 AI Act 的全部义务已经在 2026-08-01 同时生效”",
+        "protected_terms": [
+          "请判断这句话是否属实：“欧盟 AI Act 的全部义务已经在 2026-08-01 同时生效”"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-035",
+      "query": "对于只有几千条日报的团队，是否值得采用向量库加 Neo4j 的双存储？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-7d666647f75942d6835ffc381cb2a1aa",
+        "original_query": "对于只有几千条日报的团队，是否值得采用向量库加 Neo4j 的双存储？",
+        "protected_terms": [
+          "对于只有几千条日报的团队，是否值得采用向量库加 Neo4j 的双存储？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-036",
+      "query": "本周 AI 基础设施有哪些真正重要的新闻？普通融资传闻先别放进主答案",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-934cad35182d4c1f8781878466d01a42",
+        "original_query": "本周 AI 基础设施有哪些真正重要的新闻？普通融资传闻先别放进主答案",
+        "protected_terms": [
+          "本周 AI 基础设施有哪些真正重要的新闻？普通融资传闻先别放进主答案"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-037",
+      "query": "跳到 2026-08-06 OpenAI 来源、题目包含“Economic Research”的那一条",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-52d21800418142eab87f2628f004c98f",
+        "original_query": "跳到 2026-08-06 OpenAI 来源、题目包含“Economic Research”的那一条",
+        "protected_terms": [
+          "Economic Research"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-038",
+      "query": "过去一年，small language models 的关注点从端侧部署转向了什么？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-c173d7c91d4d4422b0b8cffa889b0cfc",
+        "original_query": "过去一年，small language models 的关注点从端侧部署转向了什么？",
+        "protected_terms": [
+          "过去一年，small language models 的关注点从端侧部署转向了什么？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-039",
+      "query": "联网去官方公告核验：Microsoft 已停止向 OpenAI 提供新增算力，这个说法是真的吗？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-a0f2acbd52ff49e4a1d5b6c83592b76f",
+        "original_query": "联网去官方公告核验：Microsoft 已停止向 OpenAI 提供新增算力，这个说法是真的吗？",
+        "protected_terms": [
+          "联网去官方公告核验：Microsoft 已停止向 OpenAI 提供新增算力，这个说法是真的吗？"
+        ],
+        "intent_signals": [
+          "verification"
+        ],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "explicit",
+        "rewrite_policy_id": "atr.rewrite/claim_verification/1.0",
+        "retrieval_policy_id": "atr.retrieval/claim_verification/1.0",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/verification/1.0",
+        "budget_profile_id": "atr.budget/verification/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-040",
+      "query": "研究一下 AI coding 对初级工程师就业的影响，分别给支持证据、反例和未知项",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-e4783f6a0e9744eda18665c666c5f14a",
+        "original_query": "研究一下 AI coding 对初级工程师就业的影响，分别给支持证据、反例和未知项",
+        "protected_terms": [
+          "研究一下 AI coding 对初级工程师就业的影响，分别给支持证据、反例和未知项"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-041",
+      "query": "找到标题“Scaling Laws for Agentic Search”的原条目并打开",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-805f6fadc2b4459ba2a25926860f8cbf",
+        "original_query": "找到标题“Scaling Laws for Agentic Search”的原条目并打开",
+        "protected_terms": [
+          "Scaling Laws for Agentic Search"
+        ],
+        "intent_signals": [
+          "navigation"
+        ],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "route_confidence": 1.0,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "forbidden",
+        "rewrite_policy_id": "atr.rewrite/item_navigation/1.0",
+        "retrieval_policy_id": "atr.retrieval/item_navigation/1.0",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "output_schema_id": "atr.answer/navigation/1.0",
+        "budget_profile_id": "atr.budget/deterministic/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-042",
+      "query": "What's new with Gemini lately？重点只要会影响用户或行业的大动作",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-6b976e3b243244b989bd86a3cda409e5",
+        "original_query": "What's new with Gemini lately？重点只要会影响用户或行业的大动作",
+        "protected_terms": [
+          "What's new with Gemini lately？重点只要会影响用户或行业的大动作"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-043",
+      "query": "结合本地日报，梳理 AI browser agents 半年来的路线迁移与关键参与者关系",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-72628512d0ba4f15bba0ae3978a8714f",
+        "original_query": "结合本地日报，梳理 AI browser agents 半年来的路线迁移与关键参与者关系",
+        "protected_terms": [
+          "结合本地日报，梳理 AI browser agents 半年来的路线迁移与关键参与者关系"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-044",
+      "query": "Did Apple acquire the AI startup PromptForge for $900M，还是媒体误传？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-55f40c8f28754b63b8405d43b7a55890",
+        "original_query": "Did Apple acquire the AI startup PromptForge for $900M，还是媒体误传？",
+        "protected_terms": [
+          "Did Apple acquire the AI startup PromptForge for $900M，还是媒体误传？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-045",
+      "query": "解释为什么 GraphRAG 不一定提升所有问题的效果，并建议哪些 query 才该走图检索",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-814ce3c56af74e2abd49b7c2c56c7aad",
+        "original_query": "解释为什么 GraphRAG 不一定提升所有问题的效果，并建议哪些 query 才该走图检索",
+        "protected_terms": [
+          "解释为什么 GraphRAG 不一定提升所有问题的效果，并建议哪些 query 才该走图检索"
+        ],
+        "intent_signals": [
+          "explanation"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-046",
+      "query": "别给我一年时间线，只说过去 48 小时 Anthropic 有哪些 headline-level updates",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-09414e8ce2834d82a7eae95568c0d46d",
+        "original_query": "别给我一年时间线，只说过去 48 小时 Anthropic 有哪些 headline-level updates",
+        "protected_terms": [
+          "别给我一年时间线，只说过去 48 小时 Anthropic 有哪些 headline-level updates"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-047",
+      "query": "8 月 10 日 GitHub 那篇“MCP security...”就是我说的这条，打开对应记录",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-9e68127743eb4810a5bdad5732158388",
+        "original_query": "8 月 10 日 GitHub 那篇“MCP security...”就是我说的这条，打开对应记录",
+        "protected_terms": [
+          "8 月 10 日 GitHub 那篇“MCP security...”就是我说的这条，打开对应记录"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-048",
+      "query": "OpenAI 与 Microsoft 现在是什么合作结构，这一年有哪些关键变化？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-d9101a061c5a43d5871c75b240cddbf0",
+        "original_query": "OpenAI 与 Microsoft 现在是什么合作结构，这一年有哪些关键变化？",
+        "protected_terms": [
+          "OpenAI 与 Microsoft 现在是什么合作结构，这一年有哪些关键变化？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-049",
+      "query": "截至 2026-08-01，ChatGPT Search 是否已经覆盖所有地区的免费账户？",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-41a405ca6ceb455bb55c4c0e11ebb59b",
+        "original_query": "截至 2026-08-01，ChatGPT Search 是否已经覆盖所有地区的免费账户？",
+        "protected_terms": [
+          "截至 2026-08-01，ChatGPT Search 是否已经覆盖所有地区的免费账户？"
+        ],
+        "intent_signals": [],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    },
+    {
+      "case_id": "RCV2-CH-050",
+      "query": "站在 AI PM 角度比较 DeepSeek 与 OpenAI 的 API 策略，并给出接入建议和风险",
+      "prediction": {
+        "schema_version": "atr.route/2.0",
+        "request_id": "shadow-b9d4e758f3494e41a33a83bdae25e1a4",
+        "original_query": "站在 AI PM 角度比较 DeepSeek 与 OpenAI 的 API 策略，并给出接入建议和风险",
+        "protected_terms": [
+          "站在 AI PM 角度比较 DeepSeek 与 OpenAI 的 API 策略，并给出接入建议和风险"
+        ],
+        "intent_signals": [
+          "comparison"
+        ],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "route_confidence": 0.9,
+        "ambiguities": [],
+        "subjects": [],
+        "topics": [],
+        "claims": [],
+        "temporal_constraint": {
+          "mode": "none",
+          "value": null
+        },
+        "source_constraint": {
+          "requested_sources": [],
+          "official_first": false
+        },
+        "web_permission": "on_demand",
+        "rewrite_policy_id": "atr.rewrite/evidence_research/1.0",
+        "retrieval_policy_id": "atr.retrieval/evidence_research/1.0",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "output_schema_id": "atr.answer/research/1.0",
+        "budget_profile_id": "atr.budget/research/1.0"
+      }
+    }
+  ]
+}

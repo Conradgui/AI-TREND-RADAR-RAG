@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "important-news-event-shadow-2026-08-05",
+  "report_date": "2026-08-05",
+  "review_status": "ai_proposed_labels_from_human_confirmed_product_rule",
+  "review_provenance": "Product rule confirmed by Conrad; per-item labels proposed by Codex and not yet independently human-reviewed.",
+  "scope_limit": "One-day shadow set for subject-role and content-kind validation. Missing source publication dates prevent a valid background-tier metric.",
+  "label_rule": "Recent important news must be a real event with the requested company as an event subject. Tutorials, compatibility mentions, project listings and ordinary pricing details are excluded by default.",
+  "annotations": [
+    {"daily_item_id":"ATR-20260805-793124","content_kind":"news_event","event_type":"litigation","subject_entity_ids":["openai","apple"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"high","event_group_id":"apple-openai-dispute"},
+    {"daily_item_id":"ATR-20260805-99E550","content_kind":"news_event","event_type":"program_launch","subject_entity_ids":["openai"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"high","event_group_id":"openai-economic-research"},
+    {"daily_item_id":"ATR-20260805-21C0FC","content_kind":"product_update","event_type":"feature_release","subject_entity_ids":["openai"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"low","event_group_id":"openai-education-plugins"},
+    {"daily_item_id":"ATR-20260805-AE6EDF","content_kind":"news_event","event_type":"leadership","subject_entity_ids":["anthropic"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"high","event_group_id":"anthropic-leadership-appointment"},
+    {"daily_item_id":"ATR-20260805-0DFB81","content_kind":"news_event","event_type":"litigation","subject_entity_ids":["apple","openai"],"mentioned_entity_ids":[],"publication_date":"2026-08-04","temporal_confidence":"high","importance_label":"high","event_group_id":"apple-openai-dispute"},
+    {"daily_item_id":"ATR-20260805-CF6FD7","content_kind":"project_listing","event_type":"compatibility","subject_entity_ids":["open-webui"],"mentioned_entity_ids":["openai"],"publication_date":null,"temporal_confidence":"low","importance_label":"exclude","event_group_id":"open-webui-project"},
+    {"daily_item_id":"ATR-20260805-5BC1A6","content_kind":"project_listing","event_type":"project_listing","subject_entity_ids":["autogpt"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-229125","content_kind":"project_listing","event_type":"compatibility","subject_entity_ids":["graphify-labs"],"mentioned_entity_ids":["anthropic","google"],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-453867","content_kind":"project_listing","event_type":"compatibility","subject_entity_ids":["caveman"],"mentioned_entity_ids":["anthropic"],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-F5EB48","content_kind":"project_listing","event_type":"project_listing","subject_entity_ids":["agent-reach"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-595BA3","content_kind":"project_listing","event_type":"compatibility","subject_entity_ids":["claude-mem"],"mentioned_entity_ids":["anthropic","google"],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-25A146","content_kind":"project_listing","event_type":"project_listing","subject_entity_ids":["ragflow"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-0033F2","content_kind":"news_event","event_type":"litigation","subject_entity_ids":["openai"],"mentioned_entity_ids":[],"publication_date":"2026-08-04","temporal_confidence":"high","importance_label":"high","event_group_id":"openai-employment-investigation"},
+    {"daily_item_id":"ATR-20260805-F6AE03","content_kind":"news_event","event_type":"research_release","subject_entity_ids":["openai"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"high","event_group_id":"openai-math-proofs"},
+    {"daily_item_id":"ATR-20260805-3D5F31","content_kind":"tutorial","event_type":"how_to","subject_entity_ids":["article-author"],"mentioned_entity_ids":["openai"],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-50B28B","content_kind":"tutorial","event_type":"how_to","subject_entity_ids":["article-author"],"mentioned_entity_ids":["openai"],"publication_date":null,"temporal_confidence":"low"},
+    {"daily_item_id":"ATR-20260805-D8027A","content_kind":"pricing_detail","event_type":"pricing_detail","subject_entity_ids":["openai"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"exclude","event_group_id":"openai-price-detail"},
+    {"daily_item_id":"ATR-20260805-B7D95B","content_kind":"news_event","event_type":"litigation","subject_entity_ids":["openai"],"mentioned_entity_ids":[],"publication_date":"2026-08-04","temporal_confidence":"high","importance_label":"high","event_group_id":"openai-employment-investigation"},
+    {"daily_item_id":"ATR-20260805-4BD430","content_kind":"news_event","event_type":"litigation","subject_entity_ids":["openai","apple"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low","importance_label":"high","event_group_id":"apple-openai-dispute"},
+    {"daily_item_id":"ATR-20260805-C44644","content_kind":"news_digest","event_type":"roundup","subject_entity_ids":["36kr"],"mentioned_entity_ids":[],"publication_date":null,"temporal_confidence":"low"}
+  ],
+  "evaluation_queries": [
+    {
+      "query":"OpenAI 最近有哪些重要动态？",
+      "entity":"openai",
+      "expected_main":["ATR-20260805-793124","ATR-20260805-99E550","ATR-20260805-0DFB81","ATR-20260805-0033F2","ATR-20260805-F6AE03","ATR-20260805-B7D95B","ATR-20260805-4BD430"],
+      "expected_background":[],
+      "expected_exclude":["ATR-20260805-21C0FC","ATR-20260805-CF6FD7","ATR-20260805-3D5F31","ATR-20260805-50B28B","ATR-20260805-D8027A"]
+    },
+    {
+      "query":"Anthropic 最近有哪些重要动态？",
+      "entity":"anthropic",
+      "expected_main":["ATR-20260805-AE6EDF"],
+      "expected_background":[],
+      "expected_exclude":["ATR-20260805-229125","ATR-20260805-453867","ATR-20260805-595BA3"]
+    }
+  ]
+}

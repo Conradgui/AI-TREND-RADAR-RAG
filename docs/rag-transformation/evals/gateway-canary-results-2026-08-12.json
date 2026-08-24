@@ -1,0 +1,495 @@
+{
+  "generated_at": "2026-08-12T11:25:06.459191+00:00",
+  "dataset_id": "gateway-canary-2026-08-12",
+  "purpose": "Gateway Canary: functional/no-regression gate before broader integration",
+  "scope_limit": "Vector + lexical index only; does not validate LLM answers, graph retrieval, external search, or human relevance.",
+  "target_snapshot": {
+    "latest_corpus_date": "2026-08-12"
+  },
+  "observed_snapshot": {
+    "vector": {
+      "latest_corpus_date": "2026-08-12",
+      "document_count": 3663,
+      "corpus_revision": ""
+    },
+    "lexical": {
+      "latest_corpus_date": "2026-08-12",
+      "document_count": 3663
+    }
+  },
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "gate_passed": true
+  },
+  "rows": [
+    {
+      "id": "C01",
+      "query": "最近有什么热门趋势？",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "min_records": true,
+        "unique_citation_ids": true,
+        "unique_sources": true,
+        "source_cap": true,
+        "no_empty_regression": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "trend_discovery",
+        "error_code": "",
+        "elapsed_ms": 63.35,
+        "trace": {
+          "path": "trend_discovery",
+          "candidate_count": 100,
+          "deduplicated_candidate_count": 66,
+          "returned_count": 5
+        },
+        "records": [
+          {
+            "citation_id": "ATR-20260811-E53CE6",
+            "date": "2026-08-11",
+            "source": "Anthropic (Claude)",
+            "title": "Introducing Claude Sonnet 5",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-E53CE6",
+            "url": "https://www.anthropic.com/news/claude-sonnet-5"
+          },
+          {
+            "citation_id": "ATR-20260811-8DA9A9",
+            "date": "2026-08-11",
+            "source": "OpenAI",
+            "title": "Expanding Daybreak As The Cyber Defense Window Narrows",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-8DA9A9",
+            "url": "https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/"
+          },
+          {
+            "citation_id": "ATR-20260811-7794E9",
+            "date": "2026-08-11",
+            "source": "OpenAI",
+            "title": "Premium Seats Chatgpt Business",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-7794E9",
+            "url": "https://openai.com/index/premium-seats-chatgpt-business/"
+          },
+          {
+            "citation_id": "ATR-20260811-604C0F",
+            "date": "2026-08-11",
+            "source": "Anthropic (Claude)",
+            "title": "Learning more about Claude's mathematical capabilities",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-604C0F",
+            "url": "https://www.anthropic.com/research/riemann-zeta"
+          },
+          {
+            "citation_id": "ATR-20260812-00A6E9",
+            "date": "2026-08-12",
+            "source": "Google DeepMind",
+            "title": "AI model achieves breakthrough in forecasting cyclones — Google DeepMind",
+            "local_url": "#2026-08-12/ai-topic-radar/item/ATR-20260812-00A6E9",
+            "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "ATR-20260811-D4CB39",
+            "date": "2026-08-11",
+            "source": "Product Hunt",
+            "title": "Papaya",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-D4CB39",
+            "url": "https://www.producthunt.com/r/Z2W7QXZXIHIDPI"
+          },
+          {
+            "citation_id": "ATR-20260811-7794E9",
+            "date": "2026-08-11",
+            "source": "OpenAI",
+            "title": "Premium Seats Chatgpt Business",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-7794E9",
+            "url": "https://openai.com/index/premium-seats-chatgpt-business/"
+          },
+          {
+            "citation_id": "ATR-20260812-DF4F5E",
+            "date": "2026-08-12",
+            "source": "InfoQ 中国",
+            "title": "最高节省 85% 成本：微软公布 AI 智能体 LLM 路由方案",
+            "local_url": "#2026-08-12/ai-topic-radar/item/ATR-20260812-DF4F5E",
+            "url": "https://www.infoq.cn/article/HQD432MKSXMMR2UUag6P"
+          },
+          {
+            "citation_id": "ATR-20260810-49FA71",
+            "date": "2026-08-10",
+            "source": "InfoQ 中国",
+            "title": "智能互动 Agent 在快手商业场景的落地实践｜AICon深圳",
+            "local_url": "#2026-08-10/ai-topic-radar/item/ATR-20260810-49FA71",
+            "url": "https://www.infoq.cn/article/KCw3ZLsEJcNYFegzd7dx"
+          },
+          {
+            "citation_id": "ATR-20260803-AEB976",
+            "date": "2026-08-03",
+            "source": "Product Hunt",
+            "title": "unquestion",
+            "local_url": "#2026-08-03/ai-topic-radar/item/ATR-20260803-AEB976",
+            "url": "https://www.producthunt.com/r/RNZW4NSBZ6SAUE"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C02",
+      "query": "Apple Is Getting This Wrong",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "expected_top_result": true,
+        "stable_local_url": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "item_navigation",
+        "error_code": "",
+        "elapsed_ms": 10.08,
+        "trace": {
+          "path": "navigator",
+          "candidate_count": 3
+        },
+        "records": [
+          {
+            "citation_id": "ATR-20260805-793124",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Apple Is Getting This Wrong",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-793124",
+            "url": "https://openai.com/index/apple-is-getting-this-wrong/"
+          },
+          {
+            "citation_id": "ATR-20260805-4BD430",
+            "date": "2026-08-05",
+            "source": "开源中国",
+            "title": "OpenAI 公开邮件和聊天记录回应苹果诉讼，称“Apple is getting this wrong”",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-4BD430",
+            "url": "https://www.oschina.net/news/487756/apple-is-getting-this-wrong"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "ATR-20260805-793124",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Apple Is Getting This Wrong",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-793124",
+            "url": "https://openai.com/index/apple-is-getting-this-wrong/"
+          },
+          {
+            "citation_id": "ATR-20260726-8D586E",
+            "date": "2026-07-26",
+            "source": "Hacker News",
+            "title": "Apple Is the King of AI and Nobody Knows It",
+            "local_url": "#2026-07-26/ai-topic-radar/item/ATR-20260726-8D586E",
+            "url": "https://limitededitionjonathan.substack.com/p/apple-is-the-king-of-ai-and-nobody"
+          },
+          {
+            "citation_id": "ATR-20260720-2B12AB",
+            "date": "2026-07-20",
+            "source": "Hacker News",
+            "title": "OpenAI is breaking Silicon Valley unwritten code. That's why Apple is so angry",
+            "local_url": "#2026-07-20/ai-topic-radar/item/ATR-20260720-2B12AB",
+            "url": "https://www.businessinsider.com/openai-breaking-silicon-valley-unspoken-rule-apple-talent-2026-7"
+          },
+          {
+            "citation_id": "ATR-20260706-796A04",
+            "date": "2026-07-06",
+            "source": "Hacker News",
+            "title": "Apple sells me a MacBook to deliver $1700; cancels 5 days later quoting $2000?",
+            "local_url": "#2026-07-06/ai-topic-radar/item/ATR-20260706-796A04",
+            "url": "https://news.ycombinator.com/item?id=48800210"
+          },
+          {
+            "citation_id": "ATR-20260718-2248B9",
+            "date": "2026-07-18",
+            "source": "Hacker News",
+            "title": "Apple targets dozens of OpenAI employees with legal letters",
+            "local_url": "#2026-07-18/ai-topic-radar/item/ATR-20260718-2248B9",
+            "url": "https://www.ft.com/content/1b8c9d52-88a9-426b-ba47-f1811f859166"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C03",
+      "query": "Introducing The Openai Economic Research Exchange",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "expected_top_result": true,
+        "stable_local_url": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "item_navigation",
+        "error_code": "",
+        "elapsed_ms": 9.37,
+        "trace": {
+          "path": "navigator",
+          "candidate_count": 1
+        },
+        "records": [
+          {
+            "citation_id": "ATR-20260805-99E550",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Introducing The Openai Economic Research Exchange",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-99E550",
+            "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "ATR-20260805-99E550",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Introducing The Openai Economic Research Exchange",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-99E550",
+            "url": "https://openai.com/index/introducing-the-openai-economic-research-exchange/"
+          },
+          {
+            "citation_id": "ATR-20260807-0FD7E8",
+            "date": "2026-08-07",
+            "source": "OpenAI",
+            "title": "Openai And Apa Partner To Advance Responsible Ai",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-0FD7E8",
+            "url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/"
+          },
+          {
+            "citation_id": "ATR-20260723-A7026F",
+            "date": "2026-07-23",
+            "source": "OpenAI",
+            "title": "Introducing Openai Presence",
+            "local_url": "#2026-07-23/ai-topic-radar/item/ATR-20260723-A7026F",
+            "url": "https://openai.com/index/introducing-openai-presence/"
+          },
+          {
+            "citation_id": "ATR-20260529-20943D",
+            "date": "2026-05-29",
+            "source": "OpenAI",
+            "title": "Openai Frontier Governance Framework",
+            "local_url": "#2026-05-29/ai-topic-radar/item/ATR-20260529-20943D",
+            "url": "https://openai.com/index/openai-frontier-governance-framework/"
+          },
+          {
+            "citation_id": "ATR-20260802-4CD653",
+            "date": "2026-08-02",
+            "source": "Dev.to",
+            "title": "OpenAI Pricing Strategy Signal Points to a Broader Price and Intelligence Tradeoff",
+            "local_url": "#2026-08-02/ai-topic-radar/item/ATR-20260802-4CD653",
+            "url": "https://dev.to/alifar/openai-pricing-strategy-signal-points-to-a-broader-price-and-intelligence-tradeoff-3i67"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C04",
+      "query": "AgentSky",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "expected_top_result": true,
+        "stable_local_url": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "item_navigation",
+        "error_code": "",
+        "elapsed_ms": 3.67,
+        "trace": {
+          "path": "navigator",
+          "candidate_count": 1
+        },
+        "records": [
+          {
+            "citation_id": "ATR-20260805-AE3D6E",
+            "date": "2026-08-05",
+            "source": "Product Hunt",
+            "title": "AgentSky",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-AE3D6E",
+            "url": "https://www.producthunt.com/r/VKQBZ233EK3JBM"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "ATR-20260805-AE3D6E",
+            "date": "2026-08-05",
+            "source": "Product Hunt",
+            "title": "AgentSky",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-AE3D6E",
+            "url": "https://www.producthunt.com/r/VKQBZ233EK3JBM"
+          },
+          {
+            "citation_id": "ATR-20260717-C329FB",
+            "date": "2026-07-17",
+            "source": "Product Hunt",
+            "title": "Agently",
+            "local_url": "#2026-07-17/ai-topic-radar/item/ATR-20260717-C329FB",
+            "url": "https://www.producthunt.com/r/WSQCJVSEX7VIBA"
+          },
+          {
+            "citation_id": "ATR-20260725-1FD139",
+            "date": "2026-07-25",
+            "source": "Product Hunt",
+            "title": "AgentLoop",
+            "local_url": "#2026-07-25/ai-topic-radar/item/ATR-20260725-1FD139",
+            "url": "https://www.producthunt.com/r/56HF5BO4BC6T34"
+          },
+          {
+            "citation_id": "ATR-20260801-591710",
+            "date": "2026-08-01",
+            "source": "Product Hunt",
+            "title": "Memmy Agent",
+            "local_url": "#2026-08-01/ai-topic-radar/item/ATR-20260801-591710",
+            "url": "https://www.producthunt.com/r/5S7SGS3F5S6RN6"
+          },
+          {
+            "citation_id": "ATR-20260620-E8B076",
+            "date": "2026-06-20",
+            "source": "GitHub Search:ai-agent",
+            "title": "NousResearch/hermes-agent",
+            "local_url": "#2026-06-20/ai-topic-radar/item/ATR-20260620-E8B076",
+            "url": "https://github.com/NousResearch/hermes-agent"
+          }
+        ]
+      }
+    },
+    {
+      "id": "C05",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "passed": true,
+      "checks": {
+        "status_ready": true,
+        "task_family": true,
+        "min_records": true,
+        "no_empty_regression": true
+      },
+      "candidate": {
+        "status": "ready",
+        "task_family": "evidence_research",
+        "error_code": "",
+        "elapsed_ms": 2567.07,
+        "trace": {
+          "path": "evidence_search",
+          "channel_status": {
+            "lexical": "empty",
+            "vector": "success",
+            "graph": "disabled"
+          },
+          "pre_filter_count": 5,
+          "focused_count": 5,
+          "entity_filter_mode": "structured",
+          "graph_evidence": {
+            "status": "not_required"
+          }
+        },
+        "records": [
+          {
+            "citation_id": "ATR-20260811-7794E9",
+            "date": "2026-08-11",
+            "source": "OpenAI",
+            "title": "Premium Seats Chatgpt Business",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-7794E9",
+            "url": "https://openai.com/index/premium-seats-chatgpt-business/"
+          },
+          {
+            "citation_id": "ATR-20260807-7618A0",
+            "date": "2026-08-07",
+            "source": "InfoQ 中国",
+            "title": "苹果指控 OpenAI挖人、拿零件、偷文件，OpenAI 晒聊天记录全面反击！马斯克：别信 OpenAI",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-7618A0",
+            "url": "https://www.infoq.cn/article/rvVpcZspLiqGpPQq6HPw"
+          },
+          {
+            "citation_id": "ATR-20260807-0FD7E8",
+            "date": "2026-08-07",
+            "source": "OpenAI",
+            "title": "Openai And Apa Partner To Advance Responsible Ai",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-0FD7E8",
+            "url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/"
+          },
+          {
+            "citation_id": "ATR-20260802-8133E7",
+            "date": "2026-08-02",
+            "source": "OpenAI",
+            "title": "Ten Advances In Mathematics",
+            "local_url": "#2026-08-02/ai-topic-radar/item/ATR-20260802-8133E7",
+            "url": "https://openai.com/index/ten-advances-in-mathematics/"
+          },
+          {
+            "citation_id": "ATR-20260812-2A01C3",
+            "date": "2026-08-12",
+            "source": "Hacker News",
+            "title": "OpenAI’s head of ethics leaves less than a year after joining",
+            "local_url": "#2026-08-12/ai-topic-radar/item/ATR-20260812-2A01C3",
+            "url": "https://www.ft.com/content/e49dfb75-f841-4466-a577-f7aaff8779a0"
+          }
+        ]
+      },
+      "baseline": {
+        "record_count": 5,
+        "records": [
+          {
+            "citation_id": "ATR-20260811-7794E9",
+            "date": "2026-08-11",
+            "source": "OpenAI",
+            "title": "Premium Seats Chatgpt Business",
+            "local_url": "#2026-08-11/ai-topic-radar/item/ATR-20260811-7794E9",
+            "url": "https://openai.com/index/premium-seats-chatgpt-business/"
+          },
+          {
+            "citation_id": "ATR-20260807-7618A0",
+            "date": "2026-08-07",
+            "source": "InfoQ 中国",
+            "title": "苹果指控 OpenAI挖人、拿零件、偷文件，OpenAI 晒聊天记录全面反击！马斯克：别信 OpenAI",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-7618A0",
+            "url": "https://www.infoq.cn/article/rvVpcZspLiqGpPQq6HPw"
+          },
+          {
+            "citation_id": "ATR-20260807-0FD7E8",
+            "date": "2026-08-07",
+            "source": "OpenAI",
+            "title": "Openai And Apa Partner To Advance Responsible Ai",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-0FD7E8",
+            "url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/"
+          },
+          {
+            "citation_id": "ATR-20260802-8133E7",
+            "date": "2026-08-02",
+            "source": "OpenAI",
+            "title": "Ten Advances In Mathematics",
+            "local_url": "#2026-08-02/ai-topic-radar/item/ATR-20260802-8133E7",
+            "url": "https://openai.com/index/ten-advances-in-mathematics/"
+          },
+          {
+            "citation_id": "ATR-20260812-2A01C3",
+            "date": "2026-08-12",
+            "source": "Hacker News",
+            "title": "OpenAI’s head of ethics leaves less than a year after joining",
+            "local_url": "#2026-08-12/ai-topic-radar/item/ATR-20260812-2A01C3",
+            "url": "https://www.ft.com/content/e49dfb75-f841-4466-a577-f7aaff8779a0"
+          }
+        ]
+      }
+    }
+  ]
+}

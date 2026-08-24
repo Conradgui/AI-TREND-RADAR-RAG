@@ -1,0 +1,31 @@
+{
+  "freeze_id": "dimensions-only-l1-v2-candidate-2026-08-15",
+  "status": "frozen_for_unseen_blind_only",
+  "production_traffic_allowed": false,
+  "evidence_boundary": "Frozen after visible calibration; no unseen blind score exists yet.",
+  "provider": "deepseek",
+  "model": "deepseek-v4-flash",
+  "prompt_sha256": "52645c2637b5dbc46d3f82b93f85097f71a9209bcb5a314f4899083142fbbc29",
+  "artifacts": {
+    "docs/rag-transformation/specs/dimensions-only-l1-v2.schema.json": "7ab1004cabc9042712170499cd6d8751264ffcbfd9ffc219c5abf496f9ec9faf",
+    "rag/query_facts_v1.py": "3e565b0ffb182c242362475d516a6e1344ddf5312e2e7d5821017e4e60ec200d",
+    "rag/dimensions_only_l1_v2.py": "19a782a56411ab55f87a771de7ad61421ca346167bc98ecfb92a840b96bfdb61",
+    "rag/narrow_decision_client.py": "0b9335b5e5d0e639badec4f3cf9f829169fc3dfd31cd5a1cbfa49296119abb83",
+    "rag/narrow_semantic_decisions_v1.py": "1f6108f61c9c91e3c2cad96c5bf91b505ab101de22487e0ceb1eec417e5f4349",
+    "rag/narrow_route_contract_v2.py": "4fd0ba25313c7167b304a4e78431cf4e6fb6a47af5c40a8ea70bf0acf1e68f0d",
+    "rag/eval_narrow_query_understanding_v1_live.py": "5389dd44e1c240ca52609d887a47421bece5cf1fefa1043786b61ae63a1d9c08"
+  },
+  "visible_calibration_result": {
+    "path": "docs/rag-transformation/evals/dimensions-only-l1-v2-visible-calibration-results-2026-08-15.json",
+    "sha256": "d1aaa60dd6382b4ef6dede3ec3906be6371fbf1939815dc502c0c126e43ad795",
+    "complete_projection_correct": 12,
+    "total": 12,
+    "mean_latency_seconds": 1.396,
+    "max_latency_seconds": 1.73
+  },
+  "independent_stage_gate": {
+    "decision": "GO",
+    "scope": "freeze and create isolated unseen blind set",
+    "production_decision": "not_allowed"
+  }
+}

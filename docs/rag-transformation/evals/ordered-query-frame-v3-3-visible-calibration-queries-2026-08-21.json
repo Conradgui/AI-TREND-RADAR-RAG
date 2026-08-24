@@ -1,0 +1,37 @@
+{
+  "schema_version": "atr.visible-query/3.3",
+  "dataset_id": "ordered-query-frame-v3-3-visible-calibration-2026-08-21",
+  "evidence_boundary": "Visible calibration copied from the already-scored v3.2 Blind failures and controls. It is not a Blind or generalization claim.",
+  "cases": [
+    {
+      "case_id": "v33-visible-009",
+      "query": "按发生顺序梳理苍穹编排器从首次发布到商业版上线的关键里程碑，并定位《苍穹编排器发布说明》。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v33-visible-011",
+      "query": "不要联网，对比青岚索引在 2026 年 3 月和 2026 年 7 月两个时间截面的部署策略。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v33-visible-012",
+      "query": "解释赤潮芯片、极昼云平台和北岸实验室之间是什么关系，重点区分合作与共同出现。",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v33-visible-015",
+      "query": "这个说法是否成立？同时解释支持或反对它的关键证据。",
+      "conversation_context": "上一轮用户提出的说法是：北辰 API 已把推理成本降低 40%。"
+    },
+    {
+      "case_id": "v33-visible-016",
+      "query": "这个说法是否成立？",
+      "conversation_context": null
+    },
+    {
+      "case_id": "v33-visible-018",
+      "query": "请联网分析：如果北辰 API 真能把推理成本降低 40%，这会怎样影响中小团队的产品决策？",
+      "conversation_context": null
+    }
+  ]
+}

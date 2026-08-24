@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-08-10T09:38:28.991507+00:00",
+  "rounds_requested": 100,
+  "rounds_completed": 100,
+  "passed": true,
+  "error_finding_id_count": 0,
+  "errors": [],
+  "final_generation": "gen-099",
+  "elapsed_seconds": 47.485,
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.5-arm64-arm-64bit",
+    "chromadb": "1.5.9",
+    "embedding_id": "chroma-default",
+    "storage": "temporary-directory"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "atr.eval-freeze/1.1",
+  "experiment_id": "ordered-query-frame-v3-2-visible-calibration-2026-08-21",
+  "evidence_boundary": "One use of seven already-unsealed calibration cases after v3.2 Prompt-only revision. Calibration only; never blind, generalization, production, or retrieval-quality evidence.",
+  "candidate_delta": [
+    "Prevent important_news from being silently upgraded to trend_clusters.",
+    "Preserve explicit cross-family deliveries and unresolved actions.",
+    "Define timeline, longitudinal_trend, cross_sectional_trend, and relation boundaries.",
+    "Separate protected, delivery, web-permission, and unresolved span responsibilities.",
+    "Score only covered primary families and score web permission for clarification frames."
+  ],
+  "case_order": [
+    "new-blind-003",
+    "new-blind-005",
+    "new-blind-006",
+    "new-blind-008",
+    "new-blind-010",
+    "new-blind-012",
+    "new-blind-018"
+  ],
+  "query_sha256": "96ad3f61ec72536a10a941525e06e545e7cbc1f8abd9dfdb79475a493108bc9a",
+  "runtime": {
+    "model": "deepseek-v4-flash",
+    "base_url": "https://api.deepseek.com",
+    "temperature": 0,
+    "max_tokens": 900,
+    "timeout_seconds": 20,
+    "thinking": "disabled",
+    "max_retries": 0,
+    "attempts_per_case": 1
+  },
+  "prompt_sha256": "055f6b11616b372ad942a874fca473ddca96ddb74b4474a1228dddc63211b7c0",
+  "provider_schema_sha256": "e56ab74c250e299dd153222ed6ad617eacd6c4693061791987d75e1257ef9422",
+  "runner_artifacts": [
+    {"path": "docs/rag-transformation/evals/ordered-query-frame-v3-2-visible-calibration-queries-2026-08-21.json", "sha256": "65f2ef0cdfe1b7fa03645dee54e29cbeb3dc0b8077aa44d2449bc09630226893"},
+    {"path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json", "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"},
+    {"path": "docs/rag-transformation/specs/route-contract-v2.schema.json", "sha256": "9f70ca1a238a8dc747269187a0b710e736170d46309659124d3c436a2c638ec9"},
+    {"path": "rag/ordered_frame_client_v3.py", "sha256": "888609512a9ec2ceb16c8ceff3c95d70d860cd615bf7cc761af83c1edd95b353"},
+    {"path": "rag/ordered_semantic_frame_v3.py", "sha256": "8fb880faa514ea93edcc4198b5990374d54c3fa9f47e943e7b24efe050bffd3f"},
+    {"path": "rag/query_understanding_v2.py", "sha256": "ad68202889367f8e07d463547204a8b2e1a48e5c153e4aef9d695ffa247a7f60"},
+    {"path": "rag/route_contract_validation.py", "sha256": "0a926b976c1c9cb0f18ea07791ced0d720ae61ee865a69a787232727b95a8088"},
+    {"path": "rag/run_ordered_frame_v3_calibration.py", "sha256": "6b8e67b59932d029a9a52764c2360532d2bfb5238b8ec23612cb5467c91b6aba"}
+  ],
+  "scoring_artifacts": [
+    {"path": "docs/rag-transformation/evals/ordered-query-frame-v3-2-visible-calibration-queries-2026-08-21.json", "sha256": "65f2ef0cdfe1b7fa03645dee54e29cbeb3dc0b8077aa44d2449bc09630226893"},
+    {"path": "docs/rag-transformation/evals/ordered-query-frame-v3-2-visible-calibration-gold-2026-08-21.json", "sha256": "5fc646c24f922b1074504d6721c45c30bd19b512e99b888d2a5826a6f8d1b855"},
+    {"path": "docs/rag-transformation/specs/ordered-semantic-frame-v3.schema.json", "sha256": "d2f1dc43310a054453604b13695cf9023bd4cd1ecde3968083105626d1304cd3"},
+    {"path": "docs/rag-transformation/specs/route-contract-v2.schema.json", "sha256": "9f70ca1a238a8dc747269187a0b710e736170d46309659124d3c436a2c638ec9"},
+    {"path": "rag/ordered_semantic_frame_v3.py", "sha256": "8fb880faa514ea93edcc4198b5990374d54c3fa9f47e943e7b24efe050bffd3f"},
+    {"path": "rag/route_contract_validation.py", "sha256": "0a926b976c1c9cb0f18ea07791ced0d720ae61ee865a69a787232727b95a8088"},
+    {"path": "rag/score_ordered_frame_v3_calibration.py", "sha256": "6a7ede298510bcfe39038be5d6c78f5387102bd4ceeb4dc3e5e59351c3b535d2"}
+  ],
+  "gate_thresholds": {
+    "ordered_deliveries_exact_min": "6/7",
+    "primary_route_resolved": "5/5",
+    "web_permission": "7/7",
+    "clarification_precision": 100,
+    "clarification_recall": 100,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds_max": 8,
+    "max_latency_seconds_max": 12
+  },
+  "stop_conditions": [
+    "artifact_or_runtime_hash_drift",
+    "invalid_or_misaligned_gold",
+    "provider_or_network_error",
+    "more_than_one_attempt_for_any_case",
+    "invalid_frame_or_route",
+    "unexpected_exception_or_default_route"
+  ]
+}

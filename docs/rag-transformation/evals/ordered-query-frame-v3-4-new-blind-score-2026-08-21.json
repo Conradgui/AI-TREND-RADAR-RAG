@@ -1,0 +1,1036 @@
+{
+  "schema_version": "atr.blind-contract-eval/3.4",
+  "metrics": {
+    "case_count": 15,
+    "product_complete_count": 8,
+    "status_and_contract_shape": 93.3,
+    "final_delivery_contract_exact": 93.3,
+    "clarification_delivery_exact": 100.0,
+    "unresolved_references_exact": 86.7,
+    "web_permission_contract": 100.0,
+    "contract_literals": 66.7,
+    "l3_legal": 93.3,
+    "l3_projection_consistent": 100.0,
+    "single_attempt_all_cases": true,
+    "mean_latency_seconds": 1.549,
+    "max_latency_seconds": 2.154
+  },
+  "gate": {
+    "passed": false,
+    "checks": {
+      "product_complete_at_least_n_minus_2": false,
+      "status_shape_100": false,
+      "final_delivery_100": false,
+      "clarification_delivery_100": true,
+      "unresolved_references_100": false,
+      "web_permission_100": true,
+      "contract_literals_100": false,
+      "l3_legal_100": false,
+      "l3_projection_consistent_100": true,
+      "single_attempt_all_cases": true,
+      "mean_latency_at_most_8": true,
+      "max_latency_at_most_12": true
+    }
+  },
+  "cases": [
+    {
+      "case_id": "v34-new-blind-001",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "ATR-20260819-R4N8Q2",
+          "match": "exact",
+          "observed_values": [
+            "ATR-20260819-R4N8Q2"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "item_navigation",
+            "exact_item",
+            "atr_id"
+          ],
+          [
+            "evidence_research",
+            "explanation",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "item_navigation",
+            "exact_item",
+            "atr_id"
+          ],
+          [
+            "evidence_research",
+            "explanation",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-002",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": false,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 90.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "不要联网",
+          "match": "exact",
+          "observed_values": [
+            "《雾港推理栈发布说明》",
+            "不要联网",
+            "雾港推理栈发布说明"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "《雾港推理栈发布说明》",
+          "match": "exact",
+          "observed_values": [
+            "《雾港推理栈发布说明》",
+            "不要联网",
+            "雾港推理栈发布说明"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "内部日报",
+          "match": "exact",
+          "observed_values": [
+            "《雾港推理栈发布说明》",
+            "不要联网",
+            "雾港推理栈发布说明"
+          ],
+          "matched": false
+        },
+        {
+          "path": "source_constraint.requested_sources",
+          "literal": "内部日报",
+          "match": "exact",
+          "observed_values": [
+            "内部日报"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "item_navigation",
+            "exact_item",
+            "full_title"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "item_navigation",
+            "exact_item",
+            "full_title"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-003",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": false,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 90.0,
+      "contract_literal_checks": [],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "item_navigation",
+            "item_disambiguation",
+            "descriptive"
+          ]
+        ],
+        "observed_final_deliveries": []
+      }
+    },
+    {
+      "case_id": "v34-new-blind-004",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "星槐模型",
+          "match": "exact",
+          "observed_values": [
+            "星槐模型",
+            "最近两周",
+            "请联网查"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "最近两周",
+          "match": "exact",
+          "observed_values": [
+            "星槐模型",
+            "最近两周",
+            "请联网查"
+          ],
+          "matched": true
+        },
+        {
+          "path": "temporal_constraint.value",
+          "literal": "最近两周",
+          "match": "exact",
+          "observed_values": [
+            "最近两周"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "trend_discovery",
+            "important_news",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "trend_discovery",
+            "important_news",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-005",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "不要联网",
+          "match": "exact",
+          "observed_values": [
+            "不要联网",
+            "内部日报",
+            "近期",
+            "霜桥代码助手"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "内部日报",
+          "match": "exact",
+          "observed_values": [
+            "不要联网",
+            "内部日报",
+            "近期",
+            "霜桥代码助手"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "霜桥代码助手",
+          "match": "exact",
+          "observed_values": [
+            "不要联网",
+            "内部日报",
+            "近期",
+            "霜桥代码助手"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "近期",
+          "match": "exact",
+          "observed_values": [
+            "不要联网",
+            "内部日报",
+            "近期",
+            "霜桥代码助手"
+          ],
+          "matched": true
+        },
+        {
+          "path": "temporal_constraint.value",
+          "literal": "近期",
+          "match": "exact",
+          "observed_values": [
+            "近期"
+          ],
+          "matched": true
+        },
+        {
+          "path": "source_constraint.requested_sources",
+          "literal": "内部日报",
+          "match": "exact",
+          "observed_values": [
+            "内部日报"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "trend_discovery",
+            "trend_clusters",
+            "none"
+          ],
+          [
+            "temporal_relation_exploration",
+            "timeline",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "trend_discovery",
+            "trend_clusters",
+            "none"
+          ],
+          [
+            "temporal_relation_exploration",
+            "timeline",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-006",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": false,
+        "final_delivery_contract_exact": false,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": false,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": false,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 60.0,
+      "contract_literal_checks": [],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "trend_discovery",
+            "important_news",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "trend_discovery",
+            "important_news",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-007",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "钴潮芯片",
+          "match": "exact",
+          "observed_values": [
+            "南弦云",
+            "砚舟实验室",
+            "钴潮芯片"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "南弦云",
+          "match": "exact",
+          "observed_values": [
+            "南弦云",
+            "砚舟实验室",
+            "钴潮芯片"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "砚舟实验室",
+          "match": "exact",
+          "observed_values": [
+            "南弦云",
+            "砚舟实验室",
+            "钴潮芯片"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "temporal_relation_exploration",
+            "relation",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "temporal_relation_exploration",
+            "relation",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-008",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "禁止联网",
+          "match": "exact",
+          "observed_values": [
+            "2025 年 11 月",
+            "2026 年 7 月",
+            "岚镜索引",
+            "禁止联网",
+            "部署策略"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "岚镜索引",
+          "match": "exact",
+          "observed_values": [
+            "2025 年 11 月",
+            "2026 年 7 月",
+            "岚镜索引",
+            "禁止联网",
+            "部署策略"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "2025 年 11 月",
+          "match": "exact",
+          "observed_values": [
+            "2025 年 11 月",
+            "2026 年 7 月",
+            "岚镜索引",
+            "禁止联网",
+            "部署策略"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "2026 年 7 月",
+          "match": "exact",
+          "observed_values": [
+            "2025 年 11 月",
+            "2026 年 7 月",
+            "岚镜索引",
+            "禁止联网",
+            "部署策略"
+          ],
+          "matched": true
+        },
+        {
+          "path": "temporal_constraint.value",
+          "literal": "2025 年 11 月",
+          "match": "substring",
+          "observed_values": [
+            "2025 年 11 月 | 2026 年 7 月"
+          ],
+          "matched": true
+        },
+        {
+          "path": "temporal_constraint.value",
+          "literal": "2026 年 7 月",
+          "match": "substring",
+          "observed_values": [
+            "2025 年 11 月 | 2026 年 7 月"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "temporal_relation_exploration",
+            "cross_sectional_trend",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "temporal_relation_exploration",
+            "cross_sectional_trend",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-009",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": false,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 90.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "苔砾编排器",
+          "match": "exact",
+          "observed_values": [
+            "2023 年",
+            "2026 年",
+            "企业采用率",
+            "苔砾商业版",
+            "苔砾编排器",
+            "请联网分析"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "2023 年",
+          "match": "exact",
+          "observed_values": [
+            "2023 年",
+            "2026 年",
+            "企业采用率",
+            "苔砾商业版",
+            "苔砾编排器",
+            "请联网分析"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "2026 年",
+          "match": "exact",
+          "observed_values": [
+            "2023 年",
+            "2026 年",
+            "企业采用率",
+            "苔砾商业版",
+            "苔砾编排器",
+            "请联网分析"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "“苔砾商业版”",
+          "match": "exact",
+          "observed_values": [
+            "2023 年",
+            "2026 年",
+            "企业采用率",
+            "苔砾商业版",
+            "苔砾编排器",
+            "请联网分析"
+          ],
+          "matched": false
+        },
+        {
+          "path": "temporal_constraint.value",
+          "literal": "从 2023 年到 2026 年",
+          "match": "exact",
+          "observed_values": [
+            "2023 年 | 2026 年"
+          ],
+          "matched": false
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "temporal_relation_exploration",
+            "longitudinal_trend",
+            "none"
+          ],
+          [
+            "item_navigation",
+            "item_disambiguation",
+            "title_fragment"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "temporal_relation_exploration",
+            "longitudinal_trend",
+            "none"
+          ],
+          [
+            "item_navigation",
+            "item_disambiguation",
+            "title_fragment"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-010",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": false,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 90.0,
+      "contract_literal_checks": [
+        {
+          "path": "claims",
+          "literal": "澄湾 API 已把推理成本降低 35%",
+          "match": "exact",
+          "observed_values": [],
+          "matched": false
+        },
+        {
+          "path": "protected_terms",
+          "literal": "澄湾计算",
+          "match": "exact",
+          "observed_values": [
+            "澄湾 API 已把推理成本降低 35%",
+            "澄湾计算官方材料",
+            "请联网核验"
+          ],
+          "matched": false
+        },
+        {
+          "path": "source_constraint.requested_sources",
+          "literal": "澄湾计算",
+          "match": "exact",
+          "observed_values": [],
+          "matched": false
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "claim_verification",
+            "verification_verdict",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "claim_verification",
+            "verification_verdict",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-011",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "claim_verification",
+            "verification_verdict",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": []
+      }
+    },
+    {
+      "case_id": "v34-new-blind-012",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "claims",
+          "literal": "澄湾 API 已把推理成本降低 35%",
+          "match": "exact",
+          "observed_values": [
+            "澄湾 API 已把推理成本降低 35%"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "claim_verification",
+            "verification_verdict",
+            "none"
+          ],
+          [
+            "evidence_research",
+            "explanation",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "claim_verification",
+            "verification_verdict",
+            "none"
+          ],
+          [
+            "evidence_research",
+            "explanation",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-013",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": false,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 90.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "不要联网",
+          "match": "exact",
+          "observed_values": [
+            "ATR-20260807-M3C7V9",
+            "ATR-20260807-P8L2X6",
+            "不要联网",
+            "目标用户",
+            "适用场景"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "ATR-20260807-M3C7V9",
+          "match": "exact",
+          "observed_values": [
+            "ATR-20260807-M3C7V9",
+            "ATR-20260807-P8L2X6",
+            "不要联网",
+            "目标用户",
+            "适用场景"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "ATR-20260807-P8L2X6",
+          "match": "exact",
+          "observed_values": [
+            "ATR-20260807-M3C7V9",
+            "ATR-20260807-P8L2X6",
+            "不要联网",
+            "目标用户",
+            "适用场景"
+          ],
+          "matched": true
+        },
+        {
+          "path": "protected_terms",
+          "literal": "不要扩展成行业研究",
+          "match": "exact",
+          "observed_values": [
+            "ATR-20260807-M3C7V9",
+            "ATR-20260807-P8L2X6",
+            "不要联网",
+            "目标用户",
+            "适用场景"
+          ],
+          "matched": false
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "evidence_research",
+            "comparison",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "evidence_research",
+            "comparison",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-014",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": false,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": false
+      },
+      "contract_completion_pct": 90.0,
+      "contract_literal_checks": [
+        {
+          "path": "claims",
+          "literal": "澄湾 API 真能把推理成本降低 35%",
+          "match": "exact",
+          "observed_values": [],
+          "matched": false
+        },
+        {
+          "path": "protected_terms",
+          "literal": "小团队",
+          "match": "exact",
+          "observed_values": [
+            "小团队的产品决策",
+            "推理成本降低 35%",
+            "澄湾 API",
+            "请联网分析"
+          ],
+          "matched": false
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "evidence_research",
+            "explanation",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "evidence_research",
+            "explanation",
+            "none"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "v34-new-blind-015",
+      "checks": {
+        "no_prediction_error": true,
+        "single_attempt": true,
+        "status_and_contract_shape": true,
+        "final_delivery_contract_exact": true,
+        "clarification_delivery_exact": true,
+        "unresolved_references_exact": true,
+        "web_permission_contract": true,
+        "contract_literals": true,
+        "l3_legal": true,
+        "l3_projection_consistent": true,
+        "product_complete": true
+      },
+      "contract_completion_pct": 100.0,
+      "contract_literal_checks": [
+        {
+          "path": "protected_terms",
+          "literal": "镜砂开发平台",
+          "match": "exact",
+          "observed_values": [
+            "主要风险",
+            "商业模式",
+            "目标用户",
+            "联网",
+            "镜砂开发平台"
+          ],
+          "matched": true
+        }
+      ],
+      "diagnostics": {
+        "ordered_frame_delivery_exact": true,
+        "observed_frame_deliveries": [
+          [
+            "evidence_research",
+            "deep_research",
+            "none"
+          ]
+        ],
+        "observed_final_deliveries": [
+          [
+            "evidence_research",
+            "deep_research",
+            "none"
+          ]
+        ]
+      }
+    }
+  ]
+}

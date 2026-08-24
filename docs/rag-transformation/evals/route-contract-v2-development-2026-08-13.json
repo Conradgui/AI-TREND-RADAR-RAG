@@ -1,0 +1,419 @@
+{
+  "dataset_id": "route-contract-v2-development-2026-08-13",
+  "label_tier": "development-product-confirmed",
+  "purpose": "验证五类任务边界、输入保真和合同选择；用于开发调试，不用于对外宣称整体质量。",
+  "route_contract_schema": "../specs/route-contract-v2.schema.json",
+  "expected_projection_schema": "../specs/route-contract-v2-expected-projection.schema.json",
+  "label_notes": [
+    "每类 5 条，共 25 条。",
+    "B 回答最近发生了什么、什么值得关注；C 回答如何演变、彼此关系和跨时间或跨实体结构。",
+    "字母不进入正式接口，expected 使用语义化任务名。",
+    "supporting_task_families 表达复合任务，不得覆盖 primary_task_family。"
+  ],
+  "cases": [
+    {
+      "case_id": "RCV2-A01",
+      "query": "打开 ATR-20260805-99E550",
+      "rationale": "精确 ATR ID 应零模型导航。",
+      "expected": {
+        "original_query": "打开 ATR-20260805-99E550",
+        "intent_signals": ["navigation"],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "preserve_tokens": ["ATR-20260805-99E550"]
+      }
+    },
+    {
+      "case_id": "RCV2-A02",
+      "query": "找到 Apple Is Getting This Wrong 这条新闻",
+      "rationale": "完整标题属于精确条目导航。",
+      "expected": {
+        "original_query": "找到 Apple Is Getting This Wrong 这条新闻",
+        "intent_signals": ["navigation"],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "preserve_tokens": ["Apple Is Getting This Wrong"]
+      }
+    },
+    {
+      "case_id": "RCV2-A03",
+      "query": "跳到 8 月 5 日那条 Open AI 经济研究交流的内容",
+      "rationale": "日期、别名和模糊标题组合，需要受控消歧而非研究回答。",
+      "expected": {
+        "original_query": "跳到 8 月 5 日那条 Open AI 经济研究交流的内容",
+        "intent_signals": ["navigation"],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "preserve_tokens": ["8 月 5 日", "Open AI", "经济研究交流"]
+      }
+    },
+    {
+      "case_id": "RCV2-A04",
+      "query": "给我看“The GTM Co-Founder”原条目",
+      "rationale": "引号内标题必须保真并走条目定位。",
+      "expected": {
+        "original_query": "给我看“The GTM Co-Founder”原条目",
+        "intent_signals": ["navigation"],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "exact_item",
+        "web_permission": "forbidden",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "preserve_tokens": ["The GTM Co-Founder"]
+      }
+    },
+    {
+      "case_id": "RCV2-A05",
+      "query": "定位 2026-08-10 Product Hunt 里的 Agent 条目",
+      "rationale": "日期、来源和主题定位可能多命中，应返回消歧列表。",
+      "expected": {
+        "original_query": "定位 2026-08-10 Product Hunt 里的 Agent 条目",
+        "intent_signals": ["navigation", "source_specific"],
+        "primary_task_family": "item_navigation",
+        "supporting_task_families": [],
+        "answer_mode": "item_disambiguation",
+        "web_permission": "forbidden",
+        "prompt_contract_id": null,
+        "answer_builder_contract_id": "atr.answer_builder/item_navigation/1.0",
+        "preserve_tokens": ["2026-08-10", "Product Hunt", "Agent"]
+      }
+    },
+
+    {
+      "case_id": "RCV2-B01",
+      "query": "最近有什么热门趋势？",
+      "rationale": "已确认：询问最近发生什么，属于新闻发现而非结构演变。",
+      "expected": {
+        "original_query": "最近有什么热门趋势？",
+        "intent_signals": ["recency", "importance", "trend"],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "trend_clusters",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["最近"]
+      }
+    },
+    {
+      "case_id": "RCV2-B02",
+      "query": "OpenAI 最近有哪些重要动态？",
+      "rationale": "主体、时效和重要性共同定义动态榜。",
+      "expected": {
+        "original_query": "OpenAI 最近有哪些重要动态？",
+        "intent_signals": ["recency", "importance"],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["OpenAI", "最近"]
+      }
+    },
+    {
+      "case_id": "RCV2-B03",
+      "query": "过去 7 天 AI Agent 领域什么最值得关注？",
+      "rationale": "明确时间窗和关注度，仍是新闻发现。",
+      "expected": {
+        "original_query": "过去 7 天 AI Agent 领域什么最值得关注？",
+        "intent_signals": ["recency", "importance", "trend"],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["过去 7 天", "AI Agent"]
+      }
+    },
+    {
+      "case_id": "RCV2-B04",
+      "query": "只看 Anthropic 官方最近发布的大动态",
+      "rationale": "指定官方来源和最新重要动态。",
+      "expected": {
+        "original_query": "只看 Anthropic 官方最近发布的大动态",
+        "intent_signals": ["recency", "importance", "source_specific"],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["Anthropic", "官方", "最近"]
+      }
+    },
+    {
+      "case_id": "RCV2-B05",
+      "query": "请联网找一下今天 AI 编码工具有哪些重要新闻",
+      "rationale": "明确联网、今天和重要新闻，仍由 B 主导。",
+      "expected": {
+        "original_query": "请联网找一下今天 AI 编码工具有哪些重要新闻",
+        "intent_signals": ["recency", "importance", "web_requested"],
+        "primary_task_family": "trend_discovery",
+        "supporting_task_families": [],
+        "answer_mode": "important_news",
+        "web_permission": "explicit",
+        "prompt_contract_id": "atr.prompt/trend_discovery/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["联网", "今天", "AI 编码工具"]
+      }
+    },
+
+    {
+      "case_id": "RCV2-C01",
+      "query": "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+      "rationale": "明确询问跨时间演变，进入 timeline。",
+      "expected": {
+        "original_query": "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+        "intent_signals": ["timeline", "trend"],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "timeline",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["OpenAI", "Agent 战略", "过去三个月"]
+      }
+    },
+    {
+      "case_id": "RCV2-C02",
+      "query": "OpenAI 和 Anthropic 最近的竞争关系发生了什么变化？",
+      "rationale": "同时要求关系和变化，主路线是关系探索。",
+      "expected": {
+        "original_query": "OpenAI 和 Anthropic 最近的竞争关系发生了什么变化？",
+        "intent_signals": ["recency", "relation", "timeline"],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": ["trend_discovery"],
+        "answer_mode": "relation",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["OpenAI", "Anthropic", "竞争关系"]
+      }
+    },
+    {
+      "case_id": "RCV2-C03",
+      "query": "同一条 RAG 新闻入池后热度随日期怎么变化？",
+      "rationale": "询问单内容纵向观测趋势。",
+      "expected": {
+        "original_query": "同一条 RAG 新闻入池后热度随日期怎么变化？",
+        "intent_signals": ["timeline", "trend"],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "longitudinal_trend",
+        "web_permission": "forbidden",
+        "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["同一条", "RAG", "热度", "随日期"]
+      }
+    },
+    {
+      "case_id": "RCV2-C04",
+      "query": "比较 OpenAI、Anthropic 和 Google 在 AI Coding 上形成了什么格局",
+      "rationale": "多实体横向结构是 cross-sectional，而非普通比较回答。",
+      "expected": {
+        "original_query": "比较 OpenAI、Anthropic 和 Google 在 AI Coding 上形成了什么格局",
+        "intent_signals": ["comparison", "relation", "trend"],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": ["evidence_research"],
+        "answer_mode": "cross_sectional_trend",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["OpenAI", "Anthropic", "Google", "AI Coding"]
+      }
+    },
+    {
+      "case_id": "RCV2-C05",
+      "query": "把 Apple 与 OpenAI 争议相关事件按时间梳理，并说明各方关系",
+      "rationale": "时间线为主，关系解释为同一路由内的证据需要。",
+      "expected": {
+        "original_query": "把 Apple 与 OpenAI 争议相关事件按时间梳理，并说明各方关系",
+        "intent_signals": ["timeline", "relation"],
+        "primary_task_family": "temporal_relation_exploration",
+        "supporting_task_families": [],
+        "answer_mode": "timeline",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/temporal_relation_exploration/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["Apple", "OpenAI", "争议", "按时间"]
+      }
+    },
+
+    {
+      "case_id": "RCV2-D01",
+      "query": "‘OpenAI 已经找到稳定的 PMF’这个说法有充分证据吗？",
+      "rationale": "明确可判定主张和证据充分性。",
+      "expected": {
+        "original_query": "‘OpenAI 已经找到稳定的 PMF’这个说法有充分证据吗？",
+        "intent_signals": ["verification"],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["OpenAI 已经找到稳定的 PMF"]
+      }
+    },
+    {
+      "case_id": "RCV2-D02",
+      "query": "核实这条 Amazon 取消 Sam Altman 传记电影的消息是否有一手来源",
+      "rationale": "核验具体消息和来源角色。",
+      "expected": {
+        "original_query": "核实这条 Amazon 取消 Sam Altman 传记电影的消息是否有一手来源",
+        "intent_signals": ["verification", "source_specific"],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["Amazon", "Sam Altman", "传记电影", "一手来源"]
+      }
+    },
+    {
+      "case_id": "RCV2-D03",
+      "query": "Anthropic 调整生物安全回退机制，是否说明它降低了安全标准？",
+      "rationale": "问题要求区分机制变化事实与价值判断。",
+      "expected": {
+        "original_query": "Anthropic 调整生物安全回退机制，是否说明它降低了安全标准？",
+        "intent_signals": ["verification"],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": ["evidence_research"],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["Anthropic", "生物安全回退机制", "降低了安全标准"]
+      }
+    },
+    {
+      "case_id": "RCV2-D04",
+      "query": "请验证：GraphRAG 一定比普通 RAG 的召回率更高",
+      "rationale": "含绝对化主张，应按判据核验而非一般解释。",
+      "expected": {
+        "original_query": "请验证：GraphRAG 一定比普通 RAG 的召回率更高",
+        "intent_signals": ["verification", "comparison"],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["GraphRAG", "一定", "普通 RAG", "召回率"]
+      }
+    },
+    {
+      "case_id": "RCV2-D05",
+      "query": "2026-08-10 那条新闻说 Ona 已被 OpenAI 收购，是真的吗？",
+      "rationale": "日期约束下核验具体事实，可先内部再按需外部补证。",
+      "expected": {
+        "original_query": "2026-08-10 那条新闻说 Ona 已被 OpenAI 收购，是真的吗？",
+        "intent_signals": ["verification"],
+        "primary_task_family": "claim_verification",
+        "supporting_task_families": [],
+        "answer_mode": "verification_verdict",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/claim_verification/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["2026-08-10", "Ona", "OpenAI", "收购"]
+      }
+    },
+
+    {
+      "case_id": "RCV2-E01",
+      "query": "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+      "rationale": "概念解释和比较，不要求关系图演变。",
+      "expected": {
+        "original_query": "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+        "intent_signals": ["explanation", "comparison"],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "forbidden",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["内部证据", "Graph RAG", "Agentic RAG"]
+      }
+    },
+    {
+      "case_id": "RCV2-E02",
+      "query": "为什么 Agentic coding 可能让专家回报递增？",
+      "rationale": "解释因果机制，但需要证据边界而非图关系查询。",
+      "expected": {
+        "original_query": "为什么 Agentic coding 可能让专家回报递增？",
+        "intent_signals": ["explanation"],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "explanation",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["Agentic coding", "可能", "专家回报递增"]
+      }
+    },
+    {
+      "case_id": "RCV2-E03",
+      "query": "比较 Codex 与 Claude Code 面向企业用户的产品价值",
+      "rationale": "对称维度比较属于证据研究。",
+      "expected": {
+        "original_query": "比较 Codex 与 Claude Code 面向企业用户的产品价值",
+        "intent_signals": ["comparison"],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "comparison",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["Codex", "Claude Code", "企业用户", "产品价值"]
+      }
+    },
+    {
+      "case_id": "RCV2-E04",
+      "query": "深挖 AI 搜索产品的商业化路径，并给出证据和局限",
+      "rationale": "开放式深度研究，需要结论—证据和局限结构。",
+      "expected": {
+        "original_query": "深挖 AI 搜索产品的商业化路径，并给出证据和局限",
+        "intent_signals": ["deep_research"],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": [],
+        "answer_mode": "deep_research",
+        "web_permission": "on_demand",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["AI 搜索产品", "商业化路径"]
+      }
+    },
+    {
+      "case_id": "RCV2-E05",
+      "query": "结合内部语料和官网资料，分析 AI Coding 是否正在拉大新手与专家差距",
+      "rationale": "明确内外证据的研究问题，主路线不是核验单一命题。",
+      "expected": {
+        "original_query": "结合内部语料和官网资料，分析 AI Coding 是否正在拉大新手与专家差距",
+        "intent_signals": ["deep_research", "source_specific"],
+        "primary_task_family": "evidence_research",
+        "supporting_task_families": ["claim_verification"],
+        "answer_mode": "deep_research",
+        "web_permission": "explicit",
+        "prompt_contract_id": "atr.prompt/evidence_research/1.0",
+        "answer_builder_contract_id": null,
+        "preserve_tokens": ["内部语料", "官网资料", "AI Coding", "新手", "专家差距"]
+      }
+    }
+  ]
+}
