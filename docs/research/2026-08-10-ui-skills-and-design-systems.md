@@ -1,8 +1,8 @@
 # AI 趋势雷达 / 研究型仪表盘的 UI Skills、设计系统与参考项目调研
 
-日期：2026-08-10  
-研究范围：当前可用 Codex skills、官方设计系统文档、GitHub 开源项目  
-约束：本轮仅研究，不修改代码、不安装依赖  
+日期：2026-08-10
+研究范围：当前可用 Codex skills、官方设计系统文档、GitHub 开源项目
+约束：本轮仅研究，不修改代码、不安装依赖
 
 ## 执行摘要
 
@@ -279,4 +279,3 @@ Shoelace、Material Web、完整 React/Tailwind 组件栈、Grafana/SigNoz 前�
 - [SigNoz](https://github.com/SigNoz/signoz)、[Releases](https://github.com/SigNoz/signoz/releases)、[License](https://github.com/SigNoz/signoz/blob/main/LICENSE)
 - [Observable Framework](https://github.com/observablehq/framework)
 - [Evidence](https://github.com/evidence-dev/evidence)
-
