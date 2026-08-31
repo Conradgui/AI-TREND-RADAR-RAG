@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-08-30T05:29:01.246Z",
+  "generated_at": "2026-08-31T05:41:31.117Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "e96487406a5acade1b5a76d328446a015350c0b3000a77a84d301e6bc2624cbf",
-      "size": 7896,
+      "sha256": "e738cd6bf053cf1b24bc85bb02be0c19522af915bed52662d609804e5f5f593f",
+      "size": 7989,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "738fc854bcae121b1d7b3d5a6c48163ac7e9f363630230f5697409d5beef7b1d",
-      "size": 1475680,
+      "sha256": "86050583cd9fe240809e8f192a57b0e66d9167a3474916feef5a71a8409d5d4c",
+      "size": 1469133,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "6e39de1cc76dea81389e9386eeaae95c209d2fdfcc96bca7ab467fceb20a5f55",
-      "size": 11505962,
+      "sha256": "a80858b081d5b38b30bf2064cf425c45eda323c67c494db6c1f0e4ea501601a7",
+      "size": 11628496,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1402,9 +1402,23 @@
       "size": 69660,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-31/ai-topic-radar.md",
+      "sha256": "62a200eea0f5c441b339c357058be8b49e8b4ea389f331a2cce8f453a8a0dca4",
+      "size": 32292,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-08-31/topic-pool.json",
+      "sha256": "e0dbc7d0140f9ca3c0897a367cf78ba72c427b0c69a0bc69ecaee82f13e2af6e",
+      "size": 65810,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "a0d88dd04e8fa44ab01ad0edf40504a72dab5ea379c1b0d7c713e9bf943b68c9",
+  "corpus_revision": "1d948146e20e0f93ee1e819547e4183bae120fea338a2ee5d3e3e80bacffc7a5",
   "complete": true
 }
