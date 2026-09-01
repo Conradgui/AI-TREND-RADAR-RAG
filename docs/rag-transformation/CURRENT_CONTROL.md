@@ -5,15 +5,16 @@
 ## 当前目标与状态
 
 - 目标：先调好现有主体关系、检索/回答质量和用户主流程，再恢复自动更新。
-- 当前：G0、G1、G2 已通过；G3 本地 Docker 自动同步与双库一致性已有真实容器证据，main 分批发布与 clean clone canary 已通过；GitHub Runner/单日期 canary 仍待验收，尚未通过 G3 发布 Gate。
+- 当前：G0、G1、G2 已通过；G3 的 GitHub Runner 校验、PR/Pages 发布、无变化幂等性和本地 Docker 单日期复核均已通过。由于当前上游没有新日期，严格的“新日期首写”canary 暂待未来数据增量；因此 G3 为条件通过，不伪装成无条件完全通过。
 - 合同：[G0–G4 实施计划](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。
 - 缺口：[34 项全局基线](plans/2026-08-26-global-gap-and-closure-baseline.md)。
 - 本批：完成 G2 真实语料闭环：修正旧索引事件契约误判、官方高影响动态排序与稳定内容等价；在当前活动 generation 上完成 12 条独立任务复测，不以不匹配的语料边界冒充正式分数。
 - 不做：新增来源、大规模付费测试、自动解除 G3 验收冻结；不删除或重建 Neo4j/RAG 数据卷。
 - G0 证据：[2026-08-26-g0-runtime-readiness.md](execution-log/2026-08-26-g0-runtime-readiness.md)；评估用途冻结见 [manifest](evals/g0-evaluation-freeze-manifest-2026-08-27.json)。
 - G1 证据：[2026-08-27-g1-entity-relation-learning.md](execution-log/2026-08-27-g1-entity-relation-learning.md)。
-- 下一步：只补一次真实 GitHub Runner/单日期 canary 证据；不重建 Docker、不重复全量同步。不先换 Embedding、不默认 HyDE/多查询、不引入新 RAG/Agent 框架。
+- 下一步：不再重复已完成的 Runner 或全量同步；等待上游第一次新日期增量，由既有定时工作流完成首写观察。不重建 Docker、不删除数据卷、不先换 Embedding、不默认 HyDE/多查询、不引入新 RAG/Agent 框架。
 - 本批 G3 证据：[2026-09-01-g3-managed-local-auto-update.md](execution-log/2026-09-01-g3-managed-local-auto-update.md)。
+- G3 Runner/幂等/canary 证据：[2026-09-01-g3-runner-and-canary.md](execution-log/2026-09-01-g3-runner-and-canary.md)。
 - 当前完整 `pnpm rag:check:p0` 已通过：Python P0 308 项、发布/工作流 pytest 51 项；前端 Vitest 270 项、ESLint、Prettier、TypeScript 也已通过。原先的生成摘要漂移在同步远端 main 后消失；本地旧生成索引仍以 `stash@{0}` 保留，未推送。
 - 发布交付证据：[2026-09-01 main 分批发布与 clean clone](execution-log/2026-09-01-main-release-and-clean-clone.md)。
 
