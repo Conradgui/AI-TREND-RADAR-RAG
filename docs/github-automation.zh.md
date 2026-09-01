@@ -100,7 +100,11 @@ Web UI 的 `SYSTEM → 自动语料 → 配置自动语料` 提供安全配置�
 
 ## 本地 Docker 与云端自动化的关系
 
-GitHub Actions 负责把经过校验的公开语料提交到仓库；本地 Docker 启动时负责同步这些文件并增量建立 ChromaDB 与 Neo4j 索引。云端不会接触用户本地的模型 Key、数据库或聊天记录。
+GitHub Actions 负责把经过校验的公开语料提交到仓库；本地 Docker app 启动后立即同步一次，
+并按 `RAG_CORPUS_UPDATE_INTERVAL_SECONDS`（默认 6 小时）持续检查这些文件，再增量建立
+ChromaDB 与 Neo4j 索引。云端不会接触用户本地的模型 Key、数据库或聊天记录。
+同步由 app 进程内的单一写入口负责：影子/新 generation、双库校验通过后才切换；失败保留旧运行时，
+无需用户先关闭前端或删除容器。电脑离线期间不会执行本地更新，下次启动会自动补查。
 
 ```mermaid
 flowchart LR

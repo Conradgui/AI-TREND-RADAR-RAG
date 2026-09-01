@@ -1,5 +1,9 @@
 # AI Trend Radar RAG Agent Operating Contract
 
+> 当前动态控制面：[CURRENT_CONTROL.md](docs/rag-transformation/CURRENT_CONTROL.md)。当前阶段与下一步只在此维护；execution-loop V2.3 的产品优先轻量规则覆盖旧阶段/旧分支表述。
+
+> 2026-08-26 continuation: read [全局缺口与后续收敛基线](docs/rag-transformation/plans/2026-08-26-global-gap-and-closure-baseline.md) before choosing the next stage. It corrects stale status claims below, preserves the frozen-corpus boundary, and records the user's latest main-branch and model-role preferences. Its proposed gates are planning inputs, not completed work or authorization to activate automatic updates.
+
 This file is the first handoff entry for AI coding assistants working in this repository.
 
 If you are an AI coding assistant, read this file before editing code. Then read:

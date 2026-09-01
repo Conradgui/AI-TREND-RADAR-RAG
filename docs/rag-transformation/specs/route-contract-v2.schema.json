@@ -122,6 +122,27 @@
     },
     "subjects": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "topics": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "retrieval_hints": {
+      "description": "Model-derived retrieval-only paraphrases. They must not be used as entities, claims, or answer evidence.",
+      "type": "array",
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 2, "maxLength": 160}
+    },
+    "entity_expansions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from_entity_id", "entity_id", "relation", "weight"],
+        "properties": {
+          "from_entity_id": {"type": "string", "minLength": 1},
+          "entity_id": {"type": "string", "minLength": 1},
+          "relation": {"type": "string", "minLength": 1},
+          "weight": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
     "claims": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "temporal_constraint": {
       "type": "object",

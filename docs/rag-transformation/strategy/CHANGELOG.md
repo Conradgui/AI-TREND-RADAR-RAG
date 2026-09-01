@@ -2,6 +2,20 @@
 
 本文件只记录策略、领域合同和架构决策变化，不代替代码提交记录或执行日志。
 
+## [strategy/1.1-agentic-rag-boundary] - 2026-08-28
+
+### Changed
+
+- 将 Agentic RAG 明确为按任务升级的受控路径，而不是所有 Query 的默认循环。
+- 确定性 Workflow 继续承担导航、单次检索和固定趋势候选；复杂分解、动态选源、证据缺口才进入短计划与最多一次纠偏。
+- 分离当前请求状态、可核验长期关系反馈和语料知识；禁止保存隐藏思维链或把模型猜测直接晋级为事实。
+- 增加 Agent 进入正确率、工具选择、有效步骤、停止正确率、预算与恢复质量的分层评估。
+
+### Evidence Boundary
+
+- 当前已有确定性路由、工具 trace、预算和证据合同；完整持久化 Agent 工作流仍为 `Not Claimed`。
+- 外部 Agent/RAG 面试资料用于补齐问题框架，官方 Microsoft/LangGraph 文档用于边界核对；最终状态只以项目代码、测试和运行证据为准。
+
 ## [query-understanding/narrow-semantic-decisions-v1-shadow] - 2026-08-13
 
 ### Added

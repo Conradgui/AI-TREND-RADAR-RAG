@@ -1,5 +1,19 @@
 # AI Trend Radar RAG Quality Governance Spec
 
+> 2026-08-26 当前覆盖：[CURRENT_CONTROL.md](../CURRENT_CONTROL.md) 管理动态状态，[G0–G4 计划](../plans/2026-08-26-g0-g4-implementation-and-stage-gates.md) 定义阶段交付。本节优先于下方历史阶段和常驻质量代理表述。
+
+## 0. 产品优先、风险分级的验收
+
+每个 Gate 只回答五个问题：用户任务完成了吗？答案/引用可信了吗？失败能恢复吗？延迟/成本可接受吗？改动可维护吗？
+
+- 工程测试通过不等于产品通过；对 UI/Agent 改动必须验实际用户流程或明确标记未验。
+- 有证据的安全拒答与正确完成任务分开计分，不能靠拒答提高“通过率”。
+- 只把主路径失败、事实/引用错误、数据完整性、安全与权限问题作为硬阻塞；不以样式、命名、未证实的未来风险拖延主线。
+- 同一 Stage Gate 同时履行下方 Phase Gate 职责，不叠加第二套相同审批。小文档/局部修复用自审；阶段与高风险操作用按需独立审阅。
+- 用户要求由 Terra 负责质量与产品方向；必须核实实际模型，未核实不伪装审阅完成。独立审阅未完成不改写成已通过。
+- 仅更新控制面和本阶段记录；完整回归在共享链路变化或阶段结束运行，不每个小改重复全跑。
+- 指标、样本、阈值在测试前冻结；允许有证据的后续调整，但必须新版本记录，不能看完结果后改标准使其过关。
+
 ## 1. Purpose
 
 This spec defines how AI Trend Radar RAG work should be executed, reviewed, tested, and recorded.

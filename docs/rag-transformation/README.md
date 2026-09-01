@@ -1,5 +1,9 @@
 # AI Trend Radar RAG Transformation
 
+## 当前缺口与下一轮计划入口（2026-08-26）
+
+请先阅读[全局缺口与后续收敛基线](plans/2026-08-26-global-gap-and-closure-baseline.md)：包含当前事实纠偏、已知缺口、知识反哺边界、候选阶段验收及模型分工。下方旧阶段说明保留为历史，不能据此判断最新功能尚未实现。后续完整计划从该基线生成；本次未解除语料冻结或启动功能改造。
+
 This folder is the durable project record for turning AI Trend Radar RAG from an experimental fork into a reliable personal AI research cockpit.
 
 It exists for three reasons:
@@ -48,6 +52,8 @@ Medium-term direction:
 - `evidence/`: command output summaries, screenshots, links, and verification notes.
 - `evals/`: golden questions, expected behavior, and evaluation records.
 
+面试与架构复盘入口：[Agentic RAG 面试能力矩阵（2026-08-28）](evidence/2026-08-28-agentic-rag-interview-readiness.md)。它把常见 RAG / Agent 问题映射到本项目的真实实现、证据边界和待补缺口，不能替代运行测试。
+
 ## Operating Protocol
 
 Every substantial module must include:
@@ -95,3 +101,6 @@ For this project, each module should follow the execution loop in `specs/2026-06
 Stage 2.4: Local Product Flow And Dashboard Closure.
 
 P0/P1 grounding and P2 Trend Brief / Evidence foundation exist. The current work is turning those capabilities into a coherent local cockpit by reusing the existing AI Trend Radar `index.html`, wiring local `/chat`, exposing Briefs, and moving runtime readiness into System.
+# 当前执行计划
+
+下一阶段按 [G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md) 执行；该计划尚未开始执行，正式语料仍冻结。

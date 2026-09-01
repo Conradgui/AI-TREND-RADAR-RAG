@@ -1,5 +1,17 @@
 # AI Trend Radar RAG Execution Loop Spec
 
+> 2026-08-26 / V2.3 产品优先执行覆盖：动态状态只维护在 [CURRENT_CONTROL.md](../CURRENT_CONTROL.md)，执行合同使用 [G0–G4 计划](../plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。本节优先于下方历史阶段与模型/分支规则；不改变数据、安全和权限底线。
+
+## 0. 当前轻量执行规则
+
+- 循环收敛为：目标 → 当前事实 → 最小变更 → 产品/工程证据 → Gate 决定。
+- 每批交付一个可用产品能力；小步骤不断点索要确认，阶段关口汇报，关键权限/成本/产品取舍才暂停。
+- 一个当前控制面、一份当前计划、一份阶段执行记录；不要每个小修都生成新 spec、计划或重复全量证据。
+- 新发现先分“阻塞主任务”与“不阻塞”；后者进入缺口基线，不能挤占主线。
+- 两轮无新证据就停止盲试，指出下一次尝试将验证什么；安全、数据完整性、主路径失败不能靠列入残余风险绕过。
+- 质量审阅只在 Gate/高风险变更启用；主会话 medium，按用户分工由 Sol 做架构、Luna 做有界实现、Terra 做质量与方向。未核实通道不声称已调用。
+- 持续推进指会话内及下次续接按控制面执行，不意味着未配置的后台常驻自动开发。
+
 ## 1. Purpose
 
 This spec defines the repeatable loop for moving AI Trend Radar RAG from an experimental codebase into a reliable AI research system.
@@ -20,7 +32,7 @@ For cross-agent continuity, new AI coding assistants must first read:
 
 ## 2. Core Loop
 
-Current version: V2.2.
+Current version: V2.3 (the lightweight profile above governs current delivery).
 
 Every substantial module should follow this loop:
 
@@ -68,7 +80,7 @@ Every substantial module should follow this loop:
 9. Checkpoint To GitHub At Stage Gates
    - Run the minimum required verification for the module risk level.
    - Run secret scan and staged-file review before commit.
-   - Commit to `codex/rag-transformation-checkpoints`.
+   - Use the user's currently authorized branch: `main`; review the exact staged scope before any commit/push.
    - Push the checkpoint branch to GitHub.
    - Record branch, commit hash, verification result, and residual risks at the next documentation update.
    - If push fails, record `Checkpoint Blocked`; do not claim the work is backed up.
@@ -596,6 +608,8 @@ Blocking issues must be fixed before continuing.
 
 ## 9. Current Loop Position
 
+> 当前进度见 [CURRENT_CONTROL.md](../CURRENT_CONTROL.md)。以下是 2026-06-25 历史，不作为当前待办。
+
 As of 2026-06-25:
 
 - Completed: P0 baseline through fresh corpus sync, citation-ready ingestion, chat citations, golden question evaluation, and web-search tool boundary.
@@ -621,6 +635,8 @@ As of 2026-06-25:
 
 ## 10. Current Gate Definition
 
+> 当前 Gate 由 [G0–G4 计划](../plans/2026-08-26-g0-g4-implementation-and-stage-gates.md) 定义。以下 Stage 2.4 标准是历史参考，不据此重做已有 UI。
+
 Current gate: Stage 2.4 Local Product Flow And Dashboard Closure.
 
 This gate is complete when:
@@ -643,6 +659,8 @@ After each completed module:
 - if a new architectural or component-selection principle is discovered, update the quality governance spec or add a decision record.
 
 ## 12. Integration With Quality Agent Protocol
+
+> V2.3：下方描述为按需 Gate 审阅职责，不是常驻监控进程。审阅者每阶段读取一次精简证据包；未启用时必须明确是主会话自审。完成后关闭，不为每条测试结果复制一次同步记录。
 
 ### 12.1 Collaboration Mechanism
 

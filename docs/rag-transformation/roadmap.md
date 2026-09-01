@@ -1,5 +1,8 @@
 # AI Trend Radar RAG Roadmap
 
+> 2026-08-26 状态校准：[全局缺口与后续收敛基线](plans/2026-08-26-global-gap-and-closure-baseline.md) 汇总最新已知缺口、证据边界、Agent 知识反哺方向及候选 Gate。下方历史快照不代表当前全部状态；尤其原子入库和 A–E 路由已有实现与运行记录。后续实施计划需引用该基线的缺口 ID，未经验收不宣称整体发布完成。
+> 当前正式执行合同：[G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。计划已确认但尚未执行；正式语料仍冻结。
+
 ## Product Goal
 
 Build AI Trend Radar RAG into a personal AI research cockpit.

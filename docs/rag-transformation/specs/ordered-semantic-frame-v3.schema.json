@@ -135,6 +135,13 @@
       "uniqueItems": true,
       "items": {"type": "string", "minLength": 1}
     },
+    "retrieval_hints": {
+      "description": "Optional retrieval-only paraphrases. They are never user claims, entity links, citations, or answer text.",
+      "type": "array",
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 2, "maxLength": 160}
+    },
     "source_spans": {
       "type": "array",
       "uniqueItems": true,

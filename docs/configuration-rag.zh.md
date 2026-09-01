@@ -14,6 +14,23 @@ NEO4J_PASSWORD=由配置向导生成的本地密码
 
 支持 `deepseek`、`anthropic`、`openai`。切换 Provider 后双击 `update.command` / `update.bat`（或执行 `docker compose up -d --build`）让应用重新读取环境变量。
 
+## 自动语料更新（Docker 默认开启）
+
+Docker 部署会在 app 服务启动后立即检查一次公开语料，随后按
+`RAG_CORPUS_UPDATE_INTERVAL_SECONDS` 周期检查（默认 6 小时）。发现新增或变更日报后，
+服务在同一个进程内复用现有的同步、原子 generation、向量/图谱一致性检查和回滚入口；
+不会创建第二个常驻更新服务，也不会让聊天请求等待抓取完成。
+
+```dotenv
+RAG_STARTUP_CORPUS_UPDATE_ENABLED=true
+RAG_CORPUS_UPDATE_INTERVAL_SECONDS=21600
+RAG_UPSTREAM_CORPUS_URL=https://conradgui.github.io/AI-TREND-RADAR
+```
+
+更新失败时保留上一次可用的运行时，并在 System 面板和 Docker 日志中记录失败状态。
+只有明确要做固定语料评估时才将 `RAG_STARTUP_CORPUS_UPDATE_ENABLED` 设为 `false`；
+直接运行 Python 进行离线评估时，默认仍是关闭自动更新的。
+
 ## 联网搜索
 
 联网搜索不是每次回答都搜索互联网。默认策略是：先检索本地 RAG；仅在问题明确需要最新事实、用户主动要求联网、或内部证据不足时，再补充外部来源。Agent 页面和 System 面板的开关联动，关闭即不会调用外部搜索 Provider。
