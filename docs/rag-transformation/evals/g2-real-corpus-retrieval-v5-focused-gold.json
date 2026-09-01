@@ -1,0 +1,42 @@
+{
+  "schema_version": "g2-real-corpus-retrieval-ai-review/1.0",
+  "review_status": "human_reviewed",
+  "scope": "Focused G2 regression subset; copied verbatim from the sealed human-reviewed set.",
+  "cases": [
+    {
+      "case_id": "g2-real-008",
+      "query": "最近一周，AI 编程助手在“跨会话上下文/代码库知识”上出现了哪些不同的产品做法？",
+      "task_family": "recent_trend",
+      "answer_mode": "thematic_ranked_summary",
+      "answerable": true,
+      "time_window": "2026-08-14..2026-08-21",
+      "relevant_occurrence_ids": {
+        "primary": ["ATR-20260821-F3CB2B", "ATR-20260821-AE480E"],
+        "supporting": []
+      },
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "minimum_acceptance": "同时命中 2 条 primary，并说明它们分别是会话持久上下文和代码库知识图谱，不能断言二者技术实现相同。"
+    },
+    {
+      "case_id": "g2-real-009",
+      "query": "Graphify 和 claude-mem 都服务 Claude Code 等编码代理，它们在“保留和检索上下文”上分别做什么？",
+      "task_family": "relation_comparison",
+      "answer_mode": "evidence_bounded_comparison",
+      "answerable": true,
+      "time_window": "截至 2026-08-21",
+      "relevant_occurrence_ids": ["ATR-20260821-AE480E", "ATR-20260821-F3CB2B"],
+      "minimum_acceptance": "同时返回两条；指出 Graphify 面向代码库知识图谱、claude-mem 面向会话持久上下文，且不推断二者存在合作或共同作者关系。"
+    },
+    {
+      "case_id": "g2-real-010",
+      "query": "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+      "task_family": "timeline",
+      "answer_mode": "chronological_evidence_summary",
+      "answerable": true,
+      "time_window": "2026-08-11..2026-08-19",
+      "relevant_occurrence_ids": ["ATR-20260812-0E70FB", "ATR-20260820-6EFF79"],
+      "minimum_acceptance": "按 effective_date 先后返回两条，并将二者限定为 Hacker News 收录的报道/讨论线索，不能写成经 OpenAI 官方确认的上市时间表。"
+    }
+  ]
+}

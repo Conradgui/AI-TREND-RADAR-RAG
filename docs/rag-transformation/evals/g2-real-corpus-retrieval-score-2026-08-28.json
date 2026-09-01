@@ -1,0 +1,220 @@
+{
+  "generated_at": "2026-08-28T00:47:51.998604+00:00",
+  "dataset_schema_version": "g2-real-corpus-retrieval-ai-review/1.0",
+  "review_status": "human_reviewed",
+  "summary": {
+    "total": 12,
+    "passed": 0,
+    "failed": 12,
+    "by_task_family": {
+      "evidence_insufficiency": {
+        "total": 2,
+        "passed": 0,
+        "failed": 2
+      },
+      "item_navigation": {
+        "total": 4,
+        "passed": 0,
+        "failed": 4
+      },
+      "recent_trend": {
+        "total": 4,
+        "passed": 0,
+        "failed": 4
+      },
+      "relation_comparison": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      },
+      "timeline": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "metric_policy": "task_specific_no_fake_global_f1"
+  },
+  "rows": [
+    {
+      "case_id": "g2-real-001",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "target_rank": null,
+      "recall_at_5": 0.0
+    },
+    {
+      "case_id": "g2-real-002",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "target_rank": null,
+      "recall_at_5": 0.0
+    },
+    {
+      "case_id": "g2-real-003",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "returned_occurrence_ids": [
+        "ATR-20260814-5B9743"
+      ],
+      "passed": false,
+      "target_rank": null,
+      "recall_at_5": 0.0
+    },
+    {
+      "case_id": "g2-real-004",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "target_rank": null,
+      "recall_at_5": 0.0
+    },
+    {
+      "case_id": "g2-real-005",
+      "task_family": "recent_trend",
+      "answer_mode": "ranked_evidence_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260820-8F7990",
+        "ATR-20260818-951D15",
+        "ATR-20260814-D1D5AD",
+        "ATR-20260812-C63AAC",
+        "ATR-20260811-E28C1F",
+        "ATR-20260820-B68B9F",
+        "ATR-20260819-A8EF1B",
+        "ATR-20260819-5E3967",
+        "ATR-20260805-793124",
+        "ATR-20260722-CC5CE7",
+        "ATR-20260721-C465F3"
+      ],
+      "passed": false,
+      "main_occurrence_ids": [
+        "ATR-20260820-8F7990",
+        "ATR-20260818-951D15",
+        "ATR-20260814-D1D5AD",
+        "ATR-20260812-C63AAC",
+        "ATR-20260811-E28C1F"
+      ],
+      "primary_hits": [
+        "ATR-20260818-951D15"
+      ],
+      "supporting_hits": [],
+      "primary_recall": 0.3333,
+      "main_precision": 0.2
+    },
+    {
+      "case_id": "g2-real-006",
+      "task_family": "recent_trend",
+      "answer_mode": "ranked_evidence_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260821-C9EC37",
+        "ATR-20260821-933A41",
+        "ATR-20260819-352400",
+        "ATR-20260815-706F48",
+        "ATR-20260818-C4F9EA",
+        "ATR-20260814-DED320",
+        "ATR-20260814-B4DCDC",
+        "ATR-20260811-A22A59",
+        "ATR-20260724-EF5E89",
+        "ATR-20260723-A97D0E",
+        "ATR-20260722-8E22B0"
+      ],
+      "passed": false,
+      "main_occurrence_ids": [
+        "ATR-20260821-C9EC37",
+        "ATR-20260821-933A41",
+        "ATR-20260819-352400",
+        "ATR-20260815-706F48",
+        "ATR-20260818-C4F9EA"
+      ],
+      "primary_hits": [
+        "ATR-20260821-C9EC37"
+      ],
+      "supporting_hits": [],
+      "primary_recall": 0.3333,
+      "main_precision": 0.2
+    },
+    {
+      "case_id": "g2-real-007",
+      "task_family": "recent_trend",
+      "answer_mode": "ranked_evidence_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260814-FFABFB",
+        "ATR-20260812-00A6E9",
+        "ATR-20260818-75C9D5",
+        "ATR-20260809-CF8736",
+        "ATR-20260813-52E1DA",
+        "ATR-20260725-2EF16C",
+        "ATR-20260728-234EE1",
+        "ATR-20260724-029860"
+      ],
+      "passed": false,
+      "main_occurrence_ids": [
+        "ATR-20260814-FFABFB",
+        "ATR-20260812-00A6E9",
+        "ATR-20260818-75C9D5",
+        "ATR-20260809-CF8736"
+      ],
+      "primary_hits": [
+        "ATR-20260818-75C9D5"
+      ],
+      "supporting_hits": [],
+      "primary_recall": 0.5,
+      "main_precision": 0.25
+    },
+    {
+      "case_id": "g2-real-008",
+      "task_family": "recent_trend",
+      "answer_mode": "thematic_ranked_summary",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "main_occurrence_ids": [],
+      "primary_hits": [],
+      "supporting_hits": [],
+      "primary_recall": 0.0,
+      "main_precision": 0.0
+    },
+    {
+      "case_id": "g2-real-009",
+      "task_family": "relation_comparison",
+      "answer_mode": "evidence_bounded_comparison",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "recall": 0.0,
+      "precision": 0.0
+    },
+    {
+      "case_id": "g2-real-010",
+      "task_family": "timeline",
+      "answer_mode": "chronological_evidence_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260723-A7026F",
+        "ATR-20260520-F9E474"
+      ],
+      "passed": false,
+      "recall": 0.0,
+      "precision": 0.0
+    },
+    {
+      "case_id": "g2-real-011",
+      "task_family": "evidence_insufficiency",
+      "answer_mode": "bounded_not_found",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "bounded_not_found": false,
+      "boundary_disclosed": false
+    },
+    {
+      "case_id": "g2-real-012",
+      "task_family": "evidence_insufficiency",
+      "answer_mode": "clarification_required",
+      "returned_occurrence_ids": [],
+      "passed": false,
+      "clarification_without_model": false
+    }
+  ]
+}
