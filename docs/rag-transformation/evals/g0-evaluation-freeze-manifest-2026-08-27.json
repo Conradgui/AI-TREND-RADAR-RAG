@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "g0-evaluation-freeze-2026-08-27",
+  "created_at": "2026-08-27",
+  "purpose": "Freeze evaluation asset roles before G1/G2; this manifest does not claim any score.",
+  "corpus_contract": {
+    "mode": "frozen",
+    "latest_date": "2026-08-21",
+    "index_generation": "gen-20260821T074117-404548ad",
+    "chromadb_chunks": 4133
+  },
+  "assets": [
+    {
+      "role": "visible_calibration",
+      "path": "golden-questions.json",
+      "case_count": 12,
+      "sha256": "cdbab21e42b51db27a15a04ba04aadeb044309ac1b74cf56d37895fbdaef6d89",
+      "allowed_use": "Development, calibration, route coverage and regression.",
+      "forbidden_claim": "Must not be reported as an independent blind result."
+    },
+    {
+      "role": "held_out_query_candidate",
+      "path": "ordered-query-frame-v3-2-new-blind-queries-2026-08-21.json",
+      "case_count": 20,
+      "sha256": "760bc9b2c077d5051282a9d487d8a433ff3d6f276140045b31b051583eed3e31",
+      "allowed_use": "Keep query-only and unused for tuning until an independent reviewer creates and seals task labels.",
+      "forbidden_claim": "Not a scoreable blind set until independent labels and a scoring contract are sealed."
+    },
+    {
+      "role": "exposed_regression",
+      "path": "ordered-query-frame-v3-4-new-blind-queries-2026-08-21.json",
+      "case_count": 15,
+      "sha256": "61041b5c238d2315fd04b4754edaf6a71c6a1e15dc57c56927a494f705f9ed57",
+      "score_path": "ordered-query-frame-v3-4-new-blind-score-2026-08-21.json",
+      "score_sha256": "6d4710648c4122836924de9f4428362a9ba8d56c2fe46805d9f84671f1c20bb5",
+      "allowed_use": "Regression and failure diagnosis only.",
+      "forbidden_claim": "Already exposed and scored; never call it a new independent blind result."
+    },
+    {
+      "role": "entity_relation_diagnostic",
+      "path": "sealed/entity-relation-blind-2026-08-26.json",
+      "case_count": 8,
+      "allowed_use": "Entity/relationship diagnostic regression only.",
+      "forbidden_claim": "Historical filename is misleading; not an independent blind set."
+    }
+  ],
+  "rules": [
+    "Do not tune on held-out queries or their future labels.",
+    "Do not combine scores from different datasets, corpus generations or task rubrics into one global score.",
+    "Report raw counts and per-task metrics with dataset id, case count and generation.",
+    "Independent labels must be created in an isolated reviewer context before the held-out set is scored.",
+    "Any changed asset hash requires a new manifest version."
+  ],
+  "gate_status": "frozen_with_independent_labels_pending"
+}

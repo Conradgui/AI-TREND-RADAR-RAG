@@ -1,0 +1,75 @@
+{
+  "artifact_type": "sanitized_canary_trace_summary",
+  "captured_at": "2026-08-25T10:43:07Z",
+  "environment": {
+    "service": "ai-trend-radar-rag",
+    "provider": "deepseek",
+    "index_generation": "gen-20260821T074117-404548ad",
+    "chromadb_chunks": 4133,
+    "neo4j_status": "ready",
+    "corpus_mode": "frozen",
+    "latest_corpus_date": "2026-08-21"
+  },
+  "records": [
+    {
+      "route": "A",
+      "query": "打开 ATR-20260805-99E550",
+      "result": "pass",
+      "timings_ms": {"retrieval": 607.0, "generation": 0.0, "total": 774.0},
+      "model_turns": 0,
+      "evidence_integrity": true,
+      "response_summary": "Exact occurrence ID and local navigation URL returned."
+    },
+    {
+      "route": "B",
+      "query": "最近有什么热门趋势？",
+      "result": "pass",
+      "timings_ms": {"retrieval": 1829.9, "generation": 7709.9, "total": 9738.7},
+      "model_turns": 1,
+      "citation_count": 6,
+      "evidence_integrity": true,
+      "response_summary": "Three grounded trend clusters returned through one direct composer call."
+    },
+    {
+      "route": "C",
+      "query": "OpenAI 和 Anthropic 最近的竞争关系发生了什么变化？",
+      "result": "pass",
+      "timings_ms": {"retrieval": 10767.7, "generation": 4891.8, "total": 15699.5},
+      "model_turns": 1,
+      "graph_evidence_count": 3,
+      "evidence_integrity": true,
+      "response_summary": "Entity and pair-relation evidence returned; absence of direct graph relation was not converted into a causal claim."
+    },
+    {
+      "route": "D",
+      "query": "OpenAI 是否已经发布 GPT-6？",
+      "result": "pass",
+      "timings_ms": {"retrieval": 2455.4, "generation": 2613.88, "total": 5076.7},
+      "model_turns": 1,
+      "citation_count": 4,
+      "evidence_integrity": true,
+      "claim_verification": {
+        "valid": true,
+        "verdict": "insufficient",
+        "direct_refutation": false,
+        "evidence_ids": ["E2", "E3", "E4", "E7"],
+        "missing_criteria_count": 1
+      },
+      "response_summary": "No GPT-6 release evidence found in the frozen internal corpus; response stopped at insufficient evidence."
+    },
+    {
+      "route": "E",
+      "query": "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+      "result": "pass_with_insufficient_evidence",
+      "timings_ms": {"retrieval": 2541.0, "generation": 3001.0, "total": 5565.0},
+      "model_turns": 1,
+      "evidence_integrity": true,
+      "response_summary": "Retrieved corpus was insufficient for a reliable definition comparison; the answer did not invent one."
+    }
+  ],
+  "limitations": [
+    "This artifact preserves the observed machine trace summary, not full answer bodies or secrets.",
+    "The five-sample percentile is a Canary indicator and not an SLA estimate.",
+    "Retrieval quality metrics require a separate fixed labeled evaluation set."
+  ]
+}

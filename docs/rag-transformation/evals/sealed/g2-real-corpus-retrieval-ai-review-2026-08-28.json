@@ -1,0 +1,176 @@
+{
+  "schema_version": "g2-real-corpus-retrieval-ai-review/1.0",
+  "review_status": "human_reviewed",
+  "created_at": "2026-08-28",
+  "corpus_boundary": {
+    "source": "digests/search-index.json",
+    "activity_cutoff": "2026-08-21",
+    "rule": "只以截止日内的索引 occurrence 为证据；不把日报重复收录视作独立动态。"
+  },
+  "publication_notice": "任务和标签由隔离 AI 基于冻结语料提出；Conrad 对任务构成继续推进，并明确修正 Google/DeepMind 与编码助手两项争议标签。可用于 G2 正式评分，但必须保留该混合审阅来源，不能表述为全部由人工逐条独立标注。",
+  "review_provenance": {
+    "proposal": "isolated_ai_review",
+    "task_set_confirmation": "Conrad confirmed continuation after final 12-case review request",
+    "explicit_human_corrections": ["g2-real-007", "g2-real-008"],
+    "label_limit": "human_confirmed_task_set_with_ai_proposed_labels"
+  },
+  "cases": [
+    {
+      "case_id": "g2-real-001",
+      "query": "打开 8 月 11 日那条说 Claude Code 默认启用自动模式、并提到人工审批只抓到 13.6% 危险命令的记录。",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "answerable": true,
+      "time_window": "2026-08-11",
+      "relevant_occurrence_ids": ["ATR-20260811-EF1380"],
+      "minimum_acceptance": "返回唯一条目及其本地定位；不得用泛指 Claude/Anthropic 的结果替代。",
+      "review_notes": "以内容描述而非完整标题检验别名/模糊匹配。"
+    },
+    {
+      "case_id": "g2-real-002",
+      "query": "找那个能把代码库文档、SQL schema 和配置转成可查询知识图谱、而且强调不用向量库的项目。",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "answerable": true,
+      "time_window": "2026-08-21",
+      "relevant_occurrence_ids": ["ATR-20260821-AE480E"],
+      "minimum_acceptance": "返回 Graphify-Labs/graphify 的 8 月 21 日 occurrence；项目名、核心能力与“no vector store”须一致。",
+      "review_notes": "使用功能性别名，日期消除该项目跨日报的重复 occurrence。"
+    },
+    {
+      "case_id": "g2-real-003",
+      "query": "定位 8 月 11 日 Hacker News 那条 ChatGPT Linux 桌面端消息。",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "answerable": true,
+      "time_window": "2026-08-11",
+      "relevant_occurrence_ids": ["ATR-20260812-11E822"],
+      "minimum_acceptance": "返回标题为 OpenAI launches ChatGPT desktop app for Linux 的唯一 occurrence。",
+      "review_notes": "“8 月 11 日”按 effective_date，报告入库日为 8 月 12 日。"
+    },
+    {
+      "case_id": "g2-real-004",
+      "query": "打开 open-webui 这个支持 Ollama 和 OpenAI API 的开源界面条目（8 月 21 日）。",
+      "task_family": "item_navigation",
+      "answer_mode": "single_record_navigation",
+      "answerable": true,
+      "time_window": "2026-08-21",
+      "relevant_occurrence_ids": ["ATR-20260821-72C84E"],
+      "minimum_acceptance": "返回指定日期的 open-webui/open-webui occurrence，不以其他日期的重复记录计分。",
+      "review_notes": "检验大小写与产品能力别名。"
+    },
+    {
+      "case_id": "g2-real-005",
+      "query": "截至 8 月 21 日，过去一周 OpenAI 有哪些值得关注的业务或产品动态？请区分公司/媒体来源与社区讨论。",
+      "task_family": "recent_trend",
+      "answer_mode": "ranked_evidence_summary",
+      "answerable": true,
+      "time_window": "2026-08-15..2026-08-21",
+      "relevant_occurrence_ids": {
+        "primary": ["ATR-20260818-951D15", "ATR-20260816-4C2949", "ATR-20260820-6EFF79"],
+        "supporting": ["ATR-20260816-82535C", "ATR-20260817-5C166D"]
+      },
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "minimum_acceptance": "至少命中 2 条 primary，并按来源属性表述；HN 标题只能作为讨论/报道线索，不能无保留升级为公司事实。",
+      "review_notes": "去除仅因提及 OpenAI 而无公司动态的开发者文章和开源项目。"
+    },
+    {
+      "case_id": "g2-real-006",
+      "query": "截至 8 月 21 日，Claude 或 Anthropic 最近一周有哪些重要更新？优先官方信息。",
+      "task_family": "recent_trend",
+      "answer_mode": "ranked_evidence_summary",
+      "answerable": true,
+      "time_window": "2026-08-15..2026-08-21",
+      "relevant_occurrence_ids": {
+        "primary": ["ATR-20260821-C9EC37", "ATR-20260816-032D5F", "ATR-20260816-816D03"],
+        "supporting": ["ATR-20260821-FA2471", "ATR-20260819-90EBEF"]
+      },
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "minimum_acceptance": "至少命中 2 条 primary，且至少一条来自 Anthropic (Claude)；免费额度变化须明确其非官方源级别。",
+      "review_notes": "同一官方文章的跨日报重复 occurrence 不增加覆盖要求。"
+    },
+    {
+      "case_id": "g2-real-007",
+      "query": "截至 8 月 21 日，Google/DeepMind 或 Gemini 最近有哪些对开发者或产品能力有影响的动态？",
+      "task_family": "recent_trend",
+      "answer_mode": "ranked_evidence_summary",
+      "answerable": true,
+      "time_window": "2026-08-14..2026-08-21",
+      "relevant_occurrence_ids": {
+        "primary": ["ATR-20260814-AAF81C", "ATR-20260818-75C9D5"],
+        "supporting": ["ATR-20260816-4BD79D"]
+      },
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "minimum_acceptance": "命中 2 条 primary；Google DeepMind 官方机器人动态与第三方 Gemini 产品报道必须区分来源，Product Hunt 只能作为补充证据。",
+      "review_notes": "Conrad 已确认：Dev.to 的 Gemini API 使用教程不是 Google/DeepMind 自身动态，应移除；Product Hunt 条目降为补充证据。"
+    },
+    {
+      "case_id": "g2-real-008",
+      "query": "最近一周，AI 编程助手在“跨会话上下文/代码库知识”上出现了哪些不同的产品做法？",
+      "task_family": "recent_trend",
+      "answer_mode": "thematic_ranked_summary",
+      "answerable": true,
+      "time_window": "2026-08-14..2026-08-21",
+      "relevant_occurrence_ids": {
+        "primary": ["ATR-20260821-F3CB2B", "ATR-20260821-AE480E"],
+        "supporting": []
+      },
+      "relevant_content_ids": {
+        "primary": ["d42fd4ddf4a76687fb297b7a6429787a", "1b66fcabdd1a9ff0f6ac40f9445083eb"],
+        "supporting": []
+      },
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "minimum_acceptance": "同时命中 2 条 primary，并说明它们分别是会话持久上下文和代码库知识图谱，不能断言二者技术实现相同。",
+      "review_notes": "语料审计未找到第二种独立来源的合格编码助手条目；删除普通研究上下文工具和 Gemini API 教程，并去掉无法被语料支持的“跨来源”要求。"
+    },
+    {
+      "case_id": "g2-real-009",
+      "query": "Graphify 和 claude-mem 都服务 Claude Code 等编码代理，它们在“保留和检索上下文”上分别做什么？",
+      "task_family": "relation_comparison",
+      "answer_mode": "evidence_bounded_comparison",
+      "answerable": true,
+      "time_window": "截至 2026-08-21",
+      "relevant_occurrence_ids": ["ATR-20260821-AE480E", "ATR-20260821-F3CB2B"],
+      "relevant_content_ids": ["1b66fcabdd1a9ff0f6ac40f9445083eb", "d42fd4ddf4a76687fb297b7a6429787a"],
+      "minimum_acceptance": "同时返回两条；指出 Graphify 面向代码库知识图谱、claude-mem 面向会话持久上下文，且不推断二者存在合作或共同作者关系。",
+      "review_notes": "关系是功能比较，不是实体关系声明。"
+    },
+    {
+      "case_id": "g2-real-010",
+      "query": "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+      "task_family": "timeline",
+      "answer_mode": "chronological_evidence_summary",
+      "answerable": true,
+      "time_window": "2026-08-11..2026-08-19",
+      "relevant_occurrence_ids": ["ATR-20260812-0E70FB", "ATR-20260820-6EFF79"],
+      "minimum_acceptance": "按 effective_date 先后返回两条，并将二者限定为 Hacker News 收录的报道/讨论线索，不能写成经 OpenAI 官方确认的上市时间表。",
+      "review_notes": "检验时间排序与来源边界，非事实核验题。"
+    },
+    {
+      "case_id": "g2-real-011",
+      "query": "在截至 8 月 21 日的内部日报里，找 OpenAI 官方宣布 GPT-6.1 的记录。",
+      "task_family": "evidence_insufficiency",
+      "answer_mode": "bounded_not_found",
+      "answerable": false,
+      "time_window": "截至 2026-08-21",
+      "relevant_occurrence_ids": [],
+      "minimum_acceptance": "明确说明在冻结索引中未找到该声明，不能据此断言现实世界不存在；不得用 GPT 5.6 或非官方讨论替代。",
+      "review_notes": "索引内对 GPT-6.1 的标题和摘要检索为空；这是语料边界测试。"
+    },
+    {
+      "case_id": "g2-real-012",
+      "query": "把刚才那两个产品里更适合小团队的一个找出来，并解释原因。",
+      "task_family": "evidence_insufficiency",
+      "answer_mode": "clarification_required",
+      "answerable": false,
+      "time_window": "无可解析的上下文",
+      "relevant_occurrence_ids": [],
+      "minimum_acceptance": "要求用户指明“两个产品”及评判维度；不得擅自绑定到索引中的任意两个条目。",
+      "review_notes": "测试指代缺失时不伪造检索目标。"
+    }
+  ]
+}

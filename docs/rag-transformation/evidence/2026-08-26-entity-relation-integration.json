@@ -1,0 +1,32 @@
+{
+  "evidence_id": "entity-relation-integration-2026-08-26",
+  "status": "live_smoke_verified",
+  "evaluation_kind": "diagnostic_regression_not_independent_blind",
+  "dataset": "entity-relation-blind-2026-08-26.json",
+  "case_count": 8,
+  "metrics": {
+    "registered_subject_recognition": {"passed": 8, "total": 8, "rate": 1.0},
+    "bounded_relation_expansion": {"passed": 8, "total": 8, "rate": 1.0},
+    "direct_subject_priority": {"passed": 8, "total": 8, "rate": 1.0},
+    "ambiguous_subject_no_auto_expansion": {"passed": 2, "total": 2, "rate": 1.0}
+  },
+  "runtime": {
+    "docker_app": "healthy",
+    "neo4j_connected": true,
+    "retriever_mode": "hybrid",
+    "chromadb_chunks": 4133,
+    "index_generation": "gen-20260821T074117-404548ad"
+  },
+  "graph_smoke": {
+    "query": "Claude 相关主体有哪些关联？",
+    "entity_id": "claude",
+    "relation_count": 1,
+    "relation": "developed_by",
+    "related_entity_id": "anthropic"
+  },
+  "limitations": [
+    "样例标签与实现位于同一仓库，不能作为独立盲测或整体召回率证明。",
+    "本证据证明主体关系链路可运行，不证明所有新闻条目都能正确链接到主体。",
+    "正式接入后仍需新增未知主体和负例集，测量误扩展率。"
+  ]
+}

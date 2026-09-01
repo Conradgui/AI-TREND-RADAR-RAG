@@ -1,0 +1,14 @@
+{
+  "dataset_id": "entity-relation-blind-2026-08-26",
+  "purpose": "验证主体实体保持独立、已确认关系受控扩展、未知关系不自动扩展",
+  "cases": [
+    {"id": "ER-001", "query": "最近 Claude 有什么新趋势？", "subject": "claude", "related": ["anthropic"]},
+    {"id": "ER-002", "query": "最近 Anthropic 有什么重要动态？", "subject": "anthropic", "related": []},
+    {"id": "ER-003", "query": "ChatGPT 最近有什么变化？", "subject": "chatgpt", "related": ["openai"]},
+    {"id": "ER-004", "query": "OpenAI 最近发布了什么？", "subject": "openai", "related": []},
+    {"id": "ER-005", "query": "Gemini 最近有什么技术动向？", "subject": "gemini", "related": ["google-deepmind", "google"]},
+    {"id": "ER-006", "query": "Grok 最近有什么新闻？", "subject": "grok", "related": ["xai", "x"]},
+    {"id": "ER-007", "query": "SpaceX 最近有什么动态？", "subject": "spacex", "related": []},
+    {"id": "ER-008", "query": "Antigravity 最近有什么动态？", "subject": "antigravity", "related": []}
+  ]
+}
