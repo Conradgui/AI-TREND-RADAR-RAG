@@ -1,0 +1,85 @@
+{
+  "generated_at": "2026-08-31T08:06:52.060278+00:00",
+  "dataset_schema_version": "g2-real-corpus-retrieval-ai-review/1.0",
+  "review_status": "human_reviewed",
+  "summary": {
+    "total": 3,
+    "passed": 1,
+    "failed": 2,
+    "by_task_family": {
+      "recent_trend": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      },
+      "relation_comparison": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "timeline": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "metric_policy": "task_specific_no_fake_global_f1"
+  },
+  "rows": [
+    {
+      "case_id": "g2-real-008",
+      "task_family": "recent_trend",
+      "answer_mode": "thematic_ranked_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260811-2771B3",
+        "ATR-20260718-71EAC8",
+        "ATR-20260720-437FF4",
+        "ATR-20260726-5A5B0C"
+      ],
+      "passed": false,
+      "main_occurrence_ids": [
+        "ATR-20260811-2771B3",
+        "ATR-20260718-71EAC8",
+        "ATR-20260720-437FF4",
+        "ATR-20260726-5A5B0C"
+      ],
+      "primary_hits": [],
+      "supporting_hits": [],
+      "primary_recall": 0.0,
+      "main_precision": null,
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "unjudged_main_occurrence_ids": [
+        "ATR-20260811-2771B3",
+        "ATR-20260718-71EAC8",
+        "ATR-20260720-437FF4",
+        "ATR-20260726-5A5B0C"
+      ]
+    },
+    {
+      "case_id": "g2-real-009",
+      "task_family": "relation_comparison",
+      "answer_mode": "evidence_bounded_comparison",
+      "returned_occurrence_ids": [
+        "ATR-20260821-AE480E",
+        "ATR-20260821-F3CB2B"
+      ],
+      "passed": true,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "case_id": "g2-real-010",
+      "task_family": "timeline",
+      "answer_mode": "chronological_evidence_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260818-951D15",
+        "ATR-20260807-0FD7E8",
+        "ATR-20260807-4C0FAD"
+      ],
+      "passed": false,
+      "recall": 0.0,
+      "precision": 0.0
+    }
+  ]
+}
