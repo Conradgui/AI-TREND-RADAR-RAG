@@ -51,7 +51,10 @@ $lines = @(
     'OPENAI_API_KEY=',
     "NEO4J_PASSWORD=$([Guid]::NewGuid().ToString('N'))",
     'RAG_ENABLE_DEEP_FETCH=false',
-    'RAG_CORPUS_RECHECK_DAYS=30'
+    'RAG_CORPUS_RECHECK_DAYS=30',
+    'RAG_STARTUP_CORPUS_UPDATE_ENABLED=true',
+    'RAG_CORPUS_UPDATE_INTERVAL_SECONDS=21600',
+    'RAG_UPSTREAM_CORPUS_URL=https://conradgui.github.io/AI-TREND-RADAR'
 )
 
 switch ($provider) {

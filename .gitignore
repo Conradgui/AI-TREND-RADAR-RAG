@@ -21,5 +21,6 @@ rag/data/chroma.backup-*/
 rag/data/artifacts/
 rag/data/corpus-update-state.json
 rag/data/runtime-settings.json
+rag/data/entity-relation-memory.json
 !rag/data/.gitkeep
 *.pyc

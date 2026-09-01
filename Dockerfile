@@ -15,7 +15,10 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 RUN python -c "from chromadb.utils.embedding_functions import DefaultEmbeddingFunction; DefaultEmbeddingFunction()(['warmup'])"
 
 COPY . /app
-RUN chmod +x /app/scripts/docker-entrypoint.sh
+RUN mkdir -p /opt/atr-bundled-corpus \
+    && cp /app/manifest.json /opt/atr-bundled-corpus/manifest.json \
+    && cp -a /app/digests /opt/atr-bundled-corpus/digests \
+    && chmod +x /app/scripts/docker-entrypoint.sh
 
 EXPOSE 8001
 
