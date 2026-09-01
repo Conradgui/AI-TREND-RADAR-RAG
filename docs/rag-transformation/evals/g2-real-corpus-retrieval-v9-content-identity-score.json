@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-09-01T02:41:38.374795+00:00",
+  "dataset_schema_version": "g2-real-corpus-retrieval-ai-review/1.1",
+  "review_status": "human_reviewed",
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "by_task_family": {
+      "recent_trend": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "relation_comparison": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "timeline": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "metric_policy": "task_specific_no_fake_global_f1"
+  },
+  "rows": [
+    {
+      "case_id": "g2-real-008",
+      "task_family": "recent_trend",
+      "answer_mode": "thematic_ranked_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260824-A1265F",
+        "ATR-20260821-AE480E"
+      ],
+      "passed": true,
+      "main_occurrence_ids": [
+        "ATR-20260824-A1265F",
+        "ATR-20260821-AE480E"
+      ],
+      "primary_hits": [
+        "ATR-20260821-F3CB2B",
+        "ATR-20260821-AE480E"
+      ],
+      "supporting_hits": [],
+      "primary_recall": 1.0,
+      "main_precision": null,
+      "labels_exhaustive": false,
+      "minimum_primary_hits": 2,
+      "unjudged_main_occurrence_ids": [
+        "ATR-20260824-A1265F"
+      ]
+    },
+    {
+      "case_id": "g2-real-009",
+      "task_family": "relation_comparison",
+      "answer_mode": "evidence_bounded_comparison",
+      "returned_occurrence_ids": [
+        "ATR-20260824-A1265F",
+        "ATR-20260821-AE480E"
+      ],
+      "passed": true,
+      "recall": 1.0,
+      "precision": 1.0
+    },
+    {
+      "case_id": "g2-real-010",
+      "task_family": "timeline",
+      "answer_mode": "chronological_evidence_summary",
+      "returned_occurrence_ids": [
+        "ATR-20260812-0E70FB",
+        "ATR-20260820-6EFF79"
+      ],
+      "passed": true,
+      "recall": 1.0,
+      "precision": 1.0
+    }
+  ]
+}
