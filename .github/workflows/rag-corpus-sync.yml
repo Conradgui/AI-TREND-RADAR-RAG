@@ -134,12 +134,17 @@ jobs:
           if git diff --cached --quiet; then
             echo "Corpus already up to date" | tee -a "$GITHUB_STEP_SUMMARY"
             echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
+          elif meaningful_changes=$(bash scripts/has-corpus-source-changes.sh); then
+            echo "Meaningful corpus source changes: ${meaningful_changes//$'\n'/, }" | tee -a "$GITHUB_STEP_SUMMARY"
             DATE=$(date -u +%Y-%m-%d)
             git commit -m "corpus: sync upstream through ${DATE}"
             echo "changed=true" >> "$GITHUB_OUTPUT"
             echo "validated_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
             echo "Prepared corpus update through ${DATE}" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            git reset --quiet
+            echo "Only derived corpus metadata changed; no PR required" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Push dedicated corpus branch

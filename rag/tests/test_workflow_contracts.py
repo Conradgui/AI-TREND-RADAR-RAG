@@ -199,6 +199,27 @@ def test_hosted_publish_uses_auditable_pr_instead_of_pushing_default_branch():
     )
 
 
+def test_corpus_publish_ignores_derived_only_timestamp_changes():
+    """A no-op upstream check must not create a PR from generated timestamps."""
+    helper = (PROJECT_ROOT / "scripts" / "has-corpus-source-changes.sh").read_text(
+        encoding="utf-8"
+    )
+    for derived in (
+        "manifest.json",
+        "feed.xml",
+        "corpus-manifest.json",
+        "digests/search-index.json",
+    ):
+        assert derived in helper
+    assert "git diff --cached --name-only" in helper
+
+    for workflow_name in ("rag-corpus-sync.yml", "corpus-producer-self-managed.yml"):
+        source = _workflow(workflow_name)
+        assert "bash scripts/has-corpus-source-changes.sh" in source
+        assert "Only derived corpus metadata changed; no PR required" in source
+        assert "git reset --quiet" in source
+
+
 def test_pages_deploys_only_after_successful_corpus_sync():
     source = _workflow("deploy-pages.yml")
     builder = (PROJECT_ROOT / "scripts" / "build-pages-site.sh").read_text(
