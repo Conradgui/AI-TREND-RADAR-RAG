@@ -4,13 +4,16 @@ from __future__ import annotations
 
 import asyncio
 import inspect
+import json
 import logging
+import re
 import time
 from dataclasses import replace
 from datetime import datetime, timedelta
 
 from langchain_core.callbacks import AsyncCallbackHandler
 
+from rag.answer_envelope import SCHEMA_VERSION, answer_envelope_instruction, parse_answer_envelope
 from rag.answer_policy import apply_answer_policy, build_answer_policy, mark_external_evidence_used
 from rag.citations import evidence_insufficient_answer, retrieve_citations_with_status
 from rag.config import get_configured_search_providers
@@ -23,6 +26,7 @@ from rag.evidence_ledger import (
     validate_evidence_markers,
 )
 from rag.evidence_presentation import build_evidence_presentation
+from rag.entity_relation_feedback import capture_relation_feedback
 from rag.external_source_admission import (
     infer_claim_type,
     infer_evidence_demand,
@@ -33,6 +37,9 @@ from rag.prompt_registry import compile_task_prompt, extract_claim_verification_
 from rag.query_understanding import analyze_query
 from rag.retrieval_gateway import ResearchRequest, task_family_for_plan
 from rag.retrieval_planning import build_metadata_filter, load_latest_corpus_date, source_diversity_cap
+from rag.retriever.lexical_store import normalize_lexical_text
+from rag.route_execution_policy import execution_policy_for
+from rag.route_runtime_budget import runtime_budget_for
 from rag.search_provider_adapters import SearchRequest, build_tavily_request_for_task
 from rag.source_review import build_source_review, format_source_review_for_prompt
 from rag.tool_routing import build_tool_route, format_tool_route_for_prompt, infer_search_task_type
@@ -42,6 +49,36 @@ from rag.web_search_policy import decide_web_search
 logger = logging.getLogger(__name__)
 
 DISTRACTING_INTERNAL_TERMS = frozenset(["diffusiongemma", "glm", "vue3", "乱码", "coding assistant"])
+
+_SUBJECT_DISPLAY_NAMES = {
+    "openai": "OpenAI",
+    "chatgpt": "ChatGPT",
+    "claude-code": "Claude Code",
+    "google-deepmind": "Google DeepMind",
+    "xai": "xAI",
+    "spacex": "SpaceX",
+}
+
+
+def _clarification_answer(message: str, reasons: list[str], subjects: list[str]) -> str:
+    """Ask for the missing user decision instead of treating it as failed retrieval."""
+    missing_goal = "request lacks a concrete subject or success criterion" in reasons
+    if missing_goal and subjects:
+        subject_id = str(subjects[0])
+        subject = _SUBJECT_DISPLAY_NAMES.get(
+            subject_id,
+            subject_id.replace("-", " ").title(),
+        )
+        return (
+            f"你提到了 **{subject}**。你想了解它的哪一方面？\n\n"
+            "你可以直接回复一个方向：**最近动态 / 产品与技术 / 对比关系 / 具体新闻**。\n\n"
+            "例如：\n"
+            f"- `{subject} 最近有什么重要动态？`\n"
+            f"- `{subject} 最近发布了哪些产品或技术？`\n"
+            f"- `比较 {subject} 与另一个主体最近的变化`\n"
+            f"- `帮我找 {subject} 关于某个主题的具体新闻`"
+        )
+    return "我还不能确定你指的是哪一个对象，请补充具体名称、标题或 ATR 编号后再试。"
 
 def _merge_citations_with_priority(internal_citations: list[dict], external_citations: list[dict], max_total: int = 15) -> list[dict]:
     """Merge already-reviewed external evidence while preserving the internal floor."""
@@ -88,6 +125,13 @@ MULTI_TOOL_AGENT_TIMEOUT_SECONDS = 150
 WEB_SEARCH_AGENT_TIMEOUT_SECONDS = 180
 DIRECT_COMPOSER_TASK_MODES = frozenset({"general", "explain"})
 RECENT_TREND_ANSWER_EVIDENCE_BUDGET = 6
+IMPORTANT_NEWS_ANSWER_BUILDER_CONTRACT_ID = "atr.answer_builder/important_news/1.0"
+IMPORTANT_NEWS_OUTPUT_SCHEMA_ID = "atr.answer/trend/1.0"
+IMPORTANT_NEWS_SECTION_LIMITS = {
+    "recent_important_news": 5,
+    "supplementary": 3,
+    "historical_background": 3,
+}
 
 
 async def _emit_progress(progress_callback, event: str, data: dict) -> None:
@@ -230,6 +274,8 @@ def _format_citation_for_prompt(index: int, citation: dict) -> str:
     tier_line = (
         " | 新闻分层: 历史背景（不得列入近期主榜）"
         if citation.get("news_tier") == "background"
+        else " | 新闻分层: 补充动态（不得冒充主榜）"
+        if citation.get("news_tier") == "supplementary"
         else ""
     )
     return (
@@ -306,12 +352,56 @@ def _minimum_evidence_marker_count(query_plan, citations: list[dict]) -> int:
     """Require breadth for plural trend answers without inventing unavailable evidence."""
     if getattr(query_plan, "intent", "") == "recent_trend":
         return min(3, len(citations))
+    if getattr(query_plan, "task_mode", "") == "compare":
+        return min(2, len(citations))
     return min(1, len(citations))
 
 
-def _required_evidence_ids(task_family: str, citations: list[dict]) -> set[str]:
+def _required_evidence_ids(
+    task_family: str,
+    citations: list[dict],
+    *,
+    route_contract: dict | None = None,
+) -> set[str]:
     """Return evidence IDs that define a task's minimum truthful contract."""
-    if task_family not in {"timeline", "relation_exploration"}:
+    route_contract = route_contract or {}
+    # A chronological answer is grounded by its direct dated reports. Graph
+    # evidence gives useful context, but a graph summary must not suppress an
+    # otherwise valid two-report timeline when the model does not cite it.
+    if task_family == "timeline":
+        return set()
+    if route_contract.get("answer_mode") == "timeline":
+        direct_reports = [
+            citation for citation in citations
+            if citation.get("content_type") not in {"graph_reasoning", "graph_relation"}
+        ]
+        if len(direct_reports) >= 2:
+            return set()
+    if route_contract.get("answer_mode") == "comparison":
+        required = set()
+        subjects = {
+            normalize_lexical_text(subject)
+            for subject in route_contract.get("subjects", [])
+        }
+        for term in route_contract.get("protected_terms", []):
+            normalized = normalize_lexical_text(term)
+            if not normalized or normalized in subjects:
+                continue
+            for citation in citations:
+                haystack = normalize_lexical_text(" ".join(
+                    str(citation.get(field) or "")
+                    for field in ("title", "excerpt", "source")
+                ))
+                if normalized in haystack and citation.get("evidence_id"):
+                    required.add(str(citation["evidence_id"]))
+                    break
+        if required:
+            return required
+    if task_family not in {
+        "timeline",
+        "relation_exploration",
+        "temporal_relation_exploration",
+    }:
         return set()
     required_content_type = (
         "graph_relation"
@@ -329,6 +419,22 @@ def _required_evidence_ids(task_family: str, citations: list[dict]) -> set[str]:
 
 def _apply_answer_evidence_budget(citations: list[dict], query_plan) -> list[dict]:
     """Keep broad retrieval separate from the smaller context used to write an answer."""
+    if getattr(query_plan, "task_mode", "") == "timeline":
+        required_graph = [
+            citation for citation in citations
+            if citation.get("content_type") in {"graph_reasoning", "graph_relation"}
+        ]
+        ordinary = [citation for citation in citations if citation not in required_graph]
+        ordinary.sort(
+            key=lambda citation: (
+                _timeline_event_specificity(citation, query_plan),
+                _direct_task_evidence_score(citation, query_plan),
+                str(citation.get("effective_date") or citation.get("date") or ""),
+            ),
+            reverse=True,
+        )
+        budget = RECENT_TREND_ANSWER_EVIDENCE_BUDGET
+        return [*ordinary[:max(0, budget - len(required_graph))], *required_graph[:budget]]
     if getattr(query_plan, "intent", "") == "recent_trend":
         budget = RECENT_TREND_ANSWER_EVIDENCE_BUDGET
         required_graph = [
@@ -346,6 +452,29 @@ def _apply_answer_evidence_budget(citations: list[dict], query_plan) -> list[dic
             return [*ordinary[:max(0, budget - len(required_graph))], *required_graph[:budget]]
         return citations[:budget]
     return citations
+
+
+def _direct_task_evidence_score(citation: dict, query_plan) -> int:
+    """Prefer evidence matching the task qualifier, not only its named entity."""
+    text = normalize_lexical_text(" ".join(
+        str(citation.get(field) or "")
+        for field in ("title", "excerpt", "category", "url")
+    ))
+    entity_terms = {
+        normalize_lexical_text(entity)
+        for entity in getattr(query_plan, "entities", [])
+    }
+    ignored = {"按时间", "时间线", "相关", "报道", "证据", "openai"}
+    terms = []
+    for raw in str(getattr(query_plan, "retrieval_query", "")).split():
+        term = normalize_lexical_text(raw)
+        if term and term not in entity_terms and term not in ignored:
+            terms.append(term)
+    aliases = {"上市": ("上市", "ipo"), "ipo": ("ipo", "上市")}
+    return sum(
+        any(alias in text for alias in aliases.get(term, (term,)))
+        for term in terms
+    )
 
 
 def _evidence_integrity_fallback(policy: dict) -> str:
@@ -568,6 +697,366 @@ def _build_navigation_response(
     }
 
 
+def _direct_timeline_reports(citations: list[dict], query_plan) -> list[dict]:
+    """Return direct, dated event reports for a deterministic timeline answer."""
+    reports = [
+        citation for citation in citations
+        if citation.get("content_type") not in {"graph_reasoning", "graph_relation"}
+        and _direct_task_evidence_score(citation, query_plan) > 0
+    ]
+    reports.sort(
+        key=lambda citation: (
+            _timeline_event_specificity(citation, query_plan),
+            str(citation.get("effective_date") or citation.get("date") or ""),
+        ),
+        reverse=True,
+    )
+    return sorted(
+        reports[:_requested_timeline_report_limit(query_plan)],
+        key=lambda citation: str(
+            citation.get("effective_date") or citation.get("date") or "9999-12-31"
+        ),
+    )
+
+
+def _requested_timeline_report_limit(query_plan) -> int:
+    """Honor an explicit report count without making broad timelines too narrow."""
+    query = str(getattr(query_plan, "original_question", "") or "")
+    match = re.search(r"([1-5一二三四五两])\s*条", query)
+    if match is None:
+        return 5
+    number = {"一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5}
+    value = match.group(1)
+    return number[value] if value in number else int(value)
+
+
+def _timeline_event_specificity(citation: dict, query_plan) -> int:
+    """Prefer reports about the requested event over stories that merely mention it.
+
+    This is deliberately narrow: the reliable distinction is currently defined
+    only for an explicit IPO/listing timeline. It prevents a side story such as
+    an employee departure "ahead of an IPO" from displacing a financing or
+    public-company-timing report in a short, direct timeline.
+    """
+    query = normalize_lexical_text(str(getattr(query_plan, "retrieval_query", "")))
+    if "ipo" not in query and "上市" not in query:
+        return 0
+    text = normalize_lexical_text(" ".join(
+        str(citation.get(field) or "") for field in ("title", "excerpt")
+    ))
+    if any(marker in text for marker in (
+        "share sale", "public company", "ipo filing", "file for ipo",
+        "上市时间", "递交上市", "股权出售",
+    )):
+        return 2
+    if any(marker in text for marker in (
+        "talent exodus", "red flag", "ads", "marketing", "user harm",
+        "人才流失", "广告", "用户伤害",
+    )):
+        return -1
+    return 0
+
+
+def _build_timeline_response(
+    citations: list[dict],
+    *,
+    query_understanding: dict,
+    start_time: float,
+    retrieval_ms: float,
+) -> dict:
+    """Render two or more directly matching reports without an LLM turn."""
+    ledger = EvidenceLedger()
+    ledger.admit(citations)
+    lines = [
+        "证据层级：以下均为内部收录的来源报道/讨论线索，不代表相关主体的官方确认。",
+        "",
+        "## 时间线",
+    ]
+    for index, citation in enumerate(ledger.records, 1):
+        title = str(citation.get("title") or "未命名报道").strip()
+        local_url = str(citation.get("local_url") or "").strip()
+        linked_title = f"[{title}]({local_url})" if local_url.startswith("#") else title
+        date = str(citation.get("effective_date") or citation.get("date") or "日期未知")
+        source = str(citation.get("source") or "来源未知")
+        excerpt = str(citation.get("excerpt") or "").strip()
+        detail = f"：{excerpt}" if excerpt else ""
+        lines.append(
+            f"{index}. **{linked_title}**（{date} · {source}）{detail} "
+            f"[{citation['evidence_id']}]"
+        )
+    sources = sorted({
+        str(citation.get("source") or "").strip()
+        for citation in ledger.records
+        if str(citation.get("source") or "").strip()
+    })
+    source_label = "、".join(sources[:3]) if sources else "内部收录来源"
+    lines.extend([
+        "",
+        f"说明：这些是 {source_label} 收录的报道/讨论线索；当前语料不足以将其表述为相关主体已确认的时间表。",
+    ])
+    answer = "\n".join(lines)
+    validation = validate_evidence_markers(answer, ledger.records)
+    presentation = build_evidence_presentation(
+        answer,
+        ledger.records,
+        internal_retrieval_status="ready",
+    )
+    query_understanding["answer_policy"] = {
+        "mode": "deterministic_timeline",
+        "disclosure": "两条以上直接时间线证据已按日期渲染，图谱仅作辅助上下文。",
+    }
+    query_understanding["tool_routing"] = {"status": "not_required", "steps": []}
+    query_understanding["source_review"] = build_source_review(ledger.records)
+    return {
+        "answer": answer,
+        "display_answer": presentation["display_answer"],
+        "citations": presentation["citations"],
+        "evidence_display_map": presentation["evidence_display_map"],
+        "search_references": presentation["search_references"],
+        "source_summary": presentation["source_summary"],
+        "claim_evidence": validation["claim_evidence"],
+        "claim_verification": None,
+        "evidence_integrity": {
+            "valid": validation["is_valid"],
+            "repair_attempted": False,
+            "unknown_evidence_ids": validation["unknown_evidence_ids"],
+            "missing_evidence_markers": validation["missing_evidence_markers"],
+            "minimum_evidence_markers": 2,
+            "used_evidence_markers": len(validation["marker_ids"]),
+            "coverage_sufficient": len(validation["marker_ids"]) >= 2,
+            "required_evidence_ids": [],
+            "missing_required_evidence_ids": [],
+        },
+        "query_understanding": query_understanding,
+        "tool_trace": {
+            "execution_path": "deterministic_timeline",
+            "evidence_pool_count": len(ledger.records),
+            "tools_used": [],
+            "evidence_sources": ["internal"],
+            "total_calls": 0,
+            "summary": "两条直接时间线证据已排序，未调用生成模型或工具",
+            "execution_counts": {
+                "model_turns": 0,
+                "agent_tool_calls": 0,
+                "planned_steps": 0,
+            },
+            "timings": _timing_trace(
+                start_time,
+                retrieval_ms=retrieval_ms,
+                agent_ms=0.0,
+                repair_ms=0.0,
+            ),
+        },
+    }
+
+
+def _build_important_news_response(
+    citations: list[dict],
+    *,
+    query_understanding: dict,
+    start_time: float,
+    retrieval_ms: float,
+    search_references: list[dict] | None = None,
+    web_search_status: str = "not_attempted",
+) -> dict:
+    """Render an already-ranked important-news bundle without another model call."""
+    ledger = EvidenceLedger()
+    ledger.admit(citations)
+    main = [
+        row for row in ledger.records
+        if row.get("news_tier") not in {"supplementary", "background"}
+    ][:IMPORTANT_NEWS_SECTION_LIMITS["recent_important_news"]]
+    supplementary = [
+        row for row in ledger.records
+        if row.get("news_tier") == "supplementary"
+    ][:IMPORTANT_NEWS_SECTION_LIMITS["supplementary"]]
+    background = [
+        row for row in ledger.records
+        if row.get("news_tier") == "background"
+    ][:IMPORTANT_NEWS_SECTION_LIMITS["historical_background"]]
+    selected_records = [*main, *supplementary, *background]
+
+    sections = [
+        {
+            "id": "recent_important_news",
+            "title": "近期重要动态",
+            "max_items": IMPORTANT_NEWS_SECTION_LIMITS["recent_important_news"],
+            "item_count": len(main),
+            "evidence_ids": [row["evidence_id"] for row in main],
+        },
+        {
+            "id": "supplementary",
+            "title": "补充动态",
+            "max_items": IMPORTANT_NEWS_SECTION_LIMITS["supplementary"],
+            "item_count": len(supplementary),
+            "evidence_ids": [row["evidence_id"] for row in supplementary],
+        },
+        {
+            "id": "historical_background",
+            "title": "历史背景",
+            "max_items": IMPORTANT_NEWS_SECTION_LIMITS["historical_background"],
+            "item_count": len(background),
+            "evidence_ids": [row["evidence_id"] for row in background],
+        },
+    ]
+
+    def render_row(index: int, citation: dict) -> str:
+        title = str(citation.get("title") or "未命名动态").strip()
+        local_url = str(citation.get("local_url") or "").strip()
+        linked_title = f"[{title}]({local_url})" if local_url.startswith("#") else title
+        date = str(citation.get("effective_date") or citation.get("date") or "日期未知")
+        source = str(citation.get("source") or "来源未知")
+        excerpt = str(citation.get("excerpt") or "").strip()
+        detail = f"：{excerpt}" if excerpt else ""
+        return (
+            f"{index}. **{linked_title}**（{date} · {source}）{detail} "
+            f"[{citation.get('evidence_id')}]"
+        )
+
+    def render_section(title: str, rows: list[dict], *, suffix: str = "") -> list[str]:
+        section_lines = [f"## {title}{suffix}"]
+        if rows:
+            section_lines.extend(
+                render_row(index, row) for index, row in enumerate(rows, 1)
+            )
+        else:
+            section_lines.append("- 暂无符合条件的动态。")
+        return section_lines
+
+    lines = render_section("近期重要动态", main)
+    lines.extend(["", *render_section("补充动态", supplementary)])
+    lines.extend([
+        "",
+        *render_section("历史背景", background, suffix="（不计入近期主榜）"),
+    ])
+    answer = "\n".join(lines)
+    validation = validate_evidence_markers(answer, ledger.records)
+    answer_envelope_payload = {
+        "schema_version": SCHEMA_VERSION,
+        "body_markdown": answer,
+        "evidence_ids": validation["marker_ids"],
+        "route": {
+            "primary_task_family": "trend_discovery",
+            "answer_mode": "important_news",
+        },
+        "answer_builder_contract_id": IMPORTANT_NEWS_ANSWER_BUILDER_CONTRACT_ID,
+        "output_schema_id": IMPORTANT_NEWS_OUTPUT_SCHEMA_ID,
+        "sections": sections,
+    }
+    answer_envelope_validation = parse_answer_envelope(
+        json.dumps(answer_envelope_payload, ensure_ascii=False),
+        {str(record.get("evidence_id") or "") for record in ledger.records},
+    )
+    section_errors = []
+    expected_sections = [
+        ("recent_important_news", "近期重要动态"),
+        ("supplementary", "补充动态"),
+        ("historical_background", "历史背景"),
+    ]
+    if [
+        (section.get("id"), section.get("title"))
+        for section in sections
+    ] != expected_sections:
+        section_errors.append("invalid_sections")
+    for section in sections:
+        evidence_ids = section.get("evidence_ids", [])
+        if section.get("item_count") != len(evidence_ids):
+            section_errors.append("section_item_count_mismatch")
+        if section.get("item_count", 0) > section.get("max_items", 0):
+            section_errors.append("section_limit_exceeded")
+        if not set(evidence_ids).issubset(
+            set(answer_envelope_payload["evidence_ids"])
+        ):
+            section_errors.append("section_evidence_marker_mismatch")
+    if section_errors:
+        answer_envelope_validation = {
+            **answer_envelope_validation,
+            "valid": False,
+            "errors": [
+                *answer_envelope_validation.get("errors", []),
+                *dict.fromkeys(section_errors),
+            ],
+            "envelope": None,
+        }
+    parsed_envelope = answer_envelope_validation.get("envelope")
+    answer = parsed_envelope.body_markdown if parsed_envelope is not None else answer
+    answer_envelope_trace = {
+        "valid": answer_envelope_validation.get("valid") is True,
+        "errors": list(answer_envelope_validation.get("errors") or []),
+        "schema_version": (
+            parsed_envelope.schema_version
+            if parsed_envelope is not None
+            else answer_envelope_payload["schema_version"]
+        ),
+        "evidence_ids": (
+            list(parsed_envelope.evidence_ids)
+            if parsed_envelope is not None
+            else list(answer_envelope_payload["evidence_ids"])
+        ),
+        "route": answer_envelope_payload["route"],
+        "answer_builder_contract_id": answer_envelope_payload[
+            "answer_builder_contract_id"
+        ],
+        "output_schema_id": answer_envelope_payload["output_schema_id"],
+        "sections": sections,
+    }
+    presentation = build_evidence_presentation(
+        answer,
+        selected_records,
+        search_references=search_references,
+        internal_retrieval_status="ready",
+        web_search_status=web_search_status,
+    )
+    query_understanding["answer_policy"] = {
+        "mode": "deterministic_important_news",
+        "disclosure": "结构化近期动态按已验证排序直接展示。",
+    }
+    query_understanding["tool_routing"] = {"status": "not_required", "steps": []}
+    query_understanding["source_review"] = build_source_review(ledger.records)
+    return {
+        "answer": answer,
+        "display_answer": presentation["display_answer"],
+        "citations": presentation["citations"],
+        "evidence_display_map": presentation["evidence_display_map"],
+        "search_references": presentation["search_references"],
+        "source_summary": presentation["source_summary"],
+        "claim_evidence": validation["claim_evidence"],
+        "claim_verification": None,
+        "evidence_integrity": {
+            "valid": validation["is_valid"] and answer_envelope_trace["valid"],
+            "repair_attempted": False,
+            "answer_envelope": answer_envelope_trace,
+            "unknown_evidence_ids": validation["unknown_evidence_ids"],
+            "missing_evidence_markers": validation["missing_evidence_markers"],
+            "minimum_evidence_markers": min(1, len(ledger.records)),
+            "used_evidence_markers": len(validation["marker_ids"]),
+            "coverage_sufficient": bool(validation["marker_ids"]),
+            "required_evidence_ids": [],
+            "missing_required_evidence_ids": [],
+        },
+        "query_understanding": query_understanding,
+        "tool_trace": {
+            "execution_path": "deterministic_important_news",
+            "evidence_pool_count": len(ledger.records),
+            "tools_used": [],
+            "evidence_sources": ["internal"],
+            "total_calls": 0,
+            "summary": "结构化动态排序完成，未调用生成模型或工具",
+            "execution_counts": {
+                "model_turns": 0,
+                "agent_tool_calls": 0,
+                "planned_steps": 0,
+            },
+            "timings": _timing_trace(
+                start_time,
+                retrieval_ms=retrieval_ms,
+                agent_ms=0.0,
+                repair_ms=0.0,
+            ),
+        },
+    }
+
+
 async def build_chat_response(
     agent,
     retriever,
@@ -583,6 +1072,7 @@ async def build_chat_response(
     progress_callback=None,
     retrieval_gateway=None,
     query_contract_resolver=None,
+    entity_relation_memory=None,
 ) -> dict:
     """Build a grounded chat response with retrieval-derived citations.
 
@@ -620,6 +1110,10 @@ async def build_chat_response(
                 enhanced_message = f"[上下文: {'; '.join(context_parts)}] {message}"
 
         corpus_date = latest_corpus_date or load_latest_corpus_date()
+        deterministic_plan = analyze_query(
+            enhanced_message,
+            entity_relation_memory=entity_relation_memory,
+        )
         route_contract = None
         route_contract_trace = {"status": "disabled"}
         if query_contract_resolver is not None:
@@ -638,11 +1132,17 @@ async def build_chat_response(
                         "schema_version": route_contract.get("schema_version"),
                         "primary_task_family": route_contract.get("primary_task_family"),
                         "attempts": route_metadata.get("attempts"),
+                        "route_source": route_metadata.get("route_source"),
+                        "model_calls": route_metadata.get("model_calls"),
+                        "product_case_id": route_metadata.get("product_case_id"),
                     }
                 else:
                     route_contract_trace = {
                         "status": str(route_envelope.get("status") or "unresolved"),
                         "reasons": list(route_envelope.get("reasons") or []),
+                        "attempts": route_metadata.get("attempts"),
+                        "route_source": route_metadata.get("route_source"),
+                        "model_calls": int(route_metadata.get("model_calls") or 0),
                     }
             except Exception as exc:
                 logger.warning("Ordered query understanding failed; using explicit legacy fallback: %s", exc)
@@ -652,7 +1152,11 @@ async def build_chat_response(
                 }
         if route_contract_trace.get("status") == "clarification_required":
             reasons = list(route_contract_trace.get("reasons") or [])
-            answer = "我还不能确定你指的是哪一个对象，请补充具体名称、标题或 ATR 编号后再试。"
+            answer = _clarification_answer(
+                message,
+                reasons,
+                list(deterministic_plan.entities),
+            )
             _record_metrics(
                 query_length=len(message),
                 citations=[],
@@ -671,7 +1175,10 @@ async def build_chat_response(
                 "tool_trace": {
                     "execution_path": "clarification_required",
                     "reasons": reasons,
-                    "execution_counts": {"model_turns": 1, "tool_calls": 0},
+                    "execution_counts": {
+                        "model_turns": int(route_contract_trace.get("model_calls") or 0),
+                        "tool_calls": 0,
+                    },
                     "timings": _timing_trace(
                         start_time,
                         retrieval_ms=0.0,
@@ -680,18 +1187,74 @@ async def build_chat_response(
                     ),
                 },
             }
+        runtime_budget = runtime_budget_for(route_contract)
+        route_deadline = start_time + runtime_budget.total_seconds
+        await _emit_progress(
+            progress_callback,
+            "route_ready",
+            {
+                "task_family": (route_contract or {}).get("primary_task_family"),
+                "answer_mode": (route_contract or {}).get("answer_mode"),
+                "route_source": route_contract_trace.get("route_source"),
+                "timeout_seconds": runtime_budget.total_seconds,
+            },
+        )
         gateway_bundle = None
         if retrieval_gateway is not None:
-            gateway_bundle = await retrieval_gateway.retrieve(
-                ResearchRequest(
-                    question=enhanced_message,
-                    latest_corpus_date=corpus_date,
-                    route_contract=route_contract,
+            try:
+                gateway_bundle = await asyncio.wait_for(
+                    retrieval_gateway.retrieve(
+                        ResearchRequest(
+                            question=enhanced_message,
+                            latest_corpus_date=corpus_date,
+                            route_contract=route_contract,
+                        )
+                    ),
+                    timeout=min(
+                        runtime_budget.retrieval_seconds,
+                        max(0.001, route_deadline - time.perf_counter()),
+                    ),
                 )
-            )
-            query_plan = gateway_bundle.analysis or analyze_query(enhanced_message)
+            except asyncio.TimeoutError:
+                await _emit_progress(
+                    progress_callback,
+                    "failed",
+                    {"stage": "retrieval", "code": "retrieval_timeout"},
+                )
+                _record_metrics(
+                    query_length=len(message),
+                    citations=[],
+                    tool_calls_count=0,
+                    has_results=False,
+                    start_time=start_time,
+                    error="retrieval_timeout",
+                )
+                answer = "检索阶段超时，系统已停止本次请求；请稍后重试。"
+                return {
+                    "answer": answer,
+                    "display_answer": "⚠️ 检索超时\n\n" + answer,
+                    "citations": [],
+                    "query_understanding": {
+                        "ordered_route_contract": route_contract_trace,
+                        "runtime_budget": {
+                            "total_seconds": runtime_budget.total_seconds,
+                            "retrieval_seconds": runtime_budget.retrieval_seconds,
+                        },
+                    },
+                    "tool_trace": {
+                        "error": "retrieval_timeout",
+                        "execution_path": "retrieval_timeout",
+                        "timings": _timing_trace(
+                            start_time,
+                            retrieval_ms=(time.perf_counter() - start_time) * 1000,
+                            agent_ms=0.0,
+                            repair_ms=0.0,
+                        ),
+                    },
+                }
+            query_plan = gateway_bundle.analysis or deterministic_plan
         else:
-            query_plan = analyze_query(enhanced_message)
+            query_plan = deterministic_plan
         metadata_filter = build_metadata_filter(query_plan, corpus_date)
         query_understanding = (
             dict(gateway_bundle.query_plan)
@@ -703,6 +1266,18 @@ async def build_chat_response(
             query_understanding["retrieval_gateway"] = gateway_bundle.trace
         else:
             query_understanding["task_family"] = task_family_for_plan(query_plan)
+        route_execution_policy = None
+        if route_contract is not None and route_contract.get("answer_mode"):
+            route_execution_policy = execution_policy_for(
+                str(route_contract.get("primary_task_family") or ""),
+                str(route_contract.get("answer_mode") or ""),
+            )
+            query_understanding["execution_policy"] = {
+                "channels": list(route_execution_policy.channels),
+                "graph_mode": route_execution_policy.graph_mode,
+                "max_composer_calls": route_execution_policy.max_composer_calls,
+                "allow_web_fallback": route_execution_policy.allow_web_fallback,
+            }
         query_understanding["web_search_mode"] = {
             "requested_mode": web_search_mode,
             "effective_mode": web_search_mode,
@@ -712,17 +1287,11 @@ async def build_chat_response(
         query_understanding["metadata_filter"] = metadata_filter
         query_understanding["context"] = context or {}
         query_understanding["ordered_route_contract"] = route_contract_trace
-        await _emit_progress(
-            progress_callback,
-            "understanding",
-            {
-                "intent": query_understanding.get("intent"),
-                "task_mode": query_understanding.get("task_mode"),
-                "time_window": query_plan.time_window.get("label"),
-                "latest_corpus_date": corpus_date,
-            },
-        )
-
+        query_understanding["runtime_budget"] = {
+            "total_seconds": runtime_budget.total_seconds,
+            "retrieval_seconds": runtime_budget.retrieval_seconds,
+            "generation_seconds": runtime_budget.generation_seconds,
+        }
         # 检测语料过时
         corpus_stale = False
         if corpus_date:
@@ -735,18 +1304,17 @@ async def build_chat_response(
             except ValueError as e:
                 logger.warning("Failed to parse corpus date '%s': %s", corpus_date, e)
 
-        await _emit_progress(
-            progress_callback,
-            "retrieving",
-            {
-                "time_window": query_plan.time_window.get("label"),
-                "top_k": query_plan.top_k,
-                "metadata_filter": metadata_filter,
-            },
-        )
         retrieval_started_at = time.perf_counter()
         if gateway_bundle is not None:
             citations = gateway_bundle.records
+            if gateway_bundle.supplementary_records:
+                citations = [
+                    *citations,
+                    *[
+                        {**record, "news_tier": "supplementary"}
+                        for record in gateway_bundle.supplementary_records
+                    ],
+                ]
             if gateway_bundle.background_records:
                 citations = [
                     *citations,
@@ -789,6 +1357,18 @@ async def build_chat_response(
             "error_code": retrieval_error_code,
             "elapsed_ms": round(retrieval_ms, 2),
         }
+        await _emit_progress(
+            progress_callback,
+            "retrieval_ready" if retrieval_status in {"ready", "partial_error"} else "retrieval_degraded",
+            {
+                "status": retrieval_status,
+                "error_code": retrieval_error_code,
+                "intent": query_understanding.get("intent"),
+                "task_mode": query_understanding.get("task_mode"),
+                "time_window": query_plan.time_window.get("label"),
+                "latest_corpus_date": corpus_date,
+            },
+        )
         if (
             gateway_bundle is not None
             and gateway_bundle.task_family == "item_navigation"
@@ -830,6 +1410,17 @@ async def build_chat_response(
             capability_available=external_search_registry is not None and bool(configured_providers),
             contract_web_permission=(route_contract or {}).get("web_permission"),
         )
+        if (
+            route_execution_policy is not None
+            and not route_execution_policy.allow_web_fallback
+            and web_decision.should_search
+        ):
+            web_decision = replace(
+                web_decision,
+                effective_mode="never",
+                should_search=False,
+                reason="route_policy_forbids_web_fallback",
+            )
         query_understanding["web_search_decision"] = web_decision.to_dict()
         query_understanding["web_search_mode"] = {
             "requested_mode": web_decision.requested_mode,
@@ -852,6 +1443,37 @@ async def build_chat_response(
             },
         )
 
+        if (
+            getattr(query_plan, "intent", "") == "important_news"
+            and retrieval_status == "ready"
+            and citations
+            and not web_decision.should_search
+        ):
+            await _emit_progress(
+                progress_callback,
+                "evidence_ready",
+                {
+                    "admitted_count": len(citations),
+                    "execution_path": "deterministic_important_news",
+                },
+            )
+            response = _build_important_news_response(
+                citations,
+                query_understanding=query_understanding,
+                start_time=start_time,
+                retrieval_ms=retrieval_ms,
+            )
+            _record_metrics(
+                query_length=len(message),
+                citations=response["citations"],
+                tool_calls_count=0,
+                has_results=True,
+                start_time=start_time,
+                model_calls_count=0,
+                retrieval_ms=retrieval_ms,
+            )
+            return response
+
         if retrieval_status == "partial_error" and query_plan.graph_requirement == "required":
             return {
                 "status": "partial_error",
@@ -870,11 +1492,36 @@ async def build_chat_response(
 
         if retrieval_status in {"error", "timeout"} and not web_decision.should_search:
             status_text = "超时" if retrieval_status == "timeout" else "暂时不可用"
+            error_code = "retrieval_timeout" if retrieval_status == "timeout" else "retrieval_error"
+            await _emit_progress(
+                progress_callback,
+                "failed",
+                {"stage": "retrieval", "code": error_code},
+            )
+            _record_metrics(
+                query_length=len(message),
+                citations=[],
+                tool_calls_count=0,
+                has_results=False,
+                start_time=start_time,
+                retrieval_ms=retrieval_ms,
+                error=error_code,
+            )
             return {
                 "answer": f"内部检索{status_text}，本轮没有自动改用联网搜索，以免掩盖系统故障或改变隐私边界。请稍后重试。",
                 "display_answer": f"⚠️ 内部检索{status_text}\n\n本轮未联网，请稍后重试。",
                 "citations": [],
                 "query_understanding": query_understanding,
+                "tool_trace": {
+                    "error": error_code,
+                    "execution_path": error_code,
+                    "timings": _timing_trace(
+                        start_time,
+                        retrieval_ms=retrieval_ms,
+                        agent_ms=0.0,
+                        repair_ms=0.0,
+                    ),
+                },
             }
 
         if not citations and not web_decision.should_search:
@@ -1048,6 +1695,57 @@ async def build_chat_response(
         # 该精炼必须发生在构建 prompt 和返回引用之前，避免未使用的策略函数失效。
         citations = _refine_citations_for_answer(citations, query_plan, external_citations)
         citations = _apply_answer_evidence_budget(citations, query_plan)
+        direct_timeline_reports = _direct_timeline_reports(citations, query_plan)
+        if (
+            getattr(query_plan, "task_mode", "") == "timeline"
+            and retrieval_status == "ready"
+            and not external_citations
+            and len(direct_timeline_reports) >= 2
+        ):
+            response = _build_timeline_response(
+                direct_timeline_reports,
+                query_understanding=query_understanding,
+                start_time=start_time,
+                retrieval_ms=retrieval_ms,
+            )
+            _record_metrics(
+                query_length=len(message),
+                citations=response["citations"],
+                tool_calls_count=0,
+                has_results=True,
+                start_time=start_time,
+                model_calls_count=0,
+                retrieval_ms=retrieval_ms,
+                web_search_count=web_search_count,
+                deep_fetch_count=deep_fetch_count,
+            )
+            return response
+        if (
+            route_execution_policy is not None
+            and route_execution_policy.max_composer_calls == 0
+            and (route_contract or {}).get("answer_mode") == "important_news"
+            and citations
+        ):
+            response = _build_important_news_response(
+                citations,
+                query_understanding=query_understanding,
+                start_time=start_time,
+                retrieval_ms=retrieval_ms,
+                search_references=search_references,
+                web_search_status=web_search_status,
+            )
+            _record_metrics(
+                query_length=len(message),
+                citations=response["citations"],
+                tool_calls_count=0,
+                has_results=True,
+                start_time=start_time,
+                model_calls_count=0,
+                retrieval_ms=retrieval_ms,
+                web_search_count=web_search_count,
+                deep_fetch_count=deep_fetch_count,
+            )
+            return response
         ledger = EvidenceLedger()
         citations = ledger.admit(citations)
         minimum_evidence_markers = _minimum_evidence_marker_count(query_plan, citations)
@@ -1104,19 +1802,82 @@ async def build_chat_response(
             query_understanding.get("task_family") or "evidence_research",
             len(citations),
             prompt_contract_id=(route_contract or {}).get("prompt_contract_id"),
+            answer_mode=(route_contract or {}).get("answer_mode"),
         )
 
-        use_direct_composer = _should_use_direct_composer(
-            query_plan,
-            tool_route,
-            answer_composer,
+        policy_requires_direct_composer = bool(
+            route_execution_policy is not None
+            and route_execution_policy.max_composer_calls == 1
         )
+        if policy_requires_direct_composer and answer_composer is None:
+            answer = (
+                "回答生成服务暂时不可用。系统已停止在证据检索阶段，"
+                "没有回退到可能产生多轮调用的旧 Agent 路径；请稍后重试。"
+            )
+            query_understanding["execution_path"] = "generation_unavailable"
+            await _emit_progress(
+                progress_callback,
+                "failed",
+                {"stage": "generation", "code": "answer_composer_unavailable"},
+            )
+            presentation = build_evidence_presentation(
+                answer,
+                [],
+                search_references=search_references,
+                internal_retrieval_status=retrieval_status,
+                web_search_status=web_search_status,
+            )
+            _record_metrics(
+                query_length=len(message),
+                citations=[],
+                tool_calls_count=0,
+                has_results=False,
+                start_time=start_time,
+                model_calls_count=0,
+                retrieval_ms=retrieval_ms,
+                error="answer_composer_unavailable",
+                web_search_count=web_search_count,
+                deep_fetch_count=deep_fetch_count,
+            )
+            return {
+                "answer": answer,
+                "display_answer": presentation["display_answer"],
+                "citations": [],
+                "evidence_display_map": presentation["evidence_display_map"],
+                "search_references": presentation["search_references"],
+                "source_summary": presentation["source_summary"],
+                "query_understanding": query_understanding,
+                "tool_trace": {
+                    "error": "answer_composer_unavailable",
+                    "execution_path": "generation_unavailable",
+                    "evidence_pool_count": len(ledger.records),
+                    "execution_counts": {
+                        "model_turns": 0,
+                        "agent_tool_calls": 0,
+                        "planned_steps": len(tool_route.get("steps", [])),
+                    },
+                    "timings": _timing_trace(
+                        start_time,
+                        retrieval_ms=retrieval_ms,
+                        agent_ms=0.0,
+                        repair_ms=repair_ms,
+                    ),
+                },
+            }
+
+        use_direct_composer = bool(
+            answer_composer
+            and policy_requires_direct_composer
+        ) or _should_use_direct_composer(query_plan, tool_route, answer_composer)
         execution_path = "direct_composer" if use_direct_composer else "react_agent"
         execution_agent = answer_composer if use_direct_composer else agent
         query_understanding["execution_path"] = execution_path
+        is_claim_verification = (
+            query_understanding.get("task_family") == "claim_verification"
+        )
         await _emit_progress(
             progress_callback,
-            "generating",
+            "generation_started",
             {
                 "execution_path": execution_path,
                 "evidence_count": len(citations),
@@ -1126,6 +1887,9 @@ async def build_chat_response(
             system_prompt += (
                 "\n\n内部检索已经完成。请直接基于上方证据组织答案，"
                 "不要请求或尝试再次调用任何工具。"
+                "\n\n" + answer_envelope_instruction(
+                    require_claim_verification=is_claim_verification,
+                )
             )
 
         messages = [
@@ -1136,10 +1900,15 @@ async def build_chat_response(
 
         # A-3 修复：通过 recursion_limit + asyncio.wait_for 真正执行 Agent 预算
         # recursion_limit 控制 LangGraph 图的最大步数（每轮工具调用 ≈ 2 步：工具执行 + LLM 处理）
-        recursion_limit = AGENT_BUDGET["max_tool_calls"] * 2 + 1
-        agent_timeout = get_agent_timeout_seconds(
-            needs_web_search=bool(getattr(query_plan, "needs_web_search", False)),
-            planned_tool_calls=int(tool_route.get("max_tool_calls", 1) or 1),
+        max_tool_calls = 0 if use_direct_composer else AGENT_BUDGET["max_tool_calls"]
+        recursion_limit = max_tool_calls * 2 + 1
+        agent_timeout = min(
+            get_agent_timeout_seconds(
+                needs_web_search=bool(getattr(query_plan, "needs_web_search", False)),
+                planned_tool_calls=int(tool_route.get("max_tool_calls", 1) or 1),
+            ),
+            runtime_budget.generation_seconds or 1.0,
+            max(0.001, route_deadline - time.perf_counter()),
         )
 
         execution_counter = AgentExecutionCounter()
@@ -1160,6 +1929,11 @@ async def build_chat_response(
             logger.error(
                 "Agent invocation timed out after %ds (recursion_limit=%d)",
                 agent_timeout, recursion_limit,
+            )
+            await _emit_progress(
+                progress_callback,
+                "failed",
+                {"stage": "generation", "code": "generation_timeout"},
             )
             # C-5 修复：记录超时指标
             _record_metrics(
@@ -1198,6 +1972,11 @@ async def build_chat_response(
             agent_tool_calls = execution_counter.tool_calls
             # C-4 修复：对外返回通用错误消息，详细错误仅写日志
             logger.error("Agent invocation failed: %s", e)
+            await _emit_progress(
+                progress_callback,
+                "failed",
+                {"stage": "generation", "code": "generation_failed"},
+            )
             # C-5 修复：记录错误指标
             _record_metrics(
                 query_length=len(message),
@@ -1233,9 +2012,29 @@ async def build_chat_response(
         citations = ledger.records
         source_review = build_source_review(citations)
         query_understanding["source_review"] = source_review
-        answer = apply_answer_policy(_extract_ai_answer(result), answer_policy)
+        raw_answer = _extract_ai_answer(result)
+        answer_envelope_validation = None
+        if use_direct_composer:
+            answer_envelope_validation = parse_answer_envelope(
+                raw_answer,
+                {str(record.get("evidence_id") or "") for record in citations},
+                require_claim_verification=is_claim_verification,
+            )
+            parsed_envelope = answer_envelope_validation.get("envelope")
+            answer = parsed_envelope.body_markdown if parsed_envelope is not None else ""
+        else:
+            answer = raw_answer
+        answer = apply_answer_policy(answer, answer_policy)
         claim_verification = None
-        if query_understanding.get("task_family") == "claim_verification":
+        if is_claim_verification and use_direct_composer:
+            parsed_envelope = (
+                answer_envelope_validation.get("envelope")
+                if answer_envelope_validation is not None
+                else None
+            )
+            if parsed_envelope is not None:
+                claim_verification = parsed_envelope.claim_verification
+        elif is_claim_verification:
             answer, claim_verification = extract_claim_verification_result(
                 answer,
                 {str(record.get("evidence_id") or "") for record in citations},
@@ -1244,6 +2043,7 @@ async def build_chat_response(
         required_evidence_ids = _required_evidence_ids(
             query_understanding.get("task_family") or "evidence_research",
             citations,
+            route_contract=route_contract,
         )
         missing_required_evidence_ids = sorted(
             required_evidence_ids - set(marker_validation.get("marker_ids", []))
@@ -1252,9 +2052,34 @@ async def build_chat_response(
             len(marker_validation.get("marker_ids", [])) >= minimum_evidence_markers
             and not missing_required_evidence_ids
         )
+        answer_envelope_trace = None
+        if answer_envelope_validation is not None:
+            validated_envelope = answer_envelope_validation.get("envelope")
+            answer_envelope_trace = {
+                "valid": answer_envelope_validation.get("valid") is True,
+                "errors": list(answer_envelope_validation.get("errors") or []),
+                "schema_version": (
+                    validated_envelope.schema_version
+                    if validated_envelope is not None
+                    else ""
+                ),
+                "evidence_ids": (
+                    list(validated_envelope.evidence_ids)
+                    if validated_envelope is not None
+                    else []
+                ),
+            }
         evidence_integrity = {
-            "valid": marker_validation["is_valid"] and coverage_sufficient,
+            "valid": (
+                marker_validation["is_valid"]
+                and coverage_sufficient
+                and (
+                    answer_envelope_validation is None
+                    or answer_envelope_validation.get("valid") is True
+                )
+            ),
             "repair_attempted": False,
+            "answer_envelope": answer_envelope_trace,
             "unknown_evidence_ids": marker_validation["unknown_evidence_ids"],
             "missing_evidence_markers": marker_validation["missing_evidence_markers"],
             "minimum_evidence_markers": minimum_evidence_markers,
@@ -1264,75 +2089,24 @@ async def build_chat_response(
             "missing_required_evidence_ids": missing_required_evidence_ids,
         }
 
-        if not evidence_integrity["valid"]:
-            evidence_integrity["repair_attempted"] = True
-            repair_started_at = time.perf_counter()
-            repair_messages = _build_marker_repair_messages(
-                citations,
-                answer_policy,
-                tool_route,
-                source_review,
-                answer,
-                marker_validation,
-                minimum_evidence_markers,
-                required_evidence_ids,
-            )
-            try:
-                repaired_result = await _invoke_agent_with_ledger(
-                    execution_agent,
-                    repair_messages,
-                    recursion_limit=3,
-                    timeout_seconds=min(15, agent_timeout),
-                    ledger=ledger,
-                    execution_counter=execution_counter,
-                )
-                model_turns, agent_tool_calls = _execution_counts(
-                    repaired_result,
-                    execution_counter,
-                )
-                citations = ledger.records
-                source_review = build_source_review(citations)
-                query_understanding["source_review"] = source_review
-                answer = apply_answer_policy(_extract_ai_answer(repaired_result), answer_policy)
-                if query_understanding.get("task_family") == "claim_verification":
-                    answer, claim_verification = extract_claim_verification_result(
-                        answer,
-                        {str(record.get("evidence_id") or "") for record in citations},
-                    )
-                marker_validation = validate_evidence_markers(answer, citations)
-            except Exception as repair_error:
-                logger.warning("Evidence marker repair failed: %s", repair_error)
-                marker_validation = {
-                    "is_valid": False,
-                    "unknown_evidence_ids": [],
-                    "missing_evidence_markers": True,
-                    "marker_ids": [],
-                    "claim_evidence": [],
-                }
-            finally:
-                repair_ms = (time.perf_counter() - repair_started_at) * 1000
-
-            coverage_sufficient = (
-                len(marker_validation.get("marker_ids", [])) >= minimum_evidence_markers
-                and required_evidence_ids.issubset(
-                    set(marker_validation.get("marker_ids", []))
-                )
-            )
-            evidence_integrity.update(
-                {
-                    "valid": marker_validation["is_valid"] and coverage_sufficient,
-                    "unknown_evidence_ids": marker_validation["unknown_evidence_ids"],
-                    "missing_evidence_markers": marker_validation["missing_evidence_markers"],
-                    "used_evidence_markers": len(marker_validation.get("marker_ids", [])),
-                    "coverage_sufficient": coverage_sufficient,
-                    "missing_required_evidence_ids": sorted(
-                        required_evidence_ids - set(marker_validation.get("marker_ids", []))
-                    ),
-                }
-            )
-
         if evidence_integrity["valid"]:
             claim_evidence = marker_validation["claim_evidence"]
+            try:
+                relation_feedback = capture_relation_feedback(
+                    answer,
+                    ledger.records,
+                    subjects=list(getattr(query_plan, "entities", []) or []),
+                    memory=entity_relation_memory,
+                )
+            except Exception as exc:
+                logger.warning("Entity relation feedback was skipped: %s", exc)
+                relation_feedback = []
+            query_understanding["entity_relation_feedback"] = {
+                "captured_count": len(relation_feedback),
+                "verified_count": sum(
+                    item.get("status") == "verified" for item in relation_feedback
+                ),
+            }
             citations = _displayed_citations(citations, marker_validation)
         else:
             answer = _evidence_integrity_fallback(answer_policy)
@@ -1364,7 +2138,7 @@ async def build_chat_response(
             "total_calls": tool_calls,
             "summary": _build_tool_trace_summary(tool_route, citations),
             "budget": {
-                "tool_calls": {"used": tool_calls, "limit": AGENT_BUDGET["max_tool_calls"]},
+                "tool_calls": {"used": tool_calls, "limit": max_tool_calls},
                 "web_searches": {"used": web_search_count, "limit": AGENT_BUDGET["max_web_searches"]},
                 "deep_fetches": {"used": deep_fetch_count, "limit": AGENT_BUDGET["max_deep_fetches"]},
             },
@@ -1426,6 +2200,11 @@ async def build_chat_response(
     except Exception as e:
         # C-4 修复：对外返回通用错误消息，详细错误仅写日志
         logger.error("build_chat_response failed: %s", e)
+        await _emit_progress(
+            progress_callback,
+            "failed",
+            {"stage": "orchestration", "code": "internal_error"},
+        )
         # C-5 修复：记录内部错误指标
         _record_metrics(
             query_length=len(message),
@@ -1563,6 +2342,7 @@ def _sort_citations_by_quality(citations: list[dict]) -> list[dict]:
 # A-5 修复：外部搜索缓存（TTL 5分钟）
 _external_search_cache: dict[str, tuple[float, dict]] = {}
 _external_search_cache_ttl = 300  # 5分钟
+_external_provider_timeout_seconds = 12.0
 
 
 def _get_cached_external_search(query: str) -> dict | None:
@@ -1605,25 +2385,54 @@ async def _maybe_search_external(query_plan, tool_route: dict, external_search_r
     providers = provider_route.get("available_provider_chain") or []
     attempted = []
     best_non_official_result = None
-    for provider in providers[: provider_route.get("budget_policy", {}).get("max_external_providers", 5)]:
-        request = _build_external_search_request(provider, query_plan)
-        result = await external_search_registry.search(request)
-        attempted.append({
-            "provider": provider,
-            "available": result.get("available", False),
-            "errors": result.get("errors", []),
-            "citation_count": len(result.get("citations", [])),
-        })
-        if result.get("available") and result.get("citations"):
-            # 按来源质量排序：official > primary > high-signal > secondary > generic
-            sorted_citations = _sort_citations_by_quality(result["citations"])
+    selected_providers = providers[
+        : provider_route.get("budget_policy", {}).get("max_external_providers", 2)
+    ]
 
-            if (
-                provider_route.get("task_type") == "official_source_lookup"
-                and not _has_admissible_official_external_citation(sorted_citations, query_plan)
-            ):
-                best_non_official_result = best_non_official_result or result
+    async def search_one(provider: str):
+        request = _build_external_search_request(provider, query_plan)
+        try:
+            result = await asyncio.wait_for(
+                external_search_registry.search(request),
+                timeout=_external_provider_timeout_seconds,
+            )
+        except asyncio.TimeoutError:
+            result = {
+                "provider": provider,
+                "available": False,
+                "citations": [],
+                "errors": ["provider_timeout"],
+            }
+        return provider, result
+
+    pending = [asyncio.create_task(search_one(provider)) for provider in selected_providers]
+    try:
+        for completed in asyncio.as_completed(pending):
+            provider, result = await completed
+            attempted.append({
+                "provider": provider,
+                "available": result.get("available", False),
+                "errors": result.get("errors", []),
+                "citation_count": len(result.get("citations", [])),
+            })
+            if not (result.get("available") and result.get("citations")):
                 continue
+
+            sorted_citations = _sort_citations_by_quality(result["citations"])
+            official_lookup = provider_route.get("task_type") == "official_source_lookup"
+            citation_threshold_met = (
+                _has_admissible_official_external_citation(sorted_citations, query_plan)
+                if official_lookup
+                else _has_admissible_external_citation(sorted_citations, query_plan)
+            )
+            if not citation_threshold_met:
+                best_non_official_result = best_non_official_result or {
+                    **result,
+                    "provider": provider,
+                    "citations": sorted_citations,
+                }
+                continue
+
             search_result = {
                 "attempted": True,
                 "provider": provider,
@@ -1633,9 +2442,13 @@ async def _maybe_search_external(query_plan, tool_route: dict, external_search_r
                 "errors": result.get("errors", []),
                 "cache_hit": False,
             }
-            # A-5 修复：缓存搜索结果
             _set_cached_external_search(query_plan.original_question, search_result)
             return search_result
+    finally:
+        for task in pending:
+            if not task.done():
+                task.cancel()
+        await asyncio.gather(*pending, return_exceptions=True)
 
     if best_non_official_result:
         return {
@@ -1670,6 +2483,17 @@ def _has_admissible_official_external_citation(citations: list[dict], query_plan
         recent_window_days=int(getattr(query_plan, "time_window", {}).get("days") or 10),
     )
     return any(citation.get("source_quality") == "official" for citation in review["admitted"])
+
+
+def _has_admissible_external_citation(citations: list[dict], query_plan) -> bool:
+    review = review_external_candidates(
+        citations,
+        claim_type=infer_claim_type(query_plan),
+        recent_required=getattr(query_plan, "time_window", {}).get("label")
+        in {"recent_corpus_first", "last_7_days"},
+        recent_window_days=int(getattr(query_plan, "time_window", {}).get("days") or 10),
+    )
+    return bool(review["admitted"])
 
 
 def _finalize_required_deep_fetch(citations: list[dict]) -> tuple[list[dict], list[dict]]:

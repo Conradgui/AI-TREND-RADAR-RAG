@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from datetime import date
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
@@ -36,6 +37,36 @@ def test_exact_atr_query_returns_a_valid_deterministic_navigation_contract() -> 
     assert contract["protected_terms"] == ["ATR-20260805-99E550"]
     assert contract["prompt_contract_id"] is None
     assert contract["answer_builder_contract_id"] == "atr.answer_builder/item_navigation/1.0"
+
+
+def test_explicit_iso_cutoff_is_preserved_as_a_machine_readable_time_bound() -> None:
+    contract = understand_query_v2(
+        "Graphify 和 claude-mem 截至 2026-08-21 分别做什么？"
+    ).to_dict()
+
+    VALIDATOR.validate(contract)
+    validate_route_contract_semantics(contract)
+    assert contract["temporal_constraint"] == {
+        "mode": "absolute_range",
+        "value": "2000-01-01 | 2026-08-21",
+        "surface": "截至 2026-08-21",
+        "start": "2000-01-01",
+        "end": "2026-08-21",
+    }
+
+
+def test_month_day_cutoff_overrides_relative_recency_and_anchors_the_window() -> None:
+    contract = understand_query_v2(
+        "截至 8 月 21 日，过去一周 OpenAI 有哪些值得关注的业务或产品动态？"
+    ).to_dict()
+
+    assert contract["temporal_constraint"] == {
+        "mode": "absolute_range",
+        "value": f"{date.today().year:04d}-08-15 | {date.today().year:04d}-08-21",
+        "surface": "截至 8 月 21 日",
+        "start": f"{date.today().year:04d}-08-15",
+        "end": f"{date.today().year:04d}-08-21",
+    }
 
 
 def test_all_navigation_development_cases_use_the_deterministic_a_route() -> None:

@@ -1,22 +1,165 @@
 """Smoke tests for chat response wiring without FastAPI or real LLM services."""
 
+import asyncio
+import json
 import re
 import unittest
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
+from types import SimpleNamespace
+from unittest.mock import patch
+
+import pytest
 
 from rag.chat_service import (
     _apply_answer_evidence_budget,
+    _direct_timeline_reports,
     _external_search_cache,
     _format_citation_for_prompt,
+    _minimum_evidence_marker_count,
+    _required_evidence_ids,
+    _maybe_search_external,
     build_chat_response,
 )
 from rag.query_understanding import analyze_query
+from rag.metrics import metrics_collector
 from rag.retrieval_gateway import EvidenceBundle
 from rag.retriever.hybrid import ChannelOutcome, HybridSearchOutcome, RetrievedChunk
 
 
 TODAY = date.today().isoformat()
+
+
+@pytest.mark.asyncio
+async def test_external_search_uses_first_admissible_result_and_cancels_slower_provider():
+    cancelled = asyncio.Event()
+
+    class Registry:
+        async def search(self, request):
+            if request.provider == "tavily":
+                try:
+                    await asyncio.sleep(10)
+                finally:
+                    cancelled.set()
+            await asyncio.sleep(0.01)
+            return {
+                "provider": request.provider,
+                "available": True,
+                "raw_results_count": 1,
+                "errors": [],
+                "citations": [{
+                    "evidence_type": "external",
+                    "source": "openai.com",
+                    "source_quality": "official",
+                    "title": "Official OpenAI update",
+                    "url": "https://openai.com/index/update/",
+                    "published_at": TODAY,
+                    "excerpt": "Official update evidence.",
+                }],
+            }
+
+    plan = replace(
+        analyze_query("请联网核实 OpenAI 过去 7 天有哪些官方技术发布"),
+        needs_web_search=True,
+    )
+    result = await _maybe_search_external(
+        plan,
+        {
+            "provider_route": {
+                "task_type": "official_source_lookup",
+                "available_provider_chain": ["tavily", "brave"],
+                "budget_policy": {"max_external_providers": 2},
+            }
+        },
+        Registry(),
+    )
+
+    assert result["provider"] == "brave"
+    assert cancelled.is_set()
+
+
+def test_short_ipo_timeline_prefers_direct_company_events_over_side_stories() -> None:
+    plan = replace(
+        analyze_query("按时间线梳理与 OpenAI 潜在上市相关的两条直接报道"),
+        task_mode="timeline",
+        retrieval_query="OpenAI 上市 IPO",
+    )
+    reports = _direct_timeline_reports(
+        [
+            {
+                "content_type": "topic_candidate",
+                "effective_date": "2026-08-15",
+                "title": "OpenAI talent exodus raises red flag ahead of IPO",
+                "excerpt": "A side story that mentions an IPO.",
+                "citation_id": "side-story",
+            },
+            {
+                "content_type": "topic_candidate",
+                "effective_date": "2026-08-11",
+                "title": "OpenAI wraps $7B share sale ahead of potential IPO",
+                "excerpt": "A direct financing event.",
+                "citation_id": "share-sale",
+            },
+            {
+                "content_type": "topic_candidate",
+                "effective_date": "2026-08-19",
+                "title": "OpenAI will be a public company in 2027, CFO says",
+                "excerpt": "A direct timing report.",
+                "url": "https://example.test/openai-ipo-timing-2027",
+                "citation_id": "public-company-timing",
+            },
+        ],
+        plan,
+    )
+
+    assert [row["citation_id"] for row in reports] == [
+        "share-sale",
+        "public-company-timing",
+    ]
+
+
+@pytest.mark.asyncio
+async def test_external_search_does_not_let_fast_generic_result_beat_official_evidence():
+    class Registry:
+        async def search(self, request):
+            if request.provider == "tavily":
+                await asyncio.sleep(0.03)
+                quality = "official"
+                source = "openai.com"
+            else:
+                quality = "generic"
+                source = "example.com"
+            return {
+                "provider": request.provider,
+                "available": True,
+                "raw_results_count": 1,
+                "errors": [],
+                "citations": [{
+                    "evidence_type": "external",
+                    "source": source,
+                    "source_quality": quality,
+                    "title": f"{quality} update",
+                    "url": f"https://{source}/update",
+                    "published_at": TODAY,
+                    "excerpt": "Update evidence.",
+                }],
+            }
+
+    plan = replace(analyze_query("OpenAI 最近有什么动态？"), needs_web_search=True)
+    result = await _maybe_search_external(
+        plan,
+        {
+            "provider_route": {
+                "task_type": "recent_web",
+                "available_provider_chain": ["exa", "tavily"],
+                "budget_policy": {"max_external_providers": 2},
+            }
+        },
+        Registry(),
+    )
+
+    assert result["provider"] == "tavily"
+    assert result["citations"][0]["source_quality"] == "official"
 
 
 def test_internal_evidence_prompt_preserves_local_navigation_url():
@@ -105,6 +248,99 @@ def test_timeline_answer_budget_never_drops_graph_reasoning_evidence():
     assert selected[-1]["citation_id"] == "graph-reasoning/openai"
 
 
+def test_timeline_direct_report_answer_does_not_require_graph_marker():
+    citations = [
+        {
+            "evidence_id": "E1",
+            "citation_id": "ATR-20260812-0E70FB",
+            "content_type": "topic_candidate",
+            "title": "OpenAI potential IPO report",
+        },
+        {
+            "evidence_id": "E2",
+            "citation_id": "ATR-20260820-6EFF79",
+            "content_type": "topic_candidate",
+            "title": "OpenAI IPO discussion follow-up",
+        },
+        {
+            "evidence_id": "E3",
+            "citation_id": "graph-reasoning/openai",
+            "content_type": "graph_reasoning",
+            "title": "OpenAI graph context",
+        },
+    ]
+
+    assert _required_evidence_ids(
+        "temporal_relation_exploration",
+        citations,
+        route_contract={"answer_mode": "timeline"},
+    ) == set()
+
+
+def test_comparison_requires_two_distinct_evidence_markers():
+    plan = SimpleNamespace(intent="general_search", task_mode="compare")
+
+    assert _minimum_evidence_marker_count(plan, [{}, {}]) == 2
+
+
+def test_comparison_requires_one_matching_record_for_each_named_product():
+    citations = [
+        {"evidence_id": "E1", "title": "Graphify knowledge graph"},
+        {"evidence_id": "E2", "title": "Graphify launch notes"},
+        {"evidence_id": "E3", "title": "claude-mem persistent memory"},
+    ]
+    route_contract = {
+        "answer_mode": "comparison",
+        "protected_terms": ["Graphify", "claude-mem"],
+        "subjects": [],
+    }
+
+    assert _required_evidence_ids(
+        "evidence_research", citations, route_contract=route_contract
+    ) == {"E1", "E3"}
+
+
+def test_timeline_prioritizes_direct_task_evidence_before_generic_entity_news():
+    plan = replace(
+        analyze_query("OpenAI 的发展历程和变化是什么？"),
+        retrieval_query="OpenAI 按时间 上市",
+    )
+    citations = [
+        {"citation_id": "generic", "title": "OpenAI business update"},
+        {"citation_id": "direct", "title": "OpenAI prepares for IPO"},
+        {"citation_id": "graph", "content_type": "graph_reasoning"},
+    ]
+
+    selected = _apply_answer_evidence_budget(citations, plan)
+
+    assert selected[0]["citation_id"] == "direct"
+    assert selected[-1]["citation_id"] == "graph"
+
+
+def test_timeline_budget_keeps_newer_direct_event_when_hybrid_results_are_crowded():
+    plan = replace(
+        analyze_query("按时间线梳理与 OpenAI 潜在上市相关的两条直接报道"),
+        task_mode="timeline",
+        retrieval_query="OpenAI 上市 IPO",
+    )
+    citations = [
+        {
+            "citation_id": f"older-{index}",
+            "title": f"OpenAI IPO report {index}",
+            "effective_date": "2026-08-11",
+        }
+        for index in range(6)
+    ] + [{
+        "citation_id": "newer-public-company-event",
+        "title": "OpenAI will be a public company in 2027",
+        "effective_date": "2026-08-19",
+    }]
+
+    selected = _apply_answer_evidence_budget(citations, plan)
+
+    assert "newer-public-company-event" in [row["citation_id"] for row in selected]
+
+
 @dataclass
 class FakeChunk:
     text: str
@@ -131,7 +367,14 @@ class FakeAgent:
             if evidence_id not in evidence_ids:
                 evidence_ids.append(evidence_id)
         markers = " ".join(f"[{evidence_id}]" for evidence_id in evidence_ids)
-        return {"messages": [FakeMessage(f"这是基于知识库证据生成的回答。{markers}")]}
+        answer = f"这是基于知识库证据生成的回答。{markers}"
+        if "answer-envelope/1.0" in payload["messages"][0]["content"]:
+            answer = json.dumps({
+                "schema_version": "answer-envelope/1.0",
+                "body_markdown": answer,
+                "evidence_ids": evidence_ids,
+            }, ensure_ascii=False)
+        return {"messages": [FakeMessage(answer)]}
 
 
 class SequenceAgent:
@@ -141,7 +384,15 @@ class SequenceAgent:
 
     async def ainvoke(self, payload, config=None):
         self.calls.append({"payload": payload, "config": config})
-        return {"messages": [FakeMessage(self.answers.pop(0))]}
+        answer = self.answers.pop(0)
+        if "answer-envelope/1.0" in payload["messages"][0]["content"]:
+            evidence_ids = list(dict.fromkeys(re.findall(r"\[(E\d+)\]", answer)))
+            answer = json.dumps({
+                "schema_version": "answer-envelope/1.0",
+                "body_markdown": answer,
+                "evidence_ids": evidence_ids,
+            }, ensure_ascii=False)
+        return {"messages": [FakeMessage(answer)]}
 
 
 class ExplodingAgent:
@@ -238,6 +489,59 @@ class FakeGraphGateway:
         )
 
 
+class FakeDirectTimelineGateway:
+    async def retrieve(self, request):
+        plan = replace(
+            analyze_query(request.question),
+            task_mode="timeline",
+            retrieval_query="OpenAI 按时间 上市",
+        )
+        return EvidenceBundle(
+            status="ready",
+            task_family="temporal_relation_exploration",
+            records=[
+                {
+                    "evidence_type": "internal",
+                    "content_type": "topic_candidate",
+                    "effective_date": "2026-08-12",
+                    "source": "Hacker News",
+                    "title": "OpenAI wraps $7B share sale ahead of potential IPO",
+                    "citation_id": "ATR-20260812-0E70FB",
+                    "excerpt": "A report about a potential IPO.",
+                },
+                {
+                    "evidence_type": "internal",
+                    "content_type": "topic_candidate",
+                    "effective_date": "2026-08-20",
+                    "source": "Hacker News",
+                    "title": "OpenAI will be a public company in 2027 or sooner",
+                    "citation_id": "ATR-20260820-6EFF79",
+                    "excerpt": "A later discussion about a potential IPO.",
+                },
+                {
+                    "evidence_type": "internal",
+                    "content_type": "topic_candidate",
+                    "effective_date": "2026-08-22",
+                    "source": "Hacker News",
+                    "title": "OpenAI talent exodus ahead of IPO",
+                    "citation_id": "ATR-20260822-OTHER1",
+                    "excerpt": "A third direct IPO report that the user did not request.",
+                },
+                {
+                    "evidence_type": "internal",
+                    "content_type": "graph_reasoning",
+                    "source": "Neo4j graph",
+                    "title": "OpenAI graph context",
+                    "citation_id": "graph-reasoning/openai",
+                    "excerpt": "Repeated OpenAI observations.",
+                },
+            ],
+            analysis=plan,
+            query_plan=plan.to_dict(),
+            trace={"path": "evidence_search", "graph_evidence": {"status": "ready"}},
+        )
+
+
 class FakeImportantNewsGateway:
     async def retrieve(self, request):
         plan = analyze_query(request.question)
@@ -319,6 +623,41 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response["citations"][0]["display_label"], "I1")
         self.assertTrue(response["evidence_integrity"]["valid"])
 
+    async def test_route_total_budget_limits_combined_retrieval_and_generation(self):
+        from rag.query_route_resolver import QueryRouteResolver
+        from rag.route_runtime_budget import RouteRuntimeBudget
+
+        class SlowGateway(FakeGateway):
+            async def retrieve(self, request):
+                await asyncio.sleep(0.03)
+                return await super().retrieve(request)
+
+        class SlowComposer(FakeAgent):
+            async def ainvoke(self, payload, config=None):
+                await asyncio.sleep(0.04)
+                return await super().ainvoke(payload, config)
+
+        with patch(
+            "rag.chat_service.runtime_budget_for",
+            return_value=RouteRuntimeBudget(
+                total_seconds=0.05,
+                retrieval_seconds=0.04,
+                generation_seconds=0.04,
+            ),
+        ):
+            response = await build_chat_response(
+                ExplodingAgent(),
+                FakeRetriever([]),
+                "最近有什么热门趋势？",
+                [],
+                answer_composer=SlowComposer(),
+                retrieval_gateway=SlowGateway(),
+                query_contract_resolver=QueryRouteResolver(),
+            )
+
+        self.assertEqual(response["tool_trace"]["error"], "agent_timeout")
+        self.assertLess(response["tool_trace"]["timeout_seconds"], 0.03)
+
     async def test_build_chat_response_emits_truthful_progress_in_execution_order(self):
         composer = FakeAgent()
         retriever = FakeRetriever([
@@ -349,9 +688,15 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(
             [item["event"] for item in events],
-            ["understanding", "retrieving", "routing_decided", "evidence_ready", "generating"],
+            [
+                "route_ready",
+                "retrieval_ready",
+                "routing_decided",
+                "evidence_ready",
+                "generation_started",
+            ],
         )
-        self.assertEqual(events[0]["data"]["time_window"], "recent_corpus_first")
+        self.assertEqual(events[1]["data"]["time_window"], "recent_corpus_first")
         self.assertFalse(events[2]["data"]["will_search_web"])
         self.assertEqual(events[3]["data"]["admitted_count"], 1)
         self.assertEqual(events[4]["data"]["execution_path"], "direct_composer")
@@ -410,6 +755,218 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             "resolved",
         )
 
+    async def test_obvious_recent_trend_uses_deterministic_route_contract(self):
+        gateway = FakeGateway()
+        from rag.query_route_resolver import QueryRouteResolver
+
+        async def forbidden_fallback(_message, _context):
+            raise AssertionError("an obvious trend request must not wait for model routing")
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "最近有什么热门趋势？",
+            [],
+            latest_corpus_date="2026-08-05",
+            answer_composer=FakeAgent(),
+            retrieval_gateway=gateway,
+            query_contract_resolver=QueryRouteResolver(forbidden_fallback),
+        )
+
+        self.assertEqual(len(gateway.requests), 1)
+        self.assertEqual(
+            gateway.requests[0].route_contract["primary_task_family"],
+            "trend_discovery",
+        )
+        self.assertEqual(
+            response["query_understanding"]["ordered_route_contract"]["status"],
+            "resolved",
+        )
+        self.assertEqual(response["tool_trace"]["execution_path"], "direct_composer")
+
+    async def test_resolved_c_d_e_routes_use_one_direct_composer_call_without_react(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        class RouteAwareGateway:
+            async def retrieve(self, request):
+                family = request.route_contract["primary_task_family"]
+                plan = analyze_query(request.question)
+                records = [{
+                    "evidence_type": "internal",
+                    "date": "2026-08-05",
+                    "source": "Official",
+                    "title": "Primary evidence",
+                    "citation_id": "ATR-20260805-ONE001",
+                    "excerpt": "Primary evidence for this request.",
+                }]
+                if family == "temporal_relation_exploration":
+                    records.append({
+                        "evidence_type": "graph",
+                        "content_type": "graph_reasoning",
+                        "date": "2026-08-05",
+                        "source": "Neo4j Graph",
+                        "title": "Graph evidence",
+                        "citation_id": "graph-reasoning/openai",
+                        "excerpt": "Cross-date graph evidence.",
+                    })
+                return EvidenceBundle(
+                    status="ready",
+                    task_family=family,
+                    records=records,
+                    analysis=plan,
+                    query_plan=plan.to_dict(),
+                    trace={"path": "policy_gate"},
+                )
+
+        for question in (
+            "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+            "OpenAI 是否已经发布 GPT-6？",
+            "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+        ):
+            with self.subTest(question=question):
+                composer = FakeAgent()
+                response = await build_chat_response(
+                    ExplodingAgent(),
+                    FakeRetriever([]),
+                    question,
+                    [],
+                    answer_composer=composer,
+                    retrieval_gateway=RouteAwareGateway(),
+                    query_contract_resolver=QueryRouteResolver(),
+                )
+
+                self.assertTrue(composer.called)
+                self.assertEqual(response["tool_trace"]["execution_path"], "direct_composer")
+                self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 1)
+                self.assertEqual(response["tool_trace"]["budget"]["tool_calls"]["limit"], 0)
+
+    async def test_resolved_composer_route_fails_closed_when_composer_is_unavailable(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+            [],
+            answer_composer=None,
+            retrieval_gateway=FakeGraphGateway(),
+            query_contract_resolver=QueryRouteResolver(),
+        )
+
+        self.assertEqual(response["tool_trace"]["execution_path"], "generation_unavailable")
+        self.assertEqual(response["tool_trace"]["error"], "answer_composer_unavailable")
+        self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 0)
+        self.assertIn("回答生成服务暂时不可用", response["answer"])
+
+    async def test_retrieval_timeout_stops_before_generation_and_emits_failed_stage(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        class SlowGateway:
+            async def retrieve(self, _request):
+                await __import__("asyncio").sleep(1)
+
+        events = []
+
+        async def capture(event, data):
+            events.append((event, data))
+
+        with patch(
+            "rag.chat_service.runtime_budget_for",
+            return_value=SimpleNamespace(
+                total_seconds=1.0,
+                retrieval_seconds=0.01,
+                generation_seconds=0.5,
+            ),
+        ):
+            response = await build_chat_response(
+                ExplodingAgent(),
+                FakeRetriever([]),
+                "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+                [],
+                answer_composer=ExplodingAgent(),
+                retrieval_gateway=SlowGateway(),
+                query_contract_resolver=QueryRouteResolver(),
+                progress_callback=capture,
+            )
+
+        self.assertEqual(response["tool_trace"]["error"], "retrieval_timeout")
+        self.assertEqual([event for event, _ in events], ["route_ready", "failed"])
+
+    async def test_gateway_declared_timeout_emits_failed_and_records_metrics(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        class TimeoutGateway:
+            async def retrieve(self, request):
+                plan = analyze_query(request.question)
+                return EvidenceBundle(
+                    status="timeout",
+                    task_family="evidence_research",
+                    records=[],
+                    analysis=plan,
+                    query_plan=plan.to_dict(),
+                    error_code="gateway_timeout",
+                    elapsed_ms=25.0,
+                )
+
+        events = []
+
+        async def capture(event, data):
+            events.append(event)
+
+        metrics_collector.reset()
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "用内部证据解释 Graph RAG 和 Agentic RAG 的区别",
+            [],
+            web_search_mode="never",
+            answer_composer=ExplodingAgent(),
+            retrieval_gateway=TimeoutGateway(),
+            query_contract_resolver=QueryRouteResolver(),
+            progress_callback=capture,
+        )
+        summary = metrics_collector.get_summary()
+        metrics_collector.reset()
+
+        self.assertEqual(response["tool_trace"]["error"], "retrieval_timeout")
+        self.assertEqual(
+            events,
+            ["route_ready", "retrieval_degraded", "routing_decided", "failed"],
+        )
+        self.assertEqual(summary.sample_count, 1)
+        self.assertEqual(summary.failed_requests, 1)
+
+    async def test_direct_composer_rejects_non_json_answer_without_repair_call(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        class InvalidEnvelopeComposer:
+            def __init__(self):
+                self.calls = 0
+
+            async def ainvoke(self, payload, config=None):
+                self.calls += 1
+                return {"messages": [FakeMessage("自由文本回答。[E1]")]}
+
+        composer = InvalidEnvelopeComposer()
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+            [],
+            answer_composer=composer,
+            retrieval_gateway=FakeGraphGateway(),
+            query_contract_resolver=QueryRouteResolver(),
+        )
+
+        self.assertEqual(composer.calls, 1)
+        self.assertFalse(response["evidence_integrity"]["valid"])
+        self.assertEqual(
+            response["evidence_integrity"]["answer_envelope"]["errors"],
+            ["invalid_json"],
+        )
+        self.assertFalse(response["evidence_integrity"]["repair_attempted"])
+        self.assertEqual(response["citations"], [])
+
     async def test_route_contract_failure_is_an_explicit_legacy_fallback(self):
         gateway = FakeGateway()
 
@@ -419,7 +976,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         response = await build_chat_response(
             ExplodingAgent(),
             FakeRetriever([]),
-            "最近有什么热门趋势？",
+            "OpenAI 最近的产品方向有哪些变化？",
             [],
             latest_corpus_date="2026-08-05",
             answer_composer=FakeAgent(),
@@ -466,14 +1023,49 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             "clarification_required",
         )
 
+    async def test_known_subject_without_goal_returns_guided_clarification(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        class ExplodingGateway:
+            async def retrieve(self, _request):
+                raise AssertionError("an underspecified request must stop before retrieval")
+
+        async def overconfident_fallback(query, _context):
+            contract = understand_query_v2(query).to_dict()
+            contract["ambiguities"] = []
+            contract["route_confidence"] = 0.9
+            return {"status": "resolved", "contract": contract, "reasons": []}, {
+                "attempts": 1,
+            }
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "open ai",
+            [],
+            answer_composer=ExplodingAgent(),
+            retrieval_gateway=ExplodingGateway(),
+            query_contract_resolver=QueryRouteResolver(overconfident_fallback),
+        )
+
+        self.assertIn("OpenAI", response["answer"])
+        self.assertIn("你想了解", response["answer"])
+        self.assertIn("最近有什么重要动态", response["answer"])
+        self.assertIn("产品", response["answer"])
+        self.assertIn("比较", response["answer"])
+        self.assertNotIn("没有找到足够可靠的证据", response["answer"])
+        self.assertEqual(response["citations"], [])
+        self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 0)
+
     async def test_important_news_answer_always_separates_historical_background(self):
+        composer = FakeAgent()
         response = await build_chat_response(
             ExplodingAgent(),
             FakeRetriever([]),
             "OpenAI 最近有哪些重要动态？",
             [],
             latest_corpus_date="2026-08-12",
-            answer_composer=FakeAgent(),
+            answer_composer=composer,
             retrieval_gateway=FakeImportantNewsGateway(),
         )
 
@@ -481,6 +1073,135 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertIn("Older major dispute", response["answer"])
         self.assertIn("[E2]", response["answer"])
         self.assertNotIn("Older major dispute", response["answer"].split("## 历史背景")[0])
+        self.assertFalse(composer.called)
+        self.assertEqual(response["tool_trace"]["execution_path"], "deterministic_important_news")
+
+    async def test_important_news_answer_envelope_caps_each_section_without_model_call(self):
+        class OverflowImportantNewsGateway:
+            async def retrieve(self, request):
+                plan = analyze_query(request.question)
+
+                def record(prefix, index, day):
+                    return {
+                        "evidence_type": "internal",
+                        "date": day,
+                        "source": "OpenAI",
+                        "title": f"{prefix} {index}",
+                        "citation_id": f"{prefix.casefold()}-{index}",
+                        "excerpt": f"{prefix} evidence {index}.",
+                    }
+
+                return EvidenceBundle(
+                    status="ready",
+                    task_family="trend_discovery",
+                    records=[record("Primary", index, "2026-08-12") for index in range(1, 7)],
+                    supplementary_records=[
+                        record("Supplementary", index, "2026-08-11")
+                        for index in range(1, 5)
+                    ],
+                    background_records=[
+                        record("Background", index, "2026-07-20")
+                        for index in range(1, 5)
+                    ],
+                    analysis=plan,
+                    query_plan=plan.to_dict(),
+                    trace={"path": "trend_discovery"},
+                )
+
+        composer = ExplodingAgent()
+        response = await build_chat_response(
+            composer,
+            FakeRetriever([]),
+            "OpenAI 最近有哪些重要动态？",
+            [],
+            latest_corpus_date="2026-08-12",
+            answer_composer=composer,
+            retrieval_gateway=OverflowImportantNewsGateway(),
+        )
+
+        answer = response["answer"]
+        self.assertIn("## 补充动态", answer)
+        self.assertIn("## 历史背景", answer)
+        recent = answer.split("## 近期重要动态", 1)[1].split("## 补充动态", 1)[0]
+        supplementary = answer.split("## 补充动态", 1)[1].split("## 历史背景", 1)[0]
+        background = answer.split("## 历史背景", 1)[1]
+        self.assertEqual(len(re.findall(r"\[(E\d+)\]", recent)), 5)
+        self.assertEqual(len(re.findall(r"\[(E\d+)\]", supplementary)), 3)
+        self.assertEqual(len(re.findall(r"\[(E\d+)\]", background)), 3)
+        self.assertNotIn("Primary 6", answer)
+        self.assertNotIn("Supplementary 4", answer)
+        self.assertNotIn("Background 4", answer)
+        self.assertEqual(answer.count("## 近期重要动态"), 1)
+        self.assertEqual(answer.count("## 补充动态"), 1)
+        self.assertEqual(answer.count("## 历史背景"), 1)
+
+        envelope = response["evidence_integrity"]["answer_envelope"]
+        self.assertTrue(envelope["valid"])
+        self.assertEqual(envelope["schema_version"], "answer-envelope/1.0")
+        self.assertEqual(
+            [section["title"] for section in envelope["sections"]],
+            ["近期重要动态", "补充动态", "历史背景"],
+        )
+        self.assertEqual(
+            [section["item_count"] for section in envelope["sections"]],
+            [5, 3, 3],
+        )
+        marker_ids = re.findall(r"\[(E\d+)\]", answer)
+        self.assertEqual(envelope["evidence_ids"], list(dict.fromkeys(marker_ids)))
+        self.assertEqual(
+            {row["evidence_id"] for row in response["citations"]},
+            set(envelope["evidence_ids"]),
+        )
+        self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 0)
+
+    async def test_important_news_forced_web_still_uses_zero_generation(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        external_registry = FakeExternalRegistry({
+            "provider": "tavily",
+            "available": True,
+            "raw_results_count": 1,
+            "errors": [],
+            "citations": [{
+                "evidence_type": "external",
+                "provider": "tavily",
+                "source": "anthropic.com",
+                "source_quality": "official",
+                "quality_score": 0.95,
+                "title": "Claude official update",
+                "url": "https://www.anthropic.com/news/claude-update",
+                "retrieved_at": TODAY,
+                "published_at": TODAY,
+                "excerpt": "Official Claude update evidence.",
+            }],
+        })
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "Claude 最近有什么动态？",
+            [],
+            web_search_mode="always",
+            answer_composer=ExplodingAgent(),
+            retrieval_gateway=FakeImportantNewsGateway(),
+            query_contract_resolver=QueryRouteResolver(),
+            external_search_registry=external_registry,
+            configured_search_providers={"tavily"},
+            external_deep_fetcher=lambda url: {
+                "ok": True,
+                "url": url,
+                "final_url": url,
+                "fetched_at": f"{TODAY}T00:00:00+00:00",
+                "title": "Claude official update",
+                "text_excerpt": "Verified official Claude update evidence.",
+                "error": "",
+            },
+        )
+
+        self.assertTrue(external_registry.requests)
+        self.assertEqual(response["tool_trace"]["execution_path"], "deterministic_important_news")
+        self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 0)
+        self.assertTrue(any(row.get("evidence_type") == "external" for row in response["citations"]))
 
     async def test_graph_gateway_evidence_is_admitted_and_compiled_into_task_prompt(self):
         composer = FakeAgent()
@@ -507,7 +1228,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             ["E1", "E2"],
         )
 
-    async def test_relation_answer_repairs_when_it_omits_required_graph_evidence(self):
+    async def test_relation_answer_fails_closed_without_a_second_model_repair(self):
         composer = SequenceAgent([
             "OpenAI 与 Apple 有关联。[E1]",
             "文本提供事件线索。[E1] 图谱显示跨日关系。[E2]",
@@ -522,15 +1243,55 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             retrieval_gateway=FakeGraphGateway(),
         )
 
-        self.assertEqual(len(composer.calls), 2)
-        self.assertTrue(response["evidence_integrity"]["repair_attempted"])
-        self.assertTrue(response["evidence_integrity"]["valid"])
+        self.assertEqual(len(composer.calls), 1)
+        self.assertFalse(response["evidence_integrity"]["repair_attempted"])
+        self.assertFalse(response["evidence_integrity"]["valid"])
         self.assertEqual(response["evidence_integrity"]["required_evidence_ids"], ["E2"])
-        self.assertEqual(response["evidence_integrity"]["missing_required_evidence_ids"], [])
+        self.assertEqual(response["evidence_integrity"]["missing_required_evidence_ids"], ["E2"])
+        self.assertEqual(response["citations"], [])
+
+    async def test_formal_temporal_relation_route_requires_graph_evidence_marker(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        composer = SequenceAgent(["只引用文本证据。[E1]"])
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "OpenAI 的 Agent 战略过去三个月是如何演变的？",
+            [],
+            answer_composer=composer,
+            retrieval_gateway=FakeGraphGateway(),
+            query_contract_resolver=QueryRouteResolver(),
+        )
+
+        self.assertEqual(len(composer.calls), 1)
+        self.assertFalse(response["evidence_integrity"]["valid"])
+        self.assertEqual(response["evidence_integrity"]["required_evidence_ids"], ["E2"])
+        self.assertEqual(
+            response["evidence_integrity"]["missing_required_evidence_ids"],
+            ["E2"],
+        )
+        self.assertEqual(response["citations"], [])
+
+    async def test_direct_two_report_timeline_skips_model_and_renders_citations(self):
+        from rag.query_route_resolver import QueryRouteResolver
+
+        response = await build_chat_response(
+            ExplodingAgent(),
+            FakeRetriever([]),
+            "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+            [],
+            retrieval_gateway=FakeDirectTimelineGateway(),
+            query_contract_resolver=QueryRouteResolver(),
+        )
+
+        self.assertEqual(response["tool_trace"]["execution_path"], "deterministic_timeline")
+        self.assertEqual(response["tool_trace"]["execution_counts"]["model_turns"], 0)
         self.assertEqual(
             [citation["citation_id"] for citation in response["citations"]],
-            ["ATR-20260805-ABC123", "graph-reasoning/openai"],
+            ["ATR-20260812-0E70FB", "ATR-20260820-6EFF79"],
         )
+        self.assertIn("Hacker News 收录的报道/讨论线索", response["answer"])
 
     async def test_build_chat_response_returns_agent_answer_with_citations(self):
         agent = FakeAgent()
@@ -586,12 +1347,26 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         )
 
     async def test_claim_verification_returns_validated_machine_contract_without_exposing_marker(self):
-        agent = SequenceAgent([
-            "现有证据不足以证明该主张。[E1]\n"
-            '<!--claim-result:{"verdict":"insufficient","rationale":"缺少商业结果",'
-            '"evidence_ids":["E1"],"missing_criteria":["财务结果"],'
-            '"direct_refutation":false}-->'
-        ])
+        from rag.query_route_resolver import QueryRouteResolver
+
+        class ClaimEnvelopeAgent:
+            async def ainvoke(self, payload, config=None):
+                system_prompt = payload["messages"][0]["content"]
+                assert "claim_verification" in system_prompt
+                answer = json.dumps({
+                    "schema_version": "answer-envelope/1.0",
+                    "body_markdown": "现有证据不足以证明该主张。[E1]",
+                    "evidence_ids": ["E1"],
+                    "claim_verification": {
+                        "verdict": "insufficient",
+                        "rationale": "缺少商业结果",
+                        "evidence_ids": ["E1"],
+                        "missing_criteria": ["财务结果"],
+                        "direct_refutation": False,
+                    },
+                }, ensure_ascii=False)
+                return {"messages": [FakeMessage(answer)]}
+
         retriever = FakeRetriever([FakeChunk(
             text="OpenAI announced a research exchange.",
             metadata={
@@ -603,10 +1378,12 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         )])
 
         response = await build_chat_response(
-            agent,
+            ExplodingAgent(),
             retriever,
             "请验证 OpenAI 已经取得商业成功的真实性和来源",
             [],
+            answer_composer=ClaimEnvelopeAgent(),
+            query_contract_resolver=QueryRouteResolver(),
         )
 
         self.assertNotIn("claim-result", response["answer"])
@@ -668,7 +1445,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(response["query_understanding"]["task_mode"], "compare")
         self.assertEqual(response["tool_trace"]["execution_path"], "react_agent")
 
-    async def test_recent_trend_repairs_answer_that_uses_too_few_evidence_records(self):
+    async def test_recent_trend_fails_closed_when_answer_uses_too_few_evidence_records(self):
         composer = SequenceAgent([
             "只覆盖一个趋势。[E1]",
             "趋势一。[E1]\n趋势二。[E2]\n趋势三。[E3]",
@@ -695,12 +1472,12 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
             answer_composer=composer,
         )
 
-        self.assertEqual(len(composer.calls), 2)
-        self.assertTrue(response["evidence_integrity"]["valid"])
-        self.assertTrue(response["evidence_integrity"]["repair_attempted"])
+        self.assertEqual(len(composer.calls), 1)
+        self.assertFalse(response["evidence_integrity"]["valid"])
+        self.assertFalse(response["evidence_integrity"]["repair_attempted"])
         self.assertEqual(response["evidence_integrity"]["minimum_evidence_markers"], 3)
-        self.assertEqual(response["evidence_integrity"]["used_evidence_markers"], 3)
-        self.assertEqual(len(response["citations"]), 3)
+        self.assertEqual(response["evidence_integrity"]["used_evidence_markers"], 1)
+        self.assertEqual(response["citations"], [])
 
     async def test_recent_trend_caps_answer_ledger_but_keeps_wider_retrieval_pool(self):
         composer = FakeAgent()
@@ -731,7 +1508,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(response["citations"]), 6)
         self.assertNotIn("[E7]", composer.payload["messages"][0]["content"])
 
-    async def test_build_chat_response_repairs_invalid_evidence_markers_once(self):
+    async def test_build_chat_response_does_not_spend_a_second_call_on_invalid_markers(self):
         agent = SequenceAgent([
             "这是缺少证据标记的结论。",
             "这是修复后的有据结论。[E1]",
@@ -750,10 +1527,10 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
 
         response = await build_chat_response(agent, retriever, "Claude 最近有什么动态？", [])
 
-        self.assertEqual(len(agent.calls), 2)
-        self.assertIn("修复后的有据结论", response["answer"])
-        self.assertTrue(response["evidence_integrity"]["repair_attempted"])
-        self.assertTrue(response["evidence_integrity"]["valid"])
+        self.assertEqual(len(agent.calls), 1)
+        self.assertIn("未展示未经核验的分析", response["answer"])
+        self.assertFalse(response["evidence_integrity"]["repair_attempted"])
+        self.assertFalse(response["evidence_integrity"]["valid"])
 
     async def test_build_chat_response_only_displays_citations_used_by_answer(self):
         agent = SequenceAgent(["只应展示第二条证据支持的结论。[E2]"])
@@ -783,7 +1560,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual([citation["evidence_id"] for citation in response["citations"]], ["E2"])
         self.assertEqual(response["claim_evidence"][0]["evidence_ids"], ["E2"])
 
-    async def test_build_chat_response_withholds_answer_after_failed_marker_repair(self):
+    async def test_build_chat_response_withholds_invalid_answer_without_marker_repair(self):
         agent = SequenceAgent([
             "这是缺少证据标记的结论。",
             "这次仍然没有标记。",
@@ -802,7 +1579,7 @@ class ChatServiceTests(unittest.IsolatedAsyncioTestCase):
 
         response = await build_chat_response(agent, retriever, "Claude 最近有什么动态？", [])
 
-        self.assertEqual(len(agent.calls), 2)
+        self.assertEqual(len(agent.calls), 1)
         self.assertIn("未展示未经核验的分析", response["answer"])
         self.assertEqual(response["claim_evidence"], [])
         self.assertFalse(response["evidence_integrity"]["valid"])

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unittest
 from datetime import date
@@ -21,6 +22,40 @@ from rag.sync_corpus import (
 
 
 class SyncCorpusTests(unittest.TestCase):
+    def test_sync_corpus_persists_runtime_manifest_when_configured(self):
+        manifest = {
+            "generated": "2026-08-25T10:00:00Z",
+            "dates": [{"date": "2026-08-25", "reports": ["ai-topic-radar"]}],
+        }
+        payloads = {
+            "https://example.com/radar/manifest.json": json.dumps(manifest),
+            "https://example.com/radar/feed.xml": "<rss><channel /></rss>",
+            "https://example.com/radar/digests/2026-08-25/ai-topic-radar.md": "# Report",
+            "https://example.com/radar/digests/2026-08-25/topic-pool.json": '{"candidates":[]}',
+        }
+
+        def fetcher(url: str) -> bytes:
+            return payloads[url].encode("utf-8")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output_root = Path(tmp)
+            runtime_manifest = output_root / "digests/.runtime-manifest.json"
+            with patch.dict(
+                os.environ,
+                {"RAG_RUNTIME_CORPUS_MANIFEST": str(runtime_manifest)},
+            ):
+                sync_corpus(
+                    base_url="https://example.com/radar",
+                    output_root=output_root,
+                    days=1,
+                    fetcher=fetcher,
+                )
+
+            self.assertEqual(
+                json.loads(runtime_manifest.read_text(encoding="utf-8"))["generated"],
+                "2026-08-25T10:00:00Z",
+            )
+
     def test_sync_diagnostics_marks_stale_upstream_without_failing_the_sync(self):
         result = SyncResult(
             downloaded=4,

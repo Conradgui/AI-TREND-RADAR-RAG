@@ -24,6 +24,24 @@ class QueryUnderstandingTests(unittest.TestCase):
         self.assertEqual(plan.time_window["days"], 7)
         self.assertTrue(plan.time_window["requires_date_filter"])
 
+    def test_recent_cutoff_keeps_the_existing_fourteen_day_window(self):
+        plan = analyze_query(
+            "截至 8 月 21 日，Google/DeepMind 或 Gemini 最近有哪些产品动态？"
+        )
+
+        year = __import__("datetime").date.today().year
+        self.assertEqual(
+            plan.time_window,
+            {
+                "mode": "absolute_range",
+                "value": f"{year:04d}-08-08 | {year:04d}-08-21",
+                "surface": "截至 8 月 21 日",
+                "start": f"{year:04d}-08-08",
+                "end": f"{year:04d}-08-21",
+                "requires_date_filter": True,
+            },
+        )
+
     def test_recent_rag_question_prefers_recent_trend_retrieval(self):
         plan = analyze_query("最近 RAG 领域有什么值得关注的新动向？")
 
@@ -48,10 +66,19 @@ class QueryUnderstandingTests(unittest.TestCase):
 
         self.assertEqual(plan.intent, "product_update")
         self.assertIn("Claude", plan.entities)
-        self.assertIn("Anthropic", plan.entities)
+        self.assertNotIn("Anthropic", plan.entities)
         self.assertNotIn("Artifacts", plan.retrieval_query)
         self.assertNotIn("plugins developer tools", plan.retrieval_query)
         self.assertEqual(plan.time_window["label"], "recent_corpus_first")
+
+    def test_product_and_company_are_not_collapsed_into_one_entity(self):
+        claude = analyze_query("最近 Claude 有什么新趋势？")
+        anthropic = analyze_query("最近 Anthropic 有什么新趋势？")
+        chatgpt = analyze_query("最近 ChatGPT 有什么新动态？")
+
+        self.assertEqual(claude.entities, ["Claude"])
+        self.assertEqual(anthropic.entities, ["Anthropic"])
+        self.assertEqual(chatgpt.entities, ["ChatGPT"])
 
     def test_github_weekly_question_extracts_source_and_time_window(self):
         plan = analyze_query("过去一周 GitHub 热榜上有什么值得关注的选题？")

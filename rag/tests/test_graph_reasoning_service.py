@@ -1,5 +1,6 @@
 """Tests for graph reasoning service helpers."""
 
+import asyncio
 import unittest
 
 from rag.graph_question_planning import build_graph_question_plan, build_graph_question_plans
@@ -27,6 +28,47 @@ class FakeGraphDriver:
 
 
 class GraphReasoningServiceTests(unittest.IsolatedAsyncioTestCase):
+    async def test_entity_graph_queries_run_concurrently(self):
+        plan = build_graph_question_plan("OpenAI 相关主题是否跨多个日期反复出现？")
+
+        class ConcurrentDriver(FakeGraphDriver):
+            def __init__(self):
+                super().__init__([{}])
+                self.active = 0
+                self.max_active = 0
+
+            async def execute_query(self, cypher, **params):
+                self.active += 1
+                self.max_active = max(self.max_active, self.active)
+                await asyncio.sleep(0.01)
+                self.active -= 1
+                return await super().execute_query(cypher, **params)
+
+        driver = ConcurrentDriver()
+        await build_graph_reasoning_evidence(driver, plan)
+
+        self.assertEqual(driver.max_active, 3)
+
+    async def test_pairwise_relation_queries_run_concurrently(self):
+        plans = build_graph_question_plans("请分析 OpenAI 与 Apple 的跨日关联")
+
+        class ConcurrentPairDriver:
+            def __init__(self):
+                self.active = 0
+                self.max_active = 0
+
+            async def execute_query(self, cypher, **params):
+                self.active += 1
+                self.max_active = max(self.max_active, self.active)
+                await asyncio.sleep(0.01)
+                self.active -= 1
+                return [{}]
+
+        driver = ConcurrentPairDriver()
+        await build_entity_relation_evidence(driver, plans[0], plans[1])
+
+        self.assertEqual(driver.max_active, 3)
+
     async def test_builds_typed_pairwise_relation_evidence_without_claiming_causality(self):
         plans = build_graph_question_plans("请分析 OpenAI 与 Apple 的跨日关联")
 
@@ -72,6 +114,11 @@ class GraphReasoningServiceTests(unittest.IsolatedAsyncioTestCase):
                 "latest_observed_date": "2026-06-30",
                 "source_count": 2,
                 "category_count": 3,
+                "registry_relations": [{
+                    "entity_id": "anthropic", "entity": "Anthropic",
+                    "relation": "developed_by", "weight": 0.55,
+                    "registry_version": "2026-08-26.v1",
+                }],
                 "sample_paths": [
                     {
                         "entity": "RAG",
@@ -96,10 +143,12 @@ class GraphReasoningServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(evidence["repeated_content_count"], 2)
         self.assertEqual(evidence["repeated_observation_count"], 4)
         self.assertEqual(evidence["previous_link_count"], 2)
+        self.assertEqual(evidence["registry_relations"][0]["entity_id"], "anthropic")
         self.assertEqual(evidence["sample_paths"][0]["title"], "Graph RAG benchmark")
         cypher = driver.calls[0]["cypher"]
         self.assertIn("(e:Entity {id: $entity_id})-[:MENTIONS]->(o:Observation)", cypher)
         self.assertIn("(o)-[:DISCOVERED_VIA|FROM]->(s:Source)", cypher)
+        self.assertIn("learned_entity_memory", cypher)
         self.assertNotIn("(t)-[:DISCOVERED_VIA]", cypher)
 
     async def test_filters_empty_sample_paths_and_builds_citation(self):
@@ -130,6 +179,7 @@ class GraphReasoningServiceTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(citation["date"], "2026-06-30")
         self.assertIn("OpenAI 在图谱中关联", citation["excerpt"])
         self.assertIn("带有该实体标记的观察中", citation["excerpt"])
+        self.assertIn("注册表主体关系", citation["excerpt"])
 
     async def test_summary_handles_missing_paths(self):
         summary = format_graph_reasoning_summary({

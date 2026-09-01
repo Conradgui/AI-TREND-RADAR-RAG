@@ -16,6 +16,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from rag.config import DIGESTS_DIR, CHROMA_DIR, NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD
 from rag.entity_identity import infer_entity_ids
+from rag.event_extraction import extract_event_batch
 from rag.temporal_semantics import build_temporal_metadata
 
 DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -85,13 +86,28 @@ def _identity_url(value: object) -> str:
 def load_search_documents(
     path: Path = SEARCH_INDEX_PATH,
     digests_dir: str = DIGESTS_DIR,
+    *,
+    rebuild: bool = True,
 ) -> list[dict]:
-    """Rebuild the product-owned v2 projection from local atomic candidates."""
+    """Load or rebuild the product-owned v2 projection.
+
+    Explicit ingestion keeps rebuilding by default. Server startup may set
+    ``rebuild=False`` to reuse an already valid projection instead of scanning
+    and rewriting the entire digest history on every restart.
+    """
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         payload = {}
     existing = payload.get("documents", []) if isinstance(payload, dict) else []
+    if (
+        not rebuild
+        and isinstance(payload, dict)
+        and payload.get("schema_version") == 2
+        and existing
+        and all(isinstance(item, dict) for item in existing)
+    ):
+        return existing
     documents = build_runtime_search_documents(digests_dir)
     if not documents:
         return [item for item in existing if isinstance(item, dict)]
@@ -177,10 +193,32 @@ def _runtime_daily_item_id(date_str: str, candidate: dict) -> str:
     return f"ATR-{date_str.replace('-', '')}-{suffix}"
 
 
+def _runtime_identity_signature(candidate: dict) -> tuple[str, str, str, str]:
+    """Return the source fields that must agree for one runtime item ID.
+
+    Upstream feeds do not consistently provide an ID. When they do provide
+    one, a malformed feed must not silently make two different records share
+    one ATR and drop the later record.
+    """
+    return (
+        _identity_text(candidate.get("source")),
+        _identity_text(candidate.get("title") or candidate.get("topic")),
+        _canonical_public_url(candidate.get("url")),
+        next(
+            (
+                str(candidate.get(key) or "").strip()
+                for key in ("id", "itemId", "item_id", "guid")
+                if str(candidate.get(key) or "").strip()
+            ),
+            "",
+        ),
+    )
+
+
 def build_runtime_search_documents(digests_dir: str = DIGESTS_DIR) -> list[dict]:
     """Project local daily candidates into the runtime's stable item contract."""
     documents: list[dict] = []
-    seen: set[str] = set()
+    seen: dict[str, tuple[str, str, str, str]] = {}
     root = Path(digests_dir)
     for date_str in _find_digest_dates_in(root):
         pool = normalize_topic_pool(_load_topic_pool(root / date_str), date_str)
@@ -189,9 +227,15 @@ def build_runtime_search_documents(digests_dir: str = DIGESTS_DIR) -> list[dict]
             if not title:
                 continue
             daily_item_id = _runtime_daily_item_id(date_str, candidate)
-            if daily_item_id in seen:
+            identity_signature = _runtime_identity_signature(candidate)
+            previous_signature = seen.get(daily_item_id)
+            if previous_signature is not None and previous_signature != identity_signature:
+                raise ValueError(
+                    f"Runtime daily item identity collision on {date_str}: {daily_item_id}"
+                )
+            if previous_signature is not None:
                 continue
-            seen.add(daily_item_id)
+            seen[daily_item_id] = identity_signature
             url = _canonical_public_url(candidate.get("url"))
             content_key = url or f"{_identity_text(candidate.get('source'))}|{_identity_text(title)}"
             temporal = build_temporal_metadata(candidate, date_str)
@@ -226,7 +270,7 @@ def build_runtime_search_documents(digests_dir: str = DIGESTS_DIR) -> list[dict]
                 "external_url": url or None,
                 "local_url": f"#{date_str}/ai-topic-radar/item/{daily_item_id}",
             })
-    return documents
+    return extract_event_batch(documents)
 
 
 def build_search_document_lookup(documents: list[dict]) -> dict[tuple[str, str, str], dict]:

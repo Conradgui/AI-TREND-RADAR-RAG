@@ -90,6 +90,23 @@ def test_non_query_protected_span_is_dropped_and_audited_without_retry() -> None
     ]
 
 
+def test_retrieval_hints_are_bounded_and_reject_invented_record_ids() -> None:
+    value = _frame()
+    value["retrieval_hints"] = [
+        "persistent context across sessions",
+        "ATR-20260821-F3CB2B",
+        "persistent context across sessions",
+        "x" * 161,
+    ]
+
+    frame, metadata = OrderedFrameClientV3(ScriptedModel(value)).extract(
+        "OpenAI 最近有哪些重要动态？"
+    )
+
+    assert frame["retrieval_hints"] == ["persistent context across sessions"]
+    assert metadata["retrieval_hint_count"] == 1
+
+
 @pytest.mark.parametrize(
     ("query", "expected_locator"),
     [
@@ -145,11 +162,15 @@ def test_strict_tool_contains_only_frame_fields_and_no_rewrite_output() -> None:
         "protected_spans",
         "claim_spans",
         "subject_spans",
+        "retrieval_hints",
         "source_spans",
         "web_permission",
         "web_evidence_spans",
         "unresolved_reference_spans",
     }
+    assert "retrieval_hints" in function["parameters"]["required"]
+    assert "persistent context across sessions" in SYSTEM_PROMPT
+    assert "codebase knowledge graph" in SYSTEM_PROMPT
     assert "standalone_query" not in str(function)
 
 

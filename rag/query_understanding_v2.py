@@ -9,7 +9,9 @@ import uuid
 from dataclasses import asdict, dataclass, field
 
 from rag.query_signal_extraction import extract_query_signals
+from rag.query_understanding import analyze_query
 from rag.task_route_resolution import resolve_task_route
+from rag.entity_identity import related_entity_expansions
 
 
 _ROUTE_POLICIES = {
@@ -61,6 +63,8 @@ class RouteContractV2:
     supporting_contracts: list[dict] = field(default_factory=list)
     subjects: list[str] = field(default_factory=list)
     topics: list[str] = field(default_factory=list)
+    retrieval_hints: list[str] = field(default_factory=list)
+    entity_expansions: list[dict] = field(default_factory=list)
     claims: list[str] = field(default_factory=list)
     temporal_constraint: dict = field(default_factory=lambda: {"mode": "none", "value": None})
     source_constraint: dict = field(
@@ -102,6 +106,8 @@ class RouteContractV2:
 def understand_query_v2(
     original_query: str,
     conversation_context: str | None = None,
+    *,
+    entity_relation_memory=None,
 ) -> RouteContractV2:
     """Return a shadow Route Contract without mutating the production QueryPlan."""
     raw_query = original_query
@@ -111,6 +117,10 @@ def understand_query_v2(
 
     signals = extract_query_signals(normalized, conversation_context)
     decision = resolve_task_route(signals)
+    retrieval_facts = analyze_query(
+        normalized,
+        entity_relation_memory=entity_relation_memory,
+    )
     common = dict(
         schema_version="atr.route/2.0",
         request_id=_stable_request_id(raw_query, conversation_context),
@@ -134,6 +144,14 @@ def understand_query_v2(
             _supporting_contract(task_family)
             for task_family in decision.supporting_task_families
         ],
+        subjects=list(retrieval_facts.entities),
+        topics=list(retrieval_facts.topics),
+        entity_expansions=list(retrieval_facts.entity_expansions),
+        temporal_constraint=_temporal_constraint_from_plan(retrieval_facts.time_window),
+        source_constraint={
+            "requested_sources": list(retrieval_facts.sources),
+            "official_first": "官方" in normalized,
+        },
     )
 
     if decision.primary_task_family == "item_navigation":
@@ -160,6 +178,23 @@ def understand_query_v2(
 def _stable_request_id(query: str, context: str | None) -> str:
     payload = f"{query}\0{context or ''}"
     return f"shadow-{uuid.uuid5(uuid.NAMESPACE_URL, payload).hex}"
+
+
+def _temporal_constraint_from_plan(time_window: dict) -> dict:
+    """Carry the deterministic analyser's bounded window into the contract."""
+    if str((time_window or {}).get("mode") or "") == "absolute_range":
+        return {
+            key: time_window[key]
+            for key in ("mode", "value", "surface", "start", "end")
+            if key in time_window
+        }
+    label = str((time_window or {}).get("label") or "")
+    days = (time_window or {}).get("days")
+    if label in {"last_7_days", "recent_corpus_first"} and days:
+        return {"mode": "relative_window", "value": str(int(days))}
+    if label == "not_limited":
+        return {"mode": "historical", "value": None}
+    return {"mode": "none", "value": None}
 
 
 def _supporting_contract(

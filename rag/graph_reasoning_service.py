@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from datetime import datetime, timezone
 
 from rag.graph_question_planning import GraphQuestionPlan
@@ -9,11 +10,13 @@ from rag.graph_question_planning import GraphQuestionPlan
 
 async def build_graph_reasoning_evidence(driver, plan: GraphQuestionPlan) -> dict:
     """Query Neo4j for observation-first relationship evidence."""
-    rows = await driver.execute_query(
+    rows_task = driver.execute_query(
         "MATCH (e:Entity {id: $entity_id})-[:MENTIONS]->(o:Observation) "
         "OPTIONAL MATCH (o)-[:OBSERVES]->(c:Content) "
         "OPTIONAL MATCH (o)-[:DISCOVERED_VIA|FROM]->(s:Source) "
         "OPTIONAL MATCH (o)-[:ABOUT]->(cat:Category) "
+        "OPTIONAL MATCH (e)-[registry:RELATED_TO]->(related:Entity) "
+        "WHERE registry.scope IN ['entity_registry', 'learned_entity_memory'] "
         "RETURN e.name AS entity, "
         "count(DISTINCT o) AS observation_count, "
         "count(DISTINCT coalesce(c.id, o.contentId)) AS content_count, "
@@ -22,12 +25,15 @@ async def build_graph_reasoning_evidence(driver, plan: GraphQuestionPlan) -> dic
         "max(o.date) AS latest_observed_date, "
         "count(DISTINCT s.id) AS source_count, "
         "count(DISTINCT coalesce(cat.id, o.category)) AS category_count, "
+        "collect(DISTINCT {entity_id: related.id, entity: related.name, "
+        "relation: registry.relation, weight: registry.weight, "
+        "registry_version: registry.registry_version, scope: registry.scope}) AS registry_relations, "
         "collect(DISTINCT {entity: e.name, title: o.title, "
         "content_id: coalesce(c.id, o.contentId), date: o.date, "
         "source: coalesce(s.id, o.source), category: coalesce(cat.name, o.category)})[0..8] AS sample_paths",
         entity_id=plan.entity_id,
     )
-    repeat_rows = await driver.execute_query(
+    repeat_rows_task = driver.execute_query(
         "MATCH (e:Entity {id: $entity_id})-[:MENTIONS]->(o:Observation) "
         "WHERE coalesce(o.contentId, '') <> '' "
         "WITH o.contentId AS content_id, count(DISTINCT o) AS observation_count "
@@ -36,16 +42,25 @@ async def build_graph_reasoning_evidence(driver, plan: GraphQuestionPlan) -> dic
         "sum(observation_count) AS repeated_observation_count",
         entity_id=plan.entity_id,
     )
-    chain_rows = await driver.execute_query(
+    chain_rows_task = driver.execute_query(
         "MATCH (e:Entity {id: $entity_id})-[:MENTIONS]->(o:Observation) "
         "MATCH (o)-[r:PREVIOUS_OBSERVATION]->(previous:Observation) "
         "RETURN count(DISTINCT r) AS previous_link_count",
         entity_id=plan.entity_id,
     )
+    rows, repeat_rows, chain_rows = await asyncio.gather(
+        rows_task,
+        repeat_rows_task,
+        chain_rows_task,
+    )
     row = rows[0] if rows else {}
     sample_paths = [
         path for path in row.get("sample_paths", [])
         if path.get("title") and path.get("date")
+    ]
+    registry_relations = [
+        relation for relation in row.get("registry_relations", [])
+        if relation.get("entity_id") and relation.get("relation")
     ]
     content_count = row.get("content_count", 0)
     repeat_row = repeat_rows[0] if repeat_rows else {}
@@ -65,6 +80,7 @@ async def build_graph_reasoning_evidence(driver, plan: GraphQuestionPlan) -> dic
         "repeated_observation_count": repeat_row.get("repeated_observation_count", 0),
         "previous_link_count": chain_row.get("previous_link_count", 0),
         "sample_paths": sample_paths,
+        "registry_relations": registry_relations,
         "required_paths": plan.required_paths,
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
@@ -84,7 +100,7 @@ async def build_entity_relation_evidence(
         "left_entity_id": left_plan.entity_id,
         "right_entity_id": right_plan.entity_id,
     }
-    observation_rows = await driver.execute_query(
+    observation_rows_task = driver.execute_query(
         "MATCH (left:Entity {id: $left_entity_id})-[:MENTIONS]->(o:Observation) "
         "MATCH (right:Entity {id: $right_entity_id})-[:MENTIONS]->(o) "
         "OPTIONAL MATCH (o)-[:OBSERVES]->(c:Content) "
@@ -93,18 +109,23 @@ async def build_entity_relation_evidence(
         "content_id: coalesce(c.id, o.contentId)})[0..8] AS sample_shared_observations",
         **params,
     )
-    content_rows = await driver.execute_query(
+    content_rows_task = driver.execute_query(
         "MATCH (left:Entity {id: $left_entity_id})-[:MENTIONS]->(lo:Observation)-[:OBSERVES]->(c:Content) "
         "MATCH (right:Entity {id: $right_entity_id})-[:MENTIONS]->(ro:Observation)-[:OBSERVES]->(c) "
         "RETURN count(DISTINCT c) AS shared_content_count",
         **params,
     )
-    category_rows = await driver.execute_query(
+    category_rows_task = driver.execute_query(
         "MATCH (left:Entity {id: $left_entity_id})-[:MENTIONS]->(lo:Observation)-[:ABOUT]->(cat:Category) "
         "MATCH (right:Entity {id: $right_entity_id})-[:MENTIONS]->(ro:Observation)-[:ABOUT]->(cat) "
         "RETURN count(DISTINCT cat) AS shared_category_count, "
         "collect(DISTINCT cat.name)[0..8] AS shared_categories",
         **params,
+    )
+    observation_rows, content_rows, category_rows = await asyncio.gather(
+        observation_rows_task,
+        content_rows_task,
+        category_rows_task,
     )
     observation_row = observation_rows[0] if observation_rows else {}
     content_row = content_rows[0] if content_rows else {}
@@ -183,6 +204,10 @@ def format_graph_reasoning_summary(evidence: dict) -> str:
             f"{path.get('title', '')} / {path.get('date', '')} / {path.get('source') or 'unknown source'}"
         )
     examples_text = "；".join(examples) if examples else "暂无样例路径"
+    registry_text = "；".join(
+        f"{item.get('relation')} → {item.get('entity')}（权重 {item.get('weight')}）"
+        for item in evidence.get("registry_relations", [])[:5]
+    ) or "无"
     return (
         f"{evidence.get('entity_label', evidence.get('entity_id', ''))} 在图谱中关联 "
         f"{evidence.get('content_count', 0)} 个稳定内容、"
@@ -193,7 +218,7 @@ def format_graph_reasoning_summary(evidence: dict) -> str:
         f"在带有该实体标记的观察中，{evidence.get('repeated_content_count', 0)} 个内容跨日重复出现，"
         f"涉及 {evidence.get('repeated_observation_count', 0)} 条观察和 "
         f"{evidence.get('previous_link_count', 0)} 条相邻时间链。"
-        f"样例路径：{examples_text}。"
+        f"样例路径：{examples_text}。注册表主体关系：{registry_text}。"
     )
 
 

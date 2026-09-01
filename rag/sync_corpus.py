@@ -444,6 +444,9 @@ def sync_corpus(
         if not manifest_target.exists() or manifest_target.read_bytes() != manifest_content:
             write_bytes_atomic(manifest_target, manifest_content)
             changed_files.append("manifest.json")
+        runtime_manifest_target = os.getenv("RAG_RUNTIME_CORPUS_MANIFEST", "").strip()
+        if runtime_manifest_target:
+            write_bytes_atomic(Path(runtime_manifest_target), manifest_content)
 
         from rag.corpus_contract import CONTRACT_FILENAME, write_corpus_contract
 

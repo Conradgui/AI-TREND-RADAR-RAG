@@ -5,17 +5,20 @@ from __future__ import annotations
 import unittest
 
 from rag.retrieval_gateway import EvidenceRetrievalGateway, ResearchRequest
+from rag.query_route_resolver import QueryRouteResolver
 from rag.retriever.hybrid import ChannelOutcome, HybridSearchOutcome, RetrievedChunk
 
 
 class _EvidenceAdapter:
     def __init__(self):
         self.where = None
+        self.graph_requirement = None
 
     async def search_with_status(
         self, query, k=5, where=None, graph_requirement="optional"
     ):
         self.where = where
+        self.graph_requirement = graph_requirement
         chunk = RetrievedChunk(
             text="星河模型官方发布说明。",
             source="vector",
@@ -154,6 +157,16 @@ def _contract_for_route(family: str, answer_mode: str) -> dict:
 
 
 class RouteContractRetrievalShadowTests(unittest.IsolatedAsyncioTestCase):
+    async def test_recent_subject_contract_preserves_relative_window_for_retrieval(self):
+        resolver = QueryRouteResolver()
+        envelope, _ = await resolver("最近 Claude 有什么新趋势？", {})
+
+        self.assertEqual(envelope["status"], "resolved")
+        contract = envelope["contract"]
+        self.assertEqual(contract["primary_task_family"], "trend_discovery")
+        self.assertEqual(contract["temporal_constraint"]["mode"], "relative_window")
+        self.assertEqual(contract["temporal_constraint"]["value"], "14")
+
     async def test_route_contract_owns_task_family_without_legacy_reclassification(self):
         gateway = EvidenceRetrievalGateway(retriever=_EvidenceAdapter())
 
@@ -166,6 +179,8 @@ class RouteContractRetrievalShadowTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(bundle.task_family, "claim_verification")
         self.assertEqual(bundle.trace["route_source"], "route_contract_v2")
         self.assertTrue(bundle.trace["shadow"])
+        self.assertEqual(gateway.retriever.graph_requirement, "disabled")
+        self.assertEqual(bundle.trace["execution_policy"]["graph_mode"], "disabled")
 
     async def test_legacy_absolute_range_requires_reunderstanding_before_retrieval(self):
         gateway = EvidenceRetrievalGateway(retriever=_EvidenceAdapter())

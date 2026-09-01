@@ -10,10 +10,10 @@ from rag.chat_stream import encode_stream_event, iter_chat_events
 @pytest.mark.asyncio
 async def test_stream_emits_progress_then_validated_answer_citations_and_done():
     async def build_response(progress_callback):
-        await progress_callback("understanding", {"task_mode": "general"})
-        await progress_callback("retrieving", {"top_k": 10})
+        await progress_callback("route_ready", {"task_family": "evidence_research"})
+        await progress_callback("retrieval_ready", {"top_k": 10})
         await progress_callback("evidence_ready", {"admitted_count": 3})
-        await progress_callback("generating", {"execution_path": "direct_composer"})
+        await progress_callback("generation_started", {"execution_path": "direct_composer"})
         return {
             "answer": "第一段答案。[E1]\n\n第二段答案。[E2]",
             "display_answer": "第一段答案。[I1]\n\n第二段答案。[W1 🌐]",
@@ -34,10 +34,10 @@ async def test_stream_emits_progress_then_validated_answer_citations_and_done():
 
     assert [event["event"] for event in events] == [
         "accepted",
-        "understanding",
-        "retrieving",
+        "route_ready",
+        "retrieval_ready",
         "evidence_ready",
-        "generating",
+        "generation_started",
         "source_groups",
         "answer_chunk",
         "answer_chunk",
@@ -58,19 +58,28 @@ async def test_stream_emits_progress_then_validated_answer_citations_and_done():
 @pytest.mark.asyncio
 async def test_stream_reports_timeout_and_cancels_unfinished_work():
     cancelled = asyncio.Event()
+    timeout_recorded = asyncio.Event()
 
     async def build_response(progress_callback):
-        await progress_callback("understanding", {"task_mode": "general"})
+        await progress_callback("route_ready", {"task_family": "evidence_research"})
         try:
             await asyncio.sleep(10)
         finally:
             cancelled.set()
 
-    events = [event async for event in iter_chat_events(build_response, timeout_seconds=0.01)]
+    async def on_timeout():
+        timeout_recorded.set()
 
-    assert [event["event"] for event in events] == ["accepted", "understanding", "error"]
+    events = [event async for event in iter_chat_events(
+        build_response,
+        timeout_seconds=0.01,
+        on_timeout=on_timeout,
+    )]
+
+    assert [event["event"] for event in events] == ["accepted", "route_ready", "error"]
     assert events[-1]["data"]["code"] == "request_timeout"
     assert cancelled.is_set()
+    assert timeout_recorded.is_set()
 
 
 def test_stream_event_encoding_is_one_json_object_per_line():

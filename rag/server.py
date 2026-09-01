@@ -39,11 +39,15 @@ from rag.config import (
     DEEPSEEK_MODEL,
     get_configured_search_providers,
     get_search_provider_api_keys,
+    get_corpus_recheck_days,
+    get_corpus_update_interval_seconds,
+    get_upstream_corpus_url,
     is_deep_fetch_enabled,
     is_startup_corpus_update_enabled,
 )
 from rag.graphrag.driver import Neo4jDriver
 from rag.graphrag.schema import init_schema
+from rag.graph_readiness import GraphReadinessProbe
 from rag.retriever.vector_store import VectorStore
 from rag.retriever.lexical_store import LexicalStore
 from rag.retriever.hybrid import HybridRetriever
@@ -54,11 +58,18 @@ from rag.ordered_frame_client_v3 import (
     OrderedFrameClientV3,
     understand_ordered_query_v3,
 )
+from rag.query_route_resolver import QueryRouteResolver
+from rag.entity_relation_memory import EntityRelationMemory
+from rag.entity_registry_projection import (
+    project_entity_registry,
+    project_entity_relation_memory,
+)
+from rag.route_runtime_budget import GLOBAL_CHAT_TIMEOUT_SECONDS
 from rag.agent.agent import create_agent
 from rag.agent.llm import create_direct_llm_agent
 from rag.chat_service import build_chat_response
 from rag.chat_stream import encode_stream_event, iter_chat_events
-from rag.corpus_update import load_update_state, summarize_update_state
+from rag.corpus_update import load_update_state, summarize_update_state, update_corpus
 from rag.runtime_tools import select_external_deep_fetcher
 from rag.runtime_settings import load_runtime_settings, save_runtime_setting
 from rag.search_provider_adapters import SearchProviderRegistry
@@ -80,12 +91,48 @@ APP_VERSION = "0.2.0"
 # 滑动窗口速率限制器 — 按客户端 IP 限制 /chat 端点请求频率
 RATE_LIMIT_MAX_REQUESTS = 10      # 窗口内最大请求数
 RATE_LIMIT_WINDOW_SECONDS = 60    # 滑动窗口时长（秒）
-# Must remain above the longest Agent path so the UI receives the more useful
-# Agent-level timeout diagnosis instead of a generic HTTP 504.
-CHAT_REQUEST_TIMEOUT_SECONDS = 195
+# Final safety net. Route-specific generation and retrieval budgets fail first.
+CHAT_REQUEST_TIMEOUT_SECONDS = GLOBAL_CHAT_TIMEOUT_SECONDS
 RAG_CONFIG_LOCK = asyncio.Lock()
 CORPUS_UPDATE_LOCK = asyncio.Lock()
 INDEX_MAINTENANCE_LOCK = asyncio.Lock()
+
+
+async def _run_corpus_update_once():
+    """Run one managed update through the single in-process writer path."""
+    async with CORPUS_UPDATE_LOCK:
+        return await update_corpus(
+            base_url=get_upstream_corpus_url(),
+            days=get_corpus_recheck_days(),
+            ingester=_rebuild_runtime_index,
+        )
+
+
+async def _refresh_corpus_in_process() -> None:
+    """Poll the public corpus without creating a second Python runtime.
+
+    The first pass runs immediately after the server has exposed its local
+    runtime. Later passes are deliberately periodic rather than per-request:
+    corpus maintenance must never sit on the chat critical path.
+    """
+    interval_seconds = get_corpus_update_interval_seconds()
+    while True:
+        try:
+            result = await _run_corpus_update_once()
+            logger.info(
+                "Managed corpus update finished: status=%s changed=%d ingested=%d",
+                result.status,
+                len(getattr(result, "changed_dates", []) or []),
+                len(getattr(result, "ingested_dates", []) or []),
+            )
+        except asyncio.CancelledError:
+            raise
+        except Exception as exc:
+            logger.error(
+                "Managed corpus update failed; keeping last-known-good runtime: %s",
+                exc,
+            )
+        await asyncio.sleep(interval_seconds)
 
 
 class RateLimitMiddleware:
@@ -196,6 +243,8 @@ class RagState:
     lexical_store: LexicalStore | None = None
     retrieval_gateway: EvidenceRetrievalGateway | None = None
     query_contract_resolver: object | None = None
+    entity_relation_memory: EntityRelationMemory | None = None
+    graph_readiness_probe: GraphReadinessProbe | None = None
     generation_id: str = "legacy"
     latest_corpus_date: str | None = None
     retriever_mode: str = "vector-only"
@@ -229,31 +278,37 @@ def _build_retrieval_gateway(retriever: object | None, lexical_store: LexicalSto
         retriever,
         structured_store=lexical_store,
         graph_driver=graph_driver,
+        graph_readiness_probe=GraphReadinessProbe(graph_driver) if graph_driver else None,
     )
 
 
-def _build_query_contract_resolver():
-    """Build one request-safe v3.5 resolver for the configured DeepSeek runtime."""
-    if LLM_PROVIDER != "deepseek" or not DEEPSEEK_API_KEY:
-        return None
-    extractor = OrderedFrameClientV3(
-        DeepSeekOrderedFrameModelV3(
-            api_key=DEEPSEEK_API_KEY,
-            base_url=DEEPSEEK_BASE_URL,
-            model=DEEPSEEK_MODEL,
+def _build_query_contract_resolver(entity_relation_memory=None):
+    """Build deterministic-first routing with one optional semantic fallback."""
+    semantic_fallback = None
+    if LLM_PROVIDER == "deepseek" and DEEPSEEK_API_KEY:
+        extractor = OrderedFrameClientV3(
+            DeepSeekOrderedFrameModelV3(
+                api_key=DEEPSEEK_API_KEY,
+                base_url=DEEPSEEK_BASE_URL,
+                model=DEEPSEEK_MODEL,
+            )
         )
+
+        async def resolve_with_model(message: str, context: dict) -> tuple[dict, dict]:
+            public_context = json.dumps(context or {}, ensure_ascii=False, sort_keys=True)
+            return await asyncio.to_thread(
+                understand_ordered_query_v3,
+                message,
+                extractor,
+                public_context,
+            )
+
+        semantic_fallback = resolve_with_model
+
+    return QueryRouteResolver(
+        semantic_fallback,
+        entity_relation_memory=entity_relation_memory,
     )
-
-    async def resolve(message: str, context: dict) -> tuple[dict, dict]:
-        public_context = json.dumps(context or {}, ensure_ascii=False, sort_keys=True)
-        return await asyncio.to_thread(
-            understand_ordered_query_v3,
-            message,
-            extractor,
-            public_context,
-        )
-
-    return resolve
 
 
 class ChatRequest(BaseModel):
@@ -323,6 +378,24 @@ def _corpus_revision() -> str:
     return str(contract.get("corpus_revision") or "unversioned")
 
 
+def _record_transport_timeout(message: str, started_at: float) -> None:
+    """Record requests cancelled by the outer HTTP/stream safety net."""
+    from rag.metrics import metrics_collector
+
+    metrics_collector.record_chat_request(
+        query_length=len(message),
+        citation_count=0,
+        internal_citation_count=0,
+        external_citation_count=0,
+        tool_calls_count=0,
+        web_search_count=0,
+        deep_fetch_count=0,
+        has_results=False,
+        response_time_ms=(time.perf_counter() - started_at) * 1000,
+        agent_timeout=True,
+    )
+
+
 def _latest_generation_date(generation_path: Path | None) -> str | None:
     """Return the date owned by the active index generation, not a stale UI manifest."""
     if generation_path is None:
@@ -356,8 +429,18 @@ async def _rebuild_runtime_index_unlocked(dates: list[str] | None = None) -> tup
 
     coordinator: IndexBuildCoordinator = app.state.index_coordinator
     selected_dates = select_ingestion_dates(dates)
-    generation_id = datetime.now(timezone.utc).strftime("gen-%Y%m%dT%H%M%S") + f"-{uuid.uuid4().hex[:8]}"
     old_state = await _get_rag_state()
+    if old_state.neo4j_driver is None:
+        # Do not publish a vector-only generation from an automatic update. The
+        # graph and vector stores are one product contract; wait for reconnect
+        # and keep the last-known-good runtime serving the UI.
+        return 0, {
+            "is_consistent": False,
+            "status": "unavailable",
+            "error_code": "graph_unavailable",
+            "generation_id": old_state.generation_id,
+        }
+    generation_id = datetime.now(timezone.utc).strftime("gen-%Y%m%dT%H%M%S") + f"-{uuid.uuid4().hex[:8]}"
 
     async def build(staging_path: Path) -> VectorBuildResult:
         def build_sync() -> VectorBuildResult:
@@ -442,25 +525,18 @@ async def _rebuild_runtime_index_unlocked(dates: list[str] | None = None) -> tup
         app.state.rag = dataclasses.replace(current, index_status="graph_drain_timeout")
         raise RuntimeError("old Hybrid runtime did not drain before graph maintenance") from exc
 
-    if old_state.vector_store is not (await _get_rag_state()).vector_store:
-        old_state.vector_store.close()
-    if old_state.lexical_store and old_state.lexical_store is not (await _get_rag_state()).lexical_store:
-        old_state.lexical_store.close()
-
     current = await _get_rag_state()
-    if current.neo4j_driver is None:
-        return len(selected_dates), {
-            "is_consistent": False,
-            "status": "unavailable",
-            "error_code": "graph_unavailable",
-            "generation_id": published.manifest["generation_id"],
-        }
 
     try:
         graph_dates = await ingest_graph_dates(current.neo4j_driver, selected_dates)
         report = await post_ingestion_verify(current.neo4j_driver, current.vector_store, graph_dates)
         if not report.is_consistent:
-            app.state.rag = dataclasses.replace(current, index_status="graph_inconsistent")
+            if current.vector_store is not old_state.vector_store:
+                current.vector_store.close()
+            if current.lexical_store and current.lexical_store is not old_state.lexical_store:
+                current.lexical_store.close()
+            app.state.generation_store.restore_active(old_state.generation_id)
+            app.state.rag = dataclasses.replace(old_state, index_status="graph_inconsistent")
             return len(graph_dates), report.to_dict()
         retriever, agent = _build_retrieval_runtime(
             current.vector_store,
@@ -469,7 +545,7 @@ async def _rebuild_runtime_index_unlocked(dates: list[str] | None = None) -> tup
             "hybrid",
             current.lexical_store,
         )
-        app.state.rag = dataclasses.replace(
+        updated_state = dataclasses.replace(
             current,
             chat_retriever=retriever,
             retrieval_gateway=_build_retrieval_gateway(retriever, current.lexical_store),
@@ -477,10 +553,20 @@ async def _rebuild_runtime_index_unlocked(dates: list[str] | None = None) -> tup
             retriever_mode="hybrid",
             index_status="ready",
         )
+        app.state.rag = updated_state
+        if old_state.vector_store is not updated_state.vector_store:
+            old_state.vector_store.close()
+        if old_state.lexical_store and old_state.lexical_store is not updated_state.lexical_store:
+            old_state.lexical_store.close()
         return len(graph_dates), report.to_dict()
     except Exception:
         current = await _get_rag_state()
-        app.state.rag = dataclasses.replace(current, index_status="graph_update_failed")
+        if current.vector_store is not old_state.vector_store:
+            current.vector_store.close()
+        if current.lexical_store and current.lexical_store is not old_state.lexical_store:
+            current.lexical_store.close()
+        app.state.generation_store.restore_active(old_state.generation_id)
+        app.state.rag = dataclasses.replace(old_state, index_status="graph_update_failed")
         raise
 
 
@@ -545,17 +631,56 @@ async def _build_shadow_index() -> dict:
             raise
 
 
+async def _connect_and_verify_graph(
+    driver,
+    *,
+    attempts: int = 2,
+    retry_delay_seconds: float = 0.5,
+) -> GraphReadinessProbe:
+    """Verify an existing graph first; provision schema only when it is absent."""
+    last_error: Exception | None = None
+    for attempt in range(max(1, attempts)):
+        try:
+            await driver.connect()
+            probe = GraphReadinessProbe(driver)
+            readiness = await probe.probe("startup", force=True)
+            if readiness.error_code == "graph_indexes_not_ready":
+                # First installation needs schema provisioning. Healthy existing
+                # databases skip all DDL, which keeps ordinary restarts fast.
+                await init_schema(driver)
+                probe = GraphReadinessProbe(driver)
+                readiness = await probe.probe("startup", force=True)
+            if readiness.status != "ready":
+                raise RuntimeError(readiness.error_code or "graph_startup_not_ready")
+            return probe
+        except Exception as exc:
+            last_error = exc
+            await driver.close()
+            if attempt + 1 < max(1, attempts):
+                await asyncio.sleep(max(0.0, retry_delay_seconds))
+    raise last_error or RuntimeError("graph_startup_not_ready")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting AI Topic Radar RAG server v%s", APP_VERSION)
 
-    # Upstream Pages may still publish the legacy topics/excerpts index. Rebuild
-    # this project's atomic item projection before the UI starts serving it.
+    # Reuse a valid atomic projection during ordinary restarts. Ingestion remains
+    # responsible for rebuilding it when new corpus data arrives.
     from rag.ingest import load_search_documents
-    await asyncio.to_thread(load_search_documents)
+    await asyncio.to_thread(load_search_documents, rebuild=False)
 
     generation_store = IndexGenerationStore(INDEX_GENERATIONS_DIR)
-    active_generation = generation_store.resolve_active()
+    # Evaluation can pin a disposable process to a historical verified index
+    # without changing the active pointer used by the user-facing service.
+    generation_override = os.getenv("RAG_INDEX_GENERATION_OVERRIDE", "").strip()
+    active_generation = (
+        generation_store.resolve_verified(generation_override)
+        if generation_override
+        else generation_store.resolve_active()
+    )
+    if generation_override and active_generation is None:
+        raise RuntimeError("requested_index_generation_not_verified")
     vector_path = str(active_generation or Path(CHROMA_DIR))
     generation_id = active_generation.name if active_generation else "legacy"
     latest_corpus_date = _latest_generation_date(active_generation)
@@ -574,19 +699,25 @@ async def lifespan(app: FastAPI):
     external_deep_fetcher = select_external_deep_fetcher(runtime_settings["deep_fetch_enabled"])
 
     neo4j_driver = None
+    graph_readiness_probe = None
     chat_retriever = None
     agent = None
     answer_composer = None
+    entity_relation_memory = EntityRelationMemory()
 
     if is_configured():
         neo4j_driver = Neo4jDriver(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
         try:
-            await neo4j_driver.connect()
-            await init_schema(neo4j_driver)
-            logger.info("Neo4j connected successfully")
+            graph_readiness_probe = await _connect_and_verify_graph(neo4j_driver)
+            await project_entity_registry(neo4j_driver)
+            await project_entity_relation_memory(neo4j_driver, entity_relation_memory)
+            logger.info("Neo4j connected and actively verified")
         except Exception as e:
             logger.error("Neo4j connection failed: %s", e)
+            if neo4j_driver:
+                await neo4j_driver.close()
             neo4j_driver = None
+            graph_readiness_probe = None
 
         try:
             answer_composer = create_direct_llm_agent()
@@ -612,7 +743,7 @@ async def lifespan(app: FastAPI):
             logger.error("Agent creation failed: %s", e)
 
     retrieval_gateway = _build_retrieval_gateway(chat_retriever, lexical_store)
-    query_contract_resolver = _build_query_contract_resolver()
+    query_contract_resolver = _build_query_contract_resolver(entity_relation_memory)
 
     # 原子设置 RagState，后续通过 dataclasses.replace() 更新
     app.state.rag = RagState(
@@ -626,26 +757,18 @@ async def lifespan(app: FastAPI):
         lexical_store=lexical_store,
         retrieval_gateway=retrieval_gateway,
         query_contract_resolver=query_contract_resolver,
+        entity_relation_memory=entity_relation_memory,
+        graph_readiness_probe=graph_readiness_probe,
         generation_id=generation_id,
         latest_corpus_date=latest_corpus_date,
         retriever_mode="hybrid" if neo4j_driver else "vector-only",
     )
 
-    async def refresh_corpus_in_process() -> None:
-        from rag.corpus_update import update_corpus
-
-        try:
-            async with CORPUS_UPDATE_LOCK:
-                result = await update_corpus(
-                    days=int(os.getenv("RAG_CORPUS_RECHECK_DAYS", "30")),
-                    ingester=_rebuild_runtime_index,
-                )
-            logger.info("Startup corpus update finished with status=%s", result.status)
-        except Exception as exc:
-            logger.error("Startup corpus update failed; keeping last-known-good runtime: %s", exc)
-
-    if is_startup_corpus_update_enabled():
-        app.state.corpus_update_task = asyncio.create_task(refresh_corpus_in_process())
+    if is_startup_corpus_update_enabled() and not generation_override:
+        app.state.corpus_update_task = asyncio.create_task(_refresh_corpus_in_process())
+    elif generation_override:
+        app.state.corpus_update_task = None
+        logger.info("Corpus auto-update is disabled while an index generation override is pinned")
     else:
         app.state.corpus_update_task = None
         logger.info("Startup corpus update is disabled; serving the frozen active index")
@@ -702,10 +825,26 @@ async def chat_ui():
 @app.get("/health")
 async def health(rag: RagState = Depends(_get_rag_state)):
     """Cheap readiness probe; deep consistency lives at /health/consistency."""
+    graph_readiness = None
+    has_graph_probe_field = hasattr(rag, "graph_readiness_probe")
+    graph_probe = getattr(rag, "graph_readiness_probe", None)
+    if graph_probe is not None:
+        graph_readiness = await graph_probe.probe("runtime")
+    graph_ready = bool(graph_readiness and graph_readiness.status == "ready")
+    if not has_graph_probe_field:
+        graph_ready = getattr(rag, "neo4j_driver", None) is not None
     result = {
-        "status": "ok",
+        "status": "ok" if graph_ready or rag.neo4j_driver is None else "degraded",
         "configured": is_configured(),
-        "neo4j_connected": rag.neo4j_driver is not None,
+        "neo4j_connected": graph_ready,
+        "graph_readiness": (
+            dataclasses.asdict(graph_readiness)
+            if graph_readiness is not None
+            else {
+                "status": "unavailable",
+                "error_code": "graph_driver_unavailable",
+            }
+        ),
         "chromadb_chunks": rag.vector_store.count() if rag.vector_store else 0,
         "provider": LLM_PROVIDER,
         "retriever_mode": rag.retriever_mode,
@@ -749,6 +888,15 @@ async def health_consistency(rag: RagState = Depends(_get_rag_state)):
 @app.get("/dashboard/status")
 async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
     """返回仪表盘完整的系统状态"""
+    graph_readiness = None
+    has_graph_probe_field = hasattr(rag, "graph_readiness_probe")
+    graph_probe = getattr(rag, "graph_readiness_probe", None)
+    if graph_probe is not None:
+        graph_readiness = await graph_probe.probe("runtime")
+    graph_ready = bool(graph_readiness and graph_readiness.status == "ready")
+    if not has_graph_probe_field:
+        graph_ready = getattr(rag, "neo4j_driver", None) is not None
+
     # 获取搜索provider信息
     search_providers = sorted(get_configured_search_providers())
 
@@ -776,7 +924,15 @@ async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
         "service": "ai-trend-radar-rag",
         "configured": is_configured(),
         "provider": LLM_PROVIDER,
-        "neo4j_connected": rag.neo4j_driver is not None,
+        "neo4j_connected": graph_ready,
+        "graph_readiness": (
+            dataclasses.asdict(graph_readiness)
+            if graph_readiness is not None
+            else {
+                "status": "unavailable",
+                "error_code": "graph_driver_unavailable",
+            }
+        ),
         "chromadb_chunks": rag.vector_store.count() if rag.vector_store else 0,
         "retriever_mode": rag.retriever_mode,
         "index_generation": rag.generation_id,
@@ -786,6 +942,9 @@ async def dashboard_status(rag: RagState = Depends(_get_rag_state)):
         "search_api_keys_masked": masked_keys,
         "latest_corpus_date": latest_corpus_date,
         "corpus_mode": corpus_mode,
+        "corpus_auto_update_enabled": is_startup_corpus_update_enabled(),
+        "corpus_update_interval_seconds": get_corpus_update_interval_seconds(),
+        "corpus_source_url": get_upstream_corpus_url(),
         "corpus_update": corpus_update,
         "service_version": APP_VERSION,
         "web_search_enabled": rag.external_search_registry is not None and len(search_providers) > 0,
@@ -807,6 +966,10 @@ async def reconnect_databases(api_key: str = Depends(verify_api_key)):
         candidate = Neo4jDriver(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
         try:
             await candidate.connect()
+            candidate_probe = GraphReadinessProbe(candidate)
+            readiness = await candidate_probe.probe("startup", force=True)
+            if readiness.status != "ready":
+                raise RuntimeError(readiness.error_code or "graph_startup_not_ready")
             retriever, agent = _build_retrieval_runtime(
                 current.vector_store,
                 candidate,
@@ -822,6 +985,7 @@ async def reconnect_databases(api_key: str = Depends(verify_api_key)):
                 retrieval_gateway=_build_retrieval_gateway(retriever, current.lexical_store),
                 retriever_mode="hybrid",
                 index_status="ready",
+                graph_readiness_probe=candidate_probe,
             )
             app.state.rag = updated
         except Exception as exc:
@@ -1103,6 +1267,7 @@ async def chat(
             detail="Agent not initialized. Check Neo4j connection and API key configuration.",
         )
 
+    request_started_at = time.perf_counter()
     try:
         async with _runtime_leases().lease(rag.generation_id, rag.retriever_mode):
             # 总超时（195s）高于最长 180 秒 Agent 预算，确保内部阶段先给出可诊断反馈。
@@ -1119,6 +1284,7 @@ async def chat(
                     answer_composer=rag.answer_composer,
                     retrieval_gateway=rag.retrieval_gateway,
                     query_contract_resolver=rag.query_contract_resolver,
+                    entity_relation_memory=rag.entity_relation_memory,
                     latest_corpus_date=rag.latest_corpus_date,
                 ),
                 timeout=CHAT_REQUEST_TIMEOUT_SECONDS,
@@ -1126,6 +1292,7 @@ async def chat(
         return ChatResponse(**response)
     except asyncio.TimeoutError:
         logger.error("Chat request timed out after %ds", CHAT_REQUEST_TIMEOUT_SECONDS)
+        _record_transport_timeout(req.message, request_started_at)
         raise HTTPException(
             status_code=504,
             detail="Request timed out. Please simplify your question or try again later.",
@@ -1162,15 +1329,22 @@ async def chat_stream(
             answer_composer=rag.answer_composer,
             retrieval_gateway=rag.retrieval_gateway,
             query_contract_resolver=rag.query_contract_resolver,
+            entity_relation_memory=rag.entity_relation_memory,
             latest_corpus_date=rag.latest_corpus_date,
             progress_callback=progress_callback,
         )
 
     async def body():
+        request_started_at = time.perf_counter()
+
+        async def record_timeout():
+            _record_transport_timeout(req.message, request_started_at)
+
         async with _runtime_leases().lease(rag.generation_id, rag.retriever_mode):
             async for event in iter_chat_events(
                 build,
                 timeout_seconds=CHAT_REQUEST_TIMEOUT_SECONDS,
+                on_timeout=record_timeout,
             ):
                 yield encode_stream_event(event)
 
@@ -1225,12 +1399,10 @@ async def trigger_corpus_update(
     api_key: str = Depends(verify_api_key),
 ):
     """Synchronize corpus and publish it through the single-writer path."""
-    from rag.corpus_update import DEFAULT_BASE_URL, update_corpus
-
     try:
         async with CORPUS_UPDATE_LOCK:
             result = await update_corpus(
-                base_url=request.base_url or DEFAULT_BASE_URL,
+                base_url=request.base_url or get_upstream_corpus_url(),
                 days=request.days,
                 dry_run=request.dry_run,
                 ingester=_rebuild_runtime_index,

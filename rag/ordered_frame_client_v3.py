@@ -46,6 +46,8 @@ claim_spans contains every factual proposition or explicit hypothesis that the u
 subject_spans contains the exact named entities, products, records, or events that are objects of the requested task. An earlier subject in the same QUERY may be a later pronoun's antecedent. source_spans contains only exact publisher or organization names explicitly requested as evidence sources, such as the organization in “X 官方材料”. A source-only phrase is not a subject or a pronoun antecedent. Do not duplicate subject_spans, source_spans, claim_spans, or web_evidence_spans in protected_spans unless the same literal independently carries an additional content-changing constraint.
 
 Every evidence or protected span must be copied exactly from QUERY. PUBLIC_CONTEXT is background only. Never output a standalone rewrite, route policy, prompt ID, retrieval plan, budget, answer, or invented ATR ID.
+
+retrieval_hints is optional and retrieval-only. Use it only when a user names an abstract capability or concept whose common corpus wording may differ across languages. Emit at most six short neutral search phrases; for each abstract capability, include its direct translation and, when useful, a conservative implementation synonym used in technical artifacts. For example, “跨会话上下文” may use “persistent context across sessions” or “session memory”; “代码库知识” may use “codebase context” or “codebase knowledge graph”. Do not invent a product, organization, ATR ID, event, factual claim, or answer. Do not place named subjects in retrieval_hints.
 """
 
 _ATR_ID = re.compile(r"ATR-\d{8}-[A-Z0-9]{6}", re.IGNORECASE)
@@ -101,6 +103,7 @@ def sanitize_model_frame_v3(
     frame = deepcopy(value)
     for field in ("claim_spans", "subject_spans", "source_spans"):
         frame.setdefault(field, [])
+    frame["retrieval_hints"] = _sanitize_retrieval_hints(frame.get("retrieval_hints"))
     normalized_locators = []
     observable_locator = (
         "atr_id" if _ATR_ID.search(query)
@@ -167,7 +170,24 @@ def sanitize_model_frame_v3(
         "dropped_cross_field_protected_spans": cross_field,
         "normalized_observable_locators": normalized_locators,
         "normalized_web_permission": normalized_permission,
+        "retrieval_hint_count": len(frame["retrieval_hints"]),
     }
+
+
+def _sanitize_retrieval_hints(value: object) -> list[str]:
+    """Keep untrusted model paraphrases bounded and evidence-neutral."""
+    if not isinstance(value, list):
+        return []
+    hints: list[str] = []
+    for raw in value:
+        hint = " ".join(str(raw or "").split())
+        if len(hint) < 2 or len(hint) > 160 or _ATR_ID.search(hint):
+            continue
+        if hint not in hints:
+            hints.append(hint)
+        if len(hints) == 6:
+            break
+    return hints
 
 
 def _first_literal(query: str, candidates: tuple[str, ...]) -> str | None:
@@ -259,7 +279,7 @@ def build_strict_tool_v3() -> dict:
     parameters["properties"]["deliveries"]["items"] = {
         "anyOf": _provider_delivery_variants()
     }
-    for field in ("claim_spans", "subject_spans", "source_spans"):
+    for field in ("claim_spans", "subject_spans", "retrieval_hints", "source_spans"):
         if field not in parameters["required"]:
             parameters["required"].append(field)
     return {

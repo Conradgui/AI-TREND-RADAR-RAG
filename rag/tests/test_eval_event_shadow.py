@@ -8,7 +8,7 @@ from rag.eval_event_shadow import evaluate
 
 
 class EventShadowEvaluationTests(unittest.TestCase):
-    def test_event_contract_beats_legacy_view_without_changing_source_ids(self):
+    def test_event_contract_preserves_quality_after_legacy_runtime_backfill(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             source = root / "source.json"
@@ -29,7 +29,10 @@ class EventShadowEvaluationTests(unittest.TestCase):
             result = asyncio.run(evaluate(source, dataset))
 
         versions = {row["version"]: row for row in result["versions"]}
-        self.assertLess(
+        # The production gateway now backfills the event contract for an old
+        # active generation. The legacy view is therefore a compatibility
+        # view, not an intentionally degraded historical baseline.
+        self.assertLessEqual(
             versions["v0_legacy_entity"]["rows"][0]["metrics"]["precision"],
             versions["v2_event_contract"]["rows"][0]["metrics"]["precision"],
         )

@@ -1,5 +1,7 @@
 import unittest
 
+from rag.graph_readiness import GraphReadiness
+from rag.query_understanding_v2 import understand_query_v2
 from rag.retrieval_gateway import EvidenceRetrievalGateway, ResearchRequest
 from rag.retriever.hybrid import RetrievedChunk
 
@@ -40,6 +42,29 @@ class _NonExactStore:
                 "match_type": "lexical",
                 "lexical_score": 1.0,
                 "metadata": {},
+            }
+        ]
+
+
+class _DescriptorNavigationStore:
+    def search(self, query, k=5, where=None):
+        return [
+            {
+                "text": "A uniquely matching project description.",
+                "match_type": "descriptor",
+                "lexical_score": 0.2,
+                "metadata": {
+                    "content_type": "topic_candidate",
+                    "date": "2026-08-21",
+                    "source": "GitHub",
+                    "title": "Graphify-Labs/graphify",
+                    "citation_id": "occ-graphify",
+                    "occurrence_id": "occ-graphify",
+                    "content_id": "content-graphify",
+                    "local_url": "#2026-08-21/ai-topic-radar/item/occ-graphify",
+                    "url": "https://example.com/graphify",
+                    "evidence": "A uniquely matching project description.",
+                },
             }
         ]
 
@@ -105,6 +130,40 @@ class _TaskAwareRetriever:
         )
 
 
+class _QueryRecordingRetriever(_TaskAwareRetriever):
+    async def search_with_status(self, query, **kwargs):
+        self.query = query
+        self.where = kwargs.get("where")
+        return await super().search_with_status(query, **kwargs)
+
+
+class _TimelineEventStore:
+    """Local lexical hit that hybrid fusion must not discard for a direct timeline."""
+
+    def search(self, _query, k=5, where=None):
+        self.k = k
+        self.where = where
+        return [{
+            "text": "OpenAI says it will be a public company in 2027 or sooner.",
+            "match_type": "entity_event",
+            "lexical_score": 0.25,
+            "metadata": {
+                "content_type": "topic_candidate",
+                "date": "2026-08-19",
+                "effective_date": "2026-08-19",
+                "source": "Hacker News",
+                "title": "OpenAI 'will be a public company in 2027' or sooner",
+                "citation_id": "ATR-20260820-6EFF79",
+                "occurrence_id": "ATR-20260820-6EFF79",
+                "content_id": "openai-public-company-2027",
+                "local_url": "#2026-08-20/ai-topic-radar/item/ATR-20260820-6EFF79",
+                "url": "https://example.com/openai-public-company",
+                "evidence": "OpenAI says it will be a public company in 2027 or sooner.",
+                "entity_ids": ["openai"],
+            },
+        }][:k]
+
+
 class _GraphDriver:
     async def execute_query(self, cypher, **params):
         if "repeated_content_count" in cypher:
@@ -131,6 +190,42 @@ class _GraphDriver:
 class _BrokenGraphDriver:
     async def execute_query(self, *_args, **_kwargs):
         raise RuntimeError("neo4j unavailable")
+
+
+class _ReadyProbe:
+    def __init__(self):
+        self.calls = 0
+
+    async def probe(self, level="runtime", **_kwargs):
+        self.calls += 1
+        return GraphReadiness(
+            status="ready", level=level, checked_at=1.0, latency_ms=1.0
+        )
+
+
+class _UnavailableProbe:
+    async def probe(self, level="runtime", **_kwargs):
+        return GraphReadiness(
+            status="unavailable",
+            level=level,
+            checked_at=1.0,
+            latency_ms=1.0,
+            error_code="graph_connectivity_failed",
+        )
+
+
+class _CandidateGraphDriver:
+    def __init__(self):
+        self.content_ids = []
+
+    async def execute_query(self, _cypher, **params):
+        self.content_ids = params["content_ids"]
+        return [{
+            "entities": ["OpenAI"],
+            "categories": ["AI Agent", "RAG"],
+            "repeated_content_ids": ["content-openai-agent"],
+            "previous_link_count": 1,
+        }]
 
 
 class _RequiredGraphChannelFailureRetriever(_TaskAwareRetriever):
@@ -246,6 +341,90 @@ class _EventStructuredImportantNewsStore:
         ][:limit]
 
 
+class _LegacyClaudeImportantNewsStore:
+    """Realistic legacy records: entity_ids exist, event-role fields do not."""
+
+    def search(self, *args, **kwargs):
+        return []
+
+    def recent(self, limit=100, where=None):
+        def item(identity, title, summary, source, score=90):
+            return {
+                "text": f"{title}\n{summary}",
+                "match_type": "browse",
+                "metadata": {
+                    "content_type": "topic_candidate",
+                    "date": "2026-08-20",
+                    "effective_date": "2026-08-20",
+                    "publication_date": "2026-08-20",
+                    "publication_date_source": "upstream_declared",
+                    "source": source,
+                    "title": title,
+                    "summary": summary,
+                    "citation_id": identity,
+                    "occurrence_id": identity,
+                    "content_id": identity,
+                    "entity_ids": ["anthropic"],
+                    "local_url": f"#2026-08-20/ai-topic-radar/item/{identity}",
+                    "url": f"https://example.com/{identity}",
+                    "score": score,
+                    "evidence": summary,
+                },
+            }
+
+        return [
+            item(
+                "ANTHROPIC-OFFICIAL",
+                "Anthropic announces a major Claude safety partnership",
+                "Anthropic announces a partnership affecting model deployment across enterprises.",
+                "Anthropic (Claude)",
+                94,
+            ),
+            item(
+                "ANTHROPIC-MEDIA",
+                "Anthropic closes a major funding round",
+                "The funding changes Anthropic's competitive position.",
+                "TechCrunch",
+                92,
+            ),
+            item(
+                "ANTHROPIC-REVENUE-A",
+                "Anthropic annualized revenue tops $65B before IPO",
+                "A report says Anthropic revenue increased before its planned IPO.",
+                "Hacker News",
+                91,
+            ),
+            item(
+                "ANTHROPIC-REVENUE-B",
+                "Anthropic revenue jumps again before IPO",
+                "Another source reports Anthropic revenue growth before the IPO.",
+                "Tech News",
+                89,
+            ),
+            item(
+                "CLAUDE-MEM",
+                "thedotmack/claude-mem",
+                "A third-party memory project that works with Claude Code, Codex and Gemini.",
+                "GitHub Search:rag",
+                99,
+            ),
+            item(
+                "CLAUDE-WATERMARK",
+                "Claude Watermark Remover",
+                "A third-party utility listed on Product Hunt.",
+                "Product Hunt",
+                98,
+            ),
+            item(
+                "CLAUDE-SETTINGS",
+                "How to configure Claude quota settings",
+                "A step-by-step guide to ordinary account configuration.",
+                "Dev.to",
+                97,
+            ),
+        ][:limit]
+
+
 class _EventGroupedImportantNewsStore:
     def search(self, *args, **kwargs):
         return []
@@ -282,7 +461,7 @@ class _EventGroupedImportantNewsStore:
         return [
             item("OFFICIAL", "OpenAI responds to Apple", group="apple-dispute", confidence="high", source="OpenAI", score=98),
             item("MEDIA", "Media covers the Apple dispute", group="apple-dispute", confidence="high", source="News", score=90),
-            item("UNKNOWN-TIME", "OpenAI announces another major event", group="unknown-event", confidence="low", source="OpenAI", score=99),
+            item("UNKNOWN-TIME", "OpenAI announces another major event", group="unknown-event", confidence="low", source="Unverified News", score=99),
         ][:limit]
 
 
@@ -428,6 +607,12 @@ class _ImportantNewsStore:
         ]
 
 
+class _RecordingImportantNewsStore(_ImportantNewsStore):
+    def recent(self, limit=100, where=None):
+        self.where = where
+        return super().recent(limit=limit, where=where)
+
+
 class _ImportantNewsCounterexampleStore(_ImportantNewsStore):
     def recent(self, limit=100, where=None):
         items = super().recent(limit=limit, where=where)
@@ -530,6 +715,42 @@ class EvidenceRetrievalGatewayTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(bundle.trace["path"], "evidence_search")
         self.assertEqual(retriever.calls, 1)
 
+    async def test_explicit_navigation_can_accept_one_strong_descriptor_match(self):
+        gateway = EvidenceRetrievalGateway(
+            retriever=_FailingRetriever(),
+            structured_store=_DescriptorNavigationStore(),
+        )
+
+        question = "找能把 SQL schema 和配置转成知识图谱的项目"
+        bundle = await gateway.retrieve(
+            ResearchRequest(
+                question=question,
+                route_contract=understand_query_v2(question).to_dict(),
+            )
+        )
+
+        self.assertEqual(bundle.status, "ready")
+        self.assertEqual(bundle.records[0]["occurrence_id"], "occ-graphify")
+
+    async def test_named_item_does_not_hijack_an_explicit_comparison_route(self):
+        retriever = _EvidenceRetriever()
+        gateway = EvidenceRetrievalGateway(
+            retriever=retriever,
+            structured_store=_NavigatorStore(),
+        )
+        question = "Graphify 和 claude-mem 在保留和检索上下文上分别做什么？"
+
+        bundle = await gateway.retrieve(
+            ResearchRequest(
+                question=question,
+                route_contract=understand_query_v2(question).to_dict(),
+            )
+        )
+
+        self.assertEqual(bundle.task_family, "evidence_research")
+        self.assertEqual(bundle.trace["path"], "evidence_search")
+        self.assertEqual(retriever.calls, 1)
+
     async def test_generic_recent_trends_use_structured_candidates(self):
         gateway = EvidenceRetrievalGateway(
             retriever=_FailingRetriever(),
@@ -544,13 +765,41 @@ class EvidenceRetrievalGatewayTests(unittest.IsolatedAsyncioTestCase):
             )
         )
 
-        self.assertEqual(bundle.status, "ready")
+        self.assertEqual(bundle.status, "degraded")
         self.assertEqual(bundle.task_family, "trend_discovery")
         self.assertEqual(bundle.trace["path"], "trend_discovery")
+        self.assertEqual(bundle.trace["candidate_graph"]["status"], "unavailable")
         self.assertEqual(
             [record["citation_id"] for record in bundle.records],
             ["occ-openai-agent", "occ-multilingual"],
         )
+
+    async def test_trend_clusters_add_graph_evidence_only_for_ranked_candidates(self):
+        driver = _CandidateGraphDriver()
+        probe = _ReadyProbe()
+        gateway = EvidenceRetrievalGateway(
+            retriever=_FailingRetriever(),
+            structured_store=_TrendStore(),
+            graph_driver=driver,
+            graph_readiness_probe=probe,
+        )
+
+        bundle = await gateway.retrieve(
+            ResearchRequest(
+                question="最近有什么热门趋势？",
+                latest_corpus_date="2026-08-05",
+                limit=5,
+            )
+        )
+
+        self.assertEqual(
+            driver.content_ids,
+            ["content-openai-agent", "content-multilingual"],
+        )
+        self.assertEqual(bundle.trace["execution_policy"]["graph_mode"], "candidate_bounded")
+        self.assertEqual(bundle.trace["candidate_graph"]["status"], "ready")
+        self.assertEqual(bundle.records[-1]["evidence_type"], "graph")
+        self.assertEqual(probe.calls, 1)
 
     async def test_trend_discovery_deduplicates_and_limits_a_single_source(self):
         gateway = EvidenceRetrievalGateway(
@@ -593,13 +842,157 @@ class EvidenceRetrievalGatewayTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(bundle.trace["path"], "trend_discovery")
         self.assertEqual(
             {record["citation_id"] for record in bundle.records},
-            {"leadership-change", "responsible-ai-partnership", "math-advance"},
+            {"leadership-change"},
+        )
+        self.assertEqual(
+            {record["citation_id"] for record in bundle.supplementary_records},
+            {"responsible-ai-partnership", "math-advance"},
         )
         self.assertEqual(
             [record["citation_id"] for record in bundle.background_records],
             ["older-major-dispute"],
         )
         self.assertIn("price-detail", bundle.trace["excluded_candidate_ids"])
+
+    async def test_concept_scoped_important_news_does_not_reject_every_candidate(self):
+        gateway = EvidenceRetrievalGateway(
+            retriever=_TaskAwareRetriever(),
+            structured_store=_ImportantNewsStore(),
+        )
+        from rag.query_understanding_v2 import understand_query_v2
+
+        question = "最近一周，AI 编程助手有哪些不同的产品做法？"
+        contract = understand_query_v2(question).to_dict()
+        contract["subjects"] = ["AI 编程助手"]
+        contract["protected_terms"] = ["AI 编程助手"]
+
+        bundle = await gateway.retrieve(ResearchRequest(
+            question=question,
+            latest_corpus_date="2026-08-12",
+            limit=5,
+            route_contract=contract,
+        ))
+
+        self.assertNotEqual(bundle.status, "empty")
+        self.assertGreater(len(bundle.records), 0)
+        self.assertEqual(bundle.trace["path"], "evidence_search")
+
+    async def test_timeline_retrieval_expands_bilingual_event_aliases(self):
+        retriever = _QueryRecordingRetriever()
+        gateway = EvidenceRetrievalGateway(retriever=retriever)
+        contract = understand_query_v2(
+            "按时间线梳理与 OpenAI 潜在上市相关的两条直接报道"
+        ).to_dict()
+        contract["primary_task_family"] = "temporal_relation_exploration"
+        contract["answer_mode"] = "timeline"
+        contract["subjects"] = ["OpenAI"]
+        contract["protected_terms"] = ["上市"]
+
+        await gateway.retrieve(ResearchRequest(
+            question="按时间线梳理与 OpenAI 潜在上市相关的两条直接报道",
+            route_contract=contract,
+        ))
+
+        self.assertIn("上市", retriever.query)
+        self.assertIn("ipo", retriever.query.casefold())
+
+    async def test_direct_report_timeline_does_not_require_graph_before_returning_evidence(self):
+        retriever = _TaskAwareRetriever()
+        gateway = EvidenceRetrievalGateway(retriever=retriever, graph_driver=_GraphDriver())
+        contract = understand_query_v2(
+            "按时间线梳理与 OpenAI 潜在上市相关的两条直接报道"
+        ).to_dict()
+
+        bundle = await gateway.retrieve(ResearchRequest(
+            question="按时间线梳理与 OpenAI 潜在上市相关的两条直接报道",
+            route_contract=contract,
+        ))
+
+        self.assertEqual(retriever.graph_requirement, "disabled")
+        self.assertEqual(bundle.trace["graph_evidence"]["status"], "not_required")
+
+    async def test_important_news_passes_an_explicit_cutoff_to_structured_candidates(self):
+        store = _RecordingImportantNewsStore()
+        question = "截至 8 月 21 日，过去一周 OpenAI 有哪些值得关注的业务或产品动态？"
+        contract = understand_query_v2(question).to_dict()
+        gateway = EvidenceRetrievalGateway(
+            retriever=_FailingRetriever(), structured_store=store
+        )
+
+        await gateway.retrieve(ResearchRequest(
+            question=question,
+            latest_corpus_date="2026-08-24",
+            route_contract=contract,
+        ))
+
+        self.assertEqual(store.where, {"$and": [
+            {"content_type": "topic_candidate"},
+            {"$and": [
+                {"effective_date": {"$gte": "2026-08-15"}},
+                {"effective_date": {"$lte": "2026-08-21"}},
+            ]},
+        ]})
+
+    async def test_direct_timeline_preserves_local_event_candidate_lost_by_hybrid_fusion(self):
+        store = _TimelineEventStore()
+        gateway = EvidenceRetrievalGateway(
+            retriever=_TaskAwareRetriever(), structured_store=store
+        )
+        question = "按时间线梳理与 OpenAI 潜在上市相关的两条直接报道"
+        contract = understand_query_v2(question).to_dict()
+
+        bundle = await gateway.retrieve(ResearchRequest(
+            question=question,
+            route_contract=contract,
+            limit=2,
+        ))
+
+        self.assertIn(
+            "ATR-20260820-6EFF79",
+            [record["citation_id"] for record in bundle.records],
+        )
+        self.assertEqual(bundle.trace["timeline_lexical_candidate_count"], 1)
+        self.assertGreaterEqual(store.k, 20)
+
+    async def test_explicit_cutoff_is_applied_before_comparison_retrieval(self):
+        adapter = _QueryRecordingRetriever()
+        gateway = EvidenceRetrievalGateway(retriever=adapter)
+        contract = understand_query_v2(
+            "Graphify 和 claude-mem 截至 2026-08-21 分别做什么？"
+        ).to_dict()
+
+        await gateway.retrieve(ResearchRequest(
+            question="Graphify 和 claude-mem 截至 2026-08-21 分别做什么？",
+            route_contract=contract,
+            latest_corpus_date="2026-08-24",
+        ))
+
+        self.assertEqual(adapter.where, {"$and": [
+            {"effective_date": {"$gte": "2000-01-01"}},
+            {"effective_date": {"$lte": "2026-08-21"}},
+        ]})
+
+    async def test_retrieval_hints_widen_query_without_becoming_entity_filters(self):
+        retriever = _QueryRecordingRetriever()
+        gateway = EvidenceRetrievalGateway(retriever=retriever)
+        contract = understand_query_v2(
+            "最近 AI 编程助手在跨会话上下文和代码库知识上有哪些做法？"
+        ).to_dict()
+        contract["subjects"] = ["AI 编程助手"]
+        contract["retrieval_hints"] = [
+            "persistent context across sessions",
+            "codebase knowledge graph",
+        ]
+
+        bundle = await gateway.retrieve(ResearchRequest(
+            question="最近 AI 编程助手在跨会话上下文和代码库知识上有哪些做法？",
+            route_contract=contract,
+        ))
+
+        self.assertEqual(bundle.task_family, "evidence_research")
+        self.assertIn("persistent context across sessions", retriever.query)
+        self.assertIn("codebase knowledge graph", retriever.query)
+        self.assertEqual(bundle.trace["entity_filter_mode"], "not_required")
 
     async def test_news_gate_rejects_routine_content_but_keeps_major_adjustment(self):
         gateway = EvidenceRetrievalGateway(
@@ -638,12 +1031,54 @@ class EvidenceRetrievalGatewayTests(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual(
             [record["citation_id"] for record in bundle.records],
-            ["ATR-20260805-MAIN01", "ATR-20260805-MAIN02"],
+            ["ATR-20260805-MAIN02"],
+        )
+        self.assertEqual(
+            [record["citation_id"] for record in bundle.supplementary_records],
+            ["ATR-20260805-MAIN01"],
         )
         self.assertEqual(
             set(bundle.trace["excluded_candidate_ids"]),
             {"ATR-20260805-NOISE1", "ATR-20260805-NOISE2"},
         )
+        self.assertEqual(bundle.trace["entity_filter_mode"], "event_subject")
+
+    async def test_legacy_important_news_derives_subject_roles_before_filtering(self):
+        gateway = EvidenceRetrievalGateway(
+            retriever=_FailingRetriever(),
+            structured_store=_LegacyClaudeImportantNewsStore(),
+        )
+
+        bundle = await gateway.retrieve(
+            ResearchRequest(
+                question="Claude 最近有哪些重要动态？",
+                latest_corpus_date="2026-08-20",
+                limit=10,
+            )
+        )
+
+        self.assertEqual(bundle.records, [])
+        self.assertEqual(
+            bundle.supplementary_records[0]["citation_id"],
+            "ANTHROPIC-OFFICIAL",
+        )
+        self.assertIn(
+            "ANTHROPIC-MEDIA",
+            {record["citation_id"] for record in bundle.supplementary_records},
+        )
+        self.assertTrue(
+            {"CLAUDE-MEM", "CLAUDE-WATERMARK", "CLAUDE-SETTINGS"}
+            <= set(bundle.trace["excluded_candidate_ids"])
+        )
+        returned_ids = {
+            record["citation_id"]
+            for record in [*bundle.records, *bundle.supplementary_records]
+        }
+        self.assertEqual(
+            len(returned_ids & {"ANTHROPIC-REVENUE-A", "ANTHROPIC-REVENUE-B"}),
+            1,
+        )
+        self.assertTrue(bundle.trace["merged_event_sources"])
         self.assertEqual(bundle.trace["entity_filter_mode"], "event_subject")
 
     async def test_important_news_collapses_event_sources_and_quarantines_unverified_time(self):
@@ -712,6 +1147,23 @@ class EvidenceRetrievalGatewayTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(bundle.status, "partial_error")
         self.assertEqual(bundle.error_code, "required_graph_evidence_unavailable")
         self.assertEqual(bundle.trace["graph_evidence"]["status"], "error")
+
+    async def test_required_graph_route_preflights_readiness_and_skips_graph_channel_when_down(self):
+        retriever = _TaskAwareRetriever()
+        gateway = EvidenceRetrievalGateway(
+            retriever=retriever,
+            graph_driver=_GraphDriver(),
+            graph_readiness_probe=_UnavailableProbe(),
+        )
+
+        bundle = await gateway.retrieve(
+            ResearchRequest(question="请分析 OpenAI 与 Apple 的跨日关联")
+        )
+
+        self.assertEqual(retriever.graph_requirement, "disabled")
+        self.assertEqual(bundle.status, "partial_error")
+        self.assertEqual(bundle.error_code, "required_graph_evidence_unavailable")
+        self.assertEqual(bundle.trace["graph_readiness"]["status"], "unavailable")
 
     async def test_graph_aggregate_recovers_required_graph_channel_failure(self):
         gateway = EvidenceRetrievalGateway(

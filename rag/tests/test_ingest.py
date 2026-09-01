@@ -15,6 +15,7 @@ from rag.ingest import (
     migrate_atomic_vector_chunks,
     select_ingestion_dates,
     normalize_topic_pool,
+    load_search_documents,
 )
 
 
@@ -76,6 +77,45 @@ class ChunkTextTests(unittest.TestCase):
 
 
 class TopicPoolNormalizationTests(unittest.TestCase):
+    def test_startup_can_reuse_an_existing_v2_search_projection(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        existing_document = {
+            "occurrence_id": "ATR-20260824-ABC123",
+            "title": "Existing projection",
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            projection = root / "search-index.json"
+            projection.write_text(
+                json.dumps({
+                    "schema_version": 2,
+                    "generated": "2026-08-24T00:00:00Z",
+                    "documents": [existing_document],
+                }),
+                encoding="utf-8",
+            )
+            date_dir = root / "digests" / "2026-08-25"
+            date_dir.mkdir(parents=True)
+            (date_dir / "topic-pool.json").write_text(
+                json.dumps({"candidates": [{"title": "New source row"}]}),
+                encoding="utf-8",
+            )
+
+            documents = load_search_documents(
+                projection,
+                str(root / "digests"),
+                rebuild=False,
+            )
+
+            self.assertEqual(documents, [existing_document])
+            self.assertEqual(
+                json.loads(projection.read_text(encoding="utf-8"))["generated"],
+                "2026-08-24T00:00:00Z",
+            )
+
     def test_normalize_topic_pool_uses_candidates_and_adds_date(self):
         pool = {
             "candidates": [
@@ -132,6 +172,25 @@ class TopicPoolNormalizationTests(unittest.TestCase):
 
         self.assertEqual(document["title"], "Claude's roadmap")
         self.assertEqual(document["summary"], "Research & product")
+
+    def test_runtime_projection_rejects_conflicting_records_with_the_same_upstream_id(self):
+        import json
+        import tempfile
+        from pathlib import Path
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            date_dir = Path(temp_dir) / "2026-08-11"
+            date_dir.mkdir()
+            (date_dir / "topic-pool.json").write_text(
+                json.dumps({"candidates": [
+                    {"id": "source-1", "title": "First event", "source": "Official"},
+                    {"id": "source-1", "title": "Different event", "source": "Official"},
+                ]}),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "identity collision"):
+                build_runtime_search_documents(temp_dir)
 
     def test_runtime_projection_preserves_distinct_time_semantics(self):
         import json

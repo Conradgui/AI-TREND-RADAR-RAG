@@ -17,10 +17,6 @@ SCHEMA_QUERIES = [
     # Full-text index for Topic name lookup (G-2: replaces toLower() CONTAINS pattern)
     "CREATE FULLTEXT INDEX topic_search IF NOT EXISTS FOR (t:Topic) ON EACH [t.name]",
 
-    # Markdown reports are browse projections, not GraphRAG evidence. Remove
-    # payloads left by pre-ATR versions while keeping navigation metadata.
-    "MATCH (d:Document) REMOVE d.content",
-
     # Vector index for chunk embeddings (1536 dims for text-embedding-3-small)
     """CREATE VECTOR INDEX chunk_embeddings IF NOT EXISTS
        FOR (c:Chunk) ON (c.embedding)

@@ -14,6 +14,10 @@ _CONTEXT_ITEM_ID = re.compile(r"(?:current_item_id|item_id)\s*[=:]\s*(ATR-\d{8}-
 _LATIN_NAMED_TERM = re.compile(
     r"(?<![A-Za-z0-9])(?:[A-Z][A-Za-z0-9.+-]*|[a-z]+AI)(?:\s+(?:[A-Z][A-Za-z0-9.+-]*|AI|RAG|API)){0,4}(?![A-Za-z0-9])"
 )
+_LATIN_SLUG_TERM = re.compile(
+    r"(?<![A-Za-z0-9])(?:[a-z][a-z0-9]*-[a-z0-9]*[a-z][a-z0-9-]*)(?![A-Za-z0-9])",
+    re.IGNORECASE,
+)
 _ISO_DATE = re.compile(r"\b\d{4}-\d{2}-\d{2}\b")
 _CHINESE_DATE = re.compile(r"(?<!\d)\d{1,2}\s*月\s*\d{1,2}\s*日(?!\d)")
 _RELATIVE_PERIOD = re.compile(
@@ -51,8 +55,10 @@ _RECENCY_TERMS = ("今天", "本周", "这周", "最近", "近期", "lately", "�
 _IMPORTANCE_TERMS = ("重要", "热门", "值得看", "值得关注", "大新闻", "大事", "大动态", "影响面", "headline-level", "真正重要")
 _TIMELINE_TERMS = ("演变", "变化", "转折", "迁移", "重排", "关键节点", "怎么走到", "转向", "演进顺序", "随日期", "按时间", "经历了", "经历了哪几个阶段", "哪些阶段")
 _RELATION_TERMS = ("关系", "格局", "结构", "连接", "依赖", "角色", "供给链", "竞争")
-_EXPLANATION_TERMS = ("解释", "为什么", "原因", "讲清楚", "分别扮演什么角色")
-_COMPARISON_TERMS = ("比较", "区别", "更适合", "选型", "对比")
+_EXPLANATION_TERMS = (
+    "解释", "为什么", "原因", "讲清楚", "分别扮演什么角色", "分别做什么", "各自做什么",
+)
+_COMPARISON_TERMS = ("比较", "区别", "更适合", "选型", "对比", "分别做什么", "各自做什么")
 _DEEP_RESEARCH_TERMS = ("深挖", "深入研究", "研究一下", "支持证据", "反例", "未知项", "成本和收益", "成本和收益给建议", "接入建议", "风险", "证据和局限", "结合内部语料和官网资料")
 _VERIFICATION_TERMS = ("核实", "验证", "是真的吗", "是否属实", "是否说明", "成立不成立", "到底有没有", "对吗", "对不对", "可靠来源支持", "充分证据", "媒体误传", "可核验的结论", "请判断这句话")
 _VALUE_JUDGMENT_TERMS = ("值得采用", "更适合", "给建议", "选型", "接入建议", "产品价值", "是否值得")
@@ -179,8 +185,9 @@ def _extract_protected_terms(query: str) -> list[str]:
             value = match.group(1) if pattern in (_QUOTED, _SINGLE_QUOTED, _BOOK_TITLE, _CHINESE_COUNT) else match.group(0)
             candidates.append((match.start(), _clean_token(value)))
 
-    for match in _LATIN_NAMED_TERM.finditer(query):
-        candidates.append((match.start(), _clean_token(match.group(0))))
+    for pattern in (_LATIN_NAMED_TERM, _LATIN_SLUG_TERM):
+        for match in pattern.finditer(query):
+            candidates.append((match.start(), _clean_token(match.group(0))))
 
     title_match = re.search(r"(?:找到|找)\s+(.+?)\s+这条新闻", query, re.IGNORECASE)
     if title_match:
@@ -190,6 +197,7 @@ def _extract_protected_terms(query: str) -> list[str]:
         "Agent 战略", "竞争关系", "同一条", "热度", "随日期", "商业化路径",
         "产品价值", "官方", "联网", "不要联网", "禁止联网", "别联网", "无需联网",
         "按时间", "争议", "一手来源",
+        "上市",
         "降低了安全标准", "召回率", "一定", "可能", "收购", "这条新闻",
     ):
         start = query.casefold().find(phrase.casefold())
@@ -227,10 +235,23 @@ def _has_explicit_locator(query: str) -> bool:
     date_source_fragment = bool(
         (_ISO_DATE.search(query) or _CHINESE_DATE.search(query))
         and _contains_any(query, _SOURCE_TERMS + ("OpenAI", "Open AI"))
-        and _contains_any(query, ("标题", "题目", "那篇", "来源", "条目", "内容", "那一条"))
+        and (
+            _contains_any(query, ("标题", "题目", "那篇", "条目", "那一条"))
+            or (
+                "内容" in query
+                and _contains_any(query, ("跳到", "打开", "定位", "找到", "带我回"))
+            )
+        )
     )
     unquoted_title = bool(re.search(r"(?:找到|找)\s+.+?\s+这条新闻", query, re.IGNORECASE))
-    return (quoted and item_object) or date_source_fragment or unquoted_title
+    descriptive_locator = bool(
+        re.search(
+            r"(?:打开|定位|找到|找)\s*.{2,100}?(?:记录|条目|项目|消息)",
+            query,
+            re.IGNORECASE,
+        )
+    ) and "找证据" not in query
+    return (quoted and item_object) or date_source_fragment or unquoted_title or descriptive_locator
 
 
 def _is_verification_request(query: str, value_judgment: bool) -> bool:
@@ -287,11 +308,13 @@ def _clean_token(value: str) -> str:
 def _has_recent_window(query: str) -> bool:
     if _contains_any(query, _RECENCY_TERMS + ("这周", "本周")):
         return True
-    match = _RELATIVE_PERIOD.search(query)
-    if not match:
-        return False
-    value = match.group(0).replace(" ", "")
-    return any(unit in value for unit in ("小时", "天", "周"))
+    # A Query may contain both an absolute date (for example ``8 月 21 日``)
+    # and a later relative window (``过去一周``).  Looking only at the
+    # first regex match loses the actual recency constraint.
+    return any(
+        any(unit in match.group(0).replace(" ", "") for unit in ("小时", "天", "周"))
+        for match in _RELATIVE_PERIOD.finditer(query)
+    )
 
 
 def _has_temporal_structure(query: str) -> bool:
@@ -323,6 +346,14 @@ def _is_news_discovery(query: str, temporal_structure: bool) -> bool:
         return False
     if _contains_any(query, _NEWS_DISCOVERY_TERMS):
         return True
+    if _has_recent_window(query) and _has_concrete_subject(query) and _contains_any(
+        query, ("趋势", "动向", "动态")
+    ):
+        return True
+    if _has_recent_window(query) and _contains_any(query, ("哪些", "出现了哪些")) and _contains_any(
+        query, ("产品做法", "产品方案", "解决方案", "实现路径")
+    ):
+        return True
     return _has_recent_window(query) and _contains_any(
         query,
         _IMPORTANCE_TERMS + ("更新", "动态", "发布", "新闻", "大事", "大动作", "值得看的"),
@@ -348,6 +379,9 @@ def _has_concrete_subject(query: str) -> bool:
 
 def _pronoun_requires_context(query: str) -> bool:
     """Return whether any `它` needs a reference outside the current Query."""
+    if re.search(r"刚才.{0,6}(?:那|这)两个", query):
+        return True
+
     positions = [match.start() for match in re.finditer("它", query)]
     if not positions:
         return False

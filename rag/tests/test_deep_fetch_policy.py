@@ -1,8 +1,41 @@
 """Tests for bounded deep-fetch integration policy."""
 
+import asyncio
+import threading
 import unittest
 
-from rag.deep_fetch_policy import apply_deep_fetch_policy, choose_deep_fetch_targets
+import pytest
+
+from rag.deep_fetch_policy import (
+    apply_deep_fetch_policy,
+    apply_deep_fetch_policy_async,
+    choose_deep_fetch_targets,
+)
+
+
+@pytest.mark.asyncio
+async def test_async_policy_moves_sync_fetcher_off_event_loop():
+    release = threading.Event()
+
+    def blocking_fetcher(url):
+        release.wait(timeout=1)
+        return {"ok": True, "url": url}
+
+    task = asyncio.create_task(apply_deep_fetch_policy_async(
+        [{
+            "evidence_type": "external",
+            "source_quality": "official",
+            "needs_deep_fetch": True,
+            "url": "https://example.com/evidence",
+        }],
+        fetcher=blocking_fetcher,
+    ))
+    await asyncio.sleep(0.01)
+
+    assert task.done() is False
+    release.set()
+    _citations, trace = await task
+    assert trace["success_count"] == 1
 
 
 class DeepFetchPolicyTests(unittest.TestCase):

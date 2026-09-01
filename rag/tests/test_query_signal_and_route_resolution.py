@@ -230,6 +230,44 @@ def test_short_window_news_structure_generalizes_without_exact_phrase() -> None:
     assert contract["primary_task_family"] == "trend_discovery"
 
 
+def test_date_and_source_analysis_does_not_become_item_navigation() -> None:
+    contract = understand_query_v2(
+        "截至 8 月 21 日，过去一周 OpenAI 有哪些值得关注的业务或产品动态？"
+        "请区分公司/媒体来源与社区讨论。"
+    ).to_dict()
+
+    assert contract["primary_task_family"] == "trend_discovery"
+    assert contract["answer_mode"] == "important_news"
+
+
+def test_recent_product_approaches_are_a_trend_discovery_task() -> None:
+    contract = understand_query_v2(
+        "最近一周，针对 AI 编程 Agent 的‘跨会话上下文/代码库知识’问题，"
+        "出现了哪些不同的产品做法？"
+    ).to_dict()
+
+    assert contract["primary_task_family"] == "trend_discovery"
+    assert contract["answer_mode"] == "important_news"
+
+
+def test_unresolved_recent_plural_reference_requires_clarification() -> None:
+    contract = understand_query_v2("比较刚才那两个产品在上下文保留方面的差异。").to_dict()
+
+    assert contract["primary_task_family"] == "evidence_research"
+    assert contract["answer_mode"] == "comparison"
+    assert contract["route_confidence"] < 0.5
+    assert contract["ambiguities"]
+
+
+def test_timeline_keeps_business_event_qualifier_for_retrieval() -> None:
+    contract = understand_query_v2(
+        "请按时间梳理 OpenAI 潜在上市/IPO 相关的关键信号。"
+    ).to_dict()
+
+    assert contract["primary_task_family"] == "temporal_relation_exploration"
+    assert {"上市", "IPO"}.issubset(set(contract["protected_terms"]))
+
+
 def test_shadow_contract_is_reproducible_and_preserves_raw_query() -> None:
     query = "  最近 Moonshot 有啥大动静？  "
     first = understand_query_v2(query).to_dict()

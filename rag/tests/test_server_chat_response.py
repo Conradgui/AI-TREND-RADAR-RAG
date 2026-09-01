@@ -2,10 +2,16 @@
 
 import pytest
 import httpx
+import re
+from dataclasses import replace
 from pydantic import ValidationError
 
 import rag.server as server
+from rag.graph_readiness import GraphReadiness
 from rag.server import ChatRequest, ChatResponse
+from rag.query_route_resolver import QueryRouteResolver
+from rag.query_understanding import analyze_query
+from rag.retrieval_gateway import EvidenceBundle
 
 
 def test_chat_request_defaults_to_automatic_web_search_mode():
@@ -74,6 +80,82 @@ def test_chat_response_exposes_display_contract_without_replacing_canonical_answ
     assert "[W1 🌐]" in payload["display_answer"]
     assert payload["evidence_display_map"] == {"E1": "I1", "E2": "W1"}
     assert payload["search_references"] == []
+
+
+@pytest.mark.asyncio
+async def test_health_actively_probes_graph_instead_of_trusting_driver_presence():
+    class Vector:
+        def count(self):
+            return 12
+
+    class Probe:
+        def __init__(self):
+            self.calls = 0
+
+        async def probe(self, level="runtime", **_kwargs):
+            self.calls += 1
+            return GraphReadiness(
+                status="unavailable",
+                level=level,
+                checked_at=1.0,
+                latency_ms=2.0,
+                error_code="graph_connectivity_failed",
+            )
+
+    probe = Probe()
+    server.app.state.rag = server.RagState(
+        vector_store=Vector(),
+        neo4j_driver=object(),
+        chat_retriever=object(),
+        agent=object(),
+        answer_composer=object(),
+        external_search_registry=None,
+        external_deep_fetcher=None,
+        graph_readiness_probe=probe,
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/health")
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "degraded"
+    assert response.json()["graph_readiness"]["status"] == "unavailable"
+    assert probe.calls == 1
+
+
+@pytest.mark.asyncio
+async def test_dashboard_status_actively_probes_graph_instead_of_trusting_driver_presence(monkeypatch):
+    class Probe:
+        async def probe(self, level="runtime", **_kwargs):
+            return GraphReadiness(
+                status="unavailable",
+                level=level,
+                checked_at=1.0,
+                latency_ms=2.0,
+                error_code="graph_connectivity_failed",
+            )
+
+    monkeypatch.setattr(server, "get_configured_search_providers", lambda: set())
+    monkeypatch.setattr(server, "get_search_provider_api_keys", lambda: {})
+    server.app.state.rag = server.RagState(
+        vector_store=None,
+        neo4j_driver=object(),
+        chat_retriever=object(),
+        agent=object(),
+        answer_composer=object(),
+        external_search_registry=None,
+        external_deep_fetcher=None,
+        graph_readiness_probe=Probe(),
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/dashboard/status")
+
+    assert response.status_code == 200
+    assert response.json()["neo4j_connected"] is False
+    assert response.json()["graph_readiness"]["status"] == "unavailable"
 
 
 @pytest.mark.asyncio
@@ -151,6 +233,106 @@ async def test_chat_endpoint_forwards_the_runtime_gateway(monkeypatch):
     assert captured["retrieval_gateway"] is gateway
     assert captured["query_contract_resolver"] is resolver
     assert captured["latest_corpus_date"] == "2026-08-21"
+
+
+@pytest.mark.asyncio
+async def test_public_chat_seam_preserves_a_to_e_execution_paths(monkeypatch):
+    class Message:
+        type = "ai"
+
+        def __init__(self, content):
+            self.content = content
+
+    class Composer:
+        async def ainvoke(self, payload, config=None):
+            evidence_ids = list(dict.fromkeys(
+                re.findall(r"\[(E\d+)\]", payload["messages"][0]["content"])
+            ))
+            return {"messages": [Message("有据回答。" + " ".join(
+                f"[{evidence_id}]" for evidence_id in evidence_ids
+            ))]}
+
+    class NoReact:
+        async def ainvoke(self, *_args, **_kwargs):
+            raise AssertionError("resolved A-E routes must not enter ReAct")
+
+    class Gateway:
+        async def retrieve(self, request):
+            contract = request.route_contract
+            family = contract["primary_task_family"]
+            mode = contract["answer_mode"]
+            plan = analyze_query(request.question)
+            if mode == "important_news":
+                plan = replace(plan, intent="important_news", entities=["Claude"])
+            elif mode == "trend_clusters":
+                plan = replace(plan, intent="recent_trend")
+            elif family == "temporal_relation_exploration":
+                plan = replace(plan, graph_requirement="required")
+            base = {
+                "evidence_type": "internal",
+                "date": "2026-08-21",
+                "source": "Official",
+                "title": "Primary evidence",
+                "citation_id": "ATR-20260821-ONE001",
+                "occurrence_id": "ATR-20260821-ONE001",
+                "local_url": "#2026-08-21/ai-topic-radar/item/ATR-20260821-ONE001",
+                "excerpt": "Primary evidence for the product-path test.",
+            }
+            records = [base]
+            if family == "temporal_relation_exploration":
+                records.append({
+                    "evidence_type": "graph",
+                    "content_type": "graph_reasoning",
+                    "date": "2026-08-21",
+                    "source": "Neo4j Graph",
+                    "title": "Graph evidence",
+                    "citation_id": "graph-reasoning/openai",
+                    "excerpt": "Cross-date graph evidence.",
+                })
+            return EvidenceBundle(
+                status="ready",
+                task_family=family,
+                records=records,
+                analysis=plan,
+                query_plan=plan.to_dict(),
+                trace={"path": "public_chat_gate", "answer_mode": mode},
+            )
+
+    monkeypatch.setattr(server, "API_KEY", None)
+    server.app.state.rag = server.RagState(
+        vector_store=object(),
+        neo4j_driver=None,
+        chat_retriever=object(),
+        agent=NoReact(),
+        answer_composer=Composer(),
+        external_search_registry=None,
+        external_deep_fetcher=None,
+        retrieval_gateway=Gateway(),
+        query_contract_resolver=QueryRouteResolver(),
+        latest_corpus_date="2026-08-21",
+    )
+    cases = (
+        ("打开 ATR-20260805-99E550", "item_navigation", "deterministic_navigation", 0),
+        ("Claude 最近有什么动态？", "trend_discovery", "deterministic_important_news", 0),
+        ("最近有什么热门趋势？", "trend_discovery", "direct_composer", 1),
+        ("OpenAI 的 Agent 战略过去三个月是如何演变的？", "temporal_relation_exploration", "direct_composer", 1),
+        ("OpenAI 是否已经发布 GPT-6？", "claim_verification", "direct_composer", 1),
+        ("用内部证据解释 Graph RAG 和 Agentic RAG 的区别", "evidence_research", "direct_composer", 1),
+    )
+
+    transport = httpx.ASGITransport(app=server.app)
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        for index, (question, family, path, model_turns) in enumerate(cases, 1):
+            response = await client.post(
+                "/chat",
+                json={"message": question},
+                headers={"x-forwarded-for": f"198.51.100.{index}"},
+            )
+            assert response.status_code == 200, response.text
+            body = response.json()
+            assert body["query_understanding"]["task_family"] == family
+            assert body["tool_trace"]["execution_path"] == path
+            assert body["tool_trace"]["execution_counts"]["model_turns"] == model_turns
 
 
 @pytest.mark.asyncio

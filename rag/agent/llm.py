@@ -8,6 +8,7 @@ from langchain_openai import ChatOpenAI
 from rag.config import (
     ANTHROPIC_BASE_URL,
     DEEPSEEK_BASE_URL,
+    DEEPSEEK_MAX_TOKENS,
     DEEPSEEK_MODEL,
     LLM_PROVIDER,
     get_llm_api_key,
@@ -30,6 +31,8 @@ def create_chat_model():
             model=DEEPSEEK_MODEL,
             api_key=api_key,
             base_url=DEEPSEEK_BASE_URL,
+            max_tokens=DEEPSEEK_MAX_TOKENS,
+            extra_body={"thinking": {"type": "disabled"}},
         )
 
     return ChatOpenAI(model="gpt-4o", api_key=api_key)

@@ -14,6 +14,12 @@ def test_claim_type_is_inferred_from_query_intent_without_closed_whitelist_failu
     assert infer_claim_type(SimpleNamespace(intent="unknown", task_mode="general", original_question="long-tail")) == "unclassified"
 
 
+def test_important_news_route_accepts_official_release_claims():
+    assert infer_claim_type(SimpleNamespace(
+        intent="important_news", task_mode="general", original_question="最近 Claude 有什么动态？"
+    )) == "product_release"
+
+
 def test_recent_source_verification_requires_primary_page_fetch():
     plan = SimpleNamespace(
         intent="recent_trend",
@@ -78,6 +84,23 @@ def test_official_navigation_page_is_not_admitted_as_a_release_record():
     assert reference["document_role"] == "navigation_page"
     assert reference["date_status"] == "missing"
     assert reference["not_admitted_reason"] == "navigation_page_only"
+
+
+def test_app_store_listing_is_not_admitted_as_a_recent_news_event():
+    review = review_external_candidates(
+        [{
+            "title": "Google Play – Claude by Anthropic",
+            "url": "https://play.google.com/store/apps/details?id=com.anthropic.claude",
+            "source_quality": "official",
+            "published_at": "2026-08-21T07:25:01",
+        }],
+        claim_type="product_release",
+        recent_required=True,
+        today="2026-08-27",
+    )
+
+    assert review["admitted"] == []
+    assert review["search_references"][0]["document_role"] == "navigation_page"
 
 
 def test_vendor_page_cannot_independently_prove_market_leadership():

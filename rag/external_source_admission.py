@@ -28,7 +28,7 @@ def infer_claim_type(plan) -> str:
         return "finance"
     if any(term in question for term in ("领先", "市场份额", "广泛采用", "用户评价")):
         return "market_evaluation"
-    if intent in {"product_update", "recent_trend", "web_search_request"}:
+    if intent in {"product_update", "recent_trend", "important_news", "web_search_request"}:
         return "product_release"
     if intent == "learning_map" or task_mode == "timeline":
         return "research"
@@ -234,6 +234,23 @@ def is_navigation_or_listing_page(record: dict) -> bool:
         "/news/company-announcements",
     }
     if normalized_path in listing_paths:
+        return True
+
+    host = str(urlsplit(str(record.get("canonical_url") or record.get("url") or "")).hostname or "").casefold()
+    marketplace_paths = (
+        "/store/apps/",
+        "/app/",
+        "/apps/",
+        "/product/",
+        "/products/",
+    )
+    marketplace_hosts = {
+        "play.google.com",
+        "apps.apple.com",
+        "www.producthunt.com",
+        "producthunt.com",
+    }
+    if host in marketplace_hosts and any(marker in normalized_path for marker in marketplace_paths):
         return True
 
     title = str(record.get("title") or "").casefold()

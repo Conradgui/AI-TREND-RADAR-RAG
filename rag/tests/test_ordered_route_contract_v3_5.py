@@ -88,6 +88,33 @@ def test_direct_factual_claim_is_preserved_in_route_contract() -> None:
     assert envelope["contract"]["claims"] == ["星河模型已经开放权重"]
 
 
+def test_retrieval_only_hints_survive_without_becoming_subjects_or_claims() -> None:
+    query = "最近 AI 编程助手在跨会话上下文和代码库知识上有哪些做法？"
+
+    envelope = _understand(
+        query,
+        {
+            **_frame(
+                _delivery("trend_discovery", "最近", "important_news"),
+                subjects=["AI 编程助手"],
+            ),
+            "retrieval_hints": [
+                "persistent context across sessions",
+                "codebase knowledge graph",
+            ],
+        },
+    )
+
+    assert envelope["status"] == "resolved"
+    contract = envelope["contract"]
+    assert contract["retrieval_hints"] == [
+        "persistent context across sessions",
+        "codebase knowledge graph",
+    ]
+    assert contract["subjects"] == ["AI 编程助手"]
+    assert contract["claims"] == []
+
+
 def test_explicit_hypothesis_is_preserved_as_a_claim() -> None:
     query = "假设星河模型采用了稀疏专家架构，请分析这个判断是否成立。"
 

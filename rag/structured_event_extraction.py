@@ -95,6 +95,9 @@ def extract_semantic_event(document: dict, client: SemanticEventClient) -> dict:
     raw = client.extract(request)
     content_kind = str(raw.get("content_kind") or "unknown")
     event_type = str(raw.get("event_type") or "unknown")
+    # Structured extraction writes the new typed identity model. Legacy
+    # event readers have their own compatibility adapter and must not flatten
+    # product entities such as Gemini into parent companies.
     subject_ids = canonical_entity_ids(raw.get("subject_entity_ids"))
     mentioned_ids = canonical_entity_ids(raw.get("mentioned_entity_ids"))
     diagnostics = []

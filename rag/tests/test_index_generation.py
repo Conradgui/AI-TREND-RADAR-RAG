@@ -53,6 +53,29 @@ def test_resolve_active_falls_back_to_previous_verified_generation(tmp_path):
     assert pointer["active"] == "gen-good"
 
 
+def test_resolve_verified_generation_selects_only_the_named_verified_generation(tmp_path):
+    store = IndexGenerationStore(tmp_path)
+    verified = _write_verified_generation(tmp_path, "gen-evaluation")
+    staging = store.create_staging("gen-building")
+
+    assert store.resolve_verified("gen-evaluation") == verified
+    assert store.resolve_verified("gen-building") is None
+    assert store.resolve_verified("../outside") is None
+    assert staging.exists()
+
+
+def test_restore_active_reverts_pointer_without_deleting_generations(tmp_path):
+    store = IndexGenerationStore(tmp_path)
+    current = _write_verified_generation(tmp_path, "gen-current")
+    next_generation = _write_verified_generation(tmp_path, "gen-next")
+    store.activate(current)
+    store.activate(next_generation)
+
+    assert store.restore_active("gen-current") == current
+    assert store.resolve_active() == current
+    assert next_generation.exists()
+
+
 def test_failed_staging_never_changes_last_known_good_pointer(tmp_path):
     store = IndexGenerationStore(tmp_path)
     current = _write_verified_generation(tmp_path, "gen-current")

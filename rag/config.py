@@ -5,6 +5,8 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+from rag.sync_corpus import DEFAULT_BASE_URL as DEFAULT_UPSTREAM_CORPUS_URL
+
 try:
     from dotenv import load_dotenv
 except ModuleNotFoundError:
@@ -22,6 +24,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
 DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
 DEEPSEEK_BASE_URL = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+DEEPSEEK_MAX_TOKENS = int(os.getenv("DEEPSEEK_MAX_TOKENS", "1200"))
 ANTHROPIC_BASE_URL = os.getenv("ANTHROPIC_BASE_URL", "")
 
 # Neo4j
@@ -41,6 +44,15 @@ RAG_ENABLE_DEEP_FETCH = os.getenv("RAG_ENABLE_DEEP_FETCH", "false")
 RAG_STARTUP_CORPUS_UPDATE_ENABLED = os.getenv(
     "RAG_STARTUP_CORPUS_UPDATE_ENABLED", "false"
 )
+DEFAULT_CORPUS_UPDATE_INTERVAL_SECONDS = 6 * 60 * 60
+RAG_CORPUS_UPDATE_INTERVAL_SECONDS = os.getenv(
+    "RAG_CORPUS_UPDATE_INTERVAL_SECONDS",
+    str(DEFAULT_CORPUS_UPDATE_INTERVAL_SECONDS),
+)
+RAG_UPSTREAM_CORPUS_URL = os.getenv(
+    "RAG_UPSTREAM_CORPUS_URL", DEFAULT_UPSTREAM_CORPUS_URL
+)
+RAG_CORPUS_RECHECK_DAYS = os.getenv("RAG_CORPUS_RECHECK_DAYS", "30")
 
 # Optional external search providers
 BRAVE_SEARCH_API_KEY = os.getenv("BRAVE_SEARCH_API_KEY", "")
@@ -102,3 +114,38 @@ def is_startup_corpus_update_enabled(env: dict | None = None) -> bool:
         RAG_STARTUP_CORPUS_UPDATE_ENABLED if env is None else "false",
     )
     return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def get_upstream_corpus_url(env: dict | None = None) -> str:
+    """Return the configured public corpus endpoint without a trailing slash."""
+    source = os.environ if env is None else env
+    value = str(source.get("RAG_UPSTREAM_CORPUS_URL", RAG_UPSTREAM_CORPUS_URL) or "").strip()
+    return (value or DEFAULT_UPSTREAM_CORPUS_URL).rstrip("/")
+
+
+def get_corpus_update_interval_seconds(env: dict | None = None) -> int:
+    """Return a bounded polling interval for the managed local updater."""
+    source = os.environ if env is None else env
+    raw = source.get(
+        "RAG_CORPUS_UPDATE_INTERVAL_SECONDS",
+        RAG_CORPUS_UPDATE_INTERVAL_SECONDS if env is None else str(DEFAULT_CORPUS_UPDATE_INTERVAL_SECONDS),
+    )
+    try:
+        value = int(str(raw).strip())
+    except (TypeError, ValueError):
+        value = DEFAULT_CORPUS_UPDATE_INTERVAL_SECONDS
+    return max(60, value)
+
+
+def get_corpus_recheck_days(env: dict | None = None) -> int:
+    """Return the recent revision window used by upstream corpus checks."""
+    source = os.environ if env is None else env
+    raw = source.get(
+        "RAG_CORPUS_RECHECK_DAYS",
+        RAG_CORPUS_RECHECK_DAYS if env is None else "30",
+    )
+    try:
+        value = int(str(raw).strip())
+    except (TypeError, ValueError):
+        value = 30
+    return max(1, value)

@@ -219,6 +219,7 @@ def build_ordered_route_envelope_v3(
             for delivery in deliveries[1:]
         ],
         subjects=list(frame.get("subject_spans", [])),
+        retrieval_hints=list(frame.get("retrieval_hints", [])),
         claims=_ordered_unique([
             *[claim for _, claim in contextual_claims],
             *frame.get("claim_spans", []),

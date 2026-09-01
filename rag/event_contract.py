@@ -13,7 +13,7 @@ CONTENT_KINDS = {
 EVENT_TYPES = {
     "model_release", "product_launch", "partnership", "leadership",
     "acquisition", "funding", "litigation", "safety_incident",
-    "research_release", "pricing_or_access", "compatibility",
+    "regulatory_action", "research_release", "business_update", "pricing_or_access", "compatibility",
     "documentation_or_tutorial", "unknown",
 }
 
@@ -63,16 +63,20 @@ EVENT_TYPE_ALIASES = {
     "acquisition": "acquisition",
     "funding": "funding",
     "research_release": "research_release",
+    "business_update": "business_update",
     "safety_incident": "safety_incident",
+    "regulatory_action": "regulatory_action",
 }
 
 
 def canonical_content_kind(value: object) -> str:
-    return CONTENT_KIND_ALIASES.get(str(value or "unknown"), "unknown")
+    raw = str(value or "unknown")
+    return raw if raw in CONTENT_KINDS else CONTENT_KIND_ALIASES.get(raw, "unknown")
 
 
 def canonical_event_type(value: object) -> str:
-    return EVENT_TYPE_ALIASES.get(str(value or "unknown"), "unknown")
+    raw = str(value or "unknown")
+    return raw if raw in EVENT_TYPES else EVENT_TYPE_ALIASES.get(raw, "unknown")
 
 
 def source_role_from_annotation(annotation: dict) -> str | None:

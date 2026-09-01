@@ -41,7 +41,7 @@ async def _fetch_single_url(fetcher, target: dict) -> tuple[int, dict]:
         if asyncio.iscoroutinefunction(fetcher):
             result = await fetcher(target["url"])
         else:
-            result = fetcher(target["url"])
+            result = await asyncio.to_thread(fetcher, target["url"])
         return target["index"], result
     except Exception as e:
         return target["index"], {"ok": False, "error": str(e)}

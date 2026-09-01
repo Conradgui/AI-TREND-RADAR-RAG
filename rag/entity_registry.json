@@ -1,0 +1,37 @@
+{
+  "version": "2026-08-26.v1",
+  "entities": [
+    {"entity_id": "openai", "entity_type": "company", "aliases": ["OpenAI", "Open AI"]},
+    {"entity_id": "chatgpt", "entity_type": "product", "aliases": ["ChatGPT", "Chat GPT"]},
+    {"entity_id": "codex", "entity_type": "product", "aliases": ["Codex"]},
+    {"entity_id": "gpt-live", "entity_type": "product", "aliases": ["GPT Live"]},
+    {"entity_id": "anthropic", "entity_type": "company", "aliases": ["Anthropic"]},
+    {"entity_id": "claude", "entity_type": "product", "aliases": ["Claude"]},
+    {"entity_id": "claude-code", "entity_type": "product", "aliases": ["Claude Code"]},
+    {"entity_id": "apple", "entity_type": "company", "aliases": ["Apple", "苹果"]},
+    {"entity_id": "google", "entity_type": "company", "aliases": ["Google", "谷歌"]},
+    {"entity_id": "google-deepmind", "entity_type": "organization", "aliases": ["Google DeepMind", "DeepMind"]},
+    {"entity_id": "gemini", "entity_type": "product", "aliases": ["Gemini", "Google Gemini"]},
+    {"entity_id": "antigravity", "entity_type": "ambiguous_product", "aliases": ["Antigravity"]},
+    {"entity_id": "grok", "entity_type": "product", "aliases": ["Grok"]},
+    {"entity_id": "grok-bot", "entity_type": "product_variant", "aliases": ["Grok Bot"]},
+    {"entity_id": "xai", "entity_type": "company", "aliases": ["xAI", "x.ai", "X AI"]},
+    {"entity_id": "x", "entity_type": "platform", "aliases": ["X", "Twitter"]},
+    {"entity_id": "spacex", "entity_type": "company", "aliases": ["SpaceX"]},
+    {"entity_id": "google-cloud", "entity_type": "platform", "aliases": ["Google Cloud"]},
+    {"entity_id": "minimax", "entity_type": "company", "aliases": ["MiniMax", "minimaxai"]},
+    {"entity_id": "minimax-h3", "entity_type": "product", "aliases": ["MiniMax H3"]},
+    {"entity_id": "comfyui", "entity_type": "product", "aliases": ["ComfyUI"]}
+  ],
+  "relations": [
+    {"from": "claude", "to": "anthropic", "relation": "developed_by", "weight": 0.55, "status": "verified"},
+    {"from": "claude-code", "to": "anthropic", "relation": "product_of", "weight": 0.55, "status": "verified"},
+    {"from": "chatgpt", "to": "openai", "relation": "product_of", "weight": 0.55, "status": "verified"},
+    {"from": "codex", "to": "openai", "relation": "product_of", "weight": 0.55, "status": "verified"},
+    {"from": "gemini", "to": "google-deepmind", "relation": "developed_by", "weight": 0.60, "status": "verified"},
+    {"from": "gemini", "to": "google", "relation": "owned_by", "weight": 0.45, "status": "verified"},
+    {"from": "grok", "to": "xai", "relation": "developed_by", "weight": 0.60, "status": "verified"},
+    {"from": "grok-bot", "to": "grok", "relation": "product_of", "weight": 0.65, "status": "verified"},
+    {"from": "grok", "to": "x", "relation": "distributed_on", "weight": 0.30, "status": "verified"}
+  ]
+}

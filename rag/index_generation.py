@@ -140,6 +140,41 @@ class IndexGenerationStore:
                 return candidate
         return None
 
+    def resolve_verified(self, generation_id: str) -> Path | None:
+        """Resolve one explicitly named verified generation without changing pointers."""
+        try:
+            candidate = self.root / self._validate_generation_id(str(generation_id or ""))
+        except ValueError:
+            return None
+        return candidate if self._is_verified(candidate) else None
+
+    def restore_active(self, generation_id: str | None) -> Path | None:
+        """Restore the last-known-good pointer after a downstream stage fails.
+
+        The legacy index is represented by an empty pointer.  This only changes
+        the small pointer file; generation directories and data are retained for
+        diagnosis and recovery.
+        """
+        normalized = str(generation_id or "").strip()
+        if not normalized or normalized == "legacy":
+            self._write_json(
+                self.pointer_path,
+                {"active": "", "previous": "", "recovered_at": self._now()},
+            )
+            return None
+        candidate = self.resolve_verified(normalized)
+        if candidate is None:
+            raise ValueError("cannot restore an unverified generation")
+        self._write_json(
+            self.pointer_path,
+            {
+                "active": normalized,
+                "previous": "",
+                "recovered_at": self._now(),
+            },
+        )
+        return candidate
+
     def _is_verified(self, path: Path) -> bool:
         try:
             manifest = self._read_manifest(path)

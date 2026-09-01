@@ -21,6 +21,79 @@ class FakeNeo4jDriver:
     async def close(self):
         self.closed = True
 
+    async def execute_query(self, query, **_kwargs):
+        if "SHOW INDEXES" in query:
+            return [
+                {"name": "entity_search", "state": "ONLINE"},
+                {"name": "topic_search", "state": "ONLINE"},
+            ]
+        if "required_label" in query:
+            return [
+                {"required_label": "Observation", "node_count": 1},
+                {"required_label": "Content", "node_count": 1},
+            ]
+        return [{"ok": 1}]
+
+
+@pytest.mark.asyncio
+async def test_startup_graph_connection_retries_once_before_degrading(monkeypatch):
+    class FlakyDriver(FakeNeo4jDriver):
+        def __init__(self):
+            super().__init__()
+            self.connect_calls = 0
+
+        async def connect(self):
+            self.connect_calls += 1
+            if self.connect_calls == 1:
+                raise OSError("temporary bolt startup lag")
+            self.connected = True
+
+    schema_calls = 0
+
+    async def fake_init_schema(_driver):
+        nonlocal schema_calls
+        schema_calls += 1
+
+    monkeypatch.setattr(server, "init_schema", fake_init_schema)
+    driver = FlakyDriver()
+
+    probe = await server._connect_and_verify_graph(
+        driver,
+        attempts=2,
+        retry_delay_seconds=0,
+    )
+
+    assert driver.connect_calls == 2
+    # An existing healthy graph must not replay all schema DDL on every restart.
+    assert schema_calls == 0
+    assert (await probe.probe("runtime")).status == "ready"
+
+
+@pytest.mark.asyncio
+async def test_startup_initializes_schema_only_when_required_indexes_are_missing(monkeypatch):
+    class MissingIndexDriver(FakeNeo4jDriver):
+        indexes_ready = False
+
+        async def execute_query(self, query, **kwargs):
+            if "SHOW INDEXES" in query and not self.indexes_ready:
+                return []
+            return await super().execute_query(query, **kwargs)
+
+    driver = MissingIndexDriver()
+    schema_calls = 0
+
+    async def fake_init_schema(_driver):
+        nonlocal schema_calls
+        schema_calls += 1
+        driver.indexes_ready = True
+
+    monkeypatch.setattr(server, "init_schema", fake_init_schema)
+
+    probe = await server._connect_and_verify_graph(driver, attempts=1)
+
+    assert schema_calls == 1
+    assert (await probe.probe("runtime")).status == "ready"
+
 
 @pytest.mark.asyncio
 async def test_reconnect_databases_restores_hybrid_runtime_without_rebuilding_index(monkeypatch):

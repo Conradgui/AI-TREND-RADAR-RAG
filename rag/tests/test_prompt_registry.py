@@ -9,6 +9,8 @@ def test_task_prompts_enforce_their_core_product_contracts():
     assert "趋势簇" in trend and "单条新闻不得直接称为趋势" in trend
     assert "supported、contradicted 或 insufficient" in claim
     assert "必须返回证据不足" in claim
+    assert "claim_verification" in claim
+    assert "claim-result" not in claim
     assert "直接否定" in compile_task_prompt("claim_verification", 3)
     assert "亏损" in compile_task_prompt("claim_verification", 3)
     assert "每条结论绑定具体证据编号" in fallback

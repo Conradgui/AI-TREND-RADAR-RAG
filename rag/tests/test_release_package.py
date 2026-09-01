@@ -8,6 +8,13 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
+def _effective_launcher_source(name: str) -> str:
+    source = (PROJECT_ROOT / name).read_text(encoding="utf-8")
+    if "doctor.command" in source:
+        source += (PROJECT_ROOT / "doctor.command").read_text(encoding="utf-8")
+    return source
+
+
 def test_compose_declares_the_complete_local_product_stack():
     """`docker compose up` must start both the app and its graph database."""
     source = (PROJECT_ROOT / "docker-compose.yml").read_text(encoding="utf-8")
@@ -22,6 +29,9 @@ def test_compose_declares_the_complete_local_product_stack():
     assert "graph-data-science" not in source
     assert "OMP_NUM_THREADS" in source
     assert source.count("cpus:") >= 2
+    assert "RAG_STARTUP_CORPUS_UPDATE_ENABLED: ${RAG_STARTUP_CORPUS_UPDATE_ENABLED:-true}" in source
+    assert "RAG_CORPUS_UPDATE_INTERVAL_SECONDS" in source
+    assert "RAG_UPSTREAM_CORPUS_URL" in source
 
 
 def test_docker_build_keeps_local_secrets_and_development_artifacts_out():
@@ -50,9 +60,21 @@ def test_example_environment_is_safe_and_ready_for_the_setup_wizard():
     assert "RAG_API_KEY=" in source
 
 
+def test_setup_paths_enable_managed_corpus_updates_consistently():
+    for path in (
+        PROJECT_ROOT / ".env.example",
+        PROJECT_ROOT / "setup.command",
+        PROJECT_ROOT / "scripts" / "setup-windows.ps1",
+    ):
+        source = path.read_text(encoding="utf-8")
+        assert "RAG_STARTUP_CORPUS_UPDATE_ENABLED=true" in source
+        assert "RAG_CORPUS_UPDATE_INTERVAL_SECONDS=21600" in source
+        assert "RAG_UPSTREAM_CORPUS_URL=https://conradgui.github.io/AI-TREND-RADAR" in source
+
+
 def test_daily_launchers_reuse_existing_images_and_keep_rebuild_explicit():
     for launcher in ("start.command", "start.bat"):
-        source = (PROJECT_ROOT / launcher).read_text(encoding="utf-8")
+        source = _effective_launcher_source(launcher)
         assert "docker compose up -d --no-build" in source
         assert "docker compose images -q app" in source
         assert "pip install" not in source
@@ -69,9 +91,9 @@ def test_daily_launchers_reuse_existing_images_and_keep_rebuild_explicit():
 
 def test_start_launchers_wait_for_the_product_health_check_before_opening_browser():
     for launcher in ("start.command", "start.bat"):
-        source = (PROJECT_ROOT / launcher).read_text(encoding="utf-8")
+        source = _effective_launcher_source(launcher)
         assert "/health" in source
-        assert "等待服务就绪" in source
+        assert "等待服务就绪" in source or "基础设施检查通过" in source
 
 
 def test_windows_setup_hides_provider_key_while_writing_only_local_env_file():

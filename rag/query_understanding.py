@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import re
 from dataclasses import asdict, dataclass, field
+from datetime import date, timedelta
+
+from rag.entity_identity import canonical_entity_id, query_entity_ids, related_entity_expansions
 
 
 RECENT_RAG_TERMS = [
@@ -31,6 +34,10 @@ PRODUCT_HUNT_TERMS = [
 
 OPENAI_TERMS = [
     "OpenAI",
+]
+
+CHATGPT_TERMS = [
+    "ChatGPT",
 ]
 
 APPLE_TERMS = [
@@ -81,12 +88,16 @@ class QueryPlan:
     routing_notes: list[str] = field(default_factory=list)
     task_mode: str = "general"  # 任务模式：general, explain, compare, timeline, brief_followup, source_check
     graph_requirement: str = "disabled"
+    entity_expansions: list[dict] = field(default_factory=list)
+    # Model-derived terms may widen retrieval, but are never treated as user
+    # entities, claims, citations, or answer evidence.
+    retrieval_hints: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         return asdict(self)
 
 
-def analyze_query(question: str) -> QueryPlan:
+def analyze_query(question: str, *, entity_relation_memory=None) -> QueryPlan:
     """Infer a small, deterministic retrieval plan from a natural-language question."""
     normalized = question.strip()
     lowered = normalized.lower()
@@ -116,9 +127,15 @@ def analyze_query(question: str) -> QueryPlan:
         terms.extend(AI_CODING_TERMS)
 
     if _contains_any(lowered, ["claude", "anthropic"]):
-        entities.append("Claude")
-        entities.append("Anthropic")
-        terms.extend(CLAUDE_TERMS)
+        if "claude code" in lowered:
+            entities.append("Claude Code")
+            terms.append("Claude Code")
+        elif "claude" in lowered:
+            entities.append("Claude")
+            terms.append("Claude")
+        if "anthropic" in lowered:
+            entities.append("Anthropic")
+            terms.append("Anthropic")
         if _contains_any(normalized, ["上线", "新功能", "插件", "动态", "更新"]):
             intent = "product_update"
             top_k = 8
@@ -138,6 +155,13 @@ def analyze_query(question: str) -> QueryPlan:
     if _contains_any(lowered, ["openai"]):
         entities.append("OpenAI")
         terms.extend(OPENAI_TERMS)
+        if intent == "general_search":
+            intent = "recent_trend"
+        top_k = max(top_k, 8)
+
+    if _contains_any(lowered, ["chatgpt", "chat gpt"]):
+        entities.append("ChatGPT")
+        terms.extend(CHATGPT_TERMS)
         if intent == "general_search":
             intent = "recent_trend"
         top_k = max(top_k, 8)
@@ -186,6 +210,17 @@ def analyze_query(question: str) -> QueryPlan:
         intent = "recent_trend"
         top_k = max(top_k, 8)
 
+    # Keep legacy display labels, but let the shared registry define recognition.
+    existing_labels = {canonical_entity_id(value): value for value in entities}
+    matched_entity_ids = query_entity_ids(normalized)
+    if entity_relation_memory is not None:
+        matched_entity_ids.extend(entity_relation_memory.query_entity_ids(normalized))
+    entities = [
+        existing_labels.get(entity_id, entity_id)
+        for entity_id in dict.fromkeys(matched_entity_ids)
+    ]
+    terms.extend(entities)
+
     if entities and _is_important_news_question(normalized, lowered):
         intent = "important_news"
         top_k = max(top_k, 10)
@@ -197,6 +232,17 @@ def analyze_query(question: str) -> QueryPlan:
         notes.append("Question asks for recent information; retrieval should prefer the freshest local corpus.")
 
     retrieval_query = _build_retrieval_query(normalized, terms)
+    entity_expansions = related_entity_expansions(
+        entities,
+        memory=entity_relation_memory,
+    )
+    for relation in entity_expansions:
+        related_id = relation["entity_id"]
+        related_label = {"anthropic": "Anthropic", "openai": "OpenAI"}.get(
+            related_id, related_id
+        )
+        if related_label.casefold() not in retrieval_query.casefold():
+            retrieval_query = f"{retrieval_query} {related_label}"
 
     # 检测任务模式
     task_mode = _detect_task_mode(normalized, lowered, intent)
@@ -217,6 +263,7 @@ def analyze_query(question: str) -> QueryPlan:
         routing_notes=notes,
         task_mode=task_mode,
         graph_requirement=graph_requirement,
+        entity_expansions=entity_expansions,
     )
 
 
@@ -290,7 +337,48 @@ def _detect_task_mode(question: str, lowered: str, intent: str) -> str:
 
 def _infer_time_window(question: str, lowered: str) -> dict:
     compact_question = re.sub(r"\s+", "", question)
-    if _contains_any(compact_question, ["过去一周", "近一周", "最近一周", "7天", "七天", "本周日报"]):
+    one_week_markers = ["过去一周", "近一周", "最近一周", "7天", "七天", "本周日报"]
+    recent_markers = ["最近", "近期", "最新", "新发布", "新动向"]
+    cutoff = re.search(r"(?:截至|截止(?:到)?)\s*(20\d{2})[-/]?(\d{1,2})[-/]?(\d{1,2})", question)
+    if cutoff:
+        year, month, day = (int(value) for value in cutoff.groups())
+        end = f"{year:04d}-{month:02d}-{day:02d}"
+        start = "2000-01-01"
+        if _contains_any(compact_question, one_week_markers):
+            start = (date(year, month, day) - timedelta(days=6)).isoformat()
+        elif _contains_any(compact_question, recent_markers):
+            start = (date(year, month, day) - timedelta(days=13)).isoformat()
+        return {
+            "mode": "absolute_range",
+            "value": f"{start} | {end}",
+            "surface": cutoff.group(0),
+            "start": start,
+            "end": end,
+            "requires_date_filter": True,
+        }
+    month_day_cutoff = re.search(
+        r"(?:截至|截止(?:到)?)\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日?",
+        question,
+    )
+    if month_day_cutoff:
+        month, day = (int(value) for value in month_day_cutoff.groups())
+        cutoff_day = date(date.today().year, month, day)
+        start = (
+            cutoff_day - timedelta(days=6)
+            if _contains_any(compact_question, one_week_markers)
+            else cutoff_day - timedelta(days=13)
+            if _contains_any(compact_question, recent_markers)
+            else date(2000, 1, 1)
+        )
+        return {
+            "mode": "absolute_range",
+            "value": f"{start.isoformat()} | {cutoff_day.isoformat()}",
+            "surface": month_day_cutoff.group(0),
+            "start": start.isoformat(),
+            "end": cutoff_day.isoformat(),
+            "requires_date_filter": True,
+        }
+    if _contains_any(compact_question, one_week_markers):
         return {"label": "last_7_days", "days": 7, "requires_date_filter": True}
     if _contains_any(question, ["最近", "近期", "最新", "新发布", "新动向", "动态", "更新", "收录"]):
         return {"label": "recent_corpus_first", "days": 14, "requires_date_filter": False}

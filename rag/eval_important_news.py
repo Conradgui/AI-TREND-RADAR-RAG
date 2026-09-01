@@ -70,12 +70,16 @@ async def evaluate_dataset(dataset: dict) -> dict:
             limit=max(10, len(entity_cases)),
         ))
         main_ids = {str(record.get("citation_id")) for record in bundle.records}
+        supplementary_ids = {
+            str(record.get("citation_id")) for record in bundle.supplementary_records
+        }
         background_ids = {
             str(record.get("citation_id")) for record in bundle.background_records
         }
         excluded_ids = set(bundle.trace.get("excluded_candidate_ids") or [])
         observed_by_id = {
             **{identity: "main" for identity in main_ids},
+            **{identity: "supplementary" for identity in supplementary_ids},
             **{identity: "background" for identity in background_ids},
             **{identity: "exclude" for identity in excluded_ids},
         }

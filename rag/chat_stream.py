@@ -9,6 +9,7 @@ from collections.abc import AsyncIterator, Awaitable, Callable
 
 ProgressCallback = Callable[[str, dict], Awaitable[None]]
 ResponseBuilder = Callable[[ProgressCallback], Awaitable[dict]]
+TimeoutCallback = Callable[[], Awaitable[None]]
 
 
 def encode_stream_event(event: dict) -> str:
@@ -38,6 +39,7 @@ async def iter_chat_events(
     build_response: ResponseBuilder,
     *,
     timeout_seconds: float,
+    on_timeout: TimeoutCallback | None = None,
 ) -> AsyncIterator[dict]:
     """Run one request and expose truthful progress through a small event interface.
 
@@ -100,6 +102,8 @@ async def iter_chat_events(
             },
         }
     except asyncio.TimeoutError:
+        if on_timeout is not None:
+            await on_timeout()
         yield {
             "event": "error",
             "data": {
