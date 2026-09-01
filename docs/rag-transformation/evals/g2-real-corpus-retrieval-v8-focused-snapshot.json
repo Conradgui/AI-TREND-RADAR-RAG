@@ -1,0 +1,908 @@
+{
+  "schema_version": "g2-retrieval-snapshot/1.0",
+  "generated_at": "2026-09-01T02:25:09.052329+00:00",
+  "dataset_schema_version": "g2-real-corpus-retrieval-ai-review/1.0",
+  "review_status": "human_reviewed",
+  "corpus_boundary": null,
+  "rows": [
+    {
+      "case_id": "g2-real-008",
+      "query": "最近一周，AI 编程助手在“跨会话上下文/代码库知识”上出现了哪些不同的产品做法？",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "## 近期重要动态\n1. **[thedotmack/claude-mem](#2026-08-24/ai-topic-radar/item/ATR-20260824-A1265F)**（2026-08-24 · GitHub Search:rag）：Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme [E1]\n2. **[Graphify-Labs/graphify](#2026-08-21/ai-topic-radar/item/ATR-20260821-AE480E)**（2026-08-21 · GitHub Search:rag）：Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store. [E2]\n\n## 补充动态\n- 暂无符合条件的动态。\n\n## 历史背景（不计入近期主榜）\n- 暂无符合条件的动态。",
+        "display_answer": "📚 仅内部语料\n\n## 近期重要动态\n1. **[thedotmack/claude-mem](#2026-08-24/ai-topic-radar/item/ATR-20260824-A1265F)**（2026-08-24 · GitHub Search:rag）：Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme [I1]\n2. **[Graphify-Labs/graphify](#2026-08-21/ai-topic-radar/item/ATR-20260821-AE480E)**（2026-08-21 · GitHub Search:rag）：Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store. [I2]\n\n## 补充动态\n- 暂无符合条件的动态。\n\n## 历史背景（不计入近期主榜）\n- 暂无符合条件的动态。",
+        "citations": [
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-24",
+            "source": "GitHub Search:rag",
+            "title": "thedotmack/claude-mem",
+            "citation_id": "ATR-20260824-A1265F",
+            "excerpt": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme",
+            "report_date": "2026-08-24",
+            "publication_date_source": "unknown",
+            "source_updated_at": "2026-08-23",
+            "observed_at": "2026-08-24",
+            "ingested_at": "2026-08-31T08:38:07.439973+00:00",
+            "effective_date": "2026-08-24",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "local_url": "#2026-08-24/ai-topic-radar/item/ATR-20260824-A1265F",
+            "content_id": "d42fd4ddf4a76687fb297b7a6429787a",
+            "occurrence_id": "ATR-20260824-A1265F",
+            "score": 68,
+            "category": "AI 产品与用户入口",
+            "entity_ids": [],
+            "fusion_score": 0.01639344262295082,
+            "lexical_match_type": "descriptor",
+            "lexical_score": 0.5555555555555556,
+            "evidence_id": "E1",
+            "display_label": "I1"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-21",
+            "source": "GitHub Search:rag",
+            "title": "Graphify-Labs/graphify",
+            "citation_id": "ATR-20260821-AE480E",
+            "excerpt": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+            "report_date": "2026-08-21",
+            "publication_date_source": "unknown",
+            "source_updated_at": "2026-08-20",
+            "observed_at": "2026-08-21",
+            "ingested_at": "2026-08-31T08:38:07.439973+00:00",
+            "effective_date": "2026-08-21",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://github.com/Graphify-Labs/graphify",
+            "local_url": "#2026-08-21/ai-topic-radar/item/ATR-20260821-AE480E",
+            "content_id": "1b66fcabdd1a9ff0f6ac40f9445083eb",
+            "occurrence_id": "ATR-20260821-AE480E",
+            "score": 68,
+            "category": "AI 产品与用户入口",
+            "entity_ids": [],
+            "fusion_score": 0.015873015873015872,
+            "lexical_match_type": "descriptor",
+            "lexical_score": 0.5555555555555556,
+            "evidence_id": "E2",
+            "display_label": "I2"
+          }
+        ],
+        "evidence_display_map": {
+          "E1": "I1",
+          "E2": "I2"
+        },
+        "search_references": [],
+        "source_summary": {
+          "internal_citations": 2,
+          "external_citations": 0,
+          "search_references": 0
+        },
+        "claim_evidence": [
+          {
+            "claim": "1. **[thedotmack/claude-mem](#2026-08-24/ai-topic-radar/item/ATR-20260824-A1265F)**（2026-08-24 · GitHub Search:rag）：Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "claim": "2. **[Graphify-Labs/graphify](#2026-08-21/ai-topic-radar/item/ATR-20260821-AE480E)**（2026-08-21 · GitHub Search:rag）：Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+            "evidence_ids": [
+              "E2"
+            ]
+          }
+        ],
+        "claim_verification": null,
+        "evidence_integrity": {
+          "valid": true,
+          "repair_attempted": false,
+          "answer_envelope": {
+            "valid": true,
+            "errors": [],
+            "schema_version": "answer-envelope/1.0",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "route": {
+              "primary_task_family": "trend_discovery",
+              "answer_mode": "important_news"
+            },
+            "answer_builder_contract_id": "atr.answer_builder/important_news/1.0",
+            "output_schema_id": "atr.answer/trend/1.0",
+            "sections": [
+              {
+                "id": "recent_important_news",
+                "title": "近期重要动态",
+                "max_items": 5,
+                "item_count": 2,
+                "evidence_ids": [
+                  "E1",
+                  "E2"
+                ]
+              },
+              {
+                "id": "supplementary",
+                "title": "补充动态",
+                "max_items": 3,
+                "item_count": 0,
+                "evidence_ids": []
+              },
+              {
+                "id": "historical_background",
+                "title": "历史背景",
+                "max_items": 3,
+                "item_count": 0,
+                "evidence_ids": []
+              }
+            ]
+          },
+          "unknown_evidence_ids": [],
+          "missing_evidence_markers": false,
+          "minimum_evidence_markers": 1,
+          "used_evidence_markers": 2,
+          "coverage_sufficient": true,
+          "required_evidence_ids": [],
+          "missing_required_evidence_ids": []
+        },
+        "query_understanding": {
+          "original_question": "最近一周，AI 编程助手在“跨会话上下文/代码库知识”上出现了哪些不同的产品做法？",
+          "intent": "important_news",
+          "retrieval_query": "AI 编程助手 跨会话上下文 persistent context across sessions session memory 代码库知识 codebase context codebase knowledge graph 最近一周 跨会话上下文/代码库知识",
+          "top_k": 10,
+          "topics": [],
+          "entities": [
+            "AI 编程助手"
+          ],
+          "sources": [],
+          "time_window": {
+            "mode": "none",
+            "value": null
+          },
+          "temporal_intent": "effective",
+          "answerability_hint": "internal-first",
+          "needs_web_search": false,
+          "routing_notes": [
+            "Route Contract owns retrieval: trend_discovery"
+          ],
+          "task_mode": "general",
+          "graph_requirement": "disabled",
+          "entity_expansions": [],
+          "retrieval_hints": [
+            "跨会话上下文",
+            "persistent context across sessions",
+            "session memory",
+            "代码库知识",
+            "codebase context",
+            "codebase knowledge graph"
+          ],
+          "task_family": "trend_discovery",
+          "retrieval_gateway": {
+            "path": "evidence_search",
+            "route_source": "route_contract_v2",
+            "route_contract_version": "atr.route/2.0",
+            "shadow": true,
+            "primary_task_family": "trend_discovery",
+            "execution_policy": {
+              "channels": [
+                "structured"
+              ],
+              "graph_mode": "disabled",
+              "max_composer_calls": 0,
+              "allow_web_fallback": true
+            },
+            "channel_status": {
+              "lexical": "success",
+              "vector": "success",
+              "graph": "disabled"
+            },
+            "pre_filter_count": 2,
+            "focused_count": 2,
+            "entity_filter_mode": "not_required",
+            "graph_readiness": {
+              "status": "not_required"
+            },
+            "graph_evidence": {
+              "status": "not_required"
+            }
+          },
+          "execution_policy": {
+            "channels": [
+              "structured"
+            ],
+            "graph_mode": "disabled",
+            "max_composer_calls": 0,
+            "allow_web_fallback": true
+          },
+          "web_search_mode": {
+            "requested_mode": "never",
+            "intent_constraint": "none",
+            "effective_mode": "never",
+            "mode_reason": "request_mode_never"
+          },
+          "latest_corpus_date": "2026-08-24",
+          "metadata_filter": {
+            "content_type": "topic_candidate"
+          },
+          "context": {},
+          "ordered_route_contract": {
+            "status": "resolved",
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "trend_discovery",
+            "attempts": 1,
+            "route_source": "semantic_fallback",
+            "model_calls": 1,
+            "product_case_id": null
+          },
+          "runtime_budget": {
+            "total_seconds": 20.0,
+            "retrieval_seconds": 8.0,
+            "generation_seconds": 0.0
+          },
+          "corpus_stale": true,
+          "corpus_age_days": 8,
+          "internal_retrieval": {
+            "status": "ready",
+            "error_code": "",
+            "elapsed_ms": 4588.3
+          },
+          "web_search_decision": {
+            "requested_mode": "never",
+            "effective_mode": "never",
+            "should_search": false,
+            "reason": "request_mode_never",
+            "retrieval_status": "ready",
+            "intent_constraint": "none",
+            "evidence_quality_status": "PARTIAL",
+            "evidence_gaps": [
+              "entity_coverage_unverified"
+            ]
+          },
+          "answer_policy": {
+            "mode": "deterministic_important_news",
+            "disclosure": "结构化近期动态按已验证排序直接展示。"
+          },
+          "tool_routing": {
+            "status": "not_required",
+            "steps": []
+          },
+          "source_review": {
+            "status": "internal_only",
+            "artifact_quality_status": "internal_only",
+            "external_count": 0,
+            "primary_count": 0,
+            "supporting_count": 0,
+            "weak_count": 0,
+            "source_roles": [],
+            "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+          }
+        },
+        "tool_trace": {
+          "execution_path": "deterministic_important_news",
+          "evidence_pool_count": 2,
+          "tools_used": [],
+          "evidence_sources": [
+            "internal"
+          ],
+          "total_calls": 0,
+          "summary": "结构化动态排序完成，未调用生成模型或工具",
+          "execution_counts": {
+            "model_turns": 0,
+            "agent_tool_calls": 0,
+            "planned_steps": 0
+          },
+          "timings": {
+            "retrieval_ms": 4588.3,
+            "agent_ms": 0.0,
+            "repair_ms": 0.0,
+            "total_ms": 9245.67
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g2-real-009",
+      "query": "Graphify 和 claude-mem 都服务 Claude Code 等编码代理，它们在“保留和检索上下文”上分别做什么？",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据 AI Trend Radar 内部语料，Graphify 和 claude-mem 在“保留和检索上下文”上的定位不同：\n\n- **claude-mem** 聚焦“跨会话持久上下文”：它捕获代理在会话期间的**一切操作**，用 AI 压缩后注入到未来会话中，从而为每个代理提供跨会话的持久记忆。也就是说，它的侧重点是**会话间记忆的保存与复用**，而非代码库结构本身 [E3]。\n\n- **Graphify** 则把代码库（含文档、SQL schema、配置、PDF）转化为**可查询的知识图谱**，采用本地确定性 AST 解析、每条边都有解释且不依赖向量存储。它的检索对象是**代码库静态结构**，而不是会话历史，因此更偏向“按需查询项目知识图谱”的上下文检索 [E4]。\n\n综上：claude-mem 管理的是**时会话过程的历史上下文**，Graphify 管理的是**代码库的结构化知识上下文**；两者互补而非重叠。证据范围内未提供两者直接对比或性能数据，因此无法做出进一步优劣判断 [E3][E4]。",
+        "display_answer": "📚 仅内部语料\n\n证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据 AI Trend Radar 内部语料，Graphify 和 claude-mem 在“保留和检索上下文”上的定位不同：\n\n- **claude-mem** 聚焦“跨会话持久上下文”：它捕获代理在会话期间的**一切操作**，用 AI 压缩后注入到未来会话中，从而为每个代理提供跨会话的持久记忆。也就是说，它的侧重点是**会话间记忆的保存与复用**，而非代码库结构本身 [I1]。\n\n- **Graphify** 则把代码库（含文档、SQL schema、配置、PDF）转化为**可查询的知识图谱**，采用本地确定性 AST 解析、每条边都有解释且不依赖向量存储。它的检索对象是**代码库静态结构**，而不是会话历史，因此更偏向“按需查询项目知识图谱”的上下文检索 [I2]。\n\n综上：claude-mem 管理的是**时会话过程的历史上下文**，Graphify 管理的是**代码库的结构化知识上下文**；两者互补而非重叠。证据范围内未提供两者直接对比或性能数据，因此无法做出进一步优劣判断 [I1][I2]。",
+        "citations": [
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-24",
+            "source": "GitHub Search:rag",
+            "title": "thedotmack/claude-mem",
+            "citation_id": "ATR-20260824-A1265F",
+            "excerpt": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Herme",
+            "report_date": "2026-08-24",
+            "publication_date_source": "unknown",
+            "source_updated_at": "2026-08-23",
+            "observed_at": "2026-08-24",
+            "ingested_at": "2026-08-31T08:38:07.439973+00:00",
+            "effective_date": "2026-08-24",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://github.com/thedotmack/claude-mem",
+            "local_url": "#2026-08-24/ai-topic-radar/item/ATR-20260824-A1265F",
+            "content_id": "d42fd4ddf4a76687fb297b7a6429787a",
+            "occurrence_id": "ATR-20260824-A1265F",
+            "score": 68,
+            "category": "AI 产品与用户入口",
+            "entity_ids": [],
+            "fusion_score": 0.01639344262295082,
+            "lexical_match_type": "title_in_query",
+            "lexical_score": 0.75,
+            "evidence_id": "E3",
+            "display_label": "I1"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-21",
+            "source": "GitHub Search:rag",
+            "title": "Graphify-Labs/graphify",
+            "citation_id": "ATR-20260821-AE480E",
+            "excerpt": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+            "report_date": "2026-08-21",
+            "publication_date_source": "unknown",
+            "source_updated_at": "2026-08-20",
+            "observed_at": "2026-08-21",
+            "ingested_at": "2026-08-31T08:38:07.439973+00:00",
+            "effective_date": "2026-08-21",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://github.com/Graphify-Labs/graphify",
+            "local_url": "#2026-08-21/ai-topic-radar/item/ATR-20260821-AE480E",
+            "content_id": "1b66fcabdd1a9ff0f6ac40f9445083eb",
+            "occurrence_id": "ATR-20260821-AE480E",
+            "score": 68,
+            "category": "AI 产品与用户入口",
+            "entity_ids": [],
+            "fusion_score": 0.015873015873015872,
+            "lexical_match_type": "title_in_query",
+            "lexical_score": 0.75,
+            "evidence_id": "E4",
+            "display_label": "I2"
+          }
+        ],
+        "evidence_display_map": {
+          "E3": "I1",
+          "E4": "I2"
+        },
+        "search_references": [],
+        "source_summary": {
+          "internal_citations": 2,
+          "external_citations": 0,
+          "search_references": 0
+        },
+        "claim_evidence": [
+          {
+            "claim": "**claude-mem** 聚焦“跨会话持久上下文”：它捕获代理在会话期间的**一切操作**，用 AI 压缩后注入到未来会话中，从而为每个代理提供跨会话的持久记忆。也就是说，它的侧重点是**会话间记忆的保存与复用**，而非代码库结构本身 。",
+            "evidence_ids": [
+              "E3"
+            ]
+          },
+          {
+            "claim": "**Graphify** 则把代码库（含文档、SQL schema、配置、PDF）转化为**可查询的知识图谱**，采用本地确定性 AST 解析、每条边都有解释且不依赖向量存储。它的检索对象是**代码库静态结构**，而不是会话历史，因此更偏向“按需查询项目知识图谱”的上下文检索 。",
+            "evidence_ids": [
+              "E4"
+            ]
+          },
+          {
+            "claim": "综上：claude-mem 管理的是**时会话过程的历史上下文**，Graphify 管理的是**代码库的结构化知识上下文**；两者互补而非重叠。证据范围内未提供两者直接对比或性能数据，因此无法做出进一步优劣判断 。",
+            "evidence_ids": [
+              "E3",
+              "E4"
+            ]
+          }
+        ],
+        "claim_verification": null,
+        "evidence_integrity": {
+          "valid": true,
+          "repair_attempted": false,
+          "answer_envelope": {
+            "valid": true,
+            "errors": [],
+            "schema_version": "answer-envelope/1.0",
+            "evidence_ids": [
+              "E3",
+              "E4"
+            ]
+          },
+          "unknown_evidence_ids": [],
+          "missing_evidence_markers": false,
+          "minimum_evidence_markers": 2,
+          "used_evidence_markers": 2,
+          "coverage_sufficient": true,
+          "required_evidence_ids": [
+            "E3",
+            "E4"
+          ],
+          "missing_required_evidence_ids": []
+        },
+        "query_understanding": {
+          "original_question": "Graphify 和 claude-mem 都服务 Claude Code 等编码代理，它们在“保留和检索上下文”上分别做什么？",
+          "intent": "general_search",
+          "retrieval_query": "Claude Code anthropic Graphify claude-mem 保留和检索上下文",
+          "top_k": 10,
+          "topics": [],
+          "entities": [
+            "Claude Code"
+          ],
+          "sources": [],
+          "time_window": {
+            "mode": "none",
+            "value": null
+          },
+          "temporal_intent": "effective",
+          "answerability_hint": "internal-first",
+          "needs_web_search": false,
+          "routing_notes": [
+            "Route Contract owns retrieval: evidence_research"
+          ],
+          "task_mode": "compare",
+          "graph_requirement": "disabled",
+          "entity_expansions": [
+            {
+              "from_entity_id": "claude-code",
+              "entity_id": "anthropic",
+              "relation": "product_of",
+              "weight": 0.55
+            }
+          ],
+          "retrieval_hints": [],
+          "task_family": "evidence_research",
+          "retrieval_gateway": {
+            "path": "evidence_search",
+            "route_source": "route_contract_v2",
+            "route_contract_version": "atr.route/2.0",
+            "shadow": true,
+            "primary_task_family": "evidence_research",
+            "execution_policy": {
+              "channels": [
+                "lexical",
+                "vector"
+              ],
+              "graph_mode": "disabled",
+              "max_composer_calls": 1,
+              "allow_web_fallback": true
+            },
+            "channel_status": {
+              "lexical": "success",
+              "vector": "success",
+              "graph": "disabled"
+            },
+            "pre_filter_count": 5,
+            "focused_count": 5,
+            "entity_filter_mode": "task_scope",
+            "graph_readiness": {
+              "status": "not_required"
+            },
+            "graph_evidence": {
+              "status": "not_required"
+            }
+          },
+          "execution_policy": {
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "graph_mode": "disabled",
+            "max_composer_calls": 1,
+            "allow_web_fallback": true
+          },
+          "web_search_mode": {
+            "requested_mode": "never",
+            "intent_constraint": "none",
+            "effective_mode": "never",
+            "mode_reason": "request_mode_never"
+          },
+          "latest_corpus_date": "2026-08-24",
+          "metadata_filter": null,
+          "context": {},
+          "ordered_route_contract": {
+            "status": "resolved",
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "evidence_research",
+            "attempts": 0,
+            "route_source": "deterministic_signals",
+            "model_calls": 0,
+            "product_case_id": null
+          },
+          "runtime_budget": {
+            "total_seconds": 60.0,
+            "retrieval_seconds": 15.0,
+            "generation_seconds": 45.0
+          },
+          "corpus_stale": true,
+          "corpus_age_days": 8,
+          "internal_retrieval": {
+            "status": "ready",
+            "error_code": "",
+            "elapsed_ms": 1340.62
+          },
+          "web_search_decision": {
+            "requested_mode": "never",
+            "effective_mode": "never",
+            "should_search": false,
+            "reason": "request_mode_never",
+            "retrieval_status": "ready",
+            "intent_constraint": "none",
+            "evidence_quality_status": "PARTIAL",
+            "evidence_gaps": [
+              "entity_coverage_unverified"
+            ]
+          },
+          "source_admission": {
+            "candidate_count": 0,
+            "admitted_count": 0,
+            "search_reference_count": 0,
+            "excluded_count": 0,
+            "duplicate_count": 0,
+            "claim_type": "capability_evaluation",
+            "provisional_admitted_count": 0
+          },
+          "answer_policy": {
+            "mode": "internal_grounded",
+            "should_call_llm": true,
+            "external_search_required": false,
+            "evidence_boundary": "internal_corpus_only",
+            "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+            "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+          },
+          "tool_routing": {
+            "status": "internal_only_ready",
+            "external_tools_required": false,
+            "external_tools_available": false,
+            "max_tool_calls": 1,
+            "steps": [
+              {
+                "tool": "search_corpus",
+                "state": "executed",
+                "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+              }
+            ],
+            "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+          },
+          "external_search": {
+            "attempted": false,
+            "citations": []
+          },
+          "deep_fetch": {
+            "attempted": false,
+            "reason": "no_external_citations",
+            "selected_count": 0,
+            "success_count": 0,
+            "failure_count": 0,
+            "targets": []
+          },
+          "source_review": {
+            "status": "internal_only",
+            "artifact_quality_status": "internal_only",
+            "external_count": 0,
+            "primary_count": 0,
+            "supporting_count": 0,
+            "weak_count": 0,
+            "source_roles": [],
+            "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+          },
+          "execution_path": "direct_composer",
+          "entity_relation_feedback": {
+            "captured_count": 0,
+            "verified_count": 0
+          }
+        },
+        "tool_trace": {
+          "execution_path": "direct_composer",
+          "evidence_pool_count": 5,
+          "tools_used": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "evidence_sources": [
+            "internal"
+          ],
+          "total_calls": 1,
+          "summary": "使用了 search_corpus；基于内部语料；共 2 条引用",
+          "budget": {
+            "tool_calls": {
+              "used": 1,
+              "limit": 0
+            },
+            "web_searches": {
+              "used": 0,
+              "limit": 2
+            },
+            "deep_fetches": {
+              "used": 0,
+              "limit": 1
+            }
+          },
+          "execution_counts": {
+            "model_turns": 1,
+            "agent_tool_calls": 0,
+            "planned_steps": 1
+          },
+          "timings": {
+            "retrieval_ms": 1340.62,
+            "agent_ms": 3653.59,
+            "repair_ms": 0.0,
+            "total_ms": 5001.47
+          },
+          "warnings": [
+            {
+              "type": "corpus_stale",
+              "message": "语料可能过时（8天未更新）",
+              "suggestion": "建议查看最新报告或启用外部搜索"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g2-real-010",
+      "query": "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "证据层级：以下均为内部收录的来源报道/讨论线索，不代表相关主体的官方确认。\n\n## 时间线\n1. **[OpenAI Leans Toward Waiting Until Next Year for IPO](#2026-06-26/ai-topic-radar/item/ATR-20260626-3A46EC)**（2026-06-25 · Hacker News）：HN discussion by mfiguiere [E1]\n2. **[OpenAI wraps $7B share sale ahead of potential IPO](#2026-08-12/ai-topic-radar/item/ATR-20260812-0E70FB)**（2026-08-11 · Hacker News）：HN discussion by kristianp [E2]\n\n说明：这些是 Hacker News 收录的报道/讨论线索；当前语料不足以将其表述为相关主体已确认的时间表。",
+        "display_answer": "📚 仅内部语料\n\n证据层级：以下均为内部收录的来源报道/讨论线索，不代表相关主体的官方确认。\n\n## 时间线\n1. **[OpenAI Leans Toward Waiting Until Next Year for IPO](#2026-06-26/ai-topic-radar/item/ATR-20260626-3A46EC)**（2026-06-25 · Hacker News）：HN discussion by mfiguiere [I1]\n2. **[OpenAI wraps $7B share sale ahead of potential IPO](#2026-08-12/ai-topic-radar/item/ATR-20260812-0E70FB)**（2026-08-11 · Hacker News）：HN discussion by kristianp [I2]\n\n说明：这些是 Hacker News 收录的报道/讨论线索；当前语料不足以将其表述为相关主体已确认的时间表。",
+        "citations": [
+          {
+            "evidence_type": "internal",
+            "date": "2026-06-26",
+            "source": "Hacker News",
+            "title": "OpenAI Leans Toward Waiting Until Next Year for IPO",
+            "citation_id": "ATR-20260626-3A46EC",
+            "excerpt": "HN discussion by mfiguiere",
+            "report_date": "2026-06-26",
+            "publication_date": "2026-06-25",
+            "publication_date_source": "legacy_adapter_contract",
+            "observed_at": "2026-06-26",
+            "ingested_at": "2026-08-31T08:38:07.439973+00:00",
+            "effective_date": "2026-06-25",
+            "effective_date_basis": "publication_date",
+            "url": "https://www.nytimes.com/2026/06/25/technology/openai-ipo-artificial-intelligence.html",
+            "local_url": "#2026-06-26/ai-topic-radar/item/ATR-20260626-3A46EC",
+            "content_id": "6a5ef93e38d87bd364b3595be07068e0",
+            "occurrence_id": "ATR-20260626-3A46EC",
+            "score": 66,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai"
+            ],
+            "fusion_score": 0.0315136476426799,
+            "vector_similarity": 0.6946104168891907,
+            "lexical_match_type": "entity_event",
+            "lexical_score": 0.25,
+            "evidence_id": "E1",
+            "display_label": "I1"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-12",
+            "source": "Hacker News",
+            "title": "OpenAI wraps $7B share sale ahead of potential IPO",
+            "citation_id": "ATR-20260812-0E70FB",
+            "excerpt": "HN discussion by kristianp",
+            "report_date": "2026-08-12",
+            "publication_date": "2026-08-11",
+            "publication_date_source": "legacy_adapter_contract",
+            "observed_at": "2026-08-12",
+            "ingested_at": "2026-08-31T08:38:07.439973+00:00",
+            "effective_date": "2026-08-11",
+            "effective_date_basis": "publication_date",
+            "url": "https://www.cnbc.com/2026/08/10/openai-wraps-7-billion-share-sale-ahead-of-potential-ipo-.html",
+            "local_url": "#2026-08-12/ai-topic-radar/item/ATR-20260812-0E70FB",
+            "content_id": "5a3655b697fa0e74d5aa815d41133377",
+            "occurrence_id": "ATR-20260812-0E70FB",
+            "score": 59,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai"
+            ],
+            "fusion_score": 0.015625,
+            "lexical_match_type": "entity_event",
+            "lexical_score": 0.25,
+            "evidence_id": "E2",
+            "display_label": "I2"
+          }
+        ],
+        "evidence_display_map": {
+          "E1": "I1",
+          "E2": "I2"
+        },
+        "search_references": [],
+        "source_summary": {
+          "internal_citations": 2,
+          "external_citations": 0,
+          "search_references": 0
+        },
+        "claim_evidence": [
+          {
+            "claim": "1. **[OpenAI Leans Toward Waiting Until Next Year for IPO](#2026-06-26/ai-topic-radar/item/ATR-20260626-3A46EC)**（2026-06-25 · Hacker News）：HN discussion by mfiguiere",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "claim": "2. **[OpenAI wraps $7B share sale ahead of potential IPO](#2026-08-12/ai-topic-radar/item/ATR-20260812-0E70FB)**（2026-08-11 · Hacker News）：HN discussion by kristianp",
+            "evidence_ids": [
+              "E2"
+            ]
+          }
+        ],
+        "claim_verification": null,
+        "evidence_integrity": {
+          "valid": true,
+          "repair_attempted": false,
+          "unknown_evidence_ids": [],
+          "missing_evidence_markers": false,
+          "minimum_evidence_markers": 2,
+          "used_evidence_markers": 2,
+          "coverage_sufficient": true,
+          "required_evidence_ids": [],
+          "missing_required_evidence_ids": []
+        },
+        "query_understanding": {
+          "original_question": "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+          "intent": "general_search",
+          "retrieval_query": "OpenAI 按时间 上市 IPO",
+          "top_k": 10,
+          "topics": [],
+          "entities": [
+            "OpenAI"
+          ],
+          "sources": [],
+          "time_window": {
+            "mode": "none",
+            "value": null
+          },
+          "temporal_intent": "effective",
+          "answerability_hint": "internal-first",
+          "needs_web_search": false,
+          "routing_notes": [
+            "Route Contract owns retrieval: temporal_relation_exploration"
+          ],
+          "task_mode": "timeline",
+          "graph_requirement": "disabled",
+          "entity_expansions": [],
+          "retrieval_hints": [],
+          "task_family": "temporal_relation_exploration",
+          "retrieval_gateway": {
+            "path": "evidence_search",
+            "route_source": "route_contract_v2",
+            "route_contract_version": "atr.route/2.0",
+            "shadow": true,
+            "primary_task_family": "temporal_relation_exploration",
+            "execution_policy": {
+              "channels": [
+                "lexical",
+                "vector"
+              ],
+              "graph_mode": "disabled",
+              "max_composer_calls": 1,
+              "allow_web_fallback": false
+            },
+            "channel_status": {
+              "lexical": "success",
+              "vector": "success",
+              "graph": "disabled"
+            },
+            "pre_filter_count": 9,
+            "focused_count": 9,
+            "entity_filter_mode": "structured",
+            "graph_readiness": {
+              "status": "not_required"
+            },
+            "graph_evidence": {
+              "status": "not_required"
+            }
+          },
+          "execution_policy": {
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "graph_mode": "disabled",
+            "max_composer_calls": 1,
+            "allow_web_fallback": false
+          },
+          "web_search_mode": {
+            "requested_mode": "never",
+            "intent_constraint": "none",
+            "effective_mode": "never",
+            "mode_reason": "request_mode_never"
+          },
+          "latest_corpus_date": "2026-08-24",
+          "metadata_filter": null,
+          "context": {},
+          "ordered_route_contract": {
+            "status": "resolved",
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "temporal_relation_exploration",
+            "attempts": 0,
+            "route_source": "deterministic_signals",
+            "model_calls": 0,
+            "product_case_id": null
+          },
+          "runtime_budget": {
+            "total_seconds": 60.0,
+            "retrieval_seconds": 20.0,
+            "generation_seconds": 40.0
+          },
+          "corpus_stale": true,
+          "corpus_age_days": 8,
+          "internal_retrieval": {
+            "status": "ready",
+            "error_code": "",
+            "elapsed_ms": 2587.73
+          },
+          "web_search_decision": {
+            "requested_mode": "never",
+            "effective_mode": "never",
+            "should_search": false,
+            "reason": "request_mode_never",
+            "retrieval_status": "ready",
+            "intent_constraint": "none",
+            "evidence_quality_status": "PARTIAL",
+            "evidence_gaps": [
+              "entity_coverage_unverified"
+            ]
+          },
+          "source_admission": {
+            "candidate_count": 0,
+            "admitted_count": 0,
+            "search_reference_count": 0,
+            "excluded_count": 0,
+            "duplicate_count": 0,
+            "claim_type": "research",
+            "provisional_admitted_count": 0
+          },
+          "answer_policy": {
+            "mode": "deterministic_timeline",
+            "disclosure": "两条以上直接时间线证据已按日期渲染，图谱仅作辅助上下文。"
+          },
+          "tool_routing": {
+            "status": "not_required",
+            "steps": []
+          },
+          "source_review": {
+            "status": "internal_only",
+            "artifact_quality_status": "internal_only",
+            "external_count": 0,
+            "primary_count": 0,
+            "supporting_count": 0,
+            "weak_count": 0,
+            "source_roles": [],
+            "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+          }
+        },
+        "tool_trace": {
+          "execution_path": "deterministic_timeline",
+          "evidence_pool_count": 2,
+          "tools_used": [],
+          "evidence_sources": [
+            "internal"
+          ],
+          "total_calls": 0,
+          "summary": "两条直接时间线证据已排序，未调用生成模型或工具",
+          "execution_counts": {
+            "model_turns": 0,
+            "agent_tool_calls": 0,
+            "planned_steps": 0
+          },
+          "timings": {
+            "retrieval_ms": 2587.73,
+            "agent_ms": 0.0,
+            "repair_ms": 0.0,
+            "total_ms": 2598.37
+          }
+        }
+      }
+    }
+  ]
+}

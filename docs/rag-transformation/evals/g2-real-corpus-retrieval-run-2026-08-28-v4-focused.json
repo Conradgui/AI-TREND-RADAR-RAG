@@ -1,0 +1,2196 @@
+{
+  "schema_version": "g2-retrieval-snapshot/1.0",
+  "generated_at": "2026-08-28T02:53:41.218800+00:00",
+  "dataset_schema_version": "g2-real-corpus-retrieval-ai-review/1.0",
+  "review_status": "human_reviewed",
+  "corpus_boundary": {
+    "source": "digests/search-index.json",
+    "activity_cutoff": "2026-08-21",
+    "rule": "只以截止日内的索引 occurrence 为证据；不把日报重复收录视作独立动态。"
+  },
+  "rows": [
+    {
+      "case_id": "g2-real-008",
+      "query": "最近一周，AI 编程助手在“跨会话上下文/代码库知识”上出现了哪些不同的产品做法？",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "## 近期重要动态\n1. **[Offering Zero Data Retention For Frontier Models](#2026-08-20/ai-topic-radar/item/ATR-20260820-8F7990)**（2026-08-20 · OpenAI）：Offering Zero Data Retention For Frontier Models\nOffering Zero Data Retention For Frontier Models 为什么值得关注？（模型能力变化与技术路线）\n值得优先深挖：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-20；关键词：openai, index\nopenai index [E1]\n2. **[Openai Joins Ports Pike Project](#2026-08-18/ai-topic-radar/item/ATR-20260818-951D15)**（2026-08-18 · OpenAI）：Openai Joins Ports Pike Project\nOpenai Joins Ports Pike Project 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-18；关键词：openai, index\nopenai index [E2]\n3. **[How Claude is accelerating protein design and analytical chemistry](#2026-08-21/ai-topic-radar/item/ATR-20260821-C9EC37)**（2026-08-21 · Anthropic (Claude)）：Science How Claude is accelerating protein design and analytical chemistry Aug 18, 2026 Summary: In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested C [E3]\n4. **[Chatgpt Ads Expands Across Europe](#2026-08-20/ai-topic-radar/item/ATR-20260820-B68B9F)**（2026-08-20 · OpenAI）：Chatgpt Ads Expands Across Europe\nChatgpt Ads Expands Across Europe 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-19；关键词：openai, index\nopenai index [E4]\n5. **[Chatgpt For Teens](#2026-08-19/ai-topic-radar/item/ATR-20260819-A8EF1B)**（2026-08-19 · OpenAI）：Chatgpt For Teens\nChatgpt For Teens 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-18；关键词：openai, index\nopenai index [E5]\n\n## 补充动态\n1. **[Partnering With Codeai](#2026-08-19/ai-topic-radar/item/ATR-20260819-5E3967)**（2026-08-19 · OpenAI）：Partnering With Codeai\nPartnering With Codeai 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-19；关键词：openai, index\nopenai index [E6]\n2. **[Anthropic Expects to Match SpaceX's Record IPO Size or Top It](#2026-08-21/ai-topic-radar/item/ATR-20260821-933A41)**（2026-08-20 · Hacker News）：HN discussion by helsinkiandrew [E7]\n3. **[News — Google DeepMind](#2026-08-14/ai-topic-radar/item/ATR-20260814-FFABFB)**（2026-08-14 · Google DeepMind）：News Discover our latest AI breakthroughs, projects, and updates Introducing Gemini 3.7 Flash August 2026 Models Learn more Putting sign language AI into users’ hands August 2026 Models Learn more WeatherNext: AI model achieves breakthrough [E8]\n\n## 历史背景（不计入近期主榜）\n1. **[Apple Is Getting This Wrong](#2026-08-05/ai-topic-radar/item/ATR-20260805-793124)**（2026-08-05 · OpenAI）：OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened. [E10]\n2. **[[dev] Claude for Creative Work](#2026-07-24/ai-topic-radar/item/ATR-20260724-EF5E89)**（2026-07-24 · Anthropic (Claude)）：Announcements [dev] Claude for Creative Work Apr 28, 2026 Creative professionals look to technology to expand what's possible in their work. Claude can't replace taste or imagination, but it can open up new ways of working—faster and more a [E11]\n3. **[The Anthropic Economic Index connector](#2026-07-23/ai-topic-radar/item/ATR-20260723-A97D0E)**（2026-07-23 · Anthropic (Claude)）：Product Announcements Economic Research Ask Claude about the Anthropic Economic Index Jul 22, 2026 People have hard questions about AI and work: which jobs will change, which tasks are being automated, and what it means for their own field. [E12]",
+        "display_answer": "📚 仅内部语料\n\n## 近期重要动态\n1. **[Offering Zero Data Retention For Frontier Models](#2026-08-20/ai-topic-radar/item/ATR-20260820-8F7990)**（2026-08-20 · OpenAI）：Offering Zero Data Retention For Frontier Models\nOffering Zero Data Retention For Frontier Models 为什么值得关注？（模型能力变化与技术路线）\n值得优先深挖：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-20；关键词：openai, index\nopenai index [I1]\n2. **[Openai Joins Ports Pike Project](#2026-08-18/ai-topic-radar/item/ATR-20260818-951D15)**（2026-08-18 · OpenAI）：Openai Joins Ports Pike Project\nOpenai Joins Ports Pike Project 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-18；关键词：openai, index\nopenai index [I2]\n3. **[How Claude is accelerating protein design and analytical chemistry](#2026-08-21/ai-topic-radar/item/ATR-20260821-C9EC37)**（2026-08-21 · Anthropic (Claude)）：Science How Claude is accelerating protein design and analytical chemistry Aug 18, 2026 Summary: In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested C [I3]\n4. **[Chatgpt Ads Expands Across Europe](#2026-08-20/ai-topic-radar/item/ATR-20260820-B68B9F)**（2026-08-20 · OpenAI）：Chatgpt Ads Expands Across Europe\nChatgpt Ads Expands Across Europe 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-19；关键词：openai, index\nopenai index [I4]\n5. **[Chatgpt For Teens](#2026-08-19/ai-topic-radar/item/ATR-20260819-A8EF1B)**（2026-08-19 · OpenAI）：Chatgpt For Teens\nChatgpt For Teens 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-18；关键词：openai, index\nopenai index [I5]\n\n## 补充动态\n1. **[Partnering With Codeai](#2026-08-19/ai-topic-radar/item/ATR-20260819-5E3967)**（2026-08-19 · OpenAI）：Partnering With Codeai\nPartnering With Codeai 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-19；关键词：openai, index\nopenai index [I6]\n2. **[Anthropic Expects to Match SpaceX's Record IPO Size or Top It](#2026-08-21/ai-topic-radar/item/ATR-20260821-933A41)**（2026-08-20 · Hacker News）：HN discussion by helsinkiandrew [I7]\n3. **[News — Google DeepMind](#2026-08-14/ai-topic-radar/item/ATR-20260814-FFABFB)**（2026-08-14 · Google DeepMind）：News Discover our latest AI breakthroughs, projects, and updates Introducing Gemini 3.7 Flash August 2026 Models Learn more Putting sign language AI into users’ hands August 2026 Models Learn more WeatherNext: AI model achieves breakthrough [I8]\n\n## 历史背景（不计入近期主榜）\n1. **[Apple Is Getting This Wrong](#2026-08-05/ai-topic-radar/item/ATR-20260805-793124)**（2026-08-05 · OpenAI）：OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened. [I9]\n2. **[[dev] Claude for Creative Work](#2026-07-24/ai-topic-radar/item/ATR-20260724-EF5E89)**（2026-07-24 · Anthropic (Claude)）：Announcements [dev] Claude for Creative Work Apr 28, 2026 Creative professionals look to technology to expand what's possible in their work. Claude can't replace taste or imagination, but it can open up new ways of working—faster and more a [I10]\n3. **[The Anthropic Economic Index connector](#2026-07-23/ai-topic-radar/item/ATR-20260723-A97D0E)**（2026-07-23 · Anthropic (Claude)）：Product Announcements Economic Research Ask Claude about the Anthropic Economic Index Jul 22, 2026 People have hard questions about AI and work: which jobs will change, which tasks are being automated, and what it means for their own field. [I11]",
+        "citations": [
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-20",
+            "source": "OpenAI",
+            "title": "Offering Zero Data Retention For Frontier Models",
+            "citation_id": "ATR-20260820-8F7990",
+            "excerpt": "Offering Zero Data Retention For Frontier Models\nOffering Zero Data Retention For Frontier Models 为什么值得关注？（模型能力变化与技术路线）\n值得优先深挖：适合从模型能力变化、技术路线和产品化可能性角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-20；关键词：openai, index\nopenai index",
+            "report_date": "2026-08-20",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-20",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-20",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/offering-zero-data-retention-for-frontier-models/",
+            "local_url": "#2026-08-20/ai-topic-radar/item/ATR-20260820-8F7990",
+            "content_id": "c1b8b7fe0c377afa95aff35c283f2178",
+            "occurrence_id": "ATR-20260820-8F7990",
+            "score": 91,
+            "category": "模型与技术突破",
+            "entity_ids": [
+              "openai"
+            ],
+            "evidence_id": "E1",
+            "display_label": "I1"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-18",
+            "source": "OpenAI",
+            "title": "Openai Joins Ports Pike Project",
+            "citation_id": "ATR-20260818-951D15",
+            "excerpt": "Openai Joins Ports Pike Project\nOpenai Joins Ports Pike Project 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-18；关键词：openai, index\nopenai index",
+            "report_date": "2026-08-18",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-18",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-18",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/openai-joins-ports-pike-project/",
+            "local_url": "#2026-08-18/ai-topic-radar/item/ATR-20260818-951D15",
+            "content_id": "64789b0846508859a1c39918802566ee",
+            "occurrence_id": "ATR-20260818-951D15",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai"
+            ],
+            "evidence_id": "E2",
+            "display_label": "I2"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-21",
+            "source": "Anthropic (Claude)",
+            "title": "How Claude is accelerating protein design and analytical chemistry",
+            "citation_id": "ATR-20260821-C9EC37",
+            "excerpt": "Science How Claude is accelerating protein design and analytical chemistry Aug 18, 2026 Summary: In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested C",
+            "report_date": "2026-08-21",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-21",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-21",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://www.anthropic.com/research/Claude-accelerates-protein-design",
+            "local_url": "#2026-08-21/ai-topic-radar/item/ATR-20260821-C9EC37",
+            "content_id": "ac16d9c8cbfaa80bc4749f735b4c9474",
+            "occurrence_id": "ATR-20260821-C9EC37",
+            "score": 93,
+            "category": "模型与技术突破",
+            "entity_ids": [
+              "anthropic"
+            ],
+            "evidence_id": "E3",
+            "display_label": "I3"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-20",
+            "source": "OpenAI",
+            "title": "Chatgpt Ads Expands Across Europe",
+            "citation_id": "ATR-20260820-B68B9F",
+            "excerpt": "Chatgpt Ads Expands Across Europe\nChatgpt Ads Expands Across Europe 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-19；关键词：openai, index\nopenai index",
+            "report_date": "2026-08-20",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-20",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-20",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/chatgpt-ads-expands-across-europe/",
+            "local_url": "#2026-08-20/ai-topic-radar/item/ATR-20260820-B68B9F",
+            "content_id": "6a29848dd3a1c5ba6cc032cb5ad5a2ab",
+            "occurrence_id": "ATR-20260820-B68B9F",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai"
+            ],
+            "evidence_id": "E4",
+            "display_label": "I4"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-19",
+            "source": "OpenAI",
+            "title": "Chatgpt For Teens",
+            "citation_id": "ATR-20260819-A8EF1B",
+            "excerpt": "Chatgpt For Teens\nChatgpt For Teens 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-18；关键词：openai, index\nopenai index",
+            "report_date": "2026-08-19",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-19",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-19",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/chatgpt-for-teens/",
+            "local_url": "#2026-08-19/ai-topic-radar/item/ATR-20260819-A8EF1B",
+            "content_id": "bc7ac0ffe721170b37be657874e671dc",
+            "occurrence_id": "ATR-20260819-A8EF1B",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai"
+            ],
+            "evidence_id": "E5",
+            "display_label": "I5"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-19",
+            "source": "OpenAI",
+            "title": "Partnering With Codeai",
+            "citation_id": "ATR-20260819-5E3967",
+            "excerpt": "Partnering With Codeai\nPartnering With Codeai 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。\n来源：OpenAI；发布时间：2026-08-19；关键词：openai, index\nopenai index",
+            "report_date": "2026-08-19",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-19",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-19",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/partnering-with-codeai/",
+            "local_url": "#2026-08-19/ai-topic-radar/item/ATR-20260819-5E3967",
+            "content_id": "13319dc058d459b8e0de98a5652ed66e",
+            "occurrence_id": "ATR-20260819-5E3967",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai"
+            ],
+            "news_tier": "supplementary",
+            "evidence_id": "E6",
+            "display_label": "I6"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-21",
+            "source": "Hacker News",
+            "title": "Anthropic Expects to Match SpaceX's Record IPO Size or Top It",
+            "citation_id": "ATR-20260821-933A41",
+            "excerpt": "HN discussion by helsinkiandrew",
+            "report_date": "2026-08-21",
+            "publication_date": "2026-08-20",
+            "publication_date_source": "legacy_adapter_contract",
+            "observed_at": "2026-08-21",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-20",
+            "effective_date_basis": "publication_date",
+            "url": "https://www.bloomberg.com/news/articles/2026-08-20/anthropic-expects-to-match-spacex-s-record-ipo-size-or-top-it",
+            "local_url": "#2026-08-21/ai-topic-radar/item/ATR-20260821-933A41",
+            "content_id": "7d0cba8238e9dfb32a86b5c76b1ca69e",
+            "occurrence_id": "ATR-20260821-933A41",
+            "score": 58,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "anthropic"
+            ],
+            "news_tier": "supplementary",
+            "evidence_id": "E7",
+            "display_label": "I7"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-14",
+            "source": "Google DeepMind",
+            "title": "News — Google DeepMind",
+            "citation_id": "ATR-20260814-FFABFB",
+            "excerpt": "News Discover our latest AI breakthroughs, projects, and updates Introducing Gemini 3.7 Flash August 2026 Models Learn more Putting sign language AI into users’ hands August 2026 Models Learn more WeatherNext: AI model achieves breakthrough",
+            "report_date": "2026-08-14",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-14",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-14",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://deepmind.google/blog/",
+            "local_url": "#2026-08-14/ai-topic-radar/item/ATR-20260814-FFABFB",
+            "content_id": "12191cef29a36631c1646decddab9761",
+            "occurrence_id": "ATR-20260814-FFABFB",
+            "score": 94,
+            "category": "政策监管、社会影响与 AI 安全",
+            "entity_ids": [
+              "google",
+              "google-deepmind"
+            ],
+            "news_tier": "supplementary",
+            "evidence_id": "E8",
+            "display_label": "I8"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-05",
+            "source": "OpenAI",
+            "title": "Apple Is Getting This Wrong",
+            "citation_id": "ATR-20260805-793124",
+            "excerpt": "OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.",
+            "report_date": "2026-08-05",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-05",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-05",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/apple-is-getting-this-wrong/",
+            "local_url": "#2026-08-05/ai-topic-radar/item/ATR-20260805-793124",
+            "content_id": "f187dbc055a5022e68c3218c1ce95189",
+            "occurrence_id": "ATR-20260805-793124",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": [
+              "openai",
+              "apple"
+            ],
+            "news_tier": "background",
+            "evidence_id": "E10",
+            "display_label": "I9"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-07-24",
+            "source": "Anthropic (Claude)",
+            "title": "[dev] Claude for Creative Work",
+            "citation_id": "ATR-20260724-EF5E89",
+            "excerpt": "Announcements [dev] Claude for Creative Work Apr 28, 2026 Creative professionals look to technology to expand what's possible in their work. Claude can't replace taste or imagination, but it can open up new ways of working—faster and more a",
+            "report_date": "2026-07-24",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-07-24",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-07-24",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://www.anthropic.com/news/claude-for-creative-work-dev",
+            "local_url": "#2026-07-24/ai-topic-radar/item/ATR-20260724-EF5E89",
+            "content_id": "c6df155c8d3f238c3918acec429d0e37",
+            "occurrence_id": "ATR-20260724-EF5E89",
+            "score": 98,
+            "category": "企业落地与行业应用",
+            "entity_ids": [
+              "anthropic"
+            ],
+            "news_tier": "background",
+            "evidence_id": "E11",
+            "display_label": "I10"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-07-23",
+            "source": "Anthropic (Claude)",
+            "title": "The Anthropic Economic Index connector",
+            "citation_id": "ATR-20260723-A97D0E",
+            "excerpt": "Product Announcements Economic Research Ask Claude about the Anthropic Economic Index Jul 22, 2026 People have hard questions about AI and work: which jobs will change, which tasks are being automated, and what it means for their own field.",
+            "report_date": "2026-07-23",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-07-23",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-07-23",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://www.anthropic.com/news/anthropic-economic-index-connector",
+            "local_url": "#2026-07-23/ai-topic-radar/item/ATR-20260723-A97D0E",
+            "content_id": "597703c75c786f091b2cfe2a9f94a30b",
+            "occurrence_id": "ATR-20260723-A97D0E",
+            "score": 98,
+            "category": "政策监管、社会影响与 AI 安全",
+            "entity_ids": [
+              "anthropic"
+            ],
+            "news_tier": "background",
+            "evidence_id": "E12",
+            "display_label": "I11"
+          }
+        ],
+        "evidence_display_map": {
+          "E1": "I1",
+          "E2": "I2",
+          "E3": "I3",
+          "E4": "I4",
+          "E5": "I5",
+          "E6": "I6",
+          "E7": "I7",
+          "E8": "I8",
+          "E10": "I9",
+          "E11": "I10",
+          "E12": "I11"
+        },
+        "search_references": [],
+        "source_summary": {
+          "internal_citations": 11,
+          "external_citations": 0,
+          "search_references": 0
+        },
+        "claim_evidence": [
+          {
+            "claim": "openai index",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "claim": "openai index",
+            "evidence_ids": [
+              "E2"
+            ]
+          },
+          {
+            "claim": "3. **[How Claude is accelerating protein design and analytical chemistry](#2026-08-21/ai-topic-radar/item/ATR-20260821-C9EC37)**（2026-08-21 · Anthropic (Claude)）：Science How Claude is accelerating protein design and analytical chemistry Aug 18, 2026 Summary: In this post, we share two results that show how Claude can help life scientists increase the pace of their research. In the first, we tested C",
+            "evidence_ids": [
+              "E3"
+            ]
+          },
+          {
+            "claim": "openai index",
+            "evidence_ids": [
+              "E4"
+            ]
+          },
+          {
+            "claim": "openai index",
+            "evidence_ids": [
+              "E5"
+            ]
+          },
+          {
+            "claim": "openai index",
+            "evidence_ids": [
+              "E6"
+            ]
+          },
+          {
+            "claim": "2. **[Anthropic Expects to Match SpaceX's Record IPO Size or Top It](#2026-08-21/ai-topic-radar/item/ATR-20260821-933A41)**（2026-08-20 · Hacker News）：HN discussion by helsinkiandrew",
+            "evidence_ids": [
+              "E7"
+            ]
+          },
+          {
+            "claim": "3. **[News — Google DeepMind](#2026-08-14/ai-topic-radar/item/ATR-20260814-FFABFB)**（2026-08-14 · Google DeepMind）：News Discover our latest AI breakthroughs, projects, and updates Introducing Gemini 3.7 Flash August 2026 Models Learn more Putting sign language AI into users’ hands August 2026 Models Learn more WeatherNext: AI model achieves breakthrough",
+            "evidence_ids": [
+              "E8"
+            ]
+          },
+          {
+            "claim": "1. **[Apple Is Getting This Wrong](#2026-08-05/ai-topic-radar/item/ATR-20260805-793124)**（2026-08-05 · OpenAI）：OpenAI addresses Apple’s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.",
+            "evidence_ids": [
+              "E10"
+            ]
+          },
+          {
+            "claim": "2. **[[dev] Claude for Creative Work](#2026-07-24/ai-topic-radar/item/ATR-20260724-EF5E89)**（2026-07-24 · Anthropic (Claude)）：Announcements [dev] Claude for Creative Work Apr 28, 2026 Creative professionals look to technology to expand what's possible in their work. Claude can't replace taste or imagination, but it can open up new ways of working—faster and more a",
+            "evidence_ids": [
+              "E11"
+            ]
+          },
+          {
+            "claim": "3. **[The Anthropic Economic Index connector](#2026-07-23/ai-topic-radar/item/ATR-20260723-A97D0E)**（2026-07-23 · Anthropic (Claude)）：Product Announcements Economic Research Ask Claude about the Anthropic Economic Index Jul 22, 2026 People have hard questions about AI and work: which jobs will change, which tasks are being automated, and what it means for their own field.",
+            "evidence_ids": [
+              "E12"
+            ]
+          }
+        ],
+        "claim_verification": null,
+        "evidence_integrity": {
+          "valid": true,
+          "repair_attempted": false,
+          "answer_envelope": {
+            "valid": true,
+            "errors": [],
+            "schema_version": "answer-envelope/1.0",
+            "evidence_ids": [
+              "E1",
+              "E2",
+              "E3",
+              "E4",
+              "E5",
+              "E6",
+              "E7",
+              "E8",
+              "E10",
+              "E11",
+              "E12"
+            ],
+            "route": {
+              "primary_task_family": "trend_discovery",
+              "answer_mode": "important_news"
+            },
+            "answer_builder_contract_id": "atr.answer_builder/important_news/1.0",
+            "output_schema_id": "atr.answer/trend/1.0",
+            "sections": [
+              {
+                "id": "recent_important_news",
+                "title": "近期重要动态",
+                "max_items": 5,
+                "item_count": 5,
+                "evidence_ids": [
+                  "E1",
+                  "E2",
+                  "E3",
+                  "E4",
+                  "E5"
+                ]
+              },
+              {
+                "id": "supplementary",
+                "title": "补充动态",
+                "max_items": 3,
+                "item_count": 3,
+                "evidence_ids": [
+                  "E6",
+                  "E7",
+                  "E8"
+                ]
+              },
+              {
+                "id": "historical_background",
+                "title": "历史背景",
+                "max_items": 3,
+                "item_count": 3,
+                "evidence_ids": [
+                  "E10",
+                  "E11",
+                  "E12"
+                ]
+              }
+            ]
+          },
+          "unknown_evidence_ids": [],
+          "missing_evidence_markers": false,
+          "minimum_evidence_markers": 1,
+          "used_evidence_markers": 11,
+          "coverage_sufficient": true,
+          "required_evidence_ids": [],
+          "missing_required_evidence_ids": []
+        },
+        "query_understanding": {
+          "original_question": "最近一周，AI 编程助手在“跨会话上下文/代码库知识”上出现了哪些不同的产品做法？",
+          "intent": "important_news",
+          "retrieval_query": "AI 编程助手 跨会话上下文/代码库知识 最近一周",
+          "top_k": 10,
+          "topics": [],
+          "entities": [
+            "AI 编程助手",
+            "跨会话上下文/代码库知识"
+          ],
+          "sources": [],
+          "time_window": {
+            "mode": "none",
+            "value": null
+          },
+          "temporal_intent": "effective",
+          "answerability_hint": "internal-first",
+          "needs_web_search": false,
+          "routing_notes": [
+            "Route Contract owns retrieval: trend_discovery"
+          ],
+          "task_mode": "general",
+          "graph_requirement": "disabled",
+          "entity_expansions": [],
+          "task_family": "trend_discovery",
+          "retrieval_gateway": {
+            "path": "trend_discovery",
+            "candidate_count": 2000,
+            "structured_candidate_limit": 2000,
+            "deduplicated_candidate_count": 962,
+            "returned_count": 5,
+            "entity_filter_mode": "not_required",
+            "entity_expansions": [],
+            "merged_event_sources": {},
+            "excluded_candidate_ids": [
+              "ATR-20260821-72C84E",
+              "ATR-20260821-855B2B",
+              "ATR-20260821-81BEBD",
+              "ATR-20260821-E2E0CF",
+              "ATR-20260821-F3CB2B",
+              "ATR-20260821-D8E093",
+              "ATR-20260821-B4296C",
+              "ATR-20260821-AE480E",
+              "ATR-20260821-8B8457",
+              "ATR-20260821-7083CF",
+              "ATR-20260821-54C33C",
+              "ATR-20260821-4B0534",
+              "ATR-20260821-1A3CF6",
+              "ATR-20260821-137C4B",
+              "ATR-20260821-0DE9A0",
+              "ATR-20260821-8CE967",
+              "ATR-20260821-2C1B8E",
+              "ATR-20260821-07C510",
+              "ATR-20260821-FC34DD",
+              "ATR-20260821-EC7F3A",
+              "ATR-20260821-E743F2",
+              "ATR-20260821-C5CB49",
+              "ATR-20260821-98C140",
+              "ATR-20260821-61F5E8",
+              "ATR-20260821-571806",
+              "ATR-20260821-53ECCE",
+              "ATR-20260821-4AA484",
+              "ATR-20260821-0BB8A0",
+              "ATR-20260821-73FBFB",
+              "ATR-20260821-1C215A",
+              "ATR-20260821-8BE51E",
+              "ATR-20260821-92A6AD",
+              "ATR-20260821-43C0AC",
+              "ATR-20260821-FA2471",
+              "ATR-20260821-C653D0",
+              "ATR-20260821-F52B2C",
+              "ATR-20260820-DF15B2",
+              "ATR-20260820-7E7FF0",
+              "ATR-20260821-8C8078",
+              "ATR-20260821-ECD03F",
+              "ATR-20260821-C04934",
+              "ATR-20260820-88A3A3",
+              "ATR-20260820-DFD8DF",
+              "ATR-20260820-C650B8",
+              "ATR-20260820-B16979",
+              "ATR-20260820-022124",
+              "ATR-20260821-809D55",
+              "ATR-20260821-719F7A",
+              "ATR-20260821-403F84",
+              "ATR-20260821-3A554A",
+              "ATR-20260819-B0EA43",
+              "ATR-20260821-7B78D0",
+              "ATR-20260821-332328",
+              "ATR-20260819-7E5FD2",
+              "ATR-20260819-584B3A",
+              "ATR-20260821-56946A",
+              "ATR-20260819-E2AC10",
+              "ATR-20260819-1B0FB2",
+              "ATR-20260821-C0F6A5",
+              "ATR-20260821-7FE924",
+              "ATR-20260821-474E3C",
+              "ATR-20260820-0B8569",
+              "ATR-20260820-6FB274",
+              "ATR-20260819-F6828E",
+              "ATR-20260819-ECD3EC",
+              "ATR-20260819-C2EEF3",
+              "ATR-20260819-855773",
+              "ATR-20260819-84E180",
+              "ATR-20260820-C3DCAE",
+              "ATR-20260820-6EFF79",
+              "ATR-20260819-51BFC9",
+              "ATR-20260820-C7B509",
+              "ATR-20260819-8594FE",
+              "ATR-20260820-AC2770",
+              "ATR-20260820-CF5042",
+              "ATR-20260820-CDCD05",
+              "ATR-20260819-8C3768",
+              "ATR-20260820-9DDD8D",
+              "ATR-20260819-90EBEF",
+              "ATR-20260820-E9A62E",
+              "ATR-20260820-F029B8",
+              "ATR-20260820-49C6C8",
+              "ATR-20260819-4281A8",
+              "ATR-20260820-5CDA0B",
+              "ATR-20260820-324F13",
+              "ATR-20260820-DDBE93",
+              "ATR-20260818-0F643B",
+              "ATR-20260819-874285",
+              "ATR-20260818-F4C66B",
+              "ATR-20260818-F49C0F",
+              "ATR-20260818-01D7A5",
+              "ATR-20260818-53B695",
+              "ATR-20260820-D2D860",
+              "ATR-20260819-C681BD",
+              "ATR-20260819-88C160",
+              "ATR-20260819-870FE4",
+              "ATR-20260819-83F1E6",
+              "ATR-20260819-632A2B",
+              "ATR-20260819-63678F",
+              "ATR-20260819-AE4710",
+              "ATR-20260819-9C6315",
+              "ATR-20260818-F21BCC",
+              "ATR-20260819-CBCC61",
+              "ATR-20260819-EEBB6D",
+              "ATR-20260819-325526",
+              "ATR-20260817-C6B57D",
+              "ATR-20260817-7734FB",
+              "ATR-20260817-4608A6",
+              "ATR-20260819-01A7E9",
+              "ATR-20260817-EE48CF",
+              "ATR-20260816-816D03",
+              "ATR-20260816-032D5F",
+              "ATR-20260818-514A6A",
+              "ATR-20260818-3D8E0F",
+              "ATR-20260818-057C74",
+              "ATR-20260817-6A2FBB",
+              "ATR-20260818-5B0D34",
+              "ATR-20260817-FADBC9",
+              "ATR-20260817-C21E8D",
+              "ATR-20260818-69C794",
+              "ATR-20260817-EC7789",
+              "ATR-20260817-5C166D",
+              "ATR-20260816-4C584D",
+              "ATR-20260816-E5FFA3",
+              "ATR-20260818-247742",
+              "ATR-20260818-FB7227",
+              "ATR-20260818-D285ED",
+              "ATR-20260818-B18FB9",
+              "ATR-20260818-70CA6B",
+              "ATR-20260817-F8D89A",
+              "ATR-20260817-F81C9E",
+              "ATR-20260817-9648FD",
+              "ATR-20260817-380838",
+              "ATR-20260817-4F0277",
+              "ATR-20260815-6EE13D",
+              "ATR-20260817-F5B409",
+              "ATR-20260816-5B4CE4",
+              "ATR-20260817-36DD21",
+              "ATR-20260817-B6FA40",
+              "ATR-20260815-E6E258",
+              "ATR-20260815-D1D397",
+              "ATR-20260815-C8E47D",
+              "ATR-20260815-908878",
+              "ATR-20260815-2EC88B",
+              "ATR-20260816-9C108F",
+              "ATR-20260816-4C2949",
+              "ATR-20260816-3D4069",
+              "ATR-20260815-17390C",
+              "ATR-20260816-552F9D",
+              "ATR-20260815-BEDB62",
+              "ATR-20260815-ABD34D",
+              "ATR-20260817-ED1070",
+              "ATR-20260817-19F7F6",
+              "ATR-20260814-AAF81C",
+              "ATR-20260816-4BD79D",
+              "ATR-20260816-FDC3A2",
+              "ATR-20260816-BF3DE1",
+              "ATR-20260816-0858F7",
+              "ATR-20260816-310D4F",
+              "ATR-20260816-102A0A",
+              "ATR-20260816-2049B3",
+              "ATR-20260816-38DB5A",
+              "ATR-20260816-BED0A2",
+              "ATR-20260816-A6EC69",
+              "ATR-20260815-D0D9FA",
+              "ATR-20260814-7927EE",
+              "ATR-20260814-659F5E",
+              "ATR-20260814-CE97E8",
+              "ATR-20260815-30B238",
+              "ATR-20260814-918C98",
+              "ATR-20260814-045BCD",
+              "ATR-20260813-8F516B",
+              "ATR-20260815-B6C11B",
+              "ATR-20260815-6182F6",
+              "ATR-20260815-4FF011",
+              "ATR-20260815-46E4C4",
+              "ATR-20260815-0A17EB",
+              "ATR-20260814-5B9743",
+              "ATR-20260814-0D4B01",
+              "ATR-20260815-CFA61E",
+              "ATR-20260815-C12E63",
+              "ATR-20260813-B1A8C9",
+              "ATR-20260815-2D4EDB",
+              "ATR-20260815-25EF0C",
+              "ATR-20260815-FC8EC7",
+              "ATR-20260813-F8F3D3",
+              "ATR-20260814-81C5B3",
+              "ATR-20260813-E44A79",
+              "ATR-20260813-8395FB",
+              "ATR-20260814-53A9A7",
+              "ATR-20260814-53D5B8",
+              "ATR-20260814-FB0499",
+              "ATR-20260814-AF1FFF",
+              "ATR-20260814-40106F",
+              "ATR-20260814-D0D830",
+              "ATR-20260814-F9C0E8",
+              "ATR-20260813-B1F84A",
+              "ATR-20260814-F98598",
+              "ATR-20260814-D6FB79",
+              "ATR-20260814-987309",
+              "ATR-20260814-0E5FFF",
+              "ATR-20260813-D7541A",
+              "ATR-20260813-BADEB7",
+              "ATR-20260813-1EEAAF",
+              "ATR-20260813-B8D7D2",
+              "ATR-20260812-D3F6EE",
+              "ATR-20260812-A1E97A",
+              "ATR-20260812-221DE3",
+              "ATR-20260812-DF4F5E",
+              "ATR-20260812-031A8C",
+              "ATR-20260812-5F37EC",
+              "ATR-20260811-E53CE6",
+              "ATR-20260811-012465",
+              "ATR-20260813-60537F",
+              "ATR-20260813-5B4840",
+              "ATR-20260813-3AED07",
+              "ATR-20260813-953C6F",
+              "ATR-20260813-850354",
+              "ATR-20260813-2634A0",
+              "ATR-20260813-EC0C5B",
+              "ATR-20260813-127E39",
+              "ATR-20260812-00DE4F",
+              "ATR-20260813-A4264A",
+              "ATR-20260813-588EE9",
+              "ATR-20260812-65C153",
+              "ATR-20260812-FB55A5",
+              "ATR-20260812-E88161",
+              "ATR-20260812-9F115A",
+              "ATR-20260811-CC0A02",
+              "ATR-20260811-AF986F",
+              "ATR-20260811-4073CC",
+              "ATR-20260812-7E8CBC",
+              "ATR-20260812-264BD8",
+              "ATR-20260812-B8FC0E",
+              "ATR-20260812-70CE1D",
+              "ATR-20260812-CA7E18",
+              "ATR-20260812-57FDF1",
+              "ATR-20260812-A9E1A7",
+              "ATR-20260812-A10A0D",
+              "ATR-20260811-FB16F1",
+              "ATR-20260811-D6CDA6",
+              "ATR-20260811-D1A00A",
+              "ATR-20260810-AC5294",
+              "ATR-20260811-880BEB",
+              "ATR-20260811-3C9824",
+              "ATR-20260810-925A4A",
+              "ATR-20260810-648F38",
+              "ATR-20260810-ADD701",
+              "ATR-20260811-DB1BBC",
+              "ATR-20260812-E4C4A5",
+              "ATR-20260811-838AD0",
+              "ATR-20260810-37C31B",
+              "ATR-20260811-DDED5D",
+              "ATR-20260811-7A3B0D",
+              "ATR-20260811-4A91E6",
+              "ATR-20260811-491593",
+              "ATR-20260809-CE6656",
+              "ATR-20260811-D5067D",
+              "ATR-20260811-41E6CD",
+              "ATR-20260811-23F959",
+              "ATR-20260810-EC65A1",
+              "ATR-20260811-74FE03",
+              "ATR-20260810-4154F2",
+              "ATR-20260809-EE8541",
+              "ATR-20260809-44A419",
+              "ATR-20260810-D233F5",
+              "ATR-20260810-9265F3",
+              "ATR-20260811-D4CB39",
+              "ATR-20260809-648FDD",
+              "ATR-20260808-DC28C8",
+              "ATR-20260809-74075F",
+              "ATR-20260810-E4381C",
+              "ATR-20260810-5985B1",
+              "ATR-20260810-18C365",
+              "ATR-20260810-DC8C27",
+              "ATR-20260808-83DE48",
+              "ATR-20260808-E8390F",
+              "ATR-20260808-98621A",
+              "ATR-20260808-5F0804",
+              "ATR-20260809-5800F4",
+              "ATR-20260809-CFE851",
+              "ATR-20260809-764D16",
+              "ATR-20260809-75C9B5",
+              "ATR-20260808-854779",
+              "ATR-20260809-608EE6",
+              "ATR-20260810-973F7B",
+              "ATR-20260810-6F1567",
+              "ATR-20260810-5C6218",
+              "ATR-20260810-A08AE8",
+              "ATR-20260810-245160",
+              "ATR-20260810-0B9EFE",
+              "ATR-20260809-F8D4D6",
+              "ATR-20260809-AAF209",
+              "ATR-20260809-A91CF9",
+              "ATR-20260809-5FA74E",
+              "ATR-20260809-C31061",
+              "ATR-20260809-B0C8DA",
+              "ATR-20260809-883B55",
+              "ATR-20260809-39F4F5",
+              "ATR-20260809-66E46B",
+              "ATR-20260809-EC7F64",
+              "ATR-20260808-FB2EA1",
+              "ATR-20260807-AE9335",
+              "ATR-20260808-D2356E",
+              "ATR-20260807-221E77",
+              "ATR-20260808-3D1EC1",
+              "ATR-20260808-F22E45",
+              "ATR-20260808-F15B72",
+              "ATR-20260808-C5BBE7",
+              "ATR-20260808-72476F",
+              "ATR-20260808-5E6B56",
+              "ATR-20260808-A00AC7",
+              "ATR-20260807-C85097",
+              "ATR-20260808-CD2903",
+              "ATR-20260807-1A17FC",
+              "ATR-20260808-3CE5DD",
+              "ATR-20260808-6EFF02",
+              "ATR-20260808-1627D5",
+              "ATR-20260808-A1878D",
+              "ATR-20260808-2D9E8E",
+              "ATR-20260807-910F1A",
+              "ATR-20260807-F04A5C",
+              "ATR-20260807-C2EAA4",
+              "ATR-20260808-1A5552",
+              "ATR-20260806-E17D01",
+              "ATR-20260806-B2932E",
+              "ATR-20260807-881C4D",
+              "ATR-20260807-6475BC",
+              "ATR-20260807-5DF60D",
+              "ATR-20260806-418F98",
+              "ATR-20260807-8CD59D",
+              "ATR-20260807-E755B9",
+              "ATR-20260807-BD1A57",
+              "ATR-20260807-7C37DA",
+              "ATR-20260807-5377D1",
+              "ATR-20260807-23A6B1",
+              "ATR-20260807-27CFA7",
+              "ATR-20260806-930934",
+              "ATR-20260805-9B66BB",
+              "ATR-20260806-402E06",
+              "ATR-20260806-04A2CC",
+              "ATR-20260806-4AE527",
+              "ATR-20260806-3DE601",
+              "ATR-20260805-D8027A",
+              "ATR-20260805-50B28B",
+              "ATR-20260805-3D5F31",
+              "ATR-20260805-F60A58",
+              "ATR-20260805-2C9DDA",
+              "ATR-20260804-AC1421",
+              "ATR-20260804-A15FC0",
+              "ATR-20260805-0DFB81",
+              "ATR-20260806-D8B656",
+              "ATR-20260806-CFF05D",
+              "ATR-20260806-9F6C3D",
+              "ATR-20260806-4CDB75",
+              "ATR-20260804-D8E815",
+              "ATR-20260806-39FA1A",
+              "ATR-20260806-5E7934",
+              "ATR-20260806-EF179E",
+              "ATR-20260806-9BA1D8",
+              "ATR-20260806-8059BB",
+              "ATR-20260806-EB5489",
+              "ATR-20260804-E6900C",
+              "ATR-20260804-85AB50",
+              "ATR-20260805-C1B1BD",
+              "ATR-20260804-4943F4",
+              "ATR-20260804-D4D652",
+              "ATR-20260804-B6FFCA",
+              "ATR-20260804-78332B",
+              "ATR-20260805-FCD598",
+              "ATR-20260805-AE3D6E",
+              "ATR-20260805-835E01",
+              "ATR-20260804-FB6F38",
+              "ATR-20260804-6B1AEC",
+              "ATR-20260805-09BA7F",
+              "ATR-20260805-BCCCF6",
+              "ATR-20260805-22EA7B",
+              "ATR-20260805-79F47E",
+              "ATR-20260803-D6ED27",
+              "ATR-20260803-6F23AE",
+              "ATR-20260803-4D163B",
+              "ATR-20260805-D0FE85",
+              "ATR-20260805-9FE932",
+              "ATR-20260805-63279D",
+              "ATR-20260804-7BA7B6",
+              "ATR-20260803-E3A1D9",
+              "ATR-20260803-9FC050",
+              "ATR-20260803-E4E9E0",
+              "ATR-20260803-5FE094",
+              "ATR-20260803-5E7A96",
+              "ATR-20260803-CD5CD9",
+              "ATR-20260804-EE0EFF",
+              "ATR-20260804-A75991",
+              "ATR-20260804-9A68B0",
+              "ATR-20260802-6DA398",
+              "ATR-20260804-257B30",
+              "ATR-20260804-7F3D22",
+              "ATR-20260804-3011B9",
+              "ATR-20260802-4CD653",
+              "ATR-20260803-75A26C",
+              "ATR-20260802-8387BD",
+              "ATR-20260802-1BA0AE",
+              "ATR-20260803-E0E9F1",
+              "ATR-20260803-02647E",
+              "ATR-20260802-144A2D",
+              "ATR-20260803-F7D16A",
+              "ATR-20260803-72AB45",
+              "ATR-20260804-6FFEFA",
+              "ATR-20260802-C87940",
+              "ATR-20260804-818074",
+              "ATR-20260804-0BB42C",
+              "ATR-20260804-5E5F32",
+              "ATR-20260802-C50988",
+              "ATR-20260803-C9076E",
+              "ATR-20260803-72ED05",
+              "ATR-20260803-2D2846",
+              "ATR-20260803-19FB75",
+              "ATR-20260803-87E870",
+              "ATR-20260803-FB48B3",
+              "ATR-20260802-F464C8",
+              "ATR-20260803-F8CD5A",
+              "ATR-20260801-AD374E",
+              "ATR-20260801-C5E7B2",
+              "ATR-20260802-38E835",
+              "ATR-20260802-8B8B87",
+              "ATR-20260802-3EEDDB",
+              "ATR-20260803-AEB976",
+              "ATR-20260803-3B38E9",
+              "ATR-20260803-859E83",
+              "ATR-20260731-33398A",
+              "ATR-20260802-FD8DDB",
+              "ATR-20260802-BD8036",
+              "ATR-20260802-BC9CC5",
+              "ATR-20260802-D0FE44",
+              "ATR-20260802-32A622",
+              "ATR-20260802-2F7C78",
+              "ATR-20260801-C38808",
+              "ATR-20260802-F107F6",
+              "ATR-20260802-DB7AFB",
+              "ATR-20260802-C2F274",
+              "ATR-20260731-2B1125",
+              "ATR-20260731-4C0E7A",
+              "ATR-20260802-0DCBB2",
+              "ATR-20260801-D8F885",
+              "ATR-20260731-827585",
+              "ATR-20260731-188813",
+              "ATR-20260801-FAADD0",
+              "ATR-20260801-DC7882",
+              "ATR-20260801-D315FE",
+              "ATR-20260801-9C9521",
+              "ATR-20260801-650145",
+              "ATR-20260801-41A2C2",
+              "ATR-20260731-E2035C",
+              "ATR-20260731-C09B0B",
+              "ATR-20260731-CD1669",
+              "ATR-20260730-2C89A5",
+              "ATR-20260801-D017A3",
+              "ATR-20260801-591710",
+              "ATR-20260801-58B476",
+              "ATR-20260801-4C29A7",
+              "ATR-20260801-04A515",
+              "ATR-20260801-7C014E",
+              "ATR-20260801-7FA125",
+              "ATR-20260801-6A42D3",
+              "ATR-20260801-3A06D7",
+              "ATR-20260801-1281A8",
+              "ATR-20260731-259BF9",
+              "ATR-20260730-D54D6B",
+              "ATR-20260731-0D9E60",
+              "ATR-20260730-6B8C4D",
+              "ATR-20260731-26D513",
+              "ATR-20260730-EB5B30",
+              "ATR-20260730-9AD1CB",
+              "ATR-20260729-B2D8CF",
+              "ATR-20260731-DFDCE5",
+              "ATR-20260731-A03202",
+              "ATR-20260731-12BBA4",
+              "ATR-20260731-A8E848",
+              "ATR-20260731-472815",
+              "ATR-20260731-30593C",
+              "ATR-20260731-1BB334",
+              "ATR-20260730-CA86DC",
+              "ATR-20260731-CA7310",
+              "ATR-20260731-A9BC90",
+              "ATR-20260731-2BCB89",
+              "ATR-20260730-DC2F5F",
+              "ATR-20260729-E89289",
+              "ATR-20260729-19B5E0",
+              "ATR-20260729-F46F28",
+              "ATR-20260730-DCC84D",
+              "ATR-20260730-AF4565",
+              "ATR-20260730-9E23F1",
+              "ATR-20260730-300F25",
+              "ATR-20260729-A6573A",
+              "ATR-20260729-FEE127",
+              "ATR-20260728-D52ECB",
+              "ATR-20260728-3E2208",
+              "ATR-20260730-CDA4A5",
+              "ATR-20260730-1C56B6",
+              "ATR-20260730-9B4431",
+              "ATR-20260730-A9EF6C",
+              "ATR-20260729-672F88",
+              "ATR-20260730-A7A72C",
+              "ATR-20260730-902313",
+              "ATR-20260730-D2D9B2",
+              "ATR-20260730-D13FCD",
+              "ATR-20260730-2A5005",
+              "ATR-20260730-4318D9",
+              "ATR-20260728-E6D411",
+              "ATR-20260729-C94070",
+              "ATR-20260729-D47BC8",
+              "ATR-20260729-20E691",
+              "ATR-20260728-5D4EB9",
+              "ATR-20260729-7FAB0D",
+              "ATR-20260728-CFAAF5",
+              "ATR-20260728-CED038",
+              "ATR-20260728-91C2C6",
+              "ATR-20260728-33CEF0",
+              "ATR-20260728-22B17F",
+              "ATR-20260728-1B2236",
+              "ATR-20260728-0E2A2B",
+              "ATR-20260728-5CB2DC",
+              "ATR-20260729-FEBB31",
+              "ATR-20260729-D8F6EE",
+              "ATR-20260729-AC33EE",
+              "ATR-20260729-98B9BA",
+              "ATR-20260729-6B43E8",
+              "ATR-20260729-5BC0CD",
+              "ATR-20260729-1772EF",
+              "ATR-20260729-3CABCC",
+              "ATR-20260729-3AF3D8",
+              "ATR-20260729-1D3C93",
+              "ATR-20260727-59099A",
+              "ATR-20260728-C2AB9B",
+              "ATR-20260727-DC841C",
+              "ATR-20260727-9AA342",
+              "ATR-20260728-E0069E",
+              "ATR-20260728-9BFA3F",
+              "ATR-20260727-70A178",
+              "ATR-20260727-DAB9BD",
+              "ATR-20260728-AD4F7D",
+              "ATR-20260728-39D76D",
+              "ATR-20260728-53BE94",
+              "ATR-20260728-89ABAA",
+              "ATR-20260728-4435C0",
+              "ATR-20260728-2E2F53",
+              "ATR-20260728-CA3531",
+              "ATR-20260726-95C0BF",
+              "ATR-20260727-EC6188",
+              "ATR-20260727-C3586A",
+              "ATR-20260727-98F4AC",
+              "ATR-20260727-3F428E",
+              "ATR-20260727-12EB77",
+              "ATR-20260727-EE8D34",
+              "ATR-20260727-764877",
+              "ATR-20260728-7D88A3",
+              "ATR-20260726-14DEDA",
+              "ATR-20260728-94CB3C",
+              "ATR-20260728-2A58EC",
+              "ATR-20260725-EC4B3B",
+              "ATR-20260725-E2CC67",
+              "ATR-20260727-764A3E",
+              "ATR-20260727-25DCC2",
+              "ATR-20260727-0670C6",
+              "ATR-20260727-468EB5",
+              "ATR-20260727-9A98B1",
+              "ATR-20260727-92D016",
+              "ATR-20260727-C66CAC",
+              "ATR-20260727-A7B272",
+              "ATR-20260727-2472E5",
+              "ATR-20260727-A3990E",
+              "ATR-20260725-E83700",
+              "ATR-20260725-5EE985",
+              "ATR-20260725-2DF597",
+              "ATR-20260726-28DAE4",
+              "ATR-20260726-1A1495",
+              "ATR-20260726-0E5414",
+              "ATR-20260725-DBC23E",
+              "ATR-20260726-E15B7F",
+              "ATR-20260726-8D586E",
+              "ATR-20260726-4E8596",
+              "ATR-20260726-130E88",
+              "ATR-20260724-4CF84B",
+              "ATR-20260724-E198E1",
+              "ATR-20260724-60E78F",
+              "ATR-20260725-888E6B",
+              "ATR-20260726-E969A1",
+              "ATR-20260726-9A56D0",
+              "ATR-20260726-9A3BE4",
+              "ATR-20260726-85D43A",
+              "ATR-20260726-12DBD9",
+              "ATR-20260725-7D4990",
+              "ATR-20260726-0B223E",
+              "ATR-20260726-659857",
+              "ATR-20260726-A51691",
+              "ATR-20260724-E7856A",
+              "ATR-20260724-CDEFDF",
+              "ATR-20260724-74CA9D",
+              "ATR-20260724-2EC735",
+              "ATR-20260725-674B1D",
+              "ATR-20260724-F37557",
+              "ATR-20260724-8E0818",
+              "ATR-20260725-6056CB",
+              "ATR-20260726-BA677A",
+              "ATR-20260726-A369A2",
+              "ATR-20260724-A0669B",
+              "ATR-20260723-EDC4A4",
+              "ATR-20260725-9D46D6",
+              "ATR-20260725-77B93C",
+              "ATR-20260725-623B0F",
+              "ATR-20260725-BDEC15",
+              "ATR-20260725-1FFB89",
+              "ATR-20260725-E7D909",
+              "ATR-20260725-75A686",
+              "ATR-20260724-1858EF",
+              "ATR-20260725-BF94E6",
+              "ATR-20260725-1FD139",
+              "ATR-20260723-8A493F",
+              "ATR-20260725-2639F0",
+              "ATR-20260723-27FB98",
+              "ATR-20260724-FF8AD9",
+              "ATR-20260723-5F4597",
+              "ATR-20260723-F3EE93",
+              "ATR-20260724-670A6E",
+              "ATR-20260724-69F1CC",
+              "ATR-20260723-F38F9A",
+              "ATR-20260723-798074",
+              "ATR-20260723-57108C",
+              "ATR-20260723-03A519",
+              "ATR-20260724-32C34D",
+              "ATR-20260723-D94EEC",
+              "ATR-20260722-989098",
+              "ATR-20260722-8C2E17",
+              "ATR-20260722-3672C1",
+              "ATR-20260722-30F731",
+              "ATR-20260722-473EA9",
+              "ATR-20260724-889CD0",
+              "ATR-20260724-3A90C6",
+              "ATR-20260723-B5936D",
+              "ATR-20260724-B79F6E",
+              "ATR-20260724-228D29",
+              "ATR-20260724-6EE035",
+              "ATR-20260724-9EC856",
+              "ATR-20260724-E1242D",
+              "ATR-20260724-9D2FA5",
+              "ATR-20260724-8DD839",
+              "ATR-20260724-E70158",
+              "ATR-20260722-15A436",
+              "ATR-20260722-FC579B",
+              "ATR-20260722-26F1C2",
+              "ATR-20260722-C66A13",
+              "ATR-20260722-8A9DBD",
+              "ATR-20260723-A1650F",
+              "ATR-20260721-CC004A",
+              "ATR-20260723-642072",
+              "ATR-20260723-E75DC0",
+              "ATR-20260723-B22268",
+              "ATR-20260723-8DB8E7",
+              "ATR-20260723-529C91",
+              "ATR-20260722-CBAE65",
+              "ATR-20260723-63DB58",
+              "ATR-20260723-80AB8C",
+              "ATR-20260723-A3C31C",
+              "ATR-20260723-A2C1DB",
+              "ATR-20260723-877E34",
+              "ATR-20260721-B31935",
+              "ATR-20260721-B30A8E",
+              "ATR-20260722-603B52",
+              "ATR-20260722-2D204F",
+              "ATR-20260721-FABF18",
+              "ATR-20260721-E5E5C5",
+              "ATR-20260722-BE3BA9",
+              "ATR-20260721-CBE910",
+              "ATR-20260721-632EDF",
+              "ATR-20260721-4FC7D2",
+              "ATR-20260721-0BFCB0",
+              "ATR-20260722-E7DB01",
+              "ATR-20260721-03237C",
+              "ATR-20260722-E31790",
+              "ATR-20260722-4FCE39",
+              "ATR-20260722-3221B2",
+              "ATR-20260722-0254F8",
+              "ATR-20260722-8D37CB",
+              "ATR-20260722-A8D792",
+              "ATR-20260722-13EA80",
+              "ATR-20260722-2DE6BC",
+              "ATR-20260722-242D43",
+              "ATR-20260720-355951",
+              "ATR-20260720-CEA757",
+              "ATR-20260720-C9B706",
+              "ATR-20260721-A96775",
+              "ATR-20260721-39E04C",
+              "ATR-20260721-70DFA1",
+              "ATR-20260720-A84F66",
+              "ATR-20260720-7B53DD",
+              "ATR-20260720-0BF4D2",
+              "ATR-20260721-93BE8A",
+              "ATR-20260721-C386A4",
+              "ATR-20260720-188A86",
+              "ATR-20260720-D90360",
+              "ATR-20260720-7B8A3E",
+              "ATR-20260719-AA44E1",
+              "ATR-20260719-B77D45",
+              "ATR-20260719-1828DC",
+              "ATR-20260721-23BDD2",
+              "ATR-20260720-EE5C1C",
+              "ATR-20260720-BA2030",
+              "ATR-20260720-2B12AB",
+              "ATR-20260720-1AA5ED",
+              "ATR-20260721-2EE5B5",
+              "ATR-20260721-8486E6",
+              "ATR-20260719-BC086D",
+              "ATR-20260721-C912CB",
+              "ATR-20260721-A4BAF9",
+              "ATR-20260721-F99CDD",
+              "ATR-20260721-D17831",
+              "ATR-20260720-EBCE37",
+              "ATR-20260720-B73459",
+              "ATR-20260720-9DBF4C",
+              "ATR-20260720-6121BA",
+              "ATR-20260719-A56BC7",
+              "ATR-20260720-6A37CC",
+              "ATR-20260719-D58914",
+              "ATR-20260718-BA7C28",
+              "ATR-20260720-FF345C",
+              "ATR-20260719-065773",
+              "ATR-20260718-C47C87",
+              "ATR-20260718-9B2885",
+              "ATR-20260720-BC7991",
+              "ATR-20260719-CFD8B5",
+              "ATR-20260718-E18703",
+              "ATR-20260718-8F3081",
+              "ATR-20260720-DDD800",
+              "ATR-20260720-C9F447",
+              "ATR-20260720-92CBC7",
+              "ATR-20260718-71EAC8",
+              "ATR-20260718-2248B9",
+              "ATR-20260719-F9A650",
+              "ATR-20260719-13DDDC",
+              "ATR-20260718-90FE88",
+              "ATR-20260717-DCBBDC",
+              "ATR-20260719-471A8C",
+              "ATR-20260719-C2420B",
+              "ATR-20260719-6D902C",
+              "ATR-20260719-13FDE1",
+              "ATR-20260718-A8C14B",
+              "ATR-20260717-A32266",
+              "ATR-20260717-86FB66",
+              "ATR-20260718-F9B30D",
+              "ATR-20260717-F78125",
+              "ATR-20260719-DC5CCD",
+              "ATR-20260719-223D70",
+              "ATR-20260719-506732",
+              "ATR-20260719-15FAC8",
+              "ATR-20260717-922F8E",
+              "ATR-20260717-641636",
+              "ATR-20260717-F88C15",
+              "ATR-20260718-CA2894",
+              "ATR-20260718-B7BE1D",
+              "ATR-20260718-808C6E",
+              "ATR-20260718-929872",
+              "ATR-20260718-50E536",
+              "ATR-20260718-2496D0",
+              "ATR-20260718-7C8702",
+              "ATR-20260717-2C5A63",
+              "ATR-20260718-F8ABB8",
+              "ATR-20260718-60BDCE",
+              "ATR-20260718-1DEC8C",
+              "ATR-20260717-FD456B",
+              "ATR-20260717-0C257E",
+              "ATR-20260716-159B45",
+              "ATR-20260717-7F3927",
+              "ATR-20260717-1B6F65",
+              "ATR-20260717-5330E4",
+              "ATR-20260716-AEAC46",
+              "ATR-20260716-6C2180",
+              "ATR-20260716-6D200F",
+              "ATR-20260716-6332A2",
+              "ATR-20260715-78D1C5",
+              "ATR-20260717-E75CCA",
+              "ATR-20260717-C3BA82",
+              "ATR-20260717-C329FB",
+              "ATR-20260717-AD1E9C",
+              "ATR-20260717-7934CD",
+              "ATR-20260717-4D08A5",
+              "ATR-20260717-B34727",
+              "ATR-20260716-99E5EC",
+              "ATR-20260717-6E3A5F",
+              "ATR-20260717-7A8451",
+              "ATR-20260717-2351B6"
+            ],
+            "route_source": "route_contract_v2",
+            "route_contract_version": "atr.route/2.0",
+            "shadow": true,
+            "primary_task_family": "trend_discovery",
+            "execution_policy": {
+              "channels": [
+                "structured"
+              ],
+              "graph_mode": "disabled",
+              "max_composer_calls": 0,
+              "allow_web_fallback": true
+            }
+          },
+          "execution_policy": {
+            "channels": [
+              "structured"
+            ],
+            "graph_mode": "disabled",
+            "max_composer_calls": 0,
+            "allow_web_fallback": true
+          },
+          "web_search_mode": {
+            "requested_mode": "never",
+            "intent_constraint": "none",
+            "effective_mode": "never",
+            "mode_reason": "request_mode_never"
+          },
+          "latest_corpus_date": "2026-08-21",
+          "metadata_filter": {
+            "content_type": "topic_candidate"
+          },
+          "context": {},
+          "ordered_route_contract": {
+            "status": "resolved",
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "trend_discovery",
+            "attempts": 1,
+            "route_source": "semantic_fallback",
+            "model_calls": 1,
+            "product_case_id": null
+          },
+          "runtime_budget": {
+            "total_seconds": 20.0,
+            "retrieval_seconds": 8.0,
+            "generation_seconds": 0.0
+          },
+          "corpus_stale": true,
+          "corpus_age_days": 7,
+          "internal_retrieval": {
+            "status": "ready",
+            "error_code": "",
+            "elapsed_ms": 750.36
+          },
+          "web_search_decision": {
+            "requested_mode": "never",
+            "effective_mode": "never",
+            "should_search": false,
+            "reason": "request_mode_never",
+            "retrieval_status": "ready",
+            "intent_constraint": "none",
+            "evidence_quality_status": "PARTIAL",
+            "evidence_gaps": [
+              "entity_coverage_unverified"
+            ]
+          },
+          "answer_policy": {
+            "mode": "deterministic_important_news",
+            "disclosure": "结构化近期动态按已验证排序直接展示。"
+          },
+          "tool_routing": {
+            "status": "not_required",
+            "steps": []
+          },
+          "source_review": {
+            "status": "internal_only",
+            "artifact_quality_status": "internal_only",
+            "external_count": 0,
+            "primary_count": 0,
+            "supporting_count": 0,
+            "weak_count": 0,
+            "source_roles": [],
+            "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+          }
+        },
+        "tool_trace": {
+          "execution_path": "deterministic_important_news",
+          "evidence_pool_count": 19,
+          "tools_used": [],
+          "evidence_sources": [
+            "internal"
+          ],
+          "total_calls": 0,
+          "summary": "结构化动态排序完成，未调用生成模型或工具",
+          "execution_counts": {
+            "model_turns": 0,
+            "agent_tool_calls": 0,
+            "planned_steps": 0
+          },
+          "timings": {
+            "retrieval_ms": 750.36,
+            "agent_ms": 0.0,
+            "repair_ms": 0.0,
+            "total_ms": 2639.34
+          }
+        }
+      }
+    },
+    {
+      "case_id": "g2-real-009",
+      "query": "Graphify 和 claude-mem 都服务 Claude Code 等编码代理，它们在“保留和检索上下文”上分别做什么？",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据当前内部语料，我找到关于 **Graphify** 的直接证据：它将任意代码库（含文档、SQL 模式、配置、PDF）转换为可查询的知识图谱，通过本地确定性 AST 解析实现，每条边都有解释，且不依赖向量库；该技能适用于 Claude Code、Cursor、Codex 和 Gemini CLI [E1]。\n\n关于 **claude-mem**，当前内部语料中没有找到任何直接证据，因此无法说明它在“保留和检索上下文”上的具体机制（如是否基于记忆文件、向量检索或对话历史存储）。由于涉及对比，且 claude-mem 证据缺失，我不能用 Graphify 的证据来替代或推测其行为。\n\n**核心结论：**\n- Graphify：为 Claude Code 等代理把代码库构建为可查询的知识图谱，核心是本地确定性 AST 解析、边可解释、无向量库，用于代码上下文的结构化检索 [E1]。\n- claude-mem：证据不足，无法给出结论；需补充内部语料后再行对比。",
+        "display_answer": "📚 仅内部语料\n\n证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n根据当前内部语料，我找到关于 **Graphify** 的直接证据：它将任意代码库（含文档、SQL 模式、配置、PDF）转换为可查询的知识图谱，通过本地确定性 AST 解析实现，每条边都有解释，且不依赖向量库；该技能适用于 Claude Code、Cursor、Codex 和 Gemini CLI [I1]。\n\n关于 **claude-mem**，当前内部语料中没有找到任何直接证据，因此无法说明它在“保留和检索上下文”上的具体机制（如是否基于记忆文件、向量检索或对话历史存储）。由于涉及对比，且 claude-mem 证据缺失，我不能用 Graphify 的证据来替代或推测其行为。\n\n**核心结论：**\n- Graphify：为 Claude Code 等代理把代码库构建为可查询的知识图谱，核心是本地确定性 AST 解析、边可解释、无向量库，用于代码上下文的结构化检索 [I1]。\n- claude-mem：证据不足，无法给出结论；需补充内部语料后再行对比。",
+        "citations": [
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-21",
+            "source": "GitHub Search:rag",
+            "title": "Graphify-Labs/graphify",
+            "citation_id": "ATR-20260821-AE480E",
+            "excerpt": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
+            "report_date": "2026-08-21",
+            "publication_date_source": "unknown",
+            "source_updated_at": "2026-08-20",
+            "observed_at": "2026-08-21",
+            "ingested_at": "2026-08-21T07:41:18.617061+00:00",
+            "effective_date": "2026-08-21",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://github.com/Graphify-Labs/graphify",
+            "local_url": "#2026-08-21/ai-topic-radar/item/ATR-20260821-AE480E",
+            "content_id": "1b66fcabdd1a9ff0f6ac40f9445083eb",
+            "occurrence_id": "ATR-20260821-AE480E",
+            "score": 68,
+            "category": "AI 产品与用户入口",
+            "entity_ids": [],
+            "fusion_score": 0.01639344262295082,
+            "lexical_match_type": "title_in_query",
+            "lexical_score": 0.75,
+            "evidence_id": "E1",
+            "display_label": "I1"
+          }
+        ],
+        "evidence_display_map": {
+          "E1": "I1"
+        },
+        "search_references": [],
+        "source_summary": {
+          "internal_citations": 1,
+          "external_citations": 0,
+          "search_references": 0
+        },
+        "claim_evidence": [
+          {
+            "claim": "根据当前内部语料，我找到关于 **Graphify** 的直接证据：它将任意代码库（含文档、SQL 模式、配置、PDF）转换为可查询的知识图谱，通过本地确定性 AST 解析实现，每条边都有解释，且不依赖向量库；该技能适用于 Claude Code、Cursor、Codex 和 Gemini CLI 。",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "claim": "Graphify：为 Claude Code 等代理把代码库构建为可查询的知识图谱，核心是本地确定性 AST 解析、边可解释、无向量库，用于代码上下文的结构化检索 。",
+            "evidence_ids": [
+              "E1"
+            ]
+          }
+        ],
+        "claim_verification": null,
+        "evidence_integrity": {
+          "valid": true,
+          "repair_attempted": false,
+          "answer_envelope": {
+            "valid": true,
+            "errors": [],
+            "schema_version": "answer-envelope/1.0",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          "unknown_evidence_ids": [],
+          "missing_evidence_markers": false,
+          "minimum_evidence_markers": 1,
+          "used_evidence_markers": 1,
+          "coverage_sufficient": true,
+          "required_evidence_ids": [
+            "E1"
+          ],
+          "missing_required_evidence_ids": []
+        },
+        "query_understanding": {
+          "original_question": "Graphify 和 claude-mem 都服务 Claude Code 等编码代理，它们在“保留和检索上下文”上分别做什么？",
+          "intent": "general_search",
+          "retrieval_query": "Claude Code anthropic Graphify claude-mem 保留和检索上下文",
+          "top_k": 10,
+          "topics": [],
+          "entities": [
+            "Claude Code"
+          ],
+          "sources": [],
+          "time_window": {
+            "mode": "none",
+            "value": null
+          },
+          "temporal_intent": "effective",
+          "answerability_hint": "internal-first",
+          "needs_web_search": false,
+          "routing_notes": [
+            "Route Contract owns retrieval: evidence_research"
+          ],
+          "task_mode": "compare",
+          "graph_requirement": "disabled",
+          "entity_expansions": [
+            {
+              "from_entity_id": "claude-code",
+              "entity_id": "anthropic",
+              "relation": "product_of",
+              "weight": 0.55
+            }
+          ],
+          "task_family": "evidence_research",
+          "retrieval_gateway": {
+            "path": "evidence_search",
+            "route_source": "route_contract_v2",
+            "route_contract_version": "atr.route/2.0",
+            "shadow": true,
+            "primary_task_family": "evidence_research",
+            "execution_policy": {
+              "channels": [
+                "lexical",
+                "vector"
+              ],
+              "graph_mode": "disabled",
+              "max_composer_calls": 1,
+              "allow_web_fallback": true
+            },
+            "channel_status": {
+              "lexical": "success",
+              "vector": "success",
+              "graph": "disabled"
+            },
+            "pre_filter_count": 5,
+            "focused_count": 1,
+            "entity_filter_mode": "structured",
+            "graph_readiness": {
+              "status": "not_required"
+            },
+            "graph_evidence": {
+              "status": "not_required"
+            }
+          },
+          "execution_policy": {
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "graph_mode": "disabled",
+            "max_composer_calls": 1,
+            "allow_web_fallback": true
+          },
+          "web_search_mode": {
+            "requested_mode": "never",
+            "intent_constraint": "none",
+            "effective_mode": "never",
+            "mode_reason": "request_mode_never"
+          },
+          "latest_corpus_date": "2026-08-21",
+          "metadata_filter": null,
+          "context": {},
+          "ordered_route_contract": {
+            "status": "resolved",
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "evidence_research",
+            "attempts": 0,
+            "route_source": "deterministic_signals",
+            "model_calls": 0,
+            "product_case_id": null
+          },
+          "runtime_budget": {
+            "total_seconds": 60.0,
+            "retrieval_seconds": 15.0,
+            "generation_seconds": 45.0
+          },
+          "corpus_stale": true,
+          "corpus_age_days": 7,
+          "internal_retrieval": {
+            "status": "ready",
+            "error_code": "",
+            "elapsed_ms": 2670.5
+          },
+          "web_search_decision": {
+            "requested_mode": "never",
+            "effective_mode": "never",
+            "should_search": false,
+            "reason": "request_mode_never",
+            "retrieval_status": "ready",
+            "intent_constraint": "none",
+            "evidence_quality_status": "PARTIAL",
+            "evidence_gaps": [
+              "entity_coverage_unverified"
+            ]
+          },
+          "source_admission": {
+            "candidate_count": 0,
+            "admitted_count": 0,
+            "search_reference_count": 0,
+            "excluded_count": 0,
+            "duplicate_count": 0,
+            "claim_type": "capability_evaluation",
+            "provisional_admitted_count": 0
+          },
+          "answer_policy": {
+            "mode": "internal_grounded",
+            "should_call_llm": true,
+            "external_search_required": false,
+            "evidence_boundary": "internal_corpus_only",
+            "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+            "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+          },
+          "tool_routing": {
+            "status": "internal_only_ready",
+            "external_tools_required": false,
+            "external_tools_available": false,
+            "max_tool_calls": 1,
+            "steps": [
+              {
+                "tool": "search_corpus",
+                "state": "executed",
+                "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+              }
+            ],
+            "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+          },
+          "external_search": {
+            "attempted": false,
+            "citations": []
+          },
+          "deep_fetch": {
+            "attempted": false,
+            "reason": "no_external_citations",
+            "selected_count": 0,
+            "success_count": 0,
+            "failure_count": 0,
+            "targets": []
+          },
+          "source_review": {
+            "status": "internal_only",
+            "artifact_quality_status": "internal_only",
+            "external_count": 0,
+            "primary_count": 0,
+            "supporting_count": 0,
+            "weak_count": 0,
+            "source_roles": [],
+            "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+          },
+          "execution_path": "direct_composer",
+          "entity_relation_feedback": {
+            "captured_count": 0,
+            "verified_count": 0
+          }
+        },
+        "tool_trace": {
+          "execution_path": "direct_composer",
+          "evidence_pool_count": 1,
+          "tools_used": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "evidence_sources": [
+            "internal"
+          ],
+          "total_calls": 1,
+          "summary": "使用了 search_corpus；基于内部语料；共 1 条引用",
+          "budget": {
+            "tool_calls": {
+              "used": 1,
+              "limit": 0
+            },
+            "web_searches": {
+              "used": 0,
+              "limit": 2
+            },
+            "deep_fetches": {
+              "used": 0,
+              "limit": 1
+            }
+          },
+          "execution_counts": {
+            "model_turns": 1,
+            "agent_tool_calls": 0,
+            "planned_steps": 1
+          },
+          "timings": {
+            "retrieval_ms": 2670.5,
+            "agent_ms": 3221.38,
+            "repair_ms": 0.0,
+            "total_ms": 5899.38
+          },
+          "warnings": [
+            {
+              "type": "corpus_stale",
+              "message": "语料可能过时（7天未更新）",
+              "suggestion": "建议查看最新报告或启用外部搜索"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g2-real-010",
+      "query": "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n在索引内部语料中，**未检索到任何与“OpenAI 潜在上市”直接匹配的报道**。现有与 OpenAI 相关的条目均未提及上市、IPO、公开募股等主题：\n\n- 2026-08-18 收录的“Openai Joins Ports Pike Project”，聚焦大厂动作、商业化路径与竞争格局 [E1]；\n- 2026-08-07 收录的“Openai And Apa Partner To Advance Responsible Ai”，主题为负责任的 AI 合作 [E3]；\n- 2026-08-07 收录的“How The World Is Putting Chatgpt To Work”，主题为 ChatGPT 的实际应用 [E5]；\n- 2026-08-07 收录的“苹果指控 OpenAI 挖人、拿零件、偷文件”等争议报道 [E2]；\n- 2026-05-20 收录的“Helping People When They Need It Most” [E4]。\n\n图谱关系显示 OpenAI 关联 111 个稳定内容、117 条每日观察等，其中样例路径包括“Openai Joins Ports Pike Project”“Partnering With Codeai”“Pacing Model Development Cyber Capabilities”等，但未包含上市相关节点 [E6]。\n\n**证据层级结论**：上述内容均为“通用主体新闻/背景材料”，不构成对“潜在上市”这一目标事件的直接报道或图谱证据。因此无法按要求梳理两条直接报道，时间线无法建立。建议补充与“OpenAI 上市”精确匹配的检索条件后重新查询。",
+        "display_answer": "📚 仅内部语料\n\n证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。\n\n在索引内部语料中，**未检索到任何与“OpenAI 潜在上市”直接匹配的报道**。现有与 OpenAI 相关的条目均未提及上市、IPO、公开募股等主题：\n\n- 2026-08-18 收录的“Openai Joins Ports Pike Project”，聚焦大厂动作、商业化路径与竞争格局 [I1]；\n- 2026-08-07 收录的“Openai And Apa Partner To Advance Responsible Ai”，主题为负责任的 AI 合作 [I3]；\n- 2026-08-07 收录的“How The World Is Putting Chatgpt To Work”，主题为 ChatGPT 的实际应用 [I5]；\n- 2026-08-07 收录的“苹果指控 OpenAI 挖人、拿零件、偷文件”等争议报道 [I2]；\n- 2026-05-20 收录的“Helping People When They Need It Most” [I4]。\n\n图谱关系显示 OpenAI 关联 111 个稳定内容、117 条每日观察等，其中样例路径包括“Openai Joins Ports Pike Project”“Partnering With Codeai”“Pacing Model Development Cyber Capabilities”等，但未包含上市相关节点 [I6]。\n\n**证据层级结论**：上述内容均为“通用主体新闻/背景材料”，不构成对“潜在上市”这一目标事件的直接报道或图谱证据。因此无法按要求梳理两条直接报道，时间线无法建立。建议补充与“OpenAI 上市”精确匹配的检索条件后重新查询。",
+        "citations": [
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-18",
+            "source": "OpenAI",
+            "title": "Openai Joins Ports Pike Project",
+            "citation_id": "ATR-20260818-951D15",
+            "excerpt": "Openai Joins Ports Pike Project\nOpenai Joins Ports Pike Project 为什么值得关注？（大厂动作、商业化路径与竞争格局）\n值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。",
+            "report_date": "2026-08-18",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-18",
+            "ingested_at": "2026-08-21T07:45:26.883775+00:00",
+            "effective_date": "2026-08-18",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/openai-joins-ports-pike-project/",
+            "local_url": "#2026-08-18/ai-topic-radar/item/ATR-20260818-951D15",
+            "content_id": "64789b0846508859a1c39918802566ee",
+            "occurrence_id": "ATR-20260818-951D15",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": "openai",
+            "fusion_score": 0.03057889822595705,
+            "vector_similarity": 0.5797468423843384,
+            "evidence_id": "E1",
+            "display_label": "I1"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-07",
+            "source": "InfoQ 中国",
+            "title": "苹果指控 OpenAI挖人、拿零件、偷文件，OpenAI 晒聊天记录全面反击！马斯克：别信 OpenAI",
+            "citation_id": "ATR-20260807-7618A0",
+            "excerpt": "来源：InfoQ 中国\n发布时间：+058564-03\n关键词：infoq-cn, OpenAI, 生成式 AI",
+            "report_date": "2026-08-07",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-07",
+            "ingested_at": "2026-08-21T07:41:19.536922+00:00",
+            "effective_date": "2026-08-07",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://www.infoq.cn/article/rvVpcZspLiqGpPQq6HPw",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-7618A0",
+            "content_id": "9432d8ba3833910acc1d47f76392384b",
+            "occurrence_id": "ATR-20260807-7618A0",
+            "score": 53,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": "openai",
+            "fusion_score": 0.015384615384615385,
+            "vector_similarity": 0.583258867263794,
+            "evidence_id": "E2",
+            "display_label": "I2"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-07",
+            "source": "OpenAI",
+            "title": "Openai And Apa Partner To Advance Responsible Ai",
+            "citation_id": "ATR-20260807-0FD7E8",
+            "excerpt": "话题: Openai And Apa Partner To Advance Responsible Ai | 分类: 标杆企业动向、商业格局与投融资 | 分数: 98 | 摘要:  | 推荐理由: 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 | 证据: 来源：OpenAI；发布时间：2026-08-06；关键词：openai, index",
+            "report_date": "2026-08-07",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-07",
+            "ingested_at": "2026-08-12T06:34:40.390010+00:00",
+            "effective_date": "2026-08-07",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai/",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-0FD7E8",
+            "occurrence_id": "ATR-20260807-0FD7E8",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "fusion_score": 0.015384615384615385,
+            "evidence_id": "E3",
+            "display_label": "I3"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-05-20",
+            "source": "OpenAI",
+            "title": "Helping People When They Need It Most",
+            "citation_id": "ATR-20260520-F9E474",
+            "excerpt": "来源：OpenAI\n发布时间：2026-05-20\n关键词：openai, index",
+            "report_date": "2026-05-20",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-05-20",
+            "ingested_at": "2026-08-21T07:41:19.533421+00:00",
+            "effective_date": "2026-05-20",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/helping-people-when-they-need-it-most/",
+            "local_url": "#2026-05-20/ai-topic-radar/item/ATR-20260520-F9E474",
+            "content_id": "e3091ebe06f27787e62c173b19f9979d",
+            "occurrence_id": "ATR-20260520-F9E474",
+            "score": 90,
+            "category": "标杆企业动向、商业格局与投融资",
+            "entity_ids": "openai",
+            "fusion_score": 0.01639344262295082,
+            "vector_similarity": 0.6743862628936768,
+            "evidence_id": "E4",
+            "display_label": "I4"
+          },
+          {
+            "evidence_type": "internal",
+            "date": "2026-08-07",
+            "source": "OpenAI",
+            "title": "How The World Is Putting Chatgpt To Work",
+            "citation_id": "ATR-20260807-4C0FAD",
+            "excerpt": "话题: How The World Is Putting Chatgpt To Work | 分类: 标杆企业动向、商业格局与投融资 | 分数: 98 | 摘要:  | 推荐理由: 值得优先深挖：适合从大厂动作、商业化路径和竞争格局角度切入，来源：OpenAI。 | 证据: 来源：OpenAI；发布时间：2026-08-07；关键词：openai, index",
+            "report_date": "2026-08-07",
+            "publication_date_source": "unknown",
+            "observed_at": "2026-08-07",
+            "ingested_at": "2026-08-12T06:34:40.374693+00:00",
+            "effective_date": "2026-08-07",
+            "effective_date_basis": "report_date_fallback",
+            "url": "https://openai.com/index/how-the-world-is-putting-chatgpt-to-work/",
+            "local_url": "#2026-08-07/ai-topic-radar/item/ATR-20260807-4C0FAD",
+            "occurrence_id": "ATR-20260807-4C0FAD",
+            "score": 98,
+            "category": "标杆企业动向、商业格局与投融资",
+            "fusion_score": 0.01639344262295082,
+            "evidence_id": "E5",
+            "display_label": "I5"
+          },
+          {
+            "evidence_type": "internal",
+            "content_type": "graph_reasoning",
+            "date": "2026-08-20",
+            "source": "Neo4j graph",
+            "title": "OpenAI graph relationship evidence",
+            "citation_id": "graph-reasoning/openai",
+            "excerpt": "OpenAI 在图谱中关联 111 个稳定内容、117 条每日观察、46 个日期、3 个来源、4 个分类。在带有该实体标记的观察中，5 个内容跨日重复出现，涉及 11 条观察和 7 条相邻时间链。样例路径：Openai Joins Ports Pike Project / 2026-08-18 / OpenAI；Partnering With Codeai / 2026-08-19 / OpenAI；Pacing Model Development Cyber Capabilities / 2026-08-19 / OpenAI。注册表主体关系：无。",
+            "evidence_id": "E6",
+            "display_label": "I6"
+          }
+        ],
+        "evidence_display_map": {
+          "E1": "I1",
+          "E2": "I2",
+          "E3": "I3",
+          "E4": "I4",
+          "E5": "I5",
+          "E6": "I6"
+        },
+        "search_references": [],
+        "source_summary": {
+          "internal_citations": 6,
+          "external_citations": 0,
+          "search_references": 0
+        },
+        "claim_evidence": [
+          {
+            "claim": "2026-08-18 收录的“Openai Joins Ports Pike Project”，聚焦大厂动作、商业化路径与竞争格局 ；",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "claim": "2026-08-07 收录的“Openai And Apa Partner To Advance Responsible Ai”，主题为负责任的 AI 合作 ；",
+            "evidence_ids": [
+              "E3"
+            ]
+          },
+          {
+            "claim": "2026-08-07 收录的“How The World Is Putting Chatgpt To Work”，主题为 ChatGPT 的实际应用 ；",
+            "evidence_ids": [
+              "E5"
+            ]
+          },
+          {
+            "claim": "2026-08-07 收录的“苹果指控 OpenAI 挖人、拿零件、偷文件”等争议报道 ；",
+            "evidence_ids": [
+              "E2"
+            ]
+          },
+          {
+            "claim": "2026-05-20 收录的“Helping People When They Need It Most” 。",
+            "evidence_ids": [
+              "E4"
+            ]
+          },
+          {
+            "claim": "图谱关系显示 OpenAI 关联 111 个稳定内容、117 条每日观察等，其中样例路径包括“Openai Joins Ports Pike Project”“Partnering With Codeai”“Pacing Model Development Cyber Capabilities”等，但未包含上市相关节点 。",
+            "evidence_ids": [
+              "E6"
+            ]
+          }
+        ],
+        "claim_verification": null,
+        "evidence_integrity": {
+          "valid": true,
+          "repair_attempted": false,
+          "answer_envelope": {
+            "valid": true,
+            "errors": [],
+            "schema_version": "answer-envelope/1.0",
+            "evidence_ids": [
+              "E1",
+              "E3",
+              "E5",
+              "E2",
+              "E4",
+              "E6"
+            ]
+          },
+          "unknown_evidence_ids": [],
+          "missing_evidence_markers": false,
+          "minimum_evidence_markers": 1,
+          "used_evidence_markers": 6,
+          "coverage_sufficient": true,
+          "required_evidence_ids": [
+            "E6"
+          ],
+          "missing_required_evidence_ids": []
+        },
+        "query_understanding": {
+          "original_question": "按时间线梳理索引里与 OpenAI 潜在上市相关的两条直接报道，并说明证据层级。",
+          "intent": "general_search",
+          "retrieval_query": "OpenAI 按时间 上市",
+          "top_k": 10,
+          "topics": [],
+          "entities": [
+            "OpenAI"
+          ],
+          "sources": [],
+          "time_window": {
+            "mode": "none",
+            "value": null
+          },
+          "temporal_intent": "effective",
+          "answerability_hint": "internal-first",
+          "needs_web_search": false,
+          "routing_notes": [
+            "Route Contract owns retrieval: temporal_relation_exploration"
+          ],
+          "task_mode": "timeline",
+          "graph_requirement": "required",
+          "entity_expansions": [],
+          "task_family": "temporal_relation_exploration",
+          "retrieval_gateway": {
+            "path": "evidence_search",
+            "route_source": "route_contract_v2",
+            "route_contract_version": "atr.route/2.0",
+            "shadow": true,
+            "primary_task_family": "temporal_relation_exploration",
+            "execution_policy": {
+              "channels": [
+                "lexical",
+                "vector",
+                "graph"
+              ],
+              "graph_mode": "required",
+              "max_composer_calls": 1,
+              "allow_web_fallback": false
+            },
+            "channel_status": {
+              "lexical": "empty",
+              "vector": "success",
+              "graph": "success"
+            },
+            "pre_filter_count": 9,
+            "focused_count": 10,
+            "entity_filter_mode": "structured",
+            "graph_readiness": {
+              "status": "ready",
+              "level": "runtime",
+              "checked_at": 52683.575837065,
+              "latency_ms": 29.6962079955847,
+              "error_code": "",
+              "details": {},
+              "cached": false
+            },
+            "graph_evidence": {
+              "status": "ready",
+              "entity_count": 1,
+              "relation_count": 0,
+              "citation_ids": [
+                "graph-reasoning/openai"
+              ],
+              "observation_count": 117,
+              "repeated_content_count": 5
+            }
+          },
+          "execution_policy": {
+            "channels": [
+              "lexical",
+              "vector",
+              "graph"
+            ],
+            "graph_mode": "required",
+            "max_composer_calls": 1,
+            "allow_web_fallback": false
+          },
+          "web_search_mode": {
+            "requested_mode": "never",
+            "intent_constraint": "none",
+            "effective_mode": "never",
+            "mode_reason": "request_mode_never"
+          },
+          "latest_corpus_date": "2026-08-21",
+          "metadata_filter": null,
+          "context": {},
+          "ordered_route_contract": {
+            "status": "resolved",
+            "schema_version": "atr.route/2.0",
+            "primary_task_family": "temporal_relation_exploration",
+            "attempts": 0,
+            "route_source": "deterministic_signals",
+            "model_calls": 0,
+            "product_case_id": null
+          },
+          "runtime_budget": {
+            "total_seconds": 60.0,
+            "retrieval_seconds": 20.0,
+            "generation_seconds": 40.0
+          },
+          "corpus_stale": true,
+          "corpus_age_days": 7,
+          "internal_retrieval": {
+            "status": "ready",
+            "error_code": "",
+            "elapsed_ms": 2365.73
+          },
+          "web_search_decision": {
+            "requested_mode": "never",
+            "effective_mode": "never",
+            "should_search": false,
+            "reason": "request_mode_never",
+            "retrieval_status": "ready",
+            "intent_constraint": "none",
+            "evidence_quality_status": "PARTIAL",
+            "evidence_gaps": [
+              "entity_coverage_unverified"
+            ]
+          },
+          "source_admission": {
+            "candidate_count": 0,
+            "admitted_count": 0,
+            "search_reference_count": 0,
+            "excluded_count": 0,
+            "duplicate_count": 0,
+            "claim_type": "research",
+            "provisional_admitted_count": 0
+          },
+          "answer_policy": {
+            "mode": "internal_grounded",
+            "should_call_llm": true,
+            "external_search_required": false,
+            "evidence_boundary": "internal_corpus_only",
+            "disclosure": "证据范围：当前回答基于 AI Trend Radar 内部语料和返回引用。",
+            "instruction": "当前问题可先按内部语料回答。请基于引用证据组织结论，不要把模型记忆或外部事实混入为已检索证据。"
+          },
+          "tool_routing": {
+            "status": "internal_only_ready",
+            "external_tools_required": false,
+            "external_tools_available": false,
+            "max_tool_calls": 1,
+            "steps": [
+              {
+                "tool": "search_corpus",
+                "state": "executed",
+                "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+              }
+            ],
+            "fallback": "如内部证据不足，应返回证据不足，而不是自动编造外部事实。"
+          },
+          "external_search": {
+            "attempted": false,
+            "citations": []
+          },
+          "deep_fetch": {
+            "attempted": false,
+            "reason": "no_external_citations",
+            "selected_count": 0,
+            "success_count": 0,
+            "failure_count": 0,
+            "targets": []
+          },
+          "source_review": {
+            "status": "internal_only",
+            "artifact_quality_status": "internal_only",
+            "external_count": 0,
+            "primary_count": 0,
+            "supporting_count": 0,
+            "weak_count": 0,
+            "source_roles": [],
+            "instruction": "No external source conflict to resolve; answer only from internal corpus evidence."
+          },
+          "execution_path": "direct_composer",
+          "entity_relation_feedback": {
+            "captured_count": 0,
+            "verified_count": 0
+          }
+        },
+        "tool_trace": {
+          "execution_path": "direct_composer",
+          "evidence_pool_count": 6,
+          "tools_used": [
+            {
+              "tool": "search_corpus",
+              "state": "executed",
+              "reason": "Internal AI Trend Radar corpus searched and citation-ready evidence found."
+            }
+          ],
+          "evidence_sources": [
+            "internal"
+          ],
+          "total_calls": 1,
+          "summary": "使用了 search_corpus；基于内部语料；共 6 条引用",
+          "budget": {
+            "tool_calls": {
+              "used": 1,
+              "limit": 0
+            },
+            "web_searches": {
+              "used": 0,
+              "limit": 2
+            },
+            "deep_fetches": {
+              "used": 0,
+              "limit": 1
+            }
+          },
+          "execution_counts": {
+            "model_turns": 1,
+            "agent_tool_calls": 0,
+            "planned_steps": 1
+          },
+          "timings": {
+            "retrieval_ms": 2365.73,
+            "agent_ms": 4020.01,
+            "repair_ms": 0.0,
+            "total_ms": 6392.15
+          },
+          "warnings": [
+            {
+              "type": "corpus_stale",
+              "message": "语料可能过时（7天未更新）",
+              "suggestion": "建议查看最新报告或启用外部搜索"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "g2-real-012",
+      "query": "把刚才那两个产品里更适合小团队的一个找出来，并解释原因。",
+      "response": {
+        "status": "ready",
+        "error_code": "",
+        "answer": "我还不能确定你指的是哪一个对象，请补充具体名称、标题或 ATR 编号后再试。",
+        "display_answer": "❓ 需要补充信息\n\n我还不能确定你指的是哪一个对象，请补充具体名称、标题或 ATR 编号后再试。",
+        "citations": [],
+        "evidence_display_map": {},
+        "search_references": [],
+        "source_summary": {},
+        "claim_evidence": [],
+        "claim_verification": null,
+        "evidence_integrity": {},
+        "query_understanding": {
+          "ordered_route_contract": {
+            "status": "clarification_required",
+            "reasons": [
+              "contextual item reference cannot be resolved without conversation context"
+            ],
+            "attempts": 0,
+            "route_source": "deterministic_clarification",
+            "model_calls": 0
+          },
+          "context": {}
+        },
+        "tool_trace": {
+          "execution_path": "clarification_required",
+          "reasons": [
+            "contextual item reference cannot be resolved without conversation context"
+          ],
+          "execution_counts": {
+            "model_turns": 0,
+            "tool_calls": 0
+          },
+          "timings": {
+            "retrieval_ms": 0.0,
+            "agent_ms": 0.0,
+            "repair_ms": 0.0,
+            "total_ms": 2.31
+          }
+        }
+      }
+    }
+  ]
+}
