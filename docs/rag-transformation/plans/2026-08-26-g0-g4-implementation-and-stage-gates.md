@@ -250,7 +250,7 @@ python -m pytest -q rag/tests/test_corpus_update.py rag/tests/test_consistency_f
 
 通过条件：工作流真实执行链可追踪；每条新日报有独立身份；图/向量失败不会伪装健康；失败能恢复或安全保持旧 generation；PR 权限、分支和 Secrets 不越界；周/月报没有进入主索引；canary 结果可复现。Gate 未通过时继续冻结，不增加来源或数据量。
 
-**2026-09-01 补充状态：条件通过（本地/发布侧）。** 现有 Docker 自动更新与双库一致性通过真实容器验证；`main` 已按职责拆分为 12 个提交并完成 clean clone，语料合同（204 个公开文件）与 Compose 解析通过，完整 P0 通过。GitHub Runner 状态受匿名 API 限流影响尚未取得独立证据，不能据此宣称 G3 整体通过。
+**2026-09-01 补充状态：条件通过（本地/发布侧）。** 现有 Docker 自动更新与双库一致性通过真实容器验证；`main` 已按职责拆分为 13 个提交并完成 clean clone，语料合同（204 个公开文件）与 Compose 解析通过，完整 P0 通过。GitHub Runner 状态受匿名 API 限流影响尚未取得独立证据，不能据此宣称 G3 整体通过。
 
 ## 8. G4：干净目录、开源发布与运行交付
 

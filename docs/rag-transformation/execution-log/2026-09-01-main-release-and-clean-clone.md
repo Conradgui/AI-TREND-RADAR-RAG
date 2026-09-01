@@ -7,7 +7,7 @@
 ## 发布结果
 
 - 已创建本地备份引用 `split-backup-6481d87`，原始宽提交未丢失。
-- 已将项目拆为 12 个职责清晰的提交并逐批推送到 `main`，最终提交为 `1d3bda9`。
+- 已将项目拆为 13 个职责清晰的提交并逐批推送到 `main`，最终提交为 `ff14872`；其中最后一个提交只回写发布验证记录。
 - 提交职责依次覆盖：Agentic RAG 运行时、Docker/启动器、Web UI、架构规范、阶段证据、各实验轮次评估快照。
 - 未提交或推送本地旧生成索引 `digests/search-index.json`；该文件保留在 `stash@{0}`。
 - 未删除或重建 Neo4j/RAG 数据卷。
@@ -19,6 +19,7 @@
 ```text
 /tmp/ai-trend-radar-clean.Yn6t06
 HEAD = 1d3bda9d6addba89348fae940e64ee19c635a4a1
+随后追加文档提交 `ff1487273431d107de450cd21815e1ef07d2dd53`，未改变运行代码。
 ```
 
 验证结果：
