@@ -18,7 +18,7 @@
 | 检查 | 结果 |
 |---|---:|
 | 自动更新配置、调度和 Compose 契约 | 通过：31 项自动更新/配置/发布回归；工作流契约 15 项；同步单元测试 18 项 |
-| 项目既有 P0 总检查 | 核心 307 项通过；发布包 50 项通过、1 项因当前工作树生成文件漂移失败（见边界） |
+| 项目既有 P0 总检查 | Python P0 308 项通过；发布/工作流 pytest 51 项通过；前端 270 项、ESLint、Prettier、TypeScript 另行通过 |
 | Python 编译与 `git diff --check` | 通过 |
 | Compose 配置解析 | 通过 |
 | 现有 app/Neo4j 容器复用 | 通过；仅重建 app 镜像，未删除或重建数据卷 |
@@ -37,15 +37,15 @@
 
 ## 边界与未决项
 
-本记录只证明本地 Docker 自动更新实现和一次真实同步通过，不等于 G3 整体 Gate 已通过。仍待：
+本记录只证明本地 Docker 自动更新实现和一次真实同步通过，不等于 G3 整体 Gate 已通过。clean clone 与发布合同已在 [main 分批发布记录](2026-09-01-main-release-and-clean-clone.md) 中补充通过。仍待：
 
 1. 在 GitHub Runner 上执行一次受控 workflow dry-run/PR 路径并保存证据；
-2. 用一个新日期完成一次单日期 canary，确认发布、索引、回滚和 clean clone 行为。
+2. 用一个新日期完成一次单日期 canary，确认发布、索引和回滚行为。
 
-P0 的唯一失败来自当前工作树中已存在的 `digests/search-index.json` 与 `corpus-manifest.json` 不一致；`scripts/build-pages-site.sh` 的精确校验因此停止。它不发生在本轮自动更新单元、工作流契约或真实 Docker 同步路径中；GitHub 发布工作流会在提交前重新生成 manifest、search-index 和 corpus contract。由于该生成文件属于现有未提交变更，本轮不覆盖或删除它，避免误伤其他工作。
+之前的 P0 失败来自当前工作树中已存在的 `digests/search-index.json` 与 `corpus-manifest.json` 生成摘要漂移；在 rebase 到远端最新 main 后，完整 P0 已通过。原本的本地生成文件仍以 `stash@{0}` 保留，未覆盖、删除或推送。
 
-在上述证据完成前，不扩大来源、不执行大规模付费测试、不删除 Neo4j/RAG 数据卷，也不宣称项目已通过 G3。
+在上述 Runner 与单日期证据完成前，不扩大来源、不执行大规模付费测试、不删除 Neo4j/RAG 数据卷，也不宣称项目已通过 G3。
 
 ## 下一步
 
-继续使用现有容器和数据，不再重复首次全量补齐；优先完成真实 Runner 与单日期 canary。后续无变化轮询只执行来源检查，不会重复 embedding 已存在的条目。
+继续使用现有容器和数据，不再重复首次全量补齐；优先完成一次真实 Runner 与单日期 canary。后续无变化轮询只执行来源检查，不会重复 embedding 已存在的条目。

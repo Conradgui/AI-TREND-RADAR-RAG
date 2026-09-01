@@ -1,9 +1,9 @@
 # G0–G4 收敛实施计划与 Stage Gate
 
-> 版本：v1.5 · 日期：2026-09-01 · 状态：G0、G1、G2 已通过，G3 自动更新与真实容器验证已完成，Runner/clean clone 证据仍待执行。
+> 版本：v1.6 · 日期：2026-09-01 · 状态：G0、G1、G2 已通过，G3 自动更新、真实容器与 clean clone 验证已完成，Runner/单日期 canary 证据仍待执行。
 > 依据：[全局缺口与后续收敛基线](2026-08-26-global-gap-and-closure-baseline.md)。
 > 本文是执行合同（目标、边界和验收口径），不是完成证明。G3 的自动更新实现已进入受控验证，
-> 但在真实容器、失败恢复和 Runner 证据完成前，不宣称 G3 通过，也不扩大来源或数据量；不重建 Neo4j/数据卷。
+> 但在真实 Runner、失败恢复和单日期 canary 证据完成前，不宣称 G3 通过，也不扩大来源或数据量；不重建 Neo4j/数据卷。
 
 ## 1. 目标与非目标
 
@@ -219,7 +219,7 @@ python -m pytest -q rag/tests/test_product_query_routing.py rag/tests/test_retri
 
 通过条件：A–E 路由与 Prompt/答案契约不丢失；精确条目和热门趋势分别达到对应门槛；引用可跳转到准确条目；排序先按相关层级再按层内信号；Agent 不把证据不足说成结论；热/冷延迟与超时有当前版本数据；UI 主路径无已知 404/死按钮。否则只修最小瓶颈，不进入自动同步。
 
-**2026-09-01 收口结果：PASS。** 当前活动 generation `gen-20260831T083806-39f9d2a6`（ChromaDB 4286 条）上，12 条经用户确认的真实语料任务全部成功请求并通过分任务验收：`recent_trend 4/4`、`item_navigation 4/4`、`evidence_insufficiency 2/2`、`relation_comparison 1/1`、`timeline 1/1`。本 Gate 不发布跨任务全局 Precision/Recall/F1；原始快照与评分见执行记录中的链接。G3 仍需单独验证自动同步和双库一致性。
+**2026-09-01 收口结果：PASS。** 当前活动 generation `gen-20260831T083806-39f9d2a6`（ChromaDB 4286 条）上，12 条经用户确认的真实语料任务全部成功请求并通过分任务验收：`recent_trend 4/4`、`item_navigation 4/4`、`evidence_insufficiency 2/2`、`relation_comparison 1/1`、`timeline 1/1`。本 Gate 不发布跨任务全局 Precision/Recall/F1；原始快照与评分见执行记录中的链接。G3 的本地自动同步、双库一致性和 clean clone 已有证据，仍需 GitHub Runner 与单日期 canary。
 
 ## 7. G3：自动同步、双库一致性与真实 Runner
 
@@ -249,6 +249,8 @@ python -m pytest -q rag/tests/test_corpus_update.py rag/tests/test_consistency_f
 ### Gate G3
 
 通过条件：工作流真实执行链可追踪；每条新日报有独立身份；图/向量失败不会伪装健康；失败能恢复或安全保持旧 generation；PR 权限、分支和 Secrets 不越界；周/月报没有进入主索引；canary 结果可复现。Gate 未通过时继续冻结，不增加来源或数据量。
+
+**2026-09-01 补充状态：条件通过（本地/发布侧）。** 现有 Docker 自动更新与双库一致性通过真实容器验证；`main` 已按职责拆分为 12 个提交并完成 clean clone，语料合同（204 个公开文件）与 Compose 解析通过，完整 P0 通过。GitHub Runner 状态受匿名 API 限流影响尚未取得独立证据，不能据此宣称 G3 整体通过。
 
 ## 8. G4：干净目录、开源发布与运行交付
 
@@ -323,10 +325,11 @@ Gate 决定：通过 / 条件通过 / 不通过 / 阻塞
 
 ## 12. 当前决定
 
-本文件完成了计划层的整合：现有实现优先验收，主体关系先走有限闭环，检索质量和 UI 以用户任务为中心，自动化更新在 G3 受控验收，G5 不阻塞近期发布。G0、G1、G2 已有通过记录；G3 尚未通过，下一步是用现有容器完成启动/周期轮询、失败恢复和单日期 canary 证据，不重新开始 G0。
+本文件完成了计划层的整合：现有实现优先验收，主体关系先走有限闭环，检索质量和 UI 以用户任务为中心，自动化更新在 G3 受控验收，G5 不阻塞近期发布。G0、G1、G2 已有通过记录；G3 本地/发布侧已条件通过，下一步只补真实 Runner 与单日期 canary 证据，不重新开始 G0。
 
 ### Change log
 
 - 2026-08-27 v1.1：G0、G1 已依据执行记录通过；进入冻结索引上的 G2 检索质量收敛。
 - 2026-08-26 v1.0：依据全局缺口基线和用户确认，建立 G0–G4 计划、评估合同、预算边界、34 项问题映射和停止条件。
-- 2026-09-01 v1.5：G3 落地本地 Docker 单进程启动/周期同步、可配置上游地址与轮询周期；新增契约测试和下游失败时保留旧 generation 的回滚保护，真实容器/Runner/canary 验收待完成。
+- 2026-09-01 v1.5：G3 落地本地 Docker 单进程启动/周期同步、可配置上游地址与轮询周期；新增契约测试和下游失败时保留旧 generation 的回滚保护，真实容器验证完成。
+- 2026-09-01 v1.6：项目提交按职责拆分并分批推送 main；完整 P0、clean clone、语料合同和 Compose 解析通过；Runner/单日期 canary 保留为 G3 最后独立证据。
