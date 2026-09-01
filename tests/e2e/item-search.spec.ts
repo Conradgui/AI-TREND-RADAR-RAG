@@ -266,3 +266,82 @@ test('legacy item bookmarks resolve to the same ATR item across navigation and r
   await page.goForward()
   await expect(page.locator('.md')).toBeVisible()
 })
+
+test('citation links prefer a safe item local_url and preserve the original external link', async ({ page }) => {
+  const occurrenceId = 'ATR-20260812-A1B2C3'
+  const localUrl = `#2026-08-12/ai-topic-radar/item/${occurrenceId}`
+  await page.route('**/manifest.json', (route) => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify({ dates: [{ date: '2026-08-12', reports: ['ai-topic-radar'] }] }),
+  }))
+  await page.route('**/digests/search-index.json', (route) => route.fulfill({
+    contentType: 'application/json',
+    body: JSON.stringify({
+      schema_version: 2,
+      id_scheme: 'atr-v1',
+      documents: [{
+        occurrence_id: occurrenceId,
+        item_anchor: `item-${occurrenceId}`,
+        date: '2026-08-12',
+        report_id: 'ai-topic-radar',
+        title: 'Deep-linked citation',
+        normalized_title: 'deep linked citation',
+        summary: 'Fixture summary',
+        source: 'Fixture Source',
+        category: 'Fixture',
+        action: '验证',
+        score: 100,
+        tags: [],
+        aliases: [],
+        display_fields: {},
+        external_url: 'https://example.com/item-source',
+      }],
+    }),
+  }))
+  await page.route('**/digests/2026-08-12/ai-topic-radar.md', (route) => route.fulfill({
+    contentType: 'text/markdown',
+    body: '# Fixture report',
+  }))
+
+  await page.goto('/#2026-08-12/ai-topic-radar')
+  await expect(page.locator('.md')).toBeVisible()
+  await page.evaluate(({ localUrl, occurrenceId }) => {
+    const parent = document.createElement('div')
+    parent.id = 'citation-fixture'
+    document.body.appendChild(parent)
+    appendCitationGroup(parent, '内部语料', [
+      {
+        evidence_type: 'internal',
+        date: '2026-08-12',
+        local_url: localUrl,
+        url: 'https://example.com/original-source',
+        source: 'Fixture Source',
+        title: 'Deep-linked citation',
+        citation_id: occurrenceId,
+        display_label: 'I1',
+      },
+      {
+        evidence_type: 'internal',
+        date: '2026-08-12',
+        local_url: '',
+        source: 'Fallback Source',
+        title: 'Report fallback',
+        citation_id: 'fallback',
+        display_label: 'I2',
+      },
+    ])
+  }, { localUrl, occurrenceId })
+
+  const localLinks = page.locator('#citation-fixture a:not(.cit-external)')
+  await expect(localLinks).toHaveCount(2)
+  await expect(localLinks.nth(0)).toHaveAttribute('href', localUrl)
+  await expect(localLinks.nth(1)).toHaveAttribute('href', '#2026-08-12/ai-topic-radar')
+  await expect(page.locator('#citation-fixture .cit-external')).toHaveAttribute(
+    'href',
+    'https://example.com/original-source',
+  )
+
+  await localLinks.nth(0).click()
+  await expect(page).toHaveURL(/#2026-08-12\/ai-topic-radar\/item\/ATR-20260812-A1B2C3$/)
+  await expect(page.locator('.item-detail h1')).toHaveText('Deep-linked citation')
+})

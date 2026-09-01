@@ -1277,8 +1277,8 @@ applyTheme(theme);
 themeBtn.onclick = () => applyTheme(theme === 'dark' ? 'light' : 'dark');
 
 // ── Routing ──
-function getHash() {
-  const parts = location.hash.slice(1).split('/');
+function getHash(hash = location.hash) {
+  const parts = hash.slice(1).split('/');
   const [date, report, marker, occurrenceId] = parts;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date || '') || !/^[a-z0-9][a-z0-9-]{0,63}$/.test(report || '')) return null;
   if (parts.length === 2) return { date, report, occurrenceId: null };
@@ -2791,6 +2791,12 @@ function safeExternalUrl(rawUrl) {
   }
 }
 
+function safeLocalCitationUrl(rawUrl) {
+  if (typeof rawUrl !== 'string') return '';
+  const candidate = rawUrl.trim();
+  return candidate.startsWith('#') && getHash(candidate) ? candidate : '';
+}
+
 function bindEvidenceMarkers(container, citations = []) {
   if (!container || !citations.length) return;
   const byLabel = new Map(citations.map((citation) => [citation.display_label, citation]));
@@ -2839,6 +2845,7 @@ function appendCitationGroup(parent, label, citations) {
   citations.forEach((c) => {
     const citationItem = document.createElement('span');
     const isInternal = c.evidence_type !== 'external';
+    const localCitationUrl = isInternal ? safeLocalCitationUrl(c.local_url) : '';
     const hasLocalReport = isInternal && Boolean(c.date);
     const displayDate = c.effective_event_date || c.date || c.date_published || c.retrieved_at || '日期未知';
     citationItem.className = `chat-cit-link${hasLocalReport ? '' : ' chat-cit-static'}`;
@@ -2850,12 +2857,13 @@ function appendCitationGroup(parent, label, citations) {
     if (hasLocalReport) {
       const localLink = document.createElement('a');
       const reportName = 'ai-topic-radar';
-      localLink.href = `#${c.date}/${reportName}`;
+      localLink.href = localCitationUrl || `#${c.date}/${reportName}`;
       localLink.textContent = citationText;
       localLink.onclick = (event) => {
         event.preventDefault();
         toggleChat();
-        loadReport(c.date, reportName);
+        const route = getHash(localLink.hash);
+        if (route) void applyRoute(route, true);
       };
       citationItem.appendChild(localLink);
     } else {
@@ -2879,7 +2887,7 @@ function appendCitationGroup(parent, label, citations) {
   parent.appendChild(group);
 }
 
-function appendChatMessage(role, content, citations, toolTrace, searchReferences = []) {
+function appendChatMessage(role, content, citations, toolTrace, searchReferences = [], corpusDate = '') {
   const container = document.getElementById('chatMessages');
   // Remove welcome message if present
   const welcome = container.querySelector('.chat-welcome');
@@ -2898,6 +2906,19 @@ function appendChatMessage(role, content, citations, toolTrace, searchReferences
     mdDiv.innerHTML = renderMarkdown(content);
     bindEvidenceMarkers(mdDiv, citations || []);
     msg.appendChild(mdDiv);
+
+    if (corpusDate) {
+      const scopeDiv = document.createElement('div');
+      scopeDiv.className = 'chat-trace';
+      const scopeLabel = document.createElement('div');
+      scopeLabel.className = 'trace-label';
+      scopeLabel.textContent = '📅 语料范围';
+      const scopeContent = document.createElement('div');
+      scopeContent.className = 'trace-content';
+      scopeContent.textContent = `内部语料截止 ${corpusDate}`;
+      scopeDiv.append(scopeLabel, scopeContent);
+      msg.appendChild(scopeDiv);
+    }
 
     // Add tool trace - 使用textContent防止XSS
     if (toolTrace && toolTrace.summary) {
@@ -2997,12 +3018,18 @@ function progressTextForEvent(event) {
   switch (event.event) {
     case 'accepted':
       return '问题已接收，正在理解需求...';
-    case 'understanding':
+    case 'route_ready':
+      return data.task_family
+        ? `已确定任务路线：${data.task_family}，准备检索证据...`
+        : '问题路线已确定，准备检索证据...';
+    case 'retrieval_ready':
       return data.time_window === 'recent_corpus_first'
-        ? '已识别为近期问题，准备检索最新语料...'
-        : '问题理解完成，准备检索证据...';
-    case 'retrieving':
-      return '正在检索并筛选相关证据...';
+        ? '已完成近期语料检索，正在筛选证据...'
+        : '检索已完成，正在筛选证据...';
+    case 'retrieval_degraded':
+      return data.status === 'timeout'
+        ? '内部检索超时，正在执行允许的降级策略...'
+        : '内部检索部分不可用，正在检查可用证据...';
     case 'routing_decided':
       return data.will_search_web
         ? '内部检索已完成，按当前策略准备联网补充...'
@@ -3017,10 +3044,12 @@ function progressTextForEvent(event) {
       return '🌐 已完成联网搜索，但结果未达到正式引用标准；将保留为搜索线索...';
     case 'evidence_ready':
       return `证据已准备：从 ${data.candidate_count || 0} 条候选中采纳 ${data.admitted_count || 0} 条，正在组织回答...`;
-    case 'generating':
+    case 'generation_started':
       return data.execution_path === 'direct_composer'
         ? '正在基于证据生成回答...'
         : '正在调用工具完成复杂分析...';
+    case 'failed':
+      return `请求在${data.stage || '当前'}阶段停止，请稍后重试。`;
     default:
       return '';
   }
@@ -3073,6 +3102,7 @@ async function requestStreamingChat(payload, typingElement, signal) {
   let claimEvidence = [];
   let toolTrace = {};
   let evidenceIntegrity = {};
+  let queryUnderstanding = {};
   let streamingElement = null;
   let completed = false;
 
@@ -3100,6 +3130,7 @@ async function requestStreamingChat(payload, typingElement, signal) {
       case 'done':
         toolTrace = event.data?.tool_trace || {};
         evidenceIntegrity = event.data?.evidence_integrity || {};
+        queryUnderstanding = event.data?.query_understanding || {};
         completed = true;
         break;
       case 'error':
@@ -3133,6 +3164,7 @@ async function requestStreamingChat(payload, typingElement, signal) {
     evidence_display_map: evidenceDisplayMap,
     claim_evidence: claimEvidence,
     evidence_integrity: evidenceIntegrity,
+    query_understanding: queryUnderstanding,
     tool_trace: toolTrace,
     streamingElement,
   };
@@ -3213,7 +3245,14 @@ async function sendChatMessage() {
 
     // Show assistant response
     data.streamingElement?.remove();
-    appendChatMessage('assistant', data.answer, data.citations, data.tool_trace, data.search_references);
+    appendChatMessage(
+      'assistant',
+      data.answer,
+      data.citations,
+      data.tool_trace,
+      data.search_references,
+      data.query_understanding?.latest_corpus_date || '',
+    );
     chatHistory.push({ role: 'assistant', content: data.answer });
   } catch (e) {
     let errorMsg;
