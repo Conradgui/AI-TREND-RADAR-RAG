@@ -1,8 +1,8 @@
 # AI Trend Radar RAG Transformation
 
-## 当前缺口与下一轮计划入口（2026-08-26）
+## 当前缺口与下一轮计划入口（2026-09-02）
 
-请先阅读[全局缺口与后续收敛基线](plans/2026-08-26-global-gap-and-closure-baseline.md)：包含当前事实纠偏、已知缺口、知识反哺边界、候选阶段验收及模型分工。下方旧阶段说明保留为历史，不能据此判断最新功能尚未实现。后续完整计划从该基线生成；本次未解除语料冻结或启动功能改造。
+请先阅读[当前推进控制面](CURRENT_CONTROL.md)和[全局缺口与后续收敛基线](plans/2026-08-26-global-gap-and-closure-baseline.md)：前者记录当前状态，后者记录已知缺口、知识反哺边界、候选阶段验收及模型分工。下方旧阶段说明保留为历史，不能据此判断最新功能尚未实现。当前 G0、G1、G2 已通过；G3 的 Runner、PR/Pages、无变化幂等性和 Docker 单日期复核已通过，新日期首写待上游实际增量；G4 用户部署验收暂不在本批范围内。
 
 This folder is the durable project record for turning AI Trend Radar RAG from an experimental fork into a reliable personal AI research cockpit.
 
@@ -98,9 +98,10 @@ For this project, each module should follow the execution loop in `specs/2026-06
 
 ## Current Phase
 
-Stage 2.4: Local Product Flow And Dashboard Closure.
+G3: 自动语料同步、发布幂等性与运行一致性收口；当前只等待上游出现真实新日期以完成首写观察，G4 用户部署验收暂不推进。
 
-P0/P1 grounding and P2 Trend Brief / Evidence foundation exist. The current work is turning those capabilities into a coherent local cockpit by reusing the existing AI Trend Radar `index.html`, wiring local `/chat`, exposing Briefs, and moving runtime readiness into System.
+P0/P1 grounding and P2 Trend Brief / Evidence foundation exist. The current work has moved into G3 automated corpus sync and runtime consistency; the existing local cockpit, `/chat`, Briefs and System readiness surfaces remain the product boundary while the next real upstream date is observed.
+
 # 当前执行计划
 
-下一阶段按 [G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md) 执行；该计划尚未开始执行，正式语料仍冻结。
+当前按 [G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md) 管理；G0、G1、G2 已通过，G3 为条件通过，严格新日期首写待外部来源增量；本批暂不推进 G4。

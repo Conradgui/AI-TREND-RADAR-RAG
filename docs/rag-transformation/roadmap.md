@@ -1,7 +1,7 @@
 # AI Trend Radar RAG Roadmap
 
 > 2026-08-26 状态校准：[全局缺口与后续收敛基线](plans/2026-08-26-global-gap-and-closure-baseline.md) 汇总最新已知缺口、证据边界、Agent 知识反哺方向及候选 Gate。下方历史快照不代表当前全部状态；尤其原子入库和 A–E 路由已有实现与运行记录。后续实施计划需引用该基线的缺口 ID，未经验收不宣称整体发布完成。
-> 当前正式执行合同：[G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。计划已确认但尚未执行；正式语料仍冻结。
+> 当前正式执行合同：[G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。G0、G1、G2 已通过；G3 的 Runner、PR/Pages、无变化幂等性和 Docker 单日期复核已通过，真实新日期首写待上游增量；G4 用户部署验收本批暂不推进。动态状态以 [CURRENT_CONTROL.md](CURRENT_CONTROL.md) 为准。
 
 ## Product Goal
 
@@ -340,11 +340,13 @@ Recommended first path:
 
 ## Priority Rule
 
-Do not add web search or public UI integration before the internal corpus is fresh, citations work, and the first evaluation set is repeatable. Otherwise the system becomes a generic chatbot with search instead of a grounded AI Trend Radar research product.
+For any future expansion of web search or public UI, first preserve a fresh internal corpus, working citations, and a repeatable evaluation set. These capabilities already exist in the current product boundary; future additions must not turn the system into a generic chatbot with search instead of a grounded AI Trend Radar research product.
 
 ## Progress Snapshot
 
-Last updated: 2026-08-12
+Last detailed snapshot: 2026-08-12
+
+> 本页下方的阶段表是路线历史快照；当前执行状态、待办和 Gate 决定只以 [CURRENT_CONTROL.md](CURRENT_CONTROL.md) 与当前执行合同为准。
 
 > 2026-08 校准：下方保留的 6 月切片是历史证据，不再代表当前 Gate。当前主线已从旧的 Trend Brief Batch 前进到 Canonical Daily Observation、任务级 Retrieval Gateway、时间语义、条目级 Web UI、Observation Graph 与任务 Prompt/证据闭环。
 

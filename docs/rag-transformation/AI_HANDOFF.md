@@ -2,11 +2,11 @@
 
 > 唯一动态状态入口：[CURRENT_CONTROL.md](CURRENT_CONTROL.md)。恢复工作先看它，再读当前计划与受影响 spec；不要从下方历史阶段列表推断当前待办。
 
-> 当前正式执行合同：[G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。先执行 G0；未通过前不得解除语料冻结或宣称发布完成。
+> 当前正式执行合同：[G0–G4 收敛实施计划与 Stage Gate](plans/2026-08-26-g0-g4-implementation-and-stage-gates.md)。G0、G1、G2 已通过；G3 的 Runner、PR/Pages、无变化幂等性和 Docker 单日期复核已通过，仅真实新日期首写仍待上游增量；G4 用户部署验收本批暂不推进。
 
-> 当前续接入口（2026-08-26）：[全局缺口与后续收敛基线](plans/2026-08-26-global-gap-and-closure-baseline.md)。先读取它的事实纠偏、缺口登记册和模型分工，再参考下方历史流程。下一步是制定完整计划及 Gate，不是重做已接通的 A–E 路由/原子入库；正式语料仍冻结，代码发布分支按用户最新要求为 main。
+> 当前续接入口（2026-09-02）：先读取 [CURRENT_CONTROL.md](CURRENT_CONTROL.md)、当前计划和受影响 spec，再参考下方历史流程。不要重做已接通的 A–E 路由/原子入库，也不要在没有新上游日期时重复同步或重建 Docker；代码发布分支按用户要求为 main。G3 证据见 [Runner 与 canary 执行记录](execution-log/2026-09-01-g3-runner-and-canary.md)。
 
-Date: 2026-06-25
+Initial document date: 2026-06-25 · Dynamic status: 2026-09-02
 
 ## 1. Purpose
 

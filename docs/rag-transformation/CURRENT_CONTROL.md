@@ -1,6 +1,6 @@
 # 当前推进控制面
 
-> 更新：2026-09-01。唯一的“现在做到哪里”入口；只记录动态状态，不复制完整计划。
+> 更新：2026-09-02。唯一的“现在做到哪里”入口；只记录动态状态，不复制完整计划。
 
 ## 当前目标与状态
 
@@ -12,7 +12,7 @@
 - 不做：新增来源、大规模付费测试、自动解除 G3 验收冻结；不删除或重建 Neo4j/RAG 数据卷。
 - G0 证据：[2026-08-26-g0-runtime-readiness.md](execution-log/2026-08-26-g0-runtime-readiness.md)；评估用途冻结见 [manifest](evals/g0-evaluation-freeze-manifest-2026-08-27.json)。
 - G1 证据：[2026-08-27-g1-entity-relation-learning.md](execution-log/2026-08-27-g1-entity-relation-learning.md)。
-- 下一步：不再重复已完成的 Runner 或全量同步；等待上游第一次新日期增量，由既有定时工作流完成首写观察。不重建 Docker、不删除数据卷、不先换 Embedding、不默认 HyDE/多查询、不引入新 RAG/Agent 框架。
+- 下一步：不再重复已完成的 Runner 或全量同步；2026-09-02 已确认上游最新仍为 `2026-09-01`，等待第一次真实新日期增量，由既有定时工作流完成首写观察。不重建 Docker、不删除数据卷、不先换 Embedding、不默认 HyDE/多查询、不引入新 RAG/Agent 框架。
 - 本批 G3 证据：[2026-09-01-g3-managed-local-auto-update.md](execution-log/2026-09-01-g3-managed-local-auto-update.md)。
 - G3 Runner/幂等/canary 证据：[2026-09-01-g3-runner-and-canary.md](execution-log/2026-09-01-g3-runner-and-canary.md)。
 - 当前完整 `pnpm rag:check:p0` 已通过：Python P0 308 项、发布/工作流 pytest 51 项；前端 Vitest 270 项、ESLint、Prettier、TypeScript 也已通过。原先的生成摘要漂移在同步远端 main 后消失；本地旧生成索引仍以 `stash@{0}` 保留，未推送。
