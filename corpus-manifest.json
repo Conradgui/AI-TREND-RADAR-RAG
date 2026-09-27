@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-09-26T05:04:21.826Z",
+  "generated_at": "2026-09-27T05:23:00.909Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "9e1114c1f874c196c42c5e11f3d8a49ec09476c4fcee4cb5f1bae8044dc468ec",
-      "size": 10407,
+      "sha256": "b38d673a3dd161825e22521b97b01f69ce675d16210e9cc6207fc5f1dd4fc880",
+      "size": 10500,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "a72575a91c07e82ee2f8686d66203bb65f4a4bead3a718392f7d4f91d2755f18",
-      "size": 1576413,
+      "sha256": "cf3d0f873108033b3197b3d6178fd754601d10ac1d45ebb43a95cf5ad311c929",
+      "size": 1541856,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "eada9434b14d4f658684dbfa8612f9dd44e60ab10f3c74a393ba5d576920e683",
-      "size": 15178138,
+      "sha256": "6a142fd8200f182029067d6896def65ae4bb91ea9fc01ec3771c67ab23574642",
+      "size": 15301547,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1780,9 +1780,23 @@
       "size": 70614,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-09-27/ai-topic-radar.md",
+      "sha256": "91613190abcfbfb24ecd88ee75fe161c16e6e7076644d21c3f6015424ae1833e",
+      "size": 34919,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-09-27/topic-pool.json",
+      "sha256": "ecc5c8733d9f8e84380ccd62fae666e40916e2022cb70cbfd730e944e0371206",
+      "size": 66953,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "4c9ab1849dccb74e91f02eb1c51f084537ad88d71a40e90c15cdc81f3ce6b48b",
+  "corpus_revision": "0432e97b0b2cbe5a14785ecffff2f1564e1ae267d56a7f87a462f246c4a66f5e",
   "complete": true
 }
