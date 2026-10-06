@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-10-05T05:47:08.459Z",
+  "generated_at": "2026-10-06T06:26:43.354Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "ac6f56bc3f1285f8c62c42b760db380843fdec9726df6feee6094901cd0b0913",
-      "size": 11244,
+      "sha256": "9b6ce653422482e44742201a88b2832bff4434a78af03ccc70930e5ed13fce94",
+      "size": 11337,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "f34cdff368bbbffec0d46f6a4b4fb7145acd6f092c9407ccdd5ad6529334c818",
-      "size": 1519885,
+      "sha256": "d116cc143ac2e2e1b620f8b00beabbff5d9888c0c7817cf0c86be07e9eea92f9",
+      "size": 1527136,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "66a203dd8dac901f1797408638cefe90961aaeaae7f596ef1547d08d8c940a99",
-      "size": 16371235,
+      "sha256": "21bb8bfd22d4ff3e7d6461d47c05361a8c4f4d9ac54b9e861acd462ab058e4b0",
+      "size": 16497527,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1906,9 +1906,23 @@
       "size": 67013,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-06/ai-topic-radar.md",
+      "sha256": "c49dff60eae1ff52c4264167a6d78a23ebce4ca7357103872a9e1e6ad8d8a370",
+      "size": 39126,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-06/topic-pool.json",
+      "sha256": "9034aa9d6281fe085fa7a6b98835a1cd9f543ec19b4b4812e0b5d0f80f63f4f6",
+      "size": 68844,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "44d2aefabb599f4f6627df3598638efde34880651c72843429be4b041a93044f",
+  "corpus_revision": "f3646d722acab341f9f9c388a7cd2df1b7466d47f3417b0cf6a52f82ab0205f6",
   "complete": true
 }
