@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-10-06T06:26:43.354Z",
+  "generated_at": "2026-10-07T06:05:42.630Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "9b6ce653422482e44742201a88b2832bff4434a78af03ccc70930e5ed13fce94",
-      "size": 11337,
+      "sha256": "b447cb047b26da88fae6bccee6631d070231d73852a4ac682ba4e0b8c8688782",
+      "size": 11430,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "d116cc143ac2e2e1b620f8b00beabbff5d9888c0c7817cf0c86be07e9eea92f9",
-      "size": 1527136,
+      "sha256": "fa5bbcf8e82c53902ed6a939aff6ef4ef742d3bfefd98204ccea465ca09c2749",
+      "size": 1539093,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "21bb8bfd22d4ff3e7d6461d47c05361a8c4f4d9ac54b9e861acd462ab058e4b0",
-      "size": 16497527,
+      "sha256": "b4763480a3a97fa2df84a2a0eeac854830ce6b035a25f51e5f6190a504bdba4c",
+      "size": 16640009,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1920,9 +1920,23 @@
       "size": 68844,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-07/ai-topic-radar.md",
+      "sha256": "27eb773700fe61b2714b840ec4089f27b0ca3440711f4905e95e41edd557f5fe",
+      "size": 43059,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-07/topic-pool.json",
+      "sha256": "553b7fadd742dcb7d8b12d871fe9c9c9ca4aef5deb8f4323db60fd27fadef74f",
+      "size": 77589,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "f3646d722acab341f9f9c388a7cd2df1b7466d47f3417b0cf6a52f82ab0205f6",
+  "corpus_revision": "9489ee784762add33428cc6b9b288a85aa1af99ba48b9be013d0f90fdddb902d",
   "complete": true
 }
