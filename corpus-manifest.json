@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-10-09T06:14:27.854Z",
+  "generated_at": "2026-10-10T05:57:44.047Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "c750734a62af4da21a9fdbd201aa55f0e9a101bdfdbe51e8bf4457531a9a8845",
-      "size": 11616,
+      "sha256": "5d39f5b6dcd9e8184f3594aefd2298df905d66c8231c49534ddc6d114fd3e567",
+      "size": 11709,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "e9ab7c249bbf4ea41c4e5824b2ce06c9443667d92d0c020959c284c583e3cd00",
-      "size": 1553646,
+      "sha256": "3675b3f8061c77961fe49b54f85d93e24fbef6f19f7e852b00cfc7328db90b2a",
+      "size": 1529142,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "b97686dcec5fe15d2bcf4b612ad0547cafe3a18470ae8724406ba2747c17e338",
-      "size": 16934995,
+      "sha256": "24ba6ca8a8ff23b357d7f10c107a4777c7425efcda47fa72dc06803418247693",
+      "size": 17086806,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -1962,9 +1962,23 @@
       "size": 87007,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-10/ai-topic-radar.md",
+      "sha256": "7861910a6a9b6a518dd56eb8f3711eca925ff5713b9d3b8749c6e2d5cfd79f7b",
+      "size": 51953,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-10/topic-pool.json",
+      "sha256": "d732b5a7ab8b9300a1bea0a09bc069677ca49361c2b81c5dcc0be2c647405715",
+      "size": 84222,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "9bd8ebc83c006d1d7ffe3291ee03c50b496ca8805287f612e45976cdda5213b6",
+  "corpus_revision": "a824f9b0beac19b92bfaf44c6d916637695762febb383f5ffecfadf292f1cc00",
   "complete": true
 }
