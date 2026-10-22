@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-10-21T04:55:46.480Z",
+  "generated_at": "2026-10-22T04:55:11.469Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "d22a0046c245369db40ba6e025cc4d1890b5226de3bb8dabb6cd78d2904dfeb2",
-      "size": 12732,
+      "sha256": "2eca47544ee47f141a651c90323bfb847c5de3c8809e2da1e0d3d6456809c973",
+      "size": 12825,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "ca3916259bca08abe6a6b2e63a409082d7bb48de928a4f42dce36694f113c87d",
-      "size": 1522389,
+      "sha256": "af2dad34793af42e816ee577be6451e178eb8fcaae70c5eef9b1ce32761b03df",
+      "size": 1533499,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "208db4c4abfcefe28113bef61e0c150c97413d554807cb0b8b65629e1e41a5bd",
-      "size": 18620270,
+      "sha256": "25ce4d516d84fab978fddd5fe2f9bce9587882ee584cb12db2afd1398e367b7a",
+      "size": 18777116,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2130,9 +2130,23 @@
       "size": 91816,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-22/ai-topic-radar.md",
+      "sha256": "9f140860ff938265a3e652a91a46e4b4d1935d433befaff06b85f1ee2f3d6f98",
+      "size": 55201,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-22/topic-pool.json",
+      "sha256": "9ddd73cdc6fcdc2e69e0f21f76b50c86b4ae8649ca854bb8547c4370dad3be12",
+      "size": 89192,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "13eddf7612d97bbc0cf624941c690684cbacae4b8c55f9ca3b7ebf7d7135cde4",
+  "corpus_revision": "a26c3be9407e6e9e0f690223370e83294f0dd0bc235acd08a2b4fa3ddf5126ee",
   "complete": true
 }
