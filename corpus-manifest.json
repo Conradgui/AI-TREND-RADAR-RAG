@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-10-27T05:11:58.228Z",
+  "generated_at": "2026-10-28T05:48:29.225Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "1ef717aa94ebd3278ab7c86c05bbbaa51a9cef44588ccdd9660c31bd51f80cfb",
-      "size": 13290,
+      "sha256": "3c338d3596ac01701da776e0a52317f1a3f0cdf9db47a434ac80a2fb76370679",
+      "size": 13383,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "f6cfd988721d53cea29e16ad317227f583bac59c63d6246cc5b115ca7f289d64",
-      "size": 1565590,
+      "sha256": "eb2d800eb3223c01f4feac514a356458d5ef1ed662691c6754c6149db846fc56",
+      "size": 1596870,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "f5a0d7ed363e9098be35269ae137d4ef4e0dc53f8bf3695d51cd10b0df7f5352",
-      "size": 19456843,
+      "sha256": "15244c87cc37e3fccc0b753924355ab3e776d47bae008cefd5b34235dc24c21a",
+      "size": 19614926,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2214,9 +2214,23 @@
       "size": 72006,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-28/ai-topic-radar.md",
+      "sha256": "d654a193441037217f9838066edf3369acc13e2e1a73667be00e15fe2d58adc7",
+      "size": 67446,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-10-28/topic-pool.json",
+      "sha256": "afe0b29244b317cad0b7905ead73058c972264e14d679bee37c2684d63b2ebaa",
+      "size": 90687,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "f0bf99eee4b099d6505561c8368050a0d995a6d9066eb365a1d320b6b744f4e2",
+  "corpus_revision": "b7da5c2f3b35ca09347ac0cb0b251ce007403791bbc654151362be0323854918",
   "complete": true
 }
