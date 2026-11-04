@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-11-03T06:54:00.518Z",
+  "generated_at": "2026-11-04T06:31:58.699Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "8335cd0788e3bddce24ba7f7b02b49162030cef9c71ce81650846737591b89e8",
-      "size": 13941,
+      "sha256": "83d4a7c13eeeb7c7a78ebb4486daead00c8397408c6185d0d3e3bc6e22ab1078",
+      "size": 14034,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "a2642806ff6b553f0a8d963f1a98817895c405f2017bef89fabf3978418c54e2",
-      "size": 1608506,
+      "sha256": "6720c6ce01f16bd00b2908a4423ffa9d750b8a48b82faeee3d88267d44cd6ffa",
+      "size": 1620712,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "ccbcf08423325b10924990723dd29c1bc45ced5c4b9594d77d757408622e49a0",
-      "size": 20470432,
+      "sha256": "a066ac6e87e9689cc97174cf2abf73036b6328875b00067b2c11788d62881e7f",
+      "size": 20613971,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2312,9 +2312,23 @@
       "size": 86160,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-04/ai-topic-radar.md",
+      "sha256": "2bbaa72086ffab8aa2b150f7937f802982f621c70a93ec78c69970632336f0a8",
+      "size": 45237,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-04/topic-pool.json",
+      "sha256": "6110f00b0cb581f33b33e0eb7844c40cbe553ec351b9c5ecb09a99bc64f2f6ba",
+      "size": 79384,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "1a1659032f52c28e5d51970aea3d96c13f28728068eac8ebe11e3dabeb3bf156",
+  "corpus_revision": "eecbede509bec6da4ed023d461ee489b4801c825f98bdc664fb3ad40b49e8b5d",
   "complete": true
 }
