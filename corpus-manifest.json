@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-11-04T06:31:58.699Z",
+  "generated_at": "2026-11-05T06:54:11.313Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "83d4a7c13eeeb7c7a78ebb4486daead00c8397408c6185d0d3e3bc6e22ab1078",
-      "size": 14034,
+      "sha256": "270af95355c84fc9d21b061b52cf986ed151563d5534057743c8f4a01375beb3",
+      "size": 14127,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "6720c6ce01f16bd00b2908a4423ffa9d750b8a48b82faeee3d88267d44cd6ffa",
-      "size": 1620712,
+      "sha256": "5c146dd47734f3cd0b3eaa49461b9bf6bdd7908387912df371d121792e52185e",
+      "size": 1627368,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "a066ac6e87e9689cc97174cf2abf73036b6328875b00067b2c11788d62881e7f",
-      "size": 20613971,
+      "sha256": "75187cd131e4b64b7457260c16a91dc3f922c3c11ac808841bd9bc4480459668",
+      "size": 20764067,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2326,9 +2326,23 @@
       "size": 79384,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-05/ai-topic-radar.md",
+      "sha256": "73dec13217b71aa5418f01357a94f28b18ccc076cd62aef9274518eccc011159",
+      "size": 45765,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-05/topic-pool.json",
+      "sha256": "9ee0fcf1b4d26573a0f5df8797b513984449fe877c215ece4557ac3d10bd8121",
+      "size": 83838,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "eecbede509bec6da4ed023d461ee489b4801c825f98bdc664fb3ad40b49e8b5d",
+  "corpus_revision": "24f1a9ed2e51b4edc5a07235c9ff22cc0e93b1774e038a502cc88d29348fdaa1",
   "complete": true
 }
