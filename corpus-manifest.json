@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-11-08T06:08:42.499Z",
+  "generated_at": "2026-11-09T06:42:23.107Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "de3c2e09e31bbcd4eaea7c60479c7479d595aa6fe47e89131fa1cf298b4ab17e",
-      "size": 14406,
+      "sha256": "207d4830173a683d41a33c1b102a92140f6888e8f81678d2fc4a27cb9a989e18",
+      "size": 14499,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "192b819e31e37992e6d47e30335729ed71457d781df160d1a09f884f3cf2f577",
-      "size": 1625096,
+      "sha256": "281760298ba4c2a0bb4465018cc04229677b5938271b1cd6940270c0e61a130e",
+      "size": 1604724,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "41e14a228864880c0d95d7cc00e7067f8f9279beb0e904c2c7fc1d8e88f2430e",
-      "size": 21200318,
+      "sha256": "5faf22073e7679326d6e3c13b7610a37b50668b7cdeed0200ad086a215373425",
+      "size": 21325634,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2382,9 +2382,23 @@
       "size": 69927,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-09/ai-topic-radar.md",
+      "sha256": "ef51c15a6fa23f3e31cf5464a8a91666f256178cf4c18ac24592f0c36f2802b5",
+      "size": 32541,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-09/topic-pool.json",
+      "sha256": "e226dfa9ca8138d0e40fa33869298f76a43e1517b1511009e97dc32eb86ed67e",
+      "size": 67734,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "9c6d5d0db4d860a5365b4bb547de4d64cb1d5639af13ca8ab7a27cf0cd637032",
+  "corpus_revision": "f5eb34061c4ef1d2dfba6275a926a461cfe3eb702f403529798e1da6d6a056d2",
   "complete": true
 }
