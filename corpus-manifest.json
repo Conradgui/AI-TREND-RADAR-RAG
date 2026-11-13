@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-11-12T07:17:36.428Z",
+  "generated_at": "2026-11-13T06:51:44.803Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "3678a9837d47ad370a363b630ae88bd607f3a23d2a57893eed5a5d3b314012f5",
-      "size": 14778,
+      "sha256": "79c02a2f756bd6bd47e2301f36573c60c84aebaf3c66c2b168ec0a972370d51d",
+      "size": 14871,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "358e94f628c5a2878c47f50cd2bbece5c9754fa08b37ede5d322d0600c890cc3",
-      "size": 1634949,
+      "sha256": "7a1c1ace72a9e0463f082ea217e3da814cff587999d85a3384608c16dd7d0a66",
+      "size": 1635952,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "9a4d78973a6f882aaeee9ecedd215d032bcde6c270563d10b91f2aedc276d956",
-      "size": 21757556,
+      "sha256": "32e4b68b82876c0cc339ed1b3bdc43a74c523f384e63393743fff193a8a0aa4c",
+      "size": 21896592,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2438,9 +2438,23 @@
       "size": 72432,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-13/ai-topic-radar.md",
+      "sha256": "72e62bd16c26cb47d1c0b1f2b2b13d76d3dcd072c7bb665668837a622eae60da",
+      "size": 48984,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-13/topic-pool.json",
+      "sha256": "e344e9b12a0b62ef089e0f59e9d907a91c44e036620e440a58e9ff4b1187d5f0",
+      "size": 77218,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "eba1d5112e4f2e4e52303766dbb5b89be1c5ccc9258eae4b2901ede211d2f66c",
+  "corpus_revision": "3fe732135e747b4f520d2ce61919ae537c841bfbf140c87e06054335828655a9",
   "complete": true
 }
