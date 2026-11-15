@@ -1,6 +1,12 @@
 {
-  "generated": "2026-11-14T06:31:34.932Z",
+  "generated": "2026-11-15T06:40:26.854Z",
   "dates": [
+    {
+      "date": "2026-11-15",
+      "reports": [
+        "ai-topic-radar"
+      ]
+    },
     {
       "date": "2026-11-14",
       "reports": [
