@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "source_mode": "hosted",
-  "generated_at": "2026-11-23T07:46:23.448Z",
+  "generated_at": "2026-11-25T08:42:49.954Z",
   "files": [
     {
       "path": "manifest.json",
-      "sha256": "7f3b09164afb460d96ae37b70586c769379d4c790862eaf382094e192562bd78",
-      "size": 15801,
+      "sha256": "d0c3caad8afd7f8125ed96a12442c6b1a4c8b2166434cc4612af75ecce9bffdf",
+      "size": 15987,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
     {
       "path": "feed.xml",
-      "sha256": "2dd988abcc205e6ce6d1805ca969d423afbd0bea08646cfd41eef9c807594259",
-      "size": 1584748,
+      "sha256": "e148cfc12a1c2199f6641cbf2bd9fd8a2f9bff5073e101b64b13156ce87b67f9",
+      "size": 1611792,
       "content_type": "application/xml",
       "retrieval_eligible": false
     },
     {
       "path": "digests/search-index.json",
-      "sha256": "3cac37562809769750cd17b3970d505c794f0facc494105610d3b653e71edc8e",
-      "size": 23248305,
+      "sha256": "91f452891f0b25cba74c23433fbd69a6e5dba93c1d3fc54fd44ef072a7333a9a",
+      "size": 23515948,
       "content_type": "application/json",
       "retrieval_eligible": false
     },
@@ -2592,9 +2592,37 @@
       "size": 62062,
       "content_type": "application/json",
       "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-24/ai-topic-radar.md",
+      "sha256": "6479b1c5461e3d3aea49d063f830a0f6805cbb0517867f83fb6cb5f231e48eb9",
+      "size": 49490,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-24/topic-pool.json",
+      "sha256": "b4ce223f5f99f1b2789ed6b12d4af8c4b6e6e4b55aa917b36b673933205b076a",
+      "size": 78615,
+      "content_type": "application/json",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-25/ai-topic-radar.md",
+      "sha256": "445a68d609a9ced57ec4074d4cc032ebec43b88457550c1f5e4ec2526e11a9af",
+      "size": 37648,
+      "content_type": "text/markdown",
+      "retrieval_eligible": true
+    },
+    {
+      "path": "digests/2026-11-25/topic-pool.json",
+      "sha256": "a5b35a8258eb72addefaf269398b9bd9f009e171c82c499e1473bfc67f89d738",
+      "size": 71090,
+      "content_type": "application/json",
+      "retrieval_eligible": true
     }
   ],
   "tombstones": [],
-  "corpus_revision": "c595685bcfdbc1c1621c0200a5935bf9a4a128f9d59149df15a8dc45db12feb8",
+  "corpus_revision": "c51c73515190e7537776cd48a264467fe35efc241761845cd93c2f5448c50094",
   "complete": true
 }
